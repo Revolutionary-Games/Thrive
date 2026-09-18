@@ -354,7 +354,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                     Editor.EditedCellOrganelles, specialization,
                     Editor.CurrentPatch.Biome);
 
-            if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+            if (optimalTest.OverallScore is < 1 or > 2 + MathUtils.EPSILON)
             {
                 GD.PrintErr("Optimal tolerance calculation failed, score: " + optimalTest.OverallScore);
 

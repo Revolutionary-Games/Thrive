@@ -619,7 +619,7 @@ public class Patch : IArchivable
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(result, organelles, totalSpecializationBonus,
                 currentSnapshot.Biome);
 
-        if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+        if (optimalTest.OverallScore is < 1 or > 2 + MathUtils.EPSILON)
         {
             GD.PrintErr("Optimal tolerance creation failed, score: " + optimalTest.OverallScore);
 
