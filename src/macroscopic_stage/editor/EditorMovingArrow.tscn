@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://7g7qly07ij5j"]
+
+[ext_resource type="PackedScene" uid="uid://bt0qqevw6s653" path="res://assets/models/MoveArrow.glb" id="1_5xfcp"]
+[ext_resource type="Script" uid="uid://bnwqoljprng86" path="res://src/macroscopic_stage/editor/EditorMovingArrows.cs" id="1_xfn3j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xfcp"]
+no_depth_test = true
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.78431374, 0.29411766, 0.29411766, 1)
+disable_receive_shadows = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8mv4"]
+no_depth_test = true
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.29411766, 0.78431374, 0.29411766, 1)
+disable_receive_shadows = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfn3j"]
+no_depth_test = true
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.29411766, 0.29411766, 0.78431374, 1)
+disable_receive_shadows = true
+
+[node name="EditorMovingArrow" type="Node3D" unique_id=1282793191 node_paths=PackedStringArray("xArrow", "yArrow", "zArrow")]
+script = ExtResource("1_xfn3j")
+xArrow = NodePath("XArrow")
+yArrow = NodePath("YArrow")
+zArrow = NodePath("ZArrow")
+
+[node name="XArrow" parent="." unique_id=989047613 instance=ExtResource("1_5xfcp")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Arrow" parent="XArrow" index="0" unique_id=89163612]
+surface_material_override/0 = SubResource("StandardMaterial3D_5xfcp")
+
+[node name="YArrow" parent="." unique_id=1827184397 instance=ExtResource("1_5xfcp")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Arrow" parent="YArrow" index="0" unique_id=89163612]
+surface_material_override/0 = SubResource("StandardMaterial3D_y8mv4")
+
+[node name="ZArrow" parent="." unique_id=277672898 instance=ExtResource("1_5xfcp")]
+
+[node name="Arrow" parent="ZArrow" index="0" unique_id=89163612]
+surface_material_override/0 = SubResource("StandardMaterial3D_xfn3j")
+
+[editable path="XArrow"]
+[editable path="YArrow"]
+[editable path="ZArrow"]

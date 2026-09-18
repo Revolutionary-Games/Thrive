@@ -90,6 +90,9 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
+    [Export]
+    private EditorMovingArrows moveArrows = null!;
+
     private PackedScene visualMetaballDisplayerScene = null!;
 
     private PackedScene structuralMetaballDisplayerScene = null!;
@@ -105,6 +108,8 @@ public partial class MetaballBodyEditorComponent :
     private bool refreshTolerancesWarnings = true;
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+
+    private MacroscopicMetaball? metaballSelectedForMoving;
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -185,6 +190,21 @@ public partial class MetaballBodyEditorComponent :
             // TODO: refresh ATP balance etc. if added to this editor
 
             CalculateAndDisplayToleranceWarnings();
+        }
+
+        if (metaballSelectedForMoving != null && moveArrows.IsDragging)
+        {
+            GD.Print($"Dragging to {moveArrows.GetDraggingPosition()}");
+
+            RenderHighlightedMetaball(moveArrows.GetDraggingPosition(), null, metaballSelectedForMoving!.ModifiableCellType);
+            moveArrows.Position = moveArrows.GetDraggingPosition();
+
+            if (Input.IsActionJustReleased("e_primary"))
+            {
+                metaballSelectedForMoving.Position = moveArrows.GetDraggingPosition();
+                editedMetaballs.Add(metaballSelectedForMoving);
+                moveArrows.StopDragging();
+            }
         }
 
         // Show the ball that is about to be placed
@@ -421,6 +441,47 @@ public partial class MetaballBodyEditorComponent :
             return true;
 
         ShowCellMenu(metaballs.Select(h => h).Distinct());
+        return true;
+    }
+
+    [RunOnKeyDown("e_primary")]
+    public bool ShowMetaballTransformTools()
+    {
+        if (metaballSelectedForMoving != null && moveArrows.TryStartDragging())
+        {
+            editedMetaballs.Remove(metaballSelectedForMoving);
+            OnActionStatusChanged();
+
+            return true;
+        }
+        else
+        {
+            moveArrows.Visible = false;
+        }
+
+        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
+        if (!Visible)
+            return false;
+
+        if (PreviewMode)
+            return false;
+
+        // Can't open the popup menu while moving something
+        if (MovingPlacedMetaball != null)
+        {
+            Editor.OnActionBlockedWhileMoving();
+            return true;
+        }
+
+        GetMouseMetaball(out _, out var metaball);
+
+        if (metaball == null)
+            return false;
+
+        moveArrows.Visible = true;
+        moveArrows.Position = metaball.Position;
+
+        metaballSelectedForMoving = metaball;
         return true;
     }
 
@@ -663,8 +724,8 @@ public partial class MetaballBodyEditorComponent :
 
     private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace)
     {
-        if (MovingPlacedMetaball == null && activeActionName == null)
-            return;
+        //if (MovingPlacedMetaball == null && activeActionName == null)
+        //    return;
 
         var metaball = new MacroscopicMetaball(GetEditedCellDataIfEdited(cellToPlace))
         {
@@ -898,7 +959,7 @@ public partial class MetaballBodyEditorComponent :
     {
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
-            // Start moving the cells symmetrical to the clicked cell.
+            // Start moving the metaballs symmetrical to the clicked metaball.
             StartMetaballMoveWithSymmetry(metaballPopupMenu.GetSelectedThatAreStillValid(editedMetaballs));
         }
         else

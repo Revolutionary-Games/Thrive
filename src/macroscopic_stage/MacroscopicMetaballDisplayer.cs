@@ -152,7 +152,7 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
 
         base.Dispose(disposing);
     }
-
+    
     private void ApplyAlpha()
     {
         if (material == null)
