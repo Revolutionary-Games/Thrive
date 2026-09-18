@@ -140,11 +140,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             "cloud_density", "cloud_interface");
     }
 
-    public void BindCloudsConfig(CloudsConfig config)
-    {
-        CloudsConfig = config;
-    }
-
     public override void _Notification(int what)
     {
         if (what != NotificationPredelete)
@@ -310,6 +305,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                     renderingDevice.CaptureTimestamp("clouds_end");
             }
         }
+    }
+
+    public void BindCloudsConfig(CloudsConfig config)
+    {
+        CloudsConfig = config;
     }
 
     protected override void Dispose(bool disposing)
