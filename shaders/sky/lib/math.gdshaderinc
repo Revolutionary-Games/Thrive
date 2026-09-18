@@ -1,6 +1,4 @@
-﻿const float PI = 3.14159265359;
-
-// Numerically stable ray/sphere. The (|oc|-r)(|oc|+r) form avoids the catastrophic cancellation of dot(oc,oc) - r*r at
+﻿// Numerically stable ray/sphere. The (|oc|-r)(|oc|+r) form avoids the catastrophic cancellation of dot(oc,oc) - r*r at
 // planetary radii.
 bool RaySphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out float t1) {
     vec3 oc = ro - center;

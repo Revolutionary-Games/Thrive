@@ -1,4 +1,4 @@
-﻿shader_type sky;
+shader_type sky;
 
 // TODO: LUTs.
 // uniform sampler2D skyViewLut : filter_linear, repeat_disable, hint_default_black;
@@ -146,4 +146,11 @@ void sky() {
     // TODO: Mie scattering for fog, smoke and clouds, on top of the Rayleigh term above.
 
     COLOR = luminance;
+
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+    // Compatibility treats sky COLOR as sRGB and converts it to linear afterwards, so encode it to sRGB here to
+    // cancel that out.
+    vec3 c = max(COLOR, vec3(0.0));
+    COLOR = mix(12.92 * c, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(0.0031308, c));
+#endif
 }
