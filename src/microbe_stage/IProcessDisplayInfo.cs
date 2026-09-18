@@ -29,7 +29,7 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs { get; }
 
     /// <summary>
-    ///   Environment inputs that result in process running at maximum speed
+    ///   Baseline environmental requirements, independent of process capacity and speed modifiers
     /// </summary>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
 
@@ -39,7 +39,8 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     public IEnumerable<KeyValuePair<Compound, float>> Outputs { get; }
 
     /// <summary>
-    ///   The current speed of the process (if known)
+    ///   Effective process cycles per second (if known), including speed modifiers. Estimates exclude inventory
+    ///   and capacity limits; runtime statistics include the constraints applied during execution.
     /// </summary>
     public float CurrentSpeed { get; }
 

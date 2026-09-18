@@ -960,6 +960,14 @@ public static class SpawnHelpers
 
             if (giveInitialCompounds)
             {
+#if DEBUG
+                if (species.InitialCompounds.Count == 0)
+                {
+                    throw new InvalidOperationException(
+                        $"Cannot spawn species {species.FormattedIdentifier} without initial compounds");
+                }
+#endif
+
                 storage.Compounds.AddInitialCompounds(species.InitialCompounds);
 
                 // Extra initial compounds if close to night
