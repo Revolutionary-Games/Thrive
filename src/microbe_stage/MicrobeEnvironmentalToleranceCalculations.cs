@@ -680,10 +680,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
                     noExtraEffects.PressureTolerance;
 
-                var perfectionFactor = 1 - Math.Max(0,
-                        noExtraEffects.PressureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE) /
-                    (Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
-                result.PressureScore = 1 + perfectionFactor;
+                if (!excludePositiveBuffs)
+                {
+                    // Adaptation bonus ranges are calculated without the effects of organelles as they would otherwise
+                    // be really hard to apply
+                    var perfectionFactor = 1 - Math.Max(0,
+                            noExtraEffects.PressureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE) /
+                        (Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                    result.PressureScore = 1 + perfectionFactor;
+                }
+                else
+                {
+                    result.PressureScore = 1;
+                }
             }
 
             result.MinimumPressureAdjustment = 0.0f;
