@@ -451,10 +451,13 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (pressureScore < 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, pressureScore);
+                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, 1 - (1 - pressureScore) *
+                    (1 - Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN));
             result.OsmoregulationModifier *=
-                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 2 - pressureScore);
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, pressureScore);
+                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 1 + (1 - pressureScore) *
+                    (Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX - 1));
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, 1 - (1 - pressureScore) *
+                (1 - Constants.TOLERANCE_PRESSURE_HEALTH_MIN));
         }
         else if (data.PressureScore > 1)
         {

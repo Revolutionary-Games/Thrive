@@ -2160,7 +2160,7 @@ public static class Constants
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 5;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 5000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
     /// <summary>
