@@ -34,6 +34,7 @@ public class AutoEvoRun
     private bool started;
     private volatile bool running;
     private volatile bool finished;
+    private volatile bool completionCommitted;
     private volatile bool aborted;
 
     /// <summary>
@@ -85,8 +86,14 @@ public class AutoEvoRun
     /// </remarks>
     public bool Running { get => running; private set => running = value; }
 
+    /// <summary>
+    ///   True after all accepted work has stopped and the final duration and results are visible.
+    /// </summary>
     public bool Finished { get => finished; private set => finished = value; }
 
+    /// <summary>
+    ///   Whether cancellation was requested or a step failed. Wait for Finished before reusing the run's inputs.
+    /// </summary>
     public bool Aborted { get => aborted; set => aborted = value; }
 
     /// <summary>
@@ -190,7 +197,7 @@ public class AutoEvoRun
     /// </summary>
     public void Start()
     {
-        if (started)
+        if (started || completionCommitted)
             return;
 
         var task = new Task(Run);
@@ -202,7 +209,7 @@ public class AutoEvoRun
 
     public void OneStep()
     {
-        if (Running)
+        if (Running || completionCommitted)
             return;
 
         started = true;
@@ -212,10 +219,12 @@ public class AutoEvoRun
 
         Running = true;
 
+        bool complete = false;
+
         try
         {
-            if (Step())
-                Finished = true;
+            if (!Aborted)
+                complete = Step();
         }
         catch (Exception e)
         {
@@ -223,14 +232,21 @@ public class AutoEvoRun
             GD.PrintErr("Auto-evo failed with an exception: ", e);
         }
 
-        Running = false;
-
         RunDuration += timer.Elapsed;
+
+        if (complete || Aborted)
+        {
+            PublishCompletion();
+        }
+        else
+        {
+            Running = false;
+        }
     }
 
     public void Continue()
     {
-        if (Running)
+        if (Running || completionCommitted)
             return;
 
         started = true;
@@ -250,7 +266,7 @@ public class AutoEvoRun
     ///   Returns true when this run is finished
     /// </summary>
     /// <param name="autoStart">If set to <c>true</c> start the run if not already.</param>
-    /// <returns>True when the run is complete or aborted</returns>
+    /// <returns>True when the run has finished, including after processing cancellation or failure</returns>
     public bool IsFinished(bool autoStart = true)
     {
         if (autoStart && !started)
@@ -563,10 +579,16 @@ public class AutoEvoRun
             }
         }
 
+        RunDuration += timer.Elapsed;
+        PublishCompletion();
+    }
+
+    private void PublishCompletion()
+    {
+        // Prevent continuation between clearing Running and publishing completion.
+        completionCommitted = true;
         Running = false;
         Finished = true;
-
-        RunDuration += timer.Elapsed;
     }
 
     /// <summary>
