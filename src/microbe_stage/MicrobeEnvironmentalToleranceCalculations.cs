@@ -433,12 +433,14 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (temperatureScore < 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, temperatureScore);
+                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, 1 - (1 - temperatureScore) *
+                    (1 - Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN));
 
             result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX,
-                2 - temperatureScore);
+                1 + (1 - temperatureScore) * (Constants.TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX - 1));
 
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, temperatureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, 1 - (1 - temperatureScore) *
+                (1 - Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN));
         }
         else if (data.TemperatureScore > 1)
         {
@@ -549,7 +551,10 @@ public static class MicrobeEnvironmentalToleranceCalculations
             patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
         {
             // Not adapted to the temperature
-            var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment);
+            var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment) -
+                speciesTolerances.TemperatureTolerance;
+
+            GD.Print("Temperature adjustment size: " + adjustmentSize);
 
             if (adjustmentSize > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE)
             {
@@ -561,6 +566,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                     1 - adjustmentSize / Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE;
             }
 
+            GD.Print("Temperature score: " + result.TemperatureScore);
             missingSomething = true;
         }
         else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
