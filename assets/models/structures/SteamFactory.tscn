@@ -6,7 +6,7 @@ size = Vector3(20, 10, 20)
 [sub_resource type="StandardMaterial3D" id="2"]
 albedo_color = Color(0.439216, 0.262745, 0.0392157, 1)
 
-[node name="SocietyCenter" type="StaticBody3D" unique_id=247661294]
+[node name="SteamFactory" type="StaticBody3D" unique_id=247661294]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1827578496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91965, 0)

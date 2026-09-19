@@ -6,6 +6,9 @@ size = Vector3(5, 7, 20)
 [sub_resource type="StandardMaterial3D" id="2"]
 albedo_color = Color(0.439216, 0.262745, 0.0392157, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt7af"]
+albedo_color = Color(0.71152216, 0.5110105, 0.29390934, 1)
+
 [node name="HunterGathererLodge" type="StaticBody3D" unique_id=692252633]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=812592828]
@@ -20,3 +23,9 @@ material = SubResource("2")
 [node name="CSGBox4" type="CSGBox3D" parent="." unique_id=733599415]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0270005, 2.5635, -9.28844)
 size = Vector3(0.49926, 5.19641, 3.15211)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=954778646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 10.25)
+polygon = PackedVector2Array(3, 0, 0, 2, -3, 0)
+depth = 19.6
+material = SubResource("StandardMaterial3D_qt7af")
