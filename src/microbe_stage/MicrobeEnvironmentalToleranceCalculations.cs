@@ -567,7 +567,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
                     1 - adjustmentSize / Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE;
             }
 
-            GD.Print("Temperature score: " + result.TemperatureScore);
             missingSomething = true;
         }
         else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
