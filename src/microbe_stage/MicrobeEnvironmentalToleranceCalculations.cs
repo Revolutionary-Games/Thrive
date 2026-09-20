@@ -557,8 +557,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
             var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment) -
                 speciesTolerances.TemperatureTolerance;
 
-            GD.Print("Temperature adjustment size: " + adjustmentSize);
-
             if (adjustmentSize > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE)
             {
                 result.TemperatureScore = 0;
