@@ -837,7 +837,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             temperatureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_MAXIMUM_TEMPERATURE_RANGE)
         {
             // Perfectly adapted
             temperatureMinLabel.LabelSettings = perfectValueFontTiny;
@@ -905,7 +905,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMinLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (CurrentTolerances.PressureTolerance < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        else if (CurrentTolerances.PressureTolerance < Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE)
         {
             // Perfectly adapted
             pressureMinLabel.LabelSettings = perfectValueFontTiny;
