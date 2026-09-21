@@ -45,14 +45,14 @@ public class PatchManager
     /// </summary>
     /// <param name="currentPatch">The patch to apply settings from</param>
     /// <param name="spawnEnvironment">Spawn environment to give to setup cell spawners</param>
-    /// <param name="alwaysResetPatch">Reset the patch even if the player did not move to a new patch</param>
+    /// <param name="alwaysResetPatch">Whether entities have already been deleted before this</param>
     /// <returns>
-    ///   True if the patch environment is reset. False if the patch is not reset.
+    ///   True if the patch is changed from the previous one. False if the patch is not changed.
     /// </returns>
-    public bool ResetPatchIfNeeded(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment,
+    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment,
         bool alwaysResetPatch)
     {
-        var patchIsReset = false;
+        var patchIsChanged = false;
 
         if (previousPatch != currentPatch)
         {
@@ -81,7 +81,7 @@ public class PatchManager
                 compoundCloudSystem.EmptyAllClouds();
             }
 
-            patchIsReset = true;
+            patchIsChanged = true;
         }
 
         previousPatch = currentPatch;
@@ -99,7 +99,7 @@ public class PatchManager
         compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
         UpdateAllPatchLightLevels(currentPatch);
 
-        return patchIsReset;
+        return patchIsChanged;
     }
 
     /// <summary>
