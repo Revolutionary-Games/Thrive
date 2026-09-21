@@ -1133,7 +1133,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     {
         // If switched on, always reset the whole patch, including the player
         if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        {
+            WorldSimulation.MicrobeTerrainSystem.DespawnAll();
             WorldSimulation.DestroyAllEntities();
+        }
 
         UpdatePatchSettings();
 
