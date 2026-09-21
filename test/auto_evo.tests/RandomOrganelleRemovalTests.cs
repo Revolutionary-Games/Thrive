@@ -128,10 +128,10 @@ public class RandomOrganelleRemovalTests
         var originalLayout = layout
             .Select(o => (o.Definition, o.Position, o.Orientation, o.Upgrades, o.IsEndosymbiont)).ToArray();
         AssertThat(originalLayout.Length).IsEqual(removableCount * 2 + 1);
-        AssertThat(GetDefinitions(original).Count(o => o == cytoplasm)).IsEqual(removableCount);
-        AssertThat(GetDefinitions(original).Count(o => o == nucleus)).IsEqual(1);
+        AssertThat(GetDefinitions(original).Count(o => Equals(o, cytoplasm))).IsEqual(removableCount);
+        AssertThat(GetDefinitions(original).Count(o => Equals(o, nucleus))).IsEqual(1);
         foreach (var definition in definitions)
-            AssertThat(GetDefinitions(original).Count(o => o == definition)).IsEqual(1);
+            AssertThat(GetDefinitions(original).Count(o => Equals(o, definition))).IsEqual(1);
 
         // Include the nucleus in the criteria so its exclusion must come from the removal strategy.
         var candidates = definitions.Append(nucleus).ToHashSet();
@@ -152,11 +152,11 @@ public class RandomOrganelleRemovalTests
                 var removedDefinition = definitions.Except(mutantDefinitions).Single();
                 AssertThat(removed.Add(removedDefinition)).IsTrue();
                 AssertThat(mutantDefinitions.Length).IsEqual(removableCount * 2);
-                AssertThat(mutantDefinitions.Count(o => o == nucleus)).IsEqual(1);
-                AssertThat(mutantDefinitions.Count(o => o == cytoplasm)).IsEqual(removableCount);
+                AssertThat(mutantDefinitions.Count(o => Equals(o, nucleus))).IsEqual(1);
+                AssertThat(mutantDefinitions.Count(o => Equals(o, cytoplasm))).IsEqual(removableCount);
                 foreach (var definition in definitions)
                 {
-                    AssertThat(mutantDefinitions.Count(o => o == definition))
+                    AssertThat(mutantDefinitions.Count(o => Equals(o, definition)))
                         .IsEqual(definition == removedDefinition ? 0 : 1);
                 }
 
