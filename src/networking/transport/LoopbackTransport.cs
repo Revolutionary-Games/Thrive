@@ -40,6 +40,11 @@ public class LoopbackTransport : ITransport
     public bool IsServer { get; private set; }
 
     /// <summary>
+    ///   Address this transport is listening on, when it is a server
+    /// </summary>
+    public string? ServerAddress => serverAddress;
+
+    /// <summary>
     ///   Simulated one way delay in seconds applied to all messages sent through this transport
     /// </summary>
     public float SimulatedLatency { get; set; }
