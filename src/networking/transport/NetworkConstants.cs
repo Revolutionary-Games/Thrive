@@ -30,6 +30,21 @@ public static class NetworkConstants
     public const int BULK_MESSAGE_THRESHOLD = 4096;
 
     /// <summary>
+    ///   Longest allowed player name
+    /// </summary>
+    public const int MAX_PLAYER_NAME_LENGTH = 32;
+
+    /// <summary>
+    ///   Longest allowed chat message
+    /// </summary>
+    public const int MAX_CHAT_LENGTH = 255;
+
+    /// <summary>
+    ///   Seconds a connected peer may take to complete the handshake before it is dropped
+    /// </summary>
+    public const float HANDSHAKE_TIMEOUT = 10;
+
+    /// <summary>
     ///   Version of the wire protocol. Must be incremented whenever the meaning of any message changes so that
     ///   mismatched clients are rejected at handshake instead of misreading data.
     /// </summary>
