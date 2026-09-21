@@ -157,7 +157,7 @@ public class RandomOrganelleRemovalTests
                 foreach (var definition in definitions)
                 {
                     AssertThat(mutantDefinitions.Count(o => Equals(o, definition)))
-                        .IsEqual(definition == removedDefinition ? 0 : 1);
+                        .IsEqual(Equals(definition, removedDefinition) ? 0 : 1);
                 }
 
                 AssertThat(mutant.MP).IsEqual(1000 - cost);
