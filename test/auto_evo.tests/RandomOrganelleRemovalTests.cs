@@ -108,21 +108,78 @@ public class RandomOrganelleRemovalTests
             AssertThat(mutationsPerType[i]).IsEqual(Math.Min(counts[i], Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS));
     }
 
-    [TestCase(false, false)]
-    [TestCase(true, false)]
-    [TestCase(true, true)]
-    public void ProtectedSelectedOrganellesAreSkippedWithoutReplacement(bool multicellular, bool binding)
+    [TestCase(false, 9)]
+    [TestCase(false, 10)]
+    [TestCase(false, 11)]
+    [TestCase(true, 9)]
+    [TestCase(true, 10)]
+    [TestCase(true, 11)]
+    public void NucleusIsExcludedBeforeSampling(bool multicellular, int removableCount)
     {
-        var protectedOrganelle = SimulationParameters.Instance.GetOrganelleType(binding ? "bindingAgent" : "nucleus");
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        var definitions = GetCandidates().Take(removableCount).ToArray();
+        AssertThat(definitions.Length).IsEqual(removableCount);
+        var original = CreateSpecies(multicellular, definitions);
+        var layout = original is MicrobeSpecies microbe ?
+            microbe.Organelles :
+            ((MulticellularSpecies)original).ModifiableCellTypes[0].ModifiableOrganelles;
+        layout.Add(new OrganelleTemplate(nucleus, new Hex(-10, 0), 0));
+
+        var originalLayout = layout
+            .Select(o => (o.Definition, o.Position, o.Orientation, o.Upgrades, o.IsEndosymbiont)).ToArray();
+        AssertThat(originalLayout.Length).IsEqual(removableCount * 2 + 1);
+        AssertThat(GetDefinitions(original).Count(o => o == cytoplasm)).IsEqual(removableCount);
+        AssertThat(GetDefinitions(original).Count(o => o == nucleus)).IsEqual(1);
+        foreach (var definition in definitions)
+            AssertThat(GetDefinitions(original).Count(o => o == definition)).IsEqual(1);
+
+        // Include the nucleus in the criteria so its exclusion must come from the removal strategy.
+        var candidates = definitions.Append(nucleus).ToHashSet();
+        var strategy = new RemoveOrganelle(candidates.Contains);
+        double cost = Constants.ORGANELLE_REMOVE_COST *
+            (multicellular ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1);
+
+        foreach (int seed in new[] { 1, 71, 431 })
+        {
+            var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), biome);
+            AssertThat(mutants).IsNotNull();
+            AssertThat(mutants!.Count)
+                .IsEqual(Math.Min(removableCount, Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS));
+            var removed = new HashSet<OrganelleDefinition>();
+            foreach (var mutant in mutants)
+            {
+                var mutantDefinitions = GetDefinitions(mutant.Species).ToArray();
+                var removedDefinition = definitions.Except(mutantDefinitions).Single();
+                AssertThat(removed.Add(removedDefinition)).IsTrue();
+                AssertThat(mutantDefinitions.Length).IsEqual(removableCount * 2);
+                AssertThat(mutantDefinitions.Count(o => o == nucleus)).IsEqual(1);
+                AssertThat(mutantDefinitions.Count(o => o == cytoplasm)).IsEqual(removableCount);
+                foreach (var definition in definitions)
+                {
+                    AssertThat(mutantDefinitions.Count(o => o == definition))
+                        .IsEqual(definition == removedDefinition ? 0 : 1);
+                }
+
+                AssertThat(mutant.MP).IsEqual(1000 - cost);
+            }
+
+            AssertThat(GetDefinitions(original).SequenceEqual(originalLayout.Select(o => o.Definition))).IsTrue();
+            AssertThat(layout.Select(o => (o.Definition, o.Position, o.Orientation, o.Upgrades, o.IsEndosymbiont))
+                .SequenceEqual(originalLayout)).IsTrue();
+        }
+    }
+
+    [TestCase]
+    public void MulticellularBindingAgentIsSkippedWithoutReplacement()
+    {
+        var bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
         foreach (int removableCount in new[] { 9, 10 })
         {
             var definitions = GetCandidates().Take(removableCount).ToArray();
-            var original = CreateSpecies(multicellular, definitions);
-            var layout = original is MicrobeSpecies microbe ?
-                microbe.Organelles :
-                ((MulticellularSpecies)original).ModifiableCellTypes[0].ModifiableOrganelles;
-            layout.Add(new OrganelleTemplate(protectedOrganelle, new Hex(-10, 0), 0));
-            var candidates = definitions.Append(protectedOrganelle).ToHashSet();
+            var original = (MulticellularSpecies)CreateSpecies(true, definitions);
+            var layout = original.ModifiableCellTypes[0].ModifiableOrganelles;
+            layout.Add(new OrganelleTemplate(bindingAgent, new Hex(-10, 0), 0));
+            var candidates = definitions.Append(bindingAgent).ToHashSet();
             var strategy = new RemoveOrganelle(candidates.Contains);
             bool sawProtectedSelected = false;
             bool sawProtectedNotSelected = false;
@@ -138,7 +195,7 @@ public class RandomOrganelleRemovalTests
                 sawProtectedSelected |= mutants.Count == 9;
                 sawProtectedNotSelected |= mutants.Count == 10;
                 foreach (var mutant in mutants)
-                    AssertThat(GetDefinitions(mutant.Species).Contains(protectedOrganelle)).IsTrue();
+                    AssertThat(GetDefinitions(mutant.Species).Contains(bindingAgent)).IsTrue();
 
                 if (sawProtectedSelected && (removableCount == 9 || sawProtectedNotSelected))
                     break;
