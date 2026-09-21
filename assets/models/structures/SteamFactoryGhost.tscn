@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://pgj4hjv7lf3i"]
+
+[ext_resource type="PackedScene" uid="uid://bqiw24j0hwtjs" path="res://assets/models/structures/SteamFactory.tscn" id="1_g6ncl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6ncl"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihx0a"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mi11"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocvgl"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oe1qn"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tns4c"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb6l3"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sqfe2"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aabmp"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ri3km"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gi7n"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.666667)
+
+[node name="SteamFactory" unique_id=247661294 instance=ExtResource("1_g6ncl")]
+
+[node name="CSGBox3D" parent="." index="1" unique_id=240180307]
+material = SubResource("StandardMaterial3D_g6ncl")
+
+[node name="CSGBox2" parent="." index="2" unique_id=959752893]
+material = SubResource("StandardMaterial3D_ihx0a")
+
+[node name="CSGBox3" parent="." index="3" unique_id=1285813854]
+material = SubResource("StandardMaterial3D_3mi11")
+
+[node name="CSGCylinder3D" parent="." index="4" unique_id=84290485]
+material = SubResource("StandardMaterial3D_ocvgl")
+
+[node name="CSGCylinder2" parent="." index="5" unique_id=1151447346]
+material = SubResource("StandardMaterial3D_oe1qn")
+
+[node name="CSGBox4" parent="." index="6" unique_id=291343830]
+material = SubResource("StandardMaterial3D_tns4c")
+
+[node name="CSGPolygon3D" parent="." index="7" unique_id=1922575274]
+material = SubResource("StandardMaterial3D_vb6l3")
+
+[node name="CSGPolygon3D2" parent="." index="8" unique_id=1754836616]
+material = SubResource("StandardMaterial3D_sqfe2")
+
+[node name="CSGPolygon3D3" parent="." index="9" unique_id=333030368]
+material = SubResource("StandardMaterial3D_aabmp")
+
+[node name="CSGCylinder3D2" parent="." index="10" unique_id=977690065]
+material = SubResource("StandardMaterial3D_ri3km")
+
+[node name="CSGCylinder3D3" parent="." index="11" unique_id=1542836627]
+material = SubResource("StandardMaterial3D_0gi7n")
