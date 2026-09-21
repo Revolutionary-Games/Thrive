@@ -56,7 +56,7 @@ public interface ITransport : IDisposable
     /// <summary>
     ///   Disconnects a single peer. Only valid on a server.
     /// </summary>
-    public void DisconnectPeer(int peerId);
+    public void DisconnectPeer(int peerId, string reason = "");
 
     /// <summary>
     ///   Estimated round trip time to a peer in seconds, or a negative value when not known yet

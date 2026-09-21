@@ -178,7 +178,7 @@ public class LoopbackTransport : ITransport
         return false;
     }
 
-    public void DisconnectPeer(int peerId)
+    public void DisconnectPeer(int peerId, string reason = "")
     {
         if (!IsServer)
             throw new InvalidOperationException("Only a server can disconnect other peers");
@@ -187,13 +187,11 @@ public class LoopbackTransport : ITransport
 
         lock (queueLock)
         {
-            if (!connectedClients.TryGetValue(peerId, out client))
+            if (!connectedClients.Remove(peerId, out client))
                 return;
-
-            connectedClients.Remove(peerId);
         }
 
-        client.OnServerDisconnected();
+        client.OnServerDisconnected(reason);
 
         lock (queueLock)
         {
@@ -201,6 +199,7 @@ public class LoopbackTransport : ITransport
             {
                 Type = TransportEventType.PeerDisconnected,
                 PeerId = peerId,
+                Reason = reason,
             });
         }
     }
@@ -232,7 +231,7 @@ public class LoopbackTransport : ITransport
 
             for (int i = 0; i < clients.Count; ++i)
             {
-                clients[i].OnServerDisconnected();
+                clients[i].OnServerDisconnected("Server stopped");
             }
 
             if (serverAddress != null)
@@ -319,11 +318,12 @@ public class LoopbackTransport : ITransport
             {
                 Type = TransportEventType.PeerDisconnected,
                 PeerId = peerId,
+                Reason = "Client left",
             });
         }
     }
 
-    private void OnServerDisconnected()
+    private void OnServerDisconnected(string reason)
     {
         lock (queueLock)
         {
@@ -333,6 +333,7 @@ public class LoopbackTransport : ITransport
             {
                 Type = TransportEventType.PeerDisconnected,
                 PeerId = NetworkConstants.SERVER_PEER_ID,
+                Reason = reason,
             });
         }
     }

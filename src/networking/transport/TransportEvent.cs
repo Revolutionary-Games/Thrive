@@ -33,5 +33,11 @@ public struct TransportEvent
 
     public int DataLength;
 
+    /// <summary>
+    ///   Why a <see cref="TransportEventType.PeerDisconnected"/> happened, when the transport knows. Empty when
+    ///   the connection dropped without a reason being given.
+    /// </summary>
+    public string? Reason;
+
     public NetworkChannel Channel;
 }
