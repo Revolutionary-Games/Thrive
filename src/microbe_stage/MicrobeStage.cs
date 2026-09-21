@@ -1135,7 +1135,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
             WorldSimulation.DestroyAllEntities();
 
-        UpdatePatchSettings(true, true);
+        UpdatePatchSettings();
 
         base.OnReturnFromEditor();
 
@@ -1880,7 +1880,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         SaveHelper.QuickSave(this);
     }
 
-    protected override void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         ClearResolvedTolerancesCache();
 
