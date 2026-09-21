@@ -305,7 +305,34 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
     public override void OnReturnFromEditor()
     {
-        UpdatePatchSettings(true, true);
+        // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
+        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        {
+            if (Player == null)
+            {
+                GD.PrintErr("Player has disappeared");
+                return;
+            }
+
+            foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+            {
+                if (child != Player)
+                    child.QueueFree();
+            }
+
+            SpawnPlayer();
+
+            if (Player.Species.ReproductionLocation == ReproductionLocation.Land)
+            {
+                SpawnLandPlaceholderObjects();
+            }
+            else
+            {
+                SpawnWaterPlaceholderObjects();
+            }
+        }
+
+        UpdatePatchSettings(true);
 
         base.OnReturnFromEditor();
 
@@ -672,7 +699,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         return result;
     }
 
-    protected override void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
@@ -682,31 +709,6 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             HUD.ShowPatchName(CurrentPatchName.ToString());
 
         // }
-
-        // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
-        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment && returningFromEditor)
-        {
-            if (Player == null)
-            {
-                GD.PrintErr("Player has disappeared");
-                return;
-            }
-
-            foreach (Node child in rootOfDynamicallySpawned.GetChildren())
-            {
-                if (child != Player)
-                    child.QueueFree();
-            }
-
-            if (Player.Species.ReproductionLocation == ReproductionLocation.Land)
-            {
-                SpawnLandPlaceholderObjects();
-            }
-            else
-            {
-                SpawnWaterPlaceholderObjects();
-            }
-        }
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
