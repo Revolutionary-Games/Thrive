@@ -16,13 +16,14 @@ public class NitrogenControlEffect : IWorldEffect
     /// </summary>
     private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
-    private readonly XoShiRo256starstar random = new();
+    private readonly XoShiRo256starstar random;
 
     private readonly GameWorld targetWorld;
 
-    public NitrogenControlEffect(GameWorld targetWorld)
+    public NitrogenControlEffect(GameWorld targetWorld, long randomSeed)
     {
         this.targetWorld = targetWorld;
+        random = new XoShiRo256starstar(randomSeed);
     }
 
     private NitrogenControlEffect(GameWorld targetWorld, XoShiRo256starstar random)
