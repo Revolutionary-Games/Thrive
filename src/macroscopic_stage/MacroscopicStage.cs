@@ -308,19 +308,19 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
         if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
         {
+            foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+            {
+                child.QueueFree();
+            }
+
+            Player = null;
+            SpawnPlayer();
+
             if (Player == null)
             {
                 GD.PrintErr("Player has disappeared");
                 return;
             }
-
-            foreach (Node child in rootOfDynamicallySpawned.GetChildren())
-            {
-                if (child != Player)
-                    child.QueueFree();
-            }
-
-            SpawnPlayer();
 
             if (Player.Species.ReproductionLocation == ReproductionLocation.Land)
             {
