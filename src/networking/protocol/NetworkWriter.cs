@@ -139,6 +139,30 @@ public class NetworkWriter
         Write(QuantizationHelpers.AngleToQuantized16(radians));
     }
 
+    /// <summary>
+    ///   Replaces a byte that was already written.
+    /// </summary>
+    public void OverwriteByte(int offset, byte value)
+    {
+        RequireWritten(offset, 1);
+        buffer[offset] = value;
+    }
+
+    /// <summary>
+    ///   Replaces a two byte value that was already written
+    /// </summary>
+    public void OverwriteUInt16(int offset, ushort value)
+    {
+        RequireWritten(offset, sizeof(ushort));
+        BitConverter.TryWriteBytes(new Span<byte>(buffer, offset, sizeof(ushort)), value);
+    }
+
+    private void RequireWritten(int offset, int size)
+    {
+        if (offset < 0 || offset + size > position)
+            throw new ArgumentOutOfRangeException(nameof(offset), "Offset is not within the written data");
+    }
+
     private void EnsureSpace(int extraBytes)
     {
         int required = position + extraBytes;
