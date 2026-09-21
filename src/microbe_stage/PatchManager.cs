@@ -46,16 +46,15 @@ public class PatchManager
     /// <param name="currentPatch">The patch to apply settings from</param>
     /// <param name="spawnEnvironment">Spawn environment to give to setup cell spawners</param>
     /// <param name="alwaysResetPatch">Reset the patch even if the player did not move to a new patch</param>
-    /// <param name="returningFromEditor">Was this called specifically because the player is leaving the editor</param>
     /// <returns>
     ///   True if the patch environment is reset. False if the patch is not reset.
     /// </returns>
     public bool ResetPatchIfNeeded(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment,
-        bool alwaysResetPatch, bool returningFromEditor)
+        bool alwaysResetPatch)
     {
         var patchIsReset = false;
 
-        if ((alwaysResetPatch && returningFromEditor) || previousPatch != currentPatch)
+        if (previousPatch != currentPatch)
         {
             if (previousPatch != null)
             {
@@ -67,16 +66,20 @@ public class PatchManager
                 GD.Print("Previous patch doesn't exist, despawning all entities.");
             }
 
-            // Despawn old entities
-            spawnSystem.DespawnAll();
+            // We don't need to repeat the despawning if the whole patch has already been reset
+            if (!alwaysResetPatch)
+            {
+                // Despawn old entities
+                spawnSystem.DespawnAll();
 
-            terrainSystem.DespawnAll();
+                terrainSystem.DespawnAll();
 
-            // And also all timed entities
-            timedLife.DespawnAll();
+                // And also all timed entities
+                timedLife.DespawnAll();
 
-            // Clear compounds
-            compoundCloudSystem.EmptyAllClouds();
+                // Clear compounds
+                compoundCloudSystem.EmptyAllClouds();
+            }
 
             patchIsReset = true;
         }
