@@ -273,6 +273,7 @@ public partial class CellBodyPlanEditorComponent
         RecalculateFullLayoutGrowthOrderErrors();
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
+        UpdateArrow();
     }
 
     private void RecalculateFullLayoutGrowthOrderErrors()
@@ -549,6 +550,9 @@ public partial class CellBodyPlanEditorComponent
         {
             StartLayoutCalculation();
         }
+
+        UpdateArrow();
+    }
     }
 
     private void ExitFullLayoutPreview()
@@ -557,6 +561,7 @@ public partial class CellBodyPlanEditorComponent
         MouseHoverPositions = null;
         manualLayoutHasErrors = false;
         UpdateAlreadyPlacedVisuals();
+        UpdateArrow();
     }
 
     private void OnReapplyAutomaticLayoutPressed()

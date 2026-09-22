@@ -1410,17 +1410,36 @@ public partial class CellBodyPlanEditorComponent :
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = 0.0f;
 
-        // Iterate through all hexes
-        foreach (var hex in editedMicrobeCells)
+        if (layoutPreviewActive)
         {
-            // Only consider the middle 3 rows
-            if (hex.Position.Q is < -1 or > 1)
-                continue;
+            // The compact editor hexes are hidden in full layout mode. Use the footprint hexes that are displayed
+            // instead so the forward arrow stays in front of the full cell visuals.
+            foreach (var position in fullLayoutOccupied)
+            {
+                // Only consider the middle 3 rows
+                if (position.Q is < -1 or > 1)
+                    continue;
 
-            var cartesian = Hex.AxialToCartesian(hex.Position);
+                var cartesian = Hex.AxialToCartesian(position);
 
-            // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
+            }
+        }
+        else
+        {
+            // Iterate through all compact editor hexes
+            foreach (var hex in editedMicrobeCells)
+            {
+                // Only consider the middle 3 rows
+                if (hex.Position.Q is < -1 or > 1)
+                    continue;
+
+                var cartesian = Hex.AxialToCartesian(hex.Position);
+
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
+            }
         }
 
         return highestPointInMiddleRows;
