@@ -1499,11 +1499,11 @@ public partial class CellBodyPlanEditorComponent :
     {
         cellPopupMenu.SelectedCells = selectedCells.ToList();
         cellPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
-        cellPopupMenu.ShowPopup = true;
-
+        cellPopupMenu.ShowDeleteOption = true;
         cellPopupMenu.EnableDeleteOption = editedMicrobeCells.Count > 1;
         cellPopupMenu.EnableMoveOption = editedMicrobeCells.Count > 1;
         cellPopupMenu.ShowModifyOption = true;
+        cellPopupMenu.ShowPopup = true;
     }
 
     private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace, bool isMainPosition)
