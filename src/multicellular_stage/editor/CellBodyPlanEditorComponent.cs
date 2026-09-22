@@ -1225,6 +1225,30 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    public override bool RotateRight()
+    {
+        if (layoutPreviewActive)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
+            return true;
+        }
+
+        return base.RotateRight();
+    }
+
+    public override bool RotateLeft()
+    {
+        if (layoutPreviewActive)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
+            return true;
+        }
+
+        return base.RotateLeft();
+    }
+
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
