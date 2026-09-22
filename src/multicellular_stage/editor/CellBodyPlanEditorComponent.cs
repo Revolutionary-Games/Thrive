@@ -456,6 +456,13 @@ public partial class CellBodyPlanEditorComponent :
         massBuddingMinSizeLabel.Text = buddingBalanceInfoText;
 
         UpdateCancelButtonVisibility();
+
+        /*// TODO: these two don't make sense
+        if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
+            StartLayoutCalculation();
+
+        if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
+            UpdateFullLayoutVisuals();*/
     }
 
     public override void _Process(double delta)
@@ -484,6 +491,9 @@ public partial class CellBodyPlanEditorComponent :
                     UpdateGrowthOrderNumbers();
                 }
             }
+
+            if (layoutCalculationRequested)
+                StartLayoutCalculation();
         }
 
         if (!Visible)
@@ -715,7 +725,9 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         if (version > 10)
-            manualFullLayout = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
+        {
+            manualFullLayout = reader.ReadObject<List<HexWithData<CellTemplate>>>();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -747,8 +759,8 @@ public partial class CellBodyPlanEditorComponent :
             foreach (var cell in multicellularSpecies.ModifiableGameplayCells)
             {
                 var clone = (CellTemplate)cell.Clone();
-                manualFullLayout.AddFast(new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation),
-                    hexTemporaryMemory, hexTemporaryMemory2);
+                var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
+                manualFullLayout.Add(copied);
             }
 
             RebuildFullLayoutGrowthOrderSources(manualFullLayout);
@@ -902,7 +914,8 @@ public partial class CellBodyPlanEditorComponent :
                 return false;
             }
 
-            // This needs to be called here so that errors are detected
+            // Revalidate from the actual cell footprints when leaving the editor. The manual list can contain
+            // overlapping cells while it is being edited, so relying only on placement-time checks is insufficient.
             UpdateFullLayoutVisuals();
         }
 
@@ -1313,7 +1326,7 @@ public partial class CellBodyPlanEditorComponent :
         if (layoutPreviewActive)
         {
             if (MovingPlacedHex != null)
-                manualFullLayout.AddFast(MovingPlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
+                manualFullLayout.Add(MovingPlacedHex);
 
             MovingPlacedHex = null;
             UpdateFullLayoutVisuals();
@@ -1995,6 +2008,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnCellsChanged()
     {
+        if (UsesManualPlayerLayout)
+            SynchronizeManualLayoutWithEditorCells();
+
         if (layoutPreviewActive)
         {
             if (UsesManualPlayerLayout)

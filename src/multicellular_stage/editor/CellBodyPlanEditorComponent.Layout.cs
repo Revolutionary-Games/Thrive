@@ -31,12 +31,19 @@ public partial class CellBodyPlanEditorComponent
 
     // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
     private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
-    private IndividualHexLayout<CellTemplate> manualFullLayout = new();
+
+    /// <summary>
+    ///   Unlike the automatic layout store, this is a list because manual editing must preserve invalid intermediate
+    ///   states such as overlapping cells so that they can be displayed and fixed by the player.
+    /// </summary>
+    private List<HexWithData<CellTemplate>> manualFullLayout = [];
+
     private Task<LayoutCalculationResult>? pendingLayoutCalculation;
+    private bool layoutCalculationRequested;
     private bool layoutPreviewActive;
     private bool manualLayoutHasErrors;
 
-    private IndividualHexLayout<CellTemplate> CurrentFullLayout =>
+    private IReadOnlyList<HexWithData<CellTemplate>> CurrentFullLayout =>
         UsesManualPlayerLayout ? manualFullLayout : fullLayoutPreview;
 
     private static LayoutCalculationResult CalculateFullLayout(IndividualHexLayout<CellTemplate> sourceLayout)
@@ -85,14 +92,14 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    private void RebuildFullLayoutGrowthOrderSources(IndividualHexLayout<CellTemplate> layout)
+    private void RebuildFullLayoutGrowthOrderSources(IReadOnlyList<HexWithData<CellTemplate>> layout)
     {
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
         var growthOrder = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
             .Select(i => i.Data!).ToList();
-        var cells = layout.AsModifiable().ToList();
+        var cells = layout.ToList();
 
         for (int i = 0; i < cells.Count && i < growthOrder.Count; ++i)
         {
@@ -129,12 +136,12 @@ public partial class CellBodyPlanEditorComponent
     {
         if (pendingLayoutCalculation != null)
         {
-            GD.Print("Skipping starting layout calculation as one is in progress");
-
-            // TODO: can this ever happen where stale data is being used to calculate? If it can then we should abandon
-            // the previous task and start a new one.
+            // The existing task uses an immutable snapshot. Remember that a newer layout is needed once it finishes.
+            layoutCalculationRequested = true;
             return;
         }
+
+        layoutCalculationRequested = false;
 
         // Clone the data on the main thread to prepare it for background processing
         var source = new IndividualHexLayout<CellTemplate>();
@@ -169,7 +176,10 @@ public partial class CellBodyPlanEditorComponent
     private void UpdateFullLayoutVisuals()
     {
         if (CurrentFullLayout.Count == 0)
+        {
+            manualLayoutHasErrors = false;
             return;
+        }
 
         fullLayoutOccupied.Clear();
         fullLayoutInvalid.Clear();
@@ -180,7 +190,7 @@ public partial class CellBodyPlanEditorComponent
         // Positions inside each cell
         var cellPositions = new Dictionary<HexWithData<CellTemplate>, List<Hex>>();
 
-        foreach (var cell in CurrentFullLayout.AsModifiable())
+        foreach (var cell in CurrentFullLayout)
         {
             var positions = GetFullCellPositionsGlobal(cell);
 
@@ -229,7 +239,7 @@ public partial class CellBodyPlanEditorComponent
 
         // TODO: display all organelle models?
         int nextModel = 0;
-        foreach (var cell in CurrentFullLayout.AsModifiable())
+        foreach (var cell in CurrentFullLayout)
         {
             if (nextModel >= placedModels.Count)
                 placedModels.Add(CreatePreviewModelHolder());
@@ -260,7 +270,7 @@ public partial class CellBodyPlanEditorComponent
             return;
 
         // Order by growth order index
-        var orderedCells = CurrentFullLayout.AsModifiable()
+        var orderedCells = CurrentFullLayout
             .OrderBy(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, int.MaxValue))
             .ToList();
 
@@ -363,7 +373,7 @@ public partial class CellBodyPlanEditorComponent
         if (manualFullLayout.Count < 2)
             return;
 
-        var ordered = manualFullLayout.AsModifiable()
+        var ordered = manualFullLayout
             .OrderBy(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, int.MaxValue))
             .ToList();
         var leaderPosition = ordered[0].Position;
@@ -377,13 +387,12 @@ public partial class CellBodyPlanEditorComponent
         }
 
         manualFullLayout.Clear();
-        foreach (var cell in ordered)
-            manualFullLayout.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
+        manualFullLayout.AddRange(ordered);
     }
 
     private IEnumerable<(Vector3 Position, string Text, Color TextColor)> FullLayoutGrowthOrderFloatingNumbers()
     {
-        var ordered = CurrentFullLayout.AsModifiable()
+        var ordered = CurrentFullLayout
             .OrderBy(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, int.MaxValue))
             .ToList();
         for (int i = 0; i < ordered.Count; ++i)
@@ -396,7 +405,7 @@ public partial class CellBodyPlanEditorComponent
 
     private HexWithData<CellTemplate>? GetFullCellAt(Hex position)
     {
-        foreach (var cell in CurrentFullLayout.AsModifiable())
+        foreach (var cell in CurrentFullLayout)
         {
             // TODO: it would be more efficient if this data was cached (or at least we didn't generate the list
             // each time), luckily this is rarely called
@@ -421,7 +430,7 @@ public partial class CellBodyPlanEditorComponent
         var oldPosition = moving.Position;
         moving.Position = position;
         moving.Data!.Position = position;
-        var testLayoutList = CurrentFullLayout.AsModifiable().ToList();
+        var testLayoutList = CurrentFullLayout.ToList();
         testLayoutList.Add(moving);
 
         try
@@ -498,7 +507,7 @@ public partial class CellBodyPlanEditorComponent
 
         MovingPlacedHex.Position = position;
         MovingPlacedHex.Data!.Position = position;
-        manualFullLayout.AddFast(MovingPlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
+        manualFullLayout.Add(MovingPlacedHex);
         MovingPlacedHex = null;
         UpdateFullLayoutVisuals();
         OnActionStatusChanged();

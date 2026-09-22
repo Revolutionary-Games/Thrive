@@ -760,6 +760,7 @@ public partial class CellBodyPlanEditorComponent
         else
         {
             manualFullLayout.Clear();
+            manualLayoutSources.Clear();
             StartLayoutCalculation();
         }
 
