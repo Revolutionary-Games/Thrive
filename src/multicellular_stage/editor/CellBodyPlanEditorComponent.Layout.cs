@@ -62,6 +62,7 @@ public partial class CellBodyPlanEditorComponent
         var work1 = new List<Hex>();
         var work2 = new List<Hex>();
         var work3 = new HashSet<Hex>();
+        var growthOrderSources = sourceLayout.AsModifiable().Select(cell => cell.Data!).ToList();
 
         var gameplay = new CellLayout<CellTemplate>();
         var editor = new IndividualHexLayout<CellTemplate>();
@@ -69,6 +70,7 @@ public partial class CellBodyPlanEditorComponent
             work1, work2, work3);
 
         result.Gameplay = gameplay;
+        result.GrowthOrderSources = growthOrderSources;
 
         // This is not actually required for now
         // result.Editor = editor;
@@ -108,19 +110,46 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    private void RebuildFullLayoutGrowthOrderSources(IReadOnlyList<HexWithData<CellTemplate>> layout)
+    private void RebuildFullLayoutGrowthOrderSources(IReadOnlyList<HexWithData<CellTemplate>> layout,
+        IReadOnlyList<CellTemplate>? growthOrderSources = null)
     {
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
-        var growthOrder = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
-            .Select(i => i.Data!).ToList();
         var cells = layout.ToList();
 
-        for (int i = 0; i < cells.Count && i < growthOrder.Count; ++i)
+        var growthOrder = growthOrderSources ?? growthOrderGUI
+            .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!).Select(i => i.Data!).ToList();
+
+        if (growthOrderSources != null)
         {
-            fullLayoutGrowthOrderSources[cells[i]] = growthOrder[i];
-            fullLayoutGrowthOrderIndices[cells[i]] = i;
+            var growthOrderIndices = new Dictionary<CellTemplate, int>(ReferenceEqualityComparer.Instance);
+            for (int i = 0; i < growthOrder.Count; ++i)
+                growthOrderIndices[growthOrder[i]] = i;
+
+            var originalGrowthOrder = growthOrderGUI
+                .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
+                .Select(i => i.Data!).ToList();
+
+            foreach (var cell in cells)
+            {
+                if (cell.Data != null && growthOrderIndices.TryGetValue(cell.Data, out var index) &&
+                    index < originalGrowthOrder.Count)
+                {
+                    // Keep the original editor data as the source. RefreshFullLayoutGrowthOrderIndices compares these
+                    // references with the growth-order picker after the preview has been recalculated.
+                    fullLayoutGrowthOrderSources[cell] = originalGrowthOrder[index];
+                    fullLayoutGrowthOrderIndices[cell] = index;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < cells.Count && i < growthOrder.Count; ++i)
+            {
+                fullLayoutGrowthOrderSources[cells[i]] = growthOrder[i];
+                fullLayoutGrowthOrderIndices[cells[i]] = i;
+            }
         }
     }
 
@@ -588,9 +617,9 @@ public partial class CellBodyPlanEditorComponent
     {
         foreach (var cell in manualFullLayout)
         {
-            var sourceType = manualLayoutSources.TryGetValue(cell, out var source)
-                ? source.Data!.ModifiableCellType
-                : cell.Data!.ModifiableCellType;
+            var sourceType = manualLayoutSources.TryGetValue(cell, out var source) ?
+                source.Data!.ModifiableCellType :
+                cell.Data!.ModifiableCellType;
             var type = GetEditedCellDataIfEdited(sourceType);
             cell.Data = new CellTemplate(type, cell.Position, cell.Orientation);
         }
@@ -651,5 +680,6 @@ public partial class CellBodyPlanEditorComponent
         // public IndividualHexLayout<CellTemplate> Editor { get; set; } = null!;
 
         public CellLayout<CellTemplate> Gameplay { get; set; } = null!;
+        public IReadOnlyList<CellTemplate> GrowthOrderSources { get; set; } = null!;
     }
 }

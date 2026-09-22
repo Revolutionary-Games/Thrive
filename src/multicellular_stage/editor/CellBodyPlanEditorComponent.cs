@@ -484,7 +484,7 @@ public partial class CellBodyPlanEditorComponent :
             else
             {
                 SetFullLayoutPreview(calculation.Result.Gameplay);
-                RebuildFullLayoutGrowthOrderSources(fullLayoutPreview);
+                RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
                 if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
                     CopyLayout(fullLayoutPreview, manualFullLayout);
 
