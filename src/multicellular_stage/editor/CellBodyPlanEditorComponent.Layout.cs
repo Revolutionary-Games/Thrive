@@ -435,36 +435,32 @@ public partial class CellBodyPlanEditorComponent
     }
 
     /// <summary>
-    ///   Checks that a full layout move is valid by validating that all cells have a neighbour
+    ///   Checks that a full layout move does not introduce an overlap for the moved cell and that it remains connected
+    ///   to the rest of the layout. Other existing layout errors are allowed, so they can be fixed one at a time.
     /// </summary>
     /// <returns>True if the move is valid</returns>
     private bool IsFullLayoutMoveValid(Hex position, HexWithData<CellTemplate> moving)
     {
-        var candidate = new HashSet<Hex>();
-        var occupied = new HashSet<Hex>();
-        var positionsByCell = new Dictionary<HexWithData<CellTemplate>, List<Hex>>();
+        var occupiedByOtherCells = new HashSet<Hex>();
+        var otherCells = CurrentFullLayout.Where(cell => !ReferenceEquals(cell, moving)).ToList();
 
         // Create a temporary "layout" to test the move
         var oldPosition = moving.Position;
         moving.Position = position;
         moving.Data!.Position = position;
-        var testLayoutList = CurrentFullLayout.ToList();
-        testLayoutList.Add(moving);
+        List<Hex> movingPositions;
 
         try
         {
-            foreach (var cell in testLayoutList)
+            foreach (var cell in otherCells)
             {
                 var positions = GetFullCellPositionsGlobal(cell);
 
                 foreach (var finalPosition in positions)
-                {
-                    if (!occupied.Add(finalPosition))
-                        candidate.Add(finalPosition);
-                }
-
-                positionsByCell[cell] = positions;
+                    occupiedByOtherCells.Add(finalPosition);
             }
+
+            movingPositions = GetFullCellPositionsGlobal(moving);
         }
         finally
         {
@@ -473,25 +469,17 @@ public partial class CellBodyPlanEditorComponent
             moving.Data.Position = oldPosition;
         }
 
-        if (candidate.Count > 0)
+        // Existing overlaps are intentionally ignored. Only reject a destination if this move would make the moved
+        // cell overlap another cell.
+        if (movingPositions.Any(occupiedByOtherCells.Contains))
             return false;
 
-        // If somehow there's just one cell, it's valid
-        if (testLayoutList.Count < 2)
+        // A single-cell layout has no other cell it can touch.
+        if (otherCells.Count == 0)
             return true;
 
-        foreach (var pair in positionsByCell)
-        {
-            // Check the neighbour conditions
-            if (!pair.Value.Any(cellPosition => Hex.HexNeighbourOffset.Values.Any(offset =>
-                    occupied.Contains(cellPosition + offset) &&
-                    !pair.Value.Contains(cellPosition + offset))))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return movingPositions.Any(cellPosition => Hex.HexNeighbourOffset.Values.Any(offset =>
+            occupiedByOtherCells.Contains(cellPosition + offset)));
     }
 
     private void RenderFullLayoutMoveHover()
