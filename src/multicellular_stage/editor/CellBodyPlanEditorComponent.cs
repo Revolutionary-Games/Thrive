@@ -1080,6 +1080,13 @@ public partial class CellBodyPlanEditorComponent :
         {
             if (UsesManualPlayerLayout)
             {
+                // The body-plan component remains logically in the layout preview while its parent editor tab is
+                // hidden. Therefore, returning straight from the cell-type editor does not call
+                // EnterFullLayoutPreview, which is where this refresh normally happens. Rebuild the manual
+                // templates here so every cell instance gets the newly edited type before its footprint is drawn.
+                SynchronizeManualLayoutWithEditorCells();
+                RefreshManualFullLayoutCellTypes();
+                fullLayoutNeedsRefresh = false;
                 UpdateFullLayoutVisuals();
             }
             else
