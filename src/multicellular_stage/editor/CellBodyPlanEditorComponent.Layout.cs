@@ -349,6 +349,14 @@ public partial class CellBodyPlanEditorComponent
 
     private void RecalculateFullLayoutGrowthOrderErrors()
     {
+        if (!UsesManualPlayerLayout)
+        {
+            // The automatic layout algorithm may place cells in an order that differs from the player's compact
+            // growth order. Do not report that algorithm-internal difference as a player error.
+            wrongGrowthOrderCells.Clear();
+            return;
+        }
+
         wrongGrowthOrderCells.Clear();
 
         // Just a single cell is always in the right order
@@ -484,8 +492,14 @@ public partial class CellBodyPlanEditorComponent
         for (int i = 0; i < ordered.Count; ++i)
         {
             var cell = ordered[i];
-            yield return (Hex.AxialToCartesian(cell.Position), (i + 1).ToString(),
-                wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
+
+            // Automatic layout still shows the growth order for reference, but its algorithmic placement order is
+            // excluded from error detection, so its numbers must always remain white.
+            var textColor = UsesManualPlayerLayout && wrongGrowthOrderCells.Contains(cell.Position) ?
+                Colors.Red :
+                Colors.White;
+
+            yield return (Hex.AxialToCartesian(cell.Position), (i + 1).ToString(), textColor);
         }
     }
 
@@ -643,6 +657,8 @@ public partial class CellBodyPlanEditorComponent
         MouseHoverPositions = null;
         manualLayoutHasErrors = false;
         UpdateAlreadyPlacedVisuals();
+        RecalculateWrongGrowthOrderCells();
+        UpdateGrowthOrderNumbers();
         UpdateArrow();
     }
 
