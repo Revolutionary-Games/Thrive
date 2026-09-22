@@ -1192,7 +1192,17 @@ public partial class CellBodyPlanEditorComponent :
             return base.PerformPrimaryAction();
 
         if (!UsesManualPlayerLayout)
+        {
+            // Show a help message to the player as to why they can't change stuff
+            GetMouseHex(out int automaticCellQ, out int automaticCellR);
+            if (GetFullCellAt(new Hex(automaticCellQ, automaticCellR)) != null)
+            {
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"),
+                    5);
+            }
+
             return true;
+        }
 
         if (MovingPlacedHex != null)
         {
