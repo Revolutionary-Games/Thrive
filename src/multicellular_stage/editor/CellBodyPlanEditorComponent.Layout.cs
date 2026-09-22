@@ -405,8 +405,12 @@ public partial class CellBodyPlanEditorComponent
 
     private HexWithData<CellTemplate>? GetFullCellAt(Hex position)
     {
-        foreach (var cell in CurrentFullLayout)
+        // Later entries are newly added cells. When an invalid overlap exists, select the last one so the player can
+        // move the cell that was just added instead of accidentally moving the root cell underneath it.
+        for (int i = CurrentFullLayout.Count - 1; i >= 0; --i)
         {
+            var cell = CurrentFullLayout[i];
+
             // TODO: it would be more efficient if this data was cached (or at least we didn't generate the list
             // each time), luckily this is rarely called
             if (GetFullCellPositionsGlobal(cell).Contains(position))
