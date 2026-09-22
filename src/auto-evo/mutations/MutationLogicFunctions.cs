@@ -7,8 +7,13 @@ using Godot;
 
 public class MutationLogicFunctions
 {
-    public static void NameNewSpecies(Species newSpecies, Species parentSpecies)
+    /// <summary>
+    ///   Synchronously consumes the owning task's stream, advancing colour generation and later candidates.
+    /// </summary>
+    public static void NameNewSpecies(Random random, Species newSpecies, Species parentSpecies)
     {
+        ArgumentNullException.ThrowIfNull(random);
+
         // Keep the same genus name if the species are similar enough
         var keepGenus = false;
         if (newSpecies is MicrobeSpecies microbeSpecies && parentSpecies is MicrobeSpecies parentMicrobeSpecies)
@@ -31,10 +36,10 @@ public class MutationLogicFunctions
         }
         else
         {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
+            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection(random);
         }
 
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(random, true);
     }
 
     public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,
