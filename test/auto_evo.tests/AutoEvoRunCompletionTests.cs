@@ -70,21 +70,95 @@ public class AutoEvoRunCompletionTests
         AssertThat(run.RunDuration).IsEqual(duration);
     }
 
-    [TestCase(false)]
-    [TestCase(true)]
-    public void OneStep_ObservesCancellationWithoutExecutingAnotherStep(bool afterGathering)
+    [TestCase(false, false)]
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    [TestCase(true, true)]
+    public void InterruptedStep_UpdatesMemoryBeforeCompletion(bool background, bool fail)
     {
         RequireCompletedCleanup();
         int calls = 0;
-        var run = new ControlledRun(CreateWorld(), new ActionStep(_ => ++calls));
-        if (afterGathering)
+        long peakBeforeInterruption = -1;
+        ControlledRun? run = null;
+        run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
+        {
+            // The run is assigned before executing or scheduling the callback and is never reassigned afterward.
+            // ReSharper disable once AccessToModifiedClosure
+            var executingRun = run!;
+            ++calls;
+            peakBeforeInterruption = executingRun.PeakMemoryUsage;
+
+            // Enable sampling only for the interrupted step so an earlier sample cannot hide a missing final one.
+            executingRun.TrackMemoryInfo = true;
+            if (fail)
+                throw new InvalidOperationException("Expected failure before the memory sample");
+
+            executingRun.Abort();
+        }));
+
+        AssertThat(run.PeakMemoryUsage).IsEqual(0L);
+        if (background)
+        {
+            run.Start();
+            WaitForCompletion(run);
+        }
+        else
+        {
             run.OneStep();
+            run.OneStep();
+        }
+
+        AssertThat(calls).IsEqual(1);
+        AssertThat(peakBeforeInterruption).IsEqual(0L);
+        AssertThat(run.Finished).IsTrue();
+        AssertThat(run.Running).IsFalse();
+        AssertThat(run.Aborted).IsTrue();
+        AssertThat(run.Results).IsNull();
+        AssertThat(run.WasSuccessful).IsFalse();
+        AssertThat(run.PeakMemoryUsage > 0).IsTrue();
+    }
+
+    [TestCase(false, false)]
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    [TestCase(true, true)]
+    public void CancelledRun_PreservesMemoryWithoutExecutingAnotherStep(bool afterGathering, bool background)
+    {
+        RequireCompletedCleanup();
+        int calls = 0;
+        var run = new ControlledRun(CreateWorld(), new ActionStep(_ => ++calls)) { TrackMemoryInfo = true };
+        if (afterGathering)
+        {
+            run.OneStep();
+            AssertThat(run.PeakMemoryUsage > 0).IsTrue();
+        }
+        else
+        {
+            AssertThat(run.PeakMemoryUsage).IsEqual(0L);
+        }
 
         var completedSteps = run.CompleteSteps;
+        var peak = run.PeakMemoryUsage;
         run.Abort();
         AssertThat(run.Finished).IsFalse();
         AssertThat(run.IsFinished(false)).IsFalse();
-        run.OneStep();
+        if (background)
+        {
+            if (afterGathering)
+            {
+                run.Continue();
+            }
+            else
+            {
+                run.Start();
+            }
+
+            WaitForCompletion(run);
+        }
+        else
+        {
+            run.OneStep();
+        }
 
         AssertThat(run.Finished).IsTrue();
         AssertThat(run.Running).IsFalse();
@@ -92,6 +166,7 @@ public class AutoEvoRunCompletionTests
         AssertThat(run.WasSuccessful).IsFalse();
         AssertThat(run.Results).IsNull();
         AssertThat(run.CompleteSteps).IsEqual(completedSteps);
+        AssertThat(run.PeakMemoryUsage).IsEqual(peak);
         AssertThat(calls).IsEqual(0);
         AssertThat(run.RunDuration > TimeSpan.Zero).IsTrue();
     }
@@ -151,12 +226,16 @@ public class AutoEvoRunCompletionTests
         {
             ++calls;
             workDuration = MeasureControlledWork();
-        }));
+        })) { TrackMemoryInfo = true };
         run.OneStep();
+        AssertThat(run.PeakMemoryUsage > 0).IsTrue();
+        var gatheringPeak = run.PeakMemoryUsage;
         run.OneStep();
         AssertThat(run.Finished).IsFalse();
         AssertThat(run.Running).IsFalse();
         AssertThat(calls).IsEqual(1);
+        AssertThat(run.PeakMemoryUsage).IsGreaterEqual(gatheringPeak);
+        var pausedPeak = run.PeakMemoryUsage;
         var partialDuration = run.RunDuration;
         var observation = Stopwatch.StartNew();
 
@@ -179,8 +258,10 @@ public class AutoEvoRunCompletionTests
         AssertThat(run.CompletionFraction).IsEqual(1.0f);
         AssertDurationBounds(run.RunDuration - partialDuration, workDuration, observation.Elapsed);
         AssertThat(calls).IsEqual(2);
+        AssertThat(run.PeakMemoryUsage).IsGreaterEqual(pausedPeak);
 
         var finalDuration = run.RunDuration;
+        var finalPeak = run.PeakMemoryUsage;
         run.Start();
         run.OneStep();
         run.Continue();
@@ -188,11 +269,14 @@ public class AutoEvoRunCompletionTests
         AssertPopulationResult(run, world);
         AssertThat(calls).IsEqual(2);
         AssertThat(run.RunDuration).IsEqual(finalDuration);
+        AssertThat(run.PeakMemoryUsage).IsEqual(finalPeak);
     }
 
-    [TestCase(false)]
-    [TestCase(true)]
-    public void CompletedRun_LifecycleCallsLeaveFinalStateUnchanged(bool background)
+    [TestCase(false, false)]
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    [TestCase(true, true)]
+    public void CompletedRun_LifecycleCallsLeaveFinalStateUnchanged(bool background, bool trackMemory)
     {
         RequireCompletedCleanup();
         var world = CreateWorld();
@@ -203,7 +287,7 @@ public class AutoEvoRunCompletionTests
             ++calls;
             workDuration = MeasureControlledWork();
             results.AddPopulationResultForSpecies(world.PlayerSpecies, world.Map.CurrentPatch!, 123);
-        }));
+        })) { TrackMemoryInfo = trackMemory };
         var observation = Stopwatch.StartNew();
         if (background)
         {
@@ -223,6 +307,16 @@ public class AutoEvoRunCompletionTests
         AssertPopulationResult(run, world);
         AssertThat(calls).IsEqual(1);
         AssertDurationBounds(run.RunDuration, workDuration, observation.Elapsed);
+        if (trackMemory)
+        {
+            AssertThat(run.PeakMemoryUsage > 0).IsTrue();
+        }
+        else
+        {
+            AssertThat(run.PeakMemoryUsage).IsEqual(0L);
+        }
+
+        var peak = run.PeakMemoryUsage;
         var duration = run.RunDuration;
         var completedSteps = run.CompleteSteps;
         var results = run.Results;
@@ -234,6 +328,7 @@ public class AutoEvoRunCompletionTests
         AssertThat(SpinWait.SpinUntil(() => !run.Running, TimeSpan.FromSeconds(10))).IsTrue();
         AssertThat(run.RunDuration).IsEqual(duration);
         AssertThat(run.CompleteSteps).IsEqual(completedSteps);
+        AssertThat(run.PeakMemoryUsage).IsEqual(peak);
         AssertThat(run.Results).IsSame(results);
         AssertPopulationResult(run, world);
         AssertThat(calls).IsEqual(1);

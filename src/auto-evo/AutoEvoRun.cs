@@ -101,6 +101,10 @@ public class AutoEvoRun
     /// </summary>
     public TimeSpan RunDuration { get; private set; } = TimeSpan.Zero;
 
+    /// <summary>
+    ///   Largest sampled managed heap size for the entire process during this run, in bytes.
+    ///   This is not memory exclusive to auto-evo and may miss peaks between samples. Zero means no sample was taken.
+    /// </summary>
     public long PeakMemoryUsage { get; private set; }
 
     public float CompletionFraction
@@ -224,7 +228,16 @@ public class AutoEvoRun
         try
         {
             if (!Aborted)
-                complete = Step();
+            {
+                try
+                {
+                    complete = Step();
+                }
+                finally
+                {
+                    UpdatePeakMemoryUsage();
+                }
+            }
         }
         catch (Exception e)
         {
@@ -563,13 +576,13 @@ public class AutoEvoRun
         {
             try
             {
-                complete = Step();
-
-                if (TrackMemoryInfo)
+                try
                 {
-                    long heapSize = GC.GetTotalMemory(false);
-                    if (PeakMemoryUsage < heapSize)
-                        PeakMemoryUsage = heapSize;
+                    complete = Step();
+                }
+                finally
+                {
+                    UpdatePeakMemoryUsage();
                 }
             }
             catch (Exception e)
@@ -581,6 +594,16 @@ public class AutoEvoRun
 
         RunDuration += timer.Elapsed;
         PublishCompletion();
+    }
+
+    private void UpdatePeakMemoryUsage()
+    {
+        if (!TrackMemoryInfo)
+            return;
+
+        var heapSize = GC.GetTotalMemory(false);
+        if (PeakMemoryUsage < heapSize)
+            PeakMemoryUsage = heapSize;
     }
 
     private void PublishCompletion()
