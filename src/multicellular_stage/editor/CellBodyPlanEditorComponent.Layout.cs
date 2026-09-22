@@ -48,6 +48,7 @@ public partial class CellBodyPlanEditorComponent
     private Task<LayoutCalculationResult>? pendingLayoutCalculation;
     private bool layoutCalculationRequested;
     private bool layoutPreviewActive;
+    private bool fullLayoutNeedsRefresh;
     private bool manualLayoutHasErrors;
 
     private IReadOnlyList<HexWithData<CellTemplate>> CurrentFullLayout =>
@@ -533,6 +534,9 @@ public partial class CellBodyPlanEditorComponent
     private void EnterFullLayoutPreview()
     {
         layoutPreviewActive = true;
+        bool refreshRequested = fullLayoutNeedsRefresh;
+        fullLayoutNeedsRefresh = false;
+        fullLayoutOccupied.Clear();
 
         // Make the normal view invisible
         MouseHoverPositions = null;
@@ -548,6 +552,9 @@ public partial class CellBodyPlanEditorComponent
 
         if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
         {
+            if (refreshRequested)
+                RefreshManualFullLayoutCellTypes();
+
             UpdateFullLayoutVisuals();
         }
         else

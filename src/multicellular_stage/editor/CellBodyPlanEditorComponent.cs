@@ -1065,24 +1065,27 @@ public partial class CellBodyPlanEditorComponent :
         // Update all cell graphics holders
         forceUpdateCellGraphics = true;
 
-        // This may be called while hidden from the undo/redo system
-        if (Visible)
+        // Cell type editing happens in a different tab, where the full layout preview is inactive. Remember the
+        // change, so entering the layout tab rebuilds its footprint and rechecks manual overlap errors.
+        // if (editedMicrobeCells.AsModifiable().Any(cell => ReferenceEquals(cell.Data!.ModifiableCellType, changedType)))
+        fullLayoutNeedsRefresh = true;
+
+        // This may be called while hidden from the undo/redo system. The full layout still needs to be refreshed in
+        // that case, otherwise returning to the layout tab can show old cell footprints until a manual reapply.
+        if (layoutPreviewActive)
         {
-            if (layoutPreviewActive)
+            if (UsesManualPlayerLayout)
             {
-                if (UsesManualPlayerLayout)
-                {
-                    UpdateFullLayoutVisuals();
-                }
-                else
-                {
-                    StartLayoutCalculation();
-                }
+                UpdateFullLayoutVisuals();
             }
             else
             {
-                UpdateAlreadyPlacedVisuals();
+                StartLayoutCalculation();
             }
+        }
+        else if (Visible)
+        {
+            UpdateAlreadyPlacedVisuals();
         }
 
         UpdateCellTypeSelections();
