@@ -268,7 +268,7 @@ public class ModifyExistingSpecies : IRunStep
                         }
 
                         // Only apply a new name and colour to results that are actually kept
-                        MutationLogicFunctions.NameNewSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        MutationLogicFunctions.NameNewSpecies(random, mutation.MutatedSpecies, mutation.ParentSpecies);
 
                         if (mutation.MutatedSpecies is MicrobeSpecies microbeSpecies &&
                             mutation.ParentSpecies is MicrobeSpecies parentMicrobeSpecies)
