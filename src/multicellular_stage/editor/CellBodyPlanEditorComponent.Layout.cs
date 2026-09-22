@@ -580,7 +580,8 @@ public partial class CellBodyPlanEditorComponent
         isPlacementProbablyValid = IsFullLayoutMoveValid(new Hex(q, r), moving);
 
         // These are rendered in local coordinates
-        var positionsLocal = GetFullCellPositionsLocal(type);
+        var positionsLocal = GetFullCellPositionsLocal(type)
+            .Select(position => Hex.RotateAxialNTimes(position, moving.Orientation));
         RenderHoveredHex(q, r, positionsLocal, isPlacementProbablyValid, out _);
 
         var model = hoverModels[usedHoverModel++];
