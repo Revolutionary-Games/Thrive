@@ -760,6 +760,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             manualFullLayout.Clear();
             manualLayoutSources.Clear();
+            manualLayoutSourceData.Clear();
             foreach (var cell in multicellularSpecies.ModifiableGameplayCells)
             {
                 var clone = (CellTemplate)cell.Clone();
@@ -777,7 +778,7 @@ public partial class CellBodyPlanEditorComponent :
             var sources = editedMicrobeCells.AsModifiable().ToList();
             var manualCells = manualFullLayout.ToList();
             for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
-                manualLayoutSources[manualCells[i]] = sources[i];
+                SetManualLayoutSource(manualCells[i], sources[i]);
         }
 
         // Ignore invalid species data

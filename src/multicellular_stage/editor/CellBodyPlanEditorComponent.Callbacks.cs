@@ -97,6 +97,7 @@ public partial class CellBodyPlanEditorComponent
 
         if (editedMicrobeCells.Contains(data.MovedHex))
         {
+            cellDataDirty = true;
             UpdateAlreadyPlacedVisuals();
 
             // TODO: notify auto-evo prediction once that is done
@@ -107,6 +108,8 @@ public partial class CellBodyPlanEditorComponent
         {
             editedMicrobeCells.AddFast(data.MovedHex, hexTemporaryMemory, hexTemporaryMemory2);
         }
+
+        cellDataDirty = true;
     }
 
     [ArchiveAllowedMethod]
@@ -119,6 +122,8 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateAlreadyPlacedVisuals();
         UpdateSpecializationDisplay();
+
+        cellDataDirty = true;
     }
 
     [ArchiveAllowedMethod]

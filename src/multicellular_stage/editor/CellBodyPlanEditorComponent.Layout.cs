@@ -36,6 +36,13 @@ public partial class CellBodyPlanEditorComponent
     private readonly Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>> manualLayoutSources =
         new(ReferenceEqualityComparer.Instance);
 
+    /// <summary>
+    ///   Used as a fallback to map manual layouts with position and type data (when the above dictionary doesn't
+    ///   give a match)
+    /// </summary>
+    private readonly Dictionary<HexWithData<CellTemplate>, (Hex Position, CellType Type)> manualLayoutSourceData =
+        new(ReferenceEqualityComparer.Instance);
+
     // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
     private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
 
@@ -91,6 +98,7 @@ public partial class CellBodyPlanEditorComponent
 
         target.Clear();
         manualLayoutSources.Clear();
+        manualLayoutSourceData.Clear();
 
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
@@ -109,7 +117,7 @@ public partial class CellBodyPlanEditorComponent
             var growthOrderIndex = sourceGrowthOrderIndices[i] >= 0 ? sourceGrowthOrderIndices[i] : i;
             if (growthOrderIndex < growthOrder.Count)
             {
-                manualLayoutSources[copied] = growthOrderCells[growthOrderIndex];
+                SetManualLayoutSource(copied, growthOrderCells[growthOrderIndex]);
                 fullLayoutGrowthOrderSources[copied] = sourceGrowthOrderSources[i] ?? growthOrder[growthOrderIndex];
                 fullLayoutGrowthOrderIndices[copied] = growthOrderIndex;
             }
@@ -183,6 +191,12 @@ public partial class CellBodyPlanEditorComponent
             if (index >= 0)
                 fullLayoutGrowthOrderIndices[pair.Key] = index;
         }
+    }
+
+    private void SetManualLayoutSource(HexWithData<CellTemplate> manualCell, HexWithData<CellTemplate> source)
+    {
+        manualLayoutSources[manualCell] = source;
+        manualLayoutSourceData[manualCell] = (source.Position, source.Data!.ModifiableCellType);
     }
 
     /// <summary>
@@ -667,6 +681,7 @@ public partial class CellBodyPlanEditorComponent
     {
         manualFullLayout.Clear();
         manualLayoutSources.Clear();
+        manualLayoutSourceData.Clear();
         StartLayoutCalculation();
     }
 
@@ -679,17 +694,51 @@ public partial class CellBodyPlanEditorComponent
         var currentCells = new HashSet<HexWithData<CellTemplate>>(editedMicrobeCells.AsModifiable(),
             ReferenceEqualityComparer.Instance);
 
-        foreach (var manualCell in manualFullLayout.ToList())
+        var mappedSources = new HashSet<HexWithData<CellTemplate>>(ReferenceEqualityComparer.Instance);
+
+        // A main-view rotation can replace the compact wrapper while keeping the cell at the same position. Restore
+        // the old manual entry by its compact position and type before treating it as a newly added cell.
+        foreach (var manualCell in manualFullLayout)
         {
-            if (manualLayoutSources.TryGetValue(manualCell, out var source) && !currentCells.Contains(source))
+            if (manualLayoutSources.TryGetValue(manualCell, out var source) && currentCells.Contains(source))
             {
-                manualFullLayout.Remove(manualCell);
-                manualLayoutSources.Remove(manualCell);
+                mappedSources.Add(source);
+                manualCell.Orientation = source.Orientation;
+                manualCell.Data!.Orientation = source.Orientation;
+                continue;
+            }
+
+            if (!manualLayoutSourceData.TryGetValue(manualCell, out var oldSourceData))
+                continue;
+
+            var replacement = editedMicrobeCells.AsModifiable().FirstOrDefault(candidate =>
+                !mappedSources.Contains(candidate) && candidate.Position == oldSourceData.Position &&
+                ReferenceEquals(candidate.Data!.ModifiableCellType, oldSourceData.Type));
+
+            if (replacement != null)
+            {
+                SetManualLayoutSource(manualCell, replacement);
+                mappedSources.Add(replacement);
+                manualCell.Orientation = replacement.Orientation;
+                manualCell.Data!.Orientation = replacement.Orientation;
             }
         }
 
-        var mappedSources = new HashSet<HexWithData<CellTemplate>>(manualLayoutSources.Values,
-            ReferenceEqualityComparer.Instance);
+        foreach (var manualCell in manualFullLayout.ToList())
+        {
+            if (!manualLayoutSources.TryGetValue(manualCell, out var source) || !mappedSources.Contains(source))
+            {
+                // A compact cell is temporarily absent while a move action is in progress. Keep its manual entry and
+                // source metadata so the replacement wrapper can be matched when the move finishes.
+                if (MovingPlacedHex != null)
+                    continue;
+
+                manualFullLayout.Remove(manualCell);
+                manualLayoutSources.Remove(manualCell);
+                manualLayoutSourceData.Remove(manualCell);
+            }
+        }
+
         foreach (var source in editedMicrobeCells.AsModifiable())
         {
             if (mappedSources.Contains(source))
@@ -700,7 +749,7 @@ public partial class CellBodyPlanEditorComponent
             var clone = new CellTemplate(type, new Hex(0, 0), source.Orientation);
             var manualCell = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
             manualFullLayout.Add(manualCell);
-            manualLayoutSources[manualCell] = source;
+            SetManualLayoutSource(manualCell, source);
         }
     }
 
