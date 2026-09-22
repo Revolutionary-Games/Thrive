@@ -14,6 +14,8 @@ public static class WorldSeed
     {
         WorldEvents = 1,
         NitrogenControl = 2,
+        AutoEvoModifySpecies = 3,
+        AutoEvoMigrateSpecies = 4,
     }
 
     /// <summary>
@@ -33,6 +35,21 @@ public static class WorldSeed
         Span<byte> input = stackalloc byte[12];
         BinaryPrimitives.WriteInt64LittleEndian(input, worldSeed);
         BinaryPrimitives.WriteUInt32LittleEndian(input[8..], (uint)domain);
+        return unchecked((long)XxHash64.HashToUInt64(input));
+    }
+
+    /// <summary>
+    ///   Derives an Auto-Evo task seed from exactly 24 little-endian bytes: signed 64-bit world seed, unsigned
+    ///   32-bit domain, signed 32-bit last applied generation, then signed 64-bit owner ID. Patch IDs and species
+    ///   IDs are widened without losing bits. Uses the same xxHash64 and result interpretation as the root overload.
+    /// </summary>
+    public static long Derive(long worldSeed, Domain domain, int generation, long ownerId)
+    {
+        Span<byte> input = stackalloc byte[24];
+        BinaryPrimitives.WriteInt64LittleEndian(input, worldSeed);
+        BinaryPrimitives.WriteUInt32LittleEndian(input[8..], (uint)domain);
+        BinaryPrimitives.WriteInt32LittleEndian(input[12..], generation);
+        BinaryPrimitives.WriteInt64LittleEndian(input[16..], ownerId);
         return unchecked((long)XxHash64.HashToUInt64(input));
     }
 }
