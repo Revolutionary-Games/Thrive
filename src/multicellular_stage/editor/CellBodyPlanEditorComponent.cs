@@ -104,6 +104,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button reapplyAutomaticLayoutButton = null!;
 
     [Export]
+    private Label layoutExplanationLabel = null!;
+
+    [Export]
     private Control layoutCalculationSpinner = null!;
 
     [Export]
