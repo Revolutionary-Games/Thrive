@@ -1156,7 +1156,7 @@ public partial class CellBodyPlanEditorComponent :
             // Hide the usual options
             cellPopupMenu.ShowDeleteOption = false;
             cellPopupMenu.EnableDeleteOption = false;
-            cellPopupMenu.ShowModifyOption = false;
+            cellPopupMenu.ShowModifyOption = true;
             cellPopupMenu.EnableMoveOption = UsesManualPlayerLayout;
             cellPopupMenu.ShowPopup = true;
             return true;
