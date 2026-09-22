@@ -583,6 +583,17 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateArrow();
     }
+
+    private void RefreshManualFullLayoutCellTypes()
+    {
+        foreach (var cell in manualFullLayout)
+        {
+            var sourceType = manualLayoutSources.TryGetValue(cell, out var source)
+                ? source.Data!.ModifiableCellType
+                : cell.Data!.ModifiableCellType;
+            var type = GetEditedCellDataIfEdited(sourceType);
+            cell.Data = new CellTemplate(type, cell.Position, cell.Orientation);
+        }
     }
 
     private void ExitFullLayoutPreview()
