@@ -15,19 +15,19 @@ using Godot;
 public sealed partial class AtmosphereCompositionConfig : ValidatedConfig
 {
     [Export(PropertyHint.Range, "0.0,1.0")]
-    public float Nitrogen = 0.7808f;
+    public float Nitrogen = 0.6500f;
 
     [Export(PropertyHint.Range, "0.0,1.0")]
-    public float Oxygen = 0.2095f;
+    public float Oxygen;
 
     [Export(PropertyHint.Range, "0.0,1.0")]
-    public float Argon = 0.0093f;
+    public float Argon = 0.0100f;
 
     [Export(PropertyHint.Range, "0.0,1.0")]
-    public float CarbonDioxide = 0.0004f;
+    public float CarbonDioxide = 0.2400f;
 
     [Export(PropertyHint.Range, "0.0,1.0")]
-    public float Methane;
+    public float Methane = 0.1000f;
 
     [Export(PropertyHint.Range, "0.0,1.0")]
     public float Hydrogen;
