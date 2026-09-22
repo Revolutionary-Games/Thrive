@@ -48,7 +48,7 @@ public class InitialCompoundsFinalizationTests
         var strategy = new CompoundMutation();
         miche.Pressure.Mutations.Clear();
         miche.Pressure.Mutations.Add(strategy);
-        var step = new ModifyExistingSpecies(patch, cache, settings, new Random(42));
+        var step = new ModifyExistingSpecies(patch, cache, settings, 42);
         var completed = false;
         for (var i = 0; i < 10; ++i)
         {

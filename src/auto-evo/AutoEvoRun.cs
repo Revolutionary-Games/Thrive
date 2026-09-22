@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
-using Xoshiro.PRNG64;
 
 /// <summary>
 ///   A single run of the auto-evo system happening in a background thread
@@ -399,10 +398,15 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
-        var random = new XoShiRo256starstar();
-
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
+
+        // Editor entry can advance PlayerSpecies.Generation before this run finishes. The last applied
+        // generation stays the same until results are applied, including when a run is rebuilt or retried.
+        if (Parameters.World.GenerationHistory.Count == 0)
+            throw new InvalidOperationException("Cannot seed auto-evo tasks without generation history");
+
+        var generation = Parameters.World.GenerationHistory.Keys.Max();
 
         var autoEvoConfiguration = configuration;
 
@@ -425,7 +429,8 @@ public class AutoEvoRun
         foreach (var entry in map.Patches)
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
-                random));
+                WorldSeed.Derive(worldSettings.Seed, WorldSeed.Domain.AutoEvoModifySpecies, generation,
+                    entry.Value.ID)));
         }
 
         foreach (var species in allSpecies)
@@ -433,7 +438,8 @@ public class AutoEvoRun
             if (species is not MicrobeSpecies and not MulticellularSpecies)
                 continue;
 
-            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
+            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings),
+                WorldSeed.Derive(worldSettings.Seed, WorldSeed.Domain.AutoEvoMigrateSpecies, generation, species.ID)));
         }
 
         // End concurrent steps.
