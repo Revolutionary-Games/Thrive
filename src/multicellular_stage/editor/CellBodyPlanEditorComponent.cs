@@ -936,8 +936,7 @@ public partial class CellBodyPlanEditorComponent :
 
         if (UsesManualPlayerLayout && manualLayoutHasErrors)
         {
-            ToolTipManager.Instance.ShowPopup(
-                Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_DISCONNECT"), 4);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR"), 4);
             return false;
         }
 
@@ -1071,7 +1070,6 @@ public partial class CellBodyPlanEditorComponent :
 
         // Cell type editing happens in a different tab, where the full layout preview is inactive. Remember the
         // change, so entering the layout tab rebuilds its footprint and rechecks manual overlap errors.
-        // if (editedMicrobeCells.AsModifiable().Any(cell => ReferenceEquals(cell.Data!.ModifiableCellType, changedType)))
         fullLayoutNeedsRefresh = true;
 
         // This may be called while hidden from the undo/redo system. The full layout still needs to be refreshed in
@@ -1237,8 +1235,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (layoutPreviewActive)
         {
-            ToolTipManager.Instance.ShowPopup(
-                Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
             return true;
         }
 
@@ -1249,8 +1246,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (layoutPreviewActive)
         {
-            ToolTipManager.Instance.ShowPopup(
-                Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
             return true;
         }
 

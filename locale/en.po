@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-09 16:05+0300\n"
-"PO-Revision-Date: 2026-09-09 16:05+0300\n"
+"POT-Creation-Date: 2026-09-22 18:21+0300\n"
+"PO-Revision-Date: 2026-09-22 18:23+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -737,6 +737,33 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower. [b]Cellulase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr "Switch to manual layout to be able to move cells around"
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr "Rotating cells can only be done in the main structure view"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr "The manual cell layout is invalid, please check that editor tab and fix it or disable the manual layout"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr "The layout is invalid because there are disconnected cells"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr "The layout is invalid because there are cells with improper growth order. Reposition those cells or adjust the growth order in the growth order tab."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr "The layout is invalid because there are overlapping cells."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr "The layout is invalid because there are overlapping and disconnected cells."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr "In this tab you can view the actual full layout that is used for your cell colony during gameplay and to modify it when using manual layout."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr "Click on a cell to start moving it. Move cells to positions that you like. All cells must still stay connected and be nearby to where they are meant to be in the structure. Editing organelles may cause overlaps which must also be fixed before the manual layout is valid. Exiting the manual layout mode discards all changes made to it."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "In multicellular this shows the average specialization bonus of all the cells, including adjacency bonuses.\n"
@@ -744,6 +771,9 @@ msgstr ""
 "The most specialized type is {3} with a bonus of {2}%.\n"
 "To increase this, make the cell types more specialized, add more of the most specialized cell type\n"
 "or place cells of the same type adjacent to each other."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr "Please wait, body layout is being calculated"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -3407,6 +3437,9 @@ msgstr "LAWK only"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restricts parts and abilities to only Life As We Know it)"
 
+msgid "LAYOUT_TAB"
+msgstr "Layout"
+
 msgid "LEAD_ARTIST"
 msgstr "Lead Artist"
 
@@ -5363,6 +5396,15 @@ msgstr "Reading save data"
 
 msgid "READY"
 msgstr "Ready"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr "Reset Layout"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Reset the layout back to the default generated one.\n"
+"This may be useful if there are many errors that would be tedious to fix.\n"
+"This will undo all manual changes you have done, though!"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Recommended Thrive:"
@@ -7385,6 +7427,14 @@ msgstr "Manually set number of background threads"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Manually set number of native side executor threads"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "Automatic Layout"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr ""
+"Whether the species uses automatic layout. If disabled the manual layout allows manually positioning the cells.\n"
+"However, it also requires fixing any layout problems manually."
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Use virtual window size"
