@@ -81,6 +81,14 @@ public partial class CellBodyPlanEditorComponent
     private void CopyLayout(IReadOnlyList<HexWithData<CellTemplate>> source,
         List<HexWithData<CellTemplate>> target)
     {
+        var sourceCells = source.ToList();
+        var sourceGrowthOrderSources = sourceCells
+            .Select(cell => fullLayoutGrowthOrderSources.GetValueOrDefault(cell))
+            .ToList();
+        var sourceGrowthOrderIndices = sourceCells
+            .Select(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, -1))
+            .ToList();
+
         target.Clear();
         manualLayoutSources.Clear();
 
@@ -90,7 +98,6 @@ public partial class CellBodyPlanEditorComponent
         var growthOrderCells = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
             .ToList();
         var growthOrder = growthOrderCells.Select(i => i.Data!).ToList();
-        var sourceCells = source.ToList();
 
         for (int i = 0; i < sourceCells.Count; ++i)
         {
@@ -99,13 +106,12 @@ public partial class CellBodyPlanEditorComponent
             var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
             target.Add(copied);
 
-            if (i < growthOrder.Count)
-                manualLayoutSources[copied] = growthOrderCells[i];
-
-            if (i < growthOrder.Count)
+            var growthOrderIndex = sourceGrowthOrderIndices[i] >= 0 ? sourceGrowthOrderIndices[i] : i;
+            if (growthOrderIndex < growthOrder.Count)
             {
-                fullLayoutGrowthOrderSources[copied] = growthOrder[i];
-                fullLayoutGrowthOrderIndices[copied] = i;
+                manualLayoutSources[copied] = growthOrderCells[growthOrderIndex];
+                fullLayoutGrowthOrderSources[copied] = sourceGrowthOrderSources[i] ?? growthOrder[growthOrderIndex];
+                fullLayoutGrowthOrderIndices[copied] = growthOrderIndex;
             }
         }
     }
@@ -124,8 +130,12 @@ public partial class CellBodyPlanEditorComponent
         if (growthOrderSources != null)
         {
             var growthOrderIndices = new Dictionary<CellTemplate, int>(ReferenceEqualityComparer.Instance);
+            var growthOrderTypeIndices = new Dictionary<CellType, int>(ReferenceEqualityComparer.Instance);
             for (int i = 0; i < growthOrder.Count; ++i)
+            {
                 growthOrderIndices[growthOrder[i]] = i;
+                growthOrderTypeIndices[growthOrder[i].ModifiableCellType] = i;
+            }
 
             var originalGrowthOrder = growthOrderGUI
                 .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
@@ -133,7 +143,9 @@ public partial class CellBodyPlanEditorComponent
 
             foreach (var cell in cells)
             {
-                if (cell.Data != null && growthOrderIndices.TryGetValue(cell.Data, out var index) &&
+                if (cell.Data != null &&
+                    (growthOrderIndices.TryGetValue(cell.Data, out var index) ||
+                        growthOrderTypeIndices.TryGetValue(cell.Data.ModifiableCellType, out index)) &&
                     index < originalGrowthOrder.Count)
                 {
                     // Keep the original editor data as the source. RefreshFullLayoutGrowthOrderIndices compares these
