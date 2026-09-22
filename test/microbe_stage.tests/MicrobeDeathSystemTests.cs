@@ -89,6 +89,12 @@ public class MicrobeDeathSystemTests
                 {
                     if (composition.Key == compound.ID)
                         released += composition.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION;
+
+                    if (compound.ID == Compound.Glucose)
+                    {
+                        released += composition.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION *
+                            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
+                    }
                 }
             }
 

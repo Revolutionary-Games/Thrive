@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -249,6 +250,19 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.ModifiableSporeCellType = null;
             if (instance.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
                 instance.ReproductionMethod = MulticellularReproductionMethod.Budding;
+        }
+
+        if (version < 9)
+        {
+            if (instance.ModifiableGameteTypeA != null)
+            {
+                instance.ModifiableGameteTypeA = instance.DuplicateCellType(instance.ModifiableGameteTypeA);
+            }
+
+            if (instance.ModifiableGameteTypeB != null)
+            {
+                instance.ModifiableGameteTypeB = instance.DuplicateCellType(instance.ModifiableGameteTypeB);
+            }
         }
 
         if (version >= 9)
@@ -1197,5 +1211,22 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return true;
+    }
+
+    private CellType DuplicateCellType(CellType cellType)
+    {
+        var cell = (CellType)cellType.Clone();
+
+        string originalName = cell.CellTypeName;
+        int count = 1;
+
+        while (ModifiableCellTypes.Any(c =>
+                   c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
+        {
+            cell.CellTypeName = $"{originalName} {count++}";
+        }
+
+        ModifiableCellTypes.Add(cell);
+        return cell;
     }
 }

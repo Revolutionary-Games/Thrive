@@ -1,5 +1,7 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Godot.Collections;
+using Environment = Godot.Environment;
 
 /// <summary>
 ///   A special environment to be used in contexts where the sky is visible.
@@ -20,6 +22,19 @@ using Godot.Collections;
 #endif
 public partial class SkyEquippedEnvironment : WorldEnvironment
 {
+    /// <summary>
+    ///   If true, forces the use of the fullscreen quad, even when the RenderingDevice is available. It also prevents
+    ///   the VolumetricCloudsEffect initialization.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this isn't equivalent to using the Compatibility renderer. Forward+ still uses different
+    ///     techniques for lighting and tonemapping, so the results aren't equivalent.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public bool ForceUseFullscreenQuad;
+
 #pragma warning disable CA2213
     /// <summary>
     ///   Material the sky is rendered with. When left unset, one is created automatically and bound to the shader at
@@ -44,6 +59,12 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     public SunConfig SunConfig = new();
 
     /// <summary>
+    ///   Parameters of the cloud layer, used by the compositor effect or the fullscreen quad fallback.
+    /// </summary>
+    [Export]
+    public CloudsConfig CloudsConfig = new();
+
+    /// <summary>
     ///   Deliberately has no default value, as one gets created on demand below. An initializer here would be
     ///   thrown away when the scene value is applied, while still leaving a stray instance behind.
     /// </summary>
@@ -54,6 +75,12 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private const string SkyShaderPath = "res://shaders/sky/atmosphere_sky.gdshader";
 
     private const float TonemapAgxWhite = 6.0f;
+
+    /// <summary>
+    ///   Half size of the bounds given to the cloud quad. Its vertex shader places it over the whole screen no matter
+    ///   where it is, so the bounds only need to be large enough for it to never be culled.
+    /// </summary>
+    private const float CloudQuadCullExtent = 1.0e7f;
 
     private readonly StringName planetCenterParameter = new("planetCenter");
     private readonly StringName sunDirectionParameter = new("sunDirection");
@@ -70,10 +97,25 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private readonly StringName viewRayStepsParameter = new("viewRaySteps");
     private readonly StringName lightRayStepsParameter = new("lightRaySteps");
 
+    private readonly StringName cloudNoiseParameter = new("cloudNoise");
+    private readonly StringName cloudPlanetCenterParameter = new("cloudPlanetCenter");
+    private readonly StringName cloudInnerRadiusParameter = new("cloudInnerRadius");
+    private readonly StringName cloudOuterRadiusParameter = new("cloudOuterRadius");
+    private readonly StringName cloudTileSizeParameter = new("cloudTileSize");
+    private readonly StringName cloudDensityMultiplierParameter = new("cloudDensityMultiplier");
+    private readonly StringName cloudCoverageParameter = new("cloudCoverage");
+    private readonly StringName cloudMaxDistanceParameter = new("cloudMaxDistance");
+    private readonly StringName cloudSunDirectionParameter = new("cloudSunDirection");
+    private readonly StringName cloudSunEnergyParameter = new("cloudSunEnergy");
+
 #pragma warning disable CA2213
     private Sky sky = null!;
     private Compositor skyCompositor = null!;
     private Environment skyEnvironment = null!;
+
+    private ShaderMaterial? cloudQuadMaterial;
+
+    private DirectionalLight3D? sunLight;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -85,16 +127,21 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
         sky = new Sky();
 
+        sunLight = new DirectionalLight3D();
+        AddChild(sunLight);
+
+        bool useFullscreenQuad = ForceUseFullscreenQuad || !RenderingUtils.IsRenderingDeviceAvailable();
+
         SetupSky();
 
         // Compositor effects need a RenderingDevice, which only the Forward+ renderer provides.
-        if (RenderingUtils.IsRenderingDeviceAvailable())
+        if (useFullscreenQuad)
         {
-            SetupCompositorEffects();
+            SetupFallbackQuad();
         }
         else
         {
-            SetupFallbackQuad();
+            SetupCompositorEffects();
         }
 
         Environment = skyEnvironment;
@@ -103,17 +150,24 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     /// <summary>
     ///   Applies all the configured parameters to the sky shader and updates the VolumetricCloudsEffect dependencies.
     ///   Needs to be called again after changing <see cref="AtmosphereConfig"/> or when replacing
-    ///   <see cref="SunConfig"/> with another instance for the change to have effect on the clouds.
+    ///   <see cref="SunConfig"/> with another instance for the change to have effect on the clouds. On the
+    ///   Compatibility renderer this is also needed after changing the clouds config. Changes to the sun light only
+    ///   take effect after calling this.
     /// </summary>
     public void ApplyParameters()
     {
         ApplyShaderParameters();
+        ApplySunLightParameters();
 
-        if (CloudsEffect is null)
-            return;
+        CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
 
-        CloudsEffect.CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
-        CloudsEffect.SunConfig = SunConfig;
+        if (CloudsEffect is not null)
+        {
+            CloudsEffect.BindCloudsConfig(CloudsConfig);
+            CloudsEffect.SunConfig = SunConfig;
+        }
+
+        ApplyCloudQuadParameters();
     }
 
     /// <summary>
@@ -174,6 +228,17 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
             ozoneLayerWidthParameter.Dispose();
             viewRayStepsParameter.Dispose();
             lightRayStepsParameter.Dispose();
+
+            cloudNoiseParameter.Dispose();
+            cloudPlanetCenterParameter.Dispose();
+            cloudInnerRadiusParameter.Dispose();
+            cloudOuterRadiusParameter.Dispose();
+            cloudTileSizeParameter.Dispose();
+            cloudDensityMultiplierParameter.Dispose();
+            cloudCoverageParameter.Dispose();
+            cloudMaxDistanceParameter.Dispose();
+            cloudSunDirectionParameter.Dispose();
+            cloudSunEnergyParameter.Dispose();
         }
 
         base.Dispose(disposing);
@@ -207,7 +272,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         CloudsEffect ??= new VolumetricCloudsEffect();
 
         CloudsEffect.SunConfig = SunConfig;
-        CloudsEffect.CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
+        CloudsEffect.BindCloudsConfig(CloudsConfig);
 
         var effects = new Array<CompositorEffect>([CloudsEffect]);
 
@@ -222,7 +287,75 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     /// </summary>
     private void SetupFallbackQuad()
     {
-        // TODO: implement the fullscreen quad cloud fallback for the Compatibility renderer
-        GD.PrintErr("Cloud rendering fallback quad is not implemented yet, clouds will not be visible");
+        if (!ResourceLoader.Exists(VolumetricCloudsEffect.NoiseProfilePath))
+        {
+            GD.PrintErr("No cloud noise profile resource has been found, clouds will not be visible");
+            return;
+        }
+
+        var builder = new ShaderBuilder();
+
+        builder.AddModule("cloud_interface",
+            VolumetricCloudsEffect.ShaderModuleDir + "clouds_quad_interface.gdshaderinc");
+
+        VolumetricCloudsEffect.AddSharedCloudModules(builder);
+
+        builder.AddModule("cloud_main", VolumetricCloudsEffect.ShaderModuleDir + "clouds_quad_main.gdshaderinc",
+            "math", "cloud_march", "cloud_interface");
+
+        cloudQuadMaterial = new ShaderMaterial
+        {
+            Shader = new Shader { Code = builder.Build("cloud_interface", "cloud_main") },
+            RenderPriority = (int)Material.RenderPriorityMin,
+        };
+
+        cloudQuadMaterial.SetShaderParameter(cloudNoiseParameter,
+            GD.Load<ImageTexture3D>(VolumetricCloudsEffect.NoiseProfilePath));
+
+        var quad = new MeshInstance3D
+        {
+            Mesh = new QuadMesh { Size = new Vector2(2.0f, 2.0f) },
+            MaterialOverride = cloudQuadMaterial,
+            CastShadow = GeometryInstance3D.ShadowCastingSetting.Off,
+            CustomAabb = new Aabb(-Vector3.One * CloudQuadCullExtent, Vector3.One * (CloudQuadCullExtent * 2.0f)),
+            IgnoreOcclusionCulling = true,
+        };
+
+        AddChild(quad);
+
+        ApplyCloudQuadParameters();
+    }
+
+    private void ApplySunLightParameters()
+    {
+        if (sunLight is null)
+            return;
+
+        var direction = SunConfig.GetNormalizedDirection();
+        var up = MathF.Abs(direction.Y) > 0.99f ? Vector3.Forward : Vector3.Up;
+
+        sunLight.Basis = Basis.LookingAt(-direction, up);
+        sunLight.LightEnergy = SunConfig.LightEnergy;
+    }
+
+    private void ApplyCloudQuadParameters()
+    {
+        if (cloudQuadMaterial is null)
+            return;
+
+        CloudsConfig.ValidateOnce();
+
+        float inner = MathF.Max(CloudsConfig.CloudInnerHeight, 0.0f);
+        float outer = MathF.Max(CloudsConfig.CloudOuterHeight, inner + 1.0f);
+
+        cloudQuadMaterial.SetShaderParameter(cloudPlanetCenterParameter, CloudsConfig.PlanetCenter);
+        cloudQuadMaterial.SetShaderParameter(cloudInnerRadiusParameter, CloudsConfig.PlanetRadius + inner);
+        cloudQuadMaterial.SetShaderParameter(cloudOuterRadiusParameter, CloudsConfig.PlanetRadius + outer);
+        cloudQuadMaterial.SetShaderParameter(cloudTileSizeParameter, CloudsConfig.CloudTileSize);
+        cloudQuadMaterial.SetShaderParameter(cloudDensityMultiplierParameter, CloudsConfig.DensityMultiplier);
+        cloudQuadMaterial.SetShaderParameter(cloudCoverageParameter, CloudsConfig.Coverage);
+        cloudQuadMaterial.SetShaderParameter(cloudMaxDistanceParameter, CloudsConfig.MaxMarchDistance);
+        cloudQuadMaterial.SetShaderParameter(cloudSunDirectionParameter, SunConfig.GetNormalizedDirection());
+        cloudQuadMaterial.SetShaderParameter(cloudSunEnergyParameter, SunConfig.SunEnergy);
     }
 }

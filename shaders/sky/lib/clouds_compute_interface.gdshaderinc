@@ -30,3 +30,5 @@ layout(push_constant, std430) uniform Matrices {
 #define CLOUD_BASE_STEPS int(p.quality.x)
 #define CLOUD_LIGHT_STEPS int(p.quality.y)
 #define CLOUD_MAX_DISTANCE p.quality.z
+
+const float PI = 3.14159265359;

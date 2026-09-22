@@ -1109,7 +1109,7 @@ public static class Constants
     /// <summary>
     ///   The maximum cap for efficiency of digestion.
     /// </summary>
-    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
+    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 1.0f;
 
     public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
     public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
@@ -1128,7 +1128,7 @@ public static class Constants
     public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
     public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
 
-    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.9f;
 
     public const string LIPASE_ENZYME = "lipase";
 
@@ -1252,9 +1252,6 @@ public static class Constants
 
     public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
 
-    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
-
-    public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
     public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
 
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;

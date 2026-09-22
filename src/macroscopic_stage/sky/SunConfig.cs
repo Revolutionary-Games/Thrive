@@ -50,7 +50,14 @@ public sealed partial class SunConfig : ValidatedConfig
     [Export(PropertyHint.Range, "0.0,1.0")]
     public float SunLimbDarkening = 0.6f;
 
-    protected override int ValueCount => 7;
+    /// <summary>
+    ///   Energy of the directional light that lights the scene from the sun. This is separate from
+    ///   <see cref="SunEnergy"/> as Godot lights and the sky shaders don't use the same scale.
+    /// </summary>
+    [Export(PropertyHint.Range, "0,16")]
+    public float LightEnergy = 1.0f;
+
+    protected override int ValueCount => 8;
 
     /// <summary>
     ///   Gets <see cref="SunDirection"/> as a unit-length vector that is always safe to hand to a shader.
@@ -99,6 +106,12 @@ public sealed partial class SunConfig : ValidatedConfig
             valid = false;
         }
 
+        if (!Check(LightEnergy is >= 0.0f and <= 16.0f, $"LightEnergy must be between 0 and 16, but is " +
+                $"{LightEnergy}"))
+        {
+            valid = false;
+        }
+
         return valid;
     }
 
@@ -111,5 +124,6 @@ public sealed partial class SunConfig : ValidatedConfig
         destination[4] = SunIlluminance;
         destination[5] = SunAngularRadius;
         destination[6] = SunLimbDarkening;
+        destination[7] = LightEnergy;
     }
 }

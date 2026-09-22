@@ -6,6 +6,9 @@ size = Vector3(20, 10, 20)
 [sub_resource type="StandardMaterial3D" id="2"]
 albedo_color = Color(0.439216, 0.262745, 0.0392157, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4wml"]
+albedo_color = Color(0.71152216, 0.5110105, 0.29390934, 1)
+
 [node name="SocietyCenter" type="StaticBody3D" unique_id=247661294]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1827578496]
@@ -40,3 +43,15 @@ sides = 16
 [node name="CSGBox4" type="CSGBox3D" parent="." unique_id=291343830]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.019322, 3.95701, -9.28844)
 size = Vector3(0.49926, 6.81411, 4.11755)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=793945190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.06, 10)
+polygon = PackedVector2Array(10.5, 0, 0, 4, -10.5, 0)
+depth = 19.6
+material = SubResource("StandardMaterial3D_r4wml")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=453748639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 12.528103, 3)
+radius = 1.5
+height = 4.0
+sides = 12
