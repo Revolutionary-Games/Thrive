@@ -734,6 +734,7 @@ public partial class CellBodyPlanEditorComponent
     {
         automaticLayoutButton.ButtonPressed = !UsesManualPlayerLayout;
         reapplyAutomaticLayoutButton.Visible = UsesManualPlayerLayout;
+        UpdateLayoutErrorDisplay();
     }
 
     private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)

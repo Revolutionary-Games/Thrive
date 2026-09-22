@@ -50,6 +50,8 @@ public partial class CellBodyPlanEditorComponent
     private bool layoutPreviewActive;
     private bool fullLayoutNeedsRefresh;
     private bool manualLayoutHasErrors;
+    private bool fullLayoutHasOverlaps;
+    private bool fullLayoutHasDisconnectedCells;
 
     private IReadOnlyList<HexWithData<CellTemplate>> CurrentFullLayout =>
         UsesManualPlayerLayout ? manualFullLayout : fullLayoutPreview;
@@ -192,11 +194,16 @@ public partial class CellBodyPlanEditorComponent
         if (CurrentFullLayout.Count == 0)
         {
             manualLayoutHasErrors = false;
+            fullLayoutHasOverlaps = false;
+            fullLayoutHasDisconnectedCells = false;
+            UpdateLayoutErrorDisplay();
             return;
         }
 
         fullLayoutOccupied.Clear();
         fullLayoutInvalid.Clear();
+        fullLayoutHasOverlaps = false;
+        fullLayoutHasDisconnectedCells = false;
 
         // Maps each position to a cell that exists there
         var cellHexes = new Dictionary<Hex, HexWithData<CellTemplate>>();
@@ -212,7 +219,10 @@ public partial class CellBodyPlanEditorComponent
             foreach (var globalPosition in positions)
             {
                 if (!cellHexes.TryAdd(globalPosition, cell))
+                {
                     fullLayoutInvalid.Add(globalPosition);
+                    fullLayoutHasOverlaps = true;
+                }
 
                 fullLayoutOccupied.Add(globalPosition);
             }
@@ -233,10 +243,13 @@ public partial class CellBodyPlanEditorComponent
             {
                 // Mark all hexes invalid of this cell
                 fullLayoutInvalid.UnionWith(pair.Value);
+                fullLayoutHasDisconnectedCells = true;
             }
         }
 
         manualLayoutHasErrors = fullLayoutInvalid.Count > 0;
+        UpdateLayoutErrorDisplay();
+
         if (!layoutPreviewActive)
         {
             UpdateFinishButtonWarningVisibility();
@@ -274,6 +287,23 @@ public partial class CellBodyPlanEditorComponent
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
         UpdateArrow();
+    }
+
+    private void UpdateLayoutErrorDisplay()
+    {
+        layoutErrorLabel.Visible = manualLayoutHasErrors;
+        if (!manualLayoutHasErrors)
+            return;
+
+        string errorKey = (fullLayoutHasOverlaps, fullLayoutHasDisconnectedCells) switch
+        {
+            (true, true) => "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT",
+            (true, false) => "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP",
+            (false, true) => "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT",
+            _ => throw new InvalidOperationException("Manual layout has errors without a known error type"),
+        };
+
+        layoutErrorLabel.Text = Localization.Translate(errorKey);
     }
 
     private void RecalculateFullLayoutGrowthOrderErrors()

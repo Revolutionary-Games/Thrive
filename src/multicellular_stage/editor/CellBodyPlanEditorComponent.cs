@@ -107,6 +107,9 @@ public partial class CellBodyPlanEditorComponent :
     private Control layoutCalculationSpinner = null!;
 
     [Export]
+    private Label layoutErrorLabel = null!;
+
+    [Export]
     private CollapsibleList cellTypeSelectionList = null!;
 
     [Export]
