@@ -346,19 +346,28 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateLayoutErrorDisplay()
     {
-        layoutErrorLabel.Visible = manualLayoutHasErrors;
-        if (!manualLayoutHasErrors)
+        bool growthOrderHasErrors = UsesManualPlayerLayout && wrongGrowthOrderCells.Count > 0;
+        layoutErrorLabel.Visible = manualLayoutHasErrors || growthOrderHasErrors;
+        if (!manualLayoutHasErrors && !growthOrderHasErrors)
             return;
 
-        string errorKey = (fullLayoutHasOverlaps, fullLayoutHasDisconnectedCells) switch
+        string error;
+        if (!manualLayoutHasErrors)
         {
-            (true, true) => "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT",
-            (true, false) => "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP",
-            (false, true) => "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT",
-            _ => throw new InvalidOperationException("Manual layout has errors without a known error type"),
-        };
+            error = Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER");
+        }
+        else
+        {
+            error = (fullLayoutHasOverlaps, fullLayoutHasDisconnectedCells) switch
+            {
+                (true, true) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"),
+                (true, false) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"),
+                (false, true) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"),
+                _ => throw new InvalidOperationException("Manual layout has errors without a known error type"),
+            };
+        }
 
-        layoutErrorLabel.Text = Localization.Translate(errorKey);
+        layoutErrorLabel.Text = error;
     }
 
     private void RecalculateFullLayoutGrowthOrderErrors()
@@ -368,6 +377,7 @@ public partial class CellBodyPlanEditorComponent
             // The automatic layout algorithm may place cells in an order that differs from the player's compact
             // growth order. Do not report that algorithm-internal difference as a player error.
             wrongGrowthOrderCells.Clear();
+            UpdateLayoutErrorDisplay();
             return;
         }
 
@@ -375,7 +385,10 @@ public partial class CellBodyPlanEditorComponent
 
         // Just a single cell is always in the right order
         if (CurrentFullLayout.Count < 2)
+        {
+            UpdateLayoutErrorDisplay();
             return;
+        }
 
         // Order by growth order index
         var orderedCells = CurrentFullLayout
@@ -395,6 +408,8 @@ public partial class CellBodyPlanEditorComponent
 
             grownPositions.UnionWith(positions);
         }
+
+        UpdateLayoutErrorDisplay();
     }
 
     // TODO: this should use a temporary work list, and callers can then duplicate it when needed
