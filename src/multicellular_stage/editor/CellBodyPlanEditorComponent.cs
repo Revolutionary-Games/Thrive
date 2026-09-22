@@ -756,6 +756,7 @@ public partial class CellBodyPlanEditorComponent :
         if (UsesManualPlayerLayout)
         {
             manualFullLayout.Clear();
+            manualLayoutSources.Clear();
             foreach (var cell in multicellularSpecies.ModifiableGameplayCells)
             {
                 var clone = (CellTemplate)cell.Clone();
@@ -764,6 +765,16 @@ public partial class CellBodyPlanEditorComponent :
             }
 
             RebuildFullLayoutGrowthOrderSources(manualFullLayout);
+
+            // The saved gameplay layout has clones, so none of its cell wrappers match the compact editor
+            // cells by reference. The gameplay layout is produced from the compact layout in growth order, and the
+            // manual layout preserves that order when it is saved, so matching by index restores the correspondence.
+            // This correspondence is needed later when a compact cell is added or removed: the manual list must keep
+            // the player's positions for existing cells while adding a new cell at the origin or removing its clone.
+            var sources = editedMicrobeCells.AsModifiable().ToList();
+            var manualCells = manualFullLayout.ToList();
+            for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
+                manualLayoutSources[manualCells[i]] = sources[i];
         }
 
         // Ignore invalid species data

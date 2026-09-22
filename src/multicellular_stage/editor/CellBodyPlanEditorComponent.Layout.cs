@@ -29,6 +29,13 @@ public partial class CellBodyPlanEditorComponent
     private readonly Dictionary<HexWithData<CellTemplate>, int> fullLayoutGrowthOrderIndices =
         new(ReferenceEqualityComparer.Instance);
 
+    /// <summary>
+    ///   The manual layout contains clones of the compact layout cells. Keep their source references separately from
+    ///   the growth order bookkeeping, as the latter is also rebuilt for the automatic preview.
+    /// </summary>
+    private readonly Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>> manualLayoutSources =
+        new(ReferenceEqualityComparer.Instance);
+
     // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
     private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
 
@@ -66,23 +73,29 @@ public partial class CellBodyPlanEditorComponent
         return result;
     }
 
-    private void CopyLayout(IndividualHexLayout<CellTemplate> source, IndividualHexLayout<CellTemplate> target)
+    private void CopyLayout(IReadOnlyList<HexWithData<CellTemplate>> source,
+        List<HexWithData<CellTemplate>> target)
     {
         target.Clear();
+        manualLayoutSources.Clear();
 
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
-        var growthOrder = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
-            .Select(i => i.Data!).ToList();
-        var sourceCells = source.AsModifiable().ToList();
+        var growthOrderCells = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
+            .ToList();
+        var growthOrder = growthOrderCells.Select(i => i.Data!).ToList();
+        var sourceCells = source.ToList();
 
         for (int i = 0; i < sourceCells.Count; ++i)
         {
             var cell = sourceCells[i];
             var clone = (CellTemplate)cell.Data!.Clone();
             var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
-            target.AddFast(copied, hexTemporaryMemory, hexTemporaryMemory2);
+            target.Add(copied);
+
+            if (i < growthOrder.Count)
+                manualLayoutSources[copied] = growthOrderCells[i];
 
             if (i < growthOrder.Count)
             {
@@ -554,7 +567,42 @@ public partial class CellBodyPlanEditorComponent
     private void OnReapplyAutomaticLayoutPressed()
     {
         manualFullLayout.Clear();
+        manualLayoutSources.Clear();
         StartLayoutCalculation();
+    }
+
+    /// <summary>
+    ///   Keeps the manual preview in sync with the compact editor layout. Newly added cells are deliberately placed at
+    ///   the origin so that an overlap is visible and the player can resolve it manually.
+    /// </summary>
+    private void SynchronizeManualLayoutWithEditorCells()
+    {
+        var currentCells = new HashSet<HexWithData<CellTemplate>>(editedMicrobeCells.AsModifiable(),
+            ReferenceEqualityComparer.Instance);
+
+        foreach (var manualCell in manualFullLayout.ToList())
+        {
+            if (manualLayoutSources.TryGetValue(manualCell, out var source) && !currentCells.Contains(source))
+            {
+                manualFullLayout.Remove(manualCell);
+                manualLayoutSources.Remove(manualCell);
+            }
+        }
+
+        var mappedSources = new HashSet<HexWithData<CellTemplate>>(manualLayoutSources.Values,
+            ReferenceEqualityComparer.Instance);
+        foreach (var source in editedMicrobeCells.AsModifiable())
+        {
+            if (mappedSources.Contains(source))
+                continue;
+
+            // Adding new cells to the layout at 0, 0 so that they need to be fixed manually
+            var type = GetEditedCellDataIfEdited(source.Data!.ModifiableCellType);
+            var clone = new CellTemplate(type, new Hex(0, 0), source.Orientation);
+            var manualCell = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
+            manualFullLayout.Add(manualCell);
+            manualLayoutSources[manualCell] = source;
+        }
     }
 
     private sealed class LayoutCalculationResult
