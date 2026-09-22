@@ -17,19 +17,25 @@ public class MigrateSpecies : IRunStep
     private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
 
     public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
-        Random randomSource)
+        long seed)
     {
         this.species = species;
         this.cache = cache;
         this.map = map;
         this.worldSettings = worldSettings;
 
-        random = new XoShiRo128starstar(randomSource.NextInt64());
+        RandomSeed = seed;
+        random = new XoShiRo128starstar(seed);
     }
 
     public int TotalSteps => 1;
 
     public bool CanRunConcurrently => true;
+
+    /// <summary>
+    ///   Initial seed of this task's private stream, available for passive binding diagnostics.
+    /// </summary>
+    internal long RandomSeed { get; }
 
     public bool RunStep(RunResults results)
     {
