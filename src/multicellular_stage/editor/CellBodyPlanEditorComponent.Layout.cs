@@ -1,0 +1,553 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Godot;
+
+/// <summary>
+///   Implements the manual layout editing part of the editor. This is a separate file as this is a bit of a long new
+///   functionality, so it is cleared to have it in a separate file.
+/// </summary>
+public partial class CellBodyPlanEditorComponent
+{
+    /// <summary>
+    ///   All positions in the full layout as last generated.
+    /// </summary>
+    private readonly HashSet<Hex> fullLayoutOccupied = [];
+
+    /// <summary>
+    ///   Positions in the full layout that have multiple things trying to be in them and are thus invalid.
+    /// </summary>
+    private readonly HashSet<Hex> fullLayoutInvalid = [];
+
+    /// <summary>
+    ///   Identity mapping for the full layout to keep it consistent
+    /// </summary>
+    private readonly Dictionary<HexWithData<CellTemplate>, CellTemplate> fullLayoutGrowthOrderSources =
+        new(ReferenceEqualityComparer.Instance);
+
+    private readonly Dictionary<HexWithData<CellTemplate>, int> fullLayoutGrowthOrderIndices =
+        new(ReferenceEqualityComparer.Instance);
+
+    // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
+    private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
+    private IndividualHexLayout<CellTemplate> manualFullLayout = new();
+    private Task<LayoutCalculationResult>? pendingLayoutCalculation;
+    private bool layoutPreviewActive;
+    private bool manualLayoutHasErrors;
+
+    private IndividualHexLayout<CellTemplate> CurrentFullLayout =>
+        UsesManualPlayerLayout ? manualFullLayout : fullLayoutPreview;
+
+    private static LayoutCalculationResult CalculateFullLayout(IndividualHexLayout<CellTemplate> sourceLayout)
+    {
+        var result = new LayoutCalculationResult();
+        var work1 = new List<Hex>();
+        var work2 = new List<Hex>();
+        var work3 = new HashSet<Hex>();
+
+        var gameplay = new CellLayout<CellTemplate>();
+        var editor = new IndividualHexLayout<CellTemplate>();
+        MulticellularLayoutHelpers.UpdateGameplayLayout(gameplay, editor, sourceLayout, AlgorithmQuality.High,
+            work1, work2, work3);
+
+        result.Gameplay = gameplay;
+
+        // This is not actually required for now
+        // result.Editor = editor;
+
+        return result;
+    }
+
+    private void CopyLayout(IndividualHexLayout<CellTemplate> source, IndividualHexLayout<CellTemplate> target)
+    {
+        target.Clear();
+
+        fullLayoutGrowthOrderSources.Clear();
+        fullLayoutGrowthOrderIndices.Clear();
+
+        var growthOrder = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
+            .Select(i => i.Data!).ToList();
+        var sourceCells = source.AsModifiable().ToList();
+
+        for (int i = 0; i < sourceCells.Count; ++i)
+        {
+            var cell = sourceCells[i];
+            var clone = (CellTemplate)cell.Data!.Clone();
+            var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
+            target.AddFast(copied, hexTemporaryMemory, hexTemporaryMemory2);
+
+            if (i < growthOrder.Count)
+            {
+                fullLayoutGrowthOrderSources[copied] = growthOrder[i];
+                fullLayoutGrowthOrderIndices[copied] = i;
+            }
+        }
+    }
+
+    private void RebuildFullLayoutGrowthOrderSources(IndividualHexLayout<CellTemplate> layout)
+    {
+        fullLayoutGrowthOrderSources.Clear();
+        fullLayoutGrowthOrderIndices.Clear();
+
+        var growthOrder = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
+            .Select(i => i.Data!).ToList();
+        var cells = layout.AsModifiable().ToList();
+
+        for (int i = 0; i < cells.Count && i < growthOrder.Count; ++i)
+        {
+            fullLayoutGrowthOrderSources[cells[i]] = growthOrder[i];
+            fullLayoutGrowthOrderIndices[cells[i]] = i;
+        }
+    }
+
+    private void RefreshFullLayoutGrowthOrderIndices()
+    {
+        var order = growthOrderGUI.GetCurrentOrder();
+        foreach (var pair in fullLayoutGrowthOrderSources)
+        {
+            var index = -1;
+            for (int i = 0; i < order.Count; ++i)
+            {
+                if (ReferenceEquals(order[i], pair.Value))
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index >= 0)
+                fullLayoutGrowthOrderIndices[pair.Key] = index;
+        }
+    }
+
+    /// <summary>
+    ///   Starts a background task to calculate the full layout of the edited microbe cells. This is done in the
+    ///   background as the calculation can take tens of seconds.
+    /// </summary>
+    private void StartLayoutCalculation()
+    {
+        if (pendingLayoutCalculation != null)
+        {
+            GD.Print("Skipping starting layout calculation as one is in progress");
+
+            // TODO: can this ever happen where stale data is being used to calculate? If it can then we should abandon
+            // the previous task and start a new one.
+            return;
+        }
+
+        // Clone the data on the main thread to prepare it for background processing
+        var source = new IndividualHexLayout<CellTemplate>();
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!))
+        {
+            var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
+
+            // Unfortunately, we have to take a full clone here for safety
+            var snapshot = new CellTemplate(type.Clone(true), cell.Position, cell.Orientation);
+            source.AddFast(new HexWithData<CellTemplate>(snapshot, snapshot.Position, snapshot.Orientation),
+                hexTemporaryMemory, hexTemporaryMemory2);
+        }
+
+        layoutCalculationSpinner.Show();
+        pendingLayoutCalculation = Task.Run(() => CalculateFullLayout(source));
+    }
+
+    private void SetFullLayoutPreview(CellLayout<CellTemplate> gameplay)
+    {
+        fullLayoutPreview.Clear();
+
+        // CellLayout stores the final cell templates directly. The editor renderer uses HexWithData wrappers, so
+        // create only those wrappers here on the main thread without cloning the already calculated data.
+        foreach (var cell in gameplay)
+        {
+            // TODO: check if these allocations would make more sense to run in the background task
+            var wrapped = new HexWithData<CellTemplate>(cell, cell.Position, cell.Orientation);
+            fullLayoutPreview.AddFast(wrapped, hexTemporaryMemory, hexTemporaryMemory2);
+        }
+    }
+
+    private void UpdateFullLayoutVisuals()
+    {
+        if (CurrentFullLayout.Count == 0)
+            return;
+
+        fullLayoutOccupied.Clear();
+        fullLayoutInvalid.Clear();
+
+        // Maps each position to a cell that exists there
+        var cellHexes = new Dictionary<Hex, HexWithData<CellTemplate>>();
+
+        // Positions inside each cell
+        var cellPositions = new Dictionary<HexWithData<CellTemplate>, List<Hex>>();
+
+        foreach (var cell in CurrentFullLayout.AsModifiable())
+        {
+            var positions = GetFullCellPositionsGlobal(cell);
+
+            // Detect overlaps globally here
+            foreach (var globalPosition in positions)
+            {
+                if (!cellHexes.TryAdd(globalPosition, cell))
+                    fullLayoutInvalid.Add(globalPosition);
+
+                fullLayoutOccupied.Add(globalPosition);
+            }
+
+            // For the below loop, it assumes global positions per cell, so we updated them after the shift to have
+            // global positions
+            cellPositions[cell] = positions;
+        }
+
+        // A cell is invalid as a whole when it overlaps or has no neighbouring cell.
+        foreach (var pair in cellPositions)
+        {
+            bool touchesAnotherCell = pair.Value.Any(position =>
+                Hex.HexNeighbourOffset.Values.Any(offset =>
+                    cellHexes.TryGetValue(position + offset, out var other) && !ReferenceEquals(other, pair.Key)));
+
+            if (!touchesAnotherCell && CurrentFullLayout.Count > 1)
+            {
+                // Mark all hexes invalid of this cell
+                fullLayoutInvalid.UnionWith(pair.Value);
+            }
+        }
+
+        manualLayoutHasErrors = fullLayoutInvalid.Count > 0;
+        if (!layoutPreviewActive)
+        {
+            UpdateFinishButtonWarningVisibility();
+            return;
+        }
+
+        // Update the display hexes.
+        // Order doesn't really matter here, so just make it a list.
+        var displayed = fullLayoutOccupied /*.OrderBy(h => h.Q).ThenBy(h => h.R) */.ToList();
+
+        // We use the invalid hexes as islands to mark them as invalid
+        UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
+            fullLayoutInvalid.ToList());
+
+        // TODO: display all organelle models?
+        int nextModel = 0;
+        foreach (var cell in CurrentFullLayout.AsModifiable())
+        {
+            if (nextModel >= placedModels.Count)
+                placedModels.Add(CreatePreviewModelHolder());
+
+            var model = placedModels[nextModel++];
+            ShowCellTypeInModelHolder(model, GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType),
+                Hex.AxialToCartesian(cell.Position) + microbeModelOffset, cell.Orientation);
+            model.Visible = true;
+        }
+
+        while (nextModel < placedModels.Count)
+        {
+            placedModels[^1].DetachAndQueueFree();
+            placedModels.RemoveAt(placedModels.Count - 1);
+        }
+
+        RecalculateFullLayoutGrowthOrderErrors();
+        UpdateGrowthOrderNumbers();
+        UpdateFinishButtonWarningVisibility();
+    }
+
+    private void RecalculateFullLayoutGrowthOrderErrors()
+    {
+        wrongGrowthOrderCells.Clear();
+
+        // Just a single cell is always in the right order
+        if (CurrentFullLayout.Count < 2)
+            return;
+
+        // Order by growth order index
+        var orderedCells = CurrentFullLayout.AsModifiable()
+            .OrderBy(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, int.MaxValue))
+            .ToList();
+
+        // Then detect where cells are grown in the wrong order (i.e. no grown position before it)
+        var grownPositions = new HashSet<Hex>();
+        foreach (var cell in orderedCells)
+        {
+            var positions = GetFullCellPositionsGlobal(cell);
+            bool touchesEarlierCell = positions.Any(position => Hex.HexNeighbourOffset.Values.Any(offset =>
+                grownPositions.Contains(position + offset)));
+
+            if (grownPositions.Count > 0 && !touchesEarlierCell)
+                wrongGrowthOrderCells.Add(cell.Position);
+
+            grownPositions.UnionWith(positions);
+        }
+    }
+
+    // TODO: this should use a temporary work list, and callers can then duplicate it when needed
+    private List<Hex> GetFullCellPositionsGlobal(HexWithData<CellTemplate> cell)
+    {
+        var positions = new List<Hex>();
+
+        // We do a manual fetch of the organelle positions here so that we have the latest data if the type is
+        // edited
+        var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
+        foreach (var organelle in type.ModifiableOrganelles)
+        {
+            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+            {
+                var position = organelleHex + organelle.Position;
+                positions.Add(position);
+            }
+        }
+
+        // We have to run reposition to origin equivalent logic here! as otherwise the layout might not be valid
+        // after applying edits
+        Hex originShift = CalculateExpectedLayoutShift(type.ModifiableOrganelles);
+
+        positions.Clear();
+
+        // Then apply the origin shift
+        foreach (var organelle in type.ModifiableOrganelles)
+        {
+            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+            {
+                // And now we can calculate global final positions
+                var globalPosition = cell.Position +
+                    Hex.RotateAxialNTimes(organelleHex + organelle.Position - originShift, cell.Orientation);
+
+                positions.Add(globalPosition);
+            }
+        }
+
+        return positions;
+    }
+
+    private List<Hex> GetFullCellPositionsLocal(CellType type)
+    {
+        var positions = new List<Hex>();
+
+        foreach (var organelle in type.ModifiableOrganelles)
+        {
+            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+            {
+                var position = organelleHex + organelle.Position;
+                positions.Add(position);
+            }
+        }
+
+        // We have to run reposition to origin equivalent logic here! as otherwise the layout might not be valid
+        // after applying edits
+        Hex originShift = CalculateExpectedLayoutShift(type.ModifiableOrganelles);
+
+        // Then apply the origin shift
+        for (int i = 0; i < positions.Count; ++i)
+        {
+            positions[i] -= originShift;
+        }
+
+        return positions;
+    }
+
+    private Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
+    {
+        // Origin shift here. This is done because only after exiting the editor are things layout shifted, which means
+        // that we need to pre-emptively apply a layout shift here so that the final results match what is shown here.
+        var center = MicrobeInternalCalculations.CalculateCenterOfMass(localOrganelles);
+
+        return Hex.CartesianToAxial(center);
+    }
+
+    /// <summary>
+    ///   Updates <see cref="manualFullLayout"/> so that it is ordered according to growth order
+    ///   and fixes the root position to be at the origin (as this is assumed by colony logic in gameplay).
+    /// </summary>
+    private void ReorderManualLayoutToGrowthOrderAndFixRootPosition()
+    {
+        // Growth order doesn't matter with a single cell
+        if (manualFullLayout.Count < 2)
+            return;
+
+        var ordered = manualFullLayout.AsModifiable()
+            .OrderBy(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, int.MaxValue))
+            .ToList();
+        var leaderPosition = ordered[0].Position;
+        if (leaderPosition != new Hex(0, 0))
+        {
+            foreach (var cell in ordered)
+            {
+                cell.Position -= leaderPosition;
+                cell.Data!.Position -= leaderPosition;
+            }
+        }
+
+        manualFullLayout.Clear();
+        foreach (var cell in ordered)
+            manualFullLayout.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
+    }
+
+    private IEnumerable<(Vector3 Position, string Text, Color TextColor)> FullLayoutGrowthOrderFloatingNumbers()
+    {
+        var ordered = CurrentFullLayout.AsModifiable()
+            .OrderBy(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, int.MaxValue))
+            .ToList();
+        for (int i = 0; i < ordered.Count; ++i)
+        {
+            var cell = ordered[i];
+            yield return (Hex.AxialToCartesian(cell.Position), (i + 1).ToString(),
+                wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
+        }
+    }
+
+    private HexWithData<CellTemplate>? GetFullCellAt(Hex position)
+    {
+        foreach (var cell in CurrentFullLayout.AsModifiable())
+        {
+            // TODO: it would be more efficient if this data was cached (or at least we didn't generate the list
+            // each time), luckily this is rarely called
+            if (GetFullCellPositionsGlobal(cell).Contains(position))
+                return cell;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    ///   Checks that a full layout move is valid by validating that all cells have a neighbour
+    /// </summary>
+    /// <returns>True if the move is valid</returns>
+    private bool IsFullLayoutMoveValid(Hex position, HexWithData<CellTemplate> moving)
+    {
+        var candidate = new HashSet<Hex>();
+        var occupied = new HashSet<Hex>();
+        var positionsByCell = new Dictionary<HexWithData<CellTemplate>, List<Hex>>();
+
+        // Create a temporary "layout" to test the move
+        var oldPosition = moving.Position;
+        moving.Position = position;
+        moving.Data!.Position = position;
+        var testLayoutList = CurrentFullLayout.AsModifiable().ToList();
+        testLayoutList.Add(moving);
+
+        try
+        {
+            foreach (var cell in testLayoutList)
+            {
+                var positions = GetFullCellPositionsGlobal(cell);
+
+                foreach (var finalPosition in positions)
+                {
+                    if (!occupied.Add(finalPosition))
+                        candidate.Add(finalPosition);
+                }
+
+                positionsByCell[cell] = positions;
+            }
+        }
+        finally
+        {
+            // Restore the move data we modified during the check
+            moving.Position = oldPosition;
+            moving.Data.Position = oldPosition;
+        }
+
+        if (candidate.Count > 0)
+            return false;
+
+        // If somehow there's just one cell, it's valid
+        if (testLayoutList.Count < 2)
+            return true;
+
+        foreach (var pair in positionsByCell)
+        {
+            // Check the neighbour conditions
+            if (!pair.Value.Any(cellPosition => Hex.HexNeighbourOffset.Values.Any(offset =>
+                    occupied.Contains(cellPosition + offset) &&
+                    !pair.Value.Contains(cellPosition + offset))))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void RenderFullLayoutMoveHover()
+    {
+        if (MovingPlacedHex == null)
+            throw new InvalidOperationException("MovingPlacedHex is null");
+
+        GetMouseHex(out int q, out int r);
+        var moving = MovingPlacedHex;
+        var type = GetEditedCellDataIfEdited(moving.Data!.ModifiableCellType);
+
+        isPlacementProbablyValid = IsFullLayoutMoveValid(new Hex(q, r), moving);
+
+        // These are rendered in local coordinates
+        var positionsLocal = GetFullCellPositionsLocal(type);
+        RenderHoveredHex(q, r, positionsLocal, isPlacementProbablyValid, out _);
+
+        var model = hoverModels[usedHoverModel++];
+        ShowCellTypeInModelHolder(model, type, Hex.AxialToCartesian(new Hex(q, r)) + microbeModelOffset,
+            moving.Orientation);
+        model.Visible = true;
+    }
+
+    private void ApplyManualMove(Hex position)
+    {
+        if (MovingPlacedHex == null || !IsFullLayoutMoveValid(position, MovingPlacedHex))
+        {
+            Editor.OnInvalidAction();
+            return;
+        }
+
+        MovingPlacedHex.Position = position;
+        MovingPlacedHex.Data!.Position = position;
+        manualFullLayout.AddFast(MovingPlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
+        MovingPlacedHex = null;
+        UpdateFullLayoutVisuals();
+        OnActionStatusChanged();
+    }
+
+    private void EnterFullLayoutPreview()
+    {
+        layoutPreviewActive = true;
+
+        // Make the normal view invisible
+        MouseHoverPositions = null;
+        foreach (var hex in placedHexes)
+        {
+            hex.Visible = false;
+        }
+
+        foreach (var model in placedModels)
+        {
+            model.Visible = false;
+        }
+
+        if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
+        {
+            UpdateFullLayoutVisuals();
+        }
+        else
+        {
+            StartLayoutCalculation();
+        }
+    }
+
+    private void ExitFullLayoutPreview()
+    {
+        layoutPreviewActive = false;
+        MouseHoverPositions = null;
+        manualLayoutHasErrors = false;
+        UpdateAlreadyPlacedVisuals();
+    }
+
+    private void OnReapplyAutomaticLayoutPressed()
+    {
+        manualFullLayout.Clear();
+        StartLayoutCalculation();
+    }
+
+    private sealed class LayoutCalculationResult
+    {
+        // public IndividualHexLayout<CellTemplate> Editor { get; set; } = null!;
+
+        public CellLayout<CellTemplate> Gameplay { get; set; } = null!;
+    }
+}

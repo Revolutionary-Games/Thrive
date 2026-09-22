@@ -808,7 +808,7 @@ public partial class CellBodyPlanEditorComponent :
                 throw new InvalidOperationException("Full layout should not be empty here");
 
             // Manual positions are already final gameplay positions.
-            ReorderManualLayoutToGrowthOrder();
+            ReorderManualLayoutToGrowthOrderAndFixRootPosition();
             editedSpecies.ModifiableGameplayCells.Clear();
             foreach (var cell in manualFullLayout)
             {
