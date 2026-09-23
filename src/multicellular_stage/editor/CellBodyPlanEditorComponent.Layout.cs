@@ -837,6 +837,7 @@ public partial class CellBodyPlanEditorComponent
     private void OnReapplyAutomaticLayoutPressed()
     {
         manualFullLayout.Clear();
+        manualLayoutMissingAdjacencyPairs.Clear();
         manualLayoutSources.Clear();
         manualLayoutSourceData.Clear();
         StartLayoutCalculation();
