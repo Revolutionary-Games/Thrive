@@ -65,7 +65,7 @@ public class GameWorld : IArchivable
     /// <param name="startingSpecies">Starting species for the player</param>
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this(settings)
     {
-        var random = new XoShiRo256starstar();
+        var random = new XoShiRo256starstar(WorldSeed.Derive(settings.Seed, WorldSeed.Domain.WorldEvents));
 
         // Create timed effects for the world that happen when generations pass
         TimedEffects = new TimedWorldOperations();
@@ -75,8 +75,10 @@ public class GameWorld : IArchivable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(this));
-            TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
+            TimedEffects.RegisterEffect("nitrogen_control",
+                new NitrogenControlEffect(this, WorldSeed.Derive(settings.Seed, WorldSeed.Domain.NitrogenControl)));
 
+            // Keep this seed derivation order stable. Nitrogen has its own domain and does not draw from this root.
             // Patch events. PatchEventsManager HAS to be the last one
             TimedEffects.RegisterEffect("global_glaciation_event",
                 new GlobalGlaciationEvent(this, random.Next64()));
