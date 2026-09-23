@@ -650,6 +650,10 @@ public partial class CellBodyPlanEditorComponent :
         {
             RenderFullLayoutMoveHover();
         }
+        else if (layoutPreviewActive && UsesManualPlayerLayout)
+        {
+            DisplayManualLayoutAdjacencyErrors();
+        }
         else if (forceUpdateCellGraphics)
         {
             // Make sure all cell graphics holders are updated
