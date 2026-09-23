@@ -1135,6 +1135,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
         {
             WorldSimulation.MicrobeTerrainSystem.DespawnAll();
+            patchManager.RemoveClouds();
             WorldSimulation.DestroyAllEntities();
             SpawnPlayer();
         }

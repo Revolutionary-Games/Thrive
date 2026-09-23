@@ -102,6 +102,11 @@ public class PatchManager
         return patchIsChanged;
     }
 
+    public void RemoveClouds()
+    {
+        compoundCloudSystem.EmptyAllClouds();
+    }
+
     /// <summary>
     ///   Updates spawn system settings for the current patch
     /// </summary>
