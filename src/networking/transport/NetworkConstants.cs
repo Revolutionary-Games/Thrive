@@ -45,8 +45,13 @@ public static class NetworkConstants
     public const float HANDSHAKE_TIMEOUT = 10;
 
     /// <summary>
+    ///   How often an entity's full state is resent to a peer even when nothing changed
+    /// </summary>
+    public const uint SNAPSHOT_FORCED_FULL_UPDATE_TICKS = 300;
+
+    /// <summary>
     ///   Version of the wire protocol. Must be incremented whenever the meaning of any message changes so that
     ///   mismatched clients are rejected at handshake instead of misreading data.
     /// </summary>
-    public const ushort PROTOCOL_VERSION = 1;
+    public const ushort PROTOCOL_VERSION = 2;
 }

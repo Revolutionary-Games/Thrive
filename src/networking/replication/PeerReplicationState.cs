@@ -135,14 +135,9 @@ public class PeerReplicationState
 /// <summary>
 ///   What a peer knows about one entity
 /// </summary>
-public class EntityReplicationState
+public class EntityReplicationState(int componentTypeCount)
 {
-    private ComponentBaseline[] components;
-
-    public EntityReplicationState(int componentTypeCount)
-    {
-        components = new ComponentBaseline[componentTypeCount];
-    }
+    private ComponentBaseline[] components = new ComponentBaseline[componentTypeCount];
 
     public bool SpawnAcknowledged { get; private set; }
 

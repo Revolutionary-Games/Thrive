@@ -140,6 +140,29 @@ public class NetworkWriter
     }
 
     /// <summary>
+    ///   Writes bytes as they are, with no length prefix. The reader has to know how many to expect.
+    /// </summary>
+    public void WriteRaw(ReadOnlySpan<byte> data)
+    {
+        EnsureSpace(data.Length);
+
+        data.CopyTo(new Span<byte>(buffer, position, data.Length));
+        position += data.Length;
+    }
+
+    /// <summary>
+    ///   Drops everything written past the given length, for abandoning a part of a message that turned out to
+    ///   be unnecessary
+    /// </summary>
+    public void Truncate(int length)
+    {
+        if (length < 0 || length > position)
+            throw new ArgumentOutOfRangeException(nameof(length), "Cannot truncate to past the written data");
+
+        position = length;
+    }
+
+    /// <summary>
     ///   Replaces a byte that was already written.
     /// </summary>
     public void OverwriteByte(int offset, byte value)

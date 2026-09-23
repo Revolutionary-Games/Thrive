@@ -16,6 +16,11 @@ public interface INetworkSpawnRecipe
     public void WriteSpawnData(in Entity entity, NetworkWriter writer);
 
     /// <summary>
+    ///   Reads past spawn data without creating anything
+    /// </summary>
+    public void SkipSpawnData(NetworkReader reader);
+
+    /// <summary>
     ///   Creates the client side copy of an entity
     /// </summary>
     /// <param name="reader">Reader positioned at the data written by <see cref="WriteSpawnData"/></param>
