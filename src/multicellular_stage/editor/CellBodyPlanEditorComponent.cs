@@ -525,7 +525,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 GD.PrintErr("Failed to calculate the full cell layout: ", calculation.Exception);
             }
-            else
+            else if (!layoutCalculationRequested)
             {
                 SetFullLayoutPreview(calculation.Result.Gameplay);
                 RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
