@@ -314,6 +314,7 @@ public partial class CellBodyPlanEditorComponent
             }
         }
 
+        // Next, check that cells still approximately follow the adjacencies as set in the main layout.
         if (UsesManualPlayerLayout)
         {
             foreach (var pair in cellPositions)
