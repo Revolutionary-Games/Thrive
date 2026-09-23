@@ -35,7 +35,9 @@ public partial class LoadingSpinner : Control
 
     public override void _Process(double delta)
     {
-        if (!Visible)
+        // It's probably more expensive to update the shader parameters every frame than checking the tree for
+        // visibility
+        if (!IsVisibleInTree())
             return;
 
         currentSpinnerRotation += (float)(delta * SpinnerSpeed);
