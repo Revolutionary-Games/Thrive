@@ -318,7 +318,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
             if (Player == null)
             {
-                GD.PrintErr("Player has disappeared");
+                GD.PrintErr("Player spawn failed");
                 return;
             }
 
