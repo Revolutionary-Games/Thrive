@@ -8,7 +8,7 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class WorldGenerationSettings : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public WorldGenerationSettings()
     {
@@ -335,7 +335,16 @@ public class WorldGenerationSettings : IArchivable
         _ = reader.ReadBool();
 
         instance.EasterEggs = reader.ReadBool();
-        instance.AlwaysResetEnvironment = reader.ReadBool();
+
+        // AlwaysResetEnvironment should default to false for older saves
+        if (version < 2)
+        {
+            instance.AlwaysResetEnvironment = false;
+        }
+        else
+        {
+            instance.AlwaysResetEnvironment = reader.ReadBool();
+        }
 
         return instance;
     }
