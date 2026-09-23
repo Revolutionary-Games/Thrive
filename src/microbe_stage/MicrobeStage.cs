@@ -1136,8 +1136,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             // Despite destroying all entities, we need to call some other despawning methods first to ensure that all
             // necessary data is deleted.
-            WorldSimulation.MicrobeTerrainSystem.DespawnAll();
-            patchManager.RemoveClouds();
+            patchManager.DespawnAll();
             WorldSimulation.DestroyAllEntities();
             SpawnPlayer();
         }

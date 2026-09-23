@@ -64,16 +64,8 @@ public class PatchManager
                 GD.Print("Previous patch doesn't exist, despawning all entities.");
             }
 
-            // Despawn old entities
-            spawnSystem.DespawnAll();
-
-            terrainSystem.DespawnAll();
-
-            // And also all timed entities
-            timedLife.DespawnAll();
-
-            // Clear compounds
-            compoundCloudSystem.EmptyAllClouds();
+            // Remove old gameplay entities
+            DespawnAll();
 
             patchIsChanged = true;
         }
@@ -96,8 +88,20 @@ public class PatchManager
         return patchIsChanged;
     }
 
-    public void RemoveClouds()
+    /// <summary>
+    ///   Despawn all terrain, timed entities, clouds and anything spawned by the spawn system.
+    /// </summary>
+    public void DespawnAll()
     {
+        // Despawn old entities
+        spawnSystem.DespawnAll();
+
+        terrainSystem.DespawnAll();
+
+        // And also all timed entities
+        timedLife.DespawnAll();
+
+        // Clear compound clouds
         compoundCloudSystem.EmptyAllClouds();
     }
 
