@@ -620,8 +620,19 @@ public partial class CellBodyPlanEditorComponent
         if (otherCells.Count == 0)
             return true;
 
-        return movingPositions.Any(cellPosition => Hex.HexNeighbourOffset.Values.Any(offset =>
-            occupiedByOtherCells.Contains(cellPosition + offset)));
+        if (!movingPositions.Any(cellPosition => Hex.HexNeighbourOffset.Values.Any(offset =>
+                occupiedByOtherCells.Contains(cellPosition + offset))))
+        {
+            // Not touching any neighbours
+            return false;
+        }
+
+        // It's a bit too cumbersome to enforce adjacencies when trying to move, so this check is disabled.
+
+        // return HasEnoughExpectedAdjacencies(moving, movingPositions);
+
+        return true;
+    }
 
     /// <summary>
     ///   Checks whether a cell retains enough of its statically expected compact-layout neighbours.
