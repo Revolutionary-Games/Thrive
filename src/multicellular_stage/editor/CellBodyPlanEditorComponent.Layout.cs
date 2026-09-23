@@ -840,6 +840,9 @@ public partial class CellBodyPlanEditorComponent
         manualLayoutMissingAdjacencyPairs.Clear();
         manualLayoutSources.Clear();
         manualLayoutSourceData.Clear();
+        manualLayoutHasErrors = false;
+        fullLayoutHasAdjacencyDisconnects = false;
+        UpdateLayoutErrorDisplay();
         StartLayoutCalculation();
     }
 
