@@ -227,7 +227,8 @@ public partial class CellBodyPlanEditorComponent
         }
 
         layoutCalculationSpinner.Show();
-        pendingLayoutCalculation = Task.Run(() => CalculateFullLayout(source));
+        pendingLayoutCalculation = new Task<LayoutCalculationResult>(() => CalculateFullLayout(source));
+        TaskExecutor.Instance.AddTask(pendingLayoutCalculation);
     }
 
     private void SetFullLayoutPreview(CellLayout<CellTemplate> gameplay)
