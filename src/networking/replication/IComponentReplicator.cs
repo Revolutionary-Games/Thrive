@@ -35,4 +35,9 @@ public interface IComponentReplicator
     ///   destroyed locally
     /// </summary>
     public void Skip(NetworkReader reader);
+
+    /// <summary>
+    ///   Takes this component off a client entity, when the server's entity no longer has it
+    /// </summary>
+    public void Remove(in Entity entity);
 }

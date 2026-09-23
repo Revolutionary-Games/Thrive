@@ -77,6 +77,24 @@ public sealed class ReplicationFixture : IDisposable, INetworkEntityDestroyer
         entity.Set(new TestValue(value));
     }
 
+    /// <summary>
+    ///   Takes the replicated component off a server entity, without destroying the entity
+    /// </summary>
+    public void RemoveValue(in Entity entity)
+    {
+        entity.Remove<TestValue>();
+    }
+
+    public void AddValue(in Entity entity, float value)
+    {
+        entity.Add(new TestValue(value));
+    }
+
+    public bool ClientHasValue(uint networkId)
+    {
+        return clientIndex.TryGet(networkId, out var entity) && entity.Has<TestValue>();
+    }
+
     public void DespawnEntity(in Entity entity)
     {
         uint networkId = NetworkIdOf(entity);
@@ -199,6 +217,12 @@ public class TestValueReplicator : IComponentReplicator
     public void Skip(NetworkReader reader)
     {
         reader.ReadUInt16();
+    }
+
+    public void Remove(in Entity entity)
+    {
+        if (entity.Has<TestValue>())
+            entity.Remove<TestValue>();
     }
 }
 
