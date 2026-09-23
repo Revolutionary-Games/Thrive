@@ -705,7 +705,8 @@ public partial class CellBodyPlanEditorComponent
         if (UsesManualPlayerLayout == targetValue)
             return;
 
-        // TODO: make this an editor action
+        // TODO: make this an editor action https://github.com/Revolutionary-Games/Thrive/issues/7314
+        // And also need to make the move actions into editor actions for the full layout.
         UsesManualPlayerLayout = targetValue;
 
         if (UsesManualPlayerLayout)
