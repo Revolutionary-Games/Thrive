@@ -68,6 +68,7 @@ public partial class CellBodyPlanEditorComponent
     private bool manualLayoutHasErrors;
     private bool fullLayoutHasOverlaps;
     private bool fullLayoutHasDisconnectedCells;
+    private bool fullLayoutHasAdjacencyDisconnects;
 
     private IReadOnlyList<HexWithData<CellTemplate>> CurrentFullLayout =>
         UsesManualPlayerLayout ? manualFullLayout : fullLayoutPreview;
@@ -261,6 +262,7 @@ public partial class CellBodyPlanEditorComponent
             manualLayoutHasErrors = false;
             fullLayoutHasOverlaps = false;
             fullLayoutHasDisconnectedCells = false;
+            fullLayoutHasAdjacencyDisconnects = false;
             manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
             UpdateLayoutErrorDisplay();
             return;
@@ -270,6 +272,7 @@ public partial class CellBodyPlanEditorComponent
         fullLayoutInvalid.Clear();
         fullLayoutHasOverlaps = false;
         fullLayoutHasDisconnectedCells = false;
+        fullLayoutHasAdjacencyDisconnects = false;
         manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
 
         // Maps each position to a cell that exists there
@@ -322,7 +325,7 @@ public partial class CellBodyPlanEditorComponent
                 if (!HasEnoughExpectedAdjacencies(pair.Key, pair.Value))
                 {
                     fullLayoutInvalid.UnionWith(pair.Value);
-                    fullLayoutHasDisconnectedCells = true;
+                    fullLayoutHasAdjacencyDisconnects = true;
                     manualLayoutCellsWithBrokenExpectedAdjacencies.Add(pair.Key);
                 }
             }
@@ -386,11 +389,14 @@ public partial class CellBodyPlanEditorComponent
         }
         else
         {
-            error = (fullLayoutHasOverlaps, fullLayoutHasDisconnectedCells) switch
+            error = (fullLayoutHasOverlaps, fullLayoutHasDisconnectedCells, fullLayoutHasAdjacencyDisconnects) switch
             {
-                (true, true) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"),
-                (true, false) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"),
-                (false, true) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"),
+                (true, _, true) => Localization.Translate(
+                    "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"),
+                (_, _, true) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"),
+                (true, true, false) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"),
+                (true, false, false) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"),
+                (false, true, false) => Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"),
                 _ => throw new InvalidOperationException("Manual layout has errors without a known error type"),
             };
         }

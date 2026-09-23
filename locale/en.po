@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-22 18:45+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-09-22 18:23+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -746,6 +746,9 @@ msgstr "Rotating cells can only be done in the main structure view"
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr "The manual cell layout is invalid, please check that editor tab and fix it or disable the manual layout"
 
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr "The layout is invalid because cells have lost too many of their intended adjacencies. Move them closer to their intended positions (see the red arrows)."
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr "The layout is invalid because there are disconnected cells"
 
@@ -754,6 +757,9 @@ msgstr "The layout is invalid because there are cells with improper growth order
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr "The layout is invalid because there are overlapping cells."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr "The layout is invalid because there are overlapping cells and too many lost intended adjacencies (see the red arrows)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr "The layout is invalid because there are overlapping and disconnected cells."

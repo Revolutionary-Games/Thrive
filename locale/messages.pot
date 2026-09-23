@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-22 18:45+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "ABORT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:135
+#: ../src/auto-evo/AutoEvoRun.cs:146
 msgid "ABORTED_DOT"
 msgstr ""
 
@@ -442,7 +442,7 @@ msgstr ""
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:388
+#: ../src/auto-evo/AutoEvoRun.cs:417
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
@@ -459,7 +459,7 @@ msgstr ""
 msgid "AUTO-EVO_RESULTS_TITLE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:150
+#: ../src/auto-evo/AutoEvoRun.cs:161
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
@@ -1013,32 +1013,40 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1266
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1270
 msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1292
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1303
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1296
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1307
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:981
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:985
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:365
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:396
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:399
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:357
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:388
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:364
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:398
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:363
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:395
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:397
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:982
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr ""
@@ -1055,7 +1063,7 @@ msgstr ""
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:970
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:974
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
@@ -2951,11 +2959,11 @@ msgid "ERROR_LOADING"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:733
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1011
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1015
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1032
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1036
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
@@ -3211,7 +3219,7 @@ msgstr ""
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:138
+#: ../src/auto-evo/AutoEvoRun.cs:149
 msgid "FINISHED_DOT"
 msgstr ""
 
@@ -6576,7 +6584,7 @@ msgstr ""
 msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:141
+#: ../src/auto-evo/AutoEvoRun.cs:152
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -6808,7 +6816,7 @@ msgstr ""
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:151
+#: ../src/auto-evo/AutoEvoRun.cs:162
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
@@ -7200,8 +7208,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1606
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1644
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1610
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1648
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -8675,7 +8683,7 @@ msgstr ""
 msgid "START"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:154
+#: ../src/auto-evo/AutoEvoRun.cs:165
 msgid "STARTING"
 msgstr ""
 
