@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 using Nito.Collections;
@@ -29,6 +28,7 @@ public partial class ResourceManager : Node
 
     private readonly BlockingCollection<IResource> queuedResources = new();
     private readonly Deque<IResource> processingResources = new();
+    private readonly ResourceLoadLifecycle loadLifecycle = new();
     private readonly Stopwatch timeTracker = new();
 
     private readonly HashSet<string> temporaryResourceIds = new();
@@ -43,12 +43,13 @@ public partial class ResourceManager : Node
     private int totalStageResourcesLoaded;
     private int totalStageResourcesToLoad = -1;
 
-    private IResource? preparingBackgroundResource;
-    private IResource? processingBackgroundResource;
+    private ResourceBackgroundTask? preparingBackgroundTask;
+    private ResourceBackgroundTask? processingBackgroundTask;
+    private bool shuttingDown;
 
     // TODO: implement relative performance detection
 
-    private float savedForLaterProcessingTime;
+    private double savedForLaterProcessingTime;
 
     private ResourceManager()
     {
@@ -72,6 +73,12 @@ public partial class ResourceManager : Node
 
     public override void _ExitTree()
     {
+        shuttingDown = true;
+        queuedResources.CompleteAdding();
+
+        ObserveTaskFailureAfterExit(preparingBackgroundTask);
+        ObserveTaskFailureAfterExit(processingBackgroundTask);
+
         base._ExitTree();
 
         if (instance == this)
@@ -82,70 +89,69 @@ public partial class ResourceManager : Node
     {
         base._Process(delta);
 
-        // TODO: should this instead use a budget approach based exclusively on delta (and multiply it by
-        // some fraction)?
-        // TODO: maybe also considering a "deficit" from previous frame would be good for very long load tasks?
-        var originalBudget =
-            TimeSpan.FromSeconds(Math.Max(Constants.RESOURCE_TIME_BUDGET_PER_FRAME - delta,
-                    Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 0.05f) +
-                savedForLaterProcessingTime);
+        if (shuttingDown)
+            return;
+
+        // Carry unused processing time, or a bounded deficit, between frames to spread resource loading work.
+        var frameBudget = new ResourceLoadFrameBudget(delta, savedForLaterProcessingTime,
+            Constants.RESOURCE_TIME_BUDGET_PER_FRAME);
 
         timeTracker.Restart();
 
-        if (processingBackgroundResource?.Loaded == true)
-        {
-            processingBackgroundResource.OnComplete?.Invoke(processingBackgroundResource);
-            processingBackgroundResource = null;
-        }
+        ObservePreparingBackgroundTask();
+        ObserveProcessingBackgroundTask(ref frameBudget);
 
-        if (preparingBackgroundResource?.LoadingPrepared == true)
-            preparingBackgroundResource = null;
+        HandleLoadQueue(ref frameBudget);
 
-        HandleLoadQueue(originalBudget);
-
-        savedForLaterProcessingTime = Math.Clamp((float)(originalBudget - timeTracker.Elapsed).TotalSeconds,
-            -Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 2,
-            Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 0.5f);
+        savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(timeTracker.Elapsed.TotalSeconds);
     }
 
+    /// <summary>
+    ///   Queues a resource unless the same instance already has an active request. Duplicate requests do not clear
+    ///   cancellation or schedule another load; submit again after the previous request has completed to retry.
+    /// </summary>
     public void QueueLoad(IResource resource)
     {
+        if (shuttingDown)
+            return;
+
+        // Reject contradictory phases before the lifecycle takes ownership and could otherwise become stuck.
+        ValidateResourceConfiguration(resource);
+
+        if (!loadLifecycle.TryQueue(resource))
+            return;
+
         queuedResources.Add(resource);
     }
 
     public void CancelLoad(IResource resource)
     {
-        // TODO: the collection is a blocking one so we cannot immediately remove the resource, so for now we use
-        // this soft cancellation flag to skip most of hte work
-        resource.CancelRequested = true;
+        if (!shuttingDown)
+            loadLifecycle.TryCancel(resource);
     }
 
     public void OnStageLoadStart(MainGameState gameState)
     {
         if (!gameStateLoaded)
+        {
             GD.PrintErr("Abandoning previous game state load and starting new one");
+
+            foreach (var resource in stageResources)
+                loadLifecycle.TryCancel(resource);
+        }
 
         gameStateLoaded = false;
         totalStageResourcesLoaded = 0;
         totalStageResourcesToLoad = -1;
 
         // Some stages are equivalent in terms of required resources
-        switch (gameState)
+        gameStateThatIsLoading = gameState switch
         {
-            case MainGameState.MicrobeEditor:
-            case MainGameState.MulticellularEditor:
-                gameStateThatIsLoading = MainGameState.MicrobeStage;
-                break;
-            case MainGameState.MacroscopicEditor:
-                gameStateThatIsLoading = MainGameState.MacroscopicStage;
-                break;
-            case MainGameState.AscensionCeremony:
-                gameStateThatIsLoading = MainGameState.SpaceStage;
-                break;
-            default:
-                gameStateThatIsLoading = gameState;
-                break;
-        }
+            MainGameState.MicrobeEditor or MainGameState.MulticellularEditor => MainGameState.MicrobeStage,
+            MainGameState.MacroscopicEditor => MainGameState.MacroscopicStage,
+            MainGameState.AscensionCeremony => MainGameState.SpaceStage,
+            _ => gameState,
+        };
     }
 
     public bool ProgressStageLoad()
@@ -155,26 +161,32 @@ public partial class ResourceManager : Node
 
         if (totalStageResourcesToLoad == -1)
         {
-            if (StartStageResourceLoad())
-            {
-                // This returns only true on error
-                gameStateLoaded = true;
-                return true;
-            }
+            if (!StartStageResourceLoad())
+                return false;
 
-            return false;
+            // This returns only true on error
+            gameStateLoaded = true;
+            return true;
         }
+
+        // Only inspect Loaded after this request has settled on the main thread, including observation of any task.
+        totalStageResourcesLoaded = 0;
+        foreach (var resource in stageResources)
+        {
+            if (!loadLifecycle.IsActive(resource) && resource.Loaded)
+                ++totalStageResourcesLoaded;
+        }
+
+        if (preparingBackgroundTask != null || processingBackgroundTask != null)
+            return false;
 
         // Wait until the pending loads are empty
         if (queuedResources.Count > 0)
-        {
-            totalStageResourcesLoaded = stageResources.Count(r => r.Loaded);
             return false;
-        }
 
         // Make sure all resources are loaded
         // As some can still be processing by this point
-        if (stageResources.Any(r => !r.Loaded))
+        if (totalStageResourcesLoaded < stageResources.Count)
         {
             // TODO: does this need unstuck logic if some resource is not getting loaded?
             // For example, due to something unloading a resource after we loaded it and it is no longer in the load
@@ -215,13 +227,54 @@ public partial class ResourceManager : Node
         base.Dispose(disposing);
     }
 
+    private static void ValidateResourceConfiguration(IResource resource)
+    {
+        ArgumentNullException.ThrowIfNull(resource);
+
+        if (!resource.RequiresSyncLoad && !resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            throw new InvalidOperationException(
+                $"Async resource {resource.Identifier} requires synchronous post-processing but has no " +
+                "post-processing phase");
+        }
+    }
+
+    private static bool PerformSynchronousLoadAndCallback(IResource resource)
+    {
+        if (!PerformFullLoad(resource))
+            return false;
+
+        resource.OnComplete?.Invoke(resource);
+        return true;
+    }
+
+    private static bool PerformPendingMainThreadPhases(IResource resource, Stopwatch? splitLoadStopwatch)
+    {
+        if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            splitLoadStopwatch?.Start();
+            if (!PerformMainThreadPostProcessing(resource))
+                return false;
+
+            if (splitLoadStopwatch != null)
+            {
+                splitLoadStopwatch.Stop();
+                ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed,
+                    GetEstimatedMainThreadTimeRequired(resource));
+            }
+        }
+
+        resource.OnComplete?.Invoke(resource);
+        return true;
+    }
+
     private static void PrepareLoad(IResource resource)
     {
         resource.PrepareLoading();
         resource.LoadingPrepared = true;
     }
 
-    private static void PerformFullLoad(IResource resource)
+    private static bool PerformFullLoad(IResource resource)
     {
         if (!resource.LoadingPrepared)
             throw new InvalidOperationException("Resource is not prepared for load yet");
@@ -236,43 +289,242 @@ public partial class ResourceManager : Node
 
         resource.Load();
 
+        if (resource.CancelRequested)
+            return false;
+
         if (resource.UsesPostProcessing)
             resource.PerformPostProcessing();
+
+        if (resource.CancelRequested)
+            return false;
 
         if (!resource.Loaded)
             throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
 
         if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
+            ReportResourceLoadTime(resource, stopwatch.Elapsed, resource.EstimatedTimeRequired);
+
+        return true;
+    }
+
+    private static void ReportResourceLoadTime(IResource resource, TimeSpan elapsed, double estimatedTimeRequired)
+    {
+        var difference = elapsed.TotalSeconds - estimatedTimeRequired;
+
+        if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
+            GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
+
+        if (Constants.REPORT_ALL_LOAD_TIMES)
+            GD.Print($"Load time: {elapsed.TotalSeconds}s for {resource.Identifier}");
+    }
+
+    private static Stopwatch? CreateSplitLoadStopwatch(IResource resource)
+    {
+        if (resource.RequiresSyncPostProcess &&
+            (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES))
+            return new Stopwatch();
+
+        return null;
+    }
+
+    // ReSharper enable HeuristicUnreachableCode
+#pragma warning restore CS0162
+
+    private static float GetEstimatedMainThreadTimeRequired(IResource resource)
+    {
+        return resource.RequiresSyncLoad || (resource.UsesPostProcessing && resource.RequiresSyncPostProcess) ?
+            resource.EstimatedTimeRequired :
+            0;
+    }
+
+    private static void PerformBackgroundLoad(IResource resource)
+    {
+        if (!resource.RequiresSyncPostProcess)
         {
-            var elapsed = stopwatch.Elapsed;
+            PerformFullLoad(resource);
+            return;
+        }
 
-            var difference = elapsed.TotalSeconds - resource.EstimatedTimeRequired;
+        if (!resource.LoadingPrepared)
+            throw new InvalidOperationException("Resource is not prepared for load yet");
 
-            if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
+        // Completion and loaded-state validation are deferred to the indivisible main-thread post-processing unit.
+        resource.Load();
+    }
+
+    private static bool PerformMainThreadPostProcessing(IResource resource)
+    {
+        resource.PerformPostProcessing();
+
+        if (resource.CancelRequested)
+            return false;
+
+        if (!resource.Loaded)
+            throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
+
+        return true;
+    }
+
+    private static void ReportResourceOperationFailure(IResource resource, ResourceBackgroundPhase phase,
+        Exception exception)
+    {
+        ReportResourceOperationFailure(resource, $"background {phase}", exception);
+    }
+
+    private static void ReportResourceOperationFailure(IResource resource, string operation, Exception exception)
+    {
+        GD.PrintErr($"Resource {operation} failed for {resource.Identifier}: ", exception);
+    }
+
+    private static void BestEffortUnload(IResource resource)
+    {
+        try
+        {
+            resource.UnLoad();
+        }
+        catch (Exception e)
+        {
+            ReportResourceOperationFailure(resource, "unload after cancellation", e);
+        }
+    }
+
+    private static void ObserveTaskFailureAfterExit(ResourceBackgroundTask? backgroundTask)
+    {
+        backgroundTask?.ObserveFailureOnCompletion(e =>
+            ReportResourceOperationFailure(backgroundTask.Resource, $"background {backgroundTask.Phase} on exit", e));
+    }
+
+    private void ObservePreparingBackgroundTask()
+    {
+        var backgroundTask = preparingBackgroundTask;
+
+        if (backgroundTask == null || !backgroundTask.IsCompleted)
+            return;
+
+        try
+        {
+            backgroundTask.ObserveCompletion();
+            loadLifecycle.FinishPreparing(backgroundTask.Resource);
+
+            if (backgroundTask.Resource.CancelRequested)
             {
-                GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
+                RemoveProcessingResource(backgroundTask.Resource);
+                loadLifecycle.Complete(backgroundTask.Resource);
             }
+        }
+        catch (Exception e)
+        {
+            RemoveProcessingResource(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
+            ReportResourceOperationFailure(backgroundTask.Resource, backgroundTask.Phase, e);
+        }
+        finally
+        {
+            preparingBackgroundTask = null;
+        }
+    }
 
-            if (Constants.REPORT_ALL_LOAD_TIMES)
+    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget)
+    {
+        var backgroundTask = processingBackgroundTask;
+
+        if (backgroundTask == null)
+            return;
+
+        if (!backgroundTask.CompletionObserved)
+        {
+            if (!backgroundTask.IsCompleted)
+                return;
+
+            try
             {
-                GD.Print($"Load time: {elapsed.TotalSeconds}s for {resource.Identifier}");
+                backgroundTask.ObserveCompletion();
+                loadLifecycle.FinishBackgroundLoad(backgroundTask.Resource);
+            }
+            catch (Exception e)
+            {
+                processingBackgroundTask = null;
+                loadLifecycle.Complete(backgroundTask.Resource);
+                ReportResourceOperationFailure(backgroundTask.Resource, backgroundTask.Phase, e);
+                return;
             }
         }
 
-        // ReSharper enable HeuristicUnreachableCode
-#pragma warning restore CS0162
+        if (backgroundTask.Resource.CancelRequested)
+        {
+            processingBackgroundTask = null;
+            RemoveStageResource(backgroundTask.Resource);
+            BestEffortUnload(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
+            return;
+        }
+
+        var requiresMainThreadPostProcessing = backgroundTask.Resource.UsesPostProcessing &&
+            backgroundTask.Resource.RequiresSyncPostProcess;
+
+        if (!requiresMainThreadPostProcessing && backgroundTask.Resource.OnComplete == null)
+        {
+            processingBackgroundTask = null;
+            loadLifecycle.Complete(backgroundTask.Resource);
+            return;
+        }
+
+        try
+        {
+            if (!frameBudget.TryAdmit(GetEstimatedMainThreadTimeRequired(backgroundTask.Resource),
+                    timeTracker.Elapsed.TotalSeconds))
+                return;
+
+            if (!PerformPendingMainThreadPhases(backgroundTask.Resource, backgroundTask.Task.AsyncState as Stopwatch))
+            {
+                RemoveStageResource(backgroundTask.Resource);
+                BestEffortUnload(backgroundTask.Resource);
+            }
+
+            processingBackgroundTask = null;
+            loadLifecycle.Complete(backgroundTask.Resource);
+        }
+        catch (Exception e)
+        {
+            // The callback was admitted and started, so it must not be repeated on the next frame.
+            processingBackgroundTask = null;
+            loadLifecycle.Complete(backgroundTask.Resource);
+            ReportResourceOperationFailure(backgroundTask.Resource,
+                "main-thread post-processing or completion callback", e);
+        }
     }
 
-    private void HandleLoadQueue(TimeSpan originalBudget)
+    private void RemoveProcessingResource(IResource resource)
+    {
+        for (int i = 0; i < processingResources.Count; ++i)
+        {
+            if (!ReferenceEquals(processingResources[i], resource))
+                continue;
+
+            processingResources.RemoveAt(i);
+            return;
+        }
+    }
+
+    private void RemoveStageResource(IResource resource)
+    {
+        for (int i = 0; i < stageResources.Count; ++i)
+        {
+            if (!ReferenceEquals(stageResources[i], resource))
+                continue;
+
+            stageResources.RemoveAt(i);
+            return;
+        }
+    }
+
+    private void HandleLoadQueue(ref ResourceLoadFrameBudget frameBudget)
     {
         bool hasThingsInQueue = processingResources.Count > 0;
 
-        // Ensures at least something gets loaded
-        bool progressedLoading = false;
-
         while (true)
         {
-            float timeRemaining = (float)(originalBudget - timeTracker.Elapsed).TotalSeconds;
+            double timeRemaining = frameBudget.GetRemainingSeconds(timeTracker.Elapsed.TotalSeconds);
 
             if (timeRemaining <= 0)
                 break;
@@ -287,10 +539,13 @@ public partial class ResourceManager : Node
                 {
                     var resource = processingResources[i];
 
-                    // If already loaded, don't need to do anything (or if cancelled)
+                    if (ReferenceEquals(preparingBackgroundTask?.Resource, resource))
+                        continue;
+
                     if (resource.Loaded || resource.CancelRequested)
                     {
                         processingResources.RemoveAt(i);
+                        loadLifecycle.Complete(resource);
                         --count;
                         --i;
                         continue;
@@ -299,57 +554,79 @@ public partial class ResourceManager : Node
                     if (!resource.LoadingPrepared)
                     {
                         // Need to prepare for loading this
-                        if (preparingBackgroundResource == null)
+                        if (preparingBackgroundTask == null)
                         {
-                            TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }), false);
-
-                            preparingBackgroundResource = resource;
-                            progressedLoading = true;
+                            loadLifecycle.BeginPreparing(resource);
+                            var task = new Task(() => { PrepareLoad(resource); });
+                            preparingBackgroundTask = new ResourceBackgroundTask(resource, task,
+                                ResourceBackgroundPhase.Prepare);
+                            TaskExecutor.Instance.AddTask(task, false);
                         }
 
                         continue;
                     }
+
+                    if (loadLifecycle.GetState(resource) == ResourceLoadState.Queued)
+                        loadLifecycle.MarkPrepared(resource);
+
+                    // Preparing can overlap loading, but the Load/PendingMain slot must be released before any
+                    // other resource starts a synchronous or background load.
+                    if (processingBackgroundTask != null)
+                        continue;
 
                     if (!resource.RequiresSyncLoad)
                     {
-                        // TODO: implement proper background loading. As all resources currently are sync loaded
-                        // no effort is put into the background load yet
+                        loadLifecycle.BeginLoading(resource);
 
-                        if (processingBackgroundResource == null)
+                        // Keep the timer with the task so deferred main-thread post-processing can resume it.
+                        var loadStopwatch = CreateSplitLoadStopwatch(resource);
+                        var task = new Task(state =>
                         {
-                            if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
-                            {
-                                throw new NotImplementedException(
-                                    "Missing handling for requiring sync post process but supporting async load");
-                            }
-
-                            TaskExecutor.Instance.AddTask(new Task(() => { PerformFullLoad(resource); }), false);
-
-                            processingBackgroundResource = resource;
-                            processingResources.RemoveAt(i);
-                            --count;
-                            didSomething = true;
-                            progressedLoading = true;
-                            --i;
-                        }
+                            var stopwatch = state as Stopwatch;
+                            stopwatch?.Start();
+                            PerformBackgroundLoad(resource);
+                            stopwatch?.Stop();
+                        }, loadStopwatch);
+                        processingBackgroundTask = new ResourceBackgroundTask(resource, task,
+                            ResourceBackgroundPhase.Load);
+                        TaskExecutor.Instance.AddTask(task, false);
+                        processingResources.RemoveAt(i);
+                        --count;
+                        --i;
+                        didSomething = true;
 
                         continue;
                     }
 
-                    // Run the first load that we can probably finish this process cycle
-                    if (!progressedLoading || timeRemaining - resource.EstimatedTimeRequired > 0)
+                    // A unit that fits may run normally. The frame's first completion unit may exceed the remaining
+                    // positive budget to guarantee progress, but later units must fit.
+                    try
                     {
-                        // TODO: allow splitting the post processing to the next frame
-                        PerformFullLoad(resource);
-                        resource.OnComplete?.Invoke(resource);
+                        if (!frameBudget.TryAdmit(GetEstimatedMainThreadTimeRequired(resource),
+                                timeTracker.Elapsed.TotalSeconds))
+                            continue;
+
+                        if (!PerformSynchronousLoadAndCallback(resource))
+                        {
+                            RemoveStageResource(resource);
+                            BestEffortUnload(resource);
+                        }
 
                         didSomething = true;
-                        progressedLoading = true;
                         processingResources.RemoveAt(i);
-
-                        // We break here to recompute the time remaining
-                        break;
+                        loadLifecycle.Complete(resource);
                     }
+                    catch (Exception e)
+                    {
+                        // A load or callback that started must be settled exactly once, even when it throws.
+                        didSomething = true;
+                        processingResources.RemoveAt(i);
+                        loadLifecycle.Complete(resource);
+                        ReportResourceOperationFailure(resource, "synchronous load or completion callback", e);
+                    }
+
+                    // We break here to recompute the time remaining
+                    break;
                 }
 
                 hasThingsInQueue = didSomething;
@@ -362,11 +639,13 @@ public partial class ResourceManager : Node
             {
                 // Early skip cancelled items
                 if (queueResource.CancelRequested)
+                {
+                    loadLifecycle.Complete(queueResource);
                     continue;
+                }
 
                 processingResources.AddToBack(queueResource);
                 hasThingsInQueue = true;
-                progressedLoading = true;
             }
             else
             {
@@ -378,6 +657,12 @@ public partial class ResourceManager : Node
 
     private bool StartStageResourceLoad()
     {
+        foreach (var resource in stageResources)
+        {
+            if (loadLifecycle.IsActive(resource))
+                return false;
+        }
+
         StageResourcesList resources;
         try
         {
@@ -416,7 +701,16 @@ public partial class ResourceManager : Node
             {
                 if (!temporaryResourceIds.Contains(resource.Identifier))
                 {
-                    resource.UnLoad();
+                    try
+                    {
+                        resource.UnLoad();
+                    }
+                    catch (Exception e)
+                    {
+                        // The resource is removed from the active stage even if releasing its contents fails.
+                        ReportResourceOperationFailure(resource, "unload", e);
+                    }
+
                     return true;
                 }
 
