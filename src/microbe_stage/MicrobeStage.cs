@@ -1893,8 +1893,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this,
-                GameWorld.WorldSettings.AlwaysResetEnvironment))
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
