@@ -39,7 +39,14 @@ public enum MessageType : byte
     /// </summary>
     JoinSnapshot = 30,
 
+    /// <summary>
+    ///   Reserved.
+    /// </summary>
     EntitySpawn = 31,
+
+    /// <summary>
+    ///   Reserved.
+    /// </summary>
     EntityDespawn = 32,
     Snapshot = 33,
 
