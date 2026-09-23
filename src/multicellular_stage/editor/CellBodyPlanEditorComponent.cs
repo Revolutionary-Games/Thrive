@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 10;
+    public const ushort SERIALIZATION_VERSION = 11;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -65,6 +65,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button tolerancesTabButton = null!;
 
     [Export]
+    private Button layoutTabButton = null!;
+
+    [Export]
     private PanelContainer structureTab = null!;
 
     [Export]
@@ -90,6 +93,24 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Container toleranceWarningContainer = null!;
+
+    [Export]
+    private PanelContainer layoutTab = null!;
+
+    [Export]
+    private Button automaticLayoutButton = null!;
+
+    [Export]
+    private Button reapplyAutomaticLayoutButton = null!;
+
+    [Export]
+    private Label layoutExplanationLabel = null!;
+
+    [Export]
+    private Control layoutCalculationSpinner = null!;
+
+    [Export]
+    private Label layoutErrorLabel = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -251,6 +272,7 @@ public partial class CellBodyPlanEditorComponent :
         Behaviour,
         GrowthOrder,
         Tolerance,
+        Layout,
     }
 
     public override bool HasIslands =>
@@ -298,6 +320,9 @@ public partial class CellBodyPlanEditorComponent :
             }
 
             if (HasFinishedPendingEndosymbiosis)
+                return true;
+
+            if (UsesManualPlayerLayout && manualLayoutHasErrors)
                 return true;
 
             return false;
@@ -389,6 +414,8 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     public int DesiredMassBuddingCellCount { get; private set; } = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
 
+    public bool UsesManualPlayerLayout { get; private set; }
+
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => false;
@@ -476,11 +503,45 @@ public partial class CellBodyPlanEditorComponent :
         massBuddingMinSizeLabel.Text = buddingBalanceInfoText;
 
         UpdateCancelButtonVisibility();
+
+        /*// TODO: these two don't make sense
+        if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
+            StartLayoutCalculation();
+
+        if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
+            UpdateFullLayoutVisuals();*/
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (pendingLayoutCalculation is { IsCompleted: true } calculation)
+        {
+            pendingLayoutCalculation = null;
+            layoutCalculationSpinner.Hide();
+
+            if (calculation.IsFaulted)
+            {
+                GD.PrintErr("Failed to calculate the full cell layout: ", calculation.Exception);
+            }
+            else if (!layoutCalculationRequested)
+            {
+                SetFullLayoutPreview(calculation.Result.Gameplay);
+                RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
+                if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
+                    CopyLayout(fullLayoutPreview, manualFullLayout);
+
+                if (layoutPreviewActive)
+                {
+                    UpdateFullLayoutVisuals();
+                    UpdateGrowthOrderNumbers();
+                }
+            }
+
+            if (layoutCalculationRequested)
+                StartLayoutCalculation();
+        }
 
         if (!Visible)
             return;
@@ -514,7 +575,7 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // Show the cell that is about to be placed
-        if (Editor.ShowHover)
+        if (Editor.ShowHover && !layoutPreviewActive)
         {
             GetMouseHex(out int q, out int r);
 
@@ -585,6 +646,10 @@ public partial class CellBodyPlanEditorComponent :
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+        else if (Editor.ShowHover && layoutPreviewActive && UsesManualPlayerLayout && MovingPlacedHex != null)
+        {
+            RenderFullLayoutMoveHover();
+        }
         else if (forceUpdateCellGraphics)
         {
             // Make sure all cell graphics holders are updated
@@ -617,6 +682,8 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectOrNull(GameteACellType);
         writer.WriteObjectOrNull(GameteBCellType);
         writer.Write((int)SelectedGameteTypeForPlayer);
+        writer.Write(UsesManualPlayerLayout);
+        writer.WriteObject(manualFullLayout);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -699,10 +766,20 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
+        if (version > 9)
+        {
+            UsesManualPlayerLayout = reader.ReadBool();
+        }
+
         if (version < 10)
         {
             GameteACellType = null;
             GameteBCellType = null;
+        }
+
+        if (version > 10)
+        {
+            manualFullLayout = reader.ReadObject<List<HexWithData<CellTemplate>>>();
         }
     }
 
@@ -727,6 +804,32 @@ public partial class CellBodyPlanEditorComponent :
         GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        UsesManualPlayerLayout = multicellularSpecies.UsesManualPlayerLayout;
+
+        if (UsesManualPlayerLayout)
+        {
+            manualFullLayout.Clear();
+            manualLayoutSources.Clear();
+            manualLayoutSourceData.Clear();
+            foreach (var cell in multicellularSpecies.ModifiableGameplayCells)
+            {
+                var clone = (CellTemplate)cell.Clone();
+                var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
+                manualFullLayout.Add(copied);
+            }
+
+            RebuildFullLayoutGrowthOrderSources(manualFullLayout);
+
+            // The saved gameplay layout has clones, so none of its cell wrappers match the compact editor
+            // cells by reference. The gameplay layout is produced from the compact layout in growth order, and the
+            // manual layout preserves that order when it is saved, so matching by index restores the correspondence.
+            // This correspondence is needed later when a compact cell is added or removed: the manual list must keep
+            // the player's positions for existing cells while adding a new cell at the origin or removing its clone.
+            var sources = editedMicrobeCells.AsModifiable().ToList();
+            var manualCells = manualFullLayout.ToList();
+            for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
+                SetManualLayoutSource(manualCells[i], sources[i]);
+        }
 
         // Ignore invalid species data
         if (species.PlayerGamete != GameteType.All || (multicellularSpecies.ReproductionMethod !=
@@ -776,18 +879,37 @@ public partial class CellBodyPlanEditorComponent :
 
         ApplyGrowthOrderToCells();
 
-        // Compute final cell layout positions and update the species
-        // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
-        // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
-        // than this approach that can move around the cells a lot.
-        // This uses high quality as extra time spent doesn't matter here and is even important for the player species.
+        if (UsesManualPlayerLayout)
+        {
+            if (manualFullLayout.Count < 1)
+                throw new InvalidOperationException("Full layout should not be empty here");
 
-        // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
-        MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
-            editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
-            hexTemporaryMemory2, hexTemporaryMemory3);
+            // Manual positions are already final gameplay positions.
+            ReorderManualLayoutToGrowthOrderAndFixRootPosition();
+            editedSpecies.ModifiableGameplayCells.Clear();
+            foreach (var cell in manualFullLayout)
+            {
+                var type = editedSpecies.ModifiableCellTypes.First(t =>
+                    t.CellTypeName == cell.Data!.ModifiableCellType.CellTypeName);
+                var template = new CellTemplate(type, cell.Position, cell.Orientation);
+                editedSpecies.ModifiableGameplayCells.AddFast(template, hexTemporaryMemory, hexTemporaryMemory2);
+            }
+
+            // Keep the compact layout as the editor layout, so opening the other tabs still edits the cell instances
+            // in the usual way and returning to the editor shows exactly what the player did.
+            editedSpecies.CopyEditorLayout(editedMicrobeCells.AsModifiable(), hexTemporaryMemory, hexTemporaryMemory2);
+        }
+        else
+        {
+            // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
+            // This uses high quality as extra time spent doesn't matter here and is important for the player species.
+            MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
+                editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
+                hexTemporaryMemory2, hexTemporaryMemory3);
+        }
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
+        editedSpecies.UsesManualPlayerLayout = UsesManualPlayerLayout;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
         editedSpecies.ModifiableGameteTypeA = GameteACellType;
         editedSpecies.ModifiableGameteTypeB = GameteBCellType;
@@ -840,6 +962,25 @@ public partial class CellBodyPlanEditorComponent :
         var editorUserOverrides = userOverrides.ToList();
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
+
+        if (UsesManualPlayerLayout)
+        {
+            if (pendingLayoutCalculation != null || manualFullLayout.Count == 0)
+            {
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_LAYOUT_IS_BEING_CALCULATED"), 4);
+                return false;
+            }
+
+            // Revalidate from the actual cell footprints when leaving the editor. The manual list can contain
+            // overlapping cells while it is being edited, so relying only on placement-time checks is insufficient.
+            UpdateFullLayoutVisuals();
+        }
+
+        if (UsesManualPlayerLayout && manualLayoutHasErrors)
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR"), 4);
+            return false;
+        }
 
         if (IsNegativeAtpProduction() &&
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
@@ -984,9 +1125,34 @@ public partial class CellBodyPlanEditorComponent :
         // Update all cell graphics holders
         forceUpdateCellGraphics = true;
 
-        // This may be called while hidden from the undo/redo system
-        if (Visible)
+        // Cell type editing happens in a different tab, where the full layout preview is inactive. Remember the
+        // change, so entering the layout tab rebuilds its footprint and rechecks manual overlap errors.
+        fullLayoutNeedsRefresh = true;
+
+        // This may be called while hidden from the undo/redo system. The full layout still needs to be refreshed in
+        // that case, otherwise returning to the layout tab can show old cell footprints until a manual reapply.
+        if (layoutPreviewActive)
+        {
+            if (UsesManualPlayerLayout)
+            {
+                // The body-plan component remains logically in the layout preview while its parent editor tab is
+                // hidden. Therefore, returning straight from the cell-type editor does not call
+                // EnterFullLayoutPreview, which is where this refresh normally happens. Rebuild the manual
+                // templates here so every cell instance gets the newly edited type before its footprint is drawn.
+                SynchronizeManualLayoutWithEditorCells();
+                RefreshManualFullLayoutCellTypes();
+                fullLayoutNeedsRefresh = false;
+                UpdateFullLayoutVisuals();
+            }
+            else
+            {
+                StartLayoutCalculation();
+            }
+        }
+        else if (Visible)
+        {
             UpdateAlreadyPlacedVisuals();
+        }
 
         UpdateCellTypeSelections();
 
@@ -1039,6 +1205,26 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return false;
 
+        if (layoutPreviewActive)
+        {
+            GetMouseHex(out int layoutQ, out int layoutR);
+            var fullCell = GetFullCellAt(new Hex(layoutQ, layoutR));
+            if (fullCell == null)
+                return true;
+
+            // Moving full layout cells is always free
+            cellPopupMenu.GetActionPrice = _ => 0;
+            cellPopupMenu.SelectedCells = [fullCell];
+
+            // Hide the usual options
+            cellPopupMenu.ShowDeleteOption = false;
+            cellPopupMenu.EnableDeleteOption = false;
+            cellPopupMenu.ShowModifyOption = true;
+            cellPopupMenu.EnableMoveOption = UsesManualPlayerLayout;
+            cellPopupMenu.ShowPopup = true;
+            return true;
+        }
+
         // Can't open a popup menu while moving something
         if (MovingPlacedHex != null)
         {
@@ -1064,6 +1250,61 @@ public partial class CellBodyPlanEditorComponent :
 
         ShowCellMenu(cells.Select(h => h).Distinct());
         return true;
+    }
+
+    public override bool PerformPrimaryAction()
+    {
+        if (!layoutPreviewActive)
+            return base.PerformPrimaryAction();
+
+        if (!UsesManualPlayerLayout)
+        {
+            // Show a help message to the player as to why they can't change stuff
+            GetMouseHex(out int automaticCellQ, out int automaticCellR);
+            if (GetFullCellAt(new Hex(automaticCellQ, automaticCellR)) != null)
+            {
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"),
+                    5);
+            }
+
+            return true;
+        }
+
+        if (MovingPlacedHex != null)
+        {
+            GetMouseHex(out int q, out int r);
+            ApplyManualMove(new Hex(q, r));
+            return true;
+        }
+
+        GetMouseHex(out int cellQ, out int cellR);
+        var cell = GetFullCellAt(new Hex(cellQ, cellR));
+        if (cell != null)
+            StartHexMove(cell);
+
+        return true;
+    }
+
+    public override bool RotateRight()
+    {
+        if (layoutPreviewActive)
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
+            return true;
+        }
+
+        return base.RotateRight();
+    }
+
+    public override bool RotateLeft()
+    {
+        if (layoutPreviewActive)
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"), 5);
+            return true;
+        }
+
+        return base.RotateLeft();
     }
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
@@ -1168,6 +1409,12 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override void PerformMove(int q, int r)
     {
+        if (layoutPreviewActive)
+        {
+            ApplyManualMove(new Hex(q, r));
+            return;
+        }
+
         if (!MoveCell(MovingPlacedHex!, new Hex(q, r),
                 placementRotation))
         {
@@ -1177,11 +1424,25 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
+        if (layoutPreviewActive)
+            return IsFullLayoutMoveValid(position, cell);
+
         return editedMicrobeCells.CanPlace(position);
     }
 
     protected override void OnCurrentActionCanceled()
     {
+        if (layoutPreviewActive)
+        {
+            if (MovingPlacedHex != null)
+                manualFullLayout.Add(MovingPlacedHex);
+
+            MovingPlacedHex = null;
+            UpdateFullLayoutVisuals();
+            base.OnCurrentActionCanceled();
+            return;
+        }
+
         editedMicrobeCells.AddFast(MovingPlacedHex!, hexTemporaryMemory, hexTemporaryMemory2);
         MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
@@ -1189,11 +1450,28 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override void OnMoveActionStarted()
     {
+        if (layoutPreviewActive)
+        {
+            if (!UsesManualPlayerLayout)
+            {
+                MovingPlacedHex = null;
+                OnActionStatusChanged();
+                return;
+            }
+
+            manualFullLayout.Remove(MovingPlacedHex!);
+            UpdateFullLayoutVisuals();
+            return;
+        }
+
         editedMicrobeCells.Remove(MovingPlacedHex!);
     }
 
     protected override HexWithData<CellTemplate>? GetHexAt(Hex position)
     {
+        if (layoutPreviewActive)
+            return GetFullCellAt(position);
+
         return editedMicrobeCells.AsModifiable().GetElementAt(position, hexTemporaryMemory);
     }
 
@@ -1217,17 +1495,36 @@ public partial class CellBodyPlanEditorComponent :
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = 0.0f;
 
-        // Iterate through all hexes
-        foreach (var hex in editedMicrobeCells)
+        if (layoutPreviewActive)
         {
-            // Only consider the middle 3 rows
-            if (hex.Position.Q is < -1 or > 1)
-                continue;
+            // The compact editor hexes are hidden in full layout mode. Use the footprint hexes that are displayed
+            // instead so the forward arrow stays in front of the full cell visuals.
+            foreach (var position in fullLayoutOccupied)
+            {
+                // Only consider the middle 3 rows
+                if (position.Q is < -1 or > 1)
+                    continue;
 
-            var cartesian = Hex.AxialToCartesian(hex.Position);
+                var cartesian = Hex.AxialToCartesian(position);
 
-            // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
+            }
+        }
+        else
+        {
+            // Iterate through all compact editor hexes
+            foreach (var hex in editedMicrobeCells)
+            {
+                // Only consider the middle 3 rows
+                if (hex.Position.Q is < -1 or > 1)
+                    continue;
+
+                var cartesian = Hex.AxialToCartesian(hex.Position);
+
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
+            }
         }
 
         return highestPointInMiddleRows;
@@ -1284,10 +1581,11 @@ public partial class CellBodyPlanEditorComponent :
     {
         cellPopupMenu.SelectedCells = selectedCells.ToList();
         cellPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
-        cellPopupMenu.ShowPopup = true;
-
+        cellPopupMenu.ShowDeleteOption = true;
         cellPopupMenu.EnableDeleteOption = editedMicrobeCells.Count > 1;
         cellPopupMenu.EnableMoveOption = editedMicrobeCells.Count > 1;
+        cellPopupMenu.ShowModifyOption = true;
+        cellPopupMenu.ShowPopup = true;
     }
 
     private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace, bool isMainPosition)
@@ -1546,6 +1844,14 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnMovePressed()
     {
+        if (layoutPreviewActive)
+        {
+            if (UsesManualPlayerLayout)
+                StartHexMove(cellPopupMenu.SelectedCells.FirstOrDefault());
+
+            return;
+        }
+
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the cells symmetrical to the clicked cell.
@@ -1838,7 +2144,24 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnCellsChanged()
     {
-        UpdateAlreadyPlacedVisuals();
+        if (UsesManualPlayerLayout)
+            SynchronizeManualLayoutWithEditorCells();
+
+        if (layoutPreviewActive)
+        {
+            if (UsesManualPlayerLayout)
+            {
+                UpdateFullLayoutVisuals();
+            }
+            else
+            {
+                StartLayoutCalculation();
+            }
+        }
+        else
+        {
+            UpdateAlreadyPlacedVisuals();
+        }
 
         UpdateStats();
 
@@ -2033,6 +2356,12 @@ public partial class CellBodyPlanEditorComponent :
     {
         wrongGrowthOrderCells.Clear();
 
+        if (layoutPreviewActive)
+        {
+            RecalculateFullLayoutGrowthOrderErrors();
+            return;
+        }
+
         // Reuse this work memory
         islandsWorkMemory1.Clear();
 
@@ -2063,6 +2392,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnGrowthOrderChanged()
     {
+        RefreshFullLayoutGrowthOrderIndices();
         RecalculateWrongGrowthOrderCells();
 
         UpdateGrowthOrderUI();
@@ -2333,14 +2663,25 @@ public partial class CellBodyPlanEditorComponent :
 
     private void ApplySelectionMenuTab()
     {
+        bool shouldShowFullLayout = selectedSelectionMenuTab == SelectionMenuTab.Layout;
+        if (shouldShowFullLayout && !layoutPreviewActive)
+        {
+            EnterFullLayoutPreview();
+        }
+        else if (!shouldShowFullLayout && layoutPreviewActive)
+        {
+            ExitFullLayoutPreview();
+        }
+
         // Hide all
         structureTab.Hide();
         reproductionTab.Hide();
         behaviourEditor.Hide();
         growthOrderTab.Hide();
         toleranceTab.Hide();
+        layoutTab.Hide();
 
-        ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
+        ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder or SelectionMenuTab.Layout;
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -2379,6 +2720,13 @@ public partial class CellBodyPlanEditorComponent :
             {
                 toleranceTab.Show();
                 tolerancesTabButton.ButtonPressed = true;
+                break;
+            }
+
+            case SelectionMenuTab.Layout:
+            {
+                layoutTab.Show();
+                layoutTabButton.ButtonPressed = true;
                 break;
             }
 

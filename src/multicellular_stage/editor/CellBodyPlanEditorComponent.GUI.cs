@@ -235,6 +235,8 @@ public partial class CellBodyPlanEditorComponent
         }
 
         UpdateCancelButtonVisibility();
+
+        UpdateLayoutTabContent();
     }
 
     private void UpdateGrowthOrderUI()
@@ -265,6 +267,14 @@ public partial class CellBodyPlanEditorComponent
 
     private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
+        if (layoutPreviewActive)
+        {
+            foreach (var label in FullLayoutGrowthOrderFloatingNumbers())
+                yield return label;
+
+            yield break;
+        }
+
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
 
@@ -678,5 +688,53 @@ public partial class CellBodyPlanEditorComponent
 
         ignoredEditorWarnings.Add(EditorUserOverride.EndosymbiosisPending);
         OnFinish.Invoke(ignoredEditorWarnings);
+    }
+
+    private void UpdateLayoutTabContent()
+    {
+        automaticLayoutButton.ButtonPressed = !UsesManualPlayerLayout;
+        reapplyAutomaticLayoutButton.Visible = UsesManualPlayerLayout;
+        layoutExplanationLabel.Visible = UsesManualPlayerLayout;
+        UpdateLayoutErrorDisplay();
+    }
+
+    private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
+    {
+        bool targetValue = !usesAutomatic;
+
+        if (UsesManualPlayerLayout == targetValue)
+            return;
+
+        // TODO: make this an editor action https://github.com/Revolutionary-Games/Thrive/issues/7314
+        // And also need to make the move actions into editor actions for the full layout.
+        UsesManualPlayerLayout = targetValue;
+
+        if (UsesManualPlayerLayout)
+        {
+            if (fullLayoutPreview.Count > 0)
+            {
+                CopyLayout(fullLayoutPreview, manualFullLayout);
+            }
+            else
+            {
+                StartLayoutCalculation();
+            }
+        }
+        else
+        {
+            manualFullLayout.Clear();
+            manualLayoutSources.Clear();
+            manualLayoutSourceData.Clear();
+            StartLayoutCalculation();
+        }
+
+        UpdateLayoutTabContent();
+        if (layoutPreviewActive)
+            UpdateFullLayoutVisuals();
+    }
+
+    private void OnReapplyAutomaticLayoutButtonPressed()
+    {
+        OnReapplyAutomaticLayoutPressed();
     }
 }

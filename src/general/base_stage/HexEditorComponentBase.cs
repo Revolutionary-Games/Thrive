@@ -503,7 +503,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     [RunOnKeyDown("e_rotate_right")]
-    public bool RotateRight()
+    public virtual bool RotateRight()
     {
         if (!Visible)
             return false;
@@ -513,7 +513,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     [RunOnKeyDown("e_rotate_left")]
-    public bool RotateLeft()
+    public virtual bool RotateLeft()
     {
         if (!Visible)
             return false;
