@@ -14,6 +14,10 @@ using Components;
 ///     entity with nothing to say is left out of the message entirely, and a snapshot with nothing in it at all
 ///     isn't sent.
 ///   </para>
+///   <para>
+///     Spawns, despawns and component removals all follow the same rule as values: they repeat until the peer
+///     acknowledges a snapshot containing them.
+///   </para>
 /// </remarks>
 public class SnapshotWriter
 {
@@ -21,6 +25,11 @@ public class SnapshotWriter
     ///   Set in the per-entity flags when spawn data is included
     /// </summary>
     public const byte FLAG_INCLUDES_SPAWN = 1;
+
+    /// <summary>
+    ///   Set in the per-entity flags when the entity lost components the peer still has
+    /// </summary>
+    public const byte FLAG_INCLUDES_REMOVALS = 2;
 
     private readonly ReplicationRegistry registry;
 
@@ -35,6 +44,7 @@ public class SnapshotWriter
     private readonly Dictionary<int, PeerReplicationState> peerStates = new();
 
     private readonly HashSet<uint> relevantIds = new();
+    private readonly List<byte> removedComponents = new();
 
     public SnapshotWriter(ReplicationRegistry registry)
     {
@@ -190,11 +200,23 @@ public class SnapshotWriter
 
         byte writtenComponents = WriteComponents(entityState, peerId, entity, serverTick, forcedFullUpdate);
 
-        if (writtenComponents == 0 && flags == 0)
+        if (writtenComponents == 0 && flags == 0 && removedComponents.Count == 0)
         {
             // Nothing to say about this entity, so it is dropped from the message
             writer.Truncate(entityStart);
             return false;
+        }
+
+        if (removedComponents.Count > 0)
+        {
+            flags |= FLAG_INCLUDES_REMOVALS;
+
+            writer.Write((byte)removedComponents.Count);
+
+            for (int i = 0; i < removedComponents.Count; ++i)
+            {
+                writer.Write(removedComponents[i]);
+            }
         }
 
         writer.OverwriteByte(flagsPosition, flags);
@@ -212,6 +234,8 @@ public class SnapshotWriter
         var replicators = registry.Replicators;
         byte writtenComponents = 0;
 
+        removedComponents.Clear();
+
         for (int i = 0; i < replicators.Count; ++i)
         {
             var replicator = replicators[i];
@@ -219,9 +243,10 @@ public class SnapshotWriter
 
             if (!replicator.ShouldSend(entity, peerId))
             {
-                // The entity doesn't have this component now, so a later addition of it must be sent again
-                if (entityState.HasComponentData(componentNetworkId))
-                    entityState.ForgetComponent(componentNetworkId);
+                // The entity lost this component, which the peer has to be told about or it would keep showing
+                // the last value forever
+                if (entityState.NeedsRemovalSending(componentNetworkId, serverTick))
+                    removedComponents.Add(componentNetworkId);
 
                 continue;
             }

@@ -164,8 +164,12 @@ public class EntityReplicationState(int componentTypeCount)
 
         ref var baseline = ref components[componentNetworkId];
 
-        if (baseline.Data != null && baseline.Length == data.Length &&
-            data.SequenceEqual(new ReadOnlySpan<byte>(baseline.Data, 0, baseline.Length)))
+        if (baseline.Removed)
+        {
+            baseline.Removed = false;
+        }
+        else if (baseline.Data != null && baseline.Length == data.Length &&
+                 data.SequenceEqual(new ReadOnlySpan<byte>(baseline.Data, 0, baseline.Length)))
         {
             return !baseline.Acknowledged;
         }
@@ -179,6 +183,33 @@ public class EntityReplicationState(int componentTypeCount)
         baseline.Acknowledged = false;
 
         return true;
+    }
+
+    /// <summary>
+    ///   Records that the entity no longer has a component the peer was told about
+    /// </summary>
+    /// <returns>True when the removal needs to be included in the snapshot</returns>
+    public bool NeedsRemovalSending(byte componentNetworkId, uint tick)
+    {
+        if (componentNetworkId >= components.Length)
+            return false;
+
+        ref var baseline = ref components[componentNetworkId];
+
+        // Nothing to remove if the peer was never told about this component in the first place
+        if (baseline.Data == null)
+            return false;
+
+        if (!baseline.Removed)
+        {
+            baseline.Removed = true;
+            baseline.FirstSentTick = tick;
+            baseline.Acknowledged = false;
+            return true;
+        }
+
+        // Like a value, a removal repeats until it is confirmed
+        return !baseline.Acknowledged;
     }
 
     /// <summary>
@@ -209,7 +240,14 @@ public class EntityReplicationState(int componentTypeCount)
             if (!baseline.Acknowledged && baseline.Data != null && baseline.FirstSentTick != 0 &&
                 baseline.FirstSentTick <= tick)
             {
-                baseline.Acknowledged = true;
+                if (baseline.Removed)
+                {
+                    baseline = default(ComponentBaseline);
+                }
+                else
+                {
+                    baseline.Acknowledged = true;
+                }
             }
         }
     }
@@ -228,5 +266,6 @@ public class EntityReplicationState(int componentTypeCount)
         public int Length;
         public uint FirstSentTick;
         public bool Acknowledged;
+        public bool Removed;
     }
 }

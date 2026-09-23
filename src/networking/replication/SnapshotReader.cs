@@ -1,3 +1,4 @@
+using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 
@@ -140,6 +141,23 @@ public class SnapshotReader
                 // acknowledged, so nothing is lost.
                 replicator.Skip(reader);
             }
+        }
+
+        if ((flags & SnapshotWriter.FLAG_INCLUDES_REMOVALS) != 0)
+            ApplyComponentRemovals(reader, entity, known);
+    }
+
+    private void ApplyComponentRemovals(NetworkReader reader, in Entity entity, bool known)
+    {
+        int removedCount = reader.ReadByte();
+
+        for (int i = 0; i < removedCount; ++i)
+        {
+            var replicator = registry.GetComponentReplicator(reader.ReadByte());
+
+            // A removal carries no data, so an unknown entity only needs the ID read past
+            if (known)
+                replicator.Remove(entity);
         }
     }
 }
