@@ -144,6 +144,11 @@ public class NetworkSessionTests
             throw new NotSupportedException();
         }
 
+        public void SkipSpawnData(NetworkReader reader)
+        {
+            throw new NotSupportedException();
+        }
+
         public Arch.Core.Entity Spawn(NetworkReader reader, in Components.NetworkEntity networkEntity)
         {
             throw new NotSupportedException();

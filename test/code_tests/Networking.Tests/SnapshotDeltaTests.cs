@@ -158,8 +158,8 @@ public class SnapshotDeltaTests
 
         setup.DespawnEntity(entity);
 
-        Assert.Equal(1, SnapshotParser.Parse(setup.WriteSnapshot()).DespawnedIds.Count);
-        Assert.Equal(1, SnapshotParser.Parse(setup.WriteSnapshot()).DespawnedIds.Count);
+        Assert.Single(SnapshotParser.Parse(setup.WriteSnapshot()).DespawnedIds);
+        Assert.Single(SnapshotParser.Parse(setup.WriteSnapshot()).DespawnedIds);
 
         setup.Acknowledge();
 
@@ -289,6 +289,105 @@ public class SnapshotDeltaTests
         setup.ApplyOnClient(setup.WriteSnapshot());
 
         Assert.Empty(setup.ClientEntityIds);
+    }
+
+    /// <summary>
+    ///   A component taken off an entity has to be signalled, or the client would show the last value forever
+    /// </summary>
+    [Fact]
+    public void Snapshot_ComponentRemovalIsSentAndApplied()
+    {
+        using var setup = new ReplicationFixture();
+        var entity = setup.CreateEntity(10, 1.0f);
+        uint networkId = setup.NetworkIdOf(entity);
+
+        setup.ApplyOnClient(setup.WriteSnapshot());
+        setup.Acknowledge();
+        Assert.True(setup.ClientHasValue(networkId));
+
+        setup.RemoveValue(entity);
+
+        var snapshot = setup.WriteSnapshotCopy();
+        var parsed = SnapshotParser.Parse(snapshot);
+
+        Assert.Single(parsed.Entities);
+        Assert.Equal(0, parsed.Entities[0].ComponentCount);
+        Assert.Single(parsed.Entities[0].RemovedComponentIds);
+
+        setup.ApplyOnClient(snapshot);
+
+        Assert.False(setup.ClientHasValue(networkId));
+    }
+
+    [Fact]
+    public void Snapshot_RemovalIsRepeatedUntilAcknowledged()
+    {
+        using var setup = new ReplicationFixture();
+        var entity = setup.CreateEntity(10, 1.0f);
+
+        setup.WriteSnapshot();
+        setup.Acknowledge();
+
+        setup.RemoveValue(entity);
+
+        Assert.Single(SnapshotParser.Parse(setup.WriteSnapshot()).Entities[0].RemovedComponentIds);
+        Assert.Single(SnapshotParser.Parse(setup.WriteSnapshot()).Entities[0].RemovedComponentIds);
+
+        setup.Acknowledge();
+
+        Assert.True(setup.WriteSnapshot().IsEmpty);
+    }
+
+    /// <summary>
+    ///   Regaining a component must send its value again, even when it is the same value the peer had before
+    ///   the removal
+    /// </summary>
+    [Fact]
+    public void Snapshot_ComponentRegainedAfterRemovalIsSentAgain()
+    {
+        using var setup = new ReplicationFixture();
+        var entity = setup.CreateEntity(10, 1.0f);
+        uint networkId = setup.NetworkIdOf(entity);
+
+        setup.ApplyOnClient(setup.WriteSnapshot());
+        setup.Acknowledge();
+
+        setup.RemoveValue(entity);
+        setup.ApplyOnClient(setup.WriteSnapshot());
+        setup.Acknowledge();
+        Assert.False(setup.ClientHasValue(networkId));
+
+        setup.AddValue(entity, 1.0f);
+        setup.ApplyOnClient(setup.WriteSnapshot());
+
+        Assert.True(setup.ClientHasValue(networkId));
+        Assert.Equal(1.0f, setup.ClientValueOf(networkId), 2);
+    }
+
+    /// <summary>
+    ///   A component that comes back before its removal was confirmed must end as present on the client, not
+    ///   removed by the repeat of a removal that is no longer true
+    /// </summary>
+    [Fact]
+    public void Snapshot_ComponentRegainedBeforeRemovalAcknowledgedStaysPresent()
+    {
+        using var setup = new ReplicationFixture();
+        var entity = setup.CreateEntity(10, 1.0f);
+        uint networkId = setup.NetworkIdOf(entity);
+
+        setup.ApplyOnClient(setup.WriteSnapshot());
+        setup.Acknowledge();
+
+        setup.RemoveValue(entity);
+
+        // The removal goes out but is never acknowledged
+        setup.WriteSnapshot();
+
+        setup.AddValue(entity, 4.0f);
+        setup.ApplyOnClient(setup.WriteSnapshot());
+
+        Assert.True(setup.ClientHasValue(networkId));
+        Assert.Equal(4.0f, setup.ClientValueOf(networkId), 2);
     }
 
     /// <summary>

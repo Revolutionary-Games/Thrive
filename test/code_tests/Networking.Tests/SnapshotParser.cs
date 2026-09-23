@@ -67,6 +67,16 @@ public static class SnapshotParser
                 reader.ReadUInt16();
             }
 
+            if ((flags & SnapshotWriter.FLAG_INCLUDES_REMOVALS) != 0)
+            {
+                int removedCount = reader.ReadByte();
+
+                for (int j = 0; j < removedCount; ++j)
+                {
+                    entity.RemovedComponentIds.Add(reader.ReadByte());
+                }
+            }
+
             result.Entities.Add(entity);
         }
 
@@ -93,4 +103,5 @@ public class ParsedEntity
     public int OwningPeerId { get; set; }
     public int ComponentCount { get; set; }
     public List<byte> ComponentIds { get; } = new();
+    public List<byte> RemovedComponentIds { get; } = new();
 }
