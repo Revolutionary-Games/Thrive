@@ -43,6 +43,15 @@ public partial class CellBodyPlanEditorComponent
     private readonly Dictionary<HexWithData<CellTemplate>, (Hex Position, CellType Type)> manualLayoutSourceData =
         new(ReferenceEqualityComparer.Instance);
 
+    private readonly HashSet<HexWithData<CellTemplate>> manualLayoutCellsWithBrokenExpectedAdjacencies =
+        new(ReferenceEqualityComparer.Instance);
+
+    /// <summary>
+    ///   Cache of missing adjacency pairs in the manual layout. This is used to display problem arrows.
+    /// </summary>
+    private readonly List<(HexWithData<CellTemplate> First, HexWithData<CellTemplate> Second)>
+        manualLayoutMissingAdjacencyPairs = [];
+
     // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
     private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
 
@@ -252,6 +261,7 @@ public partial class CellBodyPlanEditorComponent
             manualLayoutHasErrors = false;
             fullLayoutHasOverlaps = false;
             fullLayoutHasDisconnectedCells = false;
+            manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
             UpdateLayoutErrorDisplay();
             return;
         }
@@ -260,6 +270,7 @@ public partial class CellBodyPlanEditorComponent
         fullLayoutInvalid.Clear();
         fullLayoutHasOverlaps = false;
         fullLayoutHasDisconnectedCells = false;
+        manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
 
         // Maps each position to a cell that exists there
         var cellHexes = new Dictionary<Hex, HexWithData<CellTemplate>>();
@@ -301,6 +312,21 @@ public partial class CellBodyPlanEditorComponent
                 fullLayoutInvalid.UnionWith(pair.Value);
                 fullLayoutHasDisconnectedCells = true;
             }
+        }
+
+        if (UsesManualPlayerLayout)
+        {
+            foreach (var pair in cellPositions)
+            {
+                if (!HasEnoughExpectedAdjacencies(pair.Key, pair.Value))
+                {
+                    fullLayoutInvalid.UnionWith(pair.Value);
+                    fullLayoutHasDisconnectedCells = true;
+                    manualLayoutCellsWithBrokenExpectedAdjacencies.Add(pair.Key);
+                }
+            }
+
+            CacheMissingManualLayoutAdjacencyPairs(cellPositions);
         }
 
         manualLayoutHasErrors = fullLayoutInvalid.Count > 0;
@@ -596,6 +622,103 @@ public partial class CellBodyPlanEditorComponent
 
         return movingPositions.Any(cellPosition => Hex.HexNeighbourOffset.Values.Any(offset =>
             occupiedByOtherCells.Contains(cellPosition + offset)));
+
+    /// <summary>
+    ///   Checks whether a cell retains enough of its statically expected compact-layout neighbours.
+    /// </summary>
+    private bool HasEnoughExpectedAdjacencies(HexWithData<CellTemplate> cell, IReadOnlyList<Hex> cellPositions)
+    {
+        int expectedAdjacencies = 0;
+        int retainedAdjacencies = 0;
+
+        foreach (var otherCell in CurrentFullLayout)
+        {
+            if (ReferenceEquals(cell, otherCell) || !AreExpectedManualLayoutNeighbours(cell, otherCell))
+                continue;
+
+            ++expectedAdjacencies;
+            if (CellPositionsAreAdjacent(cellPositions, GetFullCellPositionsGlobal(otherCell)))
+                ++retainedAdjacencies;
+        }
+
+        if (expectedAdjacencies == 0)
+            return true;
+
+        int requiredAdjacencies = Math.Max(Constants.MANUAL_LAYOUT_MINIMUM_RETAINED_CELL_ADJACENCIES,
+            expectedAdjacencies - Constants.MANUAL_LAYOUT_MAX_IGNORED_CELL_ADJACENCIES);
+
+        return retainedAdjacencies >= requiredAdjacencies;
+    }
+
+    private bool AreExpectedManualLayoutNeighbours(HexWithData<CellTemplate> first, HexWithData<CellTemplate> second)
+    {
+        if (!TryGetManualLayoutSourcePosition(first, out var firstSourcePosition) ||
+            !TryGetManualLayoutSourcePosition(second, out var secondSourcePosition))
+        {
+            return false;
+        }
+
+        return firstSourcePosition.DistanceTo(secondSourcePosition) <= 1;
+    }
+
+    private bool TryGetManualLayoutSourcePosition(HexWithData<CellTemplate> cell, out Hex sourcePosition)
+    {
+        if (manualLayoutSources.TryGetValue(cell, out var source))
+        {
+            sourcePosition = source.Position;
+            return true;
+        }
+
+        if (manualLayoutSourceData.TryGetValue(cell, out var sourceData))
+        {
+            sourcePosition = sourceData.Position;
+            return true;
+        }
+
+        sourcePosition = default;
+        return false;
+    }
+
+    private bool CellPositionsAreAdjacent(IReadOnlyList<Hex> firstCellPositions, IReadOnlyList<Hex> secondCellPositions)
+    {
+        int maximumDistance = Constants.MANUAL_LAYOUT_MAXIMUM_CELL_ADJACENCY_GAP + 1;
+
+        return firstCellPositions.Any(firstPosition => secondCellPositions.Any(secondPosition =>
+            firstPosition.DistanceTo(secondPosition) <= maximumDistance));
+    }
+
+    private void CacheMissingManualLayoutAdjacencyPairs(
+        IReadOnlyDictionary<HexWithData<CellTemplate>, List<Hex>> cellPositions)
+    {
+        manualLayoutMissingAdjacencyPairs.Clear();
+
+        var cells = manualFullLayout;
+        for (int i = 0; i < cells.Count; ++i)
+        {
+            var cell = cells[i];
+            for (int j = i + 1; j < cells.Count; ++j)
+            {
+                var otherCell = cells[j];
+                if (AreExpectedManualLayoutNeighbours(cell, otherCell) &&
+                    !CellPositionsAreAdjacent(cellPositions[cell], cellPositions[otherCell]) &&
+                    (manualLayoutCellsWithBrokenExpectedAdjacencies.Contains(cell) ||
+                        manualLayoutCellsWithBrokenExpectedAdjacencies.Contains(otherCell)))
+                {
+                    manualLayoutMissingAdjacencyPairs.Add((cell, otherCell));
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Draws red links for expected contacts the current manual layout fails to preserve.
+    /// </summary>
+    private void DisplayManualLayoutAdjacencyErrors()
+    {
+        foreach (var pair in manualLayoutMissingAdjacencyPairs)
+        {
+            DisplayHexAdjacencyEffect(pair.First.Position, pair.Second.Position, string.Empty, Colors.Red);
+        }
     }
 
     private void RenderFullLayoutMoveHover()
