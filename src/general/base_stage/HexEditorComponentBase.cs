@@ -653,8 +653,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     ///   Remove the hex under the cursor (if there is one)
     /// </summary>
     [RunOnKeyDown("e_delete")]
-    public void RemoveHexAtCursor()
+    public bool RemoveHexAtCursor()
     {
+        // Don't react to key press when not visible
+        if (!Visible)
+            return false;
+
         GetMouseHex(out int q, out int r);
 
         Hex mouseHex = new Hex(q, r);
@@ -662,9 +666,10 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         var hex = GetHexAt(mouseHex);
 
         if (hex == null)
-            return;
+            return true;
 
         RemoveHex(mouseHex);
+        return true;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
