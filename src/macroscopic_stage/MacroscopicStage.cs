@@ -306,7 +306,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     public override void OnReturnFromEditor()
     {
         // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
-        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        if (GameWorld.WorldSettings.AlwaysResetEnvironment)
         {
             foreach (Node child in rootOfDynamicallySpawned.GetChildren())
             {

@@ -144,9 +144,6 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private CheckButton showMatePosition = null!;
 
-    [Export]
-    private CheckButton alwaysResetEnvironment = null!;
-
     // Planet controls
     [Export]
     private OptionButton lifeOriginButton = null!;
@@ -172,6 +169,9 @@ public partial class NewGameSettings : ControlWithInput
     // Misc controls
     [Export]
     private CheckButton easterEggsButton = null!;
+
+    [Export]
+    private CheckButton alwaysResetEnvironment = null!;
 
     // Other
     [Export]
@@ -347,7 +347,6 @@ public partial class NewGameSettings : ControlWithInput
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
         spawnCompatibleMateOnCall.ButtonPressed = difficulty.SpawnCompatibleMateOnCall;
         showMatePosition.ButtonPressed = difficulty.ShowMatePosition;
-        alwaysResetEnvironment.ButtonPressed = difficulty.AlwaysResetEnvironment;
 
         UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
         UpdateSelectedDifficultyPresetControl();
@@ -356,6 +355,7 @@ public partial class NewGameSettings : ControlWithInput
         lawkButton.ButtonPressed = settings.LAWK;
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
+        alwaysResetEnvironment.ButtonPressed = settings.AlwaysResetEnvironment;
 
         planetSettings.SetWorldSize(settings.WorldSize);
         planetSettings.SetWorldTemperature(settings.WorldTemperature);
@@ -496,7 +496,6 @@ public partial class NewGameSettings : ControlWithInput
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
                 SpawnCompatibleMateOnCall = spawnCompatibleMateOnCall.ButtonPressed,
                 ShowMatePosition = showMatePosition.ButtonPressed,
-                AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed,
             };
 
             settings.Difficulty = customDifficulty;
@@ -508,6 +507,7 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
+        settings.AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed;
 
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
@@ -667,7 +667,6 @@ public partial class NewGameSettings : ControlWithInput
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
         spawnCompatibleMateOnCall.ButtonPressed = preset.SpawnCompatibleMateOnCall;
         showMatePosition.ButtonPressed = preset.ShowMatePosition;
-        alwaysResetEnvironment.ButtonPressed = preset.AlwaysResetEnvironment;
 
         UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
@@ -737,9 +736,6 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (showMatePosition.ButtonPressed != preset.ShowMatePosition)
-                continue;
-
-            if (alwaysResetEnvironment.ButtonPressed != preset.AlwaysResetEnvironment)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -904,12 +900,6 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnAlwaysResetEnvironmentToggled(bool pressed)
-    {
-        _ = pressed;
-        UpdateSelectedDifficultyPresetControl();
-    }
-
     private void OnLifeOriginSelected(WorldGenerationSettings.LifeOrigin value)
     {
         planetSettings.SetLifeOrigin(value);
@@ -996,6 +986,11 @@ public partial class NewGameSettings : ControlWithInput
     {
         experimentalWarning.Visible = enabled;
         experimentalExplanation.Visible = !enabled;
+    }
+
+    private void OnAlwaysResetEnvironmentToggled(bool pressed)
+    {
+        _ = pressed;
     }
 
     private void OnPlanetSettingsChanged()

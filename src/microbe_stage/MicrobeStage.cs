@@ -1132,7 +1132,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public override void OnReturnFromEditor()
     {
         // If switched on, always reset the whole patch, including the player
-        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        if (GameWorld.WorldSettings.AlwaysResetEnvironment)
         {
             WorldSimulation.MicrobeTerrainSystem.DespawnAll();
             patchManager.RemoveClouds();
@@ -1894,7 +1894,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this,
-                GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment))
+                GameWorld.WorldSettings.AlwaysResetEnvironment))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());

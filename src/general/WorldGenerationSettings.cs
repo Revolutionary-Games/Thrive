@@ -285,6 +285,12 @@ public class WorldGenerationSettings : IArchivable
     public bool EasterEggs { get; set; } = true;
 
     /// <summary>
+    ///   Sets whether to reset the gameplay space whenever leaving the editor, instead of only when the player moves
+    ///   to a different patch
+    /// </summary>
+    public bool AlwaysResetEnvironment { get; set; }
+
+    /// <summary>
     ///   The auto-evo configuration this world uses
     /// </summary>
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
@@ -329,6 +335,7 @@ public class WorldGenerationSettings : IArchivable
         _ = reader.ReadBool();
 
         instance.EasterEggs = reader.ReadBool();
+        instance.AlwaysResetEnvironment = reader.ReadBool();
 
         return instance;
     }
@@ -362,6 +369,8 @@ public class WorldGenerationSettings : IArchivable
         writer.Write(true);
 
         writer.Write(EasterEggs);
+
+        writer.Write(AlwaysResetEnvironment);
     }
 
     /// <summary>
@@ -416,6 +425,7 @@ public class WorldGenerationSettings : IArchivable
             $", Day/night cycle enabled: {DayNightCycleEnabled}" +
             $", Day length: {DayLength}" +
             $", Easter eggs: {EasterEggs}" +
+            $", Always reset environment after Editor: {AlwaysResetEnvironment}" +
             "]";
     }
 }
