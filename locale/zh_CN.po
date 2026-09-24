@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-09-19 01:07+0000\n"
+"PO-Revision-Date: 2026-09-24 06:40+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -738,37 +738,37 @@ msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
 msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
-msgstr ""
+msgstr "切换到手动布局才能移动细胞的位置"
 
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
-msgstr ""
+msgstr "只能在主结构视图中旋转细胞"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
-msgstr ""
+msgstr "该手动细胞布局无效，请检查对应编辑器选项卡并修复或者禁用手动布局"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "布局无效：部分细胞丢失了太多预期的相邻关系。将它们移到离预期位置更近的地方（参照红色箭头）。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
-msgstr ""
+msgstr "布局无效：有细胞未与主体连接"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
-msgstr ""
+msgstr "布局无效：有些细胞生长顺序不合理。改变它们的位置或在生长顺序选项卡中调整生长顺序。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
-msgstr ""
+msgstr "布局无效：有重叠的细胞。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "布局无效：有细胞相互重叠且过多预期相邻关系丢失（见红色箭头）。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
-msgstr ""
+msgstr "布局无效：有重叠和未连接的细胞。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
-msgstr ""
+msgstr "在该选项卡中，你可以查看你的细胞群落在游玩过程中实际使用的完整布局，而且在使用手动布局时还可以进行更改。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
-msgstr ""
+msgstr "点击一个细胞以开始移动它。将细胞移动到你喜欢的位置。所有的细胞必须仍然保持相互连接，并且靠近它们在结构中应该在的位置。编辑细胞的细胞器可能会导致细胞间出现重叠，必须修复后才能使手动布局保持有效。退出手动布局模式将丢弃对其所做的所有更改。"
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -779,7 +779,7 @@ msgstr ""
 "或者将同类型的细胞彼此相邻放置。"
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
-msgstr ""
+msgstr "请稍候，正在计算躯体布局"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -3450,7 +3450,7 @@ msgid "LAWK_ONLY_EXPLANATION"
 msgstr "（只允许使用人类已观测到的生物的组件与能力）"
 
 msgid "LAYOUT_TAB"
-msgstr ""
+msgstr "布局设计"
 
 msgid "LEAD_ARTIST"
 msgstr "首席美工"
@@ -5416,14 +5416,13 @@ msgid "READY"
 msgstr "准备就绪"
 
 msgid "REAPPLY_AUTOMATIC_LAYOUT"
-msgstr ""
+msgstr "重置布局"
 
-#, fuzzy
 msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
 msgstr ""
-"该进度条显示您所操控细胞当前的温度。黄色指示标代表有效能量产生的温度范围。\n"
-"白色竖线代表环境温度，细胞温度会逐渐向该温度趋近。\n"
-"进度条下方的指示标会在能量产生时改变颜色。"
+"将布局重置为自动生成的默认布局。\n"
+"如果出现了很多难以修复的错误，这可能会很有用。\n"
+"不过，这将撤销你所做的所有手动更改！"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
@@ -7447,17 +7446,13 @@ msgstr "手动设置后台线程数"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "手动设置本地执行线程数"
 
-#, fuzzy
 msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
-msgstr "发生变异"
+msgstr "自动布局"
 
-#, fuzzy
 msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
 msgstr ""
-"编辑器中的物种数据已损坏。检测到数据不一致。\n"
-"为防止因无效数据导致更多游戏错误，已阻止继续使用该物种。\n"
-"请撤销你所做的任何更改，或尝试修复你的物种状态。\n"
-"你可能需要从损坏发生前的较早存档载入。或者，如果你将存档分享给 Thrive 开发者，数据也许可以修复。"
+"物种是否使用自动布局。若禁用则允许手动布置细胞的位置。\n"
+"然而，这也意味着需要手动解决任何布局上的问题。"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虚拟窗口大小"
