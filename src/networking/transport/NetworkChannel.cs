@@ -1,4 +1,4 @@
-public enum NetworkChannel : byte
+﻿public enum NetworkChannel : byte
 {
     /// <summary>
     ///   Session level messages

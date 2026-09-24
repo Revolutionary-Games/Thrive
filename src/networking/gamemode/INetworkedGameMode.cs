@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   The rules of one multiplayer mode
 /// </summary>
 public interface INetworkedGameMode

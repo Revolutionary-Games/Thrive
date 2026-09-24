@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   Conversions between floats and the smaller integer representations used on the wire to save on bandwidth

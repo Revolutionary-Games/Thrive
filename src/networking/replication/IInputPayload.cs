@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   One tick of a player's input, in whatever form a game mode needs
 /// </summary>
 /// <remarks>

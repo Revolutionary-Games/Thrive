@@ -1,4 +1,4 @@
-using Arch.Core;
+﻿using Arch.Core;
 
 /// <summary>
 ///   Describes how to recreate one kind of entity on a client

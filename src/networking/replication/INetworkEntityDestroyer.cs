@@ -1,4 +1,4 @@
-using Arch.Core;
+﻿using Arch.Core;
 
 /// <summary>
 ///   Destroys entities a client no longer needs

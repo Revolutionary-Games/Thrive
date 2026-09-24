@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Where a player's identity came from
 /// </summary>
 public enum IdentityKind

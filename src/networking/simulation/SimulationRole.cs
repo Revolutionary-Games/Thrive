@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   What a world simulation is responsible for in a network session
 /// </summary>
 public enum SimulationRole

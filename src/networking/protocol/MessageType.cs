@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Identifies what a network message contains. This is the first byte of every message.
 /// </summary>
 /// <remarks>

@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   A single connected peer as the local side knows it
 /// </summary>
 public class NetworkPeer(int peerId)

@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Phase a networked match is in. Modes that don't use a phase stay in <see cref="Running"/>.
 /// </summary>
 public enum MatchState

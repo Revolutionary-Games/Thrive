@@ -1,4 +1,4 @@
-using Arch.Core;
+﻿using Arch.Core;
 
 /// <summary>
 ///   Decides which entities a peer is told about

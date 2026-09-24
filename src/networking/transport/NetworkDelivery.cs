@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Delivery guarantee requested for a single outgoing network message
 /// </summary>
 public enum NetworkDelivery

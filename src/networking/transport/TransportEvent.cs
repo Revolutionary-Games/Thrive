@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Kind of a <see cref="TransportEvent"/>
 /// </summary>
 public enum TransportEventType

@@ -1,4 +1,4 @@
-namespace Components;
+﻿namespace Components;
 
 /// <summary>
 ///   Marks an entity as replicated and carries the ID both sides know it by

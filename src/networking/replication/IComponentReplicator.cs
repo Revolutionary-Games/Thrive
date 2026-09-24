@@ -1,4 +1,4 @@
-using Arch.Core;
+﻿using Arch.Core;
 
 /// <summary>
 ///   Writes and reads one component type over the network
