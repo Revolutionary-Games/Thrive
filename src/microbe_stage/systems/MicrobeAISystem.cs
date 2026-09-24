@@ -86,6 +86,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         chunkDataCache = new();
 
     private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
+        radioactiveChunkDataCache = new();
+
+    private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
         terrainChunkDataCache = new();
 
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
@@ -739,6 +742,21 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
         }
+
+        // Avoid terrain (limiting how often it runs for performance reasons)
+        if (random.Next(0, 10) == 0)
+        {
+            BuildChunksCache();
+
+            foreach (var terrainChunk in terrainChunkDataCache)
+            {
+                if (position.Position.DistanceSquaredTo(terrainChunk.Position)
+                    < Constants.AI_AVOID_TERRAIN_DISTANCE_SQUARED)
+                {
+                    ai.MoveWithRandomTurn(1.0f, 1.0f, position.Position, ref control, speciesActivity, random);
+                }
+            }
+        }
     }
 
     private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
@@ -876,7 +894,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         BuildChunksCache();
 
-        foreach (var chunk in terrainChunkDataCache)
+        foreach (var chunk in radioactiveChunkDataCache)
         {
             if (!chunk.Compounds.Compounds.Keys.Contains(Compound.Radiation))
             {
@@ -1734,6 +1752,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private void CleanChunkCache()
     {
         chunkDataCache.Clear();
+        radioactiveChunkDataCache.Clear();
+        terrainChunkDataCache.Clear();
         chunkCacheBuilt = false;
     }
 
@@ -1800,7 +1820,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (chunkCacheBuilt)
                 return;
 
-            var query = new ChunkCollectingQuery(chunkDataCache, terrainChunkDataCache);
+            var query = new ChunkCollectingQuery(chunkDataCache, radioactiveChunkDataCache, terrainChunkDataCache);
             World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref query);
 
             chunkCacheBuilt = true;
@@ -1848,6 +1868,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private readonly struct ChunkCollectingQuery(
         List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)> chunkTarget,
+        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> radioactiveTarget,
         List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget)
         : IForEachWithEntity<CompoundStorage, WorldPosition>
     {
@@ -1863,17 +1884,19 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     return;
             }
 
-            // Ignore chunks that wouldn't yield any useful compounds when absorbing
-            if (!compounds.Compounds.HasAnyCompounds())
-                return;
-
             if (entity.Has<Engulfable>())
             {
                 ref var engulfable = ref entity.Get<Engulfable>();
                 chunkTarget.Add((entity, position.Position, engulfable.AdjustedEngulfSize,
                     compounds.Compounds));
             }
-            else
+
+            if (entity.Has<RadiationSource>())
+            {
+                radioactiveTarget.Add((entity, position.Position, compounds.Compounds));
+            }
+
+            if (entity.Has<MicrobeTerrainChunk>())
             {
                 terrainTarget.Add((entity, position.Position, compounds.Compounds));
             }
