@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -17,6 +17,17 @@ using Components;
 ///   <para>
 ///     Spawns, despawns and component removals all follow the same rule as values: they repeat until the peer
 ///     acknowledges a snapshot containing them.
+///   </para>
+///   <para>
+///     INVARIANT: which the acknowledgement logic and <see cref="SnapshotReader"/>'s rule for dropping
+///     out-of-order packets both depend on: every packet carries *all* of that peer's unconfirmed state,
+///     never juat what changed since the last packet. Sending only the changes since the last *sent*
+///     packet looks like an obvious saving and breaks both. One lost packet would lose a value forever,
+///     and acknowledgements would confirm data the peer never received.
+///   </para>
+///   <para>
+///     The one allowed exception is the packet size cap: entities left out of a full packet are marked deferred
+///     so they are restamped when next included, which is what keeps the invariant true for them.
 ///   </para>
 /// </remarks>
 public class SnapshotWriter
@@ -66,13 +77,14 @@ public class SnapshotWriter
             throw new ArgumentException("Server tick must be above zero", nameof(serverTick));
 
         var peerState = GetOrCreatePeerState(peerId);
+        uint sequence = peerState.NextSequence;
 
         writer.Reset();
         writer.Write(MessageType.Snapshot);
+        writer.Write(sequence);
         writer.Write(serverTick);
-        writer.Write(peerState.AcknowledgedTick);
 
-        WriteDespawns(peerState, serverTick);
+        WriteDespawns(peerState, sequence);
 
         int countPosition = writer.Length;
         writer.Write((ushort)0);
@@ -80,9 +92,17 @@ public class SnapshotWriter
         ushort writtenEntities = 0;
         relevantIds.Clear();
 
-        for (int i = 0; i < entities.Count; ++i)
+        // Starting the sweep at a rotating offset stops a full packet from always cutting off the same
+        // entities, which would leave them permanently stale
+        int entityCount = entities.Count;
+        int startOffset = entityCount > 0 ? peerState.SendRotationOffset % entityCount : 0;
+        bool packetFull = false;
+        int stoppedAt = 0;
+
+        for (int i = 0; i < entityCount; ++i)
         {
-            var entity = entities[i];
+            int index = (startOffset + i) % entityCount;
+            var entity = entities[index];
 
             if (!entity.IsAliveAndHas<NetworkEntity>())
                 continue;
@@ -94,8 +114,24 @@ public class SnapshotWriter
 
             relevantIds.Add(networkEntity.Id);
 
-            if (WriteEntity(peerState, peerId, entity, in networkEntity, serverTick))
+            if (packetFull)
+            {
+                // Everything left out of a packet that gets sent has to be restamped when it is next
+                // included, or an acknowledgement of this packet would confirm data that isn't in it
+                if (peerState.TryGet(networkEntity.Id, out var skippedState))
+                    skippedState.MarkDeferred();
+
+                continue;
+            }
+
+            if (WriteEntity(peerState, peerId, entity, in networkEntity, serverTick, sequence))
                 ++writtenEntities;
+
+            if (writer.Length >= NetworkConstants.SNAPSHOT_MAX_PACKET_SIZE)
+            {
+                packetFull = true;
+                stoppedAt = index + 1;
+            }
         }
 
         // An entity that stopped being relevant has to be sent in full when it returns, as the peer may have
@@ -107,16 +143,19 @@ public class SnapshotWriter
         if (writtenEntities == 0 && peerState.PendingDespawns.Count == 0)
             return ReadOnlySpan<byte>.Empty;
 
+        peerState.SendRotationOffset = packetFull ? stoppedAt : 0;
+        peerState.OnPacketSent();
+
         return writer.WrittenData;
     }
 
     /// <summary>
     ///   Applies an acknowledgement from a peer, which is what allows data to stop being sent
     /// </summary>
-    public void OnAcknowledged(int peerId, uint tick)
+    public void OnAcknowledged(int peerId, uint sequence)
     {
         if (peerStates.TryGetValue(peerId, out var state))
-            state.Acknowledge(tick);
+            state.Acknowledge(sequence);
     }
 
     /// <summary>
@@ -150,7 +189,7 @@ public class SnapshotWriter
         return state;
     }
 
-    private void WriteDespawns(PeerReplicationState peerState, uint serverTick)
+    private void WriteDespawns(PeerReplicationState peerState, uint sequence)
     {
         var despawns = peerState.PendingDespawns;
 
@@ -159,7 +198,7 @@ public class SnapshotWriter
         for (int i = 0; i < despawns.Count; ++i)
         {
             writer.Write(despawns[i].NetworkId);
-            peerState.MarkDespawnSent(i, serverTick);
+            peerState.MarkDespawnSent(i, sequence);
         }
     }
 
@@ -168,7 +207,7 @@ public class SnapshotWriter
     /// </summary>
     /// <returns>True when the entity was written</returns>
     private bool WriteEntity(PeerReplicationState peerState, int peerId, in Entity entity,
-        in NetworkEntity networkEntity, uint serverTick)
+        in NetworkEntity networkEntity, uint serverTick, uint sequence)
     {
         var entityState = peerState.GetOrCreate(networkEntity.Id);
 
@@ -192,13 +231,13 @@ public class SnapshotWriter
             writer.Write(networkEntity.OwningPeerId);
 
             registry.GetSpawnRecipe(networkEntity.ArchetypeId).WriteSpawnData(entity, writer);
-            entityState.MarkSpawnSent(serverTick);
+            entityState.MarkSpawnSent(sequence);
         }
 
         int componentCountPosition = writer.Length;
         writer.Write((byte)0);
 
-        byte writtenComponents = WriteComponents(entityState, peerId, entity, serverTick, forcedFullUpdate);
+        byte writtenComponents = WriteComponents(entityState, peerId, entity, sequence, forcedFullUpdate);
 
         if (writtenComponents == 0 && flags == 0 && removedComponents.Count == 0)
         {
@@ -228,7 +267,7 @@ public class SnapshotWriter
         return true;
     }
 
-    private byte WriteComponents(EntityReplicationState entityState, int peerId, in Entity entity, uint serverTick,
+    private byte WriteComponents(EntityReplicationState entityState, int peerId, in Entity entity, uint sequence,
         bool forcedFullUpdate)
     {
         var replicators = registry.Replicators;
@@ -245,7 +284,7 @@ public class SnapshotWriter
             {
                 // The entity lost this component, which the peer has to be told about or it would keep showing
                 // the last value forever
-                if (entityState.NeedsRemovalSending(componentNetworkId, serverTick))
+                if (entityState.NeedsRemovalSending(componentNetworkId, sequence))
                     removedComponents.Add(componentNetworkId);
 
                 continue;
@@ -256,7 +295,7 @@ public class SnapshotWriter
 
             var data = componentScratch.WrittenData;
 
-            bool changed = entityState.NeedsSending(componentNetworkId, data, serverTick);
+            bool changed = entityState.NeedsSending(componentNetworkId, data, sequence);
 
             if (!changed && !forcedFullUpdate)
                 continue;

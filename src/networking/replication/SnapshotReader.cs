@@ -1,4 +1,4 @@
-using Arch.Core;
+﻿using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 
@@ -26,9 +26,14 @@ public class SnapshotReader
     }
 
     /// <summary>
-    ///   Tick of the newest snapshot that was applied, which is what gets acknowledged back to the server
+    ///   Tick of the newest snapshot that was applied, used to reject packets that arrive out of order
     /// </summary>
     public uint LastAppliedTick { get; private set; }
+
+    /// <summary>
+    ///   Sequence of the newest packet that was applied, which is what gets acknowledged back to the server
+    /// </summary>
+    public uint LastAppliedSequence { get; private set; }
 
     /// <summary>
     ///   True when something was applied that hasn't been acknowledged yet
@@ -42,13 +47,12 @@ public class SnapshotReader
     /// <returns>True when the snapshot was applied, false when it was older than what is already applied</returns>
     public bool Apply(NetworkReader reader)
     {
+        uint sequence = reader.ReadUInt32();
         uint serverTick = reader.ReadUInt32();
 
-        // What the server thinks this client has confirmed, only useful for debugging
-        reader.ReadUInt32();
-
-        // Snapshots travel unreliably so they can arrive out of order. An older one holds only changes that the
-        // newer one already accounts for, so applying it would undo current values.
+        // Packets travel unreliably so they can arrive out of order. A newer packet already carries everything
+        // still unconfirmed, so applying an older one afterwards would undo current values. The older packet is
+        // left unacknowledged, so anything only it carried is simply sent again.
         if (serverTick <= LastAppliedTick)
             return false;
 
@@ -67,6 +71,7 @@ public class SnapshotReader
         }
 
         LastAppliedTick = serverTick;
+        LastAppliedSequence = sequence;
         NeedsToSendAcknowledgement = true;
         return true;
     }
@@ -77,13 +82,14 @@ public class SnapshotReader
     public void WriteAcknowledgement(NetworkWriter writer)
     {
         writer.Write(MessageType.SnapshotAcknowledgement);
-        writer.Write(LastAppliedTick);
+        writer.Write(LastAppliedSequence);
         NeedsToSendAcknowledgement = false;
     }
 
     public void Reset()
     {
         LastAppliedTick = 0;
+        LastAppliedSequence = 0;
         NeedsToSendAcknowledgement = false;
     }
 

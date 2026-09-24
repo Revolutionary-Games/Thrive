@@ -1,9 +1,22 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 /// <summary>
 ///   Tracks what one peer is known to have received, so that unchanged data isn't sent again
 /// </summary>
+/// <remarks>
+///   <para>
+///     Confirmation is given to the packet sequence an item was sent in, not to a world tick. A tick can span
+///     more than one packet once there is more data than fits in a single one, and a peer that received some
+///     of those packets would otherwise confirm data it never got.
+///   </para>
+///   <para>
+///     An item is confirmed when the peer acknowledges a sequence at or after the one it was first sent in.
+///     That works only because an unconfirmed item is included in *every* packet from then on. When the
+///     packet size cap forces an item to be left out, it is marked deferred and restamped the next time it is
+///     actually included, which restores that property.
+///   </para>
+/// </remarks>
 public class PeerReplicationState
 {
     private readonly int componentTypeCount;
@@ -18,7 +31,18 @@ public class PeerReplicationState
         this.componentTypeCount = componentTypeCount;
     }
 
-    public uint AcknowledgedTick { get; private set; }
+    public uint AcknowledgedSequence { get; private set; }
+
+    /// <summary>
+    ///   Sequence the next packet sent to this peer will use. Only advances when a packet is actually sent.
+    /// </summary>
+    public uint NextSequence { get; private set; } = 1;
+
+    /// <summary>
+    ///   Where the entity iteration starts next time, so that a full packet doesn't starve the same entities
+    ///   every time
+    /// </summary>
+    public int SendRotationOffset { get; set; }
 
     public IReadOnlyList<PendingDespawn> PendingDespawns => pendingDespawns;
 
@@ -55,38 +79,61 @@ public class PeerReplicationState
         pendingDespawns.Add(new PendingDespawn(networkId));
     }
 
-    public void MarkDespawnSent(int index, uint tick)
+    public void MarkDespawnSent(int index, uint sequence)
     {
         var despawn = pendingDespawns[index];
 
-        if (despawn.FirstSentTick == 0)
+        if (despawn.FirstSentSequence == 0 || despawn.Deferred)
         {
-            despawn.FirstSentTick = tick;
+            despawn.FirstSentSequence = sequence;
+            despawn.Deferred = false;
             pendingDespawns[index] = despawn;
         }
     }
 
     /// <summary>
-    ///   Marks everything that was first sent at or before the acknowledged tick as received
+    ///   Records that a despawn had to be left out of a packet that was sent
     /// </summary>
-    public void Acknowledge(uint tick)
+    public void MarkDespawnDeferred(int index)
     {
-        // Acknowledgements can arrive out of order as they travel unreliably
-        if (tick <= AcknowledgedTick)
+        var despawn = pendingDespawns[index];
+
+        if (despawn.FirstSentSequence == 0)
             return;
 
-        AcknowledgedTick = tick;
+        despawn.Deferred = true;
+        pendingDespawns[index] = despawn;
+    }
+
+    /// <summary>
+    ///   Called when a packet was actually sent, so the next one gets a new sequence
+    /// </summary>
+    public void OnPacketSent()
+    {
+        ++NextSequence;
+    }
+
+    /// <summary>
+    ///   Marks everything sent at or before the acknowledged sequence as received
+    /// </summary>
+    public void Acknowledge(uint sequence)
+    {
+        // Acknowledgements travel unreliably, so they can arrive out of order
+        if (sequence <= AcknowledgedSequence)
+            return;
+
+        AcknowledgedSequence = sequence;
 
         foreach (var entry in entities)
         {
-            entry.Value.Acknowledge(tick);
+            entry.Value.Acknowledge(sequence);
         }
 
         for (int i = pendingDespawns.Count - 1; i >= 0; --i)
         {
             var despawn = pendingDespawns[i];
 
-            if (despawn.FirstSentTick != 0 && despawn.FirstSentTick <= tick)
+            if (!despawn.Deferred && despawn.FirstSentSequence != 0 && despawn.FirstSentSequence <= sequence)
                 pendingDespawns.RemoveAt(i);
         }
     }
@@ -115,7 +162,9 @@ public class PeerReplicationState
     {
         entities.Clear();
         pendingDespawns.Clear();
-        AcknowledgedTick = 0;
+        AcknowledgedSequence = 0;
+        NextSequence = 1;
+        SendRotationOffset = 0;
     }
 
     /// <summary>
@@ -126,9 +175,11 @@ public class PeerReplicationState
         public uint NetworkId = networkId;
 
         /// <summary>
-        ///   Tick this was first included in a snapshot, or 0 when it hasn't been sent yet
+        ///   Packet sequence this was first included in, or 0 when it hasn't been sent yet
         /// </summary>
-        public uint FirstSentTick = 0;
+        public uint FirstSentSequence = 0;
+
+        public bool Deferred = false;
     }
 }
 
@@ -141,14 +192,22 @@ public class EntityReplicationState(int componentTypeCount)
 
     public bool SpawnAcknowledged { get; private set; }
 
-    public uint SpawnFirstSentTick { get; private set; }
+    public uint SpawnFirstSentSequence { get; private set; }
 
+    public bool SpawnDeferred { get; private set; }
+
+    /// <summary>
+    ///   Tick of the last resend of everything, used to recover from any tracking mistake.
+    /// </summary>
     public uint LastForcedFullTick { get; set; }
 
-    public void MarkSpawnSent(uint tick)
+    public void MarkSpawnSent(uint sequence)
     {
-        if (SpawnFirstSentTick == 0)
-            SpawnFirstSentTick = tick;
+        if (SpawnFirstSentSequence == 0 || SpawnDeferred)
+        {
+            SpawnFirstSentSequence = sequence;
+            SpawnDeferred = false;
+        }
     }
 
     /// <summary>
@@ -156,9 +215,9 @@ public class EntityReplicationState(int componentTypeCount)
     /// </summary>
     /// <param name="componentNetworkId">Which component this is</param>
     /// <param name="data">The component in its written form</param>
-    /// <param name="tick">Current server tick</param>
-    /// <returns>True when this needs to be included in the snapshot</returns>
-    public bool NeedsSending(byte componentNetworkId, ReadOnlySpan<byte> data, uint tick)
+    /// <param name="sequence">Sequence of the packet being built</param>
+    /// <returns>True when this needs to be included in the packet</returns>
+    public bool NeedsSending(byte componentNetworkId, ReadOnlySpan<byte> data, uint sequence)
     {
         EnsureComponentCapacity(componentNetworkId);
 
@@ -166,12 +225,25 @@ public class EntityReplicationState(int componentTypeCount)
 
         if (baseline.Removed)
         {
+            // The component came back before its removal was confirmed, so the value has to go out again even
+            // if it is the same one the peer had before the removal
             baseline.Removed = false;
         }
         else if (baseline.Data != null && baseline.Length == data.Length &&
                  data.SequenceEqual(new ReadOnlySpan<byte>(baseline.Data, 0, baseline.Length)))
         {
-            return !baseline.Acknowledged;
+            if (baseline.Acknowledged)
+                return false;
+
+            // Same value, still unconfirmed, so it repeats. A value that missed a packet has to be restamped,
+            // otherwise an acknowledgement of that packet would wrongly confirm it.
+            if (baseline.Deferred)
+            {
+                baseline.FirstSentSequence = sequence;
+                baseline.Deferred = false;
+            }
+
+            return true;
         }
 
         if (baseline.Data == null || baseline.Data.Length < data.Length)
@@ -179,7 +251,8 @@ public class EntityReplicationState(int componentTypeCount)
 
         data.CopyTo(baseline.Data);
         baseline.Length = data.Length;
-        baseline.FirstSentTick = tick;
+        baseline.FirstSentSequence = sequence;
+        baseline.Deferred = false;
         baseline.Acknowledged = false;
 
         return true;
@@ -188,8 +261,8 @@ public class EntityReplicationState(int componentTypeCount)
     /// <summary>
     ///   Records that the entity no longer has a component the peer was told about
     /// </summary>
-    /// <returns>True when the removal needs to be included in the snapshot</returns>
-    public bool NeedsRemovalSending(byte componentNetworkId, uint tick)
+    /// <returns>True when the removal needs to be included in the packet</returns>
+    public bool NeedsRemovalSending(byte componentNetworkId, uint sequence)
     {
         if (componentNetworkId >= components.Length)
             return false;
@@ -203,13 +276,40 @@ public class EntityReplicationState(int componentTypeCount)
         if (!baseline.Removed)
         {
             baseline.Removed = true;
-            baseline.FirstSentTick = tick;
+            baseline.FirstSentSequence = sequence;
+            baseline.Deferred = false;
             baseline.Acknowledged = false;
             return true;
         }
 
+        if (baseline.Acknowledged)
+            return false;
+
+        if (baseline.Deferred)
+        {
+            baseline.FirstSentSequence = sequence;
+            baseline.Deferred = false;
+        }
+
         // Like a value, a removal repeats until it is confirmed
-        return !baseline.Acknowledged;
+        return true;
+    }
+
+    /// <summary>
+    ///   Records that everything unconfirmed about this entity was left out of a packet that was sent
+    /// </summary>
+    public void MarkDeferred()
+    {
+        if (!SpawnAcknowledged && SpawnFirstSentSequence != 0)
+            SpawnDeferred = true;
+
+        for (int i = 0; i < components.Length; ++i)
+        {
+            ref var baseline = ref components[i];
+
+            if (!baseline.Acknowledged && baseline.Data != null && baseline.FirstSentSequence != 0)
+                baseline.Deferred = true;
+        }
     }
 
     /// <summary>
@@ -228,20 +328,25 @@ public class EntityReplicationState(int componentTypeCount)
         return componentNetworkId < components.Length && components[componentNetworkId].Data != null;
     }
 
-    public void Acknowledge(uint tick)
+    public void Acknowledge(uint sequence)
     {
-        if (!SpawnAcknowledged && SpawnFirstSentTick != 0 && SpawnFirstSentTick <= tick)
+        if (!SpawnAcknowledged && !SpawnDeferred && SpawnFirstSentSequence != 0 &&
+            SpawnFirstSentSequence <= sequence)
+        {
             SpawnAcknowledged = true;
+        }
 
         for (int i = 0; i < components.Length; ++i)
         {
             ref var baseline = ref components[i];
 
-            if (!baseline.Acknowledged && baseline.Data != null && baseline.FirstSentTick != 0 &&
-                baseline.FirstSentTick <= tick)
+            if (!baseline.Acknowledged && !baseline.Deferred && baseline.Data != null &&
+                baseline.FirstSentSequence != 0 && baseline.FirstSentSequence <= sequence)
             {
                 if (baseline.Removed)
                 {
+                    // The peer knows the component is gone, so this can be forgotten entirely. Gaining the
+                    // component again then sends it as something new.
                     baseline = default(ComponentBaseline);
                 }
                 else
@@ -264,8 +369,9 @@ public class EntityReplicationState(int componentTypeCount)
     {
         public byte[]? Data;
         public int Length;
-        public uint FirstSentTick;
+        public uint FirstSentSequence;
         public bool Acknowledged;
         public bool Removed;
+        public bool Deferred;
     }
 }

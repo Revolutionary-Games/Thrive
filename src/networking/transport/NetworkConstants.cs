@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Constants shared by the whole networking stack.
 /// </summary>
 public static class NetworkConstants
@@ -50,8 +50,22 @@ public static class NetworkConstants
     public const uint SNAPSHOT_FORCED_FULL_UPDATE_TICKS = 300;
 
     /// <summary>
+    ///   Size a snapshot packet is allowed to reach before the rest of the entities are left for the next one
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Kept below a typical MTU so packets are not fragmented. A fragmented unreliable datagram is lost
+    ///     entirely when any one fragment is, which makes large packets progressively less likely to arrive.
+    ///   </para>
+    ///   <para>
+    ///     Entities left out stay unconfirmed and go in a later packet, so nothing is lost by capping this.
+    ///   </para>
+    /// </remarks>
+    public const int SNAPSHOT_MAX_PACKET_SIZE = 1200;
+
+    /// <summary>
     ///   Version of the wire protocol. Must be incremented whenever the meaning of any message changes so that
     ///   mismatched clients are rejected at handshake instead of misreading data.
     /// </summary>
-    public const ushort PROTOCOL_VERSION = 2;
+    public const ushort PROTOCOL_VERSION = 3;
 }
