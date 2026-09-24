@@ -1,4 +1,4 @@
-namespace ThriveTest.Networking.Tests;
+﻿namespace ThriveTest.Networking.Tests;
 
 using System.Collections.Generic;
 using Arch.Core;
@@ -70,7 +70,7 @@ public class SnapshotDeltaTests
     }
 
     /// <summary>
-    ///   An acknowledgement of a tick before the value was first sent says nothing about that value
+    ///   An acknowledgement of a packet sent before the value changed says nothing about the new value
     /// </summary>
     [Fact]
     public void Snapshot_OldAcknowledgementDoesNotConfirmNewerValue()
@@ -79,18 +79,19 @@ public class SnapshotDeltaTests
         var entity = setup.CreateEntity(10, 1.0f);
 
         setup.WriteSnapshot();
+        uint sequenceBeforeChange = setup.LastSentSequence;
         setup.Acknowledge();
 
         setup.SetValue(entity, 2.0f);
-        uint tickOfChange = setup.NextTick;
         setup.WriteSnapshot();
+        uint sequenceOfChange = setup.LastSentSequence;
 
-        // The client confirms an older tick, from before the change was sent
-        setup.Acknowledge(tickOfChange - 1);
+        // The client confirms an older packet, from before the change went out
+        setup.Acknowledge(sequenceBeforeChange);
 
         Assert.False(setup.WriteSnapshot().IsEmpty);
 
-        setup.Acknowledge(tickOfChange);
+        setup.Acknowledge(sequenceOfChange);
 
         Assert.True(setup.WriteSnapshot().IsEmpty);
     }

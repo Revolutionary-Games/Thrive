@@ -1,4 +1,4 @@
-namespace ThriveTest.Networking.Tests;
+﻿namespace ThriveTest.Networking.Tests;
 
 using System;
 using System.Collections.Generic;
@@ -25,8 +25,8 @@ public static class SnapshotParser
 
         var result = new ParsedSnapshot
         {
+            Sequence = reader.ReadUInt32(),
             ServerTick = reader.ReadUInt32(),
-            BaselineTick = reader.ReadUInt32(),
         };
 
         int despawnCount = reader.ReadUInt16();
@@ -89,8 +89,8 @@ public static class SnapshotParser
 
 public class ParsedSnapshot
 {
+    public uint Sequence { get; set; }
     public uint ServerTick { get; set; }
-    public uint BaselineTick { get; set; }
     public List<uint> DespawnedIds { get; } = new();
     public List<ParsedEntity> Entities { get; } = new();
 }

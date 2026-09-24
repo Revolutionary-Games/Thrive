@@ -1,4 +1,4 @@
-namespace ThriveTest.Networking.Tests;
+﻿namespace ThriveTest.Networking.Tests;
 
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,17 @@ public sealed class ReplicationFixture : IDisposable, INetworkEntityDestroyer
     /// </summary>
     public uint NextTick => tick + 1;
 
+    /// <summary>
+    ///   Sequence of the newest packet that was actually sent to the main test peer
+    /// </summary>
+    public uint LastSentSequence { get; private set; }
+
     public uint ClientAcknowledgementTick => snapshotReader.LastAppliedTick;
+
+    /// <summary>
+    ///   Sequence the client would acknowledge, which is the newest packet it actually applied
+    /// </summary>
+    public uint ClientAcknowledgementSequence => snapshotReader.LastAppliedSequence;
 
     public IReadOnlyCollection<uint> ClientEntityIds => (IReadOnlyCollection<uint>)clientIndex.Entities.Keys;
 
@@ -90,6 +100,11 @@ public sealed class ReplicationFixture : IDisposable, INetworkEntityDestroyer
         entity.Add(new TestValue(value));
     }
 
+    public float ServerValueOf(in Entity entity)
+    {
+        return entity.Get<TestValue>().Value;
+    }
+
     public bool ClientHasValue(uint networkId)
     {
         return clientIndex.TryGet(networkId, out var entity) && entity.Has<TestValue>();
@@ -111,7 +126,15 @@ public sealed class ReplicationFixture : IDisposable, INetworkEntityDestroyer
     public ReadOnlySpan<byte> WriteSnapshot(bool otherPeer = false)
     {
         ++tick;
-        return snapshotWriter.Write(tick, otherPeer ? OtherPeerId : PeerId, serverEntities, InterestManager);
+
+        var data = snapshotWriter.Write(tick, otherPeer ? OtherPeerId : PeerId, serverEntities, InterestManager);
+
+        // A packet only consumes a sequence when it is actually sent, so the test's idea of the newest
+        // sequence has to follow the same rule
+        if (!otherPeer && !data.IsEmpty)
+            ++LastSentSequence;
+
+        return data;
     }
 
     /// <summary>
@@ -123,16 +146,16 @@ public sealed class ReplicationFixture : IDisposable, INetworkEntityDestroyer
     }
 
     /// <summary>
-    ///   Acknowledges the newest written tick, standing in for the client's acknowledgement
+    ///   Acknowledges the newest packet that was sent, standing in for the client's acknowledgement
     /// </summary>
     public void Acknowledge()
     {
-        Acknowledge(tick);
+        Acknowledge(LastSentSequence);
     }
 
-    public void Acknowledge(uint acknowledgedTick)
+    public void Acknowledge(uint acknowledgedSequence)
     {
-        snapshotWriter.OnAcknowledged(PeerId, acknowledgedTick);
+        snapshotWriter.OnAcknowledged(PeerId, acknowledgedSequence);
     }
 
     public void ApplyOnClient(ReadOnlySpan<byte> snapshot)
