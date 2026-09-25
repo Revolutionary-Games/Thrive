@@ -537,6 +537,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(GeneralAvoidPredationSelectionPressure), GeneralAvoidPredationSelectionPressure.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnergyConsumptionPressure,
             typeof(EnergyConsumptionPressure), EnergyConsumptionPressure.ReadFromArchive);
+
+        // Energy "Pressures"
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalCompoundEnergy,
+            typeof(EnvironmentalCompoundEnergy), EnvironmentalCompoundEnergy.ReadFromArchive);
     }
 
     private void RegisterEditor()

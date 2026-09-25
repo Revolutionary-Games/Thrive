@@ -327,6 +327,7 @@ public enum ThriveArchiveObjectType : uint
     GameteBCellTypeChangeActionData = 4407,
     ComponentGameteCell = 4408,
     ComponentMicrobeSex = 4409,
+    EnvironmentalCompoundEnergy = 4410,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
