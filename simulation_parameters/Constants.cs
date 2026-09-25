@@ -2156,12 +2156,25 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET = 28.0f;
 
-    public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
+    /// <summary>
+    ///   Temperature flexibility value at which you can get the maximum bonus.
+    ///   Should be equal to the minimum value of
+    ///   <see cref="TolerancesEditorSubComponent.temperatureToleranceRangeSlider"/>.
+    /// </summary>
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
+
+    /// <summary>
+    ///   Maximum temperature flexibility value.
+    ///   Should be equal to the maximum value of
+    ///   <see cref="TolerancesEditorSubComponent.temperatureToleranceRangeSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_MAXIMUM_TEMPERATURE_RANGE = 15;
+
+    public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 5;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 5000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
     /// <summary>
@@ -2170,10 +2183,21 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_PRESSURE_MAX = 80000000;
 
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
+    /// <summary>
+    ///   Pressure flexibility value at which you can get the maximum bonus.
+    ///   Should be equal to the minimum value of
+    ///   <see cref="TolerancesEditorSubComponent.pressureToleranceRangeSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 3000000;
 
-    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
-    public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
+    /// <summary>
+    ///   Maximum pressure flexibility value.
+    ///   Should be equal to the maximum value of
+    ///   <see cref="TolerancesEditorSubComponent.pressureToleranceRangeSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_MAXIMUM_PRESSURE_RANGE = 25000000;
+
+    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 8000000;
 
     // These values must be the same as in the editor
     public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
@@ -2214,12 +2238,12 @@ public static class Constants
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;
     public const float TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX = 1.2f;
     public const float TOLERANCE_TEMPERATURE_HEALTH_MIN = 0.8f;
-    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 1.1f;
+    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 0.1f;
 
     public const float TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN = 0.8f;
     public const float TOLERANCE_PRESSURE_OSMOREGULATION_MAX = 1.1f;
     public const float TOLERANCE_PRESSURE_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
+    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 0.2f;
 
     public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
     public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
