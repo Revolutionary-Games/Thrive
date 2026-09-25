@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 11:12+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-08-31 14:26+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -734,6 +734,39 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Denne membran har en væg, som resulterer i bedre overordnet beskyttelse imod skade, og særligt imod fysik skade. Det koster også mindre energi at holde sin form, men kan ikke hurtigt absorbere ressourcer, og er langsommere. [b]Cellulase kan fordøje denne væg[/b] hvilket gør den sårbar overfor opslugning af rovdyr."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "I flercelle viser dette den gennemsnitlige specialiseringsbonus for alle cellerne, inklusiv nærhedsbonusser.\n"
@@ -741,6 +774,9 @@ msgstr ""
 "Den mest specialiseret type er {3} med en bonus på {2}%.\n"
 "For at øge dette, gør celletyperne mere specialiseret, tilføj flere af den mest specialiserede celletype,\n"
 "eller placer celler af samme type ved siden af hinanden."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -3416,6 +3452,9 @@ msgstr "Kun LSVK"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(begrænser dele og evner til Liv Som Vi Kender det)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Lead artist"
 
@@ -5413,6 +5452,16 @@ msgstr "Læser lagringsdata"
 
 msgid "READY"
 msgstr "Klar"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Bjælken viser din celles nuværende temperatur. De gule indikatorer viser det effektive område for energiproduktion.\n"
+"Den hvide lodrette bjælke viser den temperatur i omgivelserne, som bjælken nærmer sig.\n"
+"Indikatoren under bjælken skifter farve når der produceres energi."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Anbefal Thrive:"
@@ -7454,6 +7503,14 @@ msgstr "Manuelt sæt antallet af baggrundstråde"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Manuelt sæt antallet af native side executor tråde"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "er muteret"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "Hvis din nuværende mikrobe ikke er egnet til at overleve i dette miljø, så kan vende tilbage til den forrige gang du var i editoren og prøve noget anderledes."
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Brug virtuel vindue størrelse"

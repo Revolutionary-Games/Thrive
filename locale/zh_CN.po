@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 11:12+0300\n"
-"PO-Revision-Date: 2026-09-11 06:16+0000\n"
-"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-09-19 01:07+0000\n"
+"Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -737,6 +737,39 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "在多细胞阶段，此面板显示了所有细胞的平均特化加成，包括邻近加成。\n"
@@ -744,6 +777,9 @@ msgstr ""
 "特化程度最高的类型为 {3}，其加成达到了 {2}%。\n"
 "若您想提升此数值，请提高细胞类型的特化程度，增加特化程度最高的细胞数量\n"
 "或者将同类型的细胞彼此相邻放置。"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -1656,13 +1692,11 @@ msgstr "减小物体"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
-#, fuzzy
 msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
-msgstr "孢子"
+msgstr "配子B"
 
-#, fuzzy
 msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
-msgstr "孢子"
+msgstr "配子"
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr "孢子"
@@ -3415,6 +3449,9 @@ msgstr "仅限已知生命形式"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "（只允许使用人类已观测到的生物的组件与能力）"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "首席美工"
 
@@ -4684,13 +4721,11 @@ msgstr "无事件记录"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目录"
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET"
-msgstr "配子类型A"
+msgstr "使用有性繁殖的生物必须有一种被设置为配子的细胞。"
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
-msgstr "未设置孢子细胞类型"
+msgstr "未设置配子细胞类型"
 
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "无法在当前游戏中获得成就"
@@ -5379,6 +5414,16 @@ msgstr "读取存档数据中"
 
 msgid "READY"
 msgstr "准备就绪"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"该进度条显示您所操控细胞当前的温度。黄色指示标代表有效能量产生的温度范围。\n"
+"白色竖线代表环境温度，细胞温度会逐渐向该温度趋近。\n"
+"进度条下方的指示标会在能量产生时改变颜色。"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
@@ -6076,7 +6121,6 @@ msgstr "生成磷酸盐"
 msgid "SPECIALIZATION_COLON"
 msgstr "专业化："
 
-#, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "选择从何种细胞开始繁殖周期"
 
@@ -7402,6 +7446,18 @@ msgstr "手动设置后台线程数"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "手动设置本地执行线程数"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "发生变异"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr ""
+"编辑器中的物种数据已损坏。检测到数据不一致。\n"
+"为防止因无效数据导致更多游戏错误，已阻止继续使用该物种。\n"
+"请撤销你所做的任何更改，或尝试修复你的物种状态。\n"
+"你可能需要从损坏发生前的较早存档载入。或者，如果你将存档分享给 Thrive 开发者，数据也许可以修复。"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虚拟窗口大小"

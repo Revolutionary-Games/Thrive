@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 11:12+0300\n"
-"PO-Revision-Date: 2026-09-14 07:53+0000\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-09-23 13:55+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -737,6 +737,39 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr "Hücreleri etrafta hareket ettirmek için manuel düzene geç"
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr "Hücreleri döndürme işlemi yalnızca ana yapı görünümünde yapılabilir"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr "Bu manuel hücre düzeni geçersiz, lütfen bunu editör sekmesinden inceleyin ve düzeltin veya manuel düzeni devre dışı bırakın"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü bağlanmamış hücreler var"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var . Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr "Bu düzen geçersiz çünkü çakışan hücreler var."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü çakışan ve bağlanmamış hücreler var."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr "Bu sekmede, oyun sırasında hücre koloniniz için kullanılan tam gerçek düzeni görüntüleyebilirsiniz ve manuel düzeni kullandığınızda bu düzeni değiştirebilirsiniz."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr "Taşımak için bir hücreye tıklayın. Hücreleri istediğiniz konuma taşıyın. Bütün hücreler, hala bedene bağlı kalmalıdır ve yapıda olması gerektiği konuma yakın olmalıdır. Organelleri düzenlemek, çakışmalara neden olabilir. Bu durumun da, manuel düzen geçerli hale gelmeden önce düzeltilmesi gerekir. Manuel düzenden çıkmak, bedende yapılan bütün değişiklikleri yoksayar."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Çok hücrelilerde, bitişiklik bonusu dahil, bu bölüm bütün hücrelerin özelleşme bonusunun ortalamasını gösterir.\n"
@@ -744,6 +777,9 @@ msgstr ""
 "En çok özelleşmiş hücre türü, %{2} değerindeki bonus ile {3} hücresidir.\n"
 "Bu bonusu arttırmak için hücre türlerini daha özelleşmiş hale getirin, en çok özelleşmiş hücre türünden daha fazla ekleyin\n"
 "ya da aynı tür hücreleri birbirine bitişik halde yerleştirin."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr "Lütfen bekleyin, beden düzeni hesaplanıyor"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -1655,13 +1691,11 @@ msgstr "Nesne büyüklüğünü azalt"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#, fuzzy
 msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
-msgstr "Spor"
+msgstr "Gamet B"
 
-#, fuzzy
 msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
-msgstr "Spor"
+msgstr "Gamet"
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr "Spor"
@@ -3414,6 +3448,9 @@ msgstr "Sadece BH"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(sadece Bildiğimiz Hayat'a ait olan parçalar ve yetenekler ile sınırlar)"
 
+msgid "LAYOUT_TAB"
+msgstr "Düzen"
+
 msgid "LEAD_ARTIST"
 msgstr "Baş Sanatçı"
 
@@ -4683,13 +4720,11 @@ msgstr "Hiçbir olay meydana gelmedi"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Fosiller dizini bulunamadı"
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET"
-msgstr "Gamet türü A"
+msgstr "Eşeyli üremeyi kullanan bir organizmanın seçili bir gamet hücresi türüne sahip olması gereklidir."
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
-msgstr "Spor hücresi türü seçili değil"
+msgstr "Gamet hücresi türü seçili değil"
 
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Mevcut oyun, artık başarımlar için uygun değil"
@@ -5378,6 +5413,15 @@ msgstr "Kayıt verisi okunuyor"
 
 msgid "READY"
 msgstr "Hazır"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr "Düzeni Sıfırla"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Varsayılan olarak oluşturulan düzene dönmek için bu düzeni sıfırla.\n"
+"Eğer düzeltmesi sıkıntılı çok fazla hata varsa, bu seçenek yararlı olabilir.\n"
+"Ancak bu seçenek, yaptığınız bütün manuel değişiklikleri geri alacaktır!"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Önerilen Thrive:"
@@ -6075,7 +6119,6 @@ msgstr "Fosfat oluştur"
 msgid "SPECIALIZATION_COLON"
 msgstr "Özelleşme:"
 
-#, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Kopyasını oluşturmak için bir hücre türü seçin"
 
@@ -7399,6 +7442,14 @@ msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Yerel yan çalıştırıcı iş parçacığı sayısını manuel olarak ayarla"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "Otomatik Düzen"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr ""
+"Türün otomatik düzeni kullanıp kullanmayacağını belirler. Eğer bu seçenek devre dışı bırakılırsa, manuel düzen manuel olarak hücreleri konumlandırır.\n"
+"Ancak bu seçenek, düzen sorunlarının manuel olarak düzeltilmesini gerektirir."
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Sanal pencere büyüklüğünü kullan"

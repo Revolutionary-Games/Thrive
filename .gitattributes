@@ -14,7 +14,8 @@ en.po text linguist-generated=false
 *.tres text
 *.shader text
 *.xml text
-*.*.import text
+*.*.import text eol=lf
+project.godot text eol=lf
 *.asset filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.mkv filter=lfs diff=lfs merge=lfs -text
