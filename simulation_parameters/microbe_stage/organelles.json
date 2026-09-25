@@ -1542,6 +1542,30 @@
       {
         "q": 0,
         "r": 0
+      },
+      {
+        "q": 1,
+        "r": 0
+      },
+      {
+        "q": 0,
+        "r": 1
+      },
+      {
+        "q": 0,
+        "r": -1
+      },
+      {
+        "q": 1,
+        "r": -1
+      },
+      {
+        "q": -1,
+        "r": 1
+      },
+      {
+        "q": -1,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -1561,8 +1585,9 @@
     "Description": "ORGANELLE_AXON_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
     "RequiresNucleus": true,
-    "EditorButtonGroup": "Macroscopic",
-    "EditorButtonOrder": 1
+    "Unique": true,
+    "EditorButtonGroup": "Multicellular",
+    "EditorButtonOrder": 2
   },
   "myofibril": {
     "MPCost": 50,
@@ -1605,7 +1630,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Macroscopic",
-    "EditorButtonOrder": 2,
+    "EditorButtonOrder": 1,
     "IncompatibleMembraneNames": [
       "cellulose",
       "chitin",
