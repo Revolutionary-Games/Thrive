@@ -300,22 +300,25 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
         }
 
-        // Speed from flagella (these also take ATP otherwise they won't work)
-        var thrustForce = 0.0f;
+        force *= cellProperties.MembraneType.MovementFactor -
+            cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+
+        // Speed from organelles (right now primarily flagella) (these also take ATP otherwise they won't work)
+        var organelleForce = 0.0f;
 
         if (organelles.ThrustComponents != null && control.MovementDirection != Vector3.Zero)
         {
             foreach (var flagellum in organelles.ThrustComponents)
             {
-                thrustForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
+                organelleForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
                     cellProperties.IsBacteria, totalSpecializationBonus, energyCostMultiplier, delta);
             }
         }
 
-        force += thrustForce * totalSpecializationBonus;
+        // specialization bonus applies to speed from organelles
+        organelleForce *= totalSpecializationBonus;
 
-        force *= cellProperties.MembraneType.MovementFactor -
-            cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+        force += organelleForce;
 
         if (usesSprintingForce && control.Sprinting)
         {
