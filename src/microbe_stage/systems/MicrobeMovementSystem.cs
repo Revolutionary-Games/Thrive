@@ -318,8 +318,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // specialization bonus applies to speed from organelles
         organelleForce *= totalSpecializationBonus;
 
-        force += organelleForce;
-
         bool hasColony = entity.Has<MicrobeColony>();
 
         if (control.MovementDirection != Vector3.Zero && hasColony)
@@ -328,7 +326,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), ref organelles,
                     compounds, control.MovementDirection, cellProperties.IsBacteria, totalSpecializationBonus,
-                    energyCostMultiplier, delta, ref force);
+                    energyCostMultiplier, delta, ref force, ref organelleForce);
             }
             catch (Exception e)
             {
@@ -345,6 +343,9 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 });
             }
         }
+
+        // force from organelles is merged into main force from here on.
+        force += organelleForce;
 
         if (usesSprintingForce && control.Sprinting)
         {
@@ -462,7 +463,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony,
         ref OrganelleContainer leaderOrganelles, CompoundBag leaderCompounds, Vector3 movementDirection,
-        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force)
+        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force,
+        ref float organelleForce)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
         // also has to be changed
@@ -490,8 +492,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // The colony master should be already updated as the movement direction is either set by the
         // player input or microbe AI, neither of which will happen concurrently, so this should always get the
         // up-to-date value.
-        var organelleForce = 0.0f;
-
         foreach (var colonyMember in microbeColony.ColonyMembers)
         {
             // Colony leader processes the normal movement logic so it isn't taken into account here
@@ -537,14 +537,14 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // The coordination bonus from axons should apply to all propulsion granted by organelles
         var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(axonCount);
+        organelleForce *= axonMovementMultiplier;
 
         // Actomyosin buffs the base movement of cells (not from organelles)
         if (actomyosinCount > 0)
         {
+            // The bonus that Actomyosin applies to base movement is itself still affected by Axons
             force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount *
                 axonMovementMultiplier);
         }
-
-        force += organelleForce * axonMovementMultiplier;
     }
 }
