@@ -320,17 +320,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         force += organelleForce;
 
-        if (usesSprintingForce && control.Sprinting)
-        {
-            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
-
-            strain.IsUnderStrain = true;
-        }
-        else
-        {
-            strain.IsUnderStrain = false;
-        }
-
         bool hasColony = entity.Has<MicrobeColony>();
 
         if (control.MovementDirection != Vector3.Zero && hasColony)
@@ -355,6 +344,17 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                     MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
                 });
             }
+        }
+
+        if (usesSprintingForce && control.Sprinting)
+        {
+            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+
+            strain.IsUnderStrain = true;
+        }
+        else
+        {
+            strain.IsUnderStrain = false;
         }
 
         if (control.SlowedBySlime)
