@@ -196,14 +196,13 @@ public partial class MetaballBodyEditorComponent :
         {
             GD.Print($"Dragging to {moveArrows.GetDraggingPosition()}");
 
-            RenderHighlightedMetaball(moveArrows.GetDraggingPosition(), null, metaballSelectedForMoving!.ModifiableCellType);
-            moveArrows.Position = moveArrows.GetDraggingPosition();
+            moveArrows.Position = metaballSelectedForMoving.Parent!.Position;
 
             if (Input.IsActionJustReleased("e_primary"))
             {
                 metaballSelectedForMoving.Position = moveArrows.GetDraggingPosition();
-                editedMetaballs.Add(metaballSelectedForMoving);
                 moveArrows.StopDragging();
+                UpdateAlreadyPlacedVisuals();
             }
         }
 
@@ -445,17 +444,15 @@ public partial class MetaballBodyEditorComponent :
     }
 
     [RunOnKeyDown("e_primary")]
-    public bool ShowMetaballTransformTools()
+    public bool TryUseMetaballTransformTools()
     {
-        if (metaballSelectedForMoving != null && moveArrows.TryStartDragging())
+        if (metaballSelectedForMoving != null && moveArrows.TryStartDragging(metaballSelectedForMoving.Parent!.Position, metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f + metaballSelectedForMoving.Parent.Size * 0.5f))
         {
-            editedMetaballs.Remove(metaballSelectedForMoving);
-            OnActionStatusChanged();
-
             return true;
         }
         else
         {
+            metaballSelectedForMoving = null;
             moveArrows.Visible = false;
         }
 
@@ -479,7 +476,8 @@ public partial class MetaballBodyEditorComponent :
             return false;
 
         moveArrows.Visible = true;
-        moveArrows.Position = metaball.Position;
+        moveArrows.Position = metaball.Parent!.Position;
+        moveArrows.InitializeDisplay(metaball.Parent!.Position, metaball.Position);
 
         metaballSelectedForMoving = metaball;
         return true;
