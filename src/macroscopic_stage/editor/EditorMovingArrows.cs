@@ -16,17 +16,14 @@ public partial class EditorMovingArrows : Node3D
     [Export]
     private Material highlightMaterial = null!;
 
-    [Export(PropertyHint.Layers3DPhysics)]
-    private uint collisionMask;
-
     [Export]
     private float maxRingDistanceToSelect = 0.2f;
 #pragma warning restore CA2213
 
     private float angleOffset;
-    private Plane arrowPlane;
+    private Plane ringPlane;
     private Vector3 parentOrigin;
-    private Vector3 rotationOrigin;
+    private Vector3 rotationPivot;
     private Vector3 baseRotation;
 
     private bool dragging;
@@ -52,17 +49,19 @@ public partial class EditorMovingArrows : Node3D
 
         var bestRing = BestSelectedRing(rayOrigin, rayNormal);
 
-        horizontalRing.MaterialOverride = null;
-        verticalRing.MaterialOverride = null;
-
-        if (bestRing != null)
-        {
-            ((MeshInstance3D)bestRing).MaterialOverride = highlightMaterial;
-        }
-
         if (dragging)
         {
             SetTorusRotations(parentOrigin, GetDraggingPosition());
+        }
+        else
+        {
+            horizontalRing.MaterialOverride = null;
+            verticalRing.MaterialOverride = null;
+
+            if (bestRing != null)
+            {
+                ((MeshInstance3D)bestRing).MaterialOverride = highlightMaterial;
+            }
         }
     }
 
@@ -73,7 +72,7 @@ public partial class EditorMovingArrows : Node3D
         var camera = viewPort.GetCamera3D();
 
         var angle = ProjectAndGetAngle(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
-        var newPos = rotationOrigin + baseRotation.Rotated(arrowPlane.Normal, angle - angleOffset);
+        var newPos = rotationPivot + baseRotation.Rotated(ringPlane.Normal, angle - angleOffset);
 
         return newPos;
     }
@@ -157,17 +156,17 @@ public partial class EditorMovingArrows : Node3D
 
         if (arrowNode == verticalRing)
         {
-            arrowPlane = new Plane(Vector3.Up.Cross(parentPos - metaballPos).Normalized(), parentPos);
+            ringPlane = new Plane(Vector3.Up.Cross(parentPos - metaballPos).Normalized(), parentPos);
         }
         else
         {
-            arrowPlane = new Plane(Vector3.Up, metaballPos);
+            ringPlane = new Plane(Vector3.Up, metaballPos);
         }
 
-        var projectedDistance = metaballPos.DistanceTo(rotationOrigin);
+        var projectedDistance = metaballPos.DistanceTo(rotationPivot);
 
-        rotationOrigin = arrowPlane.Project(parentOrigin);
-        baseRotation = distance * (metaballPos - rotationOrigin) / projectedDistance;
+        rotationPivot = ringPlane.Project(parentOrigin);
+        baseRotation = distance * (metaballPos - rotationPivot) / projectedDistance;
         baseRotation *= projectedDistance / parentPos.DistanceTo(metaballPos);
 
         angleOffset = ProjectAndGetAngle(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
@@ -185,7 +184,7 @@ public partial class EditorMovingArrows : Node3D
 
     private float ProjectAndGetAngle(Vector3 rayOrigin, Vector3 rayDir)
     {
-        var intersection = arrowPlane.IntersectsRay(rayOrigin, rayDir);
+        var intersection = ringPlane.IntersectsRay(rayOrigin, rayDir);
 
         if (intersection.HasValue)
         {
@@ -199,17 +198,26 @@ public partial class EditorMovingArrows : Node3D
 
     private float GetAngle(Vector3 to)
     {
-        return -(to - rotationOrigin).SignedAngleTo(baseRotation, arrowPlane.Normal);
+        return -(to - rotationPivot).SignedAngleTo(baseRotation, ringPlane.Normal);
     }
 
     private void SetTorusRotations(Vector3 parentPos, Vector3 metaballPos)
     {
         horizontalRing.Position = new Vector3(0.0f, metaballPos.Y - parentPos.Y, 0.0f);
 
-        horizontalRing.Scale = new Vector3(parentPos.X - metaballPos.X, 0.0f, parentPos.Z - metaballPos.Z).Length()
-            * Vector3.One;
+        var projectedVectorToMetaball = metaballPos - parentPos;
+        projectedVectorToMetaball.Y = 0.0f;
 
-        verticalRing.Quaternion = Basis.LookingAt(parentPos - metaballPos, (parentPos - metaballPos).Normalized().Cross(Vector3.Up).Normalized()).GetRotationQuaternion();
+        horizontalRing.Scale = projectedVectorToMetaball.Length() * Vector3.One;
         verticalRing.Scale = (parentPos - metaballPos).Length() * Vector3.One;
+
+        // Vertical ring's X rotation, and horizontal ring rotation aren't actually necessary or visible if the rotation
+        // rings look fully uniform
+        var rotationToMetaball = MathF.PI - projectedVectorToMetaball.SignedAngleTo(Vector3.Forward, Vector3.Up);
+        var xAxisRotationToMetaball = projectedVectorToMetaball.SignedAngleTo(metaballPos - parentPos,
+            Vector3.Up.Cross(metaballPos - parentPos));
+
+        verticalRing.Rotation = new Vector3(xAxisRotationToMetaball, rotationToMetaball, MathF.PI * 0.5f);
+        horizontalRing.Rotation = new Vector3(0.0f, rotationToMetaball, 0.0f);
     }
 }

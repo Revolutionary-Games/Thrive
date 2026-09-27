@@ -10,7 +10,7 @@ specular_mode = 2
 disable_receive_shadows = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_n4y2n"]
-inner_radius = 0.98
+inner_radius = 0.96
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2wqm"]
 no_depth_test = true
@@ -26,19 +26,17 @@ diffuse_mode = 3
 specular_mode = 2
 albedo_color = Color(0.19607843, 0.19607843, 0.78431374, 1)
 
-[node name="EditorMovingArrow" type="Node3D" unique_id=1282793191 node_paths=PackedStringArray("xArrow", "yArrow")]
+[node name="EditorMovingArrow" type="Node3D" unique_id=1282793191 node_paths=PackedStringArray("horizontalRing", "verticalRing")]
 script = ExtResource("1_xfn3j")
-xArrow = NodePath("HorizontalRing")
-yArrow = NodePath("VerticalRing")
+horizontalRing = NodePath("HorizontalRing")
+verticalRing = NodePath("VerticalRing")
 highlightMaterial = SubResource("StandardMaterial3D_7klun")
-collisionMask = 4
 
 [node name="HorizontalRing" type="MeshInstance3D" parent="." unique_id=809275627]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 mesh = SubResource("TorusMesh_n4y2n")
 surface_material_override/0 = SubResource("StandardMaterial3D_b2wqm")
 
 [node name="VerticalRing" type="MeshInstance3D" parent="." unique_id=937163082]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("TorusMesh_n4y2n")
 surface_material_override/0 = SubResource("StandardMaterial3D_y8mv4")
