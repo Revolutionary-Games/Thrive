@@ -21,10 +21,10 @@ public partial class EditorMovingArrows : Node3D
 #pragma warning restore CA2213
 
     private float angleOffset;
-    private Plane ringPlane;
+    private Plane rotationPlane;
     private Vector3 parentOrigin;
-    private Vector3 rotationPivot;
-    private Vector3 baseRotation;
+    private Vector3 rotationOrigin;
+    private Vector3 initialRotation;
 
     private bool dragging;
 
@@ -33,21 +33,11 @@ public partial class EditorMovingArrows : Node3D
     public override void _Process(double delta)
     {
         var viewPort = GetViewport();
-
-        if (viewPort == null)
-            throw new InvalidOperationException("No viewport");
-
         var camera = viewPort.GetCamera3D();
-
-        if (camera == null)
-            throw new InvalidOperationException("No camera");
-
         var mousePos = viewPort.GetMousePosition();
 
         var rayOrigin = camera.ProjectRayOrigin(mousePos);
         var rayNormal = camera.ProjectRayNormal(mousePos);
-
-        var bestRing = BestSelectedRing(rayOrigin, rayNormal);
 
         if (dragging)
         {
@@ -58,10 +48,7 @@ public partial class EditorMovingArrows : Node3D
             horizontalRing.MaterialOverride = null;
             verticalRing.MaterialOverride = null;
 
-            if (bestRing != null)
-            {
-                ((MeshInstance3D)bestRing).MaterialOverride = highlightMaterial;
-            }
+            BestSelectedRing(rayOrigin, rayNormal)?.MaterialOverride = highlightMaterial;
         }
     }
 
@@ -71,8 +58,8 @@ public partial class EditorMovingArrows : Node3D
         var mousePos = viewPort.GetMousePosition();
         var camera = viewPort.GetCamera3D();
 
-        var angle = ProjectAndGetAngle(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
-        var newPos = rotationPivot + baseRotation.Rotated(ringPlane.Normal, angle - angleOffset);
+        var angle = ProjectRayAndGetRotation(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
+        var newPos = rotationOrigin + initialRotation.Rotated(rotationPlane.Normal, angle - angleOffset);
 
         return newPos;
     }
@@ -119,10 +106,13 @@ public partial class EditorMovingArrows : Node3D
         verticalRing.MaterialOverride = null;
     }
 
-    private Node3D? BestSelectedRing(Vector3 rayStart, Vector3 rayDir)
+    /// <summary>
+    ///   Determines which of the two rings is more likely to be the one that the player wants to select
+    /// </summary>
+    private MeshInstance3D? BestSelectedRing(Vector3 rayStart, Vector3 rayDir)
     {
-        float horizontalDistance = DistanceToRing(horizontalRing, rayStart, rayDir);
-        float verticalDistance = DistanceToRing(verticalRing, rayStart, rayDir);
+        float horizontalDistance = ProjectedDistanceToRing(horizontalRing, rayStart, rayDir);
+        float verticalDistance = ProjectedDistanceToRing(verticalRing, rayStart, rayDir);
 
         if (horizontalDistance > maxRingDistanceToSelect && verticalDistance > maxRingDistanceToSelect)
         {
@@ -137,7 +127,7 @@ public partial class EditorMovingArrows : Node3D
         return verticalRing;
     }
 
-    private float DistanceToRing(Node3D ring, Vector3 rayStart, Vector3 rayDir)
+    private float ProjectedDistanceToRing(MeshInstance3D ring, Vector3 rayStart, Vector3 rayDir)
     {
         var intersection = new Plane(ring.Quaternion * Vector3.Up, ring.GlobalPosition).IntersectsRay(rayStart, rayDir);
 
@@ -149,56 +139,46 @@ public partial class EditorMovingArrows : Node3D
         return MathF.Abs(intersection.Value.DistanceSquaredTo(ring.GlobalPosition) - ring.Scale.X * ring.Scale.X);
     }
 
-    private void StartDraggingArrow(Node3D arrowNode, Camera3D camera, Vector2 mousePos, Vector3 parentPos,
-        Vector3 metaballPos, float distance)
+    private void StartDraggingArrow(MeshInstance3D ring, Camera3D camera, Vector2 mousePos, Vector3 parentPos,
+        Vector3 metaballPos, float combinedScale)
     {
         parentOrigin = parentPos;
 
-        if (arrowNode == verticalRing)
+        if (ring == verticalRing)
         {
-            ringPlane = new Plane(Vector3.Up.Cross(parentPos - metaballPos).Normalized(), parentPos);
+            rotationPlane = new Plane(Vector3.Up.Cross(parentPos - metaballPos).Normalized(), parentPos);
         }
         else
         {
-            ringPlane = new Plane(Vector3.Up, metaballPos);
+            rotationPlane = new Plane(Vector3.Up, metaballPos);
         }
 
-        var projectedDistance = metaballPos.DistanceTo(rotationPivot);
+        var projectedDistance = metaballPos.DistanceTo(rotationOrigin);
 
-        rotationPivot = ringPlane.Project(parentOrigin);
-        baseRotation = distance * (metaballPos - rotationPivot) / projectedDistance;
-        baseRotation *= projectedDistance / parentPos.DistanceTo(metaballPos);
+        rotationOrigin = rotationPlane.Project(parentOrigin);
+        initialRotation = (metaballPos - rotationOrigin) * combinedScale / parentPos.DistanceTo(metaballPos);
 
-        angleOffset = ProjectAndGetAngle(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
+        angleOffset = ProjectRayAndGetRotation(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
 
         dragging = true;
 
         horizontalRing.MaterialOverride = null;
         verticalRing.MaterialOverride = null;
-
-        // TODO: fix this
-        ((MeshInstance3D)arrowNode).MaterialOverride = highlightMaterial;
-
-        SetTorusRotations(parentOrigin, metaballPos);
+        ring.MaterialOverride = highlightMaterial;
     }
 
-    private float ProjectAndGetAngle(Vector3 rayOrigin, Vector3 rayDir)
+    private float ProjectRayAndGetRotation(Vector3 rayOrigin, Vector3 rayDir)
     {
-        var intersection = ringPlane.IntersectsRay(rayOrigin, rayDir);
+        var intersection = rotationPlane.IntersectsRay(rayOrigin, rayDir);
 
         if (intersection.HasValue)
         {
-            return GetAngle(intersection.Value);
+            return -(intersection.Value - rotationOrigin).SignedAngleTo(initialRotation, rotationPlane.Normal);
         }
         else
         {
             return 0.0f;
         }
-    }
-
-    private float GetAngle(Vector3 to)
-    {
-        return -(to - rotationPivot).SignedAngleTo(baseRotation, ringPlane.Normal);
     }
 
     private void SetTorusRotations(Vector3 parentPos, Vector3 metaballPos)
