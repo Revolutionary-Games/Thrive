@@ -249,6 +249,7 @@ public partial class CellBodyPlanEditorComponent
             if (restoredAllMappings)
             {
                 RebuildManualLayoutGrowthOrderSources();
+                savedManualLayoutSources = null;
                 return;
             }
 
@@ -262,6 +263,7 @@ public partial class CellBodyPlanEditorComponent
             SetManualLayoutSource(manualCells[i], sources[i]);
 
         RebuildManualLayoutGrowthOrderSources();
+        savedManualLayoutSources = null;
     }
 
     private void RebuildManualLayoutGrowthOrderSources()
