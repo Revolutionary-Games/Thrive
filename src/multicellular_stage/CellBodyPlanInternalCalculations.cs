@@ -205,10 +205,10 @@ public static class CellBodyPlanInternalCalculations
 
     public static float CalculateActomyosinRotationMultiplier(float effectiveActomyosinCount)
     {
-        // Rotation values as calculated by this function mean that the higher the value, the slower the rotation is.
-        // So as actomyosin bonus goes higher, it needs to lower this value. Which is why we are dividing by the bonus
-        // to lower the "speed" value and thus make rotation faster.
-        return 1 / (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
+        // The higher the rotation value, the slower the rotation is.
+        // But this is used to multiply the denominator in the rotation calculation, so higher numbers result in faster
+        // rotation.
+        return 1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount;
     }
 
     /// <summary>

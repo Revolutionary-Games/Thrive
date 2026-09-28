@@ -445,16 +445,8 @@ public static class MicrobeInternalCalculations
 
         ciliaFactor *= totalOrganelleBonus;
 
-        var baseRotation =
-            inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + inertia)
-            * Constants.CELL_MAX_ROTATION;
-
-        var rotationWithOrganelles =
-            inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + inertia + ciliaFactor)
-            * Constants.CELL_MAX_ROTATION;
-
-        return (Constants.CELL_MIN_ROTATION + baseRotation) * baseRotationMultiplier
-            + (rotationWithOrganelles - baseRotation);
+        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA * baseRotationMultiplier + ciliaFactor + inertia)
+            * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
     }
 
     /// <summary>
