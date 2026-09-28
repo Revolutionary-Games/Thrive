@@ -200,14 +200,15 @@ public static class CellBodyPlanInternalCalculations
     public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, float effectiveActomyosinCount,
         int totalCellCount)
     {
-        var rotationSpeedWithCellCountPenalty =
-            averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
+        return averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
+    }
 
+    public static float CalculateActomyosinRotationMultiplier(float effectiveActomyosinCount)
+    {
         // Rotation values as calculated by this function mean that the higher the value, the slower the rotation is.
         // So as actomyosin bonus goes higher, it needs to lower this value. Which is why we are dividing by the bonus
         // to lower the "speed" value and thus make rotation faster.
-        return rotationSpeedWithCellCountPenalty /
-            (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
+        return 1 / (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
     }
 
     /// <summary>
@@ -353,5 +354,10 @@ public static class CellBodyPlanInternalCalculations
     public static float CalculateAxonMovementMultiplier(float effectiveAxonCount)
     {
         return 1 + Constants.AXON_MOVEMENT_BUFF_PER * effectiveAxonCount;
+    }
+
+    public static float CalculateAxonRotationMultiplier(float effectiveAxonCount)
+    {
+        return 1 + Constants.AXON_ROTATION_BUFF_PER * effectiveAxonCount;
     }
 }

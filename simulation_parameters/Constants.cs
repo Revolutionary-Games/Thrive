@@ -373,6 +373,7 @@ public static class Constants
     public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
 
     public const float AXON_MOVEMENT_BUFF_PER = 0.15f;
+    public const float AXON_ROTATION_BUFF_PER = 0.15f;
 
     // TODO: harsher wording in the tooltip
 

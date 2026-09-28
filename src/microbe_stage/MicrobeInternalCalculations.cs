@@ -405,12 +405,16 @@ public static class MicrobeInternalCalculations
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
-    /// <param name="totalSpecializationBonus"> Cell specialization bonus, including adjacency if relevant</param>
+    /// <param name="totalOrganelleBonus">
+    ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///   but potentially also cell adjacency and axon bonuses.
+    /// </param>
+    /// <param name="baseRotationMultiplier">Bonus to base rotation (not organelles) right now just actomyosin</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
     public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
-        float totalSpecializationBonus)
+        float totalOrganelleBonus, float baseRotationMultiplier = 1.0f)
     {
         // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
         // the real physics shape here
@@ -439,10 +443,18 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        ciliaFactor *= totalSpecializationBonus;
+        ciliaFactor *= totalOrganelleBonus;
 
-        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
-            * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
+        var baseRotation =
+            inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + inertia)
+            * Constants.CELL_MAX_ROTATION;
+
+        var rotationWithOrganelles =
+            inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + inertia + ciliaFactor)
+            * Constants.CELL_MAX_ROTATION;
+
+        return (Constants.CELL_MIN_ROTATION + baseRotation) * baseRotationMultiplier
+            + (rotationWithOrganelles - baseRotation);
     }
 
     /// <summary>
