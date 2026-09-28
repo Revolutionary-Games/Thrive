@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7g7qly07ij5j"]
 
-[ext_resource type="Script" uid="uid://bnwqoljprng86" path="res://src/macroscopic_stage/editor/EditorMovingArrows.cs" id="1_xfn3j"]
+[ext_resource type="Script" uid="uid://bnwqoljprng86" path="res://src/macroscopic_stage/editor/MetaballEditorMoveTool.cs" id="1_a83pp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7klun"]
 no_depth_test = true
@@ -26,8 +26,8 @@ diffuse_mode = 3
 specular_mode = 2
 albedo_color = Color(0.19607843, 0.19607843, 0.78431374, 1)
 
-[node name="EditorMovingArrow" type="Node3D" unique_id=1282793191 node_paths=PackedStringArray("horizontalRing", "verticalRing")]
-script = ExtResource("1_xfn3j")
+[node name="EditorMovingTool" type="Node3D" unique_id=1282793191 node_paths=PackedStringArray("horizontalRing", "verticalRing")]
+script = ExtResource("1_a83pp")
 horizontalRing = NodePath("HorizontalRing")
 verticalRing = NodePath("VerticalRing")
 highlightMaterial = SubResource("StandardMaterial3D_7klun")

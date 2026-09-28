@@ -91,7 +91,10 @@ public partial class MetaballBodyEditorComponent :
     private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
-    private EditorMovingArrows moveArrows = null!;
+    private MetaballEditorMoveTool moveTool = null!;
+
+    [Export]
+    private BaseButton moveToolButton = null!;
 
     private PackedScene visualMetaballDisplayerScene = null!;
 
@@ -108,6 +111,7 @@ public partial class MetaballBodyEditorComponent :
     private bool refreshTolerancesWarnings = true;
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+    private TransformTool selectedTransformTool = TransformTool.None;
 
     private MacroscopicMetaball? metaballSelectedForMoving;
 
@@ -123,6 +127,12 @@ public partial class MetaballBodyEditorComponent :
         Tolerance,
     }
 
+    public enum TransformTool
+    {
+        None,
+        Movement,
+    }
+
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
     /// <summary>
@@ -133,6 +143,28 @@ public partial class MetaballBodyEditorComponent :
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
 
     protected override bool ForceHideHover => false;
+
+    public TransformTool SelectedTransformTool
+    {
+        get => selectedTransformTool;
+        set
+        {
+            selectedTransformTool = value;
+
+            moveToolButton.ButtonPressed = selectedTransformTool == TransformTool.Movement;
+
+            if (selectedTransformTool == TransformTool.None)
+            {
+                moveTool.StopDragging();
+                metaballSelectedForMoving = null;
+                moveTool.Visible = false;
+            }
+            else
+            {
+                ClearSelectedAction();
+            }
+        }
+    }
 
     public override void _Ready()
     {
@@ -192,18 +224,9 @@ public partial class MetaballBodyEditorComponent :
             CalculateAndDisplayToleranceWarnings();
         }
 
-        if (metaballSelectedForMoving != null && moveArrows.IsDragging)
+        if (metaballSelectedForMoving != null && moveTool.IsDragging)
         {
-            GD.Print($"Dragging to {moveArrows.GetDraggingPosition()}");
-
-            moveArrows.Position = metaballSelectedForMoving.Parent!.Position;
-
-            if (Input.IsActionJustReleased("e_primary"))
-            {
-                metaballSelectedForMoving.Position = moveArrows.GetDraggingPosition();
-                moveArrows.StopDragging();
-                UpdateAlreadyPlacedVisuals();
-            }
+            moveTool.Position = metaballSelectedForMoving.Parent!.Position;
         }
 
         // Show the ball that is about to be placed
@@ -446,14 +469,20 @@ public partial class MetaballBodyEditorComponent :
     [RunOnKeyDown("e_primary")]
     public bool TryUseMetaballTransformTools()
     {
-        if (metaballSelectedForMoving != null && moveArrows.TryStartDragging(metaballSelectedForMoving.Parent!.Position, metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f + metaballSelectedForMoving.Parent.Size * 0.5f))
+        if (selectedTransformTool == TransformTool.None)
         {
-            return true;
+            return false;
+        }
+
+        if (metaballSelectedForMoving != null && moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position, metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f + metaballSelectedForMoving.Parent.Size * 0.5f))
+        {
+            // Returning false here so that the input doesn't get consumed
+            return false;
         }
         else
         {
             metaballSelectedForMoving = null;
-            moveArrows.Visible = false;
+            moveTool.Visible = false;
         }
 
         // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
@@ -463,11 +492,9 @@ public partial class MetaballBodyEditorComponent :
         if (PreviewMode)
             return false;
 
-        // Can't open the popup menu while moving something
         if (MovingPlacedMetaball != null)
         {
-            Editor.OnActionBlockedWhileMoving();
-            return true;
+            return false;
         }
 
         GetMouseMetaball(out _, out var metaball);
@@ -475,11 +502,37 @@ public partial class MetaballBodyEditorComponent :
         if (metaball == null)
             return false;
 
-        moveArrows.Visible = true;
-        moveArrows.Position = metaball.Parent!.Position;
-        moveArrows.InitializeDisplay(metaball.Parent!.Position, metaball.Position);
+        // TBD: add this stuff to InitializeDisplay?
+        moveTool.Visible = true;
+        moveTool.Position = metaball.Parent!.Position;
+        moveTool.InitializeDisplay(metaball.Parent!.Position, metaball.Position);
 
         metaballSelectedForMoving = metaball;
+        return true;
+    }
+
+    [RunOnKeyUp("e_primary")]
+    public bool TryStopUsingTransformTools()
+    {
+        if (selectedTransformTool == TransformTool.None)
+        {
+            return false;
+        }
+
+        if (metaballSelectedForMoving == null)
+        {
+            return false;
+        }
+
+        if (!moveTool.IsDragging)
+        {
+            return false;
+        }
+
+        metaballSelectedForMoving.Position = moveTool.GetDraggingPosition();
+        moveTool.StopDragging();
+        UpdateAlreadyPlacedVisuals();
+
         return true;
     }
 
@@ -1068,6 +1121,8 @@ public partial class MetaballBodyEditorComponent :
             modifyTypeButton.Disabled = false;
             deleteTypeButton.Disabled = false;
             duplicateTypeButton.Disabled = false;
+
+            SelectedTransformTool = TransformTool.None;
 
             if (!cellTypeSelectionButtons.TryGetValue(activeActionName!, out var cellTypeButton))
             {

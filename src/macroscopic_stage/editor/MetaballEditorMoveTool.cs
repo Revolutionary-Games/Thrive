@@ -4,7 +4,7 @@ using System;
 /// <summary>
 ///   Arrows that allow the player to move metaballs in the macroscopic editor
 /// </summary>
-public partial class EditorMovingArrows : Node3D
+public partial class MetaballEditorMoveTool : Node3D
 {
 #pragma warning disable CA2213
     [Export]
