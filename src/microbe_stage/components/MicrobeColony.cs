@@ -1107,7 +1107,7 @@ public static class MicrobeColonyHelpers
 
         colony.ColonyRotationSpeed =
             CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(
-                totalRotationSpeed / colony.ColonyMembers.Length, actomyosinCount, colony.ColonyMembers.Length);
+                totalRotationSpeed / colony.ColonyMembers.Length, colony.ColonyMembers.Length);
     }
 
     /// <summary>

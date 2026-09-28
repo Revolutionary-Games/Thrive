@@ -163,7 +163,27 @@ public static class CellBodyPlanInternalCalculations
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
         float totalRotationSpeed = 0;
+
+        // We first calculate the axon and actomyosin bonuses, because the individual cell calculations will be using
+        // them.
+        var axonCount = 0.0f;
         float actomyosinCount = 0;
+
+        foreach (var colonyMember in cells)
+        {
+            var colonyMemberData = colonyMember.Data!;
+            var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
+
+            axonCount += GetAxonCount(colonyMemberData) * memberTotalSpecializationBonus;
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
+        }
+
+        // The actomyosin bonus should only be applied to base rotation speed, not organelles.
+        // The axon bonus should be applied to organelles, including to actomyosin.
+        var axonBonus = CalculateAxonRotationMultiplier(axonCount);
+        var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(
+            actomyosinCount *= axonBonus);
 
         foreach (var colonyMember in cells)
         {
@@ -178,11 +198,10 @@ public static class CellBodyPlanInternalCalculations
             totalRotationSpeed += AdjustedColonyMemberRotationFromPosition(
                 Hex.AxialToCartesian(colonyMember.Position) * 10,
                 MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
-                    memberTotalSpecializationBonus));
-            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
+                    memberTotalSpecializationBonus * axonBonus, actomyosinMultiplier));
         }
 
-        return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);
+        return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, cells.Count);
     }
 
     public static float AdjustedColonyMemberRotationFromPosition(Vector3 relativePosition, float rawRotation)
@@ -197,8 +216,7 @@ public static class CellBodyPlanInternalCalculations
         return rawRotation / (1 + Constants.COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE * distance);
     }
 
-    public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, float effectiveActomyosinCount,
-        int totalCellCount)
+    public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, int totalCellCount)
     {
         return averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
     }
