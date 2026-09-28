@@ -433,8 +433,6 @@ public partial class CellBodyPlanEditorComponent :
 
         billboardScene = GD.Load<PackedScene>("res://src/multicellular_stage/CellBillboard.tscn");
 
-        ApplySelectionMenuTab();
-
         RegisterTooltips();
     }
 
@@ -480,6 +478,10 @@ public partial class CellBodyPlanEditorComponent :
 
             UpdateAnisogamyStateAndCost();
         }
+
+        // Applying the saved selection can enter the full layout preview. Defer this until Init has assigned the
+        // owning editor and restored the layout data, as the preview needs to create editor-owned hex nodes.
+        ApplySelectionMenuTab();
 
         float sexualBonus = MathF.Round(100 * (1 - Constants.SEXUAL_REPRODUCTION_MP_COST_FACTOR), 1);
 
