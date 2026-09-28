@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-11 14:44+0200\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -200,14 +200,6 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr "環境"
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "總是可見"
@@ -746,6 +738,39 @@ msgstr "纖維素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對物理的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]纖維素酶可以消化這堵牆[/b]，使其容易被掠食者吞噬。"
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "在多細胞階段，此面板顯示了所有細胞的平均特化增益，包括相鄰加成。\n"
@@ -753,6 +778,9 @@ msgstr ""
 "特化程度最高的類型為 {3}，其增益為 {2}%。\n"
 "要提高此數值，可以提高細胞類型的特化程度，增加特化程度最高的細胞數量\n"
 "或將同類型的細胞相鄰放置。"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1659,6 +1687,14 @@ msgstr "縮小物件"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "預設輸出設備"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "創建新細胞類型"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "創建新細胞類型"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -3433,6 +3469,9 @@ msgstr "僅限已知生命形式"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "（僅限於生物學上已知的生物組件與能力）"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "首席畫師"
 
@@ -4727,6 +4766,14 @@ msgstr "無事件記錄"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目錄"
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "細胞類型名稱"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "創建新細胞類型"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "無法在當前遊戲中獲得成就"
 
@@ -5429,6 +5476,16 @@ msgstr "讀取存檔資料中"
 
 msgid "READY"
 msgstr "已就緒"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"此數值條顯示您的細胞當前溫度。黃色指標代表有效的能量生產範圍。\n"
+"白色垂直條顯示環境溫度，數值條將會向該方向變化。\n"
+"當能量正在生產時，數值條下方的指標會改變顏色。"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推薦的 Thrive 版本："
@@ -6140,6 +6197,10 @@ msgstr "生成磷酸鹽"
 msgid "SPECIALIZATION_COLON"
 msgstr "特化："
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "創建新細胞類型"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "滑鼠側鍵 1"
 
@@ -6207,10 +6268,6 @@ msgstr "速度："
 #, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常與雙倍遊戲速度之間切換"
-
-#, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "創建新細胞類型"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -7472,6 +7529,14 @@ msgstr "手動設定後台執行緒數"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "手動設定本機端執行器執行緒數"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "發生突變"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "如果當前微生物無法適應此環境，您可以恢復到先前在編輯器中的狀態，嘗試其他方法。"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虛擬視窗大小"

@@ -89,6 +89,7 @@ public class MicrobeSavingTests
         };
         species.Organelles.Add(new OrganelleTemplate(cytoplasm, new Hex(0, 0), 0));
         species.Organelles.Add(new OrganelleTemplate(chemoreceptor, new Hex(1, 0), 0));
+        species.OnEdited();
         return species;
     }
 

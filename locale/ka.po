@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-11 14:44+0200\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-09-19 09:13+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -55,9 +55,8 @@ msgstr "მიღწევები"
 msgid "ACHIEVEMENTS_LOAD_FAILED"
 msgstr "მიღწევების მონაცემთა ჩატვირთვა ჩავარდა"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "მითითებულ შენახულზე აწევა ჩავარდა შემდეგი შეცდომით:"
+msgstr ""
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "მიღწევები {0} / {1}"
@@ -106,13 +105,11 @@ msgstr ""
 msgid "ACTOMYOSIN"
 msgstr ""
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "აღწერა მითითებული არაა"
+msgstr ""
 
-#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "გადაიყვანს [thrive:compound type=\"glucose\"][/thrive:compound]ს [thrive:compound type=\"atp\"][/thrive:compound]-ში."
+msgstr "ზრდის უჯრედების კოლონიის გადაადგილების სიჩქარესა და ბრუნვის სიხშირეს."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "დამატებითმა შემოწმებებმა გამოავლინა პრობლემა: {0}"
@@ -190,20 +187,14 @@ msgstr "თქვენ უკვე ახვედით"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
-msgstr "მცენარეული ლორწოს სეკრეცია, რომელიც თქვენს სიჩქარეს გაზრდის და შეამცირებს სიჩქარეს უჯრედებისას, რომლებიც ლორწოში გაიჭედნენ"
+msgstr ""
+"ცვლის სიმულაციის ალტერნატიულ სიჩქარეს.\n"
+"ეს სიჩქარე შეგიძლიათ, გამოიყენოთ ღილაკს HUD-ზე, რომელიც ამ მნიშვნელობას ემთხვევა.\n"
+"დიდ მნიშვნელობებს გასაშვებად, შეიძლება, ძალიან სწრაფი CPU დასჭირდეს."
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "ალტერნატიული დროის გრაფიკი"
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr "გარემო"
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "დრო"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "ყოველთვის ხილული"
@@ -404,9 +395,8 @@ msgstr "გამოყენება ავტოევოს დამთვ�
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "ავტოევოს შესწავლის ხელსაწყო"
 
-#, fuzzy
 msgid "AUTO_EVO_FAILED_CHECK_LOGS"
-msgstr "ავტოევოს გაშვება ჩავარდა"
+msgstr "ავტოევოს გაშვება ჩავარდა (მეტი ინფორმაციისთვის იხილეთ თამაშის ჟურნალის ფაილი)"
 
 #, fuzzy
 msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
@@ -742,6 +732,39 @@ msgstr "ცელულოზა"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "ამ მემბრანას აქვს კედელი, რაც უზრუნველყოფს უკეთეს დაცვას ზოგადი დაზიანებისგან და განსაკუთრებით ფიზიკური დაზიანებისგან. ასევე, მის ფორმის შენარჩუნება ნაკლებ ენერგიას საჭიროებს, მაგრამ რესურსებს ვერ შთანთქავს სწრაფად და უფრო ნელია. [b]ცელულაზას შეუძლია ამ კედლის დაშლა[/b], რაც მას მტაცებლების მიერ შთანთქმის მიმართ დაუცველს ხდის."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -749,6 +772,9 @@ msgstr ""
 "მიმდინარე უპირატესობაა {0}% {1} უჯრედიდან.\n"
 "ყველაზე სპეციალიზებული ტიპია {3} {2} უპირატესობით.\n"
 "ამის გასაზრდელად გახადეთ უჯრედის ტიპები უფრო სპეციალიზებული, ან დაამატეთ მეტი ყველაზე სპეციალიზებული უჯრედი."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -920,9 +946,8 @@ msgstr "კეშის გასუფთავება"
 msgid "CLICK_TO_SELECT"
 msgstr "აირჩიეთ"
 
-#, fuzzy
 msgid "CLICK_TO_SET_CELL_TYPE"
-msgstr "აირჩიეთ"
+msgstr "დააწკაპუნეთ უჯრედის ტიპის დასაყენებლად"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "კლიმატის არასტაბილურობა"
@@ -969,13 +994,11 @@ msgstr "ფიზიკის გამართვის ფიგურებ�
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "ეს ჩანართი საშუალებას გაძლევთ, განსაზღვროთ კოლონიის უჯრედების ზრდის მიმდევრობა, სადაც პირველი უჯრედი არის ფესვი (ან კვირტი). ამის გამოყენება შეგიძლიათ უფრო კრიტიკული უჯრედების ზრდის პრიორიტეტიზაციისთვის ან იმის უზრუნველსაყოფად, რომ კოლონიის წარმოება და მოხმარება სათანადოდ იყოს დაბალანსებული."
 
-#, fuzzy
 msgid "COLONY_ROTATION_INCREASE"
-msgstr "ბრუნვის ძალა"
+msgstr "კოლონიის ბრუნვა"
 
-#, fuzzy
 msgid "COLONY_SPEED_INCREASE"
-msgstr "ბრუნვის ძალა"
+msgstr "კოლონიის სიჩქარე"
 
 msgid "COLOUR"
 msgstr "ფერი"
@@ -1608,9 +1631,14 @@ msgstr "ობიექტის ზომის შემცირება"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "ნაგულისხმევი გამოტანის მოწყობილობა"
 
-#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "გამეტა B"
+
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "გამეტა"
+
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
-msgstr "სპორის უჯრედის ტიპი"
+msgstr "სპორა"
 
 msgid "DELETE"
 msgstr "წაშლა"
@@ -1935,9 +1963,8 @@ msgstr "მუტაციები და რედაქტორები"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "შედით რედაქტორში და შეცვალეთ თქვენი სახეობები"
 
-#, fuzzy
 msgid "EDITOR_SPECIES_DATA_ERROR"
-msgstr "მიუთითებს, რომ ამ სახეობებმა განიცადეს მუტაცია ამ ავტოევის ციკლის დროს"
+msgstr "სახეობების მონაცემთა რედაქტორის შეცდომა"
 
 #, fuzzy
 msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
@@ -2532,53 +2559,38 @@ msgstr "გალერეის დათვალიერება"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "თამაშის ძირითადი წესები"
 
-#, fuzzy
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "ღეროვანი"
+msgstr "{0} გამეტა {1}-დან"
 
-#, fuzzy
 msgid "GAMETE_CELL_TYPE"
-msgstr "ახალი ტიპის უჯრედის შექმნა"
+msgstr "გამეტის უჯრედის ტიპი"
 
-#, fuzzy
 msgid "GAMETE_CELL_TYPE_A"
-msgstr "უჯრედის ტიპის სახელი"
+msgstr "გამეტის ტიპი A"
 
-#, fuzzy
 msgid "GAMETE_CELL_TYPE_B"
-msgstr "ახალი ტიპის უჯრედის შექმნა"
+msgstr "გამეტის ტიპი B"
 
-#, fuzzy
 msgid "GAMETE_PRODUCED"
-msgstr "რეპროდუცირებული"
+msgstr "გამეტა წარმოებულია"
 
-#, fuzzy
 msgid "GAMETE_TYPE_A"
-msgstr "უჯრედის ტიპის სახელი"
+msgstr "A"
 
-#, fuzzy
 msgid "GAMETE_TYPE_ALL"
-msgstr "უჯრედის ტიპის სახელი"
+msgstr "ყველა"
 
-#, fuzzy
 msgid "GAMETE_TYPE_B"
-msgstr "ახალი ტიპის უჯრედის შექმნა"
+msgstr "B"
 
-#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
-msgstr ""
-"ეს სექცია ატფ-ის ბალანსს აჩვენებს მიმდინარე უჯრედისთვის.\n"
-"იმისათვის, რომ გადარჩეთ, ბალანსი დადებითი უნდა იყოს. უმოძრაო უჯრედებმა ეს მოძრაობის გარეშე უნდა მოახერხონ.\n"
-"ქვემოთ ჩამოსაშლელი სია შეგიძლიათ, გამოიყენოთ, რომ შეამოწმოთ, რა მოხდება, თუ უჯრედს არ ჰქონდა ზოგიერთი რესურსი, ატფ შეექმნა.\n"
-"მაგალითად, ზოგიერთ უჯრედს, მხოლოდ, მაშინ შეუძლიათ დადებითი ატფ-ის ბალანი ჰქონდეთ, როცა აქვთ ერთზე მეტი ნაერთი, რომ ატფ შექმნან.\n"
-"ამ ტიპის უჯრედებით თამაში უფრო ძნელია, რადგან მათ გადასარჩენად ერთზე მეტი ნაერთი სჭირდებათ."
+msgstr "აირჩიეთ ამ გამეტის ტიპი, რომლის წარმოებასაც მოთამაშის უჯრედების კოლონია მოახდენს"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "თამაშის დიზაინის გუნდი"
 
-#, fuzzy
 msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
-msgstr "შენიშვნა: წარმადობის პარამეტრების შეცვლა ყოველთვის შეგიძლიათ [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]მორგების მენიუდან[/url][/color], რომ გააუმჯობესოთ თამაშის წარმადობა"
+msgstr "გაფრთხილება: ფიზიკის სიმულაციის სიზუსტის, ან სიჩქარის შემცირება დაბალი წარმადობის გამო"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "თამაშის სისტემები"
@@ -3316,6 +3328,9 @@ msgstr "მხოლოდ სრჩვ"
 
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ნაწილებისა და შესაძლებლობების შეზღუდვა რეალურ სამყაროზე)"
+
+msgid "LAYOUT_TAB"
+msgstr ""
 
 msgid "LEAD_ARTIST"
 msgstr "წამყვანი მხატვარი"
@@ -4512,6 +4527,13 @@ msgstr "მოვლენები არ ჩაწერილა"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "ნამარხების საქაღალდე აღმოჩენილი არაა"
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "უჯრედის ტიპის სახელი"
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "გამეტის უჯრედის ტიპი დაყენებული არაა"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "მიმდინარე თამაშში ვერაფერს მიაღწევთ"
 
@@ -4537,9 +4559,8 @@ msgstr "მოდი არჩეული არაა"
 msgid "NO_SPORE_CELL_TYPE_SET"
 msgstr "სპორის უჯრედის ტიპი"
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "სპორის უჯრედის ტიპი"
+msgstr "სპორის უჯრედის ტიპი დაყენებული არაა"
 
 msgid "NO_SUGGESTION"
 msgstr "არცერთი"
@@ -4671,9 +4692,8 @@ msgstr "მორგება"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "თქვენი პარამეტრების შეცვლა"
 
-#, fuzzy
 msgid "OPTION_USED_FOR_PLAYER"
-msgstr "დაპაუზებული."
+msgstr "მოთამაშის გამეტის ტიპი"
 
 msgid "ORGANELLES"
 msgstr "ორგანელები"
@@ -5191,6 +5211,15 @@ msgstr "შენახვის მონაცემის წაკითხ�
 msgid "READY"
 msgstr "მზადაა"
 
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"უჯრედის ბრუნვის სიჩქარე. უფრო დიდი უჯრედები უფრო ნელა ბრუნავენ, მაგრამ ამის კომპენსაციისთვის შეიძლება დაემატოს ცილიები.\n"
+"ორგანელების განლაგება გავლენას ახდენს ბრუნვაზე — ცენტრიდან უფრო შორს მდებარე ორგანელები უფრო მეტად ამცირებენ ბრუნვის სიჩქარეს."
+
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Thrive-ის რეკომენდებული ვერსია:"
 
@@ -5221,9 +5250,8 @@ msgstr "ანგარიში"
 msgid "REPORT_BUG"
 msgstr "შეცდომის ანგარიშის გაგზავნა"
 
-#, fuzzy
 msgid "REPRODUCE"
-msgstr "რეპროდუცირებული"
+msgstr "გამრავლება"
 
 msgid "REPRODUCED"
 msgstr "რეპროდუცირებული"
@@ -5252,17 +5280,14 @@ msgstr "მასიური დაკვირტვა"
 msgid "REPRODUCTION_METHOD"
 msgstr "რეპროდუქცია:"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL"
-msgstr "ასექსუალური"
+msgstr "სექსუალური"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
-msgstr "ასექსუალური"
+msgstr "სექსუალური ანიზოგამია"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL_ISOGAMY"
-msgstr "ასექსუალური"
+msgstr "სექსუალური იზოგამია"
 
 msgid "REPRODUCTION_SPORE"
 msgstr "სპორულაცია"
@@ -5661,17 +5686,15 @@ msgstr "გამოიმუშავებს მრავალ, სურვ
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
 msgstr "გამოიმუშავებს მრავალ, სურვილის შემთხვევაში სპეციალიზებულ ნაშიერს, რომელსაც შეუძლია, უკეთესი პირობები მოძებნოს, სანამ კოლონიის საწყის უჯრედად გადაიქცევა."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
-msgstr "გამოიმუშავებს მრავალ, სურვილის შემთხვევაში სპეციალიზებულ ნაშიერს, რომელსაც შეუძლია, უკეთესი პირობები მოძებნოს, სანამ კოლონიის საწყის უჯრედად გადაიქცევა."
+msgstr "MP-ის გამოყენების ფასდაკლებაა {0}% სექსუალური რეპოროდუქციის გამოყენების გამო."
 
 #, fuzzy
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "გამოიმუშავებს მრავალ, სურვილის შემთხვევაში სპეციალიზებულ ნაშიერს, რომელსაც შეუძლია, უკეთესი პირობები მოძებნოს, სანამ კოლონიის საწყის უჯრედად გადაიქცევა."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
-msgstr "რეპროდუქციის პროგრესის პასიური მიღება"
+msgstr "გაუმჯობესება ანიზოგამიამდე ({0} MP)"
 
 msgid "SFX_VOLUME"
 msgstr "SFX ხმა"
@@ -5697,17 +5720,11 @@ msgstr "კოორდინატების ჩვენება"
 msgid "SHOW_MAP"
 msgstr "რუკის ჩვენება"
 
-#, fuzzy
 msgid "SHOW_MATE_POSITION"
-msgstr "რუკის ჩვენება"
+msgstr "მეგობრის მდებარეობის ჩვენება"
 
-#, fuzzy
 msgid "SHOW_MATE_POSITION_EXPLANATION"
-msgstr ""
-"აგრესიულ მიკრობები მსხვერპლს დიდ მანძილზე გამოეკიდებიან\n"
-"და დიდი შანსით პასუხს გასცემენ, როცა ვინმე მათ უტევს.\n"
-"მშვიდობიანი მიკრობები დიდ მანძილზე არ გადაადგილდებიან\n"
-"და მტაცებლების წინააღმდეგ, დიდი შანსით, ტოქსინებს იყენებენ."
+msgstr "(ვიზუალურად ჩვენება, სად არსებობს თავსებადი პარტნიორი მოთამაშისთვის, როცა გამოძახებულია)"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "ახალი პაჩის შენიშვნების ავტომატური ჩვენება"
@@ -5751,13 +5768,11 @@ msgstr "გეჭიროთ ღილაკზე [thrive:input]g_pack_command
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "აგრესიულად გახდომა"
 
-#, fuzzy
 msgid "SIGNAL_COMMAND_CALL_MATE"
-msgstr "ჩემსკენ გადაადგილება"
+msgstr "მეგობრისთვის დაძახება"
 
-#, fuzzy
 msgid "SIGNAL_COMMAND_FIRE_GAMETES"
-msgstr "გაიქეცი"
+msgstr "გამეტის გაშვების მოთხოვნა"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "გაიქეცი"
@@ -5866,9 +5881,8 @@ msgstr "მტრის გაჩენის ჩიტის გამოყე
 msgid "SPAWN_GLUCOSE"
 msgstr "გლუკოზის შექმნა"
 
-#, fuzzy
 msgid "SPAWN_MATE_ON_CALL"
-msgstr "ამიაკის შექმნა"
+msgstr "თავსებადი წყვილის გაჩენა გამოძახებისას, თუ ხელმისაწვდომი არავინაა"
 
 #, fuzzy
 msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
@@ -5879,6 +5893,9 @@ msgstr "ფოსფატის შექმნა"
 
 msgid "SPECIALIZATION_COLON"
 msgstr "სპეციალიზაცია:"
+
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "აირჩიეთ უჯრედის ტიპი, საიდანაც დუბლირება მოხდება"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "თაგუნას სპეციალური ღილაკი 1"
@@ -5946,10 +5963,6 @@ msgstr "სიჩქარე:"
 
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "გადართვა თამაშის ნორმალურ და ალტერნატიულ სიჩქარეებს შორის"
-
-#, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "სპორის უჯრედის ტიპი"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "გამოიმუშავებს მრავალ, სურვილის შემთხვევაში სპეციალიზებულ ნაშიერს, რომელსაც შეუძლია, უკეთესი პირობები მოძებნოს, სანამ კოლონიის საწყის უჯრედად გადაიქცევა."
@@ -6320,23 +6333,25 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "საწყისი"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
-msgstr "მუზეუმი"
+msgstr ""
+"გაქვავებული\n"
+"გაქვავებული"
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "მუზეუმი"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
-msgstr "სახეობები"
+msgstr ""
+"ნაწილი\n"
+"ორგანელა\n"
+"კომპონენტი"
 
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "გადაშენებული სახეობები {0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "ბიომების რუკა"
+msgstr "სამყარო"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "ბიომების რუკა"
@@ -6361,13 +6376,15 @@ msgstr "მუზეუმი"
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "ამაგრებული სახეობები"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
-msgstr "{0}"
+msgstr ""
+"ქმნილება\n"
+"ცხოველი"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
-msgstr "სახეობები"
+msgstr ""
+"ქმნილება\n"
+"ცხოველი"
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "სახეობები"
@@ -7007,6 +7024,14 @@ msgstr "ფონური ნაკადების რიცხვის ხ
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "საკუთარი მხრის შემსრულებელი ნაკადების რაოდენობის ხელით დაყენება"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "მუტირებულია"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "თუ თქვენი ამჟამინდელი მიკრობი ვერ გაძლებს ამ გარემოში, შეგიძლიათ, დაბრუნდეთ წინა დროში, რომელშიც რედაქტორში ბრძანდებოდით და რამე სხვა სცადოთ."
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "ვირტუალური ფანჯრის ზომის გამოყენება"
 
@@ -7183,11 +7208,9 @@ msgstr "[b]ციტოპლაზმის[/b] შეცვლა ნები
 msgid "WIKI_ACTOMYOSIN_INTRO"
 msgstr "უფრო ზუსტად: ეს ენდგეიმია, სადაც შეგიძლიათ, გალაქტიკა მეტაფიზიკური სხეულივით გაადიდოთ და ის ფორმა მისცეთ, რომელიც გსურთ. ეს გრძელი გზა იყო და თქვენ მას იმსახურებთ."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_PROCESSES"
 msgstr "პროცესების გარეშე."
 
@@ -7203,9 +7226,8 @@ msgstr "სამეცნიერო ფონი"
 msgid "WIKI_ACTOMYOSIN_STRATEGY"
 msgstr "სტრატეგია"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_UPGRADES"
-msgstr "გაუმჯობესებების გარეშე."
+msgstr "განახლებების გარეშე."
 
 msgid "WIKI_ASCENSION"
 msgstr "აღმავალი"
@@ -7949,9 +7971,8 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_MUCOCYST"
-msgstr "მექანიკა"
+msgstr "მუკოკისტა"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -8117,9 +8138,8 @@ msgstr "გაუმჯობესებების გარეშე."
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "ოქსიტოქსინის სინთეზი, გლიკოლიზი"
 
-#, fuzzy
 msgid "WIKI_PAGE_ACTOMYOSIN"
-msgstr "აღმავალი"
+msgstr "აქტომიოზნი"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "აღმავალი"

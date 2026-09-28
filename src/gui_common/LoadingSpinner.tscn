@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://xt3sn0ixehuh"]
+
+[ext_resource type="Script" uid="uid://bgwnpuwx2adyn" path="res://src/gui_common/LoadingSpinner.cs" id="1_4i5nn"]
+[ext_resource type="Shader" uid="uid://bul033somqtc6" path="res://shaders/SpinnerVertex.gdshader" id="1_8uis3"]
+[ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="2_4i5nn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3t0ay"]
+resource_local_to_scene = true
+shader = ExtResource("1_8uis3")
+shader_parameter/rotation = 0.0
+shader_parameter/aspect = Vector2(1, 1)
+
+[node name="LoadingSpinner" type="MarginContainer" unique_id=972236951 node_paths=PackedStringArray("spinner")]
+process_mode = 3
+custom_minimum_size = Vector2(64, 64)
+size_flags_vertical = 8
+script = ExtResource("1_4i5nn")
+spinner = NodePath("Control/TextureRect")
+
+[node name="Control" type="Control" parent="." unique_id=486264403]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=134106766]
+material = SubResource("ShaderMaterial_3t0ay")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_4i5nn")
+expand_mode = 1
+stretch_mode = 6

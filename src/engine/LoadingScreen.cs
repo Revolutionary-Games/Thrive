@@ -7,19 +7,11 @@ using Godot;
 /// </summary>
 public partial class LoadingScreen : Control
 {
-    /// <summary>
-    ///   How fast the loading indicator spins
-    /// </summary>
-    [Export]
-    public double SpinnerSpeed = Math.PI;
-
     private static LoadingScreen? instance;
 
     private readonly Random random = new();
 
     private readonly List<(Action Action, double Delay)> postLoadingActions = [];
-
-    private readonly StringName rotationName = new("rotation");
 
 #pragma warning disable CA2213
     [Export]
@@ -38,12 +30,10 @@ public partial class LoadingScreen : Control
     private CustomRichTextLabel? tipLabel;
 
     [Export]
-    private TextureRect spinner = null!;
+    private LoadingSpinner spinner = null!;
 
     [Export]
     private Timer randomizeTimer = null!;
-
-    private ShaderMaterial spinnerMaterial = null!;
 #pragma warning restore CA2213
 
     private bool wasVisible;
@@ -54,7 +44,6 @@ public partial class LoadingScreen : Control
     private string? artDescription;
 
     private double elapsedSinceTipChange;
-    private float currentSpinnerRotation;
 
     private LoadingScreen()
     {
@@ -168,8 +157,6 @@ public partial class LoadingScreen : Control
 
     public override void _Ready()
     {
-        spinnerMaterial = (ShaderMaterial)spinner.Material;
-
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
@@ -210,10 +197,6 @@ public partial class LoadingScreen : Control
         }
 
         elapsedSinceTipChange += delta;
-
-        currentSpinnerRotation += (float)(delta * SpinnerSpeed);
-        currentSpinnerRotation %= MathF.Tau;
-        spinnerMaterial.SetShaderParameter(rotationName, currentSpinnerRotation);
     }
 
     /// <summary>
@@ -334,20 +317,10 @@ public partial class LoadingScreen : Control
         ArtDescription = artwork.BuildDescription(true);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            rotationName.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnBecomeVisible()
     {
         wasVisible = true;
-        currentSpinnerRotation = 0;
+        spinner.ResetSpin();
 
         RandomizeContent();
 

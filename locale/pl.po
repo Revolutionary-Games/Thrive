@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-11 14:44+0200\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: JareelSkaj <jareelskaj@marcinwolny.net>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -201,14 +201,6 @@ msgstr ""
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Stosunek się skaluje"
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr "Środowisko"
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Zawsze widoczne"
@@ -752,6 +744,39 @@ msgstr "Celulozowa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "We wielokomórkowym to pokazuje średnią premię specjalizacji wszystkich komórek, wliczając premie za sąsiedztwo.\n"
@@ -759,6 +784,9 @@ msgstr ""
 "Najbardziej specjalizujący się typ to {3} z premią {2}%.\n"
 "Żeby to zwiększyć, zrób typy komórek bardziej wyspecjalizowane, dodaj więcej najbardziej wyspecjalizowanego typu komórki\n"
 "lub ułóż komórki tego samego typu obok siebie."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -1673,6 +1701,14 @@ msgstr "Zmniejsz rozmiar obiektu"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Domyślne urządzenie wyjściowe"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Stwórz Nowy Typ Komórki"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Stwórz Nowy Typ Komórki"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -3488,6 +3524,9 @@ msgstr "wyłącznie ŻTJZ"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ogranicza części i umiejętności tylko do Życia Tak Jak je Znamy)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Główny Artysta"
 
@@ -4867,6 +4906,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nie znaleziono folderu z plikami skamieniałości"
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Nazwa Rodzaju Komórki"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Stwórz Nowy Typ Komórki"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Potwierdź Usunięcie"
 
@@ -5597,6 +5644,16 @@ msgstr "Wczytywanie danych zapisu"
 
 msgid "READY"
 msgstr "Gotowy"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Ten pasek pokazuje aktualną temperaturę twojej komórki. Żółte wskaźniki pokazują efektywny zakres generowania energii.\n"
+"Biały, pionowy pasek pokazuje temperaturę środowiska, do której ten pasek będzie dążył.\n"
+"Wskaźnik poniżej paska zmienia kolor, gdy generowana jest energia."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Zalecana Wersja Gry:"
@@ -6331,6 +6388,10 @@ msgstr "Stwórz fosforany"
 msgid "SPECIALIZATION_COLON"
 msgstr "populacja:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Stwórz Nowy Typ Komórki"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Mysz Specjalny 1"
 
@@ -6402,10 +6463,6 @@ msgstr "Szybkość:"
 #, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
-
-#, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Stwórz Nowy Typ Komórki"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -7714,6 +7771,14 @@ msgstr "Ustaw ręcznie liczbę wątków w tle"
 #, fuzzy
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "zmutował"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "Jeśli twój mikrob nie potrafi przetrwać w tym środowisku, możesz wrócić do swojej ostatnie edycji w edytorze, i spróbować czegoś innego."
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Użyj wirtualnej wielkości okna"

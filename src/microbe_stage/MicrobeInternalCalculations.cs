@@ -82,6 +82,62 @@ public static class MicrobeInternalCalculations
         return delta.Normalized();
     }
 
+    public static Vector3 CalculateCenterOfMass<T>(IReadOnlyList<T> organelles)
+        where T : IReadOnlyPositionedOrganelle
+    {
+        // TODO: this used to weigh the center position based on the organelle masses, this is no longer possible
+        // to do as simply
+        // float totalMass = 0;
+        int count = 0;
+        Vector3 weightedSum = Vector3.Zero;
+
+        // NOTE: if this is modified, the below variant also needs changes
+
+        // TODO: shouldn't this take multihex organelles into account?
+        var listLength = organelles.Count;
+        for (int i = 0; i < listLength; ++i)
+        {
+            // totalMass += organelle.Definition.Mass;
+            ++count;
+            weightedSum += Hex.AxialToCartesian(organelles[i].Position) /* * organelle.Definition.Mass*/;
+        }
+
+        if (count == 0)
+            return new Vector3(0, 0, 0);
+
+        weightedSum /= count;
+
+        // Truncate towards zero to avoid layout shifts.
+        // This is not a technically correct result as this will round some small changes to 0, however, this is
+        // needed to not end up with oscillations around like (-1, 0), (0, -1) loops, which cause errors in
+        // multicellular.
+        // The reason is that our hex size does not match up with integer coordinates, so theoretically values like
+        // 0.9 should not round to zero, but using rounding here results in still problems with the repositioning
+        // infinitely moving around the 0, 0 point.
+        return new Vector3((int)weightedSum.X, weightedSum.Y, (int)weightedSum.Z);
+    }
+
+    public static Vector3 CalculateCenterOfMass<T>(IReadOnlyCollection<T> organelles)
+        where T : IReadOnlyPositionedOrganelle
+    {
+        // Implementation variant that doesn't get an index accessor. See the above method for comments.
+        int count = 0;
+        Vector3 weightedSum = Vector3.Zero;
+
+        foreach (var organelle in organelles)
+        {
+            // totalMass += organelle.Definition.Mass;
+            ++count;
+            weightedSum += Hex.AxialToCartesian(organelle.Position) /* * organelle.Definition.Mass*/;
+        }
+
+        if (count == 0)
+            return new Vector3(0, 0, 0);
+
+        weightedSum /= count;
+        return new Vector3((int)weightedSum.X, weightedSum.Y, (int)weightedSum.Z);
+    }
+
     public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,
         float totalSpecializationBonus)
     {

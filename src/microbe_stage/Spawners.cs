@@ -610,6 +610,21 @@ public static class SpawnHelpers
             sex, multicellularSpawnState);
     }
 
+    public static void SpawnMicrobeVisualizationOnly(IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment,
+        Species species, Vector3 location,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
+    {
+        // TODO: should we have a separate spawn method to just spawn the visual aspects of a microbe?b
+        // The downside would be duplicated code, but it could skip the component types that don't impact the visuals
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            true, (null, 0), recorder, out _, multicellularSpawnState, GameteType.All, false, null);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+    }
+
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         Species species, Vector3 location, bool aiControlled,
         (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData, GameteType sex,
@@ -960,6 +975,14 @@ public static class SpawnHelpers
 
             if (giveInitialCompounds)
             {
+#if DEBUG
+                if (species.InitialCompounds.Count == 0)
+                {
+                    throw new InvalidOperationException(
+                        $"Cannot spawn species {species.FormattedIdentifier} without initial compounds");
+                }
+#endif
+
                 storage.Compounds.AddInitialCompounds(species.InitialCompounds);
 
                 // Extra initial compounds if close to night

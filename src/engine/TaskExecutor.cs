@@ -25,8 +25,6 @@ public class TaskExecutor
 
     private readonly ConcurrentQueue<ThreadCommand> queuedTasks = new();
 
-    private readonly List<Task> mainThreadTaskStorage = new();
-
     private bool running = true;
     private int currentThreadCount;
     private int usedNativeTaskCount;
@@ -188,11 +186,11 @@ public class TaskExecutor
 
     /// <summary>
     ///   Runs a list of tasks and waits for them to complete. The
-    ///   first task is run on the calling thread before waiting.
+    ///   first task is run on the calling thread before waiting. Failures propagate only after accepted work stops.
     /// </summary>
     /// <param name="tasks">
     ///   List of tasks to execute and wait to finish. Not modified but must be List to avoid a memory allocation in
-    ///   the foreach.
+    ///   the foreach. Entries must be distinct, unstarted tasks; do not mutate the list or start tasks elsewhere.
     /// </param>
     /// <param name="runExtraTasksOnCallingThread">
     ///   If true, the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
@@ -201,91 +199,101 @@ public class TaskExecutor
     ///   some cases.
     /// </param>
     /// <param name="catchErrors">
-    ///   If set to true, then caught errors are shown to the player rather than letting them escape
+    ///   If true, task errors are shown to the player. Scheduling failures still propagate after accepted work stops.
     /// </param>
     public void RunTasks(List<Task> tasks, bool runExtraTasksOnCallingThread = false, bool catchErrors = false)
     {
-        // Queue all but the first task
-        Task? firstTask = null;
-
-        foreach (var task in tasks)
-        {
-            if (firstTask != null)
-            {
-                AddTask(task, false);
-            }
-            else
-            {
-                firstTask = task;
-            }
-
-            mainThreadTaskStorage.Add(task);
-        }
-
-        if (firstTask == null)
-        {
-            // No tasks given to execute. Should we throw here?
+        var taskCount = tasks.Count;
+        if (taskCount == 0)
             return;
-        }
 
-        // Should be fine to wake up all the threads as the main thread is going to also be busy,
-        // so this is purely to be able to run things at full speed
-        NotifyAllNewTasksAdded();
+        // Reject null entries before accepting any work. The caller owns this stable list and its unstarted tasks.
+        foreach (var task in tasks)
+            ArgumentNullException.ThrowIfNull(task);
 
-        // Run the first task on this thread
-        firstTask.RunSynchronously();
+        var firstTask = tasks[0];
+        int queuedTaskCount = 0;
+        bool firstTaskRan = false;
+        bool schedulingFailed = false;
+        List<Exception>? errors = null;
 
-        // TODO: it should be plausible to make it so that only tasks in "tasks" are ran on the calling thread
-        // but due to implementation difficulty that is not currently done, instead this parameter is used
-        // to give control to the caller if they want to accept the tradeoffs regarding the current implementation
-        if (runExtraTasksOnCallingThread)
+        try
         {
-            // Process tasks also on the main thread
-
-            // This should be the non-blocking variant, so the current thread won't wait for more tasks,
-            // just immediately exits the loop if there are no tasks to run
-            while (queuedTasks.TryDequeue(out ThreadCommand command))
+            // Queue all but the first task, recording only entries actually accepted by the executor.
+            for (int i = 1; i < taskCount; ++i)
             {
-                // If we take out a quit command here, we need to put it back for the actual threads to get and break
-                if (command.CommandType == ThreadCommand.Type.Quit)
-                {
-                    queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit));
-                    break;
-                }
+                AddTask(tasks[i], false);
+                ++queuedTaskCount;
+            }
 
-                if (ProcessNormalCommand(command))
-                    break;
+            NotifyAllNewTasksAdded();
+            firstTask.RunSynchronously();
+            firstTaskRan = true;
+
+            if (runExtraTasksOnCallingThread)
+            {
+                // Helping retains the existing policy of running any queued work, including other callers' tasks.
+                // This does not wait for future submissions after the queue becomes empty.
+                while (queuedTasks.TryDequeue(out var command))
+                {
+                    if (command.CommandType == ThreadCommand.Type.Quit)
+                    {
+                        queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit));
+                        break;
+                    }
+
+                    if (ProcessNormalCommand(command))
+                        break;
+                }
             }
         }
+        catch (Exception e)
+        {
+            schedulingFailed = true;
+            errors ??= new List<Exception>();
+            errors.Add(e);
 
-        // TODO: if Quit is called from another thread here, this thread will become permanently stuck waiting for the
-        // tasks
+            // A partially submitted batch still needs its workers woken before we wait for the accepted prefix.
+            NotifyAllNewTasksAdded();
+        }
 
-        // Wait for all given tasks to complete
-        foreach (var task in mainThreadTaskStorage)
+        // A cancelled first task can fail to start. Never wait for an unstarted first task after submission fails.
+        // Other accepted tasks must be waited even if they are still queued with TaskStatus.Created.
+        int firstTaskToWait = firstTaskRan || firstTask.IsCompleted ? 0 : 1;
+        for (int i = firstTaskToWait; i <= queuedTaskCount; ++i)
         {
             try
             {
                 // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually
                 // calls EnsureLockObjectCreated
-                task.Wait();
+                tasks[i].Wait();
             }
             catch (Exception e)
             {
-                GD.PrintErr("Error encountered from a waited task on the primary waiting thread");
-
-                if (catchErrors)
-                {
-                    LogInterceptor.ForwardCaughtError(e, "Error from waited background task");
-                }
-                else
-                {
-                    throw;
-                }
+                errors ??= new List<Exception>();
+                errors.Add(e);
             }
         }
 
-        mainThreadTaskStorage.Clear();
+        if (errors == null)
+            return;
+
+        // Report errors only after all accepted work has stopped, including when error reporting itself fails.
+        if (!catchErrors || schedulingFailed)
+        {
+            var failure = new AggregateException(errors).Flatten();
+
+            if (!schedulingFailed)
+                GD.PrintErr($"Error encountered from a waited task on the primary waiting thread: {failure}");
+
+            throw failure;
+        }
+
+        foreach (var error in errors)
+        {
+            GD.PrintErr($"Error encountered from a waited task on the primary waiting thread: {error}");
+            LogInterceptor.ForwardCaughtError(error, "Error from waited background task");
+        }
     }
 
     public void ReApplyThreadCount()

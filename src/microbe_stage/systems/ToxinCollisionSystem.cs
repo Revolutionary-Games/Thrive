@@ -214,7 +214,8 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
                         damageSource.ToxinProperties);
                 }
 
-                damageSource.ToxinProperties.DealDamage(originalTarget, damageSource.ToxinAmount * modifier);
+                damageSource.ToxinProperties.DealDamage(originalTarget, damageSource.ToxinAmount * modifier,
+                    damageTarget);
             }
             else
             {
