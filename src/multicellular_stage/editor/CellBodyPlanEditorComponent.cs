@@ -464,6 +464,11 @@ public partial class CellBodyPlanEditorComponent :
 
             editedMicrobeCells = newLayout;
 
+            // These mappings use runtime object identities and therefore aren't serialized. Restore them before any
+            // loaded manual layout is displayed or synchronized with the compact editor layout.
+            if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
+                RestoreManualLayoutMappings();
+
             UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
             UpdateArrow(false);
 
@@ -687,7 +692,7 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectOrNull(GameteBCellType);
         writer.Write((int)SelectedGameteTypeForPlayer);
         writer.Write(UsesManualPlayerLayout);
-        writer.WriteObject(manualFullLayout);
+        writer.WriteObjectOrNull(UsesManualPlayerLayout ? manualFullLayout : null);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -783,7 +788,12 @@ public partial class CellBodyPlanEditorComponent :
 
         if (version > 10)
         {
-            manualFullLayout = reader.ReadObject<List<HexWithData<CellTemplate>>>();
+            manualFullLayout = reader.ReadObjectOrNull<List<HexWithData<CellTemplate>>>() ?? [];
+
+            // Older saves wrote this list even in automatic mode. It is stale in that mode and must not prevent a
+            // freshly generated layout from being copied when manual mode is enabled later.
+            if (!UsesManualPlayerLayout)
+                manualFullLayout.Clear();
         }
     }
 
@@ -822,17 +832,7 @@ public partial class CellBodyPlanEditorComponent :
                 manualFullLayout.Add(copied);
             }
 
-            RebuildFullLayoutGrowthOrderSources(manualFullLayout);
-
-            // The saved gameplay layout has clones, so none of its cell wrappers match the compact editor
-            // cells by reference. The gameplay layout is produced from the compact layout in growth order, and the
-            // manual layout preserves that order when it is saved, so matching by index restores the correspondence.
-            // This correspondence is needed later when a compact cell is added or removed: the manual list must keep
-            // the player's positions for existing cells while adding a new cell at the origin or removing its clone.
-            var sources = editedMicrobeCells.AsModifiable().ToList();
-            var manualCells = manualFullLayout.ToList();
-            for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
-                SetManualLayoutSource(manualCells[i], sources[i]);
+            RestoreManualLayoutMappings();
         }
 
         // Ignore invalid species data

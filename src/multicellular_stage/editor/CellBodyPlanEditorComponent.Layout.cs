@@ -209,6 +209,21 @@ public partial class CellBodyPlanEditorComponent
         manualLayoutSourceData[manualCell] = (source.Position, source.Data!.ModifiableCellType);
     }
 
+    private void RestoreManualLayoutMappings()
+    {
+        manualLayoutSources.Clear();
+        manualLayoutSourceData.Clear();
+
+        RebuildFullLayoutGrowthOrderSources(manualFullLayout);
+
+        // The saved gameplay layout has clones, so none of its cell wrappers match the compact editor cells by
+        // reference. The manual layout preserves growth order, so matching by index restores the correspondence.
+        var sources = editedMicrobeCells.AsModifiable().ToList();
+        var manualCells = manualFullLayout.ToList();
+        for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
+            SetManualLayoutSource(manualCells[i], sources[i]);
+    }
+
     /// <summary>
     ///   Starts a background task to calculate the full layout of the edited microbe cells. This is done in the
     ///   background as the calculation can take tens of seconds.
