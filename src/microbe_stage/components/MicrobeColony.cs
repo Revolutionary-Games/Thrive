@@ -1068,7 +1068,7 @@ public static class MicrobeColonyHelpers
 
         var axonBonus = CellBodyPlanInternalCalculations.CalculateAxonRotationMultiplier(axonCount);
         var actomyosinMultiplier = CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(
-            actomyosinCount *= axonBonus);
+            actomyosinCount * axonBonus);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
