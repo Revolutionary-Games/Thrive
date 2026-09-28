@@ -256,6 +256,21 @@ public static class MicrobeInternalCalculations
     }
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
+    /// <summary>
+    ///   Calculates the speed for a cell.
+    /// </summary>
+    /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
+    /// <param name="membraneType">The membrane type for this cell</param>
+    /// <param name="membraneRigidity">The membrane rigidity for this cell</param>
+    /// <param name="isBacteria">True if this cell does not have a nucleus</param>
+    /// <param name="totalSpecializationBonus">
+    ///     Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///     but potentially also cell adjacency and axon bonuses.
+    /// </param>
+    /// <param name="useEstimate">If true, uses </param>
+    /// <returns>
+    ///   A single speed value taking into account both thrust and drag.
+    /// </returns>
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
