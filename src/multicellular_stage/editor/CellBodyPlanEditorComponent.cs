@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 11;
+    public const ushort SERIALIZATION_VERSION = 12;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -688,6 +688,24 @@ public partial class CellBodyPlanEditorComponent :
         writer.Write((int)SelectedGameteTypeForPlayer);
         writer.Write(UsesManualPlayerLayout);
         writer.WriteObjectOrNull(UsesManualPlayerLayout ? manualFullLayout : null);
+
+        List<CellTemplate>? manualLayoutSourcesToSave = null;
+        if (UsesManualPlayerLayout)
+        {
+            manualLayoutSourcesToSave = new List<CellTemplate>(manualFullLayout.Count);
+            foreach (var manualCell in manualFullLayout)
+            {
+                if (!manualLayoutSources.TryGetValue(manualCell, out var source))
+                {
+                    manualLayoutSourcesToSave = null;
+                    break;
+                }
+
+                manualLayoutSourcesToSave.Add((CellTemplate)source.Data!.Clone());
+            }
+        }
+
+        writer.WriteObjectOrNull(manualLayoutSourcesToSave);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -790,6 +808,9 @@ public partial class CellBodyPlanEditorComponent :
             if (!UsesManualPlayerLayout)
                 manualFullLayout.Clear();
         }
+
+        if (version > 11)
+            savedManualLayoutSources = reader.ReadObjectOrNull<List<CellTemplate>>();
     }
 
     public override void OnEditorSpeciesSetup(Species species)
