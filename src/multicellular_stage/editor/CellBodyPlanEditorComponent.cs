@@ -510,13 +510,6 @@ public partial class CellBodyPlanEditorComponent :
         massBuddingMinSizeLabel.Text = buddingBalanceInfoText;
 
         UpdateCancelButtonVisibility();
-
-        /*// TODO: these two don't make sense
-        if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
-            StartLayoutCalculation();
-
-        if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
-            UpdateFullLayoutVisuals();*/
     }
 
     public override void _Process(double delta)
