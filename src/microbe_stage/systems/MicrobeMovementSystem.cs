@@ -300,9 +300,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
         }
 
-        force *= cellProperties.MembraneType.MovementFactor -
-            cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
-
         // Speed from organelles (right now primarily flagella) (these also take ATP otherwise they won't work)
         var organelleForce = 0.0f;
 
