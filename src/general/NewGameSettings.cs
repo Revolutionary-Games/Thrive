@@ -511,6 +511,33 @@ public partial class NewGameSettings : ControlWithInput
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
         settings.AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed;
 
+        // if the world environment is always reset, the player always needs a top-up of compounds after the editor
+        // Unfortunately, for this we need to copy every setting and just change the targeted one.
+        if (settings.AlwaysResetEnvironment)
+        {
+            var customDifficulty = new CustomDifficulty
+            {
+                MPMultiplier = settings.Difficulty.MPMultiplier,
+                AIMutationMultiplier = settings.Difficulty.AIMutationMultiplier,
+                CompoundDensity = settings.Difficulty.CompoundDensity,
+                PlayerDeathPopulationPenalty = settings.Difficulty.PlayerDeathPopulationPenalty,
+                PlayerSpeciesAIPopulationStrength = settings.Difficulty.PlayerSpeciesAIPopulationStrength,
+                GlucoseDecay = settings.Difficulty.GlucoseDecay,
+                EnergyCostMultiplier = settings.Difficulty.EnergyCostMultiplier,
+                PlayerAutoEvoStrength = settings.Difficulty.PlayerAutoEvoStrength,
+                ReproductionCompounds = ReproductionCompoundHandling.TopUpWithInitial,
+                FogOfWarMode = settings.Difficulty.FogOfWarMode,
+                FreeGlucoseCloud = settings.Difficulty.FreeGlucoseCloud,
+                SwitchSpeciesOnExtinction = settings.Difficulty.SwitchSpeciesOnExtinction,
+                LimitGrowthRate = settings.Difficulty.LimitGrowthRate,
+                InstantKillProtection = settings.Difficulty.InstantKillProtection,
+                OrganelleUnlocksEnabled = settings.Difficulty.OrganelleUnlocksEnabled,
+                SpawnCompatibleMateOnCall = settings.Difficulty.SpawnCompatibleMateOnCall,
+                ShowMatePosition = settings.Difficulty.ShowMatePosition,
+            };
+            settings.Difficulty = customDifficulty;
+        }
+
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
         settings.WorldSize = planetGenerationSettings.WorldSize;
