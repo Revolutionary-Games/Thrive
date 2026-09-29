@@ -1216,6 +1216,7 @@ text = "START_GAME"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer/LimitGrowth" to="." method="OnGrowthRateToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/InstantKillProtection" to="." method="OnInstantKillProtectionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer/OrganellesUnlocks" to="." method="OnOrganelleUnlocksToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer24/HBoxContainer/AlwaysResetEnvironment" to="." method="OnAlwaysResetEnvironmentToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer/EasterEggs" to="." method="OnEasterEggsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer/ExperimentalFeatures" to="." method="OnExperimentalFeaturesChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]

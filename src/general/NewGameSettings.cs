@@ -272,6 +272,8 @@ public partial class NewGameSettings : ControlWithInput
 
         OnExperimentalFeaturesChanged(experimentalFeatures.ButtonPressed);
 
+        OnAlwaysResetEnvironmentToggled(alwaysResetEnvironment.ButtonPressed);
+
         if (Descending)
         {
             backButton.Visible = false;
@@ -967,6 +969,7 @@ public partial class NewGameSettings : ControlWithInput
     private void OnEasterEggsToggled(bool pressed)
     {
         _ = pressed;
+        GD.Print("Easter Eggs toggled: " + pressed);
     }
 
     private void PerformanceNoteLinkClicked(Variant meta)
@@ -990,7 +993,8 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnAlwaysResetEnvironmentToggled(bool pressed)
     {
-        _ = pressed;
+        alwaysResetEnvironment.ButtonPressed = pressed;
+        reproductionCompoundsDropdown.Disabled = pressed;
     }
 
     private void OnPlanetSettingsChanged()
