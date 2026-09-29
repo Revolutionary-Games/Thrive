@@ -113,12 +113,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <returns>The created entity</returns>
     public Entity CreateVisualisationMicrobe(Species species)
     {
-        // TODO: should we have a separate spawn method to just spawn the visual aspects of a microbe?
-        // The downside would be duplicated code, but it could skip the component types that don't impact the visuals
-
-        // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
-        // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true, GameteType.All);
+        SpawnHelpers.SpawnMicrobeVisualizationOnly(this, dummyEnvironment, species, Vector3.Zero,
+            MulticellularSpawnState.Offspring);
 
         ProcessDelaySpawnedEntitiesImmediately();
 

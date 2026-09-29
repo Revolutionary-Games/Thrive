@@ -71,7 +71,15 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
     if (segEnd <= segStart || ray.transmittance < 0.01)
         return;
 
+#ifdef CLOUD_NEAR_WEIGHTED_STEPS
+    float dtNear = ray.thickness / float(CLOUD_BASE_STEPS);
+    float segLength = segEnd - segStart;
+    float stepCurve = CLOUD_STEP_EXPONENT * segLength / float(maxIter);
+    float stepPower = (CLOUD_STEP_EXPONENT - 1.0) / CLOUD_STEP_EXPONENT;
+    float t = segStart + dtNear * ray.jitter;
+#else
     float t = segStart + dtBase * ray.jitter;
+#endif
     bool coarse = true;
     int emptyRun = 0;
 
@@ -79,7 +87,11 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
         if (t >= segEnd)
             break;
 
+#ifdef CLOUD_NEAR_WEIGHTED_STEPS
+        float dtFine = max(dtNear, stepCurve * pow(max((t - segStart) / segLength, 1e-6), stepPower));
+#else
         float dtFine = dtBase * (1.0 + t * DISTANCE_LOD);
+#endif
         float dtCoarse = dtFine * COARSE_STEP_SCALE;
 
         vec3 rel = ray.ro + ray.rd * t - ray.center;
@@ -103,7 +115,13 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
             continue;
         }
 
+#ifdef CLOUD_DETAIL_LOD
+        float detailPeriod = CLOUD_TILE / DETAIL_FREQ;
+        float density = SampleDensityDetail(rel, shellFrac,
+            1.0 - smoothstep(detailPeriod * 0.25, detailPeriod * 0.5, dtFine));
+#else
         float density = SampleDensity(rel, shellFrac, false);
+#endif
 
         if (density <= 0.0) {
             if (++emptyRun > EMPTY_RUN_LIMIT) {

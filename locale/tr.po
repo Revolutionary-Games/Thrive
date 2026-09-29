@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-09 16:05+0300\n"
-"PO-Revision-Date: 2026-09-03 21:54+0000\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-09-23 13:55+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -168,21 +168,22 @@ msgstr "(soy tükendiğinde, oyunun bitmesi yerine, oyuna başka bir tür ile de
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Tüm Dünyaların Genel İstatistikleri"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Kuşaklar:[/b]\n"
 "   {0}\n"
 "[b]Toplam Tür Sayısı:[/b]\n"
 "   Ortalama {1}; Standart sapma {2}\n"
-"[b]Hayatta Olan Türler:[/b]\n"
+"[b]Toplam Saniye:[/b]\n"
 "   Ortalama {3}; Standart sapma {4}\n"
-"[b]Arazi Başına Tür Sayısı:[/b]\n"
+"[b]Hayatta Olan Türler:[/b]\n"
 "   Ortalama {5}; Standart sapma {6}\n"
-"[b]Arazi Başına Toplam Popülasyon:[/b]\n"
+"[b]Arazi Başına Tür Sayısı:[/b]\n"
 "   Ortalama {7}; Standart sapma {8}\n"
-"[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
+"[b]Arazi Başına Toplam Popülasyon:[/b]\n"
 "   Ortalama {9}; Standart sapma {10}\n"
+"[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
+"   Ortalama {11}; Standart sapma {12}\n"
 "\n"
 "[b]Genel Organel Verileri[/b]"
 
@@ -736,6 +737,39 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr "Hücreleri etrafta hareket ettirmek için manuel düzene geç"
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr "Hücreleri döndürme işlemi yalnızca ana yapı görünümünde yapılabilir"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr "Bu manuel hücre düzeni geçersiz, lütfen bunu editör sekmesinden inceleyin ve düzeltin veya manuel düzeni devre dışı bırakın"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü bağlanmamış hücreler var"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var . Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr "Bu düzen geçersiz çünkü çakışan hücreler var."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü çakışan ve bağlanmamış hücreler var."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr "Bu sekmede, oyun sırasında hücre koloniniz için kullanılan tam gerçek düzeni görüntüleyebilirsiniz ve manuel düzeni kullandığınızda bu düzeni değiştirebilirsiniz."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr "Taşımak için bir hücreye tıklayın. Hücreleri istediğiniz konuma taşıyın. Bütün hücreler, hala bedene bağlı kalmalıdır ve yapıda olması gerektiği konuma yakın olmalıdır. Organelleri düzenlemek, çakışmalara neden olabilir. Bu durumun da, manuel düzen geçerli hale gelmeden önce düzeltilmesi gerekir. Manuel düzenden çıkmak, bedende yapılan bütün değişiklikleri yoksayar."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Çok hücrelilerde, bitişiklik bonusu dahil, bu bölüm bütün hücrelerin özelleşme bonusunun ortalamasını gösterir.\n"
@@ -743,6 +777,9 @@ msgstr ""
 "En çok özelleşmiş hücre türü, %{2} değerindeki bonus ile {3} hücresidir.\n"
 "Bu bonusu arttırmak için hücre türlerini daha özelleşmiş hale getirin, en çok özelleşmiş hücre türünden daha fazla ekleyin\n"
 "ya da aynı tür hücreleri birbirine bitişik halde yerleştirin."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr "Lütfen bekleyin, beden düzeni hesaplanıyor"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -1410,7 +1447,7 @@ msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Bilinmeyen Eksen"
 
 msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
-msgstr ""
+msgstr "{0}s'lik bekleme süresi kaldığı için eş oluşturulmadı"
 
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Hatayı Panoya Kopyala"
@@ -1653,6 +1690,12 @@ msgstr "Nesne büyüklüğünü azalt"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
+
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Gamet B"
+
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Gamet"
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr "Spor"
@@ -2624,9 +2667,8 @@ msgstr "Galeri Görüntüleyicisi"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Oynanış Bilgileri"
 
-#, fuzzy
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "{0} hücresinin gameti"
+msgstr "{0} hücresinin gameti ({1})"
 
 msgid "GAMETE_CELL_TYPE"
 msgstr "Gamet hücre türü"
@@ -2640,17 +2682,14 @@ msgstr "Gamet türü B"
 msgid "GAMETE_PRODUCED"
 msgstr "gamet çoğaldı"
 
-#, fuzzy
 msgid "GAMETE_TYPE_A"
-msgstr "Gamet türü A"
+msgstr "A"
 
-#, fuzzy
 msgid "GAMETE_TYPE_ALL"
-msgstr "Gamet türü A"
+msgstr "Tümü"
 
-#, fuzzy
 msgid "GAMETE_TYPE_B"
-msgstr "Gamet türü B"
+msgstr "B"
 
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Oyuncunun hücre kolonisi ile çoğalmak için bu gamet türünü seçin"
@@ -3409,6 +3448,9 @@ msgstr "Sadece BH"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(sadece Bildiğimiz Hayat'a ait olan parçalar ve yetenekler ile sınırlar)"
 
+msgid "LAYOUT_TAB"
+msgstr "Düzen"
+
 msgid "LEAD_ARTIST"
 msgstr "Baş Sanatçı"
 
@@ -3722,7 +3764,7 @@ msgid "MASTODON_TOOLTIP"
 msgstr "Mastodon sosyal medya profilimizi ziyaret edin"
 
 msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
-msgstr ""
+msgstr "Oyuncu eş çağırdığı için dünyada bir eş oluştu"
 
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Diskteki önbelleğin alabileceği maksimum boyut (eğer önbellek aşırı artarsa, öğeler otomatik olarak kaldırılır)"
@@ -4678,6 +4720,12 @@ msgstr "Hiçbir olay meydana gelmedi"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Fosiller dizini bulunamadı"
 
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Eşeyli üremeyi kullanan bir organizmanın seçili bir gamet hücresi türüne sahip olması gereklidir."
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Gamet hücresi türü seçili değil"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Mevcut oyun, artık başarımlar için uygun değil"
 
@@ -4709,7 +4757,7 @@ msgid "NO_SUGGESTION"
 msgstr "Yok"
 
 msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
-msgstr ""
+msgstr "Eş için engelsiz bir pozisyon bulunamadı, yine de bir eş oluşturuluyor, ama bir yere takılıp kalabilir"
 
 msgid "NUCLEUS"
 msgstr "Çekirdek"
@@ -5365,6 +5413,15 @@ msgstr "Kayıt verisi okunuyor"
 
 msgid "READY"
 msgstr "Hazır"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr "Düzeni Sıfırla"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Varsayılan olarak oluşturulan düzene dönmek için bu düzeni sıfırla.\n"
+"Eğer düzeltmesi sıkıntılı çok fazla hata varsa, bu seçenek yararlı olabilir.\n"
+"Ancak bu seçenek, yaptığınız bütün manuel değişiklikleri geri alacaktır!"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Önerilen Thrive:"
@@ -6062,6 +6119,9 @@ msgstr "Fosfat oluştur"
 msgid "SPECIALIZATION_COLON"
 msgstr "Özelleşme:"
 
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Kopyasını oluşturmak için bir hücre türü seçin"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Özel Fare Tuşu 1"
 
@@ -6128,9 +6188,6 @@ msgstr "Hız:"
 
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Normal oyun hızı ve alternatif oyun hızı arasında geçiş yap"
-
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Kopyasını oluşturmak için bir hücre türü seçin"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Bir koloni kök hücresine dönüşmeden önce, daha iyi koşullar arayabilen, birden fazla isteğe bağlı olarak özelleşmiş yavru üretir."
@@ -7385,6 +7442,14 @@ msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Yerel yan çalıştırıcı iş parçacığı sayısını manuel olarak ayarla"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "Otomatik Düzen"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr ""
+"Türün otomatik düzeni kullanıp kullanmayacağını belirler. Eğer bu seçenek devre dışı bırakılırsa, manuel düzen manuel olarak hücreleri konumlandırır.\n"
+"Ancak bu seçenek, düzen sorunlarının manuel olarak düzeltilmesini gerektirir."
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Sanal pencere büyüklüğünü kullan"

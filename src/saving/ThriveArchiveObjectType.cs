@@ -317,7 +317,7 @@ public enum ThriveArchiveObjectType : uint
     JukeboxPlaybackState = 4397,
     ThriveopediaGameData = 4398,
     MulticellularReproductionActionData = 4399,
-    SporeCellTypeChangeActionData = 4400,
+    SpecialCellTypeChangeActionData = 4400,
     ComponentSpecializationFactor = 4401,
     TutorialMicrobeSpecializationTutorial = 4402,
     TutorialMulticellularSpecializationTutorial = 4403,

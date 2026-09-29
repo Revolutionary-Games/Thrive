@@ -705,7 +705,7 @@ public static class Constants
     public const float SKIP_TRYING_TO_ABSORB_RATIO = 0.0002f;
 
     /// <summary>
-    ///   How much compounds a cell can vent per second
+    ///   How many compounds a cell can vent per second
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
@@ -714,13 +714,30 @@ public static class Constants
     public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
 
     /// <summary>
+    ///   How many existing cell-to-cell adjacencies a player may break when repositioning a cell in the manual body
+    ///   plan layout editor.
+    /// </summary>
+    public const int MANUAL_LAYOUT_MAX_IGNORED_CELL_ADJACENCIES = 2;
+
+    /// <summary>
+    ///   The minimum number of a moved cell's existing adjacent cells that must remain adjacent in the manual body
+    ///   plan layout editor.
+    /// </summary>
+    public const int MANUAL_LAYOUT_MINIMUM_RETAINED_CELL_ADJACENCIES = 1;
+
+    /// <summary>
+    ///   How many empty hexes may separate cells that count as adjacent in the manual body plan layout editor.
+    /// </summary>
+    public const int MANUAL_LAYOUT_MAXIMUM_CELL_ADJACENCY_GAP = 2;
+
+    /// <summary>
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
     ///   bonus is granted)
     /// </summary>
     public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 10;
 
     /// <summary>
-    ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
+    ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now, but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
     public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.5f;
@@ -1109,7 +1126,7 @@ public static class Constants
     /// <summary>
     ///   The maximum cap for efficiency of digestion.
     /// </summary>
-    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
+    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 1.0f;
 
     public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
     public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
@@ -1128,7 +1145,7 @@ public static class Constants
     public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
     public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
 
-    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.9f;
 
     public const string LIPASE_ENZYME = "lipase";
 
@@ -1252,9 +1269,6 @@ public static class Constants
 
     public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
 
-    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
-
-    public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
     public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
 
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;

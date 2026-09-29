@@ -1143,14 +1143,16 @@ public class SimulationCache
     {
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
-        var totalToxinAmount = 0.0f;
-        var everyToxinScore = 0.0f;
+        var oxytoxyScore = 0.0f;
+        var cytotoxinScore = 0.0f;
+        var macrolideScore = 0.0f;
+        var channelInhibitorScore = 0.0f;
+        var oxygenMetabolismInhibitorScore = 0.0f;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
 
         var totalToxinOrganellesCount = 0;
-        var totalToxinTypesCount = 0;
         var pilusCount = 0.0f;
         var injectisomeCount = 0.0f;
         var defensivePilusCount = 0.0f;
@@ -1158,16 +1160,26 @@ public class SimulationCache
         var slimeJetsCount = 0.0f;
         var mucocystsCount = 0;
         var pullingCiliasCount = 0.0f;
-        var hasOxytoxy = false;
-        var hasCytotoxin = false;
-        var hasMacrolide = false;
-        var hasChannelInhibitor = false;
-        var hasOxygenMetabolismInhibitor = false;
 
         var cellTypes = species.CellTypes;
         for (var i = 0; i < cellTypes.Count; ++i)
         {
             var cellType = cellTypes[i];
+            var cells = species.EditorCells;
+            var cellTypeUsed = false;
+
+            foreach (var cellData in cells)
+            {
+                var cell = cellData.Data;
+                if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                {
+                    cellTypeUsed = true;
+                    break;
+                }
+            }
+
+            if (!cellTypeUsed)
+                continue;
 
             var cellTypeToxinAmount = 0.0f;
             var cellTypeToxinOrganellesCount = 0;
@@ -1181,6 +1193,11 @@ public class SimulationCache
             var cellTypeMucocystsCount = 0;
             var cellTypePullingCiliasCount = 0;
             var cellTypeSlimeJetsMultiplier = 1.0f;
+            var cellTypeHasOxytoxy = false;
+            var cellTypeHasCytotoxin = false;
+            var cellTypeHasMacrolide = false;
+            var cellTypeHasChannelInhibitor = false;
+            var cellTypeHasOxygenMetabolismInhibitor = false;
 
             var organelles = cellType.Organelles;
             foreach (var organelle in organelles)
@@ -1238,35 +1255,35 @@ public class SimulationCache
 
                     // Big branch to calculate scores for each toxin type
                     var activeToxin = organelle.GetActiveToxin();
-                    if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
+                    if (activeToxin == ToxinType.Oxytoxy && !cellTypeHasOxytoxy)
                     {
                         cellTypeToxinTypesCount += 1;
-                        hasOxytoxy = true;
+                        cellTypeHasOxytoxy = true;
                     }
 
-                    if (activeToxin == ToxinType.Cytotoxin && !hasCytotoxin)
+                    if (activeToxin == ToxinType.Cytotoxin && !cellTypeHasCytotoxin)
                     {
                         cellTypeToxinTypesCount += 1;
-                        hasCytotoxin = true;
+                        cellTypeHasCytotoxin = true;
                     }
 
-                    if (activeToxin == ToxinType.Macrolide && !hasMacrolide)
+                    if (activeToxin == ToxinType.Macrolide && !cellTypeHasMacrolide)
                     {
                         cellTypeToxinTypesCount += 1;
-                        hasMacrolide = true;
+                        cellTypeHasMacrolide = true;
                     }
 
-                    if (activeToxin == ToxinType.ChannelInhibitor && !hasChannelInhibitor)
+                    if (activeToxin == ToxinType.ChannelInhibitor && !cellTypeHasChannelInhibitor)
                     {
                         cellTypeToxinTypesCount += 1;
-                        hasChannelInhibitor = true;
+                        cellTypeHasChannelInhibitor = true;
                     }
 
                     if (activeToxin == ToxinType.OxygenMetabolismInhibitor &&
-                        !hasOxygenMetabolismInhibitor)
+                        !cellTypeHasOxygenMetabolismInhibitor)
                     {
                         cellTypeToxinTypesCount += 1;
-                        hasOxygenMetabolismInhibitor = true;
+                        cellTypeHasOxygenMetabolismInhibitor = true;
                     }
 
                     cellTypeToxicity += organelle.GetActiveToxicity();
@@ -1275,11 +1292,11 @@ public class SimulationCache
                 }
             }
 
-            // There are likely more accurate ways to approximate the real gameplay effects in the future, but this
-            // will do for now
-            totalToxinTypesCount += cellTypeToxinTypesCount;
-
-            var cells = species.EditorCells;
+            var cellTypeAverageToxicity = cellTypeToxinOrganellesCount > 0 ?
+                cellTypeToxicity / cellTypeToxinOrganellesCount :
+                0.0f;
+            var cellTypeToxinPresence = new ToxinPresence(cellTypeHasOxytoxy, cellTypeHasCytotoxin,
+                cellTypeHasMacrolide, cellTypeHasChannelInhibitor, cellTypeHasOxygenMetabolismInhibitor);
 
             foreach (var hex in cells)
             {
@@ -1298,33 +1315,30 @@ public class SimulationCache
                     var specializationBonus = cellType.CellTypeSpecializationBonus *
                         CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
-                    totalToxinAmount += cellTypeToxinAmount * specializationBonus;
+                    if (cellTypeToxinTypesCount > 0)
+                    {
+                        var cellToxinScore = cellTypeToxinAmount * specializationBonus *
+                            Constants.AUTO_EVO_TOXIN_PREDATION_SCORE / cellTypeToxinTypesCount;
+
+                        // Each cell cycles through its own toxin types using its own average toxicity.
+                        var cellToxinScores = CalculateToxinToolScores(cellTypeAverageToxicity, cellToxinScore,
+                            in cellTypeToxinPresence);
+                        oxytoxyScore += cellToxinScores.Oxytoxy;
+                        cytotoxinScore += cellToxinScores.Cytotoxin;
+                        macrolideScore += cellToxinScores.Macrolide;
+                        channelInhibitorScore += cellToxinScores.ChannelInhibitor;
+                        oxygenMetabolismInhibitorScore += cellToxinScores.OxygenMetabolismInhibitor;
+                    }
+
                     slimeJetsCount += cellTypeSlimeJetsCount * specializationBonus * cellTypeSlimeJetsMultiplier;
                     pullingCiliasCount += cellTypePullingCiliasCount * specializationBonus;
                 }
             }
         }
 
-        // Matching current gameplay mechanics of the toxin organelles:
-
-        // Averaging out toxicity, as gameplay also does
+        // Keep the species-wide average for downstream hit-rate and status-effect approximations.
         if (totalToxinOrganellesCount != 0)
             averageToxicity = totalToxicity / totalToxinOrganellesCount;
-
-        // Pooled production of toxin compound, equally distributed among all available toxin types (firing in sequence)
-        if (totalToxinTypesCount != 0)
-        {
-            everyToxinScore = totalToxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE / totalToxinTypesCount;
-        }
-
-        var toxinPresence = new ToxinPresence(hasOxytoxy, hasCytotoxin, hasMacrolide, hasChannelInhibitor,
-            hasOxygenMetabolismInhibitor);
-        var toxinScores = CalculateToxinToolScores(averageToxicity, everyToxinScore, in toxinPresence);
-        var oxytoxyScore = toxinScores.Oxytoxy;
-        var cytotoxinScore = toxinScores.Cytotoxin;
-        var macrolideScore = toxinScores.Macrolide;
-        var channelInhibitorScore = toxinScores.ChannelInhibitor;
-        var oxygenMetabolismInhibitorScore = toxinScores.OxygenMetabolismInhibitor;
 
         // Having lots of mucocysts and pulling cilias doesn't really help much
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
