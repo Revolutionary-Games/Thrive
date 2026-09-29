@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 11;
+    public const ushort SERIALIZATION_VERSION = 12;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -433,8 +433,6 @@ public partial class CellBodyPlanEditorComponent :
 
         billboardScene = GD.Load<PackedScene>("res://src/multicellular_stage/CellBillboard.tscn");
 
-        ApplySelectionMenuTab();
-
         RegisterTooltips();
     }
 
@@ -464,6 +462,11 @@ public partial class CellBodyPlanEditorComponent :
 
             editedMicrobeCells = newLayout;
 
+            // These mappings use runtime object identities and therefore aren't serialized. Restore them before any
+            // loaded manual layout is displayed or synchronized with the compact editor layout.
+            if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
+                RestoreManualLayoutMappings();
+
             UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
             UpdateArrow(false);
 
@@ -475,6 +478,10 @@ public partial class CellBodyPlanEditorComponent :
 
             UpdateAnisogamyStateAndCost();
         }
+
+        // Applying the saved selection can enter the full layout preview. Defer this until Init has assigned the
+        // owning editor and restored the layout data, as the preview needs to create editor-owned hex nodes.
+        ApplySelectionMenuTab();
 
         float sexualBonus = MathF.Round(100 * (1 - Constants.SEXUAL_REPRODUCTION_MP_COST_FACTOR), 1);
 
@@ -503,13 +510,6 @@ public partial class CellBodyPlanEditorComponent :
         massBuddingMinSizeLabel.Text = buddingBalanceInfoText;
 
         UpdateCancelButtonVisibility();
-
-        /*// TODO: these two don't make sense
-        if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
-            StartLayoutCalculation();
-
-        if (UsesManualPlayerLayout && manualFullLayout.Count > 0)
-            UpdateFullLayoutVisuals();*/
     }
 
     public override void _Process(double delta)
@@ -687,7 +687,25 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectOrNull(GameteBCellType);
         writer.Write((int)SelectedGameteTypeForPlayer);
         writer.Write(UsesManualPlayerLayout);
-        writer.WriteObject(manualFullLayout);
+        writer.WriteObjectOrNull(UsesManualPlayerLayout ? manualFullLayout : null);
+
+        List<CellTemplate>? manualLayoutSourcesToSave = null;
+        if (UsesManualPlayerLayout)
+        {
+            manualLayoutSourcesToSave = new List<CellTemplate>(manualFullLayout.Count);
+            foreach (var manualCell in manualFullLayout)
+            {
+                if (!manualLayoutSources.TryGetValue(manualCell, out var source))
+                {
+                    manualLayoutSourcesToSave = null;
+                    break;
+                }
+
+                manualLayoutSourcesToSave.Add((CellTemplate)source.Data!.Clone());
+            }
+        }
+
+        writer.WriteObjectOrNull(manualLayoutSourcesToSave);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -783,8 +801,16 @@ public partial class CellBodyPlanEditorComponent :
 
         if (version > 10)
         {
-            manualFullLayout = reader.ReadObject<List<HexWithData<CellTemplate>>>();
+            manualFullLayout = reader.ReadObjectOrNull<List<HexWithData<CellTemplate>>>() ?? [];
+
+            // Older saves wrote this list even in automatic mode. It is stale in that mode and must not prevent a
+            // freshly generated layout from being copied when manual mode is enabled later.
+            if (!UsesManualPlayerLayout)
+                manualFullLayout.Clear();
         }
+
+        if (version > 11)
+            savedManualLayoutSources = reader.ReadObjectOrNull<List<CellTemplate>>();
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -822,17 +848,7 @@ public partial class CellBodyPlanEditorComponent :
                 manualFullLayout.Add(copied);
             }
 
-            RebuildFullLayoutGrowthOrderSources(manualFullLayout);
-
-            // The saved gameplay layout has clones, so none of its cell wrappers match the compact editor
-            // cells by reference. The gameplay layout is produced from the compact layout in growth order, and the
-            // manual layout preserves that order when it is saved, so matching by index restores the correspondence.
-            // This correspondence is needed later when a compact cell is added or removed: the manual list must keep
-            // the player's positions for existing cells while adding a new cell at the origin or removing its clone.
-            var sources = editedMicrobeCells.AsModifiable().ToList();
-            var manualCells = manualFullLayout.ToList();
-            for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
-                SetManualLayoutSource(manualCells[i], sources[i]);
+            RestoreManualLayoutMappings();
         }
 
         // Ignore invalid species data

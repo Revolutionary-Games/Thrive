@@ -61,6 +61,13 @@ public partial class CellBodyPlanEditorComponent
     /// </summary>
     private List<HexWithData<CellTemplate>> manualFullLayout = [];
 
+    /// <summary>
+    ///   Persisted descriptors for the compact cells corresponding to <see cref="manualFullLayout"/>. These are
+    ///   needed because the manual list can be reordered by moving cells, while the compact layout keeps its own
+    ///   order.
+    /// </summary>
+    private List<CellTemplate>? savedManualLayoutSources;
+
     private Task<LayoutCalculationResult>? pendingLayoutCalculation;
     private bool layoutCalculationRequested;
     private bool layoutPreviewActive;
@@ -207,6 +214,75 @@ public partial class CellBodyPlanEditorComponent
     {
         manualLayoutSources[manualCell] = source;
         manualLayoutSourceData[manualCell] = (source.Position, source.Data!.ModifiableCellType);
+    }
+
+    private void RestoreManualLayoutMappings()
+    {
+        manualLayoutSources.Clear();
+        manualLayoutSourceData.Clear();
+
+        var sources = editedMicrobeCells.AsModifiable().ToList();
+        var manualCells = manualFullLayout.ToList();
+
+        if (savedManualLayoutSources is { Count: var sourceCount } && sourceCount == manualCells.Count)
+        {
+            var usedSources = new HashSet<HexWithData<CellTemplate>>(ReferenceEqualityComparer.Instance);
+            bool restoredAllMappings = true;
+
+            for (int i = 0; i < manualCells.Count; ++i)
+            {
+                var savedSource = savedManualLayoutSources[i];
+                var source = sources.FirstOrDefault(candidate => !usedSources.Contains(candidate) &&
+                    candidate.Position == savedSource.Position &&
+                    ReferenceEquals(candidate.Data!.ModifiableCellType, savedSource.ModifiableCellType));
+
+                if (source == null)
+                {
+                    restoredAllMappings = false;
+                    break;
+                }
+
+                usedSources.Add(source);
+                SetManualLayoutSource(manualCells[i], source);
+            }
+
+            if (restoredAllMappings)
+            {
+                RebuildManualLayoutGrowthOrderSources();
+                savedManualLayoutSources = null;
+                return;
+            }
+
+            manualLayoutSources.Clear();
+            manualLayoutSourceData.Clear();
+        }
+
+        // Saves from before the explicit source mapping was added have no stable identity to restore. Their manual
+        // layout was kept in growth order, so index matching remains the best compatibility fallback.
+        for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
+            SetManualLayoutSource(manualCells[i], sources[i]);
+
+        RebuildManualLayoutGrowthOrderSources();
+        savedManualLayoutSources = null;
+    }
+
+    private void RebuildManualLayoutGrowthOrderSources()
+    {
+        fullLayoutGrowthOrderSources.Clear();
+        fullLayoutGrowthOrderIndices.Clear();
+
+        var growthOrder = growthOrderGUI
+            .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!).Select(i => i.Data!).ToList();
+
+        foreach (var pair in manualLayoutSources)
+        {
+            var index = growthOrder.IndexOf(pair.Value.Data!);
+            if (index < 0)
+                continue;
+
+            fullLayoutGrowthOrderSources[pair.Key] = pair.Value.Data!;
+            fullLayoutGrowthOrderIndices[pair.Key] = index;
+        }
     }
 
     /// <summary>
