@@ -478,7 +478,14 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        if (MovingPlacedMetaball != null || (activeActionName != null && activeActionName != string.Empty))
+        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
+        if (!Visible)
+            return false;
+
+        if (PreviewMode)
+            return false;
+
+        if (MovingPlacedMetaball != null || !string.IsNullOrEmpty(activeActionName))
         {
             throw new Exception("Tried to use a metaball transform tool while placing a metaball");
         }
@@ -495,13 +502,6 @@ public partial class MetaballBodyEditorComponent :
             metaballSelectedForMoving = null;
             moveTool.EndDisplay();
         }
-
-        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
-        if (!Visible)
-            return false;
-
-        if (PreviewMode)
-            return false;
 
         GetMouseMetaball(out _, out var metaball);
 
