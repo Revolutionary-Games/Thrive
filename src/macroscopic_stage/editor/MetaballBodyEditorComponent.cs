@@ -501,7 +501,7 @@ public partial class MetaballBodyEditorComponent :
         GetMouseMetaball(out _, out var metaball);
 
         // Metaball needs to have a parent, otherwise there's nothing to move it around
-        if (metaball == null || metaball.Parent == null)
+        if (metaball?.Parent == null)
             return false;
 
         moveTool.Display(metaball.Parent.Position, metaball.Position);

@@ -160,8 +160,6 @@ public partial class MetaballEditorMoveTool : Node3D
             rotationPlane = new Plane(Vector3.Up, metaballPos);
         }
 
-        var projectedDistance = metaballPos.DistanceTo(rotationOrigin);
-
         rotationOrigin = rotationPlane.Project(parentOrigin);
         initialRotation = (metaballPos - rotationOrigin) * combinedScale / parentPos.DistanceTo(metaballPos);
 
