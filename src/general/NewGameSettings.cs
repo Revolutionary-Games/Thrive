@@ -504,16 +504,12 @@ public partial class NewGameSettings : ControlWithInput
         }
         else
         {
-            settings.Difficulty = difficulty.Clone();
+            settings.Difficulty = difficulty;
         }
 
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
         settings.AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed;
-
-        // if the world environment is always reset, the player always needs a top-up of compounds after the editor
-        if (settings.AlwaysResetEnvironment)
-            settings.Difficulty.ReproductionCompounds = ReproductionCompoundHandling.TopUpWithInitial;
 
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
