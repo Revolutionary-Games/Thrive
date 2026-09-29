@@ -281,14 +281,7 @@ public static class MicrobeInternalCalculations
         // This is why Auto-Evo just estimates the value of the output instead
         if (!useEstimate)
         {
-            var averageDensity = CalculateAverageDensity(organelles);
-
-            var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
-
-            var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-                averageDensity, isBacteria);
-
-            shapeMass = shape.GetMass();
+            shapeMass = CalculateShapeMass(organelles, membraneType, isBacteria);
         }
 
         float organelleMovementForce = 0;
@@ -380,6 +373,18 @@ public static class MicrobeInternalCalculations
         float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
         return finalSpeed;
+    }
+
+    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool isBacteria)
+    {
+        var averageDensity = CalculateAverageDensity(organelles);
+
+        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+            averageDensity, isBacteria);
+
+        return shape.GetMass();
     }
 
     public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount,
