@@ -969,7 +969,6 @@ public partial class NewGameSettings : ControlWithInput
     private void OnEasterEggsToggled(bool pressed)
     {
         _ = pressed;
-        GD.Print("Easter Eggs toggled: " + pressed);
     }
 
     private void PerformanceNoteLinkClicked(Variant meta)
