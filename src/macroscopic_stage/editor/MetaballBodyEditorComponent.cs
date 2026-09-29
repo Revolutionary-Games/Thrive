@@ -155,9 +155,8 @@ public partial class MetaballBodyEditorComponent :
 
             if (selectedTransformTool == TransformTool.None)
             {
-                moveTool.StopDragging();
                 metaballSelectedForMoving = null;
-                moveTool.Visible = false;
+                moveTool.EndDisplay();
             }
             else
             {
@@ -222,11 +221,6 @@ public partial class MetaballBodyEditorComponent :
             // TODO: refresh ATP balance etc. if added to this editor
 
             CalculateAndDisplayToleranceWarnings();
-        }
-
-        if (metaballSelectedForMoving != null && moveTool.IsDragging)
-        {
-            moveTool.Position = metaballSelectedForMoving.Parent!.Position;
         }
 
         // Show the ball that is about to be placed
@@ -443,6 +437,11 @@ public partial class MetaballBodyEditorComponent :
             return true;
         }
 
+        if (metaballSelectedForMoving != null)
+        {
+            return true;
+        }
+
         GetMouseMetaball(out _, out var metaball);
 
         var metaballs = new List<MacroscopicMetaball>();
@@ -474,15 +473,22 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        if (metaballSelectedForMoving != null && moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position, metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f + metaballSelectedForMoving.Parent.Size * 0.5f))
+        if (MovingPlacedMetaball != null || (activeActionName != null && activeActionName != string.Empty))
         {
-            // Returning false here so that the input doesn't get consumed
+            throw new Exception("Tried to use a metaball transform tool while placing a metaball");
+        }
+
+        if (metaballSelectedForMoving != null && moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position,
+                metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f
+                + metaballSelectedForMoving.Parent.Size * 0.5f))
+        {
+            // Return false to prevent the input from being consumed
             return false;
         }
         else
         {
             metaballSelectedForMoving = null;
-            moveTool.Visible = false;
+            moveTool.EndDisplay();
         }
 
         // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
@@ -492,19 +498,13 @@ public partial class MetaballBodyEditorComponent :
         if (PreviewMode)
             return false;
 
-        if (MovingPlacedMetaball != null)
-        {
-            return false;
-        }
-
         GetMouseMetaball(out _, out var metaball);
 
-        if (metaball == null)
+        // Metaball needs to have a parent, otherwise there's nothing to move it around
+        if (metaball == null || metaball.Parent == null)
             return false;
 
-        // TBD: add this stuff to InitializeDisplay?
-        moveTool.Visible = true;
-        moveTool.InitializeDisplay(metaball.Parent!.Position, metaball.Position);
+        moveTool.Display(metaball.Parent.Position, metaball.Position);
 
         metaballSelectedForMoving = metaball;
         return true;

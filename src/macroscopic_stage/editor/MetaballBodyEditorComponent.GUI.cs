@@ -34,6 +34,11 @@ public partial class MetaballBodyEditorComponent
 
     private void ChangeCurrentTransformTool(int to)
     {
+        if (MovingPlacedMetaball != null)
+        {
+            return;
+        }
+
         var newTool = (TransformTool)to;
 
         if (newTool == SelectedTransformTool)

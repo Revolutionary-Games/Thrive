@@ -2,7 +2,8 @@ using Godot;
 using System;
 
 /// <summary>
-///   Arrows that allow the player to move metaballs in the macroscopic editor
+///   Arrows that allow the player to move metaballs in the macroscopic editor. Can probably be repurposed to move
+///   anything else.
 /// </summary>
 public partial class MetaballEditorMoveTool : Node3D
 {
@@ -64,9 +65,16 @@ public partial class MetaballEditorMoveTool : Node3D
         return newPos;
     }
 
-    public void InitializeDisplay(Vector3 parentPos, Vector3 metaballPos)
+    public void Display(Vector3 parentPos, Vector3 metaballPos)
     {
         SetTorusRotations(parentPos, metaballPos);
+    }
+
+    public void EndDisplay()
+    {
+        Visible = false;
+
+        StopDragging();
     }
 
     public bool TryStartDragging(Vector3 parentPos, Vector3 metaballPos, float combinedScale)
@@ -193,6 +201,7 @@ public partial class MetaballEditorMoveTool : Node3D
     private void SetTorusRotations(Vector3 parentPos, Vector3 metaballPos)
     {
         Position = parentPos;
+        Visible = true;
 
         horizontalRing.Position = new Vector3(0.0f, metaballPos.Y - parentPos.Y, 0.0f);
 
