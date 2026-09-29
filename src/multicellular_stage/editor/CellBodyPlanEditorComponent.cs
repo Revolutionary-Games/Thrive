@@ -107,6 +107,9 @@ public partial class CellBodyPlanEditorComponent :
     private Label layoutExplanationLabel = null!;
 
     [Export]
+    private Label layoutShiftNoteLabel = null!;
+
+    [Export]
     private Control layoutCalculationSpinner = null!;
 
     [Export]
