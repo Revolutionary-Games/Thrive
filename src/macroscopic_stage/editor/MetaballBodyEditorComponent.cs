@@ -504,7 +504,6 @@ public partial class MetaballBodyEditorComponent :
 
         // TBD: add this stuff to InitializeDisplay?
         moveTool.Visible = true;
-        moveTool.Position = metaball.Parent!.Position;
         moveTool.InitializeDisplay(metaball.Parent!.Position, metaball.Position);
 
         metaballSelectedForMoving = metaball;
@@ -529,9 +528,19 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        metaballSelectedForMoving.Position = moveTool.GetDraggingPosition();
+        var multiAction = GetMultiActionWithOccupancies([(moveTool.GetDraggingPosition(),
+            (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent)], [metaballSelectedForMoving], true);
+
         moveTool.StopDragging();
-        UpdateAlreadyPlacedVisuals();
+
+        if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
+        {
+            CancelCurrentAction();
+            Editor.OnInsufficientMP(false);
+            return true;
+        }
+
+        EnqueueAction(multiAction);
 
         return true;
     }

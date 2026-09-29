@@ -36,9 +36,9 @@ public partial class MetaballBodyEditorComponent
     {
         var newTool = (TransformTool)to;
 
-        // To make it possible to turn tools off
         if (newTool == SelectedTransformTool)
         {
+            // Toggle the tool off
             SelectedTransformTool = TransformTool.None;
             return;
         }

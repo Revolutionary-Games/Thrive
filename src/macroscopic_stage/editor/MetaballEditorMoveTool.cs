@@ -167,6 +167,15 @@ public partial class MetaballEditorMoveTool : Node3D
         ring.MaterialOverride = highlightMaterial;
     }
 
+    /// <summary>
+    ///   Finds the angle between the ray's intersection on the <see cref="rotationPlane"/> and
+    ///   <see cref="initialRotation"/>. The angle is calculated around <see cref="rotationOrigin"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Use a camera-projected ray to calculate the angle to the point the player's cursor is pointing at.
+    ///   </para>
+    /// </remarks>
     private float ProjectRayAndGetRotation(Vector3 rayOrigin, Vector3 rayDir)
     {
         var intersection = rotationPlane.IntersectsRay(rayOrigin, rayDir);
@@ -183,6 +192,8 @@ public partial class MetaballEditorMoveTool : Node3D
 
     private void SetTorusRotations(Vector3 parentPos, Vector3 metaballPos)
     {
+        Position = parentPos;
+
         horizontalRing.Position = new Vector3(0.0f, metaballPos.Y - parentPos.Y, 0.0f);
 
         var projectedVectorToMetaball = metaballPos - parentPos;
