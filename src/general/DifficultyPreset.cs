@@ -62,7 +62,7 @@ public class DifficultyPreset : RegistryType, IDifficulty
     public bool FreeGlucoseCloud { get; private set; }
 
     [JsonProperty]
-    public ReproductionCompoundHandling ReproductionCompounds { get; private set; }
+    public ReproductionCompoundHandling ReproductionCompounds { get; set; }
 
     [JsonProperty]
     public bool SwitchSpeciesOnExtinction { get; private set; }

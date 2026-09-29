@@ -56,7 +56,7 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     /// <summary>
     ///   Sets what happens when the player reproduces to their stored compounds
     /// </summary>
-    public ReproductionCompoundHandling ReproductionCompounds { get; }
+    public ReproductionCompoundHandling ReproductionCompounds { get; set; }
 
     /// <summary>
     ///   Whether the player is allowed to switch to a related species on extinction (so can continue instead of
