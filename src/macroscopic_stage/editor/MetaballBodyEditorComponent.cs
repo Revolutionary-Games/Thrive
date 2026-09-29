@@ -142,8 +142,6 @@ public partial class MetaballBodyEditorComponent :
     /// </summary>
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
 
-    protected override bool ForceHideHover => false;
-
     public TransformTool SelectedTransformTool
     {
         get => selectedTransformTool;
@@ -164,6 +162,8 @@ public partial class MetaballBodyEditorComponent :
             }
         }
     }
+
+    protected override bool ForceHideHover => false;
 
     public override void _Ready()
     {
@@ -784,8 +784,8 @@ public partial class MetaballBodyEditorComponent :
 
     private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace)
     {
-        //if (MovingPlacedMetaball == null && activeActionName == null)
-        //    return;
+        if (MovingPlacedMetaball == null && activeActionName == null)
+            return;
 
         var metaball = new MacroscopicMetaball(GetEditedCellDataIfEdited(cellToPlace))
         {

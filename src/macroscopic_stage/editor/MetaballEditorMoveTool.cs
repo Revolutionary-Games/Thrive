@@ -1,5 +1,5 @@
+﻿using System;
 using Godot;
-using System;
 
 /// <summary>
 ///   Arrows that allow the player to move metaballs in the macroscopic editor. Can probably be repurposed to move
