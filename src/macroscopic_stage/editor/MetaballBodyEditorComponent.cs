@@ -159,6 +159,11 @@ public partial class MetaballBodyEditorComponent :
             else
             {
                 ClearSelectedAction();
+
+                if (MovingPlacedMetaball != null)
+                {
+                    OnCurrentActionCanceled();
+                }
             }
         }
     }
