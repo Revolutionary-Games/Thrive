@@ -60,9 +60,8 @@ public partial class MetaballEditorMoveTool : Node3D
         var camera = viewPort.GetCamera3D();
 
         var angle = ProjectRayAndGetRotation(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
-        var newPos = rotationOrigin + initialRotation.Rotated(rotationPlane.Normal, angle - angleOffset);
 
-        return newPos;
+        return rotationOrigin + initialRotation.Rotated(rotationPlane.Normal, angle - angleOffset);
     }
 
     public void Display(Vector3 parentPos, Vector3 metaballPos)
