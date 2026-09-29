@@ -359,7 +359,7 @@ public partial class CellBodyPlanEditorComponent
 
         foreach (var cell in CurrentFullLayout)
         {
-            var positions = GetFullCellPositionsGlobal(cell);
+            var positions = GetFullCellPositionsGlobal(cell, UsesManualPlayerLayout);
 
             // Detect overlaps globally here
             foreach (var globalPosition in positions)
@@ -509,7 +509,7 @@ public partial class CellBodyPlanEditorComponent
         var grownPositions = new HashSet<Hex>();
         foreach (var cell in orderedCells)
         {
-            var positions = GetFullCellPositionsGlobal(cell);
+            var positions = GetFullCellPositionsGlobal(cell, UsesManualPlayerLayout);
             bool touchesEarlierCell = positions.Any(position => Hex.HexNeighbourOffset.Values.Any(offset =>
                 grownPositions.Contains(position + offset)));
 
@@ -523,7 +523,7 @@ public partial class CellBodyPlanEditorComponent
     }
 
     // TODO: this should use a temporary work list, and callers can then duplicate it when needed
-    private List<Hex> GetFullCellPositionsGlobal(HexWithData<CellTemplate> cell)
+    private List<Hex> GetFullCellPositionsGlobal(HexWithData<CellTemplate> cell, bool performOriginShift)
     {
         var positions = new List<Hex>();
 
@@ -539,9 +539,11 @@ public partial class CellBodyPlanEditorComponent
             }
         }
 
-        // We have to run reposition to origin equivalent logic here! as otherwise the layout might not be valid
-        // after applying edits
-        Hex originShift = CalculateExpectedLayoutShift(type.ModifiableOrganelles);
+        // The automatic layout is generated from the cell types' current, unshifted organelle positions. Applying
+        // the origin shift there would therefore validate a different layout than the one generated. Manual layouts
+        // need the shift because it is applied when the species leaves the editor.
+        // So we only conditionally apply the origin shift.
+        Hex originShift = performOriginShift ? CalculateExpectedLayoutShift(type.ModifiableOrganelles) : new Hex(0, 0);
 
         positions.Clear();
 
@@ -652,7 +654,7 @@ public partial class CellBodyPlanEditorComponent
 
             // TODO: it would be more efficient if this data was cached (or at least we didn't generate the list
             // each time), luckily this is rarely called
-            if (GetFullCellPositionsGlobal(cell).Contains(position))
+            if (GetFullCellPositionsGlobal(cell, UsesManualPlayerLayout).Contains(position))
                 return cell;
         }
 
@@ -679,13 +681,13 @@ public partial class CellBodyPlanEditorComponent
         {
             foreach (var cell in otherCells)
             {
-                var positions = GetFullCellPositionsGlobal(cell);
+                var positions = GetFullCellPositionsGlobal(cell, true);
 
                 foreach (var finalPosition in positions)
                     occupiedByOtherCells.Add(finalPosition);
             }
 
-            movingPositions = GetFullCellPositionsGlobal(moving);
+            movingPositions = GetFullCellPositionsGlobal(moving, true);
         }
         finally
         {
@@ -731,8 +733,10 @@ public partial class CellBodyPlanEditorComponent
                 continue;
 
             ++expectedAdjacencies;
-            if (CellPositionsAreAdjacent(cellPositions, GetFullCellPositionsGlobal(otherCell)))
+            if (CellPositionsAreAdjacent(cellPositions, GetFullCellPositionsGlobal(otherCell, true)))
+            {
                 ++retainedAdjacencies;
+            }
         }
 
         if (expectedAdjacencies == 0)
