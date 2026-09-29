@@ -530,7 +530,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else if (!layoutCalculationRequested)
             {
-                SetFullLayoutPreview(calculation.Result.Gameplay);
+                SetFullLayoutPreview(calculation.Result.Wrapped);
                 RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
                 if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
                     CopyLayout(fullLayoutPreview, manualFullLayout);
