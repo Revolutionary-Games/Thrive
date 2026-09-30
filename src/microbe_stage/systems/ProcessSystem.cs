@@ -363,9 +363,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
-                    out var cost1, out var cost2))
+                    out var cost1, out var cost2, out var cost3))
             {
-                result.AddConsumption(organelle.Definition.InternalName, (cost1 + cost2) * energyCostMultiplier);
+                result.AddConsumption(organelle.Definition.InternalName, (cost1 + cost2 + cost3) *
+                    energyCostMultiplier);
             }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
@@ -1016,11 +1017,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // Take special cell components that take energy into account
         if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
-                out var flagellumCost, out var actomyosinCost))
+                out var flagellumCost, out var actomyosinCost, out var axonCost))
         {
-            movementATPConsumption += flagellumCost + actomyosinCost;
+            movementATPConsumption += flagellumCost + actomyosinCost + axonCost;
             result.Actomyosin += actomyosinCost;
             result.Flagella += flagellumCost;
+            result.Axon += axonCost;
         }
 
         if (includeMovementCost && organelle.Definition.HasCiliaComponent)
@@ -1075,6 +1077,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             result.Flagella *= energyCostMultiplier;
             result.Actomyosin *= energyCostMultiplier;
             result.Cilia *= energyCostMultiplier;
+            result.Axon *= energyCostMultiplier;
         }
 
         result.Osmoregulation += osmoregulation;
@@ -1097,18 +1100,20 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   Gets the movement cost of an organelle. Note that for actomyosin this assumes the cell is in a colony,
-    ///   otherwise the actomyosin cost is zero.
+    ///   Gets the movement cost of an organelle. Note that for actomyosin and axons this assumes the cell is in a
+    ///   colony, otherwise the costs are zero.
     /// </summary>
     /// <returns>True if there's a movement cost</returns>
     private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, IReadOnlyOrganelleTemplate organelle,
-        Vector3 onlyMovementInDirection, out float flagellumCost, out float actomyosinCost)
+        Vector3 onlyMovementInDirection, out float flagellumCost, out float actomyosinCost, out float axonCost)
     {
         if (!includeMovementCost ||
-            (!organelle.Definition.HasMovementComponent && !organelle.Definition.HasActomyosinComponent))
+            (!organelle.Definition.HasMovementComponent && !organelle.Definition.HasActomyosinComponent &&
+                !organelle.Definition.HasAxonFeature))
         {
             flagellumCost = 0;
             actomyosinCost = 0;
+            axonCost = 0;
             return false;
         }
 
@@ -1116,21 +1121,30 @@ public partial class ProcessSystem : BaseSystem<World, float>
         {
             actomyosinCost = Constants.ACTOMYOSIN_ENERGY_COST;
             flagellumCost = 0;
+            axonCost = 0;
         }
         else if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
         {
             flagellumCost = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
                 * Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE;
             actomyosinCost = 0;
+            axonCost = 0;
+        }
+        else if (organelle.Definition.HasAxonFeature)
+        {
+            axonCost = Constants.AXON_ENERGY_COST;
+            flagellumCost = 0;
+            actomyosinCost = 0;
         }
         else
         {
             flagellumCost = Constants.FLAGELLA_ENERGY_COST;
             actomyosinCost = 0;
+            axonCost = 0;
         }
 
         // Actomyosin improves movement in all directions, unlike flagella which only work when aimed at the
-        // requested movement direction.
+        // requested movement direction. The Axon is also always in use when moving.
         if (!organelle.Definition.HasMovementComponent)
             return true;
 
