@@ -14,7 +14,7 @@
 public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
 {
     /// <summary>
-    ///     The amount values are being multiplied by due to specialization.
+    ///   The amount values are being multiplied by due to specialization.
     /// </summary>
     public float SpecializationFactor;
 

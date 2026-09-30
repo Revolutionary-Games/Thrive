@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Stores a summary of an organism's storage, including how much of it comes from the specialization bonus.
+///   Stores a summary of an organism's storage, including how much of it comes from the specialization bonus.
 /// </summary>
 public class StorageValueBreakdown
 {
