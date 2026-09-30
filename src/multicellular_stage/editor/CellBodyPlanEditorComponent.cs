@@ -107,6 +107,9 @@ public partial class CellBodyPlanEditorComponent :
     private Label layoutExplanationLabel = null!;
 
     [Export]
+    private Label layoutShiftNoteLabel = null!;
+
+    [Export]
     private Control layoutCalculationSpinner = null!;
 
     [Export]
@@ -527,7 +530,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else if (!layoutCalculationRequested)
             {
-                SetFullLayoutPreview(calculation.Result.Gameplay);
+                SetFullLayoutPreview(calculation.Result.Wrapped);
                 RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
                 if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
                     CopyLayout(fullLayoutPreview, manualFullLayout);
