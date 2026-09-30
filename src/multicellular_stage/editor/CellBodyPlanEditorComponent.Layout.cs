@@ -20,6 +20,9 @@ public partial class CellBodyPlanEditorComponent
     /// </summary>
     private readonly HashSet<Hex> fullLayoutInvalid = [];
 
+    private readonly List<Hex> layoutCellHexesWorkMemory = [];
+    private readonly List<Hex> layoutLocalCellHexesWorkMemory = [];
+
     /// <summary>
     ///   Identity mapping for the full layout to keep it consistent
     /// </summary>
@@ -61,6 +64,13 @@ public partial class CellBodyPlanEditorComponent
     /// </summary>
     private List<HexWithData<CellTemplate>> manualFullLayout = [];
 
+    /// <summary>
+    ///   Persisted descriptors for the compact cells corresponding to <see cref="manualFullLayout"/>. These are
+    ///   needed because the manual list can be reordered by moving cells, while the compact layout keeps its own
+    ///   order.
+    /// </summary>
+    private List<CellTemplate>? savedManualLayoutSources;
+
     private Task<LayoutCalculationResult>? pendingLayoutCalculation;
     private bool layoutCalculationRequested;
     private bool layoutPreviewActive;
@@ -86,8 +96,18 @@ public partial class CellBodyPlanEditorComponent
         MulticellularLayoutHelpers.UpdateGameplayLayout(gameplay, editor, sourceLayout, AlgorithmQuality.High,
             work1, work2, work3);
 
-        result.Gameplay = gameplay;
+        // Not needed on the main thread, so this isn't copied at the moment
+        // result.Gameplay = gameplay;
+
         result.GrowthOrderSources = growthOrderSources;
+
+        // Create the wrappers on the background thread
+        var wrapped = result.Wrapped = new List<HexWithData<CellTemplate>>(gameplay.Count);
+        foreach (var cell in gameplay)
+        {
+            var wrappedHex = new HexWithData<CellTemplate>(cell, cell.Position, cell.Orientation);
+            wrapped.Add(wrappedHex);
+        }
 
         // This is not actually required for now
         // result.Editor = editor;
@@ -209,6 +229,75 @@ public partial class CellBodyPlanEditorComponent
         manualLayoutSourceData[manualCell] = (source.Position, source.Data!.ModifiableCellType);
     }
 
+    private void RestoreManualLayoutMappings()
+    {
+        manualLayoutSources.Clear();
+        manualLayoutSourceData.Clear();
+
+        var sources = editedMicrobeCells.AsModifiable().ToList();
+        var manualCells = manualFullLayout.ToList();
+
+        if (savedManualLayoutSources is { Count: var sourceCount } && sourceCount == manualCells.Count)
+        {
+            var usedSources = new HashSet<HexWithData<CellTemplate>>(ReferenceEqualityComparer.Instance);
+            bool restoredAllMappings = true;
+
+            for (int i = 0; i < manualCells.Count; ++i)
+            {
+                var savedSource = savedManualLayoutSources[i];
+                var source = sources.FirstOrDefault(candidate => !usedSources.Contains(candidate) &&
+                    candidate.Position == savedSource.Position &&
+                    ReferenceEquals(candidate.Data!.ModifiableCellType, savedSource.ModifiableCellType));
+
+                if (source == null)
+                {
+                    restoredAllMappings = false;
+                    break;
+                }
+
+                usedSources.Add(source);
+                SetManualLayoutSource(manualCells[i], source);
+            }
+
+            if (restoredAllMappings)
+            {
+                RebuildManualLayoutGrowthOrderSources();
+                savedManualLayoutSources = null;
+                return;
+            }
+
+            manualLayoutSources.Clear();
+            manualLayoutSourceData.Clear();
+        }
+
+        // Saves from before the explicit source mapping was added have no stable identity to restore. Their manual
+        // layout was kept in growth order, so index matching remains the best compatibility fallback.
+        for (int i = 0; i < manualCells.Count && i < sources.Count; ++i)
+            SetManualLayoutSource(manualCells[i], sources[i]);
+
+        RebuildManualLayoutGrowthOrderSources();
+        savedManualLayoutSources = null;
+    }
+
+    private void RebuildManualLayoutGrowthOrderSources()
+    {
+        fullLayoutGrowthOrderSources.Clear();
+        fullLayoutGrowthOrderIndices.Clear();
+
+        var growthOrder = growthOrderGUI
+            .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!).Select(i => i.Data!).ToList();
+
+        foreach (var pair in manualLayoutSources)
+        {
+            var index = growthOrder.IndexOf(pair.Value.Data!);
+            if (index < 0)
+                continue;
+
+            fullLayoutGrowthOrderSources[pair.Key] = pair.Value.Data!;
+            fullLayoutGrowthOrderIndices[pair.Key] = index;
+        }
+    }
+
     /// <summary>
     ///   Starts a background task to calculate the full layout of the edited microbe cells. This is done in the
     ///   background as the calculation can take tens of seconds.
@@ -241,16 +330,14 @@ public partial class CellBodyPlanEditorComponent
         TaskExecutor.Instance.AddTask(pendingLayoutCalculation);
     }
 
-    private void SetFullLayoutPreview(CellLayout<CellTemplate> gameplay)
+    private void SetFullLayoutPreview(List<HexWithData<CellTemplate>> wrappers)
     {
         fullLayoutPreview.Clear();
 
         // CellLayout stores the final cell templates directly. The editor renderer uses HexWithData wrappers, so
-        // create only those wrappers here on the main thread without cloning the already calculated data.
-        foreach (var cell in gameplay)
+        // copy the created wrappers
+        foreach (var wrapped in wrappers)
         {
-            // TODO: check if these allocations would make more sense to run in the background task
-            var wrapped = new HexWithData<CellTemplate>(cell, cell.Position, cell.Orientation);
             fullLayoutPreview.AddFast(wrapped, hexTemporaryMemory, hexTemporaryMemory2);
         }
     }
@@ -283,7 +370,7 @@ public partial class CellBodyPlanEditorComponent
 
         foreach (var cell in CurrentFullLayout)
         {
-            var positions = GetFullCellPositionsGlobal(cell);
+            var positions = GetFullCellPositionsGlobal(cell, UsesManualPlayerLayout).ToList();
 
             // Detect overlaps globally here
             foreach (var globalPosition in positions)
@@ -433,7 +520,7 @@ public partial class CellBodyPlanEditorComponent
         var grownPositions = new HashSet<Hex>();
         foreach (var cell in orderedCells)
         {
-            var positions = GetFullCellPositionsGlobal(cell);
+            var positions = GetFullCellPositionsGlobal(cell, UsesManualPlayerLayout);
             bool touchesEarlierCell = positions.Any(position => Hex.HexNeighbourOffset.Values.Any(offset =>
                 grownPositions.Contains(position + offset)));
 
@@ -446,10 +533,17 @@ public partial class CellBodyPlanEditorComponent
         UpdateLayoutErrorDisplay();
     }
 
-    // TODO: this should use a temporary work list, and callers can then duplicate it when needed
-    private List<Hex> GetFullCellPositionsGlobal(HexWithData<CellTemplate> cell)
+    /// <summary>
+    ///   Calculates global occupied hexes of the cell. And optionally shifts them. Note this returns a reference to
+    ///   a temporary list.
+    /// </summary>
+    /// <param name="cell">Cell type</param>
+    /// <param name="performOriginShift">True to perform origin shifting like happens upon exiting the editor</param>
+    /// <returns>List of positions the cell occupies. This is only valid until the next call of this method!</returns>
+    private List<Hex> GetFullCellPositionsGlobal(HexWithData<CellTemplate> cell, bool performOriginShift)
     {
-        var positions = new List<Hex>();
+        layoutCellHexesWorkMemory.Clear();
+        var positions = layoutCellHexesWorkMemory;
 
         // We do a manual fetch of the organelle positions here so that we have the latest data if the type is
         // edited
@@ -463,9 +557,11 @@ public partial class CellBodyPlanEditorComponent
             }
         }
 
-        // We have to run reposition to origin equivalent logic here! as otherwise the layout might not be valid
-        // after applying edits
-        Hex originShift = CalculateExpectedLayoutShift(type.ModifiableOrganelles);
+        // The automatic layout is generated from the cell types' current, unshifted organelle positions. Applying
+        // the origin shift there would therefore validate a different layout than the one generated. Manual layouts
+        // need the shift because it is applied when the species leaves the editor.
+        // So we only conditionally apply the origin shift.
+        Hex originShift = performOriginShift ? CalculateExpectedLayoutShift(type.ModifiableOrganelles) : new Hex(0, 0);
 
         positions.Clear();
 
@@ -487,7 +583,8 @@ public partial class CellBodyPlanEditorComponent
 
     private List<Hex> GetFullCellPositionsLocal(CellType type)
     {
-        var positions = new List<Hex>();
+        layoutLocalCellHexesWorkMemory.Clear();
+        var positions = layoutLocalCellHexesWorkMemory;
 
         foreach (var organelle in type.ModifiableOrganelles)
         {
@@ -574,9 +671,8 @@ public partial class CellBodyPlanEditorComponent
         {
             var cell = CurrentFullLayout[i];
 
-            // TODO: it would be more efficient if this data was cached (or at least we didn't generate the list
-            // each time), luckily this is rarely called
-            if (GetFullCellPositionsGlobal(cell).Contains(position))
+            // It would be more efficient if this data was cached, but luckily, this is rarely called
+            if (GetFullCellPositionsGlobal(cell, UsesManualPlayerLayout).Contains(position))
                 return cell;
         }
 
@@ -603,13 +699,11 @@ public partial class CellBodyPlanEditorComponent
         {
             foreach (var cell in otherCells)
             {
-                var positions = GetFullCellPositionsGlobal(cell);
-
-                foreach (var finalPosition in positions)
+                foreach (var finalPosition in GetFullCellPositionsGlobal(cell, true))
                     occupiedByOtherCells.Add(finalPosition);
             }
 
-            movingPositions = GetFullCellPositionsGlobal(moving);
+            movingPositions = GetFullCellPositionsGlobal(moving, true);
         }
         finally
         {
@@ -655,8 +749,10 @@ public partial class CellBodyPlanEditorComponent
                 continue;
 
             ++expectedAdjacencies;
-            if (CellPositionsAreAdjacent(cellPositions, GetFullCellPositionsGlobal(otherCell)))
+            if (CellPositionsAreAdjacent(cellPositions, GetFullCellPositionsGlobal(otherCell, true)))
+            {
                 ++retainedAdjacencies;
+            }
         }
 
         if (expectedAdjacencies == 0)
@@ -918,7 +1014,9 @@ public partial class CellBodyPlanEditorComponent
     {
         // public IndividualHexLayout<CellTemplate> Editor { get; set; } = null!;
 
-        public CellLayout<CellTemplate> Gameplay { get; set; } = null!;
+        // public CellLayout<CellTemplate> Gameplay { get; set; } = null!;
+
         public IReadOnlyList<CellTemplate> GrowthOrderSources { get; set; } = null!;
+        public List<HexWithData<CellTemplate>> Wrapped { get; set; } = null!;
     }
 }
