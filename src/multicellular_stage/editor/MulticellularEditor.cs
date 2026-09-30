@@ -936,6 +936,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         energyBalance.Flagella = MathF.Max(energyBalance.Flagella, toAdd.Flagella);
         energyBalance.Actomyosin = MathF.Max(energyBalance.Actomyosin, toAdd.Actomyosin);
         energyBalance.Cilia = MathF.Max(energyBalance.Cilia, toAdd.Cilia);
+        energyBalance.Axon = MathF.Max(energyBalance.Axon, toAdd.Axon);
         energyBalance.TotalMovement = MathF.Max(energyBalance.TotalMovement, toAdd.TotalMovement);
 
         energyBalance.Osmoregulation = MathF.Max(energyBalance.Osmoregulation, toAdd.Osmoregulation);
