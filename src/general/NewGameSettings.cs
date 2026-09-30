@@ -511,7 +511,7 @@ public partial class NewGameSettings : ControlWithInput
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
         settings.AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed;
 
-        // if the world environment is always reset, the player always needs a top-up of compounds after the editor
+        // If the world environment is always reset, the player always needs a top-up of compounds after the editor.
         // Unfortunately, for this we need to copy every setting and just change the targeted one.
         if (settings.AlwaysResetEnvironment)
         {
