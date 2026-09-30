@@ -695,6 +695,7 @@ public partial class CellBodyPlanEditorComponent
         automaticLayoutButton.ButtonPressed = !UsesManualPlayerLayout;
         reapplyAutomaticLayoutButton.Visible = UsesManualPlayerLayout;
         layoutExplanationLabel.Visible = UsesManualPlayerLayout;
+        layoutShiftNoteLabel.Visible = !UsesManualPlayerLayout;
         UpdateLayoutErrorDisplay();
     }
 
