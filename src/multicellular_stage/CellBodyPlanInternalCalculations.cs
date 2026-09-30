@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Components;
 using Godot;
-using Thrive.microbe_stage.editor;
 
 public static class CellBodyPlanInternalCalculations
 {

@@ -1,6 +1,4 @@
-﻿namespace Thrive.microbe_stage.editor;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   Stores a summary of an organism's storage, including how much of it comes from the specialization bonus.

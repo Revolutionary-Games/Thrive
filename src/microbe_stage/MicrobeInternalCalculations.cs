@@ -4,7 +4,6 @@ using System.Linq;
 using Components;
 using Godot;
 using Systems;
-using Thrive.microbe_stage.editor;
 
 public static class MicrobeInternalCalculations
 {

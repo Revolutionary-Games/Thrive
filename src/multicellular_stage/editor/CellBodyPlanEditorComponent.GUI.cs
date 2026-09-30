@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Systems;
-using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   The partial class containing GUI updating actions

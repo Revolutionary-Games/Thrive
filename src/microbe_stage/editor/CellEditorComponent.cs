@@ -9,7 +9,6 @@ using AutoEvo;
 using Godot;
 using SharedBase.Archive;
 using Systems;
-using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it

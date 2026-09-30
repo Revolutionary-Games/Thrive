@@ -4,7 +4,6 @@ using System.Linq;
 using Godot;
 using SharedBase.Archive;
 using Systems;
-using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)

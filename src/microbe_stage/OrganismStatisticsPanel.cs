@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
-using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   Displays organism statistics calculated by an editor component
