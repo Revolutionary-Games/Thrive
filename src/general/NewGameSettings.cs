@@ -515,26 +515,8 @@ public partial class NewGameSettings : ControlWithInput
         // Unfortunately, for this we need to copy every setting and just change the targeted one.
         if (settings.AlwaysResetEnvironment)
         {
-            var customDifficulty = new CustomDifficulty
-            {
-                MPMultiplier = settings.Difficulty.MPMultiplier,
-                AIMutationMultiplier = settings.Difficulty.AIMutationMultiplier,
-                CompoundDensity = settings.Difficulty.CompoundDensity,
-                PlayerDeathPopulationPenalty = settings.Difficulty.PlayerDeathPopulationPenalty,
-                PlayerSpeciesAIPopulationStrength = settings.Difficulty.PlayerSpeciesAIPopulationStrength,
-                GlucoseDecay = settings.Difficulty.GlucoseDecay,
-                EnergyCostMultiplier = settings.Difficulty.EnergyCostMultiplier,
-                PlayerAutoEvoStrength = settings.Difficulty.PlayerAutoEvoStrength,
-                ReproductionCompounds = ReproductionCompoundHandling.TopUpWithInitial,
-                FogOfWarMode = settings.Difficulty.FogOfWarMode,
-                FreeGlucoseCloud = settings.Difficulty.FreeGlucoseCloud,
-                SwitchSpeciesOnExtinction = settings.Difficulty.SwitchSpeciesOnExtinction,
-                LimitGrowthRate = settings.Difficulty.LimitGrowthRate,
-                InstantKillProtection = settings.Difficulty.InstantKillProtection,
-                OrganelleUnlocksEnabled = settings.Difficulty.OrganelleUnlocksEnabled,
-                SpawnCompatibleMateOnCall = settings.Difficulty.SpawnCompatibleMateOnCall,
-                ShowMatePosition = settings.Difficulty.ShowMatePosition,
-            };
+            var customDifficulty = settings.Difficulty.Clone();
+            customDifficulty.ReproductionCompounds = ReproductionCompoundHandling.TopUpWithInitial;
             settings.Difficulty = customDifficulty;
         }
 
