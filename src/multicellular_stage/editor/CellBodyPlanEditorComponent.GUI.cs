@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Systems;
+using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   The partial class containing GUI updating actions
@@ -216,7 +217,10 @@ public partial class CellBodyPlanEditorComponent
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
 
         organismStatisticsPanel.UpdateGeneration(species.Generation);
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        StorageValueBreakdown breakdown = new();
+        GetAdditionalCapacities(editedMicrobeCells, out _, breakdown);
+        organismStatisticsPanel.UpdateStorage(breakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 

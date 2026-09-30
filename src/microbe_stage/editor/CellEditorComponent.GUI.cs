@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -814,7 +815,10 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         organismStatisticsPanel.UpdateGeneration(species.Generation);
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        StorageValueBreakdown breakdown = new();
+        GetAdditionalCapacities(out _, breakdown);
+        organismStatisticsPanel.UpdateStorage(breakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 

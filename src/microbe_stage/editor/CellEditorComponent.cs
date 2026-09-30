@@ -9,6 +9,7 @@ using AutoEvo;
 using Godot;
 using SharedBase.Archive;
 using Systems;
+using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
@@ -1632,14 +1633,15 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
-    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity,
+        StorageValueBreakdown? breakdown = null)
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
-            totalSpecializationBonus, out nominalCapacity);
+            totalSpecializationBonus, out nominalCapacity, breakdown);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -2608,7 +2610,11 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        StorageValueBreakdown breakdown = new();
+        GetAdditionalCapacities(out _, breakdown);
+        organismStatisticsPanel.UpdateStorage(breakdown);
+
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         var (ammoniaCost, phosphatesCost) = CalculateOrganellesCosts();

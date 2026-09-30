@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
+using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   Displays organism statistics calculated by an editor component
@@ -438,46 +439,33 @@ public partial class OrganismStatisticsPanel : PanelContainer
         hpLabel.Value = MathF.Round(hp, 1);
     }
 
-    public void UpdateStorage(Dictionary<Compound, float> storage, float nominalStorage)
+    public void UpdateStorage(StorageValueBreakdown storage)
     {
         // Storage values can be as low as 0.25 so 2 decimals are needed
-        storageLabel.Value = MathF.Round(nominalStorage, 2);
-
-        if (storage.Count == 0)
-        {
-            storageLabel.UnRegisterFirstToolTipForControl();
-            return;
-        }
+        storageLabel.Value = MathF.Round(storage.NominalStorage.Total, 2);
 
         var tooltip = ToolTipManager.Instance.GetToolTip("storageDetails", "editor");
-        if (tooltip == null)
-        {
-            GD.PrintErr("Can't update storage tooltip");
-            return;
-        }
+        var description = new StringBuilder();
+        description.Append(Localization.Translate("CELL_STAT_STORAGE_TOOLTIP"));
 
-        if (!storageLabel.IsToolTipRegistered(tooltip))
-            storageLabel.RegisterToolTipForControl(tooltip, true);
+        string totalText = "Total: {0}";
+        description.Append("\n\n");
+        description.Append(string.Format(totalText, Math.Round(storage.NominalStorage.Total, 2)));
 
-        var description = new LocalizedStringBuilder(100);
-
-        bool first = true;
+        AppendBreakdownToTooltip(description, storage.NominalStorage, 2, true);
 
         var simulationParameters = SimulationParameters.Instance;
 
-        foreach (var entry in storage)
+        foreach (var entry in storage.SpecificStorage)
         {
-            if (!first)
-                description.Append("\n");
-
-            first = false;
-
-            description.Append(simulationParameters.GetCompoundDefinition(entry.Key).Name);
+            description.Append('\n');
+            description.Append(Localization.Translate(simulationParameters.GetCompoundDefinition(entry.Key).Name));
             description.Append(": ");
-            description.Append(entry.Value);
+            description.Append(Math.Round(entry.Value.Total, 2));
+            AppendBreakdownToTooltip(description, entry.Value, 2, true);
         }
 
-        tooltip.Description = description.ToString();
+        tooltip?.Description = description.ToString();
     }
 
     public void UpdateTotalDigestionSpeed(float speed)
@@ -687,6 +675,34 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
     {
         return bar.OrderBy(i => i.Key, atpComparer).ToList();
+    }
+
+    private void AppendBreakdownToTooltip(StringBuilder stringBuilder, ValueBreakdown valueBreakdown, int decimalPlaces,
+        bool useIndent)
+    {
+        string baseText;
+        string specializationText;
+
+        if (useIndent)
+        {
+            baseText = "  +{0} base";
+            specializationText = "  +{0} from specialization";
+        }
+        else
+        {
+            baseText = "+{0} base";
+            specializationText = "+{0} from specialization";
+        }
+
+        stringBuilder.Append('\n');
+        stringBuilder.Append(string.Format(baseText, Math.Round(valueBreakdown.Base, decimalPlaces)));
+
+        if (valueBreakdown.Specialization > 0)
+        {
+            stringBuilder.Append('\n');
+            stringBuilder.Append(string.Format(specializationText,
+                Math.Round(valueBreakdown.Specialization, decimalPlaces)));
+        }
     }
 
     private class ATPComparer : IComparer<string>

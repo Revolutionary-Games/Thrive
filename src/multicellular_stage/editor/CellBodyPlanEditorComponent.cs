@@ -4,6 +4,7 @@ using System.Linq;
 using Godot;
 using SharedBase.Archive;
 using Systems;
+using Thrive.microbe_stage.editor;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
@@ -1311,9 +1312,11 @@ public partial class CellBodyPlanEditorComponent :
         return base.RotateLeft();
     }
 
-    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    public Dictionary<Compound, float> GetAdditionalCapacities(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        out float nominalCapacity, StorageValueBreakdown? breakdown = null)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells, out nominalCapacity,
+            breakdown);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -2189,7 +2192,9 @@ public partial class CellBodyPlanEditorComponent :
     {
         var latestTypes = GetCurrentCellsWithLatestTypes();
 
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        StorageValueBreakdown breakdown = new();
+        GetAdditionalCapacities(latestTypes, out _, breakdown);
+        organismStatisticsPanel.UpdateStorage(breakdown);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));
