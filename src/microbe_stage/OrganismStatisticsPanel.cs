@@ -302,12 +302,18 @@ public partial class OrganismStatisticsPanel : PanelContainer
                 GD.PrintErr("Tracking for used compounds for energy not set up");
             }
 
-            bool includedRequirement = false;
+            atpToolTipTextBuilder.Clear();
+            atpToolTipTextBuilder.Append(Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
+                SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
+                Math.Round(energyBalance.Production[subBar.Name], 3)));
+
+            AppendBreakdownToTooltip(atpToolTipTextBuilder, energyBalance.Production[subBar.Name],
+                energyBalance.SpecializationFactor, 3, false);
+
+            var includedRequirement = false;
 
             if (requiredCompounds is { Count: > 0 })
             {
-                atpToolTipTextBuilder.Clear();
-
                 var translationFormat = Localization.Translate("ENERGY_BALANCE_REQUIRED_COMPOUND_LINE");
 
                 foreach (var requiredCompound in requiredCompounds)
@@ -319,31 +325,23 @@ public partial class OrganismStatisticsPanel : PanelContainer
                     if (compound.IsEnvironmental)
                         continue;
 
-                    if (atpToolTipTextBuilder.Length > 0)
+                    // If this is the first compound we're adding, add the "While consuming:" label
+                    if (!includedRequirement)
+                    {
                         atpToolTipTextBuilder.Append('\n');
+                        atpToolTipTextBuilder.Append(Localization.Translate("WHILE_CONSUMING_COLON"));
+                        includedRequirement = true;
+                    }
 
+                    atpToolTipTextBuilder.Append('\n');
                     atpToolTipTextBuilder.Append(translationFormat.FormatSafe(compound.Name,
                         Math.Round(requiredCompound.Value, 2)));
-                }
-
-                // As we don't check for environmental compounds before starting the loop, we might not find any valid
-                // data in the end in which case this needs to be skipped
-                if (atpToolTipTextBuilder.Length > 0)
-                {
-                    tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT")
-                        .FormatSafe(SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
-                            Math.Round(energyBalance.Production[subBar.Name], 3), atpToolTipTextBuilder.ToString());
-                    includedRequirement = true;
+                    AppendBreakdownToTooltip(atpToolTipTextBuilder, requiredCompound.Value,
+                        energyBalance.SpecializationFactor, 2, true);
                 }
             }
 
-            if (!includedRequirement)
-            {
-                // Normal display if didn't show with a requirement
-                tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
-                    SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
-                    Math.Round(energyBalance.Production[subBar.Name], 3));
-            }
+            tooltip.Description = atpToolTipTextBuilder.ToString();
         }
 
         foreach (var subBar in atpConsumptionBar.SubBars)
@@ -448,9 +446,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
         var description = new StringBuilder();
         description.Append(Localization.Translate("CELL_STAT_STORAGE_TOOLTIP"));
 
-        string totalText = "Total: {0}";
+        var totalText = Localization.Translate("TOTAL_COLON_VALUE");
         description.Append("\n\n");
-        description.Append(string.Format(totalText, Math.Round(storage.NominalStorage.Total, 2)));
+        description.Append(totalText.FormatSafe(Math.Round(storage.NominalStorage.Total, 2)));
 
         AppendBreakdownToTooltip(description, storage.NominalStorage, 2, true);
 
@@ -677,6 +675,19 @@ public partial class OrganismStatisticsPanel : PanelContainer
         return bar.OrderBy(i => i.Key, atpComparer).ToList();
     }
 
+    private void AppendBreakdownToTooltip(StringBuilder stringBuilder, float totalValue, float specializationBonus,
+        int decimalPlaces, bool useIndent)
+    {
+        ValueBreakdown valueBreakdown = new()
+        {
+            Total = totalValue,
+            Base = totalValue / specializationBonus,
+        };
+        valueBreakdown.Specialization = valueBreakdown.Total - valueBreakdown.Base;
+
+        AppendBreakdownToTooltip(stringBuilder, valueBreakdown, decimalPlaces, useIndent);
+    }
+
     private void AppendBreakdownToTooltip(StringBuilder stringBuilder, ValueBreakdown valueBreakdown, int decimalPlaces,
         bool useIndent)
     {
@@ -685,23 +696,23 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         if (useIndent)
         {
-            baseText = "  +{0} base";
-            specializationText = "  +{0} from specialization";
+            baseText = Localization.Translate("PLUS_FROM_BASE_VALUE_INDENTED");
+            specializationText = Localization.Translate("PLUS_FROM_SPECIALIZATION_VALUE_INDENTED");
         }
         else
         {
-            baseText = "+{0} base";
-            specializationText = "+{0} from specialization";
+            baseText = Localization.Translate("PLUS_FROM_BASE_VALUE");
+            specializationText = Localization.Translate("PLUS_FROM_SPECIALIZATION_VALUE");
         }
 
         stringBuilder.Append('\n');
-        stringBuilder.Append(string.Format(baseText, Math.Round(valueBreakdown.Base, decimalPlaces)));
+        stringBuilder.Append(baseText.FormatSafe(Math.Round(valueBreakdown.Base, decimalPlaces)));
 
         if (valueBreakdown.Specialization > 0)
         {
             stringBuilder.Append('\n');
-            stringBuilder.Append(string.Format(specializationText,
-                Math.Round(valueBreakdown.Specialization, decimalPlaces)));
+            stringBuilder.Append(
+                specializationText.FormatSafe(Math.Round(valueBreakdown.Specialization, decimalPlaces)));
         }
     }
 
