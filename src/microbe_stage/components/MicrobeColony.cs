@@ -1056,14 +1056,22 @@ public static class MicrobeColonyHelpers
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
-            ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
-            var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
+            try
+            {
+                ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
+                var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
-            if (memberOrganelleContainer.HasAxon)
-                axonCount += memberTotalSpecializationBonus;
+                if (memberOrganelleContainer.HasAxon)
+                    axonCount += memberTotalSpecializationBonus;
 
-            actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
-                memberTotalSpecializationBonus;
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                    memberTotalSpecializationBonus;
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Failed to calculate rotation speed for microbe colony, " +
+                    "member likely missing a required component: ", e);
+            }
         }
 
         var axonBonus = CellBodyPlanInternalCalculations.CalculateAxonRotationMultiplier(axonCount);
