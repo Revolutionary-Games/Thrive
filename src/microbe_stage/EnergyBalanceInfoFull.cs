@@ -14,6 +14,11 @@
 public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
 {
     /// <summary>
+    ///     The amount values are being multiplied by due to specialization.
+    /// </summary>
+    public float SpecializationFactor;
+
+    /// <summary>
     ///   The raw list of all energy consuming things related to the microbe. The key is the action name and the
     ///   value is the total consumption of that action.
     /// </summary>
@@ -29,11 +34,6 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
     ///   entry requires to produce the energy.
     /// </summary>
     public Dictionary<string, Dictionary<Compound, float>>? ProductionRequiresCompounds { get; private set; }
-
-    /// <summary>
-    ///     The amount values are being multiplied by due to specialization.
-    /// </summary>
-    public float SpecializationFactor;
 
     public void AddConsumption(string groupName, float amount)
     {
