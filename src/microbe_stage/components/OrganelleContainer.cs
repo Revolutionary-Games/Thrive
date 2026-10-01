@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public struct OrganelleContainer : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 1;
 
     /// <summary>
     ///   Instances of all the organelles in this entity. This is saved but components are not saved. This means
@@ -221,17 +221,6 @@ public static class OrganelleContainerHelpers
         if (version is > OrganelleContainer.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, OrganelleContainer.SERIALIZATION_VERSION);
 
-        // For older versions, Multicellular species should not have had the Axon at all
-        bool hasAxonFeature;
-        if (version < 2)
-        {
-            hasAxonFeature = false;
-        }
-        else
-        {
-            hasAxonFeature = reader.ReadBool();
-        }
-
         return new OrganelleContainer
         {
             Organelles = reader.ReadObjectOrNull<OrganelleLayout<PlacedOrganelle>>(),
@@ -250,7 +239,7 @@ public static class OrganelleContainerHelpers
             RotationSpeed = reader.ReadFloat(),
             HasSignalingAgent = reader.ReadBool(),
             HasBindingAgent = reader.ReadBool(),
-            HasAxonFeature = hasAxonFeature,
+            HasAxonFeature = reader.ReadBool(),
         };
     }
 
