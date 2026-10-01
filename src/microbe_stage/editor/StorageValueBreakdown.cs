@@ -24,4 +24,13 @@ public class StorageValueBreakdown
 
         SpecificStorage[compound] = breakdown;
     }
+
+    public void Clear()
+    {
+        NominalStorage.Total = 0;
+        NominalStorage.Specialization = 0;
+        NominalStorage.Base = 0;
+
+        SpecificStorage.Clear();
+    }
 }

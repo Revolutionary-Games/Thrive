@@ -2191,9 +2191,9 @@ public partial class CellBodyPlanEditorComponent :
     {
         var latestTypes = GetCurrentCellsWithLatestTypes();
 
-        StorageValueBreakdown breakdown = new();
-        GetAdditionalCapacities(latestTypes, out _, breakdown);
-        organismStatisticsPanel.UpdateStorage(breakdown);
+        organismStatisticsPanel.StorageValueBreakdown.Clear();
+        GetAdditionalCapacities(latestTypes, out _, organismStatisticsPanel.StorageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));

@@ -8,4 +8,14 @@ public struct ValueBreakdown
     public float Base;
 
     public float Specialization;
+
+    public static ValueBreakdown Add(ValueBreakdown a, ValueBreakdown b)
+    {
+        var result = default(ValueBreakdown);
+        result.Total = a.Total + b.Total;
+        result.Base = a.Base + b.Base;
+        result.Specialization = a.Specialization + b.Specialization;
+
+        return result;
+    }
 }

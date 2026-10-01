@@ -2610,9 +2610,9 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        StorageValueBreakdown breakdown = new();
-        GetAdditionalCapacities(out _, breakdown);
-        organismStatisticsPanel.UpdateStorage(breakdown);
+        organismStatisticsPanel.StorageValueBreakdown.Clear();
+        GetAdditionalCapacities(out _, organismStatisticsPanel.StorageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
 
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());

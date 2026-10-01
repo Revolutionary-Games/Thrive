@@ -161,6 +161,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private StorageValueBreakdown? storageValueBreakdown;
+
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);
 
@@ -181,6 +183,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public ResourceLimitingMode ResourceLimitingMode { get; set; }
 
     public bool CalculateBalancesWhenMoving => calculateBalancesWhenMoving.ButtonPressed;
+
+    public StorageValueBreakdown StorageValueBreakdown => storageValueBreakdown ??= new StorageValueBreakdown();
 
     public override void _Ready()
     {
@@ -204,6 +208,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
 
         UpdateStageDependentText();
+        UpdateStorage(StorageValueBreakdown);
     }
 
     public void UpdateStatVisibility()
@@ -445,7 +450,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         var description = new StringBuilder();
         description.Append(Localization.Translate("CELL_STAT_STORAGE_TOOLTIP"));
 
-        var totalText = Localization.Translate("TOTAL_COLON_VALUE");
+        var totalText = Localization.Translate("STANDARD_COLON_VALUE");
         description.Append("\n\n");
         description.Append(totalText.FormatSafe(Math.Round(storage.NominalStorage.Total, 2)));
 
@@ -455,11 +460,13 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         foreach (var entry in storage.SpecificStorage)
         {
+            var totalSpecificStorage = ValueBreakdown.Add(entry.Value, storage.NominalStorage);
+
             description.Append('\n');
             description.Append(Localization.Translate(simulationParameters.GetCompoundDefinition(entry.Key).Name));
             description.Append(": ");
-            description.Append(Math.Round(entry.Value.Total, 2));
-            AppendBreakdownToTooltip(description, entry.Value, 2, true);
+            description.Append(Math.Round(totalSpecificStorage.Total, 2));
+            AppendBreakdownToTooltip(description, totalSpecificStorage, 2, true);
         }
 
         tooltip?.Description = description.ToString();

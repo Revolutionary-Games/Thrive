@@ -217,9 +217,9 @@ public partial class CellBodyPlanEditorComponent
 
         organismStatisticsPanel.UpdateGeneration(species.Generation);
 
-        StorageValueBreakdown breakdown = new();
-        GetAdditionalCapacities(editedMicrobeCells, out _, breakdown);
-        organismStatisticsPanel.UpdateStorage(breakdown);
+        organismStatisticsPanel.StorageValueBreakdown.Clear();
+        GetAdditionalCapacities(editedMicrobeCells, out _, organismStatisticsPanel.StorageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 

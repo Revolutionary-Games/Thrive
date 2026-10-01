@@ -815,9 +815,9 @@ public partial class CellEditorComponent
         organismStatisticsPanel.UpdateGeneration(species.Generation);
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        StorageValueBreakdown breakdown = new();
-        GetAdditionalCapacities(out _, breakdown);
-        organismStatisticsPanel.UpdateStorage(breakdown);
+        organismStatisticsPanel.StorageValueBreakdown.Clear();
+        GetAdditionalCapacities(out _, organismStatisticsPanel.StorageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 
