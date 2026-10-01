@@ -213,6 +213,14 @@ public partial class MetaballBodyEditorComponent :
             debugOverlays.ReportEntities(roughCount);
         }
 
+        if (metaballSelectedForMoving != null && moveTool.IsDragging)
+        {
+            var pos = moveTool.GetDraggingPosition();
+
+            RenderHighlightedMetaball(pos, (MacroscopicMetaball)metaballSelectedForMoving.ModifiableParent!,
+                metaballSelectedForMoving.ModifiableCellType, metaballSelectedForMoving.Size);
+        }
+
         if (metaballDisplayDataDirty)
         {
             OnMetaballsChanged();
@@ -229,29 +237,36 @@ public partial class MetaballBodyEditorComponent :
         }
 
         // Show the ball that is about to be placed
-        if (activeActionName != null && Editor.ShowHover && !PreviewMode)
+        if ((activeActionName != null || MovingPlacedMetaball != null) && Editor.ShowHover && !PreviewMode)
         {
             GetMouseMetaball(out var position, out var parentMetaball);
 
             var effectiveSymmetry = Symmetry;
 
-            var cellType = CellTypeFromName(activeActionName);
+            CellType cellType;
+            float size;
 
             if (MovingPlacedMetaball == null)
             {
                 // Can place stuff at all?
                 isPlacementProbablyValid = IsValidPlacement(position, parentMetaball);
+
+                cellType = CellTypeFromName(activeActionName!);
+                size = metaballSize;
             }
             else
             {
                 isPlacementProbablyValid = IsMoveTargetValid(position, parentMetaball, MovingPlacedMetaball);
 
+                cellType = MovingPlacedMetaball.ModifiableCellType;
+                size = MovingPlacedMetaball.Size;
+
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(metaballSize, position, parentMetaball,
-                (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
+            RunWithSymmetry(size, position, parentMetaball,
+                (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType, size),
                 effectiveSymmetry);
         }
     }
@@ -796,16 +811,14 @@ public partial class MetaballBodyEditorComponent :
         return parent.Position + direction * (parent.Radius + size.Value * 0.5f);
     }
 
-    private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace)
+    private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace,
+        float size)
     {
-        if (MovingPlacedMetaball == null && activeActionName == null)
-            return;
-
         var metaball = new MacroscopicMetaball(GetEditedCellDataIfEdited(cellToPlace))
         {
             ModifiableParent = parent,
-            Position = parent != null ? FinalMetaballPosition(position, parent) : position,
-            Size = metaballSize,
+            Position = parent != null ? FinalMetaballPosition(position, parent, size) : position,
+            Size = size,
         };
 
         if (hoverMetaballData.Count <= usedHoverMetaballIndex)
