@@ -660,10 +660,19 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.Components.Actomyosin != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "colonySpeed");
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "colonyBaseSpeed");
 
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/RotationIcon.png", "colonyRotation");
+                "res://assets/textures/gui/bevel/RotationIcon.png", "colonyBaseRotation");
+        }
+
+        if (organelle.FeatureTags.Contains(OrganelleFeatureTag.Axon))
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "colonyOrganelleSpeed");
+
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/RotationIcon.png", "colonyOrganelleRotation");
         }
 
         if (organelle.Components.Lysosome != null)
@@ -773,22 +782,40 @@ public partial class ToolTipManager : CanvasLayer
             modifierInfo.ModifierValue = "+" + Constants.CILIA_ROTATION_FORCE_DISPLAY;
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonySpeed");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyBaseSpeed");
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "COLONY_SPEED_INCREASE";
+            modifierInfo.DisplayName = "COLONY_BASE_SPEED_INCREASE";
             modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
                 .FormatSafe(Math.Round(Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * 100, 1));
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyRotation");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyBaseRotation");
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "COLONY_ROTATION_INCREASE";
+            modifierInfo.DisplayName = "COLONY_BASE_ROTATION_INCREASE";
             modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
                 .FormatSafe(Math.Round(Constants.ACTOMYOSIN_ROTATION_BUFF_PER * 100, 1));
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyOrganelleSpeed");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "COLONY_ORGANELLE_SPEED_INCREASE";
+            modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(Math.Round(Constants.AXON_MOVEMENT_BUFF_PER * 100, 1));
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyOrganelleRotation");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "COLONY_ORGANELLE_ROTATION_INCREASE";
+            modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(Math.Round(Constants.AXON_ROTATION_BUFF_PER * 100, 1));
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
@@ -878,8 +905,10 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("ROTATION_FORCE");
         Localization.Translate("PRESSURE_TOLERANCE");
         Localization.Translate("TEMPERATURE_TOLERANCE_RANGE");
-        Localization.Translate("COLONY_SPEED_INCREASE");
-        Localization.Translate("COLONY_ROTATION_INCREASE");
+        Localization.Translate("COLONY_BASE_SPEED_INCREASE");
+        Localization.Translate("COLONY_BASE_ROTATION_INCREASE");
+        Localization.Translate("COLONY_ORGANELLE_SPEED_INCREASE");
+        Localization.Translate("COLONY_ORGANELLE_ROTATION_INCREASE");
     }
 
     private void UpdateAutoScrollingOffset(double delta)

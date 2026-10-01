@@ -91,6 +91,19 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return 0;
     }
 
+    private static bool TryActivateAxon(CompoundBag compounds,
+        float energyCostMultiplier, float delta)
+    {
+        var axonCost = Constants.AXON_ENERGY_COST * delta * energyCostMultiplier;
+        if (compounds.TakeCompound(Compound.ATP, axonCost) >= 0.8f * axonCost)
+        {
+            // Only "activate" actomyosin if there was ATP
+            return true;
+        }
+
+        return false;
+    }
+
     [Query(Parallel = true)]
     [None<MicrobeColonyMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -287,33 +300,20 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
         }
 
-        // Speed from flagella (these also take ATP otherwise they won't work)
-        var thrustForce = 0.0f;
+        // Speed from organelles (right now primarily flagella) (these also take ATP otherwise they won't work)
+        var organelleForce = 0.0f;
 
         if (organelles.ThrustComponents != null && control.MovementDirection != Vector3.Zero)
         {
             foreach (var flagellum in organelles.ThrustComponents)
             {
-                thrustForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
+                organelleForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
                     cellProperties.IsBacteria, totalSpecializationBonus, energyCostMultiplier, delta);
             }
         }
 
-        force += thrustForce * totalSpecializationBonus;
-
-        force *= cellProperties.MembraneType.MovementFactor -
-            cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
-
-        if (usesSprintingForce && control.Sprinting)
-        {
-            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
-
-            strain.IsUnderStrain = true;
-        }
-        else
-        {
-            strain.IsUnderStrain = false;
-        }
+        // specialization bonus applies to speed from organelles
+        organelleForce *= totalSpecializationBonus;
 
         bool hasColony = entity.Has<MicrobeColony>();
 
@@ -323,7 +323,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), ref organelles,
                     compounds, control.MovementDirection, cellProperties.IsBacteria, totalSpecializationBonus,
-                    energyCostMultiplier, delta, ref force);
+                    energyCostMultiplier, delta, ref force, ref organelleForce);
             }
             catch (Exception e)
             {
@@ -339,6 +339,20 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                     MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
                 });
             }
+        }
+
+        // force from organelles is merged into main force from here on.
+        force += organelleForce;
+
+        if (usesSprintingForce && control.Sprinting)
+        {
+            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+
+            strain.IsUnderStrain = true;
+        }
+        else
+        {
+            strain.IsUnderStrain = false;
         }
 
         if (control.SlowedBySlime)
@@ -446,7 +460,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony,
         ref OrganelleContainer leaderOrganelles, CompoundBag leaderCompounds, Vector3 movementDirection,
-        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force)
+        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force,
+        ref float organelleForce)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
         // also has to be changed
@@ -460,12 +475,20 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 * leaderTotalSpecializationBonus;
         }
 
+        float axonCount = 0.0f;
+        if (leaderOrganelles.HasAxon)
+        {
+            if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
+            {
+                axonCount = leaderTotalSpecializationBonus;
+            }
+        }
+
         // Colony members have their movement update before organelle update, so that the movement organelles
         // see the direction.
         // The colony master should be already updated as the movement direction is either set by the
         // player input or microbe AI, neither of which will happen concurrently, so this should always get the
         // up-to-date value.
-
         foreach (var colonyMember in microbeColony.ColonyMembers)
         {
             // Colony leader processes the normal movement logic so it isn't taken into account here
@@ -488,7 +511,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
-                    force += flagellum.UseForMovement(movementDirection, memberCompounds,
+                    organelleForce += flagellum.UseForMovement(movementDirection, memberCompounds,
                         relativeRotation, isBacteria, memberTotalSpecializationBonus,
                         energyCostMultiplier, delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
@@ -499,11 +522,26 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
                     * memberTotalSpecializationBonus;
             }
+
+            if (organelles.HasAxon)
+            {
+                if (TryActivateAxon(memberCompounds, energyCostMultiplier, delta))
+                {
+                    axonCount += memberTotalSpecializationBonus;
+                }
+            }
         }
 
+        // The coordination bonus from axons should apply to all propulsion granted by organelles
+        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(axonCount);
+        organelleForce *= axonMovementMultiplier;
+
+        // Actomyosin buffs the base movement of cells (not from organelles)
         if (actomyosinCount > 0)
         {
-            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount);
+            // The bonus that Actomyosin applies to base movement is itself still affected by Axons
+            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount *
+                axonMovementMultiplier);
         }
     }
 }

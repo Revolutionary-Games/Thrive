@@ -1542,15 +1542,36 @@
       {
         "q": 0,
         "r": 0
+      },
+      {
+        "q": 1,
+        "r": 0
+      },
+      {
+        "q": 0,
+        "r": 1
+      },
+      {
+        "q": 0,
+        "r": -1
+      },
+      {
+        "q": 1,
+        "r": -1
+      },
+      {
+        "q": -1,
+        "r": 1
+      },
+      {
+        "q": -1,
+        "r": 0
       }
     ],
     "Processes": {},
     "FeatureTags": [
       "Axon"
     ],
-    "ToleranceEffects": {
-      "UV": -0.1
-    },
     "Density": 1100,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -1559,10 +1580,37 @@
     "PositionedExternally": true,
     "Name": "ORGANELLE_AXON",
     "Description": "ORGANELLE_AXON_DESCRIPTION",
+    "ProcessesDescription": "ORGANELLE_AXON_PROCESSES_DESCRIPTION",
+    "ProductionColour": "#ff9721",
+    "ConsumptionColour": "#ff9721",
     "IconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
+    "UnlockConditions": [
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "actomyosin",
+          "Generations": 1,
+          "MinimumCount": 5
+        }
+      },
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "flagellum",
+          "Generations": 1,
+          "MinimumCount": 5
+        }
+      },
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "cilia",
+          "Generations": 1,
+          "MinimumCount": 5
+        }
+      }
+    ],
     "RequiresNucleus": true,
-    "EditorButtonGroup": "Macroscopic",
-    "EditorButtonOrder": 1
+    "Unique": true,
+    "EditorButtonGroup": "Multicellular",
+    "EditorButtonOrder": 2
   },
   "myofibril": {
     "MPCost": 50,
@@ -1605,7 +1653,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Macroscopic",
-    "EditorButtonOrder": 2,
+    "EditorButtonOrder": 1,
     "IncompatibleMembraneNames": [
       "cellulose",
       "chitin",
