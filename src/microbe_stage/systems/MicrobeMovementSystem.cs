@@ -91,19 +91,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return 0;
     }
 
-    private static bool TryActivateAxon(CompoundBag compounds,
-        float energyCostMultiplier, float delta)
-    {
-        var axonCost = Constants.AXON_ENERGY_COST * delta * energyCostMultiplier;
-        if (compounds.TakeCompound(Compound.ATP, axonCost) >= 0.8f * axonCost)
-        {
-            // Only "activate" actomyosin if there was ATP
-            return true;
-        }
-
-        return false;
-    }
-
     [Query(Parallel = true)]
     [None<MicrobeColonyMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -475,12 +462,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 * leaderTotalSpecializationBonus;
         }
 
-        float axonCount = 0.0f;
-        if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
-        {
-            axonCount = leaderTotalSpecializationBonus;
-        }
-
         // Colony members have their movement update before organelle update, so that the movement organelles
         // see the direction.
         // The colony master should be already updated as the movement direction is either set by the
@@ -519,23 +500,12 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
                     * memberTotalSpecializationBonus;
             }
-
-            if (organelles.HasAxonFeature)
-            {
-                axonCount += memberTotalSpecializationBonus;
-            }
         }
-
-        // The coordination bonus from axons should apply to all propulsion granted by organelles
-        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(axonCount);
-        organelleForce *= axonMovementMultiplier;
 
         // Actomyosin buffs the base movement of cells (not from organelles)
         if (actomyosinCount > 0)
         {
-            // The bonus that Actomyosin applies to base movement is itself still affected by Axons
-            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount *
-                axonMovementMultiplier);
+            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount);
         }
     }
 }

@@ -265,7 +265,7 @@ public static class MicrobeInternalCalculations
     /// <param name="isBacteria">True if this cell does not have a nucleus</param>
     /// <param name="totalSpecializationBonus">
     ///     Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
-    ///     but potentially also cell adjacency and axon bonuses.
+    ///     but potentially also cell adjacency bonuses.
     /// </param>
     /// <param name="useEstimate">If true, uses </param>
     /// <returns>
@@ -427,7 +427,7 @@ public static class MicrobeInternalCalculations
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
     /// <param name="totalOrganelleBonus">
     ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
-    ///   but potentially also cell adjacency and axon bonuses.
+    ///   but potentially also cell adjacency bonuses.
     /// </param>
     /// <param name="baseRotationMultiplier">Bonus to base rotation (not organelles) right now just actomyosin</param>
     /// <returns>

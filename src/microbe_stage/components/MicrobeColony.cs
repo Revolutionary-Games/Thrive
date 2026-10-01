@@ -1050,19 +1050,13 @@ public static class MicrobeColonyHelpers
         float totalRotationSpeed = 0;
         bool leader = true;
 
-        // We first calculate the axon and actomyosin bonuses, because the individual cell calculations will be using
-        // them.
-        var axonCount = 0.0f;
-
+        // We first calculate the actomyosin bonus, because the individual cell calculations will be using it.
         foreach (var colonyMember in colony.ColonyMembers)
         {
             try
             {
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
                 var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
-
-                if (memberOrganelleContainer.HasAxon)
-                    axonCount += memberTotalSpecializationBonus;
 
                 actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
                     memberTotalSpecializationBonus;
@@ -1074,9 +1068,8 @@ public static class MicrobeColonyHelpers
             }
         }
 
-        var axonBonus = CellBodyPlanInternalCalculations.CalculateAxonRotationMultiplier(axonCount);
         var actomyosinMultiplier = CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(
-            actomyosinCount * axonBonus);
+            actomyosinCount);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1087,8 +1080,8 @@ public static class MicrobeColonyHelpers
                     colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus *
-                    axonBonus, actomyosinMultiplier);
+                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus,
+                    actomyosinMultiplier);
 
                 // Bonus from position
                 if (!leader)

@@ -666,15 +666,6 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/RotationIcon.png", "colonyBaseRotation");
         }
 
-        if (organelle.FeatureTags.Contains(OrganelleFeatureTag.Axon))
-        {
-            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "colonyOrganelleSpeed");
-
-            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/RotationIcon.png", "colonyOrganelleRotation");
-        }
-
         if (organelle.Components.Lysosome != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
@@ -800,24 +791,6 @@ public partial class ToolTipManager : CanvasLayer
                 .FormatSafe(Math.Round(Constants.ACTOMYOSIN_ROTATION_BUFF_PER * 100, 1));
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyOrganelleSpeed");
-
-        if (modifierInfo != null)
-        {
-            modifierInfo.DisplayName = "COLONY_ORGANELLE_SPEED_INCREASE";
-            modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
-                .FormatSafe(Math.Round(Constants.AXON_MOVEMENT_BUFF_PER * 100, 1));
-        }
-
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyOrganelleRotation");
-
-        if (modifierInfo != null)
-        {
-            modifierInfo.DisplayName = "COLONY_ORGANELLE_ROTATION_INCREASE";
-            modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
-                .FormatSafe(Math.Round(Constants.AXON_ROTATION_BUFF_PER * 100, 1));
-        }
-
         modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
 
         if (modifierInfo != null)
@@ -907,8 +880,6 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("TEMPERATURE_TOLERANCE_RANGE");
         Localization.Translate("COLONY_BASE_SPEED_INCREASE");
         Localization.Translate("COLONY_BASE_ROTATION_INCREASE");
-        Localization.Translate("COLONY_ORGANELLE_SPEED_INCREASE");
-        Localization.Translate("COLONY_ORGANELLE_ROTATION_INCREASE");
     }
 
     private void UpdateAutoScrollingOffset(double delta)
