@@ -429,7 +429,8 @@ public static class MicrobeInternalCalculations
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
-    /// <param name="totalSpecializationBonus"> Cell specialization bonus, including adjacency if relevant</param>    /// <returns>
+    /// <param name="totalSpecializationBonus"> Cell specialization bonus, including adjacency if relevant</param>
+    /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
     public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
