@@ -509,7 +509,7 @@ public partial class MetaballBodyEditorComponent :
         if (metaball?.Parent == null)
             return false;
 
-        moveTool.Display(metaball.Parent.Position, metaball.Position);
+        moveTool.InitializeDisplay(metaball.Parent.Position, metaball.Position);
 
         metaballSelectedForMoving = metaball;
         return true;
@@ -541,7 +541,12 @@ public partial class MetaballBodyEditorComponent :
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
         {
             CancelCurrentAction();
-            Editor.OnInsufficientMP(false);
+            Editor.OnInsufficientMP(true);
+
+            // Revert the display to the actual state of the selected metaball
+            moveTool.InitializeDisplay(metaballSelectedForMoving.ModifiableParent!.Position,
+                metaballSelectedForMoving.Position);
+
             return true;
         }
 
@@ -1397,6 +1402,12 @@ public partial class MetaballBodyEditorComponent :
 
             default:
                 throw new Exception("Invalid selection menu tab");
+        }
+
+        if (PreviewMode)
+        {
+            metaballSelectedForMoving = null;
+            moveTool.EndDisplay();
         }
     }
 }

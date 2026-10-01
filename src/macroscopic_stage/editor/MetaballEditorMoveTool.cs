@@ -64,7 +64,7 @@ public partial class MetaballEditorMoveTool : Node3D
         return rotationOrigin + initialRotation.Rotated(rotationPlane.Normal, angle - angleOffset);
     }
 
-    public void Display(Vector3 parentPos, Vector3 metaballPos)
+    public void InitializeDisplay(Vector3 parentPos, Vector3 metaballPos)
     {
         SetTorusRotations(parentPos, metaballPos);
     }
