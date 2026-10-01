@@ -134,7 +134,7 @@ public struct OrganelleContainer : IArchivableComponent
 
     public bool HasBindingAgent;
 
-    public bool HasAxon;
+    public bool HasAxonFeature;
 
     /// <summary>
     ///   Set true once all organelles are divided to not continuously run code that is triggered when a cell is ready
@@ -207,7 +207,7 @@ public struct OrganelleContainer : IArchivableComponent
         writer.Write(RotationSpeed);
         writer.Write(HasSignalingAgent);
         writer.Write(HasBindingAgent);
-        writer.Write(HasAxon);
+        writer.Write(HasAxonFeature);
     }
 }
 
@@ -250,7 +250,7 @@ public static class OrganelleContainerHelpers
             RotationSpeed = reader.ReadFloat(),
             HasSignalingAgent = reader.ReadBool(),
             HasBindingAgent = reader.ReadBool(),
-            HasAxon = hasAxonFeature,
+            HasAxonFeature = hasAxonFeature,
         };
     }
 
@@ -611,7 +611,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
-        container.HasAxon = false;
+        container.HasAxonFeature = false;
         container.HydrogenSulfideProtection = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
@@ -694,7 +694,7 @@ public static class OrganelleContainerHelpers
             }
 
             if (organelleDefinition.HasAxonFeature)
-                container.HasAxon = true;
+                container.HasAxonFeature = true;
 
             if (organelleDefinition.HasSignalingFeature)
                 container.HasSignalingAgent = true;

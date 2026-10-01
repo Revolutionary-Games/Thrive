@@ -476,7 +476,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         }
 
         float axonCount = 0.0f;
-        if (leaderOrganelles.HasAxon)
+        if (leaderOrganelles.HasAxonFeature)
         {
             if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
             {
@@ -523,7 +523,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                     * memberTotalSpecializationBonus;
             }
 
-            if (organelles.HasAxon)
+            if (organelles.HasAxonFeature)
             {
                 if (TryActivateAxon(memberCompounds, energyCostMultiplier, delta))
                 {
