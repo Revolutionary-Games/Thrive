@@ -2909,7 +2909,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         gameteMergingTimer += (float)delta;
         float animationProgress = gameteMergingTimer / Constants.GAMETE_FUSION_ANIMATION_DURATION;
 
-        Camera.UpdateCameraPosition(delta, oldCameraPosBeforeMerge.Slerp(gameteMergeLocation, animationProgress));
+        Camera.UpdateCameraPosition(delta, oldCameraPosBeforeMerge.Lerp(gameteMergeLocation, animationProgress));
 
         // Zoom in the camera during the animation
         Camera.CameraHeight = float.Lerp(oldCameraZoomBeforeMerge, Camera.MinCameraHeight + 5, animationProgress);
