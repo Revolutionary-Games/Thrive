@@ -256,6 +256,24 @@ public static class MicrobeInternalCalculations
     }
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
+    /// <summary>
+    ///   Calculates the speed for a cell.
+    /// </summary>
+    /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
+    /// <param name="membraneType">The membrane type for this cell</param>
+    /// <param name="membraneRigidity">The membrane rigidity for this cell</param>
+    /// <param name="isBacteria">True if this cell does not have a nucleus</param>
+    /// <param name="totalSpecializationBonus">
+    ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///   but potentially also cell adjacency bonuses.
+    /// </param>
+    /// <param name="useEstimate">
+    ///   If true, uses a mass estimate algorithm instead of generating shapeMasses. This is generally for auto-evo,
+    ///   since in that context generating a shapeMass takes too long.
+    /// </param>
+    /// <returns>
+    ///   A single speed value taking into account both thrust and drag.
+    /// </returns>
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
@@ -266,14 +284,7 @@ public static class MicrobeInternalCalculations
         // This is why Auto-Evo just estimates the value of the output instead
         if (!useEstimate)
         {
-            var averageDensity = CalculateAverageDensity(organelles);
-
-            var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
-
-            var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-                averageDensity, isBacteria);
-
-            shapeMass = shape.GetMass();
+            shapeMass = CalculateShapeMass(organelles, membraneType, isBacteria);
         }
 
         float organelleMovementForce = 0;
@@ -367,6 +378,19 @@ public static class MicrobeInternalCalculations
         return finalSpeed;
     }
 
+    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
+        bool isBacteria)
+    {
+        var averageDensity = CalculateAverageDensity(organelles);
+
+        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+            averageDensity, isBacteria);
+
+        return shape.GetMass();
+    }
+
     public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount,
         bool isBacteria)
     {
@@ -405,12 +429,16 @@ public static class MicrobeInternalCalculations
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
-    /// <param name="totalSpecializationBonus"> Cell specialization bonus, including adjacency if relevant</param>
+    /// <param name="totalOrganelleBonus">
+    ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///   but potentially also cell adjacency bonuses.
+    /// </param>
+    /// <param name="baseRotationMultiplier">Bonus to base rotation (not organelles) right now just actomyosin</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
     public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
-        float totalSpecializationBonus)
+        float totalOrganelleBonus, float baseRotationMultiplier = 1.0f)
     {
         // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
         // the real physics shape here
@@ -439,9 +467,9 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        ciliaFactor *= totalSpecializationBonus;
+        ciliaFactor *= totalOrganelleBonus;
 
-        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
+        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA * baseRotationMultiplier + ciliaFactor + inertia)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
     }
 
