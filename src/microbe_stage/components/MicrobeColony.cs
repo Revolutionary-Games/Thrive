@@ -1050,27 +1050,6 @@ public static class MicrobeColonyHelpers
         float totalRotationSpeed = 0;
         bool leader = true;
 
-        // We first calculate the actomyosin bonus, because the individual cell calculations will be using it.
-        foreach (var colonyMember in colony.ColonyMembers)
-        {
-            try
-            {
-                ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
-                var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
-
-                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
-                    memberTotalSpecializationBonus;
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("Failed to calculate rotation speed for microbe colony, " +
-                    "member likely missing a required component: ", e);
-            }
-        }
-
-        var actomyosinMultiplier =
-            CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(actomyosinCount);
-
         foreach (var colonyMember in colony.ColonyMembers)
         {
             try
@@ -1080,8 +1059,7 @@ public static class MicrobeColonyHelpers
                     colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus,
-                    actomyosinMultiplier);
+                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus);
 
                 // Bonus from position
                 if (!leader)
@@ -1095,6 +1073,8 @@ public static class MicrobeColonyHelpers
                 }
 
                 totalRotationSpeed += rawRotation;
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                    memberTotalSpecializationBonus;
             }
             catch (Exception e)
             {
@@ -1108,7 +1088,7 @@ public static class MicrobeColonyHelpers
 
         colony.ColonyRotationSpeed =
             CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(
-                totalRotationSpeed / colony.ColonyMembers.Length, colony.ColonyMembers.Length);
+                totalRotationSpeed / colony.ColonyMembers.Length, actomyosinCount, colony.ColonyMembers.Length);
     }
 
     /// <summary>
