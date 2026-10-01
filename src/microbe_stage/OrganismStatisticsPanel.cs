@@ -184,8 +184,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public bool CalculateBalancesWhenMoving => calculateBalancesWhenMoving.ButtonPressed;
 
-    public StorageValueBreakdown StorageValueBreakdown => storageValueBreakdown ??= new StorageValueBreakdown();
-
     public override void _Ready()
     {
         base._Ready();
@@ -207,8 +205,12 @@ public partial class OrganismStatisticsPanel : PanelContainer
             UpdateEnergyBalance(energyBalanceInfo);
         }
 
+        if (storageValueBreakdown != null)
+        {
+            UpdateStorage(storageValueBreakdown);
+        }
+
         UpdateStageDependentText();
-        UpdateStorage(StorageValueBreakdown);
     }
 
     public void UpdateStatVisibility()
@@ -443,6 +445,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public void UpdateStorage(StorageValueBreakdown storage)
     {
+        storageValueBreakdown = storage;
+
         // Storage values can be as low as 0.25 so 2 decimals are needed
         storageLabel.Value = MathF.Round(storage.NominalStorage.Total, 2);
 

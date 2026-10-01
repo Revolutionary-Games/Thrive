@@ -195,6 +195,8 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private StorageValueBreakdown? storageValueBreakdown;
+
     private List<TweakedProcess> tempAllProcesses = new();
     private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
@@ -2610,9 +2612,17 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        organismStatisticsPanel.StorageValueBreakdown.Clear();
-        GetAdditionalCapacities(out _, organismStatisticsPanel.StorageValueBreakdown);
-        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
 
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());

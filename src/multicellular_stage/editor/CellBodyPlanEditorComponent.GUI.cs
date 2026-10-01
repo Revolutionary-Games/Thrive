@@ -217,9 +217,17 @@ public partial class CellBodyPlanEditorComponent
 
         organismStatisticsPanel.UpdateGeneration(species.Generation);
 
-        organismStatisticsPanel.StorageValueBreakdown.Clear();
-        GetAdditionalCapacities(editedMicrobeCells, out _, organismStatisticsPanel.StorageValueBreakdown);
-        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(editedMicrobeCells, out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 

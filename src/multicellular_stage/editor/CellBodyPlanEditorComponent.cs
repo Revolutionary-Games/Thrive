@@ -262,6 +262,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private StorageValueBreakdown? storageValueBreakdown;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -2191,9 +2193,17 @@ public partial class CellBodyPlanEditorComponent :
     {
         var latestTypes = GetCurrentCellsWithLatestTypes();
 
-        organismStatisticsPanel.StorageValueBreakdown.Clear();
-        GetAdditionalCapacities(latestTypes, out _, organismStatisticsPanel.StorageValueBreakdown);
-        organismStatisticsPanel.UpdateStorage(organismStatisticsPanel.StorageValueBreakdown);
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(latestTypes, out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));
