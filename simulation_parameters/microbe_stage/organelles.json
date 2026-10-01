@@ -1587,29 +1587,6 @@
     "ProductionColour": "#ff9721",
     "ConsumptionColour": "#ff9721",
     "IconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
-    "UnlockConditions": [
-      {
-        "ReproduceWithOrganelle": {
-          "Organelle": "actomyosin",
-          "Generations": 1,
-          "MinimumCount": 5
-        }
-      },
-      {
-        "ReproduceWithOrganelle": {
-          "Organelle": "flagellum",
-          "Generations": 1,
-          "MinimumCount": 5
-        }
-      },
-      {
-        "ReproduceWithOrganelle": {
-          "Organelle": "cilia",
-          "Generations": 1,
-          "MinimumCount": 5
-        }
-      }
-    ],
     "RequiresNucleus": true,
     "Unique": true,
     "EditorButtonGroup": "Multicellular",
