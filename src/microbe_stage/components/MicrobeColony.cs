@@ -1068,8 +1068,8 @@ public static class MicrobeColonyHelpers
             }
         }
 
-        var actomyosinMultiplier = CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(
-            actomyosinCount);
+        var actomyosinMultiplier =
+            CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(actomyosinCount);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {

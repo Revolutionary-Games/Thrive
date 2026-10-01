@@ -375,7 +375,8 @@ public static class MicrobeInternalCalculations
         return finalSpeed;
     }
 
-    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool isBacteria)
+    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
+        bool isBacteria)
     {
         var averageDensity = CalculateAverageDensity(organelles);
 
