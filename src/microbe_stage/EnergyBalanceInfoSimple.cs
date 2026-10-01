@@ -32,13 +32,7 @@ public class EnergyBalanceInfoSimple
     public float Cilia { get; set; }
 
     /// <summary>
-    ///   The cost of all axons working at the same time (only when a colony is moving)
-    /// </summary>
-    public float Axon { get; set; }
-
-    /// <summary>
-    ///   Sum of <see cref="BaseMovement"/>, <see cref="Flagella"/>, <see cref="Actomyosin"/>, <see cref="Cilia"/>
-    ///   and <see cref="Axon"/>.
+    ///   Sum of <see cref="BaseMovement"/>, <see cref="Flagella"/>, <see cref="Actomyosin"/>, and <see cref="Cilia"/>
     /// </summary>
     public float TotalMovement { get; set; }
 
@@ -82,7 +76,6 @@ public class EnergyBalanceInfoSimple
         Flagella += energyBalanceInfoSimple.Flagella;
         Actomyosin += energyBalanceInfoSimple.Actomyosin;
         Cilia += energyBalanceInfoSimple.Cilia;
-        Axon += energyBalanceInfoSimple.Axon;
         TotalMovement += energyBalanceInfoSimple.TotalMovement;
         Osmoregulation += energyBalanceInfoSimple.Osmoregulation;
         TotalProduction += energyBalanceInfoSimple.TotalProduction;
@@ -98,7 +91,6 @@ public class EnergyBalanceInfoSimple
         Flagella = 0;
         Actomyosin = 0;
         Cilia = 0;
-        Axon = 0;
         TotalMovement = 0;
         Osmoregulation = 0;
         TotalProduction = 0;
