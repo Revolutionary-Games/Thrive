@@ -264,10 +264,13 @@ public static class MicrobeInternalCalculations
     /// <param name="membraneRigidity">The membrane rigidity for this cell</param>
     /// <param name="isBacteria">True if this cell does not have a nucleus</param>
     /// <param name="totalSpecializationBonus">
-    ///     Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
-    ///     but potentially also cell adjacency bonuses.
+    ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///   but potentially also cell adjacency bonuses.
     /// </param>
-    /// <param name="useEstimate">If true, uses </param>
+    /// <param name="useEstimate">
+    ///   If true, uses a mass estimate algorithm instead of generating shapeMasses. This is generally for auto-evo,
+    ///   since in that context generating a shapeMass takes too long.
+    /// </param>
     /// <returns>
     ///   A single speed value taking into account both thrust and drag.
     /// </returns>
