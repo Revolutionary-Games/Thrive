@@ -1010,6 +1010,9 @@ public partial class MetaballBodyEditorComponent :
 
     private bool MoveMetaball(MacroscopicMetaball metaball, Vector3 newLocation, MacroscopicMetaball? newParent)
     {
+        if (newParent != null)
+            newLocation = FinalMetaballPosition(newLocation, newParent, metaball.Size);
+
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newParent, metaball))
             return false;
