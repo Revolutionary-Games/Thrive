@@ -122,6 +122,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private Vector3 gameteMergeLocation = Vector3.Zero;
     private float gameteMergingTimer;
     private float oldCameraZoomBeforeMerge = -1;
+    private Vector3 oldCameraPosBeforeMerge;
 
     /// <summary>
     ///   Used to know when the player didn't scientifically split from another cell
@@ -2846,6 +2847,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         mergingGamete2 = otherGamete;
         gameteMergingTimer = 0;
         oldCameraZoomBeforeMerge = Camera.CameraHeight;
+        oldCameraPosBeforeMerge = Camera.Position;
 
         // As we can't easily load or save these entities, we will just destroy them on save if someone saves during
         // this animation.
@@ -2884,11 +2886,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private void UpdateGameteMergeAnimation(double delta)
     {
         gameteMergingTimer += (float)delta;
-        var target = Camera.Position.Slerp(gameteMergeLocation, 0.6f * (float)delta);
+        var target = oldCameraPosBeforeMerge.Slerp(gameteMergeLocation, gameteMergingTimer / 5.0f);
         Camera.UpdateCameraPosition(delta, target);
 
         // Zoom in the camera during the animation
-        Camera.CameraHeight = Math.Max(Camera.CameraHeight - 14 * (float)delta, Camera.MinCameraHeight + 5);
+        Camera.CameraHeight = float.Lerp(oldCameraZoomBeforeMerge, Camera.MinCameraHeight + 5,
+            gameteMergingTimer / 5.0f);
 
         if (gameteMergingTimer > 5)
         {
