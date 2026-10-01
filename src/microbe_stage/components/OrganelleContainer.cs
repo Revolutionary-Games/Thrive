@@ -174,8 +174,6 @@ public struct OrganelleContainer : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(HasAxon);
-
         writer.WriteObjectOrNull(Organelles);
 
         if (AvailableEnzymes != null)
@@ -209,6 +207,7 @@ public struct OrganelleContainer : IArchivableComponent
         writer.Write(RotationSpeed);
         writer.Write(HasSignalingAgent);
         writer.Write(HasBindingAgent);
+        writer.Write(HasAxon);
     }
 }
 
@@ -223,19 +222,18 @@ public static class OrganelleContainerHelpers
             throw new InvalidArchiveVersionException(version, OrganelleContainer.SERIALIZATION_VERSION);
 
         // For older versions, Multicellular species should not have had the Axon at all
-        bool hasAxon;
+        bool hasAxonFeature;
         if (version < 2)
         {
-            hasAxon = false;
+            hasAxonFeature = false;
         }
         else
         {
-            hasAxon = reader.ReadBool();
+            hasAxonFeature = reader.ReadBool();
         }
 
         return new OrganelleContainer
         {
-            HasAxon = hasAxon,
             Organelles = reader.ReadObjectOrNull<OrganelleLayout<PlacedOrganelle>>(),
             AvailableEnzymes = reader.ReadObjectOrNull<Dictionary<Enzyme, int>>(),
             AvailableToxinTypes = reader.ReadObjectOrNull<Dictionary<ToxinType, int>>(),
@@ -252,6 +250,7 @@ public static class OrganelleContainerHelpers
             RotationSpeed = reader.ReadFloat(),
             HasSignalingAgent = reader.ReadBool(),
             HasBindingAgent = reader.ReadBool(),
+            HasAxon = hasAxonFeature,
         };
     }
 
