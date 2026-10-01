@@ -31,6 +31,11 @@ public partial class MetaballEditorMoveTool : Node3D
 
     public bool IsDragging => dragging;
 
+    public void InitializeDisplay(Vector3 parentPos, Vector3 metaballPos)
+    {
+        SetTorusRotations(parentPos, metaballPos);
+    }
+
     public override void _Process(double delta)
     {
         var viewPort = GetViewport();
@@ -62,11 +67,6 @@ public partial class MetaballEditorMoveTool : Node3D
         var angle = ProjectRayAndGetRotation(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
 
         return rotationOrigin + initialRotation.Rotated(rotationPlane.Normal, angle - angleOffset);
-    }
-
-    public void InitializeDisplay(Vector3 parentPos, Vector3 metaballPos)
-    {
-        SetTorusRotations(parentPos, metaballPos);
     }
 
     public void EndDisplay()
@@ -189,10 +189,8 @@ public partial class MetaballEditorMoveTool : Node3D
         {
             return -(intersection.Value - rotationOrigin).SignedAngleTo(initialRotation, rotationPlane.Normal);
         }
-        else
-        {
-            return 0.0f;
-        }
+
+        return 0.0f;
     }
 
     private void SetTorusRotations(Vector3 parentPos, Vector3 metaballPos)

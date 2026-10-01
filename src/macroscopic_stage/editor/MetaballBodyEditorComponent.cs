@@ -490,22 +490,24 @@ public partial class MetaballBodyEditorComponent :
             throw new Exception("Tried to use a metaball transform tool while placing a metaball");
         }
 
-        if (metaballSelectedForMoving != null && moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position,
+        if (metaballSelectedForMoving != null)
+        {
+            if (moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position,
                 metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f
                 + metaballSelectedForMoving.Parent.Size * 0.5f))
-        {
-            // Return false to prevent the input from being consumed
-            return false;
-        }
-        else
-        {
+            {
+                // Return false to prevent the input from being consumed
+                return false;
+            }
+
+            // The player clicked away from the movement tool, so it should be hidden
             metaballSelectedForMoving = null;
             moveTool.EndDisplay();
         }
 
         GetMouseMetaball(out _, out var metaball);
 
-        // Metaball needs to have a parent, otherwise there's nothing to move it around
+        // The metaball needs to have a parent, otherwise there's nothing to move it around
         if (metaball?.Parent == null)
             return false;
 
@@ -533,8 +535,11 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        var multiAction = GetMultiActionWithOccupancies([(moveTool.GetDraggingPosition(),
-            (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent)], [metaballSelectedForMoving], true);
+        var multiAction = GetMultiActionWithOccupancies([
+            (moveTool.GetDraggingPosition(),
+                (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent),
+        ], [metaballSelectedForMoving], true);
+
 
         moveTool.StopDragging();
 
