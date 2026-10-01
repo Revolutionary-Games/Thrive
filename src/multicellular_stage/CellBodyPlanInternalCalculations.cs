@@ -49,8 +49,8 @@ public static class CellBodyPlanInternalCalculations
                 leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus, useEstimate);
         }
 
-        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus, useEstimate);
+        var speed = MicrobeInternalCalculations.CalculateBaseMovement(leader.MembraneType, leader.MembraneRigidity,
+            leader.ModifiableOrganelles.HexCount, leader.IsBacteria);
 
         ModifyCellSpeedWithColony(ref speed, cells.Count);
 
@@ -63,9 +63,6 @@ public static class CellBodyPlanInternalCalculations
         foreach (var hex in cells)
         {
             var cell = hex.Data!;
-
-            if (cell == leader)
-                continue;
 
             var cellActomyosinCount = 0;
 
@@ -119,7 +116,7 @@ public static class CellBodyPlanInternalCalculations
 
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
-        speed = speed / cells.Count + addedSpeed / finalMass;
+        speed = (speed + addedSpeed) / finalMass;
 
         // This matches the bonus applied to colony members in MicrobeMovementSystem.
         return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
