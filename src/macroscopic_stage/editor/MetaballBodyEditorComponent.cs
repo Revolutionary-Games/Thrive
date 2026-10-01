@@ -540,7 +540,6 @@ public partial class MetaballBodyEditorComponent :
                 (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent),
         ], [metaballSelectedForMoving], true);
 
-
         moveTool.StopDragging();
 
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
