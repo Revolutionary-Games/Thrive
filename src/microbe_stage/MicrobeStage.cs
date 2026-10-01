@@ -261,6 +261,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             instance.oldCameraPosBeforeMerge = reader.ReadVector3();
         }
+        else
+        {
+            instance.oldCameraPosBeforeMerge = instance.Camera.Position;
+        }
 
         return instance;
     }
