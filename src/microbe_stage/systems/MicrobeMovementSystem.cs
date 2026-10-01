@@ -463,6 +463,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // The colony master should be already updated as the movement direction is either set by the
         // player input or microbe AI, neither of which will happen concurrently, so this should always get the
         // up-to-date value.
+
         foreach (var colonyMember in microbeColony.ColonyMembers)
         {
             // Colony leader processes the normal movement logic so it isn't taken into account here

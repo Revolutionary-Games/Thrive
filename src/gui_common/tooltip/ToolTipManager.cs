@@ -661,6 +661,7 @@ public partial class ToolTipManager : CanvasLayer
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
                 "res://assets/textures/gui/bevel/SpeedIcon.png", "colonySpeed");
+
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
                 "res://assets/textures/gui/bevel/RotationIcon.png", "colonyRotation");
         }
@@ -773,6 +774,7 @@ public partial class ToolTipManager : CanvasLayer
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("colonySpeed");
+
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "COLONY_SPEED_INCREASE";
@@ -781,6 +783,7 @@ public partial class ToolTipManager : CanvasLayer
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("colonyRotation");
+
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "COLONY_ROTATION_INCREASE";
