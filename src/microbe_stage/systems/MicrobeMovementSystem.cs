@@ -476,12 +476,9 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         }
 
         float axonCount = 0.0f;
-        if (leaderOrganelles.HasAxonFeature)
+        if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
         {
-            if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
-            {
-                axonCount = leaderTotalSpecializationBonus;
-            }
+            axonCount = leaderTotalSpecializationBonus;
         }
 
         // Colony members have their movement update before organelle update, so that the movement organelles
