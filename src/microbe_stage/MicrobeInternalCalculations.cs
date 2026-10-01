@@ -264,8 +264,8 @@ public static class MicrobeInternalCalculations
     /// <param name="membraneRigidity">The membrane rigidity for this cell</param>
     /// <param name="isBacteria">True if this cell does not have a nucleus</param>
     /// <param name="totalSpecializationBonus">
-    ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
-    ///   but potentially also cell adjacency and axon bonuses.
+    ///     Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///     but potentially also cell adjacency and axon bonuses.
     /// </param>
     /// <param name="useEstimate">If true, uses </param>
     /// <returns>
@@ -375,8 +375,7 @@ public static class MicrobeInternalCalculations
         return finalSpeed;
     }
 
-    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
-        bool isBacteria)
+    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool isBacteria)
     {
         var averageDensity = CalculateAverageDensity(organelles);
 

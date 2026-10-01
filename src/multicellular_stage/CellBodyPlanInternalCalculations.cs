@@ -71,8 +71,8 @@ public static class CellBodyPlanInternalCalculations
             var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
-            // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to
-            // figure out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
+            // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
+            // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
             // This is why Auto-Evo just estimates the value of the output instead
             if (!useEstimate)
             {
