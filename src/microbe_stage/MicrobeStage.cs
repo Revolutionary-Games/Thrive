@@ -15,7 +15,7 @@ using SharedBase.Archive;
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable, IEditorMovableStage
 {
-    public const int SERIALIZATION_VERSION = 3;
+    public const int SERIALIZATION_VERSION = 4;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
@@ -257,6 +257,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             instance.matePosition = reader.ReadVector3();
         }
 
+        if (version > 3)
+        {
+            instance.oldCameraPosBeforeMerge = reader.ReadVector3();
+        }
+
         return instance;
     }
 
@@ -298,6 +303,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.Write(matePositionLastUpdated);
         writer.Write(matePositionLineActiveSeconds);
         writer.Write(matePosition);
+
+        writer.Write(oldCameraPosBeforeMerge);
     }
 
     /// <summary>
