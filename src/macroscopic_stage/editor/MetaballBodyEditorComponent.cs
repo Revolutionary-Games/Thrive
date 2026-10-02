@@ -508,8 +508,8 @@ public partial class MetaballBodyEditorComponent :
         if (metaballSelectedForMoving != null)
         {
             if (moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position,
-                metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f
-                + metaballSelectedForMoving.Parent.Size * 0.5f))
+                    metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f
+                    + metaballSelectedForMoving.Parent.Size * 0.5f))
             {
                 // Return false to prevent the input from being consumed
                 return false;
