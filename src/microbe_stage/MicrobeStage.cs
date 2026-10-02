@@ -15,7 +15,7 @@ using SharedBase.Archive;
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable, IEditorMovableStage
 {
-    public const int SERIALIZATION_VERSION = 3;
+    public const int SERIALIZATION_VERSION = 4;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
@@ -122,6 +122,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private Vector3 gameteMergeLocation = Vector3.Zero;
     private float gameteMergingTimer;
     private float oldCameraZoomBeforeMerge = -1;
+    private Vector3 oldCameraPosBeforeMerge;
 
     /// <summary>
     ///   Used to know when the player didn't scientifically split from another cell
@@ -256,6 +257,15 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             instance.matePosition = reader.ReadVector3();
         }
 
+        if (version > 3)
+        {
+            instance.oldCameraPosBeforeMerge = reader.ReadVector3();
+        }
+        else
+        {
+            instance.oldCameraPosBeforeMerge = instance.Camera.Position;
+        }
+
         return instance;
     }
 
@@ -297,6 +307,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.Write(matePositionLastUpdated);
         writer.Write(matePositionLineActiveSeconds);
         writer.Write(matePosition);
+
+        writer.Write(oldCameraPosBeforeMerge);
     }
 
     /// <summary>
@@ -2856,6 +2868,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         mergingGamete2 = otherGamete;
         gameteMergingTimer = 0;
         oldCameraZoomBeforeMerge = Camera.CameraHeight;
+        oldCameraPosBeforeMerge = Camera.Position;
 
         // As we can't easily load or save these entities, we will just destroy them on save if someone saves during
         // this animation.
@@ -2894,13 +2907,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private void UpdateGameteMergeAnimation(double delta)
     {
         gameteMergingTimer += (float)delta;
-        var target = Camera.Position.Slerp(gameteMergeLocation, 0.6f * (float)delta);
-        Camera.UpdateCameraPosition(delta, target);
+        float animationProgress = Math.Clamp(gameteMergingTimer / Constants.GAMETE_FUSION_ANIMATION_DURATION, 0, 1);
+
+        Camera.UpdateCameraPosition(delta, oldCameraPosBeforeMerge.Lerp(gameteMergeLocation, animationProgress));
 
         // Zoom in the camera during the animation
-        Camera.CameraHeight = Math.Max(Camera.CameraHeight - 14 * (float)delta, Camera.MinCameraHeight + 5);
+        Camera.CameraHeight = float.Lerp(oldCameraZoomBeforeMerge, Camera.MinCameraHeight + 5, animationProgress);
 
-        if (gameteMergingTimer > 5)
+        if (animationProgress >= 1.0f)
         {
             if (!MovingToEditor)
             {

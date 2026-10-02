@@ -1307,6 +1307,8 @@ public static class Constants
     public const float MICROBE_MATE_FORCE_SPAWN_INTERVAL = 90;
     public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
 
+    public const float GAMETE_FUSION_ANIMATION_DURATION = 5.0f;
+
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
     public const int CORPSE_CHUNK_DIVISOR = 4;
