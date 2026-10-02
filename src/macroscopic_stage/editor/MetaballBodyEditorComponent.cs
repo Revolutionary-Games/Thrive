@@ -114,6 +114,7 @@ public partial class MetaballBodyEditorComponent :
     private TransformTool selectedTransformTool = TransformTool.None;
 
     private MacroscopicMetaball? metaballSelectedForMoving;
+    private List<MacroscopicMetaball> movingToolPreviewMetaballs = new();
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -215,10 +216,13 @@ public partial class MetaballBodyEditorComponent :
 
         if (metaballSelectedForMoving != null && moveTool.IsDragging)
         {
-            var pos = moveTool.GetDraggingPosition();
+            var change = moveTool.GetDraggingPosition() - metaballSelectedForMoving.Position;
 
-            RenderHighlightedMetaball(pos, (MacroscopicMetaball)metaballSelectedForMoving.ModifiableParent!,
-                metaballSelectedForMoving.ModifiableCellType, metaballSelectedForMoving.Size);
+            foreach (var metaball in movingToolPreviewMetaballs)
+            {
+                RenderHighlightedMetaball(metaball.Position + change, null, metaball.ModifiableCellType,
+                        metaball.Size);
+            }
         }
 
         if (metaballDisplayDataDirty)
@@ -529,6 +533,10 @@ public partial class MetaballBodyEditorComponent :
         moveTool.InitializeDisplay(metaball.Parent.Position, metaball.Position);
 
         metaballSelectedForMoving = metaball;
+
+        movingToolPreviewMetaballs.Clear();
+        AddDescendantMetaballs(metaballSelectedForMoving, movingToolPreviewMetaballs);
+
         return true;
     }
 
@@ -1351,6 +1359,31 @@ public partial class MetaballBodyEditorComponent :
                 control.ReportTypeChanged();
             }
         }
+    }
+
+    private void AddDescendantMetaballs(MacroscopicMetaball from, List<MacroscopicMetaball> list)
+    {
+        // TODO: optimize this
+        foreach (var metaball in editedMetaballs)
+        {
+            if (IsDescendantOf(metaball, from))
+            {
+                list.Add(metaball);
+            }
+        }
+    }
+
+    private bool IsDescendantOf(Metaball? metaball, Metaball of)
+    {
+        while (metaball != null)
+        {
+            if (metaball == of)
+                return true;
+
+            metaball = metaball.ModifiableParent;
+        }
+
+        return false;
     }
 
     private void SetSelectionMenuTab(string tab)
