@@ -1153,6 +1153,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     public override void OnReturnFromEditor()
     {
+        // If switched on, always reset the whole patch, including the player
+        if (GameWorld.WorldSettings.AlwaysResetEnvironment)
+        {
+            // Despite destroying all entities, we need to call some other despawning methods first to ensure that all
+            // necessary data is deleted.
+            patchManager.DespawnAll();
+            WorldSimulation.DestroyAllEntities();
+            SpawnPlayer();
+        }
+
         UpdatePatchSettings();
 
         base.OnReturnFromEditor();

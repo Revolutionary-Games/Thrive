@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 21:12-0400\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
-"Last-Translator: Исаия Брайнин <fadingsoul90@gmail.com>\n"
+"POT-Creation-Date: 2026-09-29 09:51+0300\n"
+"PO-Revision-Date: 2026-09-27 17:28+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -199,6 +199,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Альтернативная временная шкала"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Окружающая среда"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "При"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -741,6 +749,9 @@ msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
 msgstr ""
 
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
 msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
@@ -5526,9 +5537,8 @@ msgstr "Массовое почкование"
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL"
-msgstr "Бесполое"
+msgstr "Половое"
 
 #, fuzzy
 msgid "REPRODUCTION_SEXUAL_ANISOGAMY"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 21:12-0400\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-09-23 13:55+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -201,6 +201,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Alternatif zaman ölçeği"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ortam"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -743,23 +751,27 @@ msgstr "Hücreleri etrafta hareket ettirmek için manuel düzene geç"
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr "Hücreleri döndürme işlemi yalnızca ana yapı görünümünde yapılabilir"
 
+#, fuzzy
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr "Bu sekmede, oyun sırasında hücre koloniniz için kullanılan tam gerçek düzeni görüntüleyebilirsiniz ve manuel düzeni kullandığınızda bu düzeni değiştirebilirsiniz."
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr "Bu manuel hücre düzeni geçersiz, lütfen bunu editör sekmesinden inceleyin ve düzeltin veya manuel düzeni devre dışı bırakın"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "Bu düzen geçersiz çünkü hücreler hedeflenen yakınlıklarını kaybetti. Bu hücreleri, hedef pozisyonlarının yakınına taşıyın (kırmızı oklara bakın)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr "Bu düzen geçersiz çünkü bağlanmamış hücreler var"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
-msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var . Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
+msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var. Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr "Bu düzen geçersiz çünkü çakışan hücreler var."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "Bu düzen geçersiz çünkü çakışan hücreler var ve hücreler hedeflenen yakınlıklarını kaybetti (kırmızı oklara bakın)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr "Bu düzen geçersiz çünkü çakışan ve bağlanmamış hücreler var."

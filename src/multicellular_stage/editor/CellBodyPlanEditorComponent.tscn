@@ -344,7 +344,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -372,6 +372,7 @@ layoutTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingP
 automaticLayoutButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/AutomaticLayout")
 reapplyAutomaticLayoutButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/ReapplyAutomaticLayout")
 layoutExplanationLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/LayoutExplanation")
+layoutShiftNoteLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/LayoutShiftNote")
 layoutCalculationSpinner = NodePath("LayoutSpinner")
 layoutErrorLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/LayoutError")
 cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
@@ -988,6 +989,17 @@ visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+label_settings = ExtResource("6_pwhoj")
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer" unique_id=955813472]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LayoutShiftNote" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer" unique_id=367884718]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "CELL_BODY_LAYOUT_SHIFT_NOTE"
 label_settings = ExtResource("6_pwhoj")
 autowrap_mode = 3
 
