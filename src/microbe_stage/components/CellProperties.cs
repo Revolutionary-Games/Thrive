@@ -271,6 +271,16 @@ public static class CellPropertiesHelpers
 
         var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 
+        // A newly spawned player cell can divide before its process list has marked any compounds useful.
+        // Let the daughter accept the compounds that are already present in the parent in that case.
+        if (!originalCompounds.HasAnyBeenSetUseful())
+        {
+            foreach (var compound in keys)
+            {
+                copyEntityCompounds.SetUseful(compound);
+            }
+        }
+
         bool isPlayerMicrobe = entity.Has<PlayerMarker>();
 
         // Split the compounds between the two cells.
