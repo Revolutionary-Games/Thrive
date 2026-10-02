@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-29 09:51+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-09-22 18:23+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -2202,19 +2202,13 @@ msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiosis"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /second"
+msgstr "{0}: {1} /second"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"While consuming:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Energy Consumption Pressure"
@@ -5266,6 +5260,18 @@ msgstr "Play microbe intro on new game"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Play With Current Setting"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr "+{0} Base"
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr "  +{0} Base"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "+{0} from Specialization"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr "  +{0} from Specialization"
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -6213,6 +6219,9 @@ msgstr "Toggle sprinting mode. When sprinting cells move faster but consume more
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
+
+msgid "STANDARD_COLON_VALUE"
+msgstr "Standard: {0}"
 
 msgid "START"
 msgstr "Start"
@@ -7609,6 +7618,9 @@ msgstr "Wheel right"
 
 msgid "WHEEL_UP"
 msgstr "Wheel up"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr "While consuming:"
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10812,9 +10824,6 @@ msgstr "Zoom out"
 
 #~ msgid "PARENRIGHT"
 #~ msgstr ")"
-
-#~ msgid "PLUS"
-#~ msgstr "+"
 
 #~ msgid "COMMA"
 #~ msgstr ","

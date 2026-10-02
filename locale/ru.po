@@ -2217,12 +2217,6 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} АТФ\n"
-"При потреблении:\n"
-"{2}"
-
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Давление Потребления Энергии"
 
@@ -5296,6 +5290,19 @@ msgstr "Проигрывать вступление микроба при нов
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Играть с текущими настройками"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Специализация:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
@@ -6255,6 +6262,10 @@ msgstr "Переключает режим спринтинга. Во время 
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Имя:"
 
 msgid "START"
 msgstr "Начать"
@@ -7647,6 +7658,9 @@ msgstr "Колёсико вправо"
 
 msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "наша Wiki"
@@ -10230,6 +10244,12 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} АТФ\n"
+#~ "При потреблении:\n"
+#~ "{2}"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Тип споровых клеток"
