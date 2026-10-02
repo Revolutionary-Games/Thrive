@@ -299,22 +299,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
         }
 
-        force += thrustForce * totalSpecializationBonus;
-
-        force *= cellProperties.MembraneType.MovementFactor -
-            cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
-
-        if (usesSprintingForce && control.Sprinting)
-        {
-            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
-
-            strain.IsUnderStrain = true;
-        }
-        else
-        {
-            strain.IsUnderStrain = false;
-        }
-
         bool hasColony = entity.Has<MicrobeColony>();
 
         if (control.MovementDirection != Vector3.Zero && hasColony)
@@ -323,7 +307,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), ref organelles,
                     compounds, control.MovementDirection, cellProperties.IsBacteria, totalSpecializationBonus,
-                    energyCostMultiplier, delta, ref force);
+                    energyCostMultiplier, delta, ref force, thrustForce);
             }
             catch (Exception e)
             {
@@ -339,6 +323,19 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                     MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
                 });
             }
+        }
+
+        // The sprinting force multiplier is applied here so that it modifies the total force from all cells.
+        // (if a colony is involved)
+        if (usesSprintingForce && control.Sprinting)
+        {
+            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+
+            strain.IsUnderStrain = true;
+        }
+        else
+        {
+            strain.IsUnderStrain = false;
         }
 
         if (control.SlowedBySlime)
@@ -446,12 +443,16 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony,
         ref OrganelleContainer leaderOrganelles, CompoundBag leaderCompounds, Vector3 movementDirection,
-        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force)
+        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force,
+        float thrustForce)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
         // also has to be changed
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
+
+        // leader's flagella thrust is added after base speed is modified.
+        force += thrustForce;
 
         float actomyosinCount = 0;
         if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })
