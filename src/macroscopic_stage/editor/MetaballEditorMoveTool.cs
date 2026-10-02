@@ -149,7 +149,16 @@ public partial class MetaballEditorMoveTool : Node3D
 
         if (ring == verticalRing)
         {
-            rotationPlane = new Plane(Vector3.Up.Cross(parentPos - metaballPos).Normalized(), parentPos);
+            var normal = Vector3.Up.Cross(parentPos - metaballPos).Normalized();
+
+            if (normal == Vector3.Zero)
+            {
+                // The current metaball is right above or below its parent, so we need to arbitrarily pick a rotation
+                // axis
+                normal = Vector3.Right;
+            }
+
+            rotationPlane = new Plane(normal, parentPos);
         }
         else
         {
