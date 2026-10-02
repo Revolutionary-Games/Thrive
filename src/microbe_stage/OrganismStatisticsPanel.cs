@@ -701,6 +701,11 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private void AppendBreakdownToTooltip(StringBuilder stringBuilder, ValueBreakdown valueBreakdown, int decimalPlaces,
         bool useIndent)
     {
+        if (Math.Abs(valueBreakdown.Specialization) < MathUtils.EPSILON)
+        {
+            return;
+        }
+
         string baseText;
         string specializationText;
 
@@ -718,12 +723,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         stringBuilder.Append('\n');
         stringBuilder.Append(baseText.FormatSafe(Math.Round(valueBreakdown.Base, decimalPlaces)));
 
-        if (valueBreakdown.Specialization > 0)
-        {
-            stringBuilder.Append('\n');
-            stringBuilder.Append(
-                specializationText.FormatSafe(Math.Round(valueBreakdown.Specialization, decimalPlaces)));
-        }
+        stringBuilder.Append('\n');
+        stringBuilder.Append(specializationText.FormatSafe(Math.Round(valueBreakdown.Specialization, decimalPlaces)));
     }
 
     private class ATPComparer : IComparer<string>
