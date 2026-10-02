@@ -220,8 +220,7 @@ public partial class MetaballBodyEditorComponent :
 
             foreach (var metaball in movingToolPreviewMetaballs)
             {
-                RenderHighlightedMetaball(metaball.Position + change, null, metaball.ModifiableCellType,
-                        metaball.Size);
+                RenderHighlightedMetaball(metaball.Position + change, null, metaball.ModifiableCellType, metaball.Size);
             }
         }
 
@@ -1377,7 +1376,7 @@ public partial class MetaballBodyEditorComponent :
     {
         while (metaball != null)
         {
-            if (metaball == of)
+            if (ReferenceEquals(metaball, of))
                 return true;
 
             metaball = metaball.ModifiableParent;
