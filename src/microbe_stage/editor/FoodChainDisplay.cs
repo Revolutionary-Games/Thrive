@@ -436,8 +436,8 @@ public partial class FoodChainDisplay : Control
                         GraphNode.NodeType.CompoundCloud);
                     break;
 
-                case EnvironmentalCompoundPressure environmentalCompoundPressure:
-                    LinkToCompoundNode(ourNode, environmentalCompoundPressure.GetUsedCompoundType(),
+                case EnvironmentalCompoundEnergy environmentalCompoundEnergy:
+                    LinkToCompoundNode(ourNode, environmentalCompoundEnergy.GetUsedCompoundType(),
                         GraphNode.NodeType.EnvironmentalCompound);
                     break;
 
