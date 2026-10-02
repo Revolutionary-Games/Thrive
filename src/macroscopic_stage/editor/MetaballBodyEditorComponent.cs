@@ -698,6 +698,8 @@ public partial class MetaballBodyEditorComponent :
     protected override void OnMoveActionStarted()
     {
         editedMetaballs.Remove(MovingPlacedMetaball!);
+
+        SelectedTransformTool = TransformTool.None;
     }
 
     protected override EditorAction? TryCreateMetaballRemoveAction(MacroscopicMetaball metaball,
