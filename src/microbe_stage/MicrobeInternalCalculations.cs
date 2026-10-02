@@ -347,7 +347,7 @@ public static class MicrobeInternalCalculations
 
         // If this estimate could be made more accurate without additional computation that would be great
         // but it is close enough for now
-        massEstimate *= 1.4f;
+        massEstimate *= Constants.MASS_ESTIMATE_MULTIPLIER;
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
 

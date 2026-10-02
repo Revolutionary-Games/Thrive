@@ -81,7 +81,8 @@ public static class CellBodyPlanInternalCalculations
 
             foreach (var organelle in cell.Organelles)
             {
-                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount * 1.4f;
+                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount *
+                    Constants.MASS_ESTIMATE_MULTIPLIER;
 
                 if (organelle.Definition.HasActomyosinComponent)
                     ++cellActomyosinCount;
