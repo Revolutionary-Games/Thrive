@@ -325,6 +325,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
         }
 
+        // The sprinting force multiplier is applied here so that it modifies the total force from all cells.
+        // (if a colony is involved)
         if (usesSprintingForce && control.Sprinting)
         {
             force *= Constants.SPRINTING_FORCE_MULTIPLIER;
