@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-09-23 13:55+0000\n"
+"PO-Revision-Date: 2026-10-01 15:50+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -202,13 +202,11 @@ msgstr ""
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Alternatif zaman ölçeği"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr "Ortam"
+msgstr "Editörden ayrılırken dünya ortamını sıfırla"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "@"
+msgstr "(etkinleştirildiğinde; bulutlar, çevre, mikroplar, oyuncu organizması ve deposu, diğer yaşayan şeyler vb. yalnızca yeni bir araziye ya da konuma taşındığınız zaman değil, editörden ayrıldığınız her an kaldırılır ve ortam yeniden oluşturulur)"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -751,9 +749,8 @@ msgstr "Hücreleri etrafta hareket ettirmek için manuel düzene geç"
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr "Hücreleri döndürme işlemi yalnızca ana yapı görünümünde yapılabilir"
 
-#, fuzzy
 msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
-msgstr "Bu sekmede, oyun sırasında hücre koloniniz için kullanılan tam gerçek düzeni görüntüleyebilirsiniz ve manuel düzeni kullandığınızda bu düzeni değiştirebilirsiniz."
+msgstr "Not: Otomatik modda düzen kaymaları önizlenmez. Bu nedenle, editörden çıkarken gerçekleşen kayma sonucunda düzen tam olarak aynı kalmayabilir. Manuel modda hücre türlerinin düzen kaymaları önizlenir. Bu da, manuel ve otomatik modlar arasında farklılıklara yol açabilir."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr "Bu manuel hücre düzeni geçersiz, lütfen bunu editör sekmesinden inceleyin ve düzeltin veya manuel düzeni devre dışı bırakın"
