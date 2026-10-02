@@ -42,9 +42,6 @@ public partial class MetaballEditorMoveTool : Node3D
         var camera = viewPort.GetCamera3D();
         var mousePos = viewPort.GetMousePosition();
 
-        var rayOrigin = camera.ProjectRayOrigin(mousePos);
-        var rayNormal = camera.ProjectRayNormal(mousePos);
-
         if (dragging)
         {
             SetTorusRotations(parentOrigin, GetDraggingPosition());
@@ -53,6 +50,9 @@ public partial class MetaballEditorMoveTool : Node3D
         {
             horizontalRing.MaterialOverride = null;
             verticalRing.MaterialOverride = null;
+
+            var rayOrigin = camera.ProjectRayOrigin(mousePos);
+            var rayNormal = camera.ProjectRayNormal(mousePos);
 
             BestSelectedRing(rayOrigin, rayNormal)?.MaterialOverride = highlightMaterial;
         }
@@ -90,11 +90,7 @@ public partial class MetaballEditorMoveTool : Node3D
 
         var mousePos = viewPort.GetMousePosition();
 
-        var rayOrigin = camera.ProjectRayOrigin(mousePos);
-        var rayNormal = camera.ProjectRayNormal(mousePos);
-        var rayEnd = rayOrigin + rayNormal * 1000.0f;
-
-        var ring = BestSelectedRing(rayOrigin, rayEnd);
+        var ring = BestSelectedRing(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
 
         if (ring != null)
         {
