@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn" id="9_as603"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="10"]
-[ext_resource type="Texture2D" uid="uid://3bj404a6bnwb" path="res://assets/textures/gui/bevel/trashButton.png" id="10_enpqv"]
+[ext_resource type="Texture2D" uid="uid://bb72wwjokhks4" path="res://assets/textures/gui/bevel/rotateButtonIdle.svg" id="10_e32cu"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="11"]
-[ext_resource type="Texture2D" uid="uid://u85mqai0b0pt" path="res://assets/textures/gui/bevel/trashButtonActive.png" id="11_e32cu"]
+[ext_resource type="Texture2D" uid="uid://d0f0oygogf1b0" path="res://assets/textures/gui/bevel/rotateButtonActive.svg" id="11_bgu53"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
-[ext_resource type="Texture2D" uid="uid://cpqu1afcsgfr0" path="res://assets/textures/gui/bevel/trashButtonHover.png" id="12_bgu53"]
+[ext_resource type="Texture2D" uid="uid://dbjgad8mu7gbp" path="res://assets/textures/gui/bevel/rotateButtonHover.svg" id="12_wh011"]
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="13_wsdas"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="14"]
@@ -702,9 +702,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 toggle_mode = true
-texture_normal = ExtResource("10_enpqv")
-texture_pressed = ExtResource("11_e32cu")
-texture_hover = ExtResource("12_bgu53")
+texture_normal = ExtResource("10_e32cu")
+texture_pressed = ExtResource("11_bgu53")
+texture_hover = ExtResource("12_wh011")
 ignore_texture_size = true
 stretch_mode = 0
 
