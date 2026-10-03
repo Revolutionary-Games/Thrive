@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-03 10:23+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -70,9 +70,7 @@ msgid "ACTION_AWAKEN"
 msgstr "Word wakker ({0:F1}/{1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Aksie is geblock terwyl ander aksies aan die gang is"
@@ -172,12 +170,17 @@ msgstr ""
 
 #, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "3D redakteurder"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altyd sigbaar"
@@ -284,15 +287,11 @@ msgstr ""
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr ""
@@ -567,9 +566,7 @@ msgstr ""
 
 #, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -707,35 +704,64 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "CELL_STAT_STORAGE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "CELL_TYPE_NAME"
 msgstr ""
@@ -1023,18 +1049,14 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "COMPOUND_CLOUDS"
 msgstr ""
@@ -1056,51 +1078,37 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
 msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr ""
@@ -1119,9 +1127,7 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "COMPOUND_TO_FIND"
 msgstr ""
@@ -1354,6 +1360,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -1467,9 +1476,7 @@ msgstr ""
 
 #, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
@@ -1479,9 +1486,7 @@ msgstr ""
 
 #, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1491,9 +1496,7 @@ msgstr ""
 
 #, fuzzy
 msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "CURRENT_PARTICLES_NONE"
 msgstr ""
@@ -1581,6 +1584,12 @@ msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr ""
+
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
 msgstr ""
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -1744,9 +1753,7 @@ msgstr ""
 
 #, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
@@ -1945,9 +1952,7 @@ msgstr ""
 
 #, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "EMITTERS_COUNT"
 msgstr ""
@@ -1981,9 +1986,7 @@ msgstr ""
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
 msgstr ""
@@ -2022,9 +2025,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2131,9 +2131,7 @@ msgstr ""
 
 #, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
@@ -2146,9 +2144,7 @@ msgstr ""
 
 #, fuzzy
 msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
@@ -2158,15 +2154,11 @@ msgstr ""
 
 #, fuzzy
 msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2490,11 +2482,18 @@ msgstr ""
 msgid "GAMETE_PRODUCED"
 msgstr ""
 
+msgid "GAMETE_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_TYPE_ALL"
+msgstr ""
+
+msgid "GAMETE_TYPE_B"
+msgstr ""
+
 #, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
@@ -2507,9 +2506,7 @@ msgstr ""
 
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "GENERAL"
 msgstr ""
@@ -2561,15 +2558,11 @@ msgstr ""
 
 #, fuzzy
 msgid "GERMINATE_SPORE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2582,15 +2575,11 @@ msgstr ""
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr ""
@@ -2606,9 +2595,7 @@ msgstr ""
 
 #, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
@@ -2621,9 +2608,7 @@ msgstr ""
 
 #, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -2687,9 +2672,7 @@ msgstr ""
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "HELP"
 msgstr ""
@@ -2899,9 +2882,7 @@ msgstr ""
 
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "INSTANT_KILL_PROTECTION"
 msgstr ""
@@ -3263,6 +3244,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr ""
 
@@ -3574,15 +3558,14 @@ msgstr ""
 
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
 msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "MAX_FPS"
 msgstr ""
@@ -3661,9 +3644,7 @@ msgstr ""
 
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "METEOR_IMPACT_EVENT"
 msgstr ""
@@ -3920,9 +3901,7 @@ msgstr ""
 
 #, fuzzy
 msgid "MIGRATION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "MILLION_ABBREVIATION"
 msgstr ""
@@ -4193,9 +4172,7 @@ msgstr ""
 
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "MULTICELLULAR"
 msgstr ""
@@ -4299,9 +4276,7 @@ msgstr ""
 
 #, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
@@ -4451,6 +4426,12 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr ""
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr ""
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
@@ -4480,9 +4461,10 @@ msgstr ""
 
 #, fuzzy
 msgid "NO_SUGGESTION"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
 msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
 
 msgid "NUCLEUS"
 msgstr ""
@@ -4501,9 +4483,7 @@ msgstr ""
 
 #, fuzzy
 msgid "NUTRIENT_COST_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "N_A"
 msgstr ""
@@ -4657,15 +4637,11 @@ msgstr ""
 
 #, fuzzy
 msgid "ORGANELLE_SUGGESTION_COLON"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
@@ -4729,9 +4705,7 @@ msgstr ""
 
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -4897,9 +4871,7 @@ msgstr ""
 
 #, fuzzy
 msgid "PIN_BUTTON_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -4948,9 +4920,7 @@ msgstr ""
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "PLAYER_REPRODUCED"
 msgstr ""
@@ -4974,6 +4944,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -5014,9 +4997,7 @@ msgstr ""
 
 #, fuzzy
 msgid "PRESET_VERY_LOW"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "PRESSURE"
 msgstr ""
@@ -5026,15 +5007,11 @@ msgstr ""
 
 #, fuzzy
 msgid "PRESSURE_TOLERANCE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
@@ -5142,6 +5119,13 @@ msgstr ""
 
 msgid "READY"
 msgstr ""
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -5258,9 +5242,7 @@ msgstr ""
 
 #, fuzzy
 msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -5270,9 +5252,7 @@ msgstr ""
 
 #, fuzzy
 msgid "RESIZE_METABALL_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "RESOLUTION"
 msgstr ""
@@ -5521,9 +5501,7 @@ msgstr ""
 
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "SCROLLLOCK"
 msgstr ""
@@ -5645,9 +5623,7 @@ msgstr ""
 
 #, fuzzy
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
@@ -5682,9 +5658,7 @@ msgstr ""
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5697,9 +5671,7 @@ msgstr ""
 
 #, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "SIGNALING_AGENT"
 msgstr ""
@@ -5842,9 +5814,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SPECIALIZATION_COLON"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
 
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
@@ -5902,12 +5875,7 @@ msgstr ""
 
 #, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
-
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr ""
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -5921,11 +5889,12 @@ msgstr ""
 
 #, fuzzy
 msgid "SPRINT_ACTION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -6032,9 +6001,7 @@ msgstr ""
 
 #, fuzzy
 msgid "STRAIN_BAR_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6201,15 +6168,11 @@ msgstr ""
 
 #, fuzzy
 msgid "TEMPERATURE_TOLERANCE_RANGE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "TESTING_TEAM"
 msgstr ""
@@ -6415,9 +6378,7 @@ msgstr ""
 
 #, fuzzy
 msgid "TOGGLE_DEBUG_CONSOLE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
@@ -6427,9 +6388,7 @@ msgstr ""
 
 #, fuzzy
 msgid "TOGGLE_ENGULF_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "TOGGLE_FAST_MODE"
 msgstr ""
@@ -6442,9 +6401,7 @@ msgstr ""
 
 #, fuzzy
 msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
@@ -6490,15 +6447,11 @@ msgstr ""
 
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -6562,9 +6515,7 @@ msgstr ""
 
 #, fuzzy
 msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "TOXIN_TYPE_COLON"
 msgstr ""
@@ -6744,9 +6695,7 @@ msgstr ""
 
 #, fuzzy
 msgid "UNBIND_ALL_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
@@ -6956,6 +6905,13 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "3D redakteurder"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6964,9 +6920,7 @@ msgstr ""
 
 #, fuzzy
 msgid "UV_TOLERANCE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "VACUOLE"
 msgstr ""
@@ -7104,6 +7058,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -8711,9 +8668,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "WORLD_TEMPERATURE"
 msgstr ""
@@ -8726,9 +8681,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "WORLD_TEMPERATURE_WARM"
 msgstr ""
@@ -8753,9 +8706,7 @@ msgstr ""
 
 #, fuzzy
 msgid "X_TWITTER_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 msgid "YEARS"
 msgstr ""
@@ -8781,142 +8732,17 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
-msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr ""
-
-#, fuzzy
-msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "3D redakteurder"
-
-msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
-msgstr ""
-
-msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
-msgstr ""
-
-msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
-msgstr ""
-
-msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
-msgstr ""
-
-msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
-msgstr ""
-
-msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
-msgstr ""
-
-msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
-msgstr ""
-
-msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
-msgstr ""
-
-msgid "GAMETE_TYPE_A"
-msgstr ""
-
-msgid "GAMETE_TYPE_ALL"
-msgstr ""
-
-msgid "GAMETE_TYPE_B"
-msgstr ""
-
-msgid "LAYOUT_TAB"
-msgstr ""
-
-msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
-msgstr ""
-
-msgid "NO_GAMETE_CELL_TYPE_SET"
-msgstr ""
-
-msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
-msgstr ""
-
-msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
-msgstr ""
-
-msgid "PLUS_FROM_BASE_VALUE"
-msgstr ""
-
-msgid "PLUS_FROM_BASE_VALUE_INDENTED"
-msgstr ""
-
-#, fuzzy
-msgid "PLUS_FROM_SPECIALIZATION_VALUE"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
-
-msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
-msgstr ""
-
-msgid "REAPPLY_AUTOMATIC_LAYOUT"
-msgstr ""
-
-#, fuzzy
-msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
-msgstr ""
-"Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe "
-"selle met \"axons\")."
-
-msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr ""
-
-msgid "STANDARD_COLON_VALUE"
-msgstr ""
-
-msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
-msgstr ""
-
-#, fuzzy
-msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
-msgstr "3D redakteurder"
-
-msgid "WHILE_CONSUMING_COLON"
-msgstr ""
-
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr ""
-#~ "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het "
-#~ "(tiepe selle met \"axons\")."
+#~ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"
-#~ msgstr ""
-#~ "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het "
-#~ "(tiepe selle met \"axons\")."
+#~ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr ""
-#~ "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het "
-#~ "(tiepe selle met \"axons\")."
+#~ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"
@@ -8924,9 +8750,7 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
-#~ msgstr ""
-#~ "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het "
-#~ "(tiepe selle met \"axons\")."
+#~ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"
