@@ -22,7 +22,7 @@ public partial class MetaballEditorMoveTool : Node3D
 #pragma warning restore CA2213
 
     private float angleOffset;
-    private Plane rotationPlane;
+    private Vector3 rotationAxis;
     private Vector3 parentOrigin;
     private Vector3 rotationOrigin;
     private Vector3 initialRotation;
@@ -64,9 +64,9 @@ public partial class MetaballEditorMoveTool : Node3D
         var mousePos = viewPort.GetMousePosition();
         var camera = viewPort.GetCamera3D();
 
-        var angle = ProjectRayAndGetRotation(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
+        var angle = GetRotationAngle(camera.UnprojectPosition(rotationOrigin), mousePos);
 
-        return rotationOrigin + initialRotation.Rotated(rotationPlane.Normal, angle - angleOffset);
+        return rotationOrigin + initialRotation.Rotated(rotationAxis, angle - angleOffset);
     }
 
     public void EndDisplay()
@@ -149,26 +149,30 @@ public partial class MetaballEditorMoveTool : Node3D
 
         if (ring == verticalRing)
         {
-            var normal = Vector3.Up.Cross(parentPos - metaballPos).Normalized();
+            rotationOrigin = parentPos;
+            rotationAxis = Vector3.Up.Cross(parentPos - metaballPos).Normalized();
 
-            if (normal == Vector3.Zero)
+            if (rotationAxis == Vector3.Zero)
             {
                 // The current metaball is right above or below its parent, so we need to arbitrarily pick a rotation
                 // axis
-                normal = Vector3.Right;
+                rotationAxis = Vector3.Right;
             }
-
-            rotationPlane = new Plane(normal, parentPos);
         }
         else
         {
-            rotationPlane = new Plane(Vector3.Up, metaballPos);
+            rotationOrigin = parentPos;
+            rotationOrigin.Y = metaballPos.Y;
+            rotationAxis = Vector3.Up;
         }
 
-        rotationOrigin = rotationPlane.Project(parentOrigin);
-        initialRotation = (metaballPos - rotationOrigin) * combinedScale / parentPos.DistanceTo(metaballPos);
+        // For the angle returned by GetRotationAngle, the axis needs to be facing away from the camera
+        if (rotationAxis.Dot(camera.Quaternion * Vector3.Forward) < 0.0f)
+            rotationAxis *= -1.0f;
 
-        angleOffset = ProjectRayAndGetRotation(camera.ProjectRayOrigin(mousePos), camera.ProjectRayNormal(mousePos));
+        initialRotation = (metaballPos - parentPos) * combinedScale / parentPos.DistanceTo(metaballPos);
+
+        angleOffset = GetRotationAngle(camera.UnprojectPosition(rotationOrigin), mousePos);
 
         dragging = true;
 
@@ -177,25 +181,11 @@ public partial class MetaballEditorMoveTool : Node3D
         ring.MaterialOverride = highlightMaterial;
     }
 
-    /// <summary>
-    ///   Finds the angle between the ray's intersection on the <see cref="rotationPlane"/> and
-    ///   <see cref="initialRotation"/>. The angle is calculated around <see cref="rotationOrigin"/>
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Use a camera-projected ray to calculate the angle to the point the player's cursor is pointing at.
-    ///   </para>
-    /// </remarks>
-    private float ProjectRayAndGetRotation(Vector3 rayOrigin, Vector3 rayDir)
+    private float GetRotationAngle(Vector2 screenRotationOrigin, Vector2 mousePos)
     {
-        var intersection = rotationPlane.IntersectsRay(rayOrigin, rayDir);
+        var toMousePos = (mousePos - screenRotationOrigin).Normalized();
 
-        if (intersection.HasValue)
-        {
-            return -(intersection.Value - rotationOrigin).SignedAngleTo(initialRotation, rotationPlane.Normal);
-        }
-
-        return 0.0f;
+        return toMousePos.Angle();
     }
 
     private void SetTorusRotations(Vector3 parentPos, Vector3 metaballPos)
