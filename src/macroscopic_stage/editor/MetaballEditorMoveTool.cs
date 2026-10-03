@@ -170,7 +170,7 @@ public partial class MetaballEditorMoveTool : Node3D
         if (rotationAxis.Dot(camera.Quaternion * Vector3.Forward) < 0.0f)
             rotationAxis *= -1.0f;
 
-        initialRotation = (metaballPos - parentPos) * combinedScale / parentPos.DistanceTo(metaballPos);
+        initialRotation = (metaballPos - rotationOrigin) * combinedScale / parentPos.DistanceTo(metaballPos);
 
         angleOffset = GetRotationAngle(camera.UnprojectPosition(rotationOrigin), mousePos);
 
