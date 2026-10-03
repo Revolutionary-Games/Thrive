@@ -86,8 +86,10 @@ public class AchievementStatStore : IAchievementStatStore
             case IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS:
             case IAchievementStatStore.STAT_MAX_SPECIES_GENERATION:
             case IAchievementStatStore.STAT_REACHED_MULTICELLULAR:
+            {
                 GD.PrintErr("Cannot increment stat of type: ", statId);
                 return 0;
+            }
         }
 
         GD.PrintErr("Unknown stat ID tried to be incremented: ", statId);

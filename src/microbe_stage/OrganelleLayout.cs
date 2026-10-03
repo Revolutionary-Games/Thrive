@@ -36,37 +36,12 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     {
         get
         {
-            // TODO: this used to weigh the center position based on the organelle masses, this is no longer possible
-            // to do as simply
-            // float totalMass = 0;
-            int count = 0;
-            Vector3 weightedSum = Vector3.Zero;
-
-            // TODO: shouldn't this take multihex organelles into account?
-            var organelleList = Organelles;
-            var listLength = organelleList.Count;
-            for (int i = 0; i < listLength; ++i)
-            {
-                // totalMass += organelle.Definition.Mass;
-                ++count;
-                weightedSum += Hex.AxialToCartesian(organelleList[i].Position) /* * organelle.Definition.Mass*/;
-            }
-
-            if (count == 0)
+            if (Count == 0)
                 return new Hex(0, 0);
 
-            weightedSum /= count;
+            var center = MicrobeInternalCalculations.CalculateCenterOfMass(Organelles);
 
-            // Truncate towards zero to avoid layout shifts.
-            // This is not a technically correct result as this will round some small changes to 0, however, this is
-            // needed to not end up with oscillations around like (-1, 0), (0, -1) loops, which cause errors in
-            // multicellular.
-            // The reason is that our hex size does not match up with integer coordinates, so theoretically values like
-            // 0.9 should not round to zero, but using rounding here results in still problems with the repositioning
-            // infinitely moving around the 0, 0 point.
-            weightedSum = new Vector3((int)weightedSum.X, weightedSum.Y, (int)weightedSum.Z);
-
-            return Hex.CartesianToAxial(weightedSum);
+            return Hex.CartesianToAxial(center);
         }
     }
 
@@ -245,6 +220,19 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
         return true;
     }
 
+    public override void GetHexComponentPositions(T hex, List<Hex> result)
+    {
+        result.Clear();
+
+        var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
+        var count = rotated.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            result.Add(rotated[i]);
+        }
+    }
+
     /// <summary>
     ///   Deep clones this organelle layout as a new layout in a more efficient way than copying organelles from here
     ///   to a new instance
@@ -270,19 +258,6 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     internal void AddAutoEvoAttemptOrganelle(T organelle)
     {
         existingHexes.Add(organelle);
-    }
-
-    protected override void GetHexComponentPositions(T hex, List<Hex> result)
-    {
-        result.Clear();
-
-        var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
-        var count = rotated.Count;
-
-        for (int i = 0; i < count; ++i)
-        {
-            result.Add(rotated[i]);
-        }
     }
 
     /// <summary>

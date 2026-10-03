@@ -54,6 +54,7 @@ public static class TestRunningHelpers
                                                          <DisplayName>FullyQualifiedName</DisplayName>
                                                          <CaptureStdOut>true</CaptureStdOut>
                                                          <CompileProcessTimeout>300000</CompileProcessTimeout>
+                                                         <GodotConnectTimeout>30000</GodotConnectTimeout>
                                                      </GdUnit4>
                                                  </RunSettings>
                                                  """;

@@ -137,6 +137,7 @@ public class PatchCompound : WorldBasedUnlockCondition
         switch (Compound)
         {
             case Compound.Sunlight:
+            {
                 formattedMin = Min.HasValue ?
                     new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Min), "lx") :
                     null;
@@ -144,18 +145,26 @@ public class PatchCompound : WorldBasedUnlockCondition
                     new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Max), "lx") :
                     null;
                 break;
+            }
+
             case Compound.Temperature:
+            {
                 // TODO: automatically handle any compounds with unit set?
                 var unit = compoundDefinition.Unit ?? "MISSING CONFIGURED UNIT";
                 formattedMin = Min.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Min / 100, unit) : null;
                 formattedMax = Max.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Max / 100, unit) : null;
                 break;
+            }
+
             case Compound.Oxygen:
             case Compound.Carbondioxide:
             case Compound.Nitrogen:
+            {
                 formattedMin = Min.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Min) : null;
                 formattedMax = Max.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Max) : null;
                 break;
+            }
+
             default:
                 formattedMin = Min?.ToString(CultureInfo.CurrentCulture);
                 formattedMax = Max?.ToString(CultureInfo.CurrentCulture);

@@ -41,6 +41,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Hex> hexTemporaryMemory1 = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
+    private readonly HashSet<Hex> hexTemporaryMemory3 = new();
 
     private readonly List<Species> lastGeneratedMutations = new();
 
@@ -195,6 +196,10 @@ public class ModifyExistingSpecies : IRunStep
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
+                    // All candidates entering the result tree need valid initial compounds, even if their
+                    // population will be too low to pass FinalApply and call OnEdited.
+                    mutation.MutatedSpecies.UpdateInitialCompounds();
+
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.
@@ -240,7 +245,7 @@ public class ModifyExistingSpecies : IRunStep
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
@@ -253,7 +258,7 @@ public class ModifyExistingSpecies : IRunStep
                         {
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // Only apply a new name and colour to results that are actually kept
@@ -449,10 +454,24 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var speciesTuple in temporaryMutations1)
                 {
-                    // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
-                    // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
-                        patch.Biome);
+                    // For SelectionPressures that have a maximum score, no reason to generate mutations for species
+                    // that already have the maximum score
+                    var produceMutations = true;
+                    if (currentMiche.Pressure.IsThresholdPressure)
+                    {
+                        var score = currentMiche.Pressure.Score(speciesTuple.Species, patch, cache);
+                        if (score >= Constants.AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE)
+                            produceMutations = false;
+                    }
+
+                    List<Mutant>? mutated = null;
+                    if (produceMutations)
+                    {
+                        // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
+                        // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
+                        mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
+                            patch.Biome);
+                    }
 
                     if (mutated != null)
                     {
@@ -464,7 +483,7 @@ public class ModifyExistingSpecies : IRunStep
                                 throw new Exception("Mutation shouldn't have a cache number yet");
 #endif
 
-                            tuple.Species.OnAttemptedInAutoEvo(true);
+                            tuple.Species.OnAttemptedInAutoEvo(true, false);
 
                             // If the visual hash of a species needs to be consistent while in the cache, then this
                             // would need to be called

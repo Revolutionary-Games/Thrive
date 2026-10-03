@@ -235,28 +235,34 @@ public static class PatchMapGenerator
         switch (settings.WorldOceanicCoverage)
         {
             case WorldGenerationSettings.WorldOceanicCoverageEnum.Small:
+            {
                 if (roll < 60)
                     return PatchRegion.RegionType.Continent;
                 if (roll < 90)
                     return PatchRegion.RegionType.Sea;
 
                 return PatchRegion.RegionType.Ocean;
+            }
 
             case WorldGenerationSettings.WorldOceanicCoverageEnum.Large:
+            {
                 if (roll < 60)
                     return PatchRegion.RegionType.Ocean;
                 if (roll < 90)
                     return PatchRegion.RegionType.Sea;
 
                 return PatchRegion.RegionType.Continent;
+            }
 
             default:
+            {
                 if (roll < 33)
                     return PatchRegion.RegionType.Continent;
                 if (roll < 66)
                     return PatchRegion.RegionType.Sea;
 
                 return PatchRegion.RegionType.Ocean;
+            }
         }
     }
 
@@ -1101,11 +1107,13 @@ public static class PatchMapGenerator
                 maxValue = Constants.COMPOUND_LEVEL_VERY_HIGH_MAX;
                 break;
             default:
+            {
                 GD.PrintErr($"Selected compoundLevel {compoundLevel} for {compound.ToString()}" +
                     $" doesn't match a known compoundLevel type");
                 minValue = Constants.COMPOUND_LEVEL_AVERAGE_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_AVERAGE_MAX;
                 break;
+            }
         }
 
         var compoundAmountVariation = random.Next(minValue, maxValue);

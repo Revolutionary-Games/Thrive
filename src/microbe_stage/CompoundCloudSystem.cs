@@ -475,7 +475,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             cloud.QueueDiffuseCloud(delta, tasks);
         }
 
-        executor.RunTasks(tasks);
+        executor.RunTasks(tasks, false, true);
         tasks.Clear();
 
         foreach (var cloud in clouds)
@@ -488,7 +488,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             cloud.QueueAdvectCloud(delta, tasks);
         }
 
-        executor.RunTasks(tasks);
+        executor.RunTasks(tasks, false, true);
 
         foreach (var cloud in clouds)
         {

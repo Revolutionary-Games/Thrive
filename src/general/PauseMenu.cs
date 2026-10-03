@@ -198,7 +198,9 @@ public partial class PauseMenu : CanvasLayer
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;
+
                 default:
+                {
                     var control = GetControlFromMenuEnum(value);
                     if (control == null)
                     {
@@ -208,6 +210,7 @@ public partial class PauseMenu : CanvasLayer
 
                     control.Show();
                     break;
+                }
             }
         }
     }

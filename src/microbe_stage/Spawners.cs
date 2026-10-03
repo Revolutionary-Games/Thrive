@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
@@ -609,6 +610,21 @@ public static class SpawnHelpers
             sex, multicellularSpawnState);
     }
 
+    public static void SpawnMicrobeVisualizationOnly(IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment,
+        Species species, Vector3 location,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
+    {
+        // TODO: should we have a separate spawn method to just spawn the visual aspects of a microbe?b
+        // The downside would be duplicated code, but it could skip the component types that don't impact the visuals
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            true, (null, 0), recorder, out _, multicellularSpawnState, GameteType.All, false, null);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+    }
+
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         Species species, Vector3 location, bool aiControlled,
         (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData, GameteType sex,
@@ -959,6 +975,14 @@ public static class SpawnHelpers
 
             if (giveInitialCompounds)
             {
+#if DEBUG
+                if (species.InitialCompounds.Count == 0)
+                {
+                    throw new InvalidOperationException(
+                        $"Cannot spawn species {species.FormattedIdentifier} without initial compounds");
+                }
+#endif
+
                 storage.Compounds.AddInitialCompounds(species.InitialCompounds);
 
                 // Extra initial compounds if close to night
@@ -1139,7 +1163,7 @@ public static class SpawnHelpers
         // And spawn with the rotation already set so the cell doesn't turn on spawning
         recorder.Set(entity,
             new WorldPosition(location,
-                Basis.LookingAt(location + initialVelocity * 10, Vector3.Up).GetRotationQuaternion()));
+                Basis.LookingAt(initialVelocity, Vector3.Up).GetRotationQuaternion()));
 
         // Disable collision with the shooting enemy
         recorder.Set(entity, new CollisionManagement
@@ -1148,7 +1172,8 @@ public static class SpawnHelpers
             IgnoredCollisionsWith = [shootingEntity],
         });
 
-        recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName)));
+        recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName,
+            new LocalizedString(gamete.GetAttribute<DescriptionAttribute>().Description))));
 
         // Make it despawn like normal
         spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,

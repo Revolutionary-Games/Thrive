@@ -77,7 +77,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            nominalStorageCapacity = microbeSpecies.NominalStorageCapacity;
             microbeBaseHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
             microbeCanEngulf = microbeSpecies.CanEngulf;
         }
@@ -137,7 +137,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             {
                 if (species is MicrobeSpecies)
                 {
-                    if (microbeCanEngulf && microbeBaseHexSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                    if (microbeCanEngulf && microbeBaseHexSize >= chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                         canEngulfChunk = true;
                 }
 
@@ -151,7 +151,7 @@ public class ReproductionCompoundPressure : SelectionPressure
                             break;
 
                         if (cellType.MembraneType.CanEngulf &&
-                            cache.GetBaseHexSizeForCellType(cellType) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                            cache.GetBaseHexSizeForCellType(cellType) >= chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                         {
                             foreach (var hex in multicellularSpecies.EditorCells)
                             {

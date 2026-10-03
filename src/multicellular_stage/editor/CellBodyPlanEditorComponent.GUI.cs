@@ -36,38 +36,13 @@ public partial class CellBodyPlanEditorComponent
         UpdateReproductionMethodChoice();
     }
 
-    public void OnGameteACellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (ReferenceEquals(cellType, GameteACellType))
-            return;
-
-        var action = new SingleEditorAction<GameteACellTypeChangeActionData>(DoGameteACellChangeAction,
-            UndoGameteACellChangeAction, new GameteACellTypeChangeActionData(GameteACellType, cellType));
-
-        Editor.EnqueueAction(action);
-
-        UpdateGameteDropdowns();
-    }
-
-    public void OnGameteBCellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (ReferenceEquals(cellType, GameteBCellType))
-            return;
-
-        var action = new SingleEditorAction<GameteBCellTypeChangeActionData>(DoGameteBCellChangeAction,
-            UndoGameteBCellChangeAction, new GameteBCellTypeChangeActionData(GameteBCellType, cellType));
-
-        Editor.EnqueueAction(action);
-
-        UpdateGameteDropdowns();
-    }
-
     public void OnMassBuddingCellCountChanged(float count)
     {
+        // The slider is refreshed whenever the body plan changes, including when a cell is placed or removed.
+        // We want to suppress action history creation while another reproduction method is active.
+        if (ReproductionMethod != MulticellularReproductionMethod.MassBudding)
+            return;
+
         var newCellCount = (int)count;
 
         if (newCellCount == DesiredMassBuddingCellCount)
@@ -111,6 +86,8 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.OnTranslationsChanged();
 
         UpdateSpecializationDisplay();
+
+        UpdateAnisogamyStateAndCost();
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
@@ -239,14 +216,24 @@ public partial class CellBodyPlanEditorComponent
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
 
         organismStatisticsPanel.UpdateGeneration(species.Generation);
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(editedMicrobeCells, out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateReproductionMethodChoice();
 
         UpdateSpecialCellTypeDisplays();
-        UpdateGameteDropdowns();
 
         loadingMassBuddingState = true;
         try
@@ -259,6 +246,8 @@ public partial class CellBodyPlanEditorComponent
         }
 
         UpdateCancelButtonVisibility();
+
+        UpdateLayoutTabContent();
     }
 
     private void UpdateGrowthOrderUI()
@@ -289,6 +278,14 @@ public partial class CellBodyPlanEditorComponent
 
     private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
+        if (layoutPreviewActive)
+        {
+            foreach (var label in FullLayoutGrowthOrderFloatingNumbers())
+                yield return label;
+
+            yield break;
+        }
+
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
 
@@ -403,96 +400,85 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    private void OnSporeEditClicked()
+    private void OnSpecialCellTypeEditClicked(int specialCellArchetype)
     {
-        if (SporeCellType == null)
+        var cellArchetype = (SpecialCellArchetype)specialCellArchetype;
+
+        var specialCell = GetSpecialCellType(cellArchetype);
+
+        if (specialCell == null)
         {
             cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes, GetEditedCellDataIfEdited,
-                OnBaseCellTypeForSporeSelected);
+                ShouldCellTypeBeDisplayed, OnBaseCellTypeForSpecialCellTypeSelected, cellArchetype);
             cellTypePickerPopup.PopupCenteredShrink();
         }
         else
         {
-            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+            EmitSignal(SignalName.OnCellTypeToEditSelected, specialCell.CellTypeName, true);
         }
     }
 
-    private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
+    private void OnBaseCellTypeForSpecialCellTypeSelected(string baseCellTypeName, int specialCellArchetype)
     {
+        var cellArchetype = (SpecialCellArchetype)specialCellArchetype;
+
         var splitFrom = CellTypeFromName(baseCellTypeName);
 
         var cellType = (CellType)GetEditedCellDataIfEdited(splitFrom).Clone();
-        cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
+
+        switch (cellArchetype)
+        {
+            case SpecialCellArchetype.Spore:
+                cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
+                break;
+            case SpecialCellArchetype.GameteA:
+                cellType.CellTypeName = Localization.Translate("DEFAULT_GAMETE_CELL_TYPE_NAME");
+                break;
+            case SpecialCellArchetype.GameteB:
+                cellType.CellTypeName = Localization.Translate("DEFAULT_GAMETE_B_CELL_TYPE_NAME");
+                break;
+            default:
+                throw new NotImplementedException($"Unimplemented special cell type: {cellArchetype}");
+        }
+
         cellType.SplitFromTypeName = splitFrom.CellTypeName;
 
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
+        var specialCell = GetSpecialCellType(cellArchetype);
+
+        var action = new SingleEditorAction<SpecialCellTypeChangeActionData>(DoSpecialCellChangeAction,
+            UndoSpecialCellChangeAction, new SpecialCellTypeChangeActionData(specialCell, cellType, cellArchetype));
 
         Editor.EnqueueAction(action);
 
-        if (SporeCellType != null)
+        specialCell = GetSpecialCellType(cellArchetype);
+
+        if (specialCell != null)
         {
-            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+            EmitSignal(SignalName.OnCellTypeToEditSelected, specialCell.CellTypeName, true);
         }
     }
 
-    private void OnSporeResetClicked()
+    private void OnSpecialCellTypeResetClicked(int specialCellArchetype)
     {
-        if (SporeCellType == null)
+        var cellArchetype = (SpecialCellArchetype)specialCellArchetype;
+
+        var specialCell = GetSpecialCellType(cellArchetype);
+
+        if (specialCell == null)
             return;
 
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, null));
+        var action = new SingleEditorAction<SpecialCellTypeChangeActionData>(DoSpecialCellChangeAction,
+            UndoSpecialCellChangeAction, new SpecialCellTypeChangeActionData(specialCell, null, cellArchetype));
 
         Editor.EnqueueAction(action);
     }
 
     private void UpdateSpecialCellTypeDisplays()
     {
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType == null ?
-            null :
-            GetEditedCellDataIfEdited(SporeCellType));
-    }
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(GetEditedCellDataIfEditedAndNotNull(SporeCellType));
 
-    private void UpdateGameteDropdowns()
-    {
-        if (gameteACellTypeDropdown.Visible)
-        {
-            gameteACellTypeDropdown.Clear();
-
-            foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
-            {
-                gameteACellTypeDropdown.AddItem(cellType.FormattedName);
-            }
-
-            if (GameteACellType == null)
-            {
-                gameteACellTypeDropdown.Select(-1);
-            }
-            else
-            {
-                gameteACellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteACellType));
-            }
-        }
-
-        if (!gameteBCellTypeDropdown.Visible)
-            return;
-
-        gameteBCellTypeDropdown.Clear();
-
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
-        {
-            gameteBCellTypeDropdown.AddItem(cellType.FormattedName);
-        }
-
-        if (GameteBCellType == null)
-        {
-            gameteBCellTypeDropdown.Select(-1);
-        }
-        else
-        {
-            gameteBCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteBCellType));
-        }
+        gameteACellTypeMakerButton.UpdateDisplayedCellType(GetEditedCellDataIfEditedAndNotNull(GameteACellType));
+        gameteBCellTypeMakerButton.UpdateDisplayedCellType(GetEditedCellDataIfEditedAndNotNull(GameteBCellType));
     }
 
     private void UpdateAnisogamyStateAndCost()
@@ -713,5 +699,54 @@ public partial class CellBodyPlanEditorComponent
 
         ignoredEditorWarnings.Add(EditorUserOverride.EndosymbiosisPending);
         OnFinish.Invoke(ignoredEditorWarnings);
+    }
+
+    private void UpdateLayoutTabContent()
+    {
+        automaticLayoutButton.ButtonPressed = !UsesManualPlayerLayout;
+        reapplyAutomaticLayoutButton.Visible = UsesManualPlayerLayout;
+        layoutExplanationLabel.Visible = UsesManualPlayerLayout;
+        layoutShiftNoteLabel.Visible = !UsesManualPlayerLayout;
+        UpdateLayoutErrorDisplay();
+    }
+
+    private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
+    {
+        bool targetValue = !usesAutomatic;
+
+        if (UsesManualPlayerLayout == targetValue)
+            return;
+
+        // TODO: make this an editor action https://github.com/Revolutionary-Games/Thrive/issues/7314
+        // And also need to make the move actions into editor actions for the full layout.
+        UsesManualPlayerLayout = targetValue;
+
+        if (UsesManualPlayerLayout)
+        {
+            if (fullLayoutPreview.Count > 0)
+            {
+                CopyLayout(fullLayoutPreview, manualFullLayout);
+            }
+            else
+            {
+                StartLayoutCalculation();
+            }
+        }
+        else
+        {
+            manualFullLayout.Clear();
+            manualLayoutSources.Clear();
+            manualLayoutSourceData.Clear();
+            StartLayoutCalculation();
+        }
+
+        UpdateLayoutTabContent();
+        if (layoutPreviewActive)
+            UpdateFullLayoutVisuals();
+    }
+
+    private void OnReapplyAutomaticLayoutButtonPressed()
+    {
+        OnReapplyAutomaticLayoutPressed();
     }
 }

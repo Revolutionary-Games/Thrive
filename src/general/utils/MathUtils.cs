@@ -14,6 +14,7 @@ public static class MathUtils
     public const float RADIANS_TO_DEGREES = 180 / MathF.PI;
     public const double FULL_CIRCLE = Math.PI * 2;
     public const float RIGHT_ANGLE = MathF.PI / 2;
+    public const float SQRT_3 = 1.73205080757f;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int RoundToInt(float value)

@@ -218,7 +218,7 @@ public partial class InputActionItem : VBoxContainer
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-
+            {
                 if (e.NewItems != null)
                 {
                     foreach (InputEventItem newItem in e.NewItems)
@@ -234,7 +234,10 @@ public partial class InputActionItem : VBoxContainer
                 inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
 
                 break;
+            }
+
             case NotifyCollectionChangedAction.Remove:
+            {
                 if (e.OldItems != null)
                 {
                     foreach (InputEventItem oldItem in e.OldItems)
@@ -248,6 +251,8 @@ public partial class InputActionItem : VBoxContainer
                 }
 
                 break;
+            }
+
             default:
                 throw new NotSupportedException($"{e.Action} is not supported on {nameof(Inputs)}");
         }

@@ -163,11 +163,14 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         switch ((TargetType)index)
         {
             case TargetType.Compound:
+            {
                 compoundsSelector.Visible = true;
                 compoundLabel.Visible = true;
                 minimumAmountSlider.Visible = true;
                 minimumAmountLabel.Visible = true;
                 break;
+            }
+
             case TargetType.Species:
                 speciesSelector.Visible = true;
                 speciesLabel.Visible = true;

@@ -34,7 +34,7 @@ public class GodotProjectAssetImporter
 
     private async Task RunGodot(CancellationToken cancellationToken)
     {
-        var startInfo = new ProcessStartInfo("godot");
+        var startInfo = new ProcessStartInfo(GodotExecutable.RequiredPath);
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--import");
 
