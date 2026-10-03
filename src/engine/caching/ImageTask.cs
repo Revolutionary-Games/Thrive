@@ -39,6 +39,8 @@ public class ImageTask : IImageTask
 
     public string? CachePath { get; set; }
 
+    public int DesiredResolution { get; set; } = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
+
     internal IScenePhotographable? ScenePhotographable { get; }
     internal ISimulationPhotographable? SimulationPhotographable { get; }
 
@@ -119,6 +121,9 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         get => loadPath;
         set => throw new NotSupportedException("Loadable cache image must have final path set initially");
     }
+
+    // This isn't supposed to do anything, but still
+    public int DesiredResolution => Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
 
     public ulong CalculateCacheHash()
     {

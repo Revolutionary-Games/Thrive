@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-29 09:51+0300\n"
+"POT-Creation-Date: 2026-10-03 10:23+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
-"Last-Translator: \"Waks (Walava)\" <dobranskijmaksim81@gmail.com>\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.9.1\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -67,10 +67,10 @@ msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Досягнення {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr "Завершено"
+msgstr "Отримано"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr "Заблоковано"
+msgstr "Зачинено"
 
 msgid "ACTION_AWAKEN"
 msgstr "Пробудити ({0:F1} / {1:F1})"
@@ -172,18 +172,16 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Покоління:[/b]\n"
 "  {0}\n"
-"[b]Усього видів:[/b]\n"
+"[b]Всього видів:[/b]\n"
 "  У середньому {1}; Стандартне відхилення {2}\n"
-"[b]Усього секунд:[/b]\n"
-"  У середньому {3}; Стандартне відхилення {4}\n"
 "[b]Види, що вижили:[/b]\n"
-"  У середньому {5}; Стандартне відхилення {6}\n"
+"  У середньому {3}; Стандартне відхилення {4}\n"
 "[b]Кількість видів на ділянку:[/b]\n"
-"  У середньому {7}; Стандартне відхилення {8}\n"
+"  У середньому {5}; Стандартне відхилення {6}\n"
 "[b]Повна популяція на ділянку:[/b]\n"
-"  У середньому {9}; Стандартне відхилення {10}\n"
+"  У середньому {7}; Стандартне відхилення {8}\n"
 "[b]Середній розмір гекса видів мікроорганізмів:[/b]\n"
-"  У середньому {11}; Стандартне відхилення {12}\n"
+"  У середньому {9}; Стандартне відхилення {10}\n"
 "\n"
 "[b]Загальні дані по органелах:[/b]"
 
@@ -1558,6 +1556,10 @@ msgstr "Створення..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Створюємо об'єкти зі збереження"
 
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Тип токсину:"
+
 msgid "CREDITS"
 msgstr "Титри"
 
@@ -2199,7 +2201,6 @@ msgstr "Розпочати ендосимбіоз для цього виду (д
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Ендосимбіоз"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "{0}: {1} /секунд"
 
@@ -2472,6 +2473,9 @@ msgstr ""
 "Хоробрі мікроби не бояться близьких хижаків,\n"
 "та ймовірно атакуватимуть у відповідь."
 
+msgid "FEATHERS_CREATURE_TEXTURE"
+msgstr ""
+
 msgid "FEATURE_DISABLED"
 msgstr "Вимкнути"
 
@@ -2664,6 +2668,9 @@ msgstr "Повноекранний"
 msgid "FULL_MOD_INFO"
 msgstr "Уся інформація про мод"
 
+msgid "FUR_CREATURE_TEXTURE"
+msgstr ""
+
 msgid "GALLERY_VIEWER"
 msgstr "Переглянути галерею"
 
@@ -2671,7 +2678,7 @@ msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Основи ігрового процесу"
 
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "Гамета виду {0} ({1})"
+msgstr "Гамета виду {0}"
 
 msgid "GAMETE_CELL_TYPE"
 msgstr "Тип клітини-гамети"
@@ -5139,6 +5146,9 @@ msgstr "У вас наявний процес ендосимбіозу, який
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr "Триває завершення процесу ендосимбіозу"
 
+msgid "PEPPER_CREATURE_TEXTURE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5183,6 +5193,9 @@ msgstr "Розміщення неможливе, оскільки поточна
 
 msgid "PLACE_ORGANELLE"
 msgstr "Місце для органели"
+
+msgid "PLAIN_CREATURE_TEXTURE"
+msgstr ""
 
 msgid "PLANET"
 msgstr "Планета"
@@ -5796,6 +5809,9 @@ msgstr "Наразі збереження неможливе через:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Вдале збереження"
 
+msgid "SCALES_CREATURE_TEXTURE"
+msgstr ""
+
 msgid "SCALING_NONE"
 msgstr "Жоден"
 
@@ -6061,6 +6077,9 @@ msgstr "16х"
 
 msgid "SIZE_COLON"
 msgstr "Розмір:"
+
+msgid "SKIN_CREATURE_TEXTURE"
+msgstr ""
 
 msgid "SLIDESHOW"
 msgstr "Слайдшов"
@@ -9661,7 +9680,6 @@ msgstr ""
 "\n"
 "Також важливо зазначити, що ця органела використовує [thrive:compound type=\"glucose\"][/thrive:compound], а не [thrive:compound type=\"atp\"][/thrive:compound], тому обов’язково перевірте баланс сполук вашої клітини після додавання цієї органели."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Немає покращень."
 
@@ -10082,6 +10100,13 @@ msgstr "Віддалитись"
 #~ "{0}: +{1} АТФ\n"
 #~ "При поглинанні:\n"
 #~ "{2}"
+
+#, fuzzy
+#~ msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+#~ msgstr "Створити новий тип клітини"
+
+#~ msgid "AUTO_EVO_FAILED"
+#~ msgstr "Авто-ево не почалась"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
