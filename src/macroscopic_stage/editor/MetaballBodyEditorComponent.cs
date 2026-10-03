@@ -90,6 +90,12 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
+    [Export]
+    private MetaballEditorMoveTool moveTool = null!;
+
+    [Export]
+    private BaseButton moveToolButton = null!;
+
     private PackedScene visualMetaballDisplayerScene = null!;
 
     private PackedScene structuralMetaballDisplayerScene = null!;
@@ -105,6 +111,10 @@ public partial class MetaballBodyEditorComponent :
     private bool refreshTolerancesWarnings = true;
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+    private TransformTool selectedTransformTool = TransformTool.None;
+
+    private MacroscopicMetaball? metaballSelectedForMoving;
+    private List<MacroscopicMetaball> movingToolPreviewMetaballs = new();
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -118,6 +128,12 @@ public partial class MetaballBodyEditorComponent :
         Tolerance,
     }
 
+    public enum TransformTool
+    {
+        None,
+        Movement,
+    }
+
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
     /// <summary>
@@ -126,6 +142,32 @@ public partial class MetaballBodyEditorComponent :
     ///   <see cref="CellBodyPlanEditorComponent"/>.
     /// </summary>
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
+
+    public TransformTool SelectedTransformTool
+    {
+        get => selectedTransformTool;
+        set
+        {
+            selectedTransformTool = value;
+
+            moveToolButton.ButtonPressed = selectedTransformTool == TransformTool.Movement;
+
+            if (selectedTransformTool == TransformTool.None)
+            {
+                metaballSelectedForMoving = null;
+                moveTool.EndDisplay();
+            }
+            else
+            {
+                ClearSelectedAction();
+
+                if (MovingPlacedMetaball != null)
+                {
+                    OnCurrentActionCanceled();
+                }
+            }
+        }
+    }
 
     protected override bool ForceHideHover => false;
 
@@ -172,6 +214,16 @@ public partial class MetaballBodyEditorComponent :
             debugOverlays.ReportEntities(roughCount);
         }
 
+        if (metaballSelectedForMoving != null && moveTool.IsDragging)
+        {
+            var change = moveTool.GetDraggingPosition() - metaballSelectedForMoving.Position;
+
+            foreach (var metaball in movingToolPreviewMetaballs)
+            {
+                RenderHighlightedMetaball(metaball.Position + change, null, metaball.ModifiableCellType, metaball.Size);
+            }
+        }
+
         if (metaballDisplayDataDirty)
         {
             OnMetaballsChanged();
@@ -188,29 +240,36 @@ public partial class MetaballBodyEditorComponent :
         }
 
         // Show the ball that is about to be placed
-        if (activeActionName != null && Editor.ShowHover && !PreviewMode)
+        if ((activeActionName != null || MovingPlacedMetaball != null) && Editor.ShowHover && !PreviewMode)
         {
             GetMouseMetaball(out var position, out var parentMetaball);
 
             var effectiveSymmetry = Symmetry;
 
-            var cellType = CellTypeFromName(activeActionName);
+            CellType cellType;
+            float size;
 
             if (MovingPlacedMetaball == null)
             {
                 // Can place stuff at all?
                 isPlacementProbablyValid = IsValidPlacement(position, parentMetaball);
+
+                cellType = CellTypeFromName(activeActionName!);
+                size = metaballSize;
             }
             else
             {
                 isPlacementProbablyValid = IsMoveTargetValid(position, parentMetaball, MovingPlacedMetaball);
 
+                cellType = MovingPlacedMetaball.ModifiableCellType;
+                size = MovingPlacedMetaball.Size;
+
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(metaballSize, position, parentMetaball,
-                (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
+            RunWithSymmetry(size, position, parentMetaball,
+                (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType, size),
                 effectiveSymmetry);
         }
     }
@@ -401,6 +460,11 @@ public partial class MetaballBodyEditorComponent :
             return true;
         }
 
+        if (metaballSelectedForMoving != null)
+        {
+            return true;
+        }
+
         GetMouseMetaball(out _, out var metaball);
 
         var metaballs = new List<MacroscopicMetaball>();
@@ -421,6 +485,99 @@ public partial class MetaballBodyEditorComponent :
             return true;
 
         ShowCellMenu(metaballs.Select(h => h).Distinct());
+        return true;
+    }
+
+    [RunOnKeyDown("e_primary")]
+    public bool TryUseMetaballTransformTools()
+    {
+        if (selectedTransformTool == TransformTool.None)
+        {
+            return false;
+        }
+
+        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
+        if (!Visible)
+            return false;
+
+        if (PreviewMode)
+            return false;
+
+        if (MovingPlacedMetaball != null || !string.IsNullOrEmpty(activeActionName))
+        {
+            throw new Exception("Tried to use a metaball transform tool while placing a metaball");
+        }
+
+        if (metaballSelectedForMoving != null)
+        {
+            if (moveTool.TryStartDragging(metaballSelectedForMoving.Parent!.Position,
+                    metaballSelectedForMoving.Position, metaballSelectedForMoving.Size * 0.5f
+                    + metaballSelectedForMoving.Parent.Size * 0.5f))
+            {
+                // Return false to prevent the input from being consumed
+                return false;
+            }
+
+            // The player clicked away from the movement tool, so it should be hidden
+            metaballSelectedForMoving = null;
+            moveTool.EndDisplay();
+        }
+
+        GetMouseMetaball(out _, out var metaball);
+
+        // The metaball needs to have a parent, otherwise there's nothing to move it around
+        if (metaball?.Parent == null)
+            return false;
+
+        moveTool.InitializeDisplay(metaball.Parent.Position, metaball.Position);
+
+        metaballSelectedForMoving = metaball;
+
+        movingToolPreviewMetaballs.Clear();
+        AddDescendantMetaballs(metaballSelectedForMoving, movingToolPreviewMetaballs);
+
+        return true;
+    }
+
+    [RunOnKeyUp("e_primary")]
+    public bool TryStopUsingTransformTools()
+    {
+        if (selectedTransformTool == TransformTool.None)
+        {
+            return false;
+        }
+
+        if (metaballSelectedForMoving == null)
+        {
+            return false;
+        }
+
+        if (!moveTool.IsDragging)
+        {
+            return false;
+        }
+
+        var multiAction = GetMultiActionWithOccupancies([
+            (moveTool.GetDraggingPosition(),
+                (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent),
+        ], [metaballSelectedForMoving], true);
+
+        moveTool.StopDragging();
+
+        if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
+        {
+            CancelCurrentAction();
+            Editor.OnInsufficientMP(true);
+
+            // Revert the display to the actual state of the selected metaball
+            moveTool.InitializeDisplay(metaballSelectedForMoving.ModifiableParent!.Position,
+                metaballSelectedForMoving.Position);
+
+            return true;
+        }
+
+        EnqueueAction(multiAction);
+
         return true;
     }
 
@@ -548,6 +705,8 @@ public partial class MetaballBodyEditorComponent :
     protected override void OnMoveActionStarted()
     {
         editedMetaballs.Remove(MovingPlacedMetaball!);
+
+        SelectedTransformTool = TransformTool.None;
     }
 
     protected override EditorAction? TryCreateMetaballRemoveAction(MacroscopicMetaball metaball,
@@ -661,16 +820,14 @@ public partial class MetaballBodyEditorComponent :
         return parent.Position + direction * (parent.Radius + size.Value * 0.5f);
     }
 
-    private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace)
+    private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace,
+        float size)
     {
-        if (MovingPlacedMetaball == null && activeActionName == null)
-            return;
-
         var metaball = new MacroscopicMetaball(GetEditedCellDataIfEdited(cellToPlace))
         {
             ModifiableParent = parent,
-            Position = parent != null ? FinalMetaballPosition(position, parent) : position,
-            Size = metaballSize,
+            Position = parent != null ? FinalMetaballPosition(position, parent, size) : position,
+            Size = size,
         };
 
         if (hoverMetaballData.Count <= usedHoverMetaballIndex)
@@ -862,6 +1019,9 @@ public partial class MetaballBodyEditorComponent :
 
     private bool MoveMetaball(MacroscopicMetaball metaball, Vector3 newLocation, MacroscopicMetaball? newParent)
     {
+        if (newParent != null)
+            newLocation = FinalMetaballPosition(newLocation, newParent, metaball.Size);
+
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newParent, metaball))
             return false;
@@ -898,7 +1058,7 @@ public partial class MetaballBodyEditorComponent :
     {
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
-            // Start moving the cells symmetrical to the clicked cell.
+            // Start moving the metaballs symmetrical to the clicked metaball.
             StartMetaballMoveWithSymmetry(metaballPopupMenu.GetSelectedThatAreStillValid(editedMetaballs));
         }
         else
@@ -1009,6 +1169,8 @@ public partial class MetaballBodyEditorComponent :
             modifyTypeButton.Disabled = false;
             deleteTypeButton.Disabled = false;
             duplicateTypeButton.Disabled = false;
+
+            SelectedTransformTool = TransformTool.None;
 
             if (!cellTypeSelectionButtons.TryGetValue(activeActionName!, out var cellTypeButton))
             {
@@ -1198,6 +1360,31 @@ public partial class MetaballBodyEditorComponent :
         }
     }
 
+    private void AddDescendantMetaballs(MacroscopicMetaball from, List<MacroscopicMetaball> list)
+    {
+        // TODO: optimize this
+        foreach (var metaball in editedMetaballs)
+        {
+            if (IsDescendantOf(metaball, from))
+            {
+                list.Add(metaball);
+            }
+        }
+    }
+
+    private bool IsDescendantOf(Metaball? metaball, Metaball of)
+    {
+        while (metaball != null)
+        {
+            if (ReferenceEquals(metaball, of))
+                return true;
+
+            metaball = metaball.ModifiableParent;
+        }
+
+        return false;
+    }
+
     private void SetSelectionMenuTab(string tab)
     {
         var selection = (SelectionMenuTab)Enum.Parse(typeof(SelectionMenuTab), tab);
@@ -1269,6 +1456,12 @@ public partial class MetaballBodyEditorComponent :
 
             default:
                 throw new Exception("Invalid selection menu tab");
+        }
+
+        if (PreviewMode)
+        {
+            metaballSelectedForMoving = null;
+            moveTool.EndDisplay();
         }
     }
 }

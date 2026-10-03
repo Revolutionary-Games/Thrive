@@ -9,8 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn" id="9_as603"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://bb72wwjokhks4" path="res://assets/textures/gui/bevel/rotateButtonIdle.svg" id="10_e32cu"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="11"]
+[ext_resource type="Texture2D" uid="uid://d0f0oygogf1b0" path="res://assets/textures/gui/bevel/rotateButtonActive.svg" id="11_bgu53"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
+[ext_resource type="Texture2D" uid="uid://dbjgad8mu7gbp" path="res://assets/textures/gui/bevel/rotateButtonHover.svg" id="12_wh011"]
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="13_wsdas"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="14"]
@@ -330,7 +333,7 @@ _data = {
 &"show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "moveToolButton", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,38 +342,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5")
 script = ExtResource("1")
-structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
-reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
-behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
-appearanceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance")
-tolerancesTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance")
-structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
-reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
-appearanceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance")
-behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
-tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
-toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
+structureTabButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+reproductionTabButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
+behaviourTabButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
+appearanceTabButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance")
+tolerancesTabButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance")
+structureTab = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
+reproductionTab = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
+appearanceTab = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance")
+behaviourEditor = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
+tolerancesEditor = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
+toleranceTab = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
 toleranceWarningContainer = NodePath("ToleranceWarnings")
-cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
-modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
-deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
-duplicateTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
+cellTypeSelectionList = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
+modifyTypeButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
+deleteTypeButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
+duplicateTypeButton = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
 cannotDeleteInUseTypeDialog = NodePath("CannotDeleteInUseType")
 duplicateCellTypeDialog = NodePath("NewTissueTypeSetup")
 duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
 cannotReduceBrainPowerPopup = NodePath("CannotReduceBrainPowerStage")
 toleranceWarningsFont = ExtResource("7_ck2k0")
+moveToolButton = NodePath("LeftPanel/HBoxContainer/VBoxContainer/MoveButton")
 metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
-mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+mutationPointsBar = NodePath("LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
 finishButtonWarningBadge = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 finishOrNextButton = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="LeftPanel" type="MarginContainer" parent="." unique_id=683719246]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 0
 anchor_bottom = 1.0
 offset_top = 40.0
@@ -382,31 +386,34 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="MainPanel" type="PanelContainer" parent="LeftPanel" unique_id=1838654843]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel" unique_id=400968316]
+layout_mode = 2
+
+[node name="MainPanel" type="PanelContainer" parent="LeftPanel/HBoxContainer" unique_id=1838654843]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_force_pass_scroll_events = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel" unique_id=689346009]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel" unique_id=689346009]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer" unique_id=409411685]
+[node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer" unique_id=409411685]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" unique_id=1658217890 instance=ExtResource("12")]
+[node name="MutationPointsBar" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer2" unique_id=1658217890 instance=ExtResource("12")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer" unique_id=884768546]
+[node name="HSeparator" type="HSeparator" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer" unique_id=884768546]
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/separator = SubResource("1")
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer" unique_id=897099002]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer" unique_id=897099002]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -415,15 +422,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer" unique_id=2120761415]
+[node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer" unique_id=2120761415]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=481379072 instance=ExtResource("10")]
+[node name="TabButtons" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=481379072 instance=ExtResource("10")]
 layout_mode = 2
 LevelOnScreen = 1
 
-[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=2045130923]
+[node name="Structure" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=2045130923]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -440,7 +447,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "STRUCTURE"
 
-[node name="Internals" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1044065776]
+[node name="Internals" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1044065776]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -457,7 +464,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "INTERNALS"
 
-[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=70281469]
+[node name="Behaviour" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=70281469]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -473,7 +480,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "BEHAVIOUR"
 
-[node name="Appearance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=2057697486]
+[node name="Appearance" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=2057697486]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -490,7 +497,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "APPEARANCE"
 
-[node name="Movement" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=453731209]
+[node name="Movement" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=453731209]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -508,7 +515,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "MOVEMENT"
 
-[node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1081474188]
+[node name="Reproduction" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1081474188]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -525,7 +532,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "REPRODUCTION"
 
-[node name="Tolerance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=478616262]
+[node name="Tolerance" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=478616262]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -542,83 +549,83 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "ENVIRONMENT_TOLERANCE"
 
-[node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=197366387]
+[node name="Structure" type="PanelContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=197366387]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("7")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure" unique_id=1980569038]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure" unique_id=1980569038]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer" unique_id=1751011837]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer" unique_id=1751011837]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer" unique_id=974070862]
+[node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer" unique_id=974070862]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="Cells" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" unique_id=776110325 instance=ExtResource("11")]
+[node name="Cells" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" unique_id=776110325 instance=ExtResource("11")]
 layout_mode = 2
 DisplayName = "CELLS"
 Columns = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" unique_id=1420648293]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" unique_id=1420648293]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer" unique_id=789884097]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer" unique_id=789884097]
 layout_mode = 2
 
-[node name="Modify" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer" unique_id=941477421]
+[node name="Modify" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer" unique_id=941477421]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 disabled = true
 text = "MODIFY_TYPE"
 
-[node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer" unique_id=1711265490]
+[node name="Control" type="Control" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer" unique_id=1711265490]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Delete" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer" unique_id=1798682540]
+[node name="Delete" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer" unique_id=1798682540]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 disabled = true
 text = "DELETE"
 
-[node name="Duplicate" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer" unique_id=946798612]
+[node name="Duplicate" type="Button" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer" unique_id=946798612]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 disabled = true
 text = "DUPLICATE_TYPE"
 
-[node name="Reproduction" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1495333453]
+[node name="Reproduction" type="PanelContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1495333453]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("8")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction" unique_id=670626411]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction" unique_id=670626411]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer" unique_id=1874305626]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer" unique_id=1874305626]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer" unique_id=108536527]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer" unique_id=108536527]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=526444595]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=526444595]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1630701799]
+[node name="Label" type="Label" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1630701799]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -626,7 +633,7 @@ text = "REPRODUCTION_METHOD"
 label_settings = ExtResource("7_ck2k0")
 autowrap_mode = 3
 
-[node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2110734146]
+[node name="OptionButton" type="OptionButton" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2110734146]
 layout_mode = 2
 disabled = true
 selected = 0
@@ -634,33 +641,33 @@ item_count = 1
 popup/item_0/text = "REPRODUCTION_ASEXUAL"
 popup/item_0/id = 0
 
-[node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1050540166 instance=ExtResource("9")]
+[node name="Behaviour" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1050540166 instance=ExtResource("9")]
 visible = false
 layout_mode = 2
 
-[node name="Appearance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=320777609]
+[node name="Appearance" type="PanelContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=320777609]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("8")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance" unique_id=571784083]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance" unique_id=571784083]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer" unique_id=64940578]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer" unique_id=64940578]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer" unique_id=1969478180]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer" unique_id=1969478180]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1076223211]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1076223211]
 layout_mode = 2
 
-[node name="MetaballsOnlyLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=381952038]
+[node name="MetaballsOnlyLabel" type="Label" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=381952038]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -668,25 +675,38 @@ text = "Appearance customization has not been implemented yet, but the creature 
 label_settings = ExtResource("7_ck2k0")
 autowrap_mode = 3
 
-[node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1531646376]
+[node name="Tolerance" type="PanelContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1531646376]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("14")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance" unique_id=289800308]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance" unique_id=289800308]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer" unique_id=1621183157]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer" unique_id=1621183157]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 
-[node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" unique_id=1336617322 instance=ExtResource("9_as603")]
+[node name="TolerancesEditor" parent="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" unique_id=1336617322 instance=ExtResource("9_as603")]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/HBoxContainer" unique_id=2073760761]
+layout_mode = 2
+
+[node name="MoveButton" type="TextureButton" parent="LeftPanel/HBoxContainer/VBoxContainer" unique_id=167720140]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("10_e32cu")
+texture_pressed = ExtResource("11_bgu53")
+texture_hover = ExtResource("12_wh011")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="EditorComponentBottomLeftButtons" parent="." unique_id=1382668117 instance=ExtResource("13")]
 layout_mode = 1
@@ -769,6 +789,7 @@ offset_top = 78.0
 offset_right = 352.0
 offset_bottom = 250.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="MetaballSizeControls" type="MarginContainer" parent="." unique_id=321398276]
 layout_mode = 1
@@ -858,16 +879,17 @@ layout_mode = 0
 [connection signal="gui_input" from="." to="." method="OnMetaballEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnMetaballEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnMetaballEditorMouseExited"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance" to="." method="SetSelectionMenuTab" binds= ["Appearance"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Movement" to="." method="SetSelectionMenuTab" binds= ["Movement"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= ["Reproduction"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance" to="." method="SetSelectionMenuTab" binds= ["Tolerance"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
-[connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance" to="." method="SetSelectionMenuTab" binds= ["Appearance"]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Movement" to="." method="SetSelectionMenuTab" binds= ["Movement"]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= ["Reproduction"]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance" to="." method="SetSelectionMenuTab" binds= ["Tolerance"]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
+[connection signal="OnTolerancesChanged" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/VBoxContainer/MoveButton" to="." method="ChangeCurrentTransformTool" binds= [1]]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
