@@ -61,6 +61,9 @@ public partial class DamageSoundSystem : BaseSystem<World, float>
                         damageEventNotice.Amount);
                 }
 
+                if (!damageEventNotice.PlaySound)
+                    continue;
+
                 // TODO: different injectisome sound effect?
                 if (damageSource is "toxin" or "oxytoxy" or "injectisome")
                 {

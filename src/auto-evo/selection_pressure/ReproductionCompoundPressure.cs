@@ -77,7 +77,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            nominalStorageCapacity = microbeSpecies.NominalStorageCapacity;
             microbeBaseHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
             microbeCanEngulf = microbeSpecies.CanEngulf;
         }

@@ -503,7 +503,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     [RunOnKeyDown("e_rotate_right")]
-    public bool RotateRight()
+    public virtual bool RotateRight()
     {
         if (!Visible)
             return false;
@@ -513,7 +513,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     [RunOnKeyDown("e_rotate_left")]
-    public bool RotateLeft()
+    public virtual bool RotateLeft()
     {
         if (!Visible)
             return false;
@@ -653,8 +653,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     ///   Remove the hex under the cursor (if there is one)
     /// </summary>
     [RunOnKeyDown("e_delete")]
-    public void RemoveHexAtCursor()
+    public bool RemoveHexAtCursor()
     {
+        // Don't react to key press when not visible
+        if (!Visible)
+            return false;
+
         GetMouseHex(out int q, out int r);
 
         Hex mouseHex = new Hex(q, r);
@@ -662,9 +666,10 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         var hex = GetHexAt(mouseHex);
 
         if (hex == null)
-            return;
+            return true;
 
         RemoveHex(mouseHex);
+        return true;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -756,6 +761,18 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         var hex = (MeshInstance3D)hexScene.Instantiate();
         Editor.RootOfDynamicallySpawned.AddChild(hex);
         return hex;
+    }
+
+    /// <summary>
+    ///   Makes sure that there are enough hover hexes for the requested number of simultaneous uses.
+    /// </summary>
+    /// <param name="requiredCount">The total number of hover hexes that need to be available.</param>
+    protected void EnsureHoverHexes(int requiredCount)
+    {
+        while (hoverHexes.Count < requiredCount)
+        {
+            hoverHexes.Add(CreateEditorHex());
+        }
     }
 
     protected SceneDisplayer CreatePreviewModelHolder()
@@ -1043,6 +1060,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             if (duplicate)
                 continue;
 
+            EnsureHoverHexes(usedHoverHex + 1);
             var hoverHex = hoverHexes[usedHoverHex++];
 
             hoverHex.Position = pos;

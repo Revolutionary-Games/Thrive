@@ -23,6 +23,7 @@ public static class MichePopulation
         var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
 
         var insertWorkMemory = new Miche.InsertWorkingMemory();
+        var workMemory = new WorkingMemory();
 
         var random = new XoShiRo256starstar(randomSource.NextInt64());
 
@@ -40,7 +41,7 @@ public static class MichePopulation
 
         while (parameters.StepsLeft > 0)
         {
-            RunSimulationStep(parameters, speciesToSimulate, patchesList, insertWorkMemory, random, cache);
+            RunSimulationStep(parameters, speciesToSimulate, patchesList, insertWorkMemory, workMemory, random, cache);
             --parameters.StepsLeft;
         }
     }
@@ -188,14 +189,14 @@ public static class MichePopulation
 
     private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
         IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Miche.InsertWorkingMemory insertWorkingMemory,
-        Random random, SimulationCache cache)
+        WorkingMemory workMemory, Random random, SimulationCache cache)
     {
         foreach (var entry in patchesToSimulate)
         {
             // Simulate the species in each patch taking into account the already computed populations
             SimulatePatchStep(parameters, entry.Value,
                 species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), insertWorkingMemory,
-                random, cache);
+                workMemory, random, cache);
         }
     }
 
@@ -203,8 +204,8 @@ public static class MichePopulation
     ///   The heart of the simulation that handles the processed parameters and calculates future populations.
     /// </summary>
     private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, Miche.InsertWorkingMemory insertWorkingMemory, Random random,
-        SimulationCache cache)
+        IEnumerable<Species> genericSpecies, Miche.InsertWorkingMemory insertWorkingMemory, WorkingMemory workMemory,
+        Random random, SimulationCache cache)
     {
         _ = random;
 
@@ -214,7 +215,8 @@ public static class MichePopulation
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetModifiableMicheForPatch(patch);
 
-        var species = new HashSet<Species>();
+        var species = workMemory.Species;
+        species.Clear();
 
         // TODO: switch this to something else that doesn't require a memory allocation to iterate
         foreach (var currentSpecies in genericSpecies)
@@ -234,16 +236,23 @@ public static class MichePopulation
         if (species.Count < 1)
             return;
 
-        var leafNodes = new List<Miche>();
+        var leafNodes = workMemory.LeafNodes;
+        leafNodes.Clear();
 
         miche.GetLeafNodes(leafNodes);
 
         // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
         // might benefit from extra precision
-        var energyDictionary = species.ToDictionary(x => x, _ => 0.0f);
+        var energyDictionary = workMemory.Energy;
+        energyDictionary.Clear();
+        foreach (var currentSpecies in species)
+        {
+            energyDictionary.Add(currentSpecies, 0.0f);
+        }
 
-        var currentBackTraversal = new List<Miche>();
-        var scoresDictionary = new Dictionary<Species, float>();
+        var currentBackTraversal = workMemory.BackTraversal;
+        var scoresDictionary = workMemory.Scores;
+        var occupantScores = workMemory.OccupantScores;
 
         foreach (var node in leafNodes)
         {
@@ -258,6 +267,7 @@ public static class MichePopulation
             currentBackTraversal.Clear();
             node.BackTraversal(currentBackTraversal);
 
+            occupantScores.Clear();
             var occupantSpecies = node.Occupant;
 
             if (occupantSpecies is not null and not MicrobeSpecies and not MulticellularSpecies)
@@ -274,8 +284,10 @@ public static class MichePopulation
 
                 var traversalScore = 0.0f;
 
-                foreach (var currentMiche in currentBackTraversal)
+                var count = currentBackTraversal.Count;
+                for (int i = 0; i < count; ++i)
                 {
+                    var currentMiche = currentBackTraversal[i];
                     var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, currentSpecies);
 
                     if (rawScore <= 0)
@@ -288,8 +300,14 @@ public static class MichePopulation
 
                     if (occupantSpecies != null)
                     {
-                        occupantScore =
-                            cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies);
+                        // Only read resident scores when a species reaches this part of the path.
+                        // Reached entries form a prefix, even when earlier species stop at a zero raw score.
+                        if (i == occupantScores.Count)
+                        {
+                            occupantScores.Add(cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies));
+                        }
+
+                        occupantScore = occupantScores[i];
                     }
 
                     // If the occupant is somehow terrible, avoid division by zero
@@ -318,14 +336,16 @@ public static class MichePopulation
             if (totalScore <= 0)
                 continue;
 
+            var availableEnergy = node.Pressure.GetEnergy(patch);
+
             foreach (var currentSpecies in species)
             {
-                var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
+                var micheEnergy = availableEnergy * (scoresDictionary[currentSpecies] / totalScore);
 
                 if (trackEnergy && micheEnergy > 0)
                 {
                     populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
-                        scoresDictionary[currentSpecies], totalScore, micheEnergy);
+                        scoresDictionary[currentSpecies], totalScore, micheEnergy, availableEnergy);
                 }
 
                 energyDictionary[currentSpecies] += micheEnergy;
@@ -373,5 +393,18 @@ public static class MichePopulation
 
             populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
         }
+    }
+
+    /// <summary>
+    ///   Reuses collection capacity between patches in one simulation. Contents are rebuilt for each patch or leaf.
+    /// </summary>
+    private sealed class WorkingMemory
+    {
+        public readonly HashSet<Species> Species = new();
+        public readonly List<Miche> LeafNodes = new();
+        public readonly Dictionary<Species, float> Energy = new();
+        public readonly List<Miche> BackTraversal = new();
+        public readonly Dictionary<Species, float> Scores = new();
+        public readonly List<float> OccupantScores = new();
     }
 }

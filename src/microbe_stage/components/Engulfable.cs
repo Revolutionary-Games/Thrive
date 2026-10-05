@@ -251,10 +251,9 @@ public static class EngulfableHelpers
         in Entity entity)
     {
         // Extra digestible compounds for microbes
-        if (entity.Has<OrganelleContainer>() && entity.Has<CompoundStorage>())
+        if (entity.Has<OrganelleContainer>())
         {
-            return CalculateMicrobeAdditionalDigestibleCompounds(ref entity.Get<OrganelleContainer>(),
-                ref entity.Get<CompoundStorage>());
+            return CalculateMicrobeAdditionalDigestibleCompounds(ref entity.Get<OrganelleContainer>());
         }
 
         // This entity type doesn't have extra digestible compounds
@@ -516,43 +515,54 @@ public static class EngulfableHelpers
         }
     }
 
-    public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,
-        CompoundBag compoundCapacityInfo)
+    public static void CalculateDigestibleCompoundsFromOrganelles(OrganelleLayout<PlacedOrganelle> organelles,
+        Dictionary<Compound, float> result, float releaseFraction = 1.0f)
     {
-        result.TryGetValue(Compound.Glucose, out float existingGlucose);
+        var glucoseToAdd = 0.0f;
 
-        if (existingGlucose < 0)
+        foreach (var organelle in organelles.Organelles)
         {
-            GD.PrintErr("Stored glucose was negative for bonus digestible glucose calculation");
-            existingGlucose = 0;
+            foreach (var entry in organelle.Definition.InitialComposition)
+            {
+                var amount = entry.Value * releaseFraction;
+
+                if (result.TryGetValue(entry.Key, out var existing) && existing > 0)
+                {
+                    result[entry.Key] = existing + amount;
+                }
+                else
+                {
+                    result[entry.Key] = amount;
+                }
+
+                // Add glucose representing the organic molecules that the organelle is made of
+                glucoseToAdd += amount * Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
+            }
         }
 
-        result[Compound.Glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(Compound.Glucose) *
-            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
+        if (glucoseToAdd <= 0.0f)
+            return;
+
+        if (result.TryGetValue(Compound.Glucose, out var existingGlucose) && existingGlucose > 0)
+        {
+            result[Compound.Glucose] = existingGlucose + glucoseToAdd;
+        }
+        else
+        {
+            result[Compound.Glucose] = glucoseToAdd;
+        }
     }
 
     private static Dictionary<Compound, float> CalculateMicrobeAdditionalDigestibleCompounds(
-        ref OrganelleContainer organelleContainer, ref CompoundStorage heldCompounds)
+        ref OrganelleContainer organelleContainer)
     {
         if (organelleContainer.Organelles == null)
             throw new ArgumentException("Organelle container has to be initialized");
 
         var result = new Dictionary<Compound, float>();
 
-        // Add some part of the build cost of all the organelles
-        foreach (var organelle in organelleContainer.Organelles)
-        {
-            foreach (var entry in organelle.Definition.InitialComposition)
-            {
-                if (!SimulationParameters.GetCompound(entry.Key).Digestible)
-                    continue;
-
-                result.TryGetValue(entry.Key, out float existing);
-                result[entry.Key] = existing + entry.Value;
-            }
-        }
-
-        CalculateBonusDigestibleGlucose(result, heldCompounds.Compounds);
+        // Add some part of the build cost of all the organelles, plus glucose based on that
+        CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, result);
         return result;
     }
 }

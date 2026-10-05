@@ -99,7 +99,7 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
         {
             // Injectisome attack, which distributes damage as it is a toxin
             HealthHelpers.DealDistributedMicrobeDamage(overallColony, Constants.INJECTISOME_BASE_DAMAGE, "injectisome",
-                HealthHelpers.GetInstantKillProtectionThreshold(overallColony));
+                HealthHelpers.GetInstantKillProtectionThreshold(overallColony), targetEntity);
 
             cooldown.StartInjectisomeCooldown();
             return;
