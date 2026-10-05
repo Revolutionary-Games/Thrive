@@ -2920,6 +2920,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             {
                 GD.Print("Gamete animation done, starting move to editor");
                 MovingToEditor = true;
+                OnStartMoveToEditor();
                 HUD.EnsureGameIsUnpausedForEditor();
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, MoveToEditor, false);
             }

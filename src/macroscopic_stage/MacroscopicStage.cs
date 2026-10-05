@@ -208,6 +208,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
                 PauseMenu.Instance.ReportStageTransition();
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 3.5f, SwitchToSocietyScene, false);
                 MovingToEditor = true;
+                OnStartMoveToEditor();
                 movingToSocietyStage = false;
             }
 
@@ -377,6 +378,22 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         }
     }
 
+    public override void OnStartMoveToEditor()
+    {
+        base.OnStartMoveToEditor();
+
+        // Close menus
+        CancelBuildingPlaceIfInProgress();
+
+        if (selectBuildingPopup.Visible)
+            selectBuildingPopup.Close();
+
+        if (HUD.IsInventoryOpen)
+        {
+            HUD.CloseInventory();
+        }
+    }
+
     public override void OnSuicide()
     {
         Player?.Damage(9999.0f, "suicide");
@@ -489,6 +506,12 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         if (Player == null || Player.Species.MacroscopicType != MacroscopicSpeciesType.Awakened)
             return;
+
+        if (MovingToEditor)
+        {
+            GD.PrintErr("Cannot open build menu while going to the editor");
+            return;
+        }
 
         if (Player.IsPlacingStructure)
         {
