@@ -52,7 +52,7 @@ void fragment() {
     
     ALBEDO = skinMix.rgb * dirtMix.rgb * COLOR.rgb;
     
-    for (int i = 0; i < projectionMatrixCount; i++)
+    for (int i = 0; i < projectionMatrixCount; ++i)
     {
         mat4 matrix = projectionMatrices[i];
         
@@ -68,7 +68,9 @@ void fragment() {
         
         if (posProjected.z > 1.0f || posProjected.z < -0.8f
             || max(abs(posProjected.x), abs(posProjected.y)) > 0.5f)
+        {
             continue;
+        }
         
         vec4 color = texture(projected, posProjected.xy + 0.5f);
         
