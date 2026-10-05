@@ -553,6 +553,9 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             return true;
         }
 
+        if (MovingToEditor)
+            return false;
+
         if (PauseMenu.Instance.Visible)
             return false;
 
