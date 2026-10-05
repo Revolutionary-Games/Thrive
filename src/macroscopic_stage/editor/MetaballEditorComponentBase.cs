@@ -40,7 +40,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected MeshInstance3D editorGround = null!;
 
     [Export]
-    protected Node3D creatureLoadingSpinner = null!;
+    private Control creatureGenerationSpinner = null!;
 
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
@@ -284,7 +284,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         visualMetaballDisplayer?.Visible = tabSpecificObjectsVisible && PreviewMode && !VisualMetaballsLoading;
         structuralMetaballDisplayer?.Visible = tabSpecificObjectsVisible && !PreviewMode;
-        creatureLoadingSpinner.Visible = tabSpecificObjectsVisible && PreviewMode && VisualMetaballsLoading;
+        creatureGenerationSpinner.Visible = tabSpecificObjectsVisible && PreviewMode && VisualMetaballsLoading;
 
         // Clear the hover metaballs for the concrete editor type to use
         hoverMetaballsChanged = false;
