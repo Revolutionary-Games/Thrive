@@ -11,6 +11,7 @@ point_count = 4
 curve = SubResource("Curve_785uv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wa1po"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_wa1po")
 shader_parameter/projectionMatrices = PackedFloat32Array()
