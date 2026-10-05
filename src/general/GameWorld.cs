@@ -75,10 +75,10 @@ public class GameWorld : IArchivable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(this));
-            TimedEffects.RegisterEffect("nitrogen_control",
-                new NitrogenControlEffect(this, WorldSeed.Derive(settings.Seed, WorldSeed.Domain.NitrogenControl)));
 
-            // Keep this seed derivation order stable. Nitrogen has its own domain and does not draw from this root.
+            // This root only allocates seeds in registration order; each effect owns its runtime random stream.
+            TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this, random.Next64()));
+
             // Patch events. PatchEventsManager HAS to be the last one
             TimedEffects.RegisterEffect("global_glaciation_event",
                 new GlobalGlaciationEvent(this, random.Next64()));
