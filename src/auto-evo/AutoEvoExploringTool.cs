@@ -333,17 +333,21 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     {
         var loadedSave = Save.LoadFromFile(saveName);
 
-        if (loadedSave.SavedProperties == null)
+        var savedProperties = loadedSave.SavedProperties;
+
+        if (savedProperties == null)
         {
             loadedSaveName = null;
             GD.PrintErr("Save has no GameProperties");
             return;
         }
 
-        var newWorld = new AutoEvoExploringToolWorld(loadedSave.SavedProperties);
+        var newWorld = new AutoEvoExploringToolWorld(savedProperties);
         SetWorldsList(newWorld);
         generationDisplayed = world.CurrentGeneration;
         historyListMenu.Text = generationDisplayed.ToString(CultureInfo.CurrentCulture);
+
+        loadedSave.DestroyGameStates();
     }
 
     private void InitAutoEvoConfigControls()
@@ -928,16 +932,30 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         {
             MainMenu.OnEnteringGame(false, true);
 
-            // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
-
             world.GameProperties.EnterFreeBuild();
             world.GameProperties.TutorialState.Enabled = false;
 
             AchievementsManager.ReportEnteredFreebuild();
 
-            // Copy our currently setup game to the editor
-            editor.CurrentGame = world.GameProperties;
+            Node editor;
+            if (world.GameProperties.GameWorld.PlayerSpecies is MicrobeSpecies)
+            {
+                var microbeEditor =
+                    SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate<MicrobeEditor>();
+                microbeEditor.CurrentGame = world.GameProperties;
+                editor = microbeEditor;
+            }
+            else if (world.GameProperties.GameWorld.PlayerSpecies is MulticellularSpecies)
+            {
+                var multicellularEditor = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor)
+                    .Instantiate<MulticellularEditor>();
+                multicellularEditor.CurrentGame = world.GameProperties;
+                editor = multicellularEditor;
+            }
+            else
+            {
+                throw new InvalidOperationException("Unsupported player species type for Auto-Evo Explorer freebuild");
+            }
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
@@ -1217,9 +1235,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
             var gameWorld = loadedGameProperties.GameWorld;
 
+            var maxGeneration = gameWorld.GenerationHistory.Keys.Max();
+
             if (gameWorld.GenerationHistory.Count > 0)
             {
-                for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
+                for (int i = 0; i <= maxGeneration; ++i)
                 {
                     if (gameWorld.GenerationHistory.TryGetValue(i, out var generationRecord))
                     {
@@ -1228,15 +1248,15 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                         {
                             var fullRecord =
                                 GenerationRecord.GetFullSpeciesRecord(speciesId, i, gameWorld.GenerationHistory);
-                            speciesDictionary.Add(speciesId, fullRecord.Species);
+                            var speciesSnapshot = (Species)fullRecord.Species.Clone();
+                            speciesSnapshot.Population = fullRecord.Population;
+                            speciesDictionary.Add(speciesId, speciesSnapshot);
                         }
 
                         SpeciesHistoryList.Add(speciesDictionary);
                         RunResultsList.Add(new LocalizedStringBuilder());
                     }
                 }
-
-                var maxGeneration = gameWorld.GenerationHistory.Keys.Max();
 
                 for (int i = 0; i <= maxGeneration; ++i)
                 {
@@ -1248,21 +1268,19 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                             if (generationsBack == 0)
                                 return (PatchSnapshot)s.Value.CurrentSnapshot.Clone();
 
-                            var historyIndex = generationsBack - 1;
-
-                            return historyIndex < s.Value.History.Count ?
-                                (PatchSnapshot)s.Value.History[historyIndex].Clone() :
+                            return generationsBack < s.Value.History.Count ?
+                                (PatchSnapshot)s.Value.History[generationsBack].Clone() :
                                 new PatchSnapshot((BiomeConditions)s.Value.BiomeTemplate.Conditions.Clone(),
                                     s.Value.BiomeTemplate.Background);
                         }));
                 }
 
-                for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
+                for (int i = 0; i <= maxGeneration; ++i)
                 {
                     MicheHistoryList.Add(new Dictionary<Patch, Miche>());
                 }
 
-                CurrentGeneration = gameWorld.GenerationHistory.Keys.Max();
+                CurrentGeneration = maxGeneration;
             }
             else
             {
