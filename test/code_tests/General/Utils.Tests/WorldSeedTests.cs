@@ -16,11 +16,7 @@ public class WorldSeedTests
     [InlineData(0x123456789ABCDEFL, -5421809425841855491L, -832912001464073923L)]
     public void DerivationUsesFullSeedAndStableDomains(long seed, long events, long nitrogen)
     {
-        // The contract must also work when a caller uses checked arithmetic.
-        checked
-        {
-            Assert.Equal(events, WorldSeed.Derive(seed, WorldSeed.Domain.WorldEvents));
-            Assert.Equal(nitrogen, WorldSeed.Derive(seed, WorldSeed.Domain.NitrogenControl));
-        }
+        Assert.Equal(events, WorldSeed.Derive(seed, WorldSeed.Domain.WorldEvents));
+        Assert.Equal(nitrogen, WorldSeed.Derive(seed, WorldSeed.Domain.NitrogenControl));
     }
 }

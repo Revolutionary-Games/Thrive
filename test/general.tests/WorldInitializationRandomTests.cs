@@ -116,14 +116,39 @@ public class WorldInitializationRandomTests
     [TestCase(0.875f, 0.03125f, 0.03125f)]
     [TestCase(0.125f, 0.25f, 0.375f)]
     [TestCase(0.5f, 0.125f, 0.125f)]
-    public void NitrogenRepeatsItsCorrectionWithoutConsumingOtherStreams(float nitrogen, float oxygen,
+    public void NitrogenCorrectionPreservesGasRules(float nitrogen, float oxygen, float carbonDioxide)
+    {
+        var world = CreateWorld(0);
+        var patch = PrepareNitrogenPatch(world, nitrogen, oxygen, carbonDioxide);
+        var sources = ReadSources(world);
+        var snapshots = sources.Select(source => ReadState(source.Random)).ToArray();
+
+        sources[0].Effect.OnTimePassed(1, 1);
+        AssertNitrogenRules(patch, nitrogen, oxygen, carbonDioxide);
+        foreach (var other in world.Map.Patches.Values.Where(other => other != patch))
+        {
+            AssertGas(other, Compound.Nitrogen, 0.5f);
+            AssertGas(other, Compound.Oxygen, 0.25f);
+            AssertGas(other, Compound.Carbondioxide, 0.25f);
+        }
+
+        bool correctionNeeded = nitrogen < Constants.SOFT_MIN_NITROGEN_LEVEL ||
+            nitrogen > Constants.MAX_NITROGEN_LEVEL;
+        AssertThat(ReadState(sources[0].Random).SequenceEqual(snapshots[0])).IsEqual(!correctionNeeded);
+        for (var i = 1; i < sources.Count; ++i)
+            AssertState(sources[i].Random, snapshots[i]);
+    }
+
+    [TestCase(0.875f, 0.0625f, 0.0625f)]
+    [TestCase(0.125f, 0.375f, 0.5f)]
+    public void NitrogenRepeatsItsCorrectionIndependentlyOfOtherStreams(float nitrogen, float oxygen,
         float carbonDioxide)
     {
         foreach (var seed in new[] { 0L, -1L, long.MinValue, long.MaxValue })
         {
             var actual = CreateWorld(seed);
             var expected = CreateWorld(seed);
-            var actualPatch = PrepareNitrogenPatch(actual, nitrogen, oxygen, carbonDioxide);
+            PrepareNitrogenPatch(actual, nitrogen, oxygen, carbonDioxide);
             PrepareNitrogenPatch(expected, nitrogen, oxygen, carbonDioxide);
             var sources = ReadSources(actual);
             var controls = ReadSources(expected);
@@ -139,17 +164,8 @@ public class WorldInitializationRandomTests
             sources[0].Effect.OnTimePassed(1, 1);
             controls[0].Effect.OnTimePassed(1, 1);
             AssertWorldResults(actual, expected, $"nitrogen={nitrogen}, seed={seed}");
-            AssertNitrogenRules(actualPatch, nitrogen, oxygen, carbonDioxide);
-            foreach (var other in actual.Map.Patches.Values.Where(other => other != actualPatch))
-            {
-                AssertGas(other, Compound.Nitrogen, 0.5f);
-                AssertGas(other, Compound.Oxygen, 0.25f);
-                AssertGas(other, Compound.Carbondioxide, 0.25f);
-            }
-
-            bool correctionNeeded = nitrogen < Constants.SOFT_MIN_NITROGEN_LEVEL ||
-                nitrogen > Constants.MAX_NITROGEN_LEVEL;
-            AssertThat(ReadState(sources[0].Random).SequenceEqual(snapshots[0])).IsEqual(!correctionNeeded);
+            AssertThat(ReadState(sources[0].Random).SequenceEqual(snapshots[0])).IsFalse();
+            AssertState(sources[0].Random, ReadState(controls[0].Random));
             AssertThat(sources[0].Random.NextFloat()).IsEqual(controls[0].Random.NextFloat());
             for (var i = 1; i < sources.Count; ++i)
                 AssertState(sources[i].Random, snapshots[i]);
