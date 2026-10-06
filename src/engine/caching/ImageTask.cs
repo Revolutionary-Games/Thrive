@@ -57,8 +57,10 @@ public class ImageTask : IImageTask
 
     public ulong CalculateCacheHash()
     {
-        return ScenePhotographable?.GetVisualHashCode() ?? SimulationPhotographable?.GetVisualHashCode() ??
+        var baseHash = ScenePhotographable?.GetVisualHashCode() ?? SimulationPhotographable?.GetVisualHashCode() ??
             throw new InvalidOperationException("Image task has neither scene or simulation photograph data");
+
+        return PhotoStudio.GetResolutionAwareHash(baseHash, DesiredResolution);
     }
 
     public void Save()

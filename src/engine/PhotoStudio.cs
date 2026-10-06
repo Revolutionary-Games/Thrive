@@ -98,6 +98,14 @@ public partial class PhotoStudio : SubViewport
         return MathUtils.CameraDistanceFromRadiusOfObject(radius, Constants.PHOTO_STUDIO_CAMERA_FOV);
     }
 
+    public static ulong GetResolutionAwareHash(ulong hash, int resolution)
+    {
+        const int oldDefaultResoltion = 600;
+
+        // XORing the given resolution with the old default one to make sure that older hashes remain the same
+        return hash ^ (ulong)(resolution.GetHashCode() ^ oldDefaultResoltion.GetHashCode());
+    }
+
     public override void _Ready()
     {
         if (Engine.IsEditorHint())
@@ -528,14 +536,6 @@ public partial class PhotoStudio : SubViewport
             GD.Print("Disk caching disabled");
             diskCache = null;
         }
-    }
-
-    private ulong GetResolutionAwareHash(ulong hash, int resolution)
-    {
-        const int oldDefaultResoltion = 600;
-
-        // XORing the given resolution with the old default one to make sure that older hashes remain the same
-        return hash ^ (ulong)(resolution.GetHashCode() ^ oldDefaultResoltion.GetHashCode());
     }
 
     private class TaskComparer : IComparer<(int, int)>
