@@ -1028,13 +1028,22 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (stage.Player.Get<SpeciesMember>().Species is not MulticellularSpecies || stage.CurrentGame!.FreeBuild)
+        var species = player.Get<SpeciesMember>().Species as MulticellularSpecies;
+
+        if (species == null || stage.CurrentGame!.FreeBuild)
         {
             macroscopicButton.Visible = false;
             return;
         }
 
         macroscopicButton.Visible = true;
+
+        if (!species.IsReadyForMacroscopic)
+        {
+            macroscopicButton.Text = Localization.Translate("BECOME_MACROSCOPIC_MISSING_CONDITIONS");
+            macroscopicButton.Disabled = true;
+            return;
+        }
 
         ref var colony = ref player.Get<MicrobeColony>();
 
