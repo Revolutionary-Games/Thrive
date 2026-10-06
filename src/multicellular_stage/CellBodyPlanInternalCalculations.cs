@@ -353,10 +353,11 @@ public static class CellBodyPlanInternalCalculations
             if (cell.Data == null)
                 throw new InvalidOperationException("Cell with no data set");
 
-            totalSpecialization += cell.Data.CellType.CellTypeSpecializationBonus;
+            var adjacencySpecialization = GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, bodyPlan);
+            totalSpecialization += cell.Data!.CellType.CellTypeSpecializationBonus * adjacencySpecialization;
 
             // -1 is here because the bonus is always above 1, so we take out the base portion
-            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data, bodyPlan) - 1;
+            totalAdjacencyBonus += adjacencySpecialization - 1;
 
             cellTypes.Add(cell.Data.CellType.ReadableName);
         }
@@ -365,6 +366,10 @@ public static class CellBodyPlanInternalCalculations
             return false;
 
         totalSpecialization /= bodyPlan.Count;
+
+        // Convert from a multiplier to a raw fraction
+        totalSpecialization -= 1;
+
         totalAdjacencyBonus /= bodyPlan.Count;
 
         if (totalSpecialization < Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC)
@@ -401,8 +406,9 @@ public static class CellBodyPlanInternalCalculations
         {
             var cell = cells[i];
 
-            totalSpecialization += cell.Data!.CellTypeSpecializationBonus;
-            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, cells) - 1;
+            var adjacencySpecialization = GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, cells);
+            totalSpecialization += cell.Data!.CellTypeSpecializationBonus * adjacencySpecialization;
+            totalAdjacencyBonus += adjacencySpecialization - 1;
 
             cellTypes.Add(cell.Data!.ReadableName);
         }
@@ -413,6 +419,10 @@ public static class CellBodyPlanInternalCalculations
                 Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC)));
 
         totalSpecialization /= cells.Count;
+
+        // Convert from a multiplier to a raw fraction
+        totalSpecialization -= 1;
+
         totalAdjacencyBonus /= cells.Count;
 
         bool specializationPass = totalSpecialization >= Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC;
@@ -422,9 +432,15 @@ public static class CellBodyPlanInternalCalculations
                 Math.Round(Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC * 100, 1))));
 
         bool adjacencyPass = totalAdjacencyBonus >= Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC;
+        var targetAdjacency = Math.Round(Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC * 100, 1);
+        var currentAdjacency = Math.Round(totalAdjacencyBonus * 100, 1);
+
+        // Force the display value lower if not fulfilled to not get bug reports about an exact edge condition
+        if (!adjacencyPass && targetAdjacency == currentAdjacency)
+            currentAdjacency -= 0.1;
+
         conditionResults.Add((adjacencyPass,
-            Localization.Translate("MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY").FormatSafe(
-                Math.Round(totalAdjacencyBonus * 100, 1),
-                Math.Round(Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC * 100, 1))));
+            Localization.Translate("MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY")
+                .FormatSafe(currentAdjacency, targetAdjacency)));
     }
 }
