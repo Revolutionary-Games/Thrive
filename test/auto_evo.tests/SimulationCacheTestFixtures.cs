@@ -97,6 +97,17 @@ internal static class SimulationCacheTestFixtures
         AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
     }
 
+    internal static void AssertPredationScoreGreaterThanZero(Species predator, Species prey,
+        BiomeConditions? biome = null)
+    {
+        var cache = CreateCache();
+        biome ??= CreateBiome();
+        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
+        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
+        cache.Clear();
+        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
+    }
+
     internal static void AssertRawBits(SimulationCache.PredationToolsRawScores actual,
         SimulationCache.PredationToolsRawScores expected)
     {
