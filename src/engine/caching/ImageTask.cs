@@ -124,7 +124,10 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         set => throw new NotSupportedException("Loadable cache image must have final path set initially");
     }
 
-    // This isn't supposed to do anything, but still
+    /// <summary>
+    ///   The desired resolution of the image is already contained within <see cref="hash"/>, so this doesn't do
+    ///   anything.
+    /// </summary>
     public int DesiredResolution => Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
 
     public ulong CalculateCacheHash()
