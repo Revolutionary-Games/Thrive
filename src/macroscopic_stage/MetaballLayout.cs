@@ -11,7 +11,7 @@ using SharedBase.Archive;
 ///   A species shape specified by metaballs
 /// </summary>
 /// <typeparam name="T">Metaball type</typeparam>
-public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IArchivable
+public class MetaballLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyMetaballLayout<T>, IArchivable
     where T : Metaball
 {
     // TODO: make a serializer for this like for hex layout serializer

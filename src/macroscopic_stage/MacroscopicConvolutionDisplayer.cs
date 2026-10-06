@@ -110,7 +110,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         }
     }
 
-    public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyList<MacroscopicMetaball> layout)
     {
         var newHash = MetaballLayoutHelpers.CalculateLayoutHash(layout);
 

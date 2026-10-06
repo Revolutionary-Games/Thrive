@@ -2,12 +2,16 @@
 
 public static class MetaballLayoutHelpers
 {
-    public static ulong CalculateLayoutHash(IReadOnlyCollection<MacroscopicMetaball> layout)
+    public static ulong CalculateLayoutHash(IReadOnlyList<IReadonlyMacroscopicMetaball> layout)
     {
         ulong value = 1610612741UL;
 
-        foreach (var metaball in layout)
+        int count = layout.Count;
+
+        for (int i = 0; i < count; ++i)
         {
+            var metaball = layout[i];
+
             value += (ulong)(metaball.Position.X.GetHashCode() ^ metaball.Position.Y.GetHashCode()
                 ^ metaball.Position.Z.GetHashCode() ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
         }

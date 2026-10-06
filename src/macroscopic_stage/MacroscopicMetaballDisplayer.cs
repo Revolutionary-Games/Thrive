@@ -81,7 +81,7 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyList<MacroscopicMetaball> layout)
     {
         var mesh = Multimesh;
 
