@@ -40,7 +40,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected MeshInstance3D editorGround = null!;
 
     [Export]
-    private Control creatureGenerationSpinner = null!;
+    protected Control creatureGenerationSpinner = null!;
 
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
