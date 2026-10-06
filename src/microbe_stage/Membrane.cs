@@ -83,6 +83,12 @@ public partial class Membrane : MeshInstance3D
     public bool IsChangingShape { get; set; }
 
     /// <summary>
+    ///   This is true if the generated membrane belong to the multicellular species
+    ///   so that Intercellular matrix in <see cref="IntercellularMatrixSystem"/> can be created
+    /// </summary>
+    public bool IsMulticellular { get; set; }
+
+    /// <summary>
     ///   Generated membrane point data. Must be set when instances of this class is created before anything is allowed
     ///   to be done with this.
     /// </summary>

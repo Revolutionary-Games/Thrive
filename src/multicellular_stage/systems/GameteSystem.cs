@@ -124,7 +124,7 @@ public partial class GameteSystem : BaseSystem<World, float>
     {
         // Radius based on membrane (no bacteria adjustment as they shouldn't be doing sexual reproduction anyway)
         var radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
-        var sensorRadius = radius + 10;
+        var sensorRadius = radius + Constants.GAMETE_SENSOR_RADIUS_BEYOND_MEMBRANE;
 
         ref var sensor = ref entity.Get<PhysicsSensor>();
         sensor.ActiveArea = PhysicsShape.CreateSphere(sensorRadius);

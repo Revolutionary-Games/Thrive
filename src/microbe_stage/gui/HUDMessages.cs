@@ -4,12 +4,12 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Shows message lines on screen that fade after some time to give the player some gameplay related messages
+///   Shows message lines on screen that fade after some time to give the player some gameplay-related messages
 /// </summary>
-public partial class HUDMessages : VBoxContainer
+public partial class HUDMessages : VBoxContainer, IHUDMessageReceiver
 {
     /// <summary>
-    ///   When this is true any new messages are added *above* existing messages. Otherwise, new messages appear below
+    ///   When this is true, any new messages are added *above* existing messages. Otherwise, new messages appear below
     ///   existing messages.
     /// </summary>
     [Export]
@@ -103,7 +103,7 @@ public partial class HUDMessages : VBoxContainer
 
     public void ShowMessage(IHUDMessage message)
     {
-        // First combine to an existing message if possible
+        // First, combine to an existing message if possible
         foreach (var (existingMessage, existingLabel) in hudMessages)
         {
             if (existingMessage.IsSameMessage(message))
@@ -146,7 +146,7 @@ public partial class HUDMessages : VBoxContainer
 
         hudMessages.Add((message, label));
 
-        // If there's too many messages, remove the one with the least time remaining
+        // If there are too many messages, remove the one with the least time remaining
         while (hudMessages.Count > MaxShownMessages)
         {
             var toRemove = hudMessages.MinBy(m => m.Message.TimeRemaining);
@@ -156,11 +156,6 @@ public partial class HUDMessages : VBoxContainer
             if (!hudMessages.Remove(toRemove))
                 throw new Exception("Expected list item removal failed");
         }
-    }
-
-    public void ShowMessage(string simpleMessage, DisplayDuration duration = DisplayDuration.Normal)
-    {
-        ShowMessage(new SimpleHUDMessage(simpleMessage, duration));
     }
 
     /// <summary>

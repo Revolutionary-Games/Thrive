@@ -21,6 +21,7 @@ public partial class CommandInput : LineEdit
         switch (keyEvent.Keycode)
         {
             case Key.Up:
+            {
                 if (!CommandHistory.LookingUp)
                 {
                     CommandHistory.LookingUp = true;
@@ -29,12 +30,17 @@ public partial class CommandInput : LineEdit
 
                 ++CommandHistory.CommandHistoryIndex;
                 break;
+            }
+
             case Key.Down:
+            {
                 if (!CommandHistory.LookingUp)
                     return;
 
                 --CommandHistory.CommandHistoryIndex;
                 break;
+            }
+
             default:
                 return;
         }

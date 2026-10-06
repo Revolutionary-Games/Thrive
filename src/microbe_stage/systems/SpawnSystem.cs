@@ -253,7 +253,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     }
 
     public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
-        float entityWeight)
+        float entityWeight, bool disallowDespawning = false)
     {
         if (entityWeight <= 0)
             throw new ArgumentException("weight needs to be positive", nameof(entityWeight));
@@ -262,6 +262,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
         {
             DespawnRadiusSquared = despawnRadiusSquared,
             EntityWeight = entityWeight,
+            DisallowDespawning = disallowDespawning,
         });
 
         // Update entity count estimate to keep this about up to date, this will be corrected within a few seconds
@@ -347,6 +348,9 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
             ref WorldPosition position) =>
         {
             if (worldSimulation.IsQueuedForDeletion(entity))
+                return;
+
+            if (spawned.DisallowDespawning)
                 return;
 
             candidateDespawns.Add((entity, spawned.EntityWeight, position.Position));
@@ -655,11 +659,11 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void DespawnEntities(ref Spawned spawned, ref WorldPosition position, Entity entity)
     {
-        if (spawned.DisallowDespawning)
-            return;
-
         var entityWeight = spawned.EntityWeight;
         spawnedEntityWeight += entityWeight;
+
+        if (spawned.DisallowDespawning)
+            return;
 
         // Keep counting all entities to have an accurate count at the end of this loop, even if we are no
         // longer allowed to despawn things

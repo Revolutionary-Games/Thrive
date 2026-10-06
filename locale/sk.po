@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -184,6 +184,14 @@ msgstr "Súčasné vlákna:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Životné prostredie"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -385,8 +393,13 @@ msgstr "Nástroj prieskumu Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj prieskumu Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Automatickú evolúciu sa nepodarilo spustiť"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Výsledok automatickej evolúcie:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -747,9 +760,48 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1411,6 +1463,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopírovať chybu do schránky"
 
@@ -1654,6 +1709,14 @@ msgstr "Vytvoriť nový"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Predvolené výstupné zariadenie"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Vytvoriť nový typ bunky"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Vytvoriť nový typ bunky"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -1999,6 +2062,14 @@ msgstr "zmutoval"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "zmutoval"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2123,10 +2194,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -2655,11 +2722,26 @@ msgid "GAMETE_PRODUCED"
 msgstr "reprodukované"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Názov typu bunky"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Názov typu bunky"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Vytvoriť nový typ bunky"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Zobraziť / skryť prostredie a zlúčeniny"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Dizajnéri"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3477,6 +3559,9 @@ msgstr "Realistická hra"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "obmedzuje časti a schopnosti iba na život, ako ho poznáme"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Hlavný umelec"
 
@@ -3808,6 +3893,9 @@ msgstr "Celková hlasitosť"
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "Pozastaviť hru"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -4785,6 +4873,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Priečinok snímkov obrazovky nebol nájdený"
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Názov typu bunky"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Vytvoriť nový typ bunky"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Potvrdiť ukončenie"
 
@@ -4819,6 +4915,9 @@ msgstr "Vytvoriť nový typ bunky"
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Rozlíšenie:"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Jadro"
@@ -5357,6 +5456,19 @@ msgstr "Prehrať úvodné video do mikróbov v novej hre"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populácia:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULÁCIA:"
 
@@ -5538,6 +5650,13 @@ msgstr ""
 
 msgid "READY"
 msgstr "Pripravené"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "Pozastaviť hru"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Odporúčaná verzia Thrive:"
@@ -6288,6 +6407,10 @@ msgstr "Umiestniť fosfát"
 msgid "SPECIALIZATION_COLON"
 msgstr "populácia:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Vytvoriť nový typ bunky"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Špeciálne tlačidlo myši 1"
 
@@ -6355,10 +6478,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Vytvoriť nový typ bunky"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
@@ -6375,6 +6494,10 @@ msgstr "Pozastaviť hru"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Názov:"
 
 #, fuzzy
 msgid "START"
@@ -7493,6 +7616,14 @@ msgstr "Ručne nastaviť počet vlákien na pozadí"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Ručne nastaviť počet vlákien na pozadí"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "zmutoval"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7655,6 +7786,9 @@ msgstr "Skrolovať doprava"
 
 msgid "WHEEL_UP"
 msgstr "Skrolovať hore"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -9551,6 +9685,10 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

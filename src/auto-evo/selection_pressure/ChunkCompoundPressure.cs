@@ -114,10 +114,10 @@ public class ChunkCompoundPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            nominalStorageCapacity = microbeSpecies.NominalStorageCapacity;
 
             if (microbeSpecies.CanEngulf &&
-                cache.GetBaseHexSizeForSpecies(microbeSpecies) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                cache.GetBaseHexSizeForSpecies(microbeSpecies) >= chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
             {
                 canEngulf = true;
             }
@@ -134,7 +134,7 @@ public class ChunkCompoundPressure : SelectionPressure
                     break;
 
                 if (cellType.MembraneType.CanEngulf &&
-                    cache.GetBaseHexSizeForCellType(cellType) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                    cache.GetBaseHexSizeForCellType(cellType) >= chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                 {
                     foreach (var hex in multicellularSpecies.EditorCells)
                     {

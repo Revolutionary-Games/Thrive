@@ -28,6 +28,8 @@ public class MaintainCompoundPressure : SelectionPressure
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
+    public override bool IsThresholdPressure => true;
+
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MaintainCompoundPressure;
 

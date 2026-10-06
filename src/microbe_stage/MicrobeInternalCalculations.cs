@@ -82,28 +82,90 @@ public static class MicrobeInternalCalculations
         return delta.Normalized();
     }
 
-    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,
-        float totalSpecializationBonus)
+    public static Vector3 CalculateCenterOfMass<T>(IReadOnlyList<T> organelles)
+        where T : IReadOnlyPositionedOrganelle
     {
-        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades,
-            totalSpecializationBonus));
+        // TODO: this used to weigh the center position based on the organelle masses, this is no longer possible
+        // to do as simply
+        // float totalMass = 0;
+        int count = 0;
+        Vector3 weightedSum = Vector3.Zero;
+
+        // NOTE: if this is modified, the below variant also needs changes
+
+        // TODO: shouldn't this take multihex organelles into account?
+        var listLength = organelles.Count;
+        for (int i = 0; i < listLength; ++i)
+        {
+            // totalMass += organelle.Definition.Mass;
+            ++count;
+            weightedSum += Hex.AxialToCartesian(organelles[i].Position) /* * organelle.Definition.Mass*/;
+        }
+
+        if (count == 0)
+            return new Vector3(0, 0, 0);
+
+        weightedSum /= count;
+
+        // Truncate towards zero to avoid layout shifts.
+        // This is not a technically correct result as this will round some small changes to 0, however, this is
+        // needed to not end up with oscillations around like (-1, 0), (0, -1) loops, which cause errors in
+        // multicellular.
+        // The reason is that our hex size does not match up with integer coordinates, so theoretically values like
+        // 0.9 should not round to zero, but using rounding here results in still problems with the repositioning
+        // infinitely moving around the 0, 0 point.
+        return new Vector3((int)weightedSum.X, weightedSum.Y, (int)weightedSum.Z);
+    }
+
+    public static Vector3 CalculateCenterOfMass<T>(IReadOnlyCollection<T> organelles)
+        where T : IReadOnlyPositionedOrganelle
+    {
+        // Implementation variant that doesn't get an index accessor. See the above method for comments.
+        int count = 0;
+        Vector3 weightedSum = Vector3.Zero;
+
+        foreach (var organelle in organelles)
+        {
+            // totalMass += organelle.Definition.Mass;
+            ++count;
+            weightedSum += Hex.AxialToCartesian(organelle.Position) /* * organelle.Definition.Mass*/;
+        }
+
+        if (count == 0)
+            return new Vector3(0, 0, 0);
+
+        weightedSum /= count;
+        return new Vector3((int)weightedSum.X, weightedSum.Y, (int)weightedSum.Z);
+    }
+
+    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,
+        float totalSpecializationBonus, StorageValueBreakdown? breakdown = null)
+    {
+        float capacity = 0;
+        foreach (var organelle in organelles)
+        {
+            capacity += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
+                totalSpecializationBonus, breakdown);
+        }
+
+        return capacity;
     }
 
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        float totalSpecializationBonus, out float nominalCapacity)
+        float totalSpecializationBonus, out float nominalCapacity, StorageValueBreakdown? breakdown = null)
     {
-        var totalNominalCap = GetTotalNominalCapacity(organelles, totalSpecializationBonus);
+        var totalNominalCap = GetTotalNominalCapacity(organelles, totalSpecializationBonus, breakdown);
         nominalCapacity = totalNominalCap;
 
         var capacities = new Dictionary<Compound, float>();
 
-        AddSpecificCapacity(organelles, capacities, totalSpecializationBonus);
+        AddSpecificCapacity(organelles, capacities, totalSpecializationBonus, breakdown);
 
         return capacities;
     }
 
     public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        Dictionary<Compound, float> capacities, float totalSpecializationBonus)
+        Dictionary<Compound, float> capacities, float totalSpecializationBonus, StorageValueBreakdown? breakdown)
     {
         var count = organelles.Count;
 
@@ -113,7 +175,7 @@ public static class MicrobeInternalCalculations
             var organelle = organelles[i];
 
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
-                totalSpecializationBonus);
+                totalSpecializationBonus, breakdown);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -125,9 +187,8 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, float, out float)"/> to
-    ///   update spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal
-    ///   capacity set for this to work correctly.
+    ///   Variant of <see cref="GetTotalSpecificCapacity"/> to update spawned microbe stats. The used
+    ///   <see cref="CompoundBag"/> must already have the correct nominal capacity set for this to work correctly.
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
@@ -154,7 +215,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition,
-        IReadOnlyOrganelleUpgrades? upgrades, float totalSpecializationBonus)
+        IReadOnlyOrganelleUpgrades? upgrades, float totalSpecializationBonus, StorageValueBreakdown? breakdown = null)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != Compound.Invalid)
@@ -165,12 +226,21 @@ public static class MicrobeInternalCalculations
         if (definition.Components.Storage == null)
             return 0;
 
-        return definition.Components.Storage!.Capacity * totalSpecializationBonus;
+        float total = definition.Components.Storage!.Capacity * totalSpecializationBonus;
+
+        if (breakdown != null)
+        {
+            breakdown.NominalStorage.Total += total;
+            breakdown.NominalStorage.Base += definition.Components.Storage!.Capacity;
+            breakdown.NominalStorage.Specialization += total - definition.Components.Storage!.Capacity;
+        }
+
+        return total;
     }
 
     public static (Compound Compound, float Capacity)
         GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades,
-            float totalSpecializationBonus)
+            float totalSpecializationBonus, StorageValueBreakdown? breakdown = null)
     {
         if (definition.Components.Storage == null)
             return (Compound.Invalid, 0);
@@ -181,6 +251,9 @@ public static class MicrobeInternalCalculations
             var specialization = storage.SpecializedFor;
             var capacity = definition.Components.Storage!.Capacity;
             var extraCapacity = capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
+
+            breakdown?.Add(specialization, extraCapacity, totalSpecializationBonus);
+
             return (specialization, extraCapacity * totalSpecializationBonus);
         }
 

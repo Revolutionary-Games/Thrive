@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Ptit Serpent <snake76930@gmail.com>\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -167,6 +167,7 @@ msgstr "(permet de continuer la partie avec une espèce différent à l'extincti
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistiques génériques de tous les mondes"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Générations :[/b]\n"
@@ -200,6 +201,14 @@ msgstr ""
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Taux changent"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Environnement"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Toujours visible"
@@ -402,8 +411,13 @@ msgstr "Explorer l'Auto-Évo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Outil d'exploration Auto-Évo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "L'Auto-Évo n'a pas pu se lancer"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Les résultats Auto-evo sont manquants. Si vous avez chargé une sauvegarde plus ancienne, il est normal qu'ils soient manquants. Si vous n’avez pas chargé une sauvegarde plus ancienne, veuillez nous le signaler comme un bug et envoyez-nous votre log de jeu."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Les résultats Auto-evo sont manquants. Si vous avez chargé une sauvegarde plus ancienne, il est normal qu'ils soient manquants. Si vous n’avez pas chargé une sauvegarde plus ancienne, veuillez nous le signaler comme un bug et envoyez-nous votre log de jeu."
@@ -736,11 +750,50 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane est dotée d'une paroi, ce qui lui confère une meilleure protection contre les dégâts et en particulier contre les dégâts physiques. Cela demande moins d'énergie pour conserver sa forme, mais empêche une absorption des ressources rapide et vous ralentit. [b]La cellulase peut digérer cette paroi[/b], ce qui la rend vulnérable à l'ingestion par les prédateurs."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr "La disposition est invalide car il y a des cellules qui se chevauchent et que trop the adjacences sont perdues (voir les flèches rouges)."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr "La disposition est invalide car il y a des cellules se chevauchant et des cellules déconnectées."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr "Dans cet onglet vous pouvez voir la disposition complète actuelle qui est utilisée pour votre colonie de cellule durant le gameplay et la modifier quand vous utilisez la disposition manuelle."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr "Cliquez sur une cellule pour commencer à la déplacer. Déplacez les cellules à des positions que vous voulez. Toutes les cellules doivent être connectées et être proche de l'endroit où elles doivent être dans la structure. Editer les organites peut créer des chevauchements qui doivent être résolus pour que la disposition manuelle soit correcte. Quitter le mode the disposition manuel perd tous les changements en cours."
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Vitesse de rotation de la cellule. Les cellules plus grosse tournent plus lentement mais des cils peuvent être ajoutés pour compenser.\n"
 "Le placement des organites impacte la rotation, les organites les plus loin du centre réduisant moins la vitesse de rotation."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1402,6 +1455,9 @@ msgstr "Sensibilité du contrôleur"
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Axe inconnu"
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copier l'erreur dans le presse-papier"
 
@@ -1643,6 +1699,14 @@ msgstr "Rétrécir l'objet"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Périphérique de sortie par défaut"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Créer un nouveau type de cellule"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Créer un nouveau type de cellule"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -2007,6 +2071,14 @@ msgstr "Éditeur et mutations"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrer dans l'éditeur et modifier votre espèce"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indique que cette espèce a muté pendant son cycle d'Auto-Évo"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Votre microbe a réussi a se reproduire a nouveau, faisant ainsi un pas de plus vers une forme de vie complexe.\n"
@@ -2154,6 +2226,7 @@ msgstr "Commencer l'endosymbiose avec cette espèce (disponible après avoir sé
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0} : {1} /seconde"
 
@@ -2162,13 +2235,6 @@ msgstr "{0} : -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0} : +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0} : +{1} ATP\n"
-"En consommant :\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2669,6 +2735,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "reproduit"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Nom du type de cellule"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Nom du type de cellule"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Créer un nouveau type de cellule"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "Cette section montre la balance total d'ATP (énergie) de la cellule actuelle.\n"
@@ -2679,6 +2757,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Équipe conception du jeu"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Remarque : vous pouvez modifier les options liées aux performances à tout moment dans le [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menu options[/url][/color] pour améliorer les performances du jeu"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3478,6 +3560,9 @@ msgstr "LAWK uniquement"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restreint les parties et les capacités à la vie telle que nous la connaissons)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Artiste principal"
 
@@ -3798,6 +3883,9 @@ msgstr "Volume principal"
 
 msgid "MASTODON_TOOLTIP"
 msgstr "Visitez notre profil sur le réseau social Mastodon"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Taille maximale que le cache en mémoire morte peut prendre (des fichiers seront supprimés automatiquement si le cache prend trop de place)"
@@ -4831,6 +4919,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Pas de dossier fossiles trouvé"
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Nom du type de cellule"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Créer un nouveau type de cellule"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Confirmer la suppression"
 
@@ -4862,6 +4958,9 @@ msgstr "Créer un nouveau type de cellule"
 
 msgid "NO_SUGGESTION"
 msgstr "Aucune"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Noyau"
@@ -5390,6 +5489,19 @@ msgstr "Jouer l'introduction à chaque nouvelle partie"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jouer avec les paramètres actuels"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "population :"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
 
@@ -5567,6 +5679,16 @@ msgstr "Lecture des données de sauvegarde"
 
 msgid "READY"
 msgstr "Prêt"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Cette barre montre la température actuelle de votre cellule. l'indicateur jaune montre la plage de génération d'énergie effective.\n"
+"La barre verticale blanche montre la température ambiante vers laquelle la barre tend à aller.\n"
+"L'indicateur en-dessous de la barre change de couleur quand de l'énergie est produite."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Version de Thrive recommandée :"
@@ -6298,6 +6420,10 @@ msgstr "Créer du phosphate"
 msgid "SPECIALIZATION_COLON"
 msgstr "population :"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Créer un nouveau type de cellule"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Bouton spécial souris 1"
 
@@ -6368,10 +6494,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Mutliplier/diviser par deux la vitesse de jeu"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Créer un nouveau type de cellule"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"
 
@@ -6388,6 +6510,10 @@ msgstr "Visitez notre page Patreon"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titre :"
 
 msgid "START"
 msgstr "Démarrer"
@@ -7703,6 +7829,14 @@ msgstr "Saisie manuelle du nombre de thread en arrière-plan"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Saisie manuelle du nombre de thread en arrière-plan"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "a muté"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Utiliser la taille de la fenêtre virtuelle"
 
@@ -7861,6 +7995,9 @@ msgstr "Roulette droite"
 
 msgid "WHEEL_UP"
 msgstr "Molette avant"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -8623,6 +8760,7 @@ msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orient
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Les [b]flagelles[/b] sont des filaments à l'éxterieur d'une cellule qui utilisent de l'[thrive:compound type=\"atp\"][/thrive:compound] pour aumenter la vitesse de déplacement d'une cellule dans une direction. La poussée est appliquée dans la direction opposée à la flagelle."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Pas de modifications."
 
@@ -8896,6 +9034,7 @@ msgstr ""
 "\n"
 "La [color=#3796e1][url=thriveopedia:thermosynthase]thermosynthase[/url][/color] et les [color=#3796e1][url=thriveopedia:thermoplast]thermoplastes[/url][/color] produisent de l'[thrive:compound type=\"atp\"][/thrive:compound] gratuitement tant que l'environnement est assez chaud."
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "Cette section contient tous les conseils pour le stade microbien qui s'affichent sur les écrans de chargement.\n"
@@ -9324,6 +9463,7 @@ msgstr ""
 "[indent]—   Posséder des [b][color=#3796e1][url=thriveopedia:metabolosome]Métabolosomes[/url][/color][/b] depuis au moins [b]7[/b] générations consécutives.[/indent]\n"
 "[indent]—   Produire au moins [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -9551,6 +9691,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "[b][color=#3796e1][url=thriveopedia:metabolosome]Métabolosome[/url][/color][/b] modifié qui produit de l'[thrive:compound type=\"oxytoxy\"][/thrive:compound],un agent toxique pouvant être projeté. Version inférieure de la [b][color=#3796e1][url=thriveopedia:oxytoxy]Vacuole à toxines[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Pas de modifications."
 
@@ -9945,6 +10086,7 @@ msgstr ""
 "\n"
 "Il est également important de noter que l'organelle utilise du [thrive:compound type=\"glucose\"][/thrive:compound] et non du [thrive:compound type=\"atp\"][/thrive:compound], alors assurez-vous de vérifier l'équilibre des composés de votre cellule lorsque vous ajoutez cette organelle."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Pas d'améliorations."
 
@@ -10143,6 +10285,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Pas de modifications."
 
@@ -10375,6 +10518,13 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0} : +{1} ATP\n"
+#~ "En consommant :\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

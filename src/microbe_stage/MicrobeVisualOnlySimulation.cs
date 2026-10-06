@@ -113,12 +113,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <returns>The created entity</returns>
     public Entity CreateVisualisationMicrobe(Species species)
     {
-        // TODO: should we have a separate spawn method to just spawn the visual aspects of a microbe?
-        // The downside would be duplicated code, but it could skip the component types that don't impact the visuals
-
-        // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
-        // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true, GameteType.All);
+        SpawnHelpers.SpawnMicrobeVisualizationOnly(this, dummyEnvironment, species, Vector3.Zero,
+            MulticellularSpawnState.Offspring);
 
         ProcessDelaySpawnedEntitiesImmediately();
 
@@ -435,6 +431,29 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         if (microbeVisualsSystem.HasPendingOperations())
             return true;
+
+        // The visual system's pending flag is reset at the start of each update. Check the actual state as well so
+        // that a membrane generation completing between updates cannot make PhotoStudio proceed too early.
+        // TODO: check if this is also needed in MicrobeWorldSimulation
+        foreach (var archetype in EntitySystem)
+        {
+            if (!archetype.Has<CellProperties>())
+                continue;
+
+            foreach (var chunk in archetype.Chunks.AsSpan())
+            {
+                var entityCount = chunk.Count;
+                var chunkEntities = chunk.Entities;
+
+                for (int i = 0; i < entityCount; ++i)
+                {
+                    var entity = chunkEntities[i];
+
+                    if (!entity.Get<CellProperties>().IsMembraneReady())
+                        return true;
+                }
+            }
+        }
 
         if (delayedColonyOperationSystem.HasPendingEntities())
             return true;

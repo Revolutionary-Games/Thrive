@@ -151,8 +151,8 @@ public partial class LogInterceptor : Logger
             return;
         }
 
-        // Forward other errors to notify the player about the error
-        // As we use only C# code, the only thing we need is the "code" which contains the C# backtrace
+        // Forward other errors to notify the player about the error.
+        // As we use only C# code, the only thing we need is the "code" which contains the C# backtrace.
         // Though we let some engine errors through which do have quite critical info in rationale, so append it
         ForwardToGUI(code, rationale);
     }

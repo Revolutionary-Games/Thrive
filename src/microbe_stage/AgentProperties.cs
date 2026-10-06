@@ -67,13 +67,13 @@ public class AgentProperties : IArchivable
         writer.Write((int)ToxinSubType);
     }
 
-    public void DealDamage(in Entity entityOrColony, float toxinAmount)
+    public void DealDamage(in Entity entityOrColony, float toxinAmount, in Entity soundTarget)
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
         // Toxin damage is distributed to all members of a colony
         HealthHelpers.DealDistributedMicrobeDamage(entityOrColony, damage, DamageTypeName,
-            HealthHelpers.GetInstantKillProtectionThreshold(entityOrColony));
+            HealthHelpers.GetInstantKillProtectionThreshold(entityOrColony), soundTarget);
     }
 
     public void DealDamage(ref Health health, in Entity entity, float toxinAmount)

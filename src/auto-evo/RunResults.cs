@@ -272,7 +272,7 @@ public class RunResults : IArchivable
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
-        float speciesFitness, float totalFitness, float speciesEnergy)
+        float speciesFitness, float totalFitness, float speciesEnergy, float totalAvailableEnergy)
     {
         MakeSureResultExistsForSpecies(species);
 
@@ -284,7 +284,7 @@ public class RunResults : IArchivable
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
             TotalFitness = totalFitness,
-            TotalAvailableEnergy = pressure.GetEnergy(patch),
+            TotalAvailableEnergy = totalAvailableEnergy,
         };
     }
 
@@ -1472,11 +1472,14 @@ public class RunResults : IArchivable
                                 speciesResult.SplitFrom.FormattedNameBbCodeUnstyled), false, false, "newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
+                        {
                             LogEventGloballyAndLocally(world, patch, new LocalizedString(
                                     "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedNameBbCodeUnstyled,
                                     speciesResult.SplitFrom.FormattedNameBbCodeUnstyled),
                                 false, false, "newSpecies.png");
                             break;
+                        }
+
                         default:
                             GD.PrintErr("Unhandled newly created species type: ", speciesResult.NewlyCreated.Value);
                             break;

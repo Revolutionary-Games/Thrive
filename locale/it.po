@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-07-29 00:10+0000\n"
-"Last-Translator: Giacomo La Serra <laserragiacomo1@gmail.com>\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-09-17 19:57+0000\n"
+"Last-Translator: fractalino <francescosollazzi37@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -52,9 +52,8 @@ msgstr "Accetta"
 msgid "ACHIEVEMENTS"
 msgstr "Obiettivi"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Impossibile caricare i dati degli obiettivi."
+msgstr "Impossibile caricare i dati degli obiettivi"
 
 #, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
@@ -109,11 +108,10 @@ msgstr ""
 "I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 msgid "ACTOMYOSIN"
-msgstr ""
+msgstr "Actomiosina"
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "La descrizione è mancante"
+msgstr "Le Actomiosine sono delle strutture muscolari semplici che le colonie cellulari possono usare per muoversi o ruotare più efficacemente. Non sono disponibili per membrane cellulari rigide perché l'Actomiosina richiede flessione per funzionare. Come risultato, le actomiosine sono più efficaci quando ce ne sono una per cellula, e più cellule della colonia le possiedono."
 
 #, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
@@ -171,6 +169,7 @@ msgstr "(permetti di continuare la partita con una specie differente quando la t
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistiche generali di tutti i mondi"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generazioni:[/b]\n"
@@ -204,6 +203,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Scala temporale alternativa"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ambiente"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visibile"
@@ -404,8 +411,12 @@ msgstr "Strumento di esplorazione Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Strumento di esplorazione Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
-msgstr "Esecuzione dell'Auto-Evo non riuscita"
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
+msgstr "Esecuzione dell'Auto-Evo non riuscita (per maggiori informazioni consultare il file log di gioco)"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Mancano i risultati della Auto-evo, se hai caricato un salvataggio vecchio è normale che manchino i risultati. Nel caso non avessi caricato un vecchio salvataggio, per favore segnala questo bug e inviaci il tuo game log file."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Mancano i risultati della Auto-evo, se hai caricato un salvataggio vecchio è normale che manchino i risultati. Nel caso non avessi caricato un vecchio salvataggio, per favore segnala questo bug e inviaci il tuo game log file."
@@ -737,6 +748,42 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -744,6 +791,9 @@ msgstr ""
 "Il bonus attuale è del {0}%, ottenuto da {1} cellule.\n"
 "Il tipo di cellula più specializzato è {3}, con un bonus del {2}%.\n"
 "Per aumentare questo bonus, rendi i tipi di cellula più specializzati, aggiungi altre cellule del tipo più specializzato oppure posiziona cellule dello stesso tipo una accanto all'altra."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1429,6 +1479,9 @@ msgstr "Sensibilità controller"
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Asse sconosciuto"
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copia Errore negli Appunti"
 
@@ -1675,6 +1728,14 @@ msgstr "Riduci le dimensioni dell'oggetto"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output predefinito"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Crea un nuovo tipo di cellula"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Crea un nuovo tipo di cellula"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -2037,6 +2098,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Apri l'editor e modifica la tua specie"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indica che questa specie ha subito una mutazione durante questo ciclo di Auto-Evo"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Il tuo microbo si è riprodotto con successo ancora una volta, compiendo un ulteriore passo verso una forma di vita più evoluta.\n"
@@ -2197,13 +2266,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Mentre si consuma\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2745,6 +2807,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "si è riprodotto"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Nome del tipo di cellula"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Nome del tipo di cellula"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Crea un nuovo tipo di cellula"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "Questa sezione mostra il bilancio totale di ATP (energia) della cellula corrente.\n"
@@ -2755,6 +2829,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Squadra Progettisti di Gioco"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Una nota: puoi modificare le impostazioni legate alle prestazioni in qualsiasi momento nel [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menù delle opzioni[/url][/color]"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3589,6 +3667,9 @@ msgstr "Solo VCLC"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(esclude parti e abilità estranee alla Vita Come La Conosciamo)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Capo Artisti"
 
@@ -3928,6 +4009,9 @@ msgstr "Volume principale"
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "Metti in pausa il gioco"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -5032,6 +5116,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nessuna cartella dei salvataggi trovata"
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Nome del tipo di cellula"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Crea un nuovo tipo di cellula"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Conferma eliminazione"
 
@@ -5065,6 +5157,9 @@ msgstr "Crea un nuovo tipo di cellula"
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Risoluzione:"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Nucleo"
@@ -5622,6 +5717,19 @@ msgstr "Riproduci filmato iniziale microbico in nuove partite"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Gioca nello scenario attuale"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "popolazione:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 
@@ -5802,6 +5910,16 @@ msgstr "Lettura dati di salvataggio"
 
 msgid "READY"
 msgstr "Pronto"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Questa barra mostra la temperatura attuale della tua cellula. Gli indicatori gialli mostrano l'intervallo di temperatura in cui la produzione di energia è efficace.\n"
+"La barra verticale bianca indica la temperatura dell'ambiente, verso la quale la barra tenderà.\n"
+"L'indicatore sotto la barra cambia colore quando viene prodotta energia."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Versione consigliata di Thrive:"
@@ -6566,6 +6684,10 @@ msgstr "Genera fosfato"
 msgid "SPECIALIZATION_COLON"
 msgstr "popolazione:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Crea un nuovo tipo di cellula"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Pulsante speciale del mouse 1"
 
@@ -6640,10 +6762,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Crea un nuovo tipo di cellula"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
 
@@ -6660,6 +6778,10 @@ msgstr "Metti in pausa il gioco"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menù di pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titolo:"
 
 #, fuzzy
 msgid "START"
@@ -8012,6 +8134,14 @@ msgstr "Imposta manualmente il numero di thread in background"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Imposta manualmente il numero di thread in background"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "ha subito una mutazione"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -8177,6 +8307,9 @@ msgstr "Scorri a destra (rotellina del mouse)"
 
 msgid "WHEEL_UP"
 msgstr "Scorri su (rotellina del mouse)"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10156,6 +10289,13 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Mentre si consuma\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

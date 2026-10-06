@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-07-22 19:25+0000\n"
+"POT-Creation-Date: 2026-09-29 09:51+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -167,6 +167,7 @@ msgstr "(позволяет продолжить игру, но уже за др
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Общая статистика всех миров"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Поколения:[/b]\n"
@@ -198,6 +199,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Альтернативная временная шкала"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Окружающая среда"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "При"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -398,8 +407,13 @@ msgstr "Используйте Исследователь Авто-Эво"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения Авто-Эво"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Не удалось запустить Авто-Эво"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Отсутствуют результаты Авто-Эво. Это нормально, если вы, например, загрузили старое сохранение. Но если это произошло на новом сохранении, то, пожалуйста, сообщите об ошибке, прикрепив файл с журналом действий (Log file)."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Отсутствуют результаты Авто-Эво. Это нормально, если вы, например, загрузили старое сохранение. Но если это произошло на новом сохранении, то, пожалуйста, сообщите об ошибке, прикрепив файл с журналом действий (Log file)."
@@ -731,6 +745,42 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "В многоклеточных организмах это показывает средний бонус специализации всех клеток, включая смежные бонусы.\n"
@@ -738,6 +788,9 @@ msgstr ""
 "Самый специализированный тип — {3} с бонусом {2}%.\n"
 "Чтобы увеличить этот показатель, сделайте типы клеток более специализированными, добавьте больше типов клетки\n"
 "или располагайте ячейки одного типа рядом друг с другом."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -1408,6 +1461,9 @@ msgstr "Чувствительность контроллера"
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Неизвестная Ось"
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
 
@@ -1649,6 +1705,14 @@ msgstr "Уменьшить размер объекта"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Тип споровых клеток"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Тип споровых клеток"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -1997,6 +2061,14 @@ msgstr "Редакторы и Мутации"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Войдите в редактор для модификации видов"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Показывает, что данный вид мутировал во время этого цикла Авто-Эво"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Если ваш текущий микроб не приспособлен к выживанию в этой среде, вы можете вернуться к предыдущему состоянию в редакторе и попробовать что-то другое."
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Ваш микроб успешно размножился и сделал ещё один шаг к более развитой форме жизни.\n"
@@ -2136,6 +2208,7 @@ msgstr "Начать эндосимбиоз с этим видом (Доступ
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Эндосимбиоз"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /second"
 
@@ -2144,12 +2217,6 @@ msgstr "{0}: -{1} АТФ"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} АТФ\n"
-"При потреблении:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Давление Потребления Энергии"
@@ -2633,6 +2700,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "Воспроизведено"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Название вида клеток"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Название вида клеток"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Создать Новый Тип Клетки"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "Эта секция показывает весь баланс АТФ (энергии) в клетке.\n"
@@ -2643,6 +2722,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Команда Игрового Дизайна"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Заметьте: вы можете изменить настройки производительности в любое время в [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]меню настроек[/url][/color] для улучшения производительности"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "Игровые Системы"
@@ -3392,6 +3475,9 @@ msgstr "Только ЖКМЗ"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ограничивает органеллы и способности только теми, которые встречаются в природе (Жизнь, Какой Мы её Знаем))"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Ведущий Художник"
 
@@ -3704,6 +3790,9 @@ msgstr "Общая громкость"
 
 msgid "MASTODON_TOOLTIP"
 msgstr "Зайдите в наш аккаунт в Mastodon"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Максимальный размер кэша на диске (Объекты будут автоматически удалены если кэш станет слишком большим)"
@@ -4660,6 +4749,14 @@ msgstr "Никаких событий не зафиксировано"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Не найдена дирректория окаменелостей"
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Название вида клеток"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Тип споровых клеток"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "В текущей игре больше нельзя получать достижения"
 
@@ -4691,6 +4788,9 @@ msgstr "Тип споровых клеток"
 
 msgid "NO_SUGGESTION"
 msgstr "Ничего"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Ядро"
@@ -5191,6 +5291,19 @@ msgstr "Проигрывать вступление микроба при нов
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Играть с текущими настройками"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Специализация:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
@@ -5349,6 +5462,16 @@ msgstr "Чтение данных сохранения"
 msgid "READY"
 msgstr "Готово"
 
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Эта шкала показывает текущую температуру вашей Клетки. Жёлтый индикатор показывает дальность эффективной генерации Энергии\n"
+"Белая вертикальная Шкала демонстрирует Температуру Окружающей Среды , к коей будет стремиться Индикатор.\n"
+"Индикатор снизу шкалы меняет цвет при генерации Энергии."
+
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Рекомендуемая версия Thrive:"
 
@@ -5415,9 +5538,8 @@ msgstr "Массовое почкование"
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL"
-msgstr "Бесполое"
+msgstr "Половое"
 
 #, fuzzy
 msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
@@ -6056,6 +6178,10 @@ msgstr "Создать фосфат"
 msgid "SPECIALIZATION_COLON"
 msgstr "Специализация:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Тип споровых клеток"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специальная кнопка мыши 1"
 
@@ -6123,10 +6249,6 @@ msgstr "Скорость:"
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Переключайтесь между нормальной и альтернативной скоростями игры"
 
-#, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Тип споровых клеток"
-
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
 
@@ -6141,6 +6263,10 @@ msgstr "Переключает режим спринтинга. Во время 
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Имя:"
 
 msgid "START"
 msgstr "Начать"
@@ -7379,6 +7505,14 @@ msgstr "Установить вручную количество фоновых 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Установить вручную количество собственных потоков на стороне экзекьютора"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "мутировал"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "Если ваш текущий микроб не приспособлен к выживанию в этой среде, вы можете вернуться к предыдущему состоянию в редакторе и попробовать что-то другое."
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Используйте размер виртуального окна"
 
@@ -7525,6 +7659,9 @@ msgstr "Колёсико вправо"
 
 msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "наша Wiki"
@@ -8276,6 +8413,7 @@ msgstr "Каждый [b]Жгутик[/b] обеспечивает направл
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Жгутики[/b] — это похожие на волоски нити на внешней поверхности клетки, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для увеличения скорости движения клетки в одном направлении. Сила тяги направлена в сторону, противоположную направлению вращения жгутика."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Никаких изменений."
 
@@ -8530,6 +8668,7 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color] и[color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color] производят [thrive:compound type=\"atp\"][/thrive:compound] бесплатно, пока окружающая среда достатчно горячая."
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "В этом разделе собраны все советы для этапа «Микробы», которые отображаются на экранах загрузки.\n"
@@ -9016,6 +9155,7 @@ msgstr ""
 "[ul]Содержит по меньшей мере [b]4[/b]  [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосомы[/url][/color][/b] по крайней мере, в течение [b]5[/b] поколений подряд.\n"
 "Производит по крайней мере [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/ul]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "Митохондрия — это двухслойная (имеет внутреннюю и внешнюю мембраны) органелла, генерирующая АТФ путем Окислительного Фосфорилирования. В этом процессе, энергия генерируется от распада питательных веществ (например глюкоза или жиры), используя протонный градиент через внутреннюю мембрану, а затем использовать для превращения АДФ в АТФ.\n"
@@ -9251,6 +9391,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосома[/url][/color][/b], которая производит [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, которого можно запустить в качестве токсичного снаряда. Усовершенствованная версия [b][color=#3796e1][url=thriveopedia:oxytoxy]Токсиновой Вакуоли[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Нет модификаций."
 
@@ -9629,6 +9770,7 @@ msgstr ""
 "\n"
 "Также важно отметить, что Органелла использует [thrive:compound type=\"glucose\"][/thrive:compound], а не [thrive:compound type=\"atp\"][/thrive:compound], так что проверяйте баланс веществ в клетке, когда добавляете органеллу."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
@@ -9889,6 +10031,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] , производящая [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, который можно запустить, как токсичный снаряд. Улучшенная версия [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Нет модификаций."
 
@@ -10102,6 +10245,12 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} АТФ\n"
+#~ "При потреблении:\n"
+#~ "{2}"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Тип споровых клеток"

@@ -711,6 +711,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
 
         InitEditorGUI(fresh);
+
+        // Detect broken save being loaded (auto-evo likely has failed which is why it wasn't saved)
+        if (!fresh && autoEvoResults == null)
+            ShowNoAutoEvoResultsAfterLoad();
+
         NotifyUndoRedoStateChanged();
 
         // TODO: dynamic MP changes
@@ -778,6 +783,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         ApplyComponentLightLevels();
     }
 
+    /// <summary>
+    ///   Called after the editor GUI has been initialized when a loaded save has no auto-evo results to display.
+    /// </summary>
+    protected virtual void ShowNoAutoEvoResultsAfterLoad()
+    {
+    }
+
     protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
     {
         writer.WriteObjectOrNull(CurrentGame);
@@ -803,8 +815,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         CurrentGame = reader.ReadObject<GameProperties>();
         history = reader.ReadObject<EditorActionHistory<TAction>>();
-        autoEvoResults = reader.ReadObject<RunResults>();
-        autoEvoExternal = reader.ReadObject<LocalizedStringBuilder>();
+        autoEvoResults = reader.ReadObjectOrNull<RunResults>();
+        autoEvoExternal = reader.ReadObjectOrNull<LocalizedStringBuilder>();
         selectedEditorTab = (EditorTab)reader.ReadInt32();
         dayLightFraction = reader.ReadFloat();
         FreeBuilding = reader.ReadBool();
@@ -855,6 +867,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         else
         {
             UpdateHistoryCallbackTargets(history);
+        }
+
+        // A cheat command can be executed before this editor has entered the scene. In that case the editor misses
+        // the cheat event, so copy the global achievement state once the editor has a game to update.
+        if (AchievementsManager.HasUsedCheats && !CurrentGame.CheatsUsed)
+        {
+            GD.Print("Copying cheats used state to current game on editor entry");
+            CurrentGame.ReportCheatsUsed();
         }
 
         InitEditor(!IsLoadedFromSave);

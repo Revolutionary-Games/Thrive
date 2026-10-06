@@ -27,6 +27,7 @@ public partial class HexPopupMenu : CustomPopupMenu
     private bool showDelete = true;
     private bool enableMove = true;
     private bool enableModify;
+    private bool showModify = true;
 
     private string? deleteTooltip;
 
@@ -86,6 +87,16 @@ public partial class HexPopupMenu : CustomPopupMenu
         {
             showDelete = value;
             UpdateDeleteButton();
+        }
+    }
+
+    public bool ShowModifyOption
+    {
+        get => showModify;
+        set
+        {
+            showModify = value;
+            UpdateModifyButton();
         }
     }
 
@@ -193,7 +204,11 @@ public partial class HexPopupMenu : CustomPopupMenu
 
     private void UpdateModifyButton()
     {
-        modifyButton?.Disabled = !EnableModifyOption;
+        if (modifyButton == null)
+            return;
+
+        modifyButton.Visible = showModify;
+        modifyButton.Disabled = !EnableModifyOption;
     }
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)

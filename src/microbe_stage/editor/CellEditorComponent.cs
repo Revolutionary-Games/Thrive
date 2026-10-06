@@ -195,6 +195,8 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private StorageValueBreakdown? storageValueBreakdown;
+
     private List<TweakedProcess> tempAllProcesses = new();
     private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
@@ -649,6 +651,8 @@ public partial class CellEditorComponent :
             {
                 tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
             }
+
+            VerifyEditedOrganellesDoNotReferToOriginalData();
         }
 
         if (IsMulticellularEditor)
@@ -1630,14 +1634,15 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
-    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity,
+        StorageValueBreakdown? breakdown = null)
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
-            totalSpecializationBonus, out nominalCapacity);
+            totalSpecializationBonus, out nominalCapacity, breakdown);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -2606,7 +2611,19 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
+
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         var (ammoniaCost, phosphatesCost) = CalculateOrganellesCosts();
@@ -3540,6 +3557,28 @@ public partial class CellEditorComponent :
         if (chemosynthesis > 0.03)
         {
             AchievementEvents.ReportPlayerUsesChemosynthesis();
+        }
+    }
+
+    private void VerifyEditedOrganellesDoNotReferToOriginalData()
+    {
+        if (IsMacroscopicEditor || IsMulticellularEditor)
+        {
+            var cellProperties = Editor.EditedCellProperties;
+            if (cellProperties == null)
+                return;
+
+            foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+            {
+                foreach (var originalOrganelle in cellProperties.ModifiableOrganelles)
+                {
+                    if (ReferenceEquals(editedMicrobeOrganelle, originalOrganelle))
+                    {
+                        throw new InvalidOperationException(
+                            "Organelle is not from edited, about to modify original data!");
+                    }
+                }
+            }
         }
     }
 

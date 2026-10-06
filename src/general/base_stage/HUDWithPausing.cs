@@ -38,14 +38,16 @@ public partial class HUDWithPausing : HUDBase
 
     public virtual void PauseButtonPressed(bool buttonState)
     {
-        if (PauseMenu.Instance.Visible)
+        if (PauseMenu.Instance.Visible || PauseMenu.Instance.GameLoading)
         {
             return;
         }
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        Paused = !Paused;
+        // Use the state supplied by the button instead of toggling our state. This keeps the HUD pause lock in
+        // sync with the actual button state even when the button is pressed while another pause is active.
+        Paused = buttonState;
 
         if (Paused)
         {

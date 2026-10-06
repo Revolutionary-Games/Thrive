@@ -492,7 +492,10 @@ public class Patch : IArchivable
             case Compound.Oxygen:
             case Compound.Carbondioxide:
             case Compound.Nitrogen:
+            {
                 return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
+            }
+
             case Compound.Radiation:
             case Compound.Iron:
                 return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);

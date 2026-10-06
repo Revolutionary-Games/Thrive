@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-29 09:51+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -181,6 +181,7 @@ msgstr "(mengizinkan melanjutkan permainan dengan spesies berbeda saat punah ali
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistika Umum untuk Semua Dunia"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generasi:[/b]\n"
@@ -211,6 +212,14 @@ msgstr "Simpan dan lanjut"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Lingkungan"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -410,8 +419,13 @@ msgstr "Gunakan di Alat Jelajah Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Alat Penjelajah Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo gagal bekerja"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Hasil Global"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -774,9 +788,48 @@ msgstr "Selulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Lanjutkan"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1459,6 +1512,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Salin Error ke Clipboard"
 
@@ -1709,6 +1765,14 @@ msgstr "Buat Save Baru"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output bawaan"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Buat Sel Baru"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -2081,6 +2145,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Ini editor sel dimana kamu bisa menambahkan atau menghapis organele dari spesiesmu dengan memakai poin mutasi (PM).\n"
@@ -2246,10 +2318,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -2797,12 +2865,27 @@ msgid "GAMETE_PRODUCED"
 msgstr "bereproduksi"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Tambah keybind baru"
 
 #, fuzzy
 msgid "GAME_DESIGN_TEAM"
 msgstr "Kepala Desainer Game"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3635,6 +3718,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Kepala Artistik"
 
@@ -3982,6 +4068,9 @@ msgstr "Volume master"
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -5067,6 +5156,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Buka Direktori Save"
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Konfirmasi Keluar"
 
@@ -5103,6 +5200,9 @@ msgstr "Buat Sel Baru"
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolusi:"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Nukleus"
@@ -5662,6 +5762,19 @@ msgstr "Putar Video Pengantar Mikroba saat Permainan Baru"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Main Dengan Pengaturan Saat Ini"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populasi:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
 
@@ -5844,6 +5957,13 @@ msgstr "Membaca data save"
 
 msgid "READY"
 msgstr "Siap"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -6630,6 +6750,10 @@ msgstr "Munculkan fosfat"
 msgid "SPECIALIZATION_COLON"
 msgstr "populasi:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Buat Sel Baru"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6706,10 +6830,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Lanjutkan"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Buat Sel Baru"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
@@ -6727,6 +6847,10 @@ msgstr "Tambah keybind baru"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Ukuran:"
 
 #, fuzzy
 msgid "START"
@@ -8082,6 +8206,14 @@ msgstr "Atur jumlah background thread secara manual"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Atur jumlah background thread secara manual"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "mengalami mutasi"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -8241,6 +8373,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -10201,6 +10336,10 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

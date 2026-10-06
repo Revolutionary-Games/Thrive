@@ -68,11 +68,16 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
-        {
-            ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
-            IsEndosymbiont = version > 1 && reader.ReadBool(),
-        };
+        // Read the fields needed to construct the template first. The remaining fields can contain references back
+        // to the template's containing layout/species, so the template must be registered before reading them.
+        var instance = new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(),
+            reader.ReadInt32());
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        // Especially the chemoreceptor upgrades can be troublesome!
+        instance.ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>();
+        instance.IsEndosymbiont = version > 1 && reader.ReadBool();
+        return instance;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

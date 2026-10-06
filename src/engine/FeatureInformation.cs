@@ -13,7 +13,11 @@ public static class FeatureInformation
 
     private const string PlatformMac = "macos";
 
+    private const string ExportTemplateFeature = "template";
+
     private static readonly Lazy<OS.RenderingDriver> CachedDriver = new(DetectRenderer);
+
+    private static readonly Lazy<bool> RunningExported = new(() => OS.HasFeature(ExportTemplateFeature));
 
     private static readonly Lazy<string> ResolvedOS = new(GetOSHelper);
 
@@ -55,6 +59,14 @@ public static class FeatureInformation
     public static bool IsMac()
     {
         return GetOS() == PlatformMac;
+    }
+
+    /// <summary>
+    ///   True when running an exported game instead of from the editor.
+    /// </summary>
+    public static bool IsExported()
+    {
+        return RunningExported.Value;
     }
 
     private static string GetOSHelper()

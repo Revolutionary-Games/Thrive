@@ -189,12 +189,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (checkedGodot)
             return true;
 
-        var godot = ExecutableFinder.Which("godot");
+        var godot = GodotExecutable.Path;
 
         if (godot == null)
         {
             ExecutableFinder.PrintPathInfo(Console.Out);
-            ColourConsole.WriteErrorLine("Godot not found in PATH with name \"godot\" please make it available");
+            ColourConsole.WriteErrorLine(
+                "Godot not found in PATH with name \"godot-mono\" or \"godot\" please make it available");
             return false;
         }
 
@@ -398,7 +399,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
 
-        var startInfo = new ProcessStartInfo("godot");
+        var startInfo = new ProcessStartInfo(GodotExecutable.RequiredPath);
         startInfo.ArgumentList.Add(GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--export-release");
         startInfo.ArgumentList.Add(target);

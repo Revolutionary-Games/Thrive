@@ -511,6 +511,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
+        stage.OnStartMoveToEditor();
         return true;
     }
 
@@ -525,9 +526,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         // Prevent being stuck in a state where editor can no longer be entered
         // https://github.com/Revolutionary-Games/Thrive/issues/4204
         stage!.MovingToEditor = false;
-
-        // TODO: should the editor button be always unlocked like this
-        editorButton.Disabled = false;
     }
 
     public void ShowPatchName(string localizedPatchName)
@@ -600,6 +598,11 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     public void HidePatchExtinctionBox()
     {
+        // The patch extinction box remains interactive while the game is paused. If the player paused using the HUD
+        // while making their choice, make sure that lock doesn't survive closing the box and leave the new patch
+        // permanently paused.
+        EnsureGameIsUnpausedForEditor();
+
         winExtinctBoxHolder.Hide();
         patchExtinctionBox?.Hide();
 
@@ -875,6 +878,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+            {
                 if (strainFraction >= 0.8f)
                 {
                     strainBar.Show();
@@ -885,7 +889,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 }
 
                 break;
+            }
+
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
+            {
                 if (strainFraction > 0.0f)
                 {
                     strainBar.Show();
@@ -896,6 +903,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 }
 
                 break;
+            }
+
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBar.Show();
                 break;
@@ -1012,7 +1021,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         foreach (var (compound, bar) in compoundBars)
         {
             // Probably can save on performance here by not updating hidden bars and hoping that when bars become
-            // visible they will be updated immediately for the player to not notice
+            // visible, they will be updated immediately for the player to not notice
             if (!bar.Visible)
                 continue;
 

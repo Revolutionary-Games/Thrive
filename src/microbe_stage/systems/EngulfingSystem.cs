@@ -255,6 +255,61 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         engulfedObjectsToDelete.Clear();
     }
 
+    internal bool CheckStartEngulfingOnCandidate(ref CellProperties cellProperties,
+        ref Engulfer engulfer, ref SpeciesMember speciesMember, in Entity entity, in Entity engulfable)
+    {
+        var engulfCheckResult = cellProperties.CanEngulfObject(ref speciesMember, ref engulfer, engulfable);
+
+        if (!engulfable.Has<Engulfable>())
+        {
+            GD.PrintErr("Cannot start engulfing entity that passed engulf check as it is missing " +
+                "engulfable component");
+            return false;
+        }
+
+        if (engulfCheckResult == EngulfCheckResult.Ok)
+        {
+            // TODO: add some way for this to detect delay-added components so that this can't conflict with the
+            // binding system
+            lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+            {
+                ref var engulfableComponent = ref engulfable.Get<Engulfable>();
+
+                if (engulfableComponent.PhagocytosisStep != PhagocytosisPhase.None)
+                {
+                    throw new InvalidOperationException(
+                        "Detected something that is currently engulfed as being engulfable");
+                }
+
+                return IngestEngulfable(ref engulfer, ref cellProperties, entity, ref engulfableComponent,
+                    engulfable);
+            }
+        }
+
+        if (engulfCheckResult == EngulfCheckResult.IngestedMatterFull)
+        {
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnEngulfmentStorageFull?.Invoke(entity);
+
+                entity.SendNoticeIfPossible(() =>
+                    new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+            }
+        }
+        else if (engulfCheckResult == EngulfCheckResult.TargetTooBig)
+        {
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                entity.SendNoticeIfPossible(() =>
+                    new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
+            }
+        }
+
+        return false;
+    }
+
     /// <summary>
     ///   Ingestion variant for taking an object that is engulfed by a different engulfer and adding it to this
     ///   engulfer. Needs to match the core operations in the fresh-ingest variant otherwise things will go very
@@ -1162,65 +1217,6 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   This checks if we can start engulfing
-    /// </summary>
-    /// <returns>True if something started to be engulfed</returns>
-    private bool CheckStartEngulfingOnCandidate(ref CellProperties cellProperties,
-        ref Engulfer engulfer, ref SpeciesMember speciesMember, in Entity entity, in Entity engulfable)
-    {
-        var engulfCheckResult = cellProperties.CanEngulfObject(ref speciesMember, ref engulfer, engulfable);
-
-        if (!engulfable.Has<Engulfable>())
-        {
-            GD.PrintErr("Cannot start engulfing entity that passed engulf check as it is missing " +
-                "engulfable component");
-            return false;
-        }
-
-        if (engulfCheckResult == EngulfCheckResult.Ok)
-        {
-            // TODO: add some way for this to detect delay added components so that this can't conflict with the
-            // binding system
-            lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
-            {
-                ref var engulfableComponent = ref engulfable.Get<Engulfable>();
-
-                if (engulfableComponent.PhagocytosisStep != PhagocytosisPhase.None)
-                {
-                    throw new InvalidOperationException(
-                        "Detected something that is currently engulfed as being engulfable");
-                }
-
-                return IngestEngulfable(ref engulfer, ref cellProperties, entity, ref engulfableComponent,
-                    engulfable);
-            }
-        }
-
-        if (engulfCheckResult == EngulfCheckResult.IngestedMatterFull)
-        {
-            if (entity.Has<MicrobeEventCallbacks>())
-            {
-                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-
-                callbacks.OnEngulfmentStorageFull?.Invoke(entity);
-
-                entity.SendNoticeIfPossible(() =>
-                    new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
-            }
-        }
-        else if (engulfCheckResult == EngulfCheckResult.TargetTooBig)
-        {
-            if (entity.Has<MicrobeEventCallbacks>())
-            {
-                entity.SendNoticeIfPossible(() =>
-                    new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
-            }
-        }
-
-        return false;
-    }
-
-    /// <summary>
     ///   Attempts to engulf the given target into the cytoplasm. Does not check whether the target
     ///   can be engulfed or not (as that check should be done already).
     /// </summary>
@@ -1270,8 +1266,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         CommandBuffer? recorder = null;
 
         // Steal this cell from a colony if it is in a colony currently
-        // Right now this causes extra operations for deleting the attached component but avoiding that would
-        // complicate the code a lot here
+        // Preserve the attached component so it can be retargeted below.
         if (targetEntity.Has<MicrobeColonyMember>() || targetEntity.Has<MicrobeColony>())
         {
             recorder ??= worldSimulation.StartRecordingEntityCommands();
@@ -1281,7 +1276,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             // started but that may have been caused by my testing method of overriding the required size ratio (
             // in just one place so maybe some other later check then immediately canceled the engulf)
             // - hhyyrylainen
-            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder, true))
+            // We don't remove the attached component because we can retarget it to ourself
+            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder, true, false))
             {
                 GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
                 return false;

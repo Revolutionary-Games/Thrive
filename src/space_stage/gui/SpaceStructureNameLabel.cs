@@ -38,7 +38,7 @@ public partial class SpaceStructureNameLabel : Button, IEntityNameLabel
         switch (entity)
         {
             case PlacedSpaceStructure structure:
-
+            {
                 if (structure.Completed)
                 {
                     newText = structure.ReadableName;
@@ -49,6 +49,7 @@ public partial class SpaceStructureNameLabel : Button, IEntityNameLabel
                 }
 
                 break;
+            }
 
             default:
                 throw new ArgumentException("Unsupported entity type", nameof(entity));

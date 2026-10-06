@@ -138,8 +138,9 @@ public static class HealthHelpers
     ///   A threshold above which, if the current health is, the damage is not allowed to instantly kill the entity.
     ///   Pass in a negative value to disable the protection.
     /// </param>
+    /// <param name="playSound">Whether a damage sound should be played for this damage event.</param>
     public static void DealDamage(this ref Health health, in Entity entity, float damage, string damageSource,
-        float instantKillProtectionThreshold)
+        float instantKillProtectionThreshold, bool playSound = true)
     {
         if (health.Invulnerable)
         {
@@ -181,7 +182,7 @@ public static class HealthHelpers
         if (damage > Constants.HEALTH_REGEN_STOP_DAMAGE_THRESHOLD)
             health.HealthRegenCooldown = Constants.HEALTH_REGENERATION_COOLDOWN;
 
-        var damageEvent = new DamageEventNotice(damageSource, damage);
+        var damageEvent = new DamageEventNotice(damageSource, damage, playSound);
         var damageList = health.RecentDamageReceived;
 
         if (damageList == null)
@@ -226,7 +227,7 @@ public static class HealthHelpers
     ///   </para>
     /// </remarks>
     public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, in Entity entity,
-        float damage, string damageSource, float instantKillProtectionThreshold)
+        float damage, string damageSource, float instantKillProtectionThreshold, bool playSound = true)
     {
         // TODO: reimplement this (probably better to use the invulnerable health property and also make engulf
         // check that to prevent engulfing of the player)
@@ -256,7 +257,7 @@ public static class HealthHelpers
             damage /= 2;
         }
 
-        health.DealDamage(entity, damage, damageSource, instantKillProtectionThreshold);
+        health.DealDamage(entity, damage, damageSource, instantKillProtectionThreshold, playSound);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -273,8 +274,9 @@ public static class HealthHelpers
     /// <param name="damage">Raw damage amount to do in total</param>
     /// <param name="damageSource">Damage type</param>
     /// <param name="instantKillProtectionThreshold">Instant kill protection</param>
+    /// <param name="soundTarget">The colony member that should play the damage sound.</param>
     public static void DealDistributedMicrobeDamage(in Entity entity, float damage, string damageSource,
-        float instantKillProtectionThreshold)
+        float instantKillProtectionThreshold, in Entity soundTarget)
     {
         if (entity.Has<MicrobeColony>())
         {
@@ -288,8 +290,13 @@ public static class HealthHelpers
                 if (member.IsAliveAndHas<Health>())
                 {
                     ref var health = ref member.Get<Health>();
+
+                    // TODO: this now plays sound on each colony member, rather than the center cell.
+                    // For player colony this makes any damage sound a bit quiet. Using "member == entity" would play
+                    // on the player itself, which might be preferable.
+
                     health.DealMicrobeDamage(ref entity.Get<CellProperties>(), member, perEntityDamage,
-                        damageSource, instantKillProtectionThreshold);
+                        damageSource, instantKillProtectionThreshold, member == soundTarget);
                 }
                 else
                 {
@@ -302,7 +309,7 @@ public static class HealthHelpers
             // Not in a colony, deal damage normally
             ref var health = ref entity.Get<Health>();
             health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, damage, damageSource,
-                instantKillProtectionThreshold);
+                instantKillProtectionThreshold, entity == soundTarget);
         }
         else
         {
@@ -388,15 +395,17 @@ public static class HealthHelpers
 /// </summary>
 public class DamageEventNotice : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public string DamageSource;
     public float Amount;
+    public bool PlaySound;
 
-    public DamageEventNotice(string damageSource, float amount)
+    public DamageEventNotice(string damageSource, float amount, bool playSound = true)
     {
         DamageSource = damageSource;
         Amount = amount;
+        PlaySound = playSound;
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -416,12 +425,14 @@ public class DamageEventNotice : IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new DamageEventNotice(reader.ReadString() ?? throw new NullArchiveObjectException(), reader.ReadFloat());
+        return new DamageEventNotice(reader.ReadString() ?? throw new NullArchiveObjectException(), reader.ReadFloat(),
+            version < 2 || reader.ReadBool());
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write(DamageSource);
         writer.Write(Amount);
+        writer.Write(PlaySound);
     }
 }

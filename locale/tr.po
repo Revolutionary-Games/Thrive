@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-08-20 19:25+0000\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-10-05 19:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -174,14 +174,16 @@ msgstr ""
 "   {0}\n"
 "[b]Toplam Tür Sayısı:[/b]\n"
 "   Ortalama {1}; Standart sapma {2}\n"
-"[b]Hayatta Olan Türler:[/b]\n"
+"[b]Toplam Saniye:[/b]\n"
 "   Ortalama {3}; Standart sapma {4}\n"
-"[b]Arazi Başına Tür Sayısı:[/b]\n"
+"[b]Hayatta Olan Türler:[/b]\n"
 "   Ortalama {5}; Standart sapma {6}\n"
-"[b]Arazi Başına Toplam Popülasyon:[/b]\n"
+"[b]Arazi Başına Tür Sayısı:[/b]\n"
 "   Ortalama {7}; Standart sapma {8}\n"
-"[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
+"[b]Arazi Başına Toplam Popülasyon:[/b]\n"
 "   Ortalama {9}; Standart sapma {10}\n"
+"[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
+"   Ortalama {11}; Standart sapma {12}\n"
 "\n"
 "[b]Genel Organel Verileri[/b]"
 
@@ -199,6 +201,12 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Alternatif zaman ölçeği"
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Editörden ayrılırken dünya ortamını sıfırla"
+
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "(etkinleştirildiğinde; bulutlar, çevre, mikroplar, oyuncu organizması ve deposu, diğer yaşayan şeyler vb. yalnızca yeni bir araziye ya da konuma taşındığınız zaman değil, editörden ayrıldığınız her an kaldırılır ve ortam yeniden oluşturulur)"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -399,8 +407,11 @@ msgstr "Oto-Evrim Keşif Aracında Kullan"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Oto-Evrim Keşif Aracı"
 
-msgid "AUTO_EVO_FAILED"
-msgstr "Oto-evrim çalıştırılamadı"
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
+msgstr "Oto-evrim çalıştırılamadı (oyun günlük dosyası daha fazla bilgiye sahip)"
+
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Bu kayıtta, oto-evrim sonuçları eksik. Bu durum büyük ihtimalle, bu kayıt oluşturulmadan önce oto-evrimin çalışamadığına işaret ediyor. Lütfen oto-evrim hatası ile ilgili bir hata raporu oluşturun. Raporun bir parçası olarak, lütfen önceki oyun günlüklerini ya da hatanın meydana gelmesinden önceki bir kaydı (biraz tutarlılıkla, daha önceki bir kayıttan tekrar hatanın tetiklenmesi şartıyla) temin edin. Çoktan bozulmuş olan bir kayıt dosyasını sağlamak, ne yazık ki bir hata raporu için faydalı değildir."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Oto-evrim sonuçları eksik. Eğer daha eski bir kaydı yüklediyseniz, bu sonuçların bulunmaması beklenen bir şey. Eğer daha eksi bir kaydı yüklemediyseniz, lütfen bu sorunu bize bir hata raporu olarak gönderin ve oyunun günlük dosyasını yollayın."
@@ -732,6 +743,42 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr "Hücreleri etrafta hareket ettirmek için manuel düzene geç"
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr "Hücreleri döndürme işlemi yalnızca ana yapı görünümünde yapılabilir"
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr "Not: Otomatik modda düzen kaymaları önizlenmez. Bu nedenle, editörden çıkarken gerçekleşen kayma sonucunda düzen tam olarak aynı kalmayabilir. Manuel modda hücre türlerinin düzen kaymaları önizlenir. Bu da, manuel ve otomatik modlar arasında farklılıklara yol açabilir."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr "Bu manuel hücre düzeni geçersiz, lütfen bunu editör sekmesinden inceleyin ve düzeltin veya manuel düzeni devre dışı bırakın"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü hücreler hedeflenen yakınlıklarını kaybetti. Bu hücreleri, hedef pozisyonlarının yakınına taşıyın (kırmızı oklara bakın)."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü bağlanmamış hücreler var"
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var. Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr "Bu düzen geçersiz çünkü çakışan hücreler var."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü çakışan hücreler var ve hücreler hedeflenen yakınlıklarını kaybetti (kırmızı oklara bakın)."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr "Bu düzen geçersiz çünkü çakışan ve bağlanmamış hücreler var."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr "Bu sekmede, oyun sırasında hücre koloniniz için kullanılan tam gerçek düzeni görüntüleyebilirsiniz ve manuel düzeni kullandığınızda bu düzeni değiştirebilirsiniz."
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr "Taşımak için bir hücreye tıklayın. Hücreleri istediğiniz konuma taşıyın. Bütün hücreler, hala bedene bağlı kalmalıdır ve yapıda olması gerektiği konuma yakın olmalıdır. Organelleri düzenlemek, çakışmalara neden olabilir. Bu durumun da, manuel düzen geçerli hale gelmeden önce düzeltilmesi gerekir. Manuel düzenden çıkmak, bedende yapılan bütün değişiklikleri yoksayar."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Çok hücrelilerde, bitişiklik bonusu dahil, bu bölüm bütün hücrelerin özelleşme bonusunun ortalamasını gösterir.\n"
@@ -739,6 +786,9 @@ msgstr ""
 "En çok özelleşmiş hücre türü, %{2} değerindeki bonus ile {3} hücresidir.\n"
 "Bu bonusu arttırmak için hücre türlerini daha özelleşmiş hale getirin, en çok özelleşmiş hücre türünden daha fazla ekleyin\n"
 "ya da aynı tür hücreleri birbirine bitişik halde yerleştirin."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr "Lütfen bekleyin, beden düzeni hesaplanıyor"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -920,9 +970,8 @@ msgstr "Önbelleği Temizle"
 msgid "CLICK_TO_SELECT"
 msgstr "Seç"
 
-#, fuzzy
 msgid "CLICK_TO_SET_CELL_TYPE"
-msgstr "Seç"
+msgstr "Bir hücre türü seçmek için tıklayın"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "İklim değişkenliği"
@@ -1406,6 +1455,9 @@ msgstr "Kontrol cihazı hassasiyeti"
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Bilinmeyen Eksen"
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr "{0}s'lik bekleme süresi kaldığı için eş oluşturulmadı"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Hatayı Panoya Kopyala"
 
@@ -1648,9 +1700,14 @@ msgstr "Nesne büyüklüğünü azalt"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Gamet B"
+
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Gamet"
+
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
-msgstr "Spor hücresi türü"
+msgstr "Spor"
 
 msgid "DELETE"
 msgstr "Sil"
@@ -1995,6 +2052,16 @@ msgstr "Editörler ve Mutasyonlar"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Editöre gir ve türünde değişiklik yap"
 
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Editör Tür Verisi Hatası"
+
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr ""
+"Editördeki türün verisi bozuk. Bir veri tutarsızlığı saptandı.\n"
+"Geçersiz veriden dolayı daha fazla oyun hatası oluşmasını durdurmak için bu tür ile devam etmeniz engellendi.\n"
+"Lütfen yaptığınız herhangi bir değişikliği geri alın ya da türünüzün durumunu düzeltin.\n"
+"Bozulma öncesine ait, daha önceki bir kaydı yüklemeniz gerekebilir. Eğer kaydınızı Thrive geliştiricileri ile paylaşırsanız, veriniz düzeltilebilir."
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Mikrobunuz başarılı bir şekilde çoğaldı ve daha gelişmiş bir yaşam formu olma yolunda bir adım daha attı.\n"
@@ -2134,19 +2201,13 @@ msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosimbiyoz"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /saniye"
+msgstr "{0}: {1} /saniye"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Şu tüketildiğinde:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Enerji Tüketim Baskısı"
@@ -2232,9 +2293,8 @@ msgstr "Yükleme Hatası"
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr "Hata: Eşeyli üreme için en az iki hücre gereklidir"
 
-#, fuzzy
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
-msgstr "Hata: Eşeyli üreme için en az iki hücre gereklidir"
+msgstr "Hata: Toplu tomurcuklanma, başlangıçta en az {0} hücrelik bir tomurcuk büyüklüğü gerektirir"
 
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
@@ -2611,7 +2671,7 @@ msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Oynanış Bilgileri"
 
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "{0} hücresinin gameti"
+msgstr "{0} hücresinin gameti ({1})"
 
 msgid "GAMETE_CELL_TYPE"
 msgstr "Gamet hücre türü"
@@ -2625,11 +2685,23 @@ msgstr "Gamet türü B"
 msgid "GAMETE_PRODUCED"
 msgstr "gamet çoğaldı"
 
+msgid "GAMETE_TYPE_A"
+msgstr "A"
+
+msgid "GAMETE_TYPE_ALL"
+msgstr "Tümü"
+
+msgid "GAMETE_TYPE_B"
+msgstr "B"
+
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Oyuncunun hücre kolonisi ile çoğalmak için bu gamet türünü seçin"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Uyarı: Düşük performanstan dolayı, fizik simülasyonu kesinliği veya hızı azaltılıyor"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "Oyun Sistemleri"
@@ -3379,6 +3451,9 @@ msgstr "Sadece BH"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(sadece Bildiğimiz Hayat'a ait olan parçalar ve yetenekler ile sınırlar)"
 
+msgid "LAYOUT_TAB"
+msgstr "Düzen"
+
 msgid "LEAD_ARTIST"
 msgstr "Baş Sanatçı"
 
@@ -3679,9 +3754,8 @@ msgstr "Deniz karı"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "Başlangıçtaki hücre sayısı"
 
-#, fuzzy
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
-msgstr "Birden fazla hücreyle başlayan bir yavru üretir."
+msgstr "Bu ayarı kullanmak için tomurcuk büyüklüğü en az {0} hücre olmalıdır. Yeterince büyük bir tomurcuk büyüklüğü seçmek için beden planınıza daha fazla hücre eklemeniz gerekebilir."
 
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Birden fazla hücreyle başlayan bir yavru üretir."
@@ -3691,6 +3765,9 @@ msgstr "Ana ses"
 
 msgid "MASTODON_TOOLTIP"
 msgstr "Mastodon sosyal medya profilimizi ziyaret edin"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr "Oyuncu eş çağırdığı için dünyada bir eş oluştu"
 
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Diskteki önbelleğin alabileceği maksimum boyut (eğer önbellek aşırı artarsa, öğeler otomatik olarak kaldırılır)"
@@ -4646,6 +4723,12 @@ msgstr "Hiçbir olay meydana gelmedi"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Fosiller dizini bulunamadı"
 
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Eşeyli üremeyi kullanan bir organizmanın seçili bir gamet hücresi türüne sahip olması gereklidir."
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Gamet hücresi türü seçili değil"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Mevcut oyun, artık başarımlar için uygun değil"
 
@@ -4667,16 +4750,17 @@ msgstr "Ekran görüntüsü dizini bulunamadı"
 msgid "NO_SELECTED_MOD"
 msgstr "Seçilen Mod Yok"
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET"
-msgstr "Spor hücresi türü"
+msgstr "Üreme yöntemi olarak sporlanmayı kullanan bir organizmanın, seçili bir spor hücresi türüne sahip olması gerekir."
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "Spor hücresi türü"
+msgstr "Spor hücresi türü seçili değil"
 
 msgid "NO_SUGGESTION"
 msgstr "Yok"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr "Eş için engelsiz bir pozisyon bulunamadı, yine de bir eş oluşturuluyor, ama bir yere takılıp kalabilir"
 
 msgid "NUCLEUS"
 msgstr "Çekirdek"
@@ -5175,6 +5259,18 @@ msgstr "Yeni oyunda mikrop tanıtımını oynat"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr "+{0} Temel"
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr "  +{0} Baz"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "+{0} Özelleşmede"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr "  +{0} Özelleşmede"
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
@@ -5332,6 +5428,15 @@ msgstr "Kayıt verisi okunuyor"
 
 msgid "READY"
 msgstr "Hazır"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr "Düzeni Sıfırla"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Varsayılan olarak oluşturulan düzene dönmek için bu düzeni sıfırla.\n"
+"Eğer düzeltmesi sıkıntılı çok fazla hata varsa, bu seçenek yararlı olabilir.\n"
+"Ancak bu seçenek, yaptığınız bütün manuel değişiklikleri geri alacaktır!"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Önerilen Thrive:"
@@ -6029,6 +6134,9 @@ msgstr "Fosfat oluştur"
 msgid "SPECIALIZATION_COLON"
 msgstr "Özelleşme:"
 
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Kopyasını oluşturmak için bir hücre türü seçin"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Özel Fare Tuşu 1"
 
@@ -6096,10 +6204,6 @@ msgstr "Hız:"
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Normal oyun hızı ve alternatif oyun hızı arasında geçiş yap"
 
-#, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Spor hücresi türü"
-
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Bir koloni kök hücresine dönüşmeden önce, daha iyi koşullar arayabilen, birden fazla isteğe bağlı olarak özelleşmiş yavru üretir."
 
@@ -6114,6 +6218,9 @@ msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
+
+msgid "STANDARD_COLON_VALUE"
+msgstr "Standart: {0}"
 
 msgid "START"
 msgstr "Başla"
@@ -7304,7 +7411,7 @@ msgid "UPGRADE_SLIME_JET_MUCOCYST"
 msgstr "Mukosist"
 
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
-msgstr "Balçık fışkırtıcıyı, hücrenin etrafında koruyucu bir balçık kılıfı oluşturan mukosiste dönüştürür. Mukosist etkinleştirildiğinde, bütün hasar kaynaklarına karşı geçici bir bağışıklık kazandırır."
+msgstr "Balçık fışkırtıcıyı, hücrenin etrafında koruyucu bir balçık katmanı oluşturan mukosiste dönüştürür. Mukosist etkinleştirildiğinde, bütün hasar kaynaklarına karşı geçici bir bağışıklık kazandırır."
 
 msgid "UPLOAD"
 msgstr "Karşıya Yükle"
@@ -7353,6 +7460,14 @@ msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Yerel yan çalıştırıcı iş parçacığı sayısını manuel olarak ayarla"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "Otomatik Düzen"
+
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr ""
+"Türün otomatik düzeni kullanıp kullanmayacağını belirler. Eğer bu seçenek devre dışı bırakılırsa, manuel düzen manuel olarak hücreleri konumlandırır.\n"
+"Ancak bu seçenek, düzen sorunlarının manuel olarak düzeltilmesini gerektirir."
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Sanal pencere büyüklüğünü kullan"
@@ -7501,6 +7616,9 @@ msgstr "Fare tekeri sağa"
 msgid "WHEEL_UP"
 msgstr "Fare tekeri yukarı"
 
+msgid "WHILE_CONSUMING_COLON"
+msgstr "Tüketirken:"
+
 msgid "WIKI"
 msgstr "Viki"
 
@@ -7522,40 +7640,36 @@ msgstr "3D, Strateji, Uzay"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_EFFECTS"
 msgstr ""
-"Çok hücreli bir organizmada, [b]Akson[/b] içeren her hücre için, organizmanın zihin gücü o hücrenin hacmi ile doğru orantılı olarak artar. [b]Aksonlu[/b] hücreler, beyin dokusu türüne sahip olarak sınıflandırılır.\n"
+"[b]Aktomiyozinli[/b] her hücre, koloninin hem dönme hem de ilerleme hızını %25 arttırır. Koloni hareket ederken, her aktomiyozin [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir.\n"
 "\n"
-"Zihin gücü[b]+0.5'i[/b] aştığında, oyuncu Farkındalık Evresi'ne girer. Zihin gücü[b]+5.0'ı[/b] aştığında, oyuncu Uyanış Evresi'ne girer.\n"
-"\n"
-"[thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] [b]Direncini[/b] %10 azaltır."
+"Maksimum Basınç Direncini 1 kPa arttırır."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_INTRO"
-msgstr "Özetle; bu, galaksi boyunca metafiziksel bir varlık olarak dolaşıp dilediğinizi şekillendirebileceğiniz ve gözlemleyebileceğiniz nihai aşamadır. Uzun bir yolculuk oldu ve bunu hak ettiniz."
+msgstr "[b]Aktomiyozin[/b], hareket ve dönme hızında güçlü bir artış için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, Aktin ve Miyozin proteinlerinin bir kompleksidir. Her hücrede yalnızca bir adet yerleştirilebilir."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_PROCESSES"
 msgstr "İşlem yok."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
-msgstr "Yalnızca [color=#3796e1][url=thriveopedia:macroscopic_stage]Makroskopik Evresi'nden[/url][/color] itibaren mevcuttur."
+msgstr ""
+"Eğer organel kilidini açma oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[ul][b]15[/b] değerinin altında hıza sahip olmak.[/ul]"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
-msgstr "Akson, bir \"Nöron Hücresi\"nden diğer hücreye (örneğin, başka bir \"Nöron\" hücresine veya \"Kas\" hücresine ve de pek çok diğer hücre tipine) uzanan uzun, ince bir uzantıdır. Bu organel, iki ya da daha fazla hücre arasında elektrik sinyalleri biçiminde bilgi geçişine izin verir. Bu sayede bir varlık, ani sıcaklık artışı, kaşınma veya duyusal hücrelere gelen kötü koku gibi dış uyarıcılara tepki verebilir."
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Actin]Aktin[/url][/color] ve [color=#3796e1][url=https://en.wikipedia.org/wiki/Myosin]Miyozin[/url][/color], ökaryotik hücrelerde bulunan ve bu hücrelerde kasılarak kuvvet üreten proteinlerdir. Bu olay, aktin moleküllerinin miyozin moleküllerinin \"yanından yürümesi\" ile meydana gelir. Tüm kasları çalıştıran ilke budur.\n"
+"\n"
+"Aktin ve miyozin proteinlerinin özel düzenlenişi [b]Aktomiyozin[/b] ile temsil edilir ve [color=#3796e1][url=https://en.wikipedia.org/wiki/Smooth_muscle]düz kas[/url][/color] gibi basit kas hücrelerinde bulunur. Hücreyi çapraz geçen aktin ve miyozin protein demetleri, sözde yoğun gövdelerle birbirine bağlanır. Protein ağı, hücre zarına bağlı olduğu için bu ağın kasılması, hücrenin dışındaki yapıları da çekerek tüm hücrenin kasılmasına sebep olur."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_STRATEGY"
-msgstr "[b]Aksonları[/b] eklemek sonraki evrelere ulaşmada önemlidir. Çok hücreli organizmanızda, birkaç hücre türüne bir [b]Akson[/b] eklemenizi tavsiye ediyoruz. Ama bir taneden daha fazla eklemek gereksizdir. Şu anda daha fazla [b]Akson[/b] eklemek, ek bir fayda sağlamaz."
+msgstr "Aktomiyozin, daha büyük Çok Hücreli Türlerin hareketliliğini büyük ölçüde arttırma potansiyeline sahiptir. Bu organelden hücre başına yalnızca bir adet yerleştirilebildiği için, hücre özelleşmesi ve bitişiklik bonuslarını arttırmak, hücre başına elde edilen hızın arttırılması için tek yoldur."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_UPGRADES"
 msgstr "Yükseltme yok."
 
@@ -8257,7 +8371,10 @@ msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Kamçılar[/b], hücrenin hareket hızını bir yöne doğru arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücrenin dışındaki kıl gibi tellerdir. İtme, kamçının dışa bakan yönünün tam tersine doğru uygulanır."
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "Değişiklikler yok."
+msgstr ""
+"[b]Kamçı Uzunluğu[/b]\n"
+"\n"
+"Daha fazla itiş sağlamak için kamçının uzunluğunu arttırır. Ancak, hareket ederken daha fazla ATP tüketir."
 
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "İşlem yok."
@@ -8541,7 +8658,7 @@ msgstr ""
 "\n"
 "Kemoplastlar ve kemosentez yapan proteinler aracılığıyla, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülebilir. Rustisiyanin veya ferroplast aracılığıyla, [thrive:compound type=\"iron\"]demir[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülebilir.\n"
 "\n"
-"Editöre yapılan her ziyaret, Mikrop Evresi'nde 100 milyon yıllık evrimi temsil eder.\n"
+"Editöre yapılan her ziyaret, Mikrop Evresi'nde 50 milyon yıllık evrimi temsil eder.\n"
 "\n"
 "Ölü hücre ya da mineral olduğuna bakılmaksızın, yüzen madde parçalarını yutabilirsiniz.\n"
 "\n"
@@ -9011,9 +9128,8 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Yükseltme yok."
 
-#, fuzzy
 msgid "WIKI_MUCOCYST"
-msgstr "Mekanikler"
+msgstr "Mukosist"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -9225,7 +9341,20 @@ msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Toksin mermi olarak ateşlenebilen bir ajan olan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] üreten değiştirilmiş [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomdur[/url][/color][/b]. Bu organel, [b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofulunun[/url][/color][/b] aşağı bir çeşididir."
 
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "Değişiklikler yok."
+msgstr ""
+"[b]Toksin Türü[/b]\n"
+"\n"
+"Bu [b]Oksitoksizomun[/b] ne tür toksin ateşleyeceğini seçin. Birden fazla toksin türü ateşleyebilen hücreler, her atışta bu toksinler arasında geçiş yapacaktır.\n"
+"\n"
+"[ul][b]OksiToksiNT:[/b] Güçlü bir şekilde hasar veren ve hücresel hasara neden olan oksijene dayalı bir toksindir. Bir türün oksijen kullanan parçası ne kadar fazlaysa, bu toksin o türe karşı o kadar az etkilidir.\n"
+"[b]Sitotoksin:[/b] (varsayılan) Tutarlı miktarda hasara neden olan, hasar veren basit bir toksindir.\n"
+"[b]Macrolid:[/b] Etkilediği hedefi yavaşlatan bir toksindir.\n"
+"[b]Kanal İnhibitörü:[/b] Etkilediği hücrelerin ATP üretimini engelleyen, o hücreleri potansiyel olarak yavaşlatan ve hatta o hücrelere hasar veren bir toksindir.\n"
+"[b]Siyanür:[/b] Oksijen metabolizmasını hedef alan, güçlü bir şekilde hasar veren bir toksindir. Bir türün oksijen kullanan parçası ne kadar fazlaysa, bu toksin o türe karşı o kadar fazla etkilidir.[/ul]\n"
+"\n"
+"[b]Ateş Hızı ve Zehirlilik[/b]\n"
+"\n"
+"Ateş hızı ve her atışın etkililiği arasındaki dengeye siz karar verin."
 
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr ""
@@ -9258,9 +9387,8 @@ msgstr "Yükseltme yok."
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OksiToksi Sentezi, Glikoliz"
 
-#, fuzzy
 msgid "WIKI_PAGE_ACTOMYOSIN"
-msgstr "Tırmanış"
+msgstr "Aktomiyozin"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Tırmanış"
@@ -9603,7 +9731,10 @@ msgstr ""
 "Şunu da belirtmek gerekir ki, bu organel, [thrive:compound type=\"atp\"]ATP[/thrive:compound] yerine [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kullanır. O yüzden, bu organeli eklerken, hücrenizin bileşik tutarını incelediğinizden emin olun."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr "Yükseltme yok."
+msgstr ""
+"[b]Mukosist[/b]\n"
+"\n"
+"[b]40[/b] mutasyon puanı için, [b]Balçık Fışkırtıcıları[/b] bir kez yerleştirdiğinizde [b]Mukosistlere[/b] dönüştürün. Bu parçalar etkinleştirildiğinde, hücrenin etrafında bütün hasar kaynaklarına karşı geçici bağışıklık kazandıran koruyucu bir balçık katmanı oluştururlar."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evre için son yıllarda teori ve oynanış üzerine pek fazla tartışma yapılmadı. Tartışmaların, resmi geliştirme sürecinde Toplum Evresi'ne ulaştığımızda yeniden başlaması gerekecektir."
@@ -9863,7 +9994,20 @@ msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Toksin mermi olarak ateşlenebilen bir ajan olan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] üreten değiştirilmiş [b][color=#3796e1][url=thriveopedia:vacuole]Kofuldur[/url][/color][/b]. Bu organel, [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oksitoksizomun[/url][/color][/b] üstün bir çeşididir."
 
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr "Değişiklikler yok."
+msgstr ""
+"[b]Toksin Türü[/b]\n"
+"\n"
+"Bu [b]Toksin Kofulunun[/b] ne tür toksin ateşleyeceğini seçin. Birden fazla toksin türü ateşleyebilen hücreler, her atışta bu toksinler arasında geçiş yapacaktır.\n"
+"\n"
+"[ul][b]OksiToksiNT:[/b] Güçlü bir şekilde hasar veren ve hücresel hasara neden olan oksijene dayalı bir toksindir. Bir türün oksijen kullanan parçası ne kadar fazlaysa, bu toksin o türe karşı o kadar az etkilidir.\n"
+"[b]Sitotoksin:[/b] (varsayılan) Tutarlı miktarda hasara neden olan, hasar veren basit bir toksindir.\n"
+"[b]Macrolid:[/b] Etkilediği hedefi yavaşlatan bir toksindir.\n"
+"[b]Kanal İnhibitörü:[/b] Etkilediği hücrelerin ATP üretimini engelleyen, o hücreleri potansiyel olarak yavaşlatan ve hatta o hücrelere hasar veren bir toksindir.\n"
+"[b]Siyanür:[/b] Oksijen metabolizmasını hedef alan, güçlü bir şekilde hasar veren bir toksindir. Bir türün oksijen kullanan parçası ne kadar fazlaysa, bu toksin o türe karşı o kadar fazla etkilidir.[/ul]\n"
+"\n"
+"[b]Ateş Hızı ve Zehirlilik[/b]\n"
+"\n"
+"Ateş hızı ve her atışın etkililiği arasındaki dengeye siz karar verin."
 
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr ""
@@ -10075,6 +10219,12 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Şu tüketildiğinde:\n"
+#~ "{2}"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Spor hücresi türü"

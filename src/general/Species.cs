@@ -214,10 +214,19 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     ///   True when a new cache ID is needed for auto-evo. Only call from auto-evo on initial generation
     ///   before any cache stats are done.
     /// </param>
-    public virtual void OnAttemptedInAutoEvo(bool refreshCache)
+    /// <param name="updateInitialCompounds">
+    ///   False only for internal auto-evo candidates, to avoid expensive compound balance and storage
+    ///   calculations for candidates discarded during selection. This improves performance and reduces
+    ///   allocations. This clears their inherited initial compounds, which must be updated before inserting
+    ///   them into the result miche tree, including candidates that will not pass the population check.
+    /// </param>
+    public virtual void OnAttemptedInAutoEvo(bool refreshCache, bool updateInitialCompounds = true)
     {
         cachedBaseReproductionCost = null;
         cachedTotalReproductionCost = null;
+
+        if (!updateInitialCompounds)
+            InitialCompounds.Clear();
 
         // We must skip regenerating the cache ID when not directly generated in auto-evo
         if (!refreshCache)
@@ -286,6 +295,14 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// </summary>
     public virtual void ApplyMutation(Species mutation)
     {
+#if DEBUG
+        if (mutation.InitialCompounds.Count == 0)
+        {
+            throw new InvalidOperationException(
+                $"Cannot apply mutation {mutation.FormattedIdentifier} without initial compounds");
+        }
+#endif
+
         InitialCompounds.Clear();
 
         foreach (var entry in mutation.InitialCompounds)

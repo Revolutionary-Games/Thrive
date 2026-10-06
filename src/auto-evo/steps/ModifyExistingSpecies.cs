@@ -41,6 +41,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Hex> hexTemporaryMemory1 = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
+    private readonly HashSet<Hex> hexTemporaryMemory3 = new();
 
     private readonly List<Species> lastGeneratedMutations = new();
 
@@ -195,6 +196,10 @@ public class ModifyExistingSpecies : IRunStep
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
+                    // All candidates entering the result tree need valid initial compounds, even if their
+                    // population will be too low to pass FinalApply and call OnEdited.
+                    mutation.MutatedSpecies.UpdateInitialCompounds();
+
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.
@@ -226,17 +231,21 @@ public class ModifyExistingSpecies : IRunStep
                         MichePopulation.CalculatePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
+                    var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
+
+                    // TODO This method of nulling and later restoring gameplay cells should be a temporary hack
+                    multicellularMutant?.RestoreGameplayCellsForAutoEvo();
+
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         // For Multicellular species, we need to calculate the gameplay shape here before OnEdited
                         // as otherwise it fails
-                        var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
                         if (multicellularMutant != null)
                         {
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
@@ -249,7 +258,7 @@ public class ModifyExistingSpecies : IRunStep
                         {
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // Only apply a new name and colour to results that are actually kept
@@ -331,7 +340,14 @@ public class ModifyExistingSpecies : IRunStep
     {
         result.Clear();
 
-        mutated.Sort(sorter);
+        try
+        {
+            mutated.Sort(sorter);
+        }
+        finally
+        {
+            sorter.Clear();
+        }
 
         foreach (var tuple in mutated)
         {
@@ -356,6 +372,10 @@ public class ModifyExistingSpecies : IRunStep
 
     private void GetMutationsForSpecies(Species species, int speciesInPatch)
     {
+        // We avoid auto-evo taking forever by skipping any (probably player) species that has far too many cells
+        if (species is MulticellularSpecies { GameplayCells.Count: > Constants.AUTO_EVO_CUTOFF_CELL_COUNT })
+            return;
+
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
         generateMutationsWorkingMemory.Clear();
@@ -441,10 +461,24 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var speciesTuple in temporaryMutations1)
                 {
-                    // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
-                    // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
-                        patch.Biome);
+                    // For SelectionPressures that have a maximum score, no reason to generate mutations for species
+                    // that already have the maximum score
+                    var produceMutations = true;
+                    if (currentMiche.Pressure.IsThresholdPressure)
+                    {
+                        var score = currentMiche.Pressure.Score(speciesTuple.Species, patch, cache);
+                        if (score >= Constants.AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE)
+                            produceMutations = false;
+                    }
+
+                    List<Mutant>? mutated = null;
+                    if (produceMutations)
+                    {
+                        // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
+                        // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
+                        mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
+                            patch.Biome);
+                    }
 
                     if (mutated != null)
                     {
@@ -456,7 +490,7 @@ public class ModifyExistingSpecies : IRunStep
                                 throw new Exception("Mutation shouldn't have a cache number yet");
 #endif
 
-                            tuple.Species.OnAttemptedInAutoEvo(true);
+                            tuple.Species.OnAttemptedInAutoEvo(true, false);
 
                             // If the visual hash of a species needs to be consistent while in the cache, then this
                             // would need to be called
@@ -601,7 +635,11 @@ public class ModifyExistingSpecies : IRunStep
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
 
-        // This directly references to the stack type to avoid an enumerator allocation in the foreach loop in Compare
+        // Only reused within one sort. Reference identity avoids conflating distinct mutant records.
+        private readonly Dictionary<Mutant, float> strengths = new(ReferenceEqualityComparer.Instance);
+        private readonly List<float> baseScores = new();
+
+        // Use the concrete Stack type to avoid allocating an enumerator in GetStrength.
         private Stack<SelectionPressure> pressures = null!;
         private Species baseSpecies = null!;
 
@@ -609,6 +647,12 @@ public class ModifyExistingSpecies : IRunStep
         {
             pressures = selectionPressures;
             baseSpecies = species;
+        }
+
+        public void Clear()
+        {
+            strengths.Clear();
+            baseScores.Clear();
         }
 
         public int Compare(Mutant? x, Mutant? y)
@@ -620,17 +664,8 @@ public class ModifyExistingSpecies : IRunStep
             if (x is null)
                 return 1;
 
-            var strengthX = 0.0f;
-            var strengthY = 0.0f;
-
-            foreach (var pressure in pressures)
-            {
-                strengthX += cache.GetPressureScore(pressure, patch, x.Species) /
-                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
-
-                strengthY += cache.GetPressureScore(pressure, patch, y.Species) /
-                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
-            }
+            var strengthX = GetStrength(x);
+            var strengthY = GetStrength(y);
 
             if (strengthX > strengthY)
                 return -1;
@@ -645,6 +680,27 @@ public class ModifyExistingSpecies : IRunStep
                 return 1;
 
             return 0;
+        }
+
+        private float GetStrength(Mutant mutant)
+        {
+            if (strengths.TryGetValue(mutant, out var strength))
+                return strength;
+
+            strength = 0.0f;
+            int index = 0;
+            foreach (var pressure in pressures)
+            {
+                if (index == baseScores.Count)
+                    baseScores.Add(cache.GetPressureScore(pressure, patch, baseSpecies));
+
+                strength += cache.GetPressureScore(pressure, patch, mutant.Species) /
+                    baseScores[index] * pressure.Weight;
+                ++index;
+            }
+
+            strengths.Add(mutant, strength);
+            return strength;
         }
     }
 }
