@@ -8,6 +8,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(0.47011957, 0), 0.0, 0.0, 0, 0, 
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_23ftp"]
+resource_local_to_scene = true
 curve = SubResource("Curve_785uv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wa1po"]

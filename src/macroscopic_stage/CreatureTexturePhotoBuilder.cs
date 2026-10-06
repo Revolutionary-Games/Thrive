@@ -18,16 +18,10 @@ public partial class CreatureTexturePhotoBuilder : Node3D
     private StringName mainTextureName = new("mainTexture");
     private StringName projectedTextureName = new("projected");
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        material = (ShaderMaterial)meshInstance3D.MaterialOverride;
-    }
-
     public void SetMesh(Mesh mesh)
     {
         meshInstance3D.Mesh = mesh;
+        material = (ShaderMaterial)meshInstance3D.MaterialOverride;
     }
 
     public void SetProjectionMatrices(Array matrices)
