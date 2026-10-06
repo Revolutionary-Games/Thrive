@@ -252,22 +252,24 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
 
     public void ApplySpecies(Species species)
     {
-        if (species is not MacroscopicSpecies lateSpecies)
+        if (species is not MacroscopicSpecies macroscopicSpecies)
             throw new ArgumentException("Only macroscopic species can be used on creatures");
 
-        Species = lateSpecies;
+        Species = macroscopicSpecies;
 
         // TODO: set from species
         compounds.NominalCapacity = 100;
 
         // TODO: better mass calculation
         // TotalMass is no longer available due to microbe stage physics refactor
-        // Mass = lateSpecies.ModifiableBodyLayout.Sum(m => m.Size * m.ModifiableCellType.TotalMass);
-        Mass = ((MetaballLayout<MacroscopicMetaball>)lateSpecies.ModifiableBodyLayout).Sum(m => m.Size * 30);
+        // Mass = macroscopicSpecies.ModifiableBodyLayout.Sum(m => m.Size * m.ModifiableCellType.TotalMass);
+        Mass = ((MetaballLayout<MacroscopicMetaball>)macroscopicSpecies.ModifiableBodyLayout).Sum(m => m.Size * 30);
 
         // Setup graphics
-        // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromLayout(lateSpecies.ModifiableBodyLayout);
+        // TODO: handle macroscopicSpecies.Scale
+        metaballDisplayer.DisplayFromLayout(macroscopicSpecies.ModifiableBodyLayout);
+
+        metaballDisplayer.Texturize(macroscopicSpecies.ModifiableBodyLayout, macroscopicSpecies.SkinType);
     }
 
     /// <summary>

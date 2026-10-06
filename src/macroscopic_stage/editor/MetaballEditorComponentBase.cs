@@ -27,6 +27,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     [Export]
     public float ForwardArrowOffsetFromGround = 0.1f;
 
+    protected bool tabSpecificObjectsVisible;
+
 #pragma warning disable CA2213
     [Export]
     protected EditorCamera3D camera = null!;
@@ -36,6 +38,9 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     [Export]
     protected MeshInstance3D editorGround = null!;
+
+    [Export]
+    protected Node3D creatureLoadingSpinner = null!;
 
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
@@ -171,6 +176,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
+    protected virtual bool VisualMetaballsLoading => false;
+
     public override void _Ready()
     {
         base._Ready();
@@ -275,6 +282,10 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             hoverMetaballsChanged = false;
         }
 
+        visualMetaballDisplayer?.Visible = tabSpecificObjectsVisible && PreviewMode && !VisualMetaballsLoading;
+        structuralMetaballDisplayer?.Visible = tabSpecificObjectsVisible && !PreviewMode;
+        creatureLoadingSpinner.Visible = tabSpecificObjectsVisible && PreviewMode && VisualMetaballsLoading;
+
         // Clear the hover metaballs for the concrete editor type to use
         hoverMetaballsChanged = false;
         usedHoverMetaballIndex = 0;
@@ -322,13 +333,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     {
         SetEditorWorldGuideObjectVisibility(shown);
 
-        if (structuralMetaballDisplayer != null)
-        {
-            structuralMetaballDisplayer.Visible = shown && !PreviewMode;
-            hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
-        }
-
-        visualMetaballDisplayer?.Visible = shown && PreviewMode;
+        tabSpecificObjectsVisible = shown;
     }
 
     public void SetEditorWorldGuideObjectVisibility(bool shown)
@@ -894,22 +899,19 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
             throw new InvalidOperationException("Editor component not initialized");
 
-        // If not currently visible at all, don't update visibility; it'll be updated once this tab becomes active
-        // again
-        if (visualMetaballDisplayer.Visible || structuralMetaballDisplayer.Visible)
-        {
-            visualMetaballDisplayer.Visible = PreviewMode;
-            structuralMetaballDisplayer.Visible = !PreviewMode;
-        }
-
         if (PreviewMode)
         {
-            visualMetaballDisplayer.DisplayFromLayout(editedMetaballs);
+            UpdateVisualMetaballDisplay();
         }
         else
         {
             structuralMetaballDisplayer.DisplayFromLayout(editedMetaballs);
         }
+    }
+
+    protected virtual void UpdateVisualMetaballDisplay()
+    {
+        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
     }
 
     protected virtual void PerformActiveAction()

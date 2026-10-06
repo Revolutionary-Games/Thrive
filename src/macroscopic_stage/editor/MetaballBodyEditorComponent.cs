@@ -10,7 +10,7 @@ using SharedBase.Archive;
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -90,6 +90,9 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
+    [Export]
+    private OptionButton creatureSkinTypeChoiceButton = null!;
+
     private PackedScene visualMetaballDisplayerScene = null!;
 
     private PackedScene structuralMetaballDisplayerScene = null!;
@@ -106,6 +109,8 @@ public partial class MetaballBodyEditorComponent :
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    private CreatureSkinType skinType;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -118,6 +123,19 @@ public partial class MetaballBodyEditorComponent :
         Tolerance,
     }
 
+    public CreatureSkinType SkinType
+    {
+        get => skinType;
+        set
+        {
+            skinType = value;
+
+            UpdateSkinTypeButton();
+
+            UpdateAlreadyPlacedVisuals();
+        }
+    }
+
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
     /// <summary>
@@ -128,6 +146,19 @@ public partial class MetaballBodyEditorComponent :
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
 
     protected override bool ForceHideHover => false;
+
+    protected override bool VisualMetaballsLoading
+    {
+        get
+        {
+            if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer macroscopicConvolutionDisplayer)
+            {
+                return macroscopicConvolutionDisplayer.Generating;
+            }
+
+            return false;
+        }
+    }
 
     public override void _Ready()
     {
@@ -227,6 +258,8 @@ public partial class MetaballBodyEditorComponent :
         writer.Write((int)selectedSelectionMenuTab);
 
         writer.WriteObjectProperties(tolerancesEditor);
+
+        writer.Write((int)skinType);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -243,6 +276,11 @@ public partial class MetaballBodyEditorComponent :
         if (version >= 2)
         {
             reader.ReadObjectProperties(tolerancesEditor);
+        }
+
+        if (version >= 3)
+        {
+            skinType = (CreatureSkinType)reader.ReadInt32();
         }
     }
 
@@ -306,6 +344,8 @@ public partial class MetaballBodyEditorComponent :
             GD.Print("Applying tissue type edits to real cell data");
             CellTypeVisualsOverride.ApplyChanges();
         }
+
+        Editor.EditedSpecies.SkinType = SkinType;
 
         var previousStage = editedSpecies.MacroscopicType;
 
@@ -590,12 +630,24 @@ public partial class MetaballBodyEditorComponent :
         return highestPointInMiddleRows;
     }
 
+    protected override void UpdateVisualMetaballDisplay()
+    {
+        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
+
+        if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
+        {
+            displayer.Texturize(editedMetaballs, skinType);
+        }
+    }
+
     private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting macroscopic editor with: ", editedMetaballs.Count, " metaballs in the species");
 
         SetSpeciesInfo(newName,
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
+
+        SkinType = Editor.EditedSpecies.SkinType;
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)
