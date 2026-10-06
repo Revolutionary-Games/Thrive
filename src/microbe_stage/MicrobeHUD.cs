@@ -1134,6 +1134,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMulticellular, false);
 
         stage.MovingToEditor = true;
+        stage.OnStartMoveToEditor();
     }
 
     private void OnBecomeMacroscopicPressed()
@@ -1179,6 +1180,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
+        stage.OnStartMoveToEditor();
     }
 
     private void OnEngulfmentPressed()
