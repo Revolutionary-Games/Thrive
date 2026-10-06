@@ -721,7 +721,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Avoid terrain (limiting how often it runs for performance reasons)
         if (random.Next(0, 10) == 0)
         {
-            BuildChunksCache();
+            BuildTerrainChunksCache();
 
             foreach (var terrainChunk in terrainChunkDataCache)
             {
@@ -1783,7 +1783,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     /// <summary>
-    ///   Builds a full cache of all non-engulfed chunks that aren't dissolving currently
+    ///   Builds a full cache of all non-engulfed chunks that aren't dissolving currently (minus terrain chunks)
     /// </summary>
     private void BuildChunksCache()
     {
@@ -1796,11 +1796,22 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 return;
 
             var chunkQuery = new ChunkCollectingQuery(chunkDataCache, radioactiveChunkDataCache);
-            var terrainQuery = new TerrainCollectingQuery(terrainChunkDataCache);
             World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref chunkQuery);
-            World.InlineEntityQuery<TerrainCollectingQuery, WorldPosition>(terrainChunksQuery, ref terrainQuery);
 
             chunkCacheBuilt = true;
+        }
+    }
+
+    /// <summary>
+    ///   Builds a full cache of all terrain chunks
+    /// </summary>
+    private void BuildTerrainChunksCache()
+    {
+        // To allow multithreaded AI access safely
+        lock (terrainChunkDataCache)
+        {
+            var terrainQuery = new TerrainCollectingQuery(terrainChunkDataCache);
+            World.InlineEntityQuery<TerrainCollectingQuery, WorldPosition>(terrainChunksQuery, ref terrainQuery);
         }
     }
 
