@@ -1041,6 +1041,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (!species.IsReadyForMacroscopic)
         {
             macroscopicButton.Text = Localization.Translate("BECOME_MACROSCOPIC_MISSING_CONDITIONS");
+            macroscopicButton.TooltipText = Localization.Translate("MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS");
             macroscopicButton.Disabled = true;
             return;
         }
@@ -1048,6 +1049,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ref var colony = ref player.Get<MicrobeColony>();
 
         var newColonySize = colony.ColonyMembers.Length;
+
+        macroscopicButton.TooltipText = Localization.Translate("MOVE_TO_MACROSCOPIC_TOOLTIP");
 
         if (stage.MovingToEditor)
         {
