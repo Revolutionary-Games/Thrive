@@ -13,7 +13,9 @@ public static class MetaballLayoutHelpers
             var metaball = layout[i];
 
             value += (ulong)(metaball.Position.X.GetHashCode() ^ metaball.Position.Y.GetHashCode()
-                ^ metaball.Position.Z.GetHashCode() ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
+                ^ metaball.Position.Z.GetHashCode() ^ metaball.Size.GetHashCode());
+
+            value ^= metaball.Colour.GetVisualHashCode();
         }
 
         return value;
