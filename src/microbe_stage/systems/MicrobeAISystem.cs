@@ -106,6 +106,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private bool microbeCacheBuilt;
     private bool chunkCacheBuilt;
 
+    private double terrainCacheRebuildTimer;
+
     private Vector3? potentiallyKnownPlayerPosition;
 
     private XoShiRo256starstar aiThinkRandomSource = new();
@@ -226,6 +228,14 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             return;
 
         var strain = strainAffected.CurrentStrain;
+
+        terrainCacheRebuildTimer += delta;
+        if (terrainCacheRebuildTimer > 10)
+        {
+            terrainChunkDataCache.Clear();
+            BuildTerrainChunksCache();
+            terrainCacheRebuildTimer = 0;
+        }
 
         // This shouldn't be needed thanks to the check that this doesn't run on attached entities
         // ref var engulfable = ref entity.Get<Engulfable>();
@@ -721,8 +731,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Avoid terrain (limiting how often it runs for performance reasons)
         if (random.Next(0, 10) == 0)
         {
-            BuildTerrainChunksCache();
-
             foreach (var terrainChunk in terrainChunkDataCache)
             {
                 if (position.Position.DistanceSquaredTo(terrainChunk.Position)
@@ -1728,7 +1736,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     {
         chunkDataCache.Clear();
         radioactiveChunkDataCache.Clear();
-        terrainChunkDataCache.Clear();
         chunkCacheBuilt = false;
     }
 
