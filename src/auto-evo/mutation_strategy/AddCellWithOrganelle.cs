@@ -83,10 +83,13 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
 
         if (mp < Constants.ORGANELLE_CHEAPEST_COST * Constants.MULTICELLULAR_EDITOR_COST_FACTOR &&
             mp < Constants.CELL_ADD_COST)
+        {
             return null;
+        }
 
-        var organelles = allOrganelles.OrderBy(_ => random.Next())
-            .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+        var candidateCount = Math.Min(allOrganelles.Length, Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+        Span<int> candidateIndices = stackalloc int[candidateCount];
+        SelectCandidateIndices(allOrganelles.Length, candidateIndices, random);
 
         // TODO: reuse this memory somehow
         var mutated = new List<Mutant>();
@@ -95,8 +98,10 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        foreach (var organelle in organelles)
+        foreach (var i in candidateIndices)
         {
+            var organelle = allOrganelles[i];
+
             // Important to not accidentally add non-LAWK organelles in a LAWK game
             if (!organelle.LAWK && lawk)
                 continue;
@@ -127,15 +132,15 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 // We take the smallest exising cell type as a template to add the new organelle to
                 var smallestCellSize = baseMulticellularSpecies.CellTypes[0].BaseHexSize;
                 var smallestCellIndex = 0;
-                var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+                var newSpecies = baseMulticellularSpecies.Clone(true, false);
 
-                for (int i = 0; i < baseCellTypesCount; ++i)
+                for (int j = 0; j < baseCellTypesCount; ++j)
                 {
-                    if (baseCellTypes[i].BaseHexSize >= smallestCellSize)
+                    if (baseCellTypes[j].BaseHexSize >= smallestCellSize)
                         continue;
 
-                    smallestCellIndex = i;
-                    smallestCellSize = baseCellTypes[i].BaseHexSize;
+                    smallestCellIndex = j;
+                    smallestCellSize = baseCellTypes[j].BaseHexSize;
                 }
 
                 var templateCellType = baseMulticellularSpecies.ModifiableCellTypes[smallestCellIndex];
@@ -175,7 +180,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                     {
                         // For neutral positioning organelles, we create a mutant for adding the new celltype both to
                         // the front and the rear
-                        var newSpeciesFront = (MulticellularSpecies)newSpecies.Clone();
+                        var newSpeciesFront = newSpecies.Clone(true, false);
                         var newCellTypeFront = (CellType)newCellType.Clone();
                         TryAddCenterlineCellMutant(Direction.Front, newCellTypeFront, newSpeciesFront, workMemory1,
                             workMemory2, random, newMp, mutated);
@@ -241,7 +246,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
 
         foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
         {
-            var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+            var newSpecies = baseMulticellularSpecies.Clone(true, false);
             var newMp = mp;
             var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
 

@@ -96,13 +96,14 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        var godot = ExecutableFinder.Which("godot");
+        var godot = GodotExecutable.Path;
 
         if (options.Godot is not false)
         {
             if (string.IsNullOrEmpty(godot))
             {
-                ColourConsole.WriteErrorLine("Could not find 'godot' executable, make sure it is in PATH");
+                ColourConsole.WriteErrorLine(
+                    "Could not find 'godot-mono' or 'godot' executable, make sure it is in PATH");
                 return 2;
             }
 
@@ -153,7 +154,13 @@ public class Program
         {
             ColourConsole.WriteInfoLine("Running tests with gdUnit");
 
-            const int maxTries = 2;
+            if (options.GodotReruns < 0)
+            {
+                ColourConsole.WriteErrorLine("Godot test reruns needs to be a non-negative number");
+                return 2;
+            }
+
+            var maxTries = options.GodotReruns + 1;
 
             // Then gdUnit tests
             ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
@@ -394,7 +401,14 @@ public class Program
 
         using var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
 
-        var startInfo = new ProcessStartInfo("godot");
+        var godot = GodotExecutable.Path;
+        if (godot == null)
+        {
+            ColourConsole.WriteWarningLine("Godot was not found; skipping asset import");
+            return 0;
+        }
+
+        var startInfo = new ProcessStartInfo(godot);
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--editor");
         startInfo.ArgumentList.Add("--quit-after");
@@ -543,6 +557,10 @@ public class Program
         [Option("godot", Required = false,
             HelpText = "If specified can only run Godot tests or non-Godot tests. Default is to run all.")]
         public bool? Godot { get; set; }
+
+        [Option("godot-reruns", Required = false, Default = 0, MetaValue = "COUNT",
+            HelpText = "How many times to rerun failed Godot tests")]
+        public int GodotReruns { get; set; }
     }
 
     public class ChangesOptions : ChangesOptionsBase

@@ -1,14 +1,14 @@
 #pragma once
 
 #include <atomic>
-#include <condition_variable>
 #include <functional>
 #include <queue>
 #include <thread>
 #include <vector>
 
-#include "boost/pool/object_pool.hpp"
+#include "Jolt/Core/FixedSizeFreeList.h"
 #include "Jolt/Core/JobSystemWithBarrier.h"
+#include "Jolt/Core/Semaphore.h"
 
 #include "Include.h"
 
@@ -32,7 +32,6 @@ private:
         Quit,
         Simple,
         StdFunction,
-        JoltJob,
     };
 
     struct QuitSentinel
@@ -53,8 +52,6 @@ private:
         explicit QueuedTask(std::function<void()> callable);
 
         // explicit QueuedTask(std::function<void()>&& callable);
-
-        explicit QueuedTask(Job* callable);
 
         explicit QueuedTask(QuitSentinel quit);
 
@@ -82,8 +79,6 @@ private:
             SimpleCallable Simple;
 
             std::function<void()> Function;
-
-            Job* Jolt;
         };
 
         TaskType Type;
@@ -143,7 +138,7 @@ public:
 
     [[nodiscard]] int GetThreads() const noexcept
     {
-        return targetThreadCount;
+        return targetThreadCount.load(std::memory_order_relaxed);
     }
 
     /// \brief The number of physics tasks done in parallel
@@ -151,7 +146,8 @@ public:
     /// TODO: determine if it would be good to limit the max physics threads (maybe 16?)
     [[nodiscard]] virtual int GetMaxConcurrency() const override
     {
-        return GetThreads();
+        // Jolt counts the thread waiting on a barrier as an additional worker.
+        return targetThreadCount.load(std::memory_order_relaxed) + 1;
     }
 
     /// \brief Shuts down all threads and doesn't allow starting more
@@ -176,34 +172,33 @@ private:
 
 private:
 #ifdef USE_OBJECT_POOLS
-    boost::object_pool<Job> jobPool;
+    JPH::FixedSizeFreeList<Job> jobPool;
 #endif
 
     std::vector<std::thread> taskThreads;
 
     // || !defined(TASK_QUEUE_USES_POINTERS)
 #if defined(USE_LOCK_FREE_QUEUE)
-    moodycamel::ConcurrentQueue<QueuedTask> taskQueue;
 
-    // #ifdef TASK_QUEUE_USES_POINTERS
+    // For efficiency, we have both general tasks and Jolt tasks
+    moodycamel::ConcurrentQueue<QueuedTask> taskQueue;
+    moodycamel::ConcurrentQueue<Job*> jobQueue;
 
 #else
     std::queue<QueuedTask> taskQueue;
-#endif
-
-#ifdef USE_OBJECT_POOLS
-    std::mutex jobPoolMutex;
+    std::queue<Job*> jobQueue;
 #endif
 
     /// When USE_LOCK_FREE_QUEUE is defined this should not be locked to write to the queue
     std::mutex queueMutex;
 
-    std::condition_variable queueNotify;
+    /// This now uses a Jolt semaphore to ensure as many threads are woken up as required
+    JPH::Semaphore queueNotify;
 
     /// Lock used on the main thread to enqueue tasks
     std::unique_lock<std::mutex> queueLock;
 
-    int targetThreadCount = 0;
+    std::atomic<int> targetThreadCount{0};
 
     int threadCount = 0;
 

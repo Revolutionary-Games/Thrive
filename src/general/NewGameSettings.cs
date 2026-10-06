@@ -170,6 +170,9 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private CheckButton easterEggsButton = null!;
 
+    [Export]
+    private CheckButton alwaysResetEnvironment = null!;
+
     // Other
     [Export]
     private Container checkOptionsMenuAdviceContainer = null!;
@@ -269,6 +272,8 @@ public partial class NewGameSettings : ControlWithInput
 
         OnExperimentalFeaturesChanged(experimentalFeatures.ButtonPressed);
 
+        OnAlwaysResetEnvironmentToggled(alwaysResetEnvironment.ButtonPressed);
+
         if (Descending)
         {
             backButton.Visible = false;
@@ -352,6 +357,7 @@ public partial class NewGameSettings : ControlWithInput
         lawkButton.ButtonPressed = settings.LAWK;
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
+        alwaysResetEnvironment.ButtonPressed = settings.AlwaysResetEnvironment;
 
         planetSettings.SetWorldSize(settings.WorldSize);
         planetSettings.SetWorldTemperature(settings.WorldTemperature);
@@ -443,11 +449,14 @@ public partial class NewGameSettings : ControlWithInput
                 difficultyTabButton.ButtonPressed = true;
                 break;
             case SelectedOptionsTab.Planet:
+            {
                 planetTab.Show();
                 planetTabButton.ButtonPressed = true;
                 planetStatisticsSpacer.Show();
                 planetStatisticsContainer.Show();
                 break;
+            }
+
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
                 miscTabButton.ButtonPressed = true;
@@ -500,6 +509,16 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
+        settings.AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed;
+
+        // If the world environment is always reset, the player always needs a top-up of compounds after the editor.
+        // Unfortunately, for this we need to copy every setting and just change the targeted one.
+        if (settings.AlwaysResetEnvironment)
+        {
+            var customDifficulty = settings.Difficulty.Clone();
+            customDifficulty.ReproductionCompounds = ReproductionCompoundHandling.TopUpWithInitial;
+            settings.Difficulty = customDifficulty;
+        }
 
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
@@ -978,6 +997,12 @@ public partial class NewGameSettings : ControlWithInput
     {
         experimentalWarning.Visible = enabled;
         experimentalExplanation.Visible = !enabled;
+    }
+
+    private void OnAlwaysResetEnvironmentToggled(bool pressed)
+    {
+        alwaysResetEnvironment.ButtonPressed = pressed;
+        reproductionCompoundsDropdown.Disabled = pressed;
     }
 
     private void OnPlanetSettingsChanged()

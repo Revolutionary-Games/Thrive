@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -178,6 +178,7 @@ msgstr "(أي تتاح متابعة اللعبة بسلالة مختلفة عن�
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "الإحصاءات العامة لجميع العوالم"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]الأجيال:[/b]\n"
@@ -206,6 +207,17 @@ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا �
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"تطارد الميكروبات العدوانية فرائسها عبر مسافات أبعد،\n"
+"وتميل إلى قتال المفترسين عند تعرضها للهجوم.\n"
+"تتجنب الميكروبات المسالمة الاشتباك عن بعد،\n"
+"ونادرًا ما تستخدم السموم ضد المفترسين."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "ظاهر دائمًا"
@@ -390,8 +402,13 @@ msgstr "استعمله في مستكشف التطور الذاتي"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "اداة استكشاف التطور الذاتي"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "فشل تشغيل التطور الذاتي"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "النتائج العالمية"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -740,9 +757,48 @@ msgstr "السليولوز"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1367,6 +1423,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -1587,6 +1646,13 @@ msgstr "تقليص الحجم"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
+
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr ""
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "معدل انتاج الطاقة"
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr ""
@@ -1913,6 +1979,28 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2024,9 +2112,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2485,10 +2570,25 @@ msgid "GAMETE_PRODUCED"
 msgstr "معدل انتاج الطاقة"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "معدل انتاج الطاقة"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "معدل انتاج الطاقة"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "معدل انتاج الطاقة"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 msgid "GAME_SYSTEMS_TITLE"
@@ -3273,6 +3373,9 @@ msgstr "نمط الحياة كما نعرفها فقط"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "الفنان الرئيسي"
 
@@ -3588,6 +3691,9 @@ msgstr ""
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -4554,6 +4660,13 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "معدل انتاج الطاقة"
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr ""
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "التخزينة الحالية غير مؤهلة للحصول على الانجازات"
 
@@ -4583,6 +4696,9 @@ msgstr ""
 
 msgid "NO_SUGGESTION"
 msgstr "لا يوجد اقتراح"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "نواة"
@@ -5070,6 +5186,19 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "الوصف:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -5239,6 +5368,13 @@ msgstr ""
 
 msgid "READY"
 msgstr ""
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -5944,6 +6080,9 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr "الوصف:"
 
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr ""
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6002,9 +6141,6 @@ msgstr ""
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr ""
-
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
@@ -6022,6 +6158,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -7181,6 +7320,15 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7327,6 +7475,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

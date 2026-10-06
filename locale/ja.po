@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-07-22 04:07+0000\n"
-"Last-Translator: 4sokay8 <kwi.tns11@gmail.com>\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-09-22 15:32+0000\n"
+"Last-Translator: mousleep <willowisp0919@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -170,6 +170,7 @@ msgstr "（プレイヤーの生物が絶滅した際、ゲームオーバーで
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "全ワールドの統計情報"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]世代数:[/b]\n"
@@ -201,6 +202,17 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"攻撃的な微生物はより遠くまで獲物を追い、\n"
+"捕食者に対して反撃する可能性が高い。\n"
+"平和的な微生物は他の生物を深追いせず、\n"
+"捕食者に対して毒素を使いにくい。"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "常に表示"
@@ -401,8 +413,13 @@ msgstr "自動進化解析ツールで使用"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "自動進化解析ツール"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "自動進化の実行に失敗しました"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "自動進化の結果が見つかりません。古いセーブデータを読み込んだ場合は、結果が表示されないことがあります。古いセーブを読み込んでいない場合は、バグとして報告し、ゲームのログファイルをお送りください."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "自動進化の結果が見つかりません。古いセーブデータを読み込んだ場合は、結果が表示されないことがあります。古いセーブを読み込んでいない場合は、バグとして報告し、ゲームのログファイルをお送りください."
@@ -737,11 +754,50 @@ msgstr "セルロース"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "この膜には壁があり全体的なダメージ、特に物理的ダメージに対する防御力が高くなります。また、形状を維持するためのエネルギーも少なくて済みますが資源の吸収は遅く移動も遅くなります。[b]セルラーゼによってこの壁は分解され[/b]、捕食者に捕食されやすくなります。"
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
 "細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1394,6 +1450,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -1613,6 +1672,14 @@ msgstr ""
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "細胞タイプ名"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -1930,6 +1997,13 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2033,9 +2107,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2490,6 +2561,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "ATP 生成量"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "細胞タイプ名"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "このセクションでは、現在の細胞の ATP（エネルギー）収支を表示します.\n"
@@ -2499,6 +2582,9 @@ msgstr ""
 "こうした細胞は、複数の化合物を常にストレージに保持する必要があるため、プレイが難しくなります."
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 msgid "GAME_SYSTEMS_TITLE"
@@ -3246,6 +3332,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr ""
 
@@ -3549,6 +3638,9 @@ msgstr ""
 msgid "MASTODON_TOOLTIP"
 msgstr ""
 
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
@@ -3613,7 +3705,7 @@ msgid "MEMBRANE_TYPES"
 msgstr ""
 
 msgid "MENU"
-msgstr ""
+msgstr "メニュー"
 
 msgid "MESOPELAGIC"
 msgstr ""
@@ -4408,6 +4500,14 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "細胞タイプ名"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
@@ -4438,6 +4538,9 @@ msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
 msgstr "細胞タイプ名"
 
 msgid "NO_SUGGESTION"
+msgstr ""
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
 msgstr ""
 
 msgid "NUCLEUS"
@@ -4911,6 +5014,21 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -5076,6 +5194,15 @@ msgstr ""
 
 msgid "READY"
 msgstr ""
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -5759,6 +5886,10 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "細胞タイプ名"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -5819,10 +5950,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "キー割り当てを追加"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "細胞タイプ名"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
 
@@ -5836,6 +5963,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -6825,6 +6955,13 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6971,6 +7108,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -8525,7 +8665,7 @@ msgid "ZOOM_IN"
 msgstr "ズームイン"
 
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "ズームアウト"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

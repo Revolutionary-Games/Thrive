@@ -203,6 +203,9 @@ public:
         return averagePhysicsTime;
     }
 
+    /// \brief Sets the fixed timestep used by the physics simulation
+    void SetPhysicsTimestep(float timestep);
+
     bool DumpSystemState(std::string_view path);
 
     inline void SetDebugLevel(int level) noexcept
@@ -286,7 +289,7 @@ private:
     std::unique_ptr<JPH::TempAllocator> tempAllocator;
 
     // Simulation configuration
-    float physicsFrameRate = 60;
+    float physicsTimestep = 1.0f / 60.0f;
     int collisionStepsPerUpdate = 1;
 
     int simulationsBetweenBroadPhaseOptimization = 67;

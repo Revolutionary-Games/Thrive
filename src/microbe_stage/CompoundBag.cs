@@ -275,6 +275,23 @@ public class CompoundBag : ICompoundStorage, IEnumerable<KeyValuePair<Compound, 
         return usefulCompounds.Contains(compound);
     }
 
+    public void CopyUsefulToHash(HashSet<Compound> target, bool copyDefaults = false)
+    {
+        foreach (var usefulCompound in usefulCompounds)
+        {
+            target.Add(usefulCompound);
+        }
+
+        if (copyDefaults)
+        {
+            foreach (var compound in SimulationParameters.Instance.GetAllCompounds().Values)
+            {
+                if (compound.IsAlwaysUseful)
+                    target.Add(compound.ID);
+            }
+        }
+    }
+
     /// <summary>
     ///   Checks if any of the given compounds are marked specifically useful. This uses List indexed access to avoid
     ///   interface-typed foreach allocations in hot paths.

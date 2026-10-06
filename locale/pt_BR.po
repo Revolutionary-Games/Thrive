@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -52,13 +52,16 @@ msgstr "Aceitar"
 msgid "ACHIEVEMENTS"
 msgstr "Conquistas"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Conquistas {0} / {1}"
+msgstr "\"Conquistas\" Falhou no Carregamento"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "A atualização do arquivo salvo falhou devido ao seguinte erro:"
+msgstr ""
+"O arquivo de dados das conquistas pode estar corrompido.\n"
+"Você pode redefinir os dados, mas isso apagará todo o seu progresso nas conquistas. Para isso, exclua:\n"
+"{0}\n"
+"Deseja continuar jogando sem as conquistas?\n"
+"Ao pressionar “Cancelar”, o jogo será encerrado."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Conquistas {0} / {1}"
@@ -105,15 +108,13 @@ msgstr ""
 "Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
 
 msgid "ACTOMYOSIN"
-msgstr ""
+msgstr "Actomiosina"
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "Falta uma descrição"
+msgstr "As actomiosinas são estruturas musculares simples que as colônias de células podem usar para puxar a si mesmas com mais eficiência em uma determinada direção ou para girar. Elas não estão disponíveis para membranas do tipo parede, pois dependem da flexão da colônia para funcionar. Como consequência, são mais eficazes quando há apenas uma por célula, mas várias células da colônia possuem essa organela."
 
-#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Aumenta a velocidade de movimento e a taxa de rotação de uma colônia de células."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validações adicionais detectaram um erro: {0}"
@@ -171,18 +172,20 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Gerações:[/b]\n"
 "  {0}\n"
-"[b]Total de Espécies:[/b]\n"
+"[b]Espécies totais: [/b]\n"
 "  Média {1}; Desvio padrão {2}\n"
-"[b]Espécies vivas:[/b]\n"
+"[b]Segundos totais:[/b]\n"
 "  Média {3}; Desvio padrão {4}\n"
-"[b]Quantidade de Espécies por Região:[/b]\n"
+"[b]Espécies ainda vivas:[/b]\n"
 "  Média {5}; Desvio padrão {6}\n"
-"[b]População Total por Região:[/b]\n"
+"[b]Quantidade de Espécies por Região:[/b]\n"
 "  Média {7}; Desvio padrão {8}\n"
-"[b]Média de Tamanho das Espécies de Micróbios:[/b]\n"
+"[b]População Total por Região:[/b]\n"
 "  Média {9}; Desvio padrão {10}\n"
+"[b]Tamanho Médio do Hexágono das Espécies Microbianas::[/b]\n"
+"  Average {11}; Desvio padrão {12}\n"
 "\n"
-"[b]Dados Gerais de Organelas:[/b]"
+"[b]Dados genéricos das organelas:[/b]"
 
 msgid "ALREADY_ASCENDED"
 msgstr "Você já está ascendido"
@@ -190,16 +193,22 @@ msgstr "Você já está ascendido"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr ""
-"No modo de movimento relativo ao jogador as teclas de movimento são relativas à rotação atual da célula do jogador.\n"
-"Então mover o cursor muda o que é considerado para frente para a célula.\n"
-"Este é o modo de movimento padrão do Thrive."
+"Altera a velocidade alternativa da simulação.\n"
+"Essa velocidade pode ser usada pressionando o botão na interface (HUD) que corresponde a este valor.\n"
+"Valores mais altos podem exigir uma CPU muito rápida para funcionar."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr "Escala de tempo alternativa"
 
 #, fuzzy
-msgid "ALTERNATVE_TIMESCALE"
-msgstr ". Proporção aumenta"
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ambiente"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visível"
@@ -234,17 +243,14 @@ msgstr "MSAA + TAA"
 msgid "ANTI_ALIASING_FXAA"
 msgstr "Anti-aliasing multi-amostras"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "Anti-aliasing multi-amostras:"
+msgstr "Modo de Antialiasing:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "Anti-aliasing multi-amostras:"
+msgstr "MSAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "Anti-aliasing multi-amostras:"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Aparência"
@@ -405,8 +411,12 @@ msgstr "Exploração da Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Exploração da Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
-msgstr "A auto-evo falhou"
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
+msgstr "A auto-evo falhou (log do jogo terá mais informações)"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Os resultados da Auto-evo não estão presentes. Se você carregou um salvamento antigo isso é esperado. Se você não carregou um salvamento antigo, por favor relate esse bug e envie seu arquivo de log do jogo."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Os resultados da Auto-evo não estão presentes. Se você carregou um salvamento antigo isso é esperado. Se você não carregou um salvamento antigo, por favor relate esse bug e envie seu arquivo de log do jogo."
@@ -741,11 +751,50 @@ msgstr "Celulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Essa membrana tem uma parede feita de celulose, resultando em uma melhor proteção contra danos, especialmente contra danos físicos. Ela requer menos energia para manter sua forma, mas não absorve recursos rapidamente e deixa a célula mais lenta. [b]A celulase pode digerir essa parede[/b], fazendo o organismo ficar mais vulnerável à fagocitose por parte dos predadores."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Taxa de rotação da célula. Células maiores viram mais devagar, mas cílios podem ser adicionados para compensar.\n"
 "O posicionamento de organelas afeta a rotação, sendo que organelas mais distantes do centro reduzem mais a rotação."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1407,6 +1456,9 @@ msgstr "Sensibilidade do controle"
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Eixo Desconhecido"
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar erro para a Área de Transferência"
 
@@ -1648,6 +1700,14 @@ msgstr "Diminuir o tamanho do objeto"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Serviço padrão de saída"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Criar novo tipo de célula"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Criar novo tipo de célula"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -2002,6 +2062,14 @@ msgstr "Editores e Mutações"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Abre o editor e modifica a sua espécie"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indica que a espécie sofreu mutação durante esse ciclo do auto-evo"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Esta aba permite definir a ordem em que as organelas crescem. Isso pode ser importante para células que têm produção instável de ATP enquanto crescem. A ordem das organelas também impacta a ordem de execução dos bio processos. Recomenda-se editar essa aba apenas após terminar de editar a estrutura, já que a edição de estruturas pode reverter mudanças feitas aqui."
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "O seu micróbio se reproduziu com sucesso novamente, avançando no caminho de se tornar uma forma de vida mais avançada.\n"
@@ -2144,6 +2212,7 @@ msgstr "Começar a endossimbiose para esta espécie (disponível assim que o tip
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endossimbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /segundo"
 
@@ -2152,12 +2221,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Enquanto consome:\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2645,6 +2708,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "reproduziu"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Nome do Tipo de Célula"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Nome do Tipo de Célula"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Criar novo tipo de célula"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
@@ -2655,6 +2730,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipe de Game Design"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Nota: você pode mudar as opções relacionadas ao desempenho a qualquer momento no [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menu de opções[/url][/color] para melhorar o desempenho do jogo"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "Sistemas do Jogo"
@@ -3414,6 +3493,9 @@ msgstr "Somente vida baseada na realidade"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restringe partes e habilidades para somente as que são baseadas na vida real)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr "Gestor Artístico"
 
@@ -3731,6 +3813,9 @@ msgstr "Volume principal"
 
 msgid "MASTODON_TOOLTIP"
 msgstr "Visite nosso perfil na rede social Mastodon"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "O máximo de espaço que o cache em disco deve tomar (itens serão removidos automaticamente se o cache ficar grande demais)"
@@ -4705,6 +4790,14 @@ msgstr "Nenhum evento registrado"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "O diretório de fósseis não foi encontrado"
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Nome do Tipo de Célula"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Criar novo tipo de célula"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Jogo atual não é mais válido para conquistas"
 
@@ -4736,6 +4829,9 @@ msgstr "Criar novo tipo de célula"
 
 msgid "NO_SUGGESTION"
 msgstr "Nenhuma"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Núcleo"
@@ -5246,6 +5342,19 @@ msgstr "Reproduzir a introdução do Estágio Microbial em novo jogo"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jogar com essas configurações"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "população:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
@@ -5417,6 +5526,16 @@ msgstr "Lendo dados salvos"
 
 msgid "READY"
 msgstr "Pronto"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr ""
+"Esta barra mostra a atual temperatura da sua célula. Os indicadores amarelos mostram a faixa efetiva de geração de energia.\n"
+"A barra vertical branca mostra a temperatura ambiental na direção da qual a barra irá.\n"
+"O indicador abaixo da barra muda de cor quando está sendo gerada energia."
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Versão Recomendada:"
@@ -6135,6 +6254,10 @@ msgstr "Gerar fosfato"
 msgid "SPECIALIZATION_COLON"
 msgstr "população:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Criar novo tipo de célula"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Botão especial do Mouse 1"
 
@@ -6206,10 +6329,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Mude entre velocidade normal e dupla no jogo"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Criar novo tipo de célula"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
@@ -6224,6 +6343,10 @@ msgstr "Ativar/Desativar correr. Correr faz com que as células se movam mais r�
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Título:"
 
 msgid "START"
 msgstr "Começar"
@@ -7467,6 +7590,14 @@ msgstr "Definir número de tarefas de fundo manualmente"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Definir número de tarefas de fundo manualmente"
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "teve uma mutação"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "Esta aba permite definir a ordem em que as organelas crescem. Isso pode ser importante para células que têm produção instável de ATP enquanto crescem. A ordem das organelas também impacta a ordem de execução dos bio processos. Recomenda-se editar essa aba apenas após terminar de editar a estrutura, já que a edição de estruturas pode reverter mudanças feitas aqui."
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Usar tamanho da janela virtual"
 
@@ -7619,6 +7750,9 @@ msgstr "Rolar para a direita"
 
 msgid "WHEEL_UP"
 msgstr "Rolar para cima"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -8171,6 +8305,7 @@ msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, e
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Filamentos similares a fios de cabelo no exterior de uma célula que usam [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de movimento da célula em uma direção. Impulso é aplicado na direção oposta à direção que o [b]Flagelo[/b] aponta."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Sem modificações."
 
@@ -8870,6 +9005,7 @@ msgstr "Um metabolossomo modificado responsável pela produção de uma forma pr
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxitoxissoma"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Sem modificações."
 
@@ -9204,6 +9340,7 @@ msgstr "A ser adicionado"
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Sem melhoras."
 
@@ -9391,6 +9528,7 @@ msgstr ""
 "Vacúolo de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Sem modificações."
 
@@ -9611,6 +9749,12 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Enquanto consome:\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

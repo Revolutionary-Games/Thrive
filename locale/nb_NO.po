@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2025-07-20 19:51+0000\n"
 "Last-Translator: Fredrik Sjøli Trevland <frozenheimdsbusiness@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -201,6 +201,17 @@ msgstr "Nåværende tråder:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Aggressive mikrober vil jage ned bytte over større avstander\n"
+"og er mer sannsynlig å kjempe mot angripere når de blir angrepet.\n"
+"Fredelige mikrober vil ikke engasjere andre over større avstander\n"
+"og har mindre sannsynlighet for å bruke giftstoffer mot angripere."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Alltid synlig"
@@ -416,8 +427,13 @@ msgstr "Auto-Evo utforskningsverktøy"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo utforskningsverktøy"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo klarte ikke å kjøre"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo resultater mangler. Hvis du laster opp en eldre lagringsfil er dette forventet at mangler. Hvis du ikke laster opp en eldre lagringsfil plis rapporter dette som en bug til oss og send oss spillloggfilen på spillet ditt."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo resultater mangler. Hvis du laster opp en eldre lagringsfil er dette forventet at mangler. Hvis du ikke laster opp en eldre lagringsfil plis rapporter dette som en bug til oss og send oss spillloggfilen på spillet ditt."
@@ -761,9 +777,48 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1407,6 +1462,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -1628,6 +1686,13 @@ msgstr ""
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
+
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr ""
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "ATP Produksjon"
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr ""
@@ -1949,6 +2014,14 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Tillat arter å ikke mutere (hvis ingen god mutasjon er funnet)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2075,9 +2148,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2542,6 +2612,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "ATP Produksjon"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "ATP Produksjon"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Agenter:"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "ATP Produksjon"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "Denne seksjonen viser den totale ATP (energi) balansen i den nåværende cellen.\n"
@@ -2551,6 +2633,9 @@ msgstr ""
 "De cellene er vanskligere å spille som siden de trenger flere stofftyper på lager samtidig for å overleve."
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 msgid "GAME_SYSTEMS_TITLE"
@@ -3321,6 +3406,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr ""
 
@@ -3635,6 +3723,9 @@ msgstr ""
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "Legg til en ny nøkkelbinding"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -4565,6 +4656,13 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "ATP Produksjon"
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr ""
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
@@ -4595,6 +4693,9 @@ msgstr ""
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Flercellestadiet"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr ""
@@ -5082,6 +5183,19 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -5251,6 +5365,13 @@ msgstr ""
 
 msgid "READY"
 msgstr ""
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "Legg til en ny nøkkelbinding"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -5949,6 +6070,9 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr ""
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6008,9 +6132,6 @@ msgstr ""
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr ""
-
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(hastighet som AI muterer med)"
@@ -6026,6 +6147,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Legg til en ny nøkkelbinding"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -7066,6 +7190,13 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7213,6 +7344,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

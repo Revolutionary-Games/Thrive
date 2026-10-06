@@ -13,6 +13,7 @@ theme = ExtResource("1_jktbi")
 script = ExtResource("1_mmoc3")
 cellTypeList = NodePath("VBoxContainer/HFlowContainer")
 cellTypeButton = ExtResource("3_jktbi")
+WindowTitle = "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 
 [node name="FocusGrabber" parent="." unique_id=125641974 instance=ExtResource("4_bkuex")]
 layout_mode = 0

@@ -157,11 +157,13 @@ public class HtmlToBbCodeConverter
             }*/
 
             case IHtmlUnorderedListElement or IHtmlOrderedListElement or IHtmlQuoteElement:
+            {
                 paragraphBreakQueued = false;
                 AddLastTextIfDoesNotEndWithAlready("\n");
 
                 stringBuilder.Append("[indent]");
                 break;
+            }
 
             case IHtmlListItemElement:
             {

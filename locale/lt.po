@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -167,6 +167,7 @@ msgstr "(išnykimo atveju, leidžia tęsti žaidimą su kita rūšimi, užuot j�
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Bendros Visų Pasaulių Statistikos"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Kartos:[/b]\n"
@@ -196,6 +197,18 @@ msgstr "Gijų skaičius:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Aplinka"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Agresyvūs mikrobai vysis grobį didesnius atstumus\n"
+"ir bus labiau linkę kovoti su grobuoniu, kai šis užpuls.\n"
+"Taikūs mikrobai nepuls kitų per didesnį atstumą\n"
+"ir bus mažiau linkę naudoti toksinus prieš grobuonis."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Visada Matomas"
@@ -396,8 +409,13 @@ msgstr "Auto-Evo Tyrinėjimo Įrankis"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Tyrinėjimo Įrankis"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Nepavyko paleisti Auto-evo"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo rezultatai:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -742,9 +760,48 @@ msgstr "Celiuliozė"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ši membrana turi sienelę, todėl geriau apsaugo nuo bendros žalos ir ypač nuo fizinės žalos. Be to, jos formai išlaikyti reikia mažiau energijos, tačiau ji negali greitai įsisavinti išteklių ir yra lėtesnė. [b]Šią sienelę gali suvirškinti celiulazė[/b], todėl ji tampa pažeidžiama plėšrūnų."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1466,6 +1523,9 @@ msgstr "Valdiklio jautrumas"
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Valdiklio Mirusiosios Zonos"
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Nukopijuoti klaidą į iškarpinę"
 
@@ -1697,6 +1757,14 @@ msgstr "Sukurti naują"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Ląstelės Tipo Pavadinimas"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -2032,6 +2100,14 @@ msgstr "Aprašymas:"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Leisti rūšims nemutuoti (jei nerandama geros mutacijos)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2155,9 +2231,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 #, fuzzy
@@ -2653,10 +2726,25 @@ msgid "GAMETE_PRODUCED"
 msgstr "ATP Gamyba"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Rodyti / slėpti junginius"
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 #, fuzzy
@@ -3443,6 +3531,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr ""
 
@@ -3766,6 +3857,9 @@ msgstr ""
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "Baigti žaidimą"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -4711,6 +4805,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Patvirtinti Ištrinti"
 
@@ -4743,6 +4845,9 @@ msgstr "Ląstelės Tipo Pavadinimas"
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Aprašymas:"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr ""
@@ -5246,6 +5351,19 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Specializacija:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -5420,6 +5538,13 @@ msgstr ""
 
 msgid "READY"
 msgstr ""
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "Baigti žaidimą"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -6136,6 +6261,10 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr "Specializacija:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Ląstelės Tipo Pavadinimas"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6196,10 +6325,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "Ląstelės Tipo Pavadinimas"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
@@ -6215,6 +6340,10 @@ msgstr "Baigti žaidimą"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Pavadinimas:"
 
 #, fuzzy
 msgid "START"
@@ -7283,6 +7412,14 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "mutavo"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7439,6 +7576,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

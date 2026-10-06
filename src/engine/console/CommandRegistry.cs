@@ -165,93 +165,12 @@ public class CommandRegistry : IDisposable
     public bool TryRegisterMulticastCommandListener<T>(T owner, string commandName)
         where T : notnull
     {
-        if (commands is null)
-        {
-            GD.PrintErr("Cannot register multicast commands before the command registry is initialised.");
+        if (HasLoaded())
+            return RegisterMulticastCommandListener(owner, commandName);
 
-            return false;
-        }
+        GD.PrintErr("Cannot register multicast commands before the command registry is initialised.");
 
-        if (commands.ContainsKey(commandName))
-        {
-            GD.PrintErr("Cannot register multicast command that overloads (has the same name of) a static" +
-                $"command. Please rename your multicast command. Current name: {commandName}");
-
-            return false;
-        }
-
-        if (!multicastCommands.TryGetValue(commandName, out var multicastCommandRegistry))
-        {
-            var type = owner.GetType();
-
-            // The command hasn't been registered yet, and we do so during runtime.
-            // Unlike static commands, multicast commands are instance members, so we only have class-specific
-            // overloads. Therefore, we only need to scan the methods in T.
-            multicastCommandRegistry = new MulticastCommandRegistry([], []);
-            multicastCommands.Add(commandName, multicastCommandRegistry);
-
-            const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-
-            foreach (var method in type.GetMethods(flags))
-            {
-                if (!method.IsDefined(typeof(MulticastCommandAttribute), true))
-                    continue;
-
-                foreach (var attribute in method.GetCustomAttributes<MulticastCommandAttribute>(true))
-                {
-                    var name = attribute.CommandName.ToLowerInvariant();
-
-                    if (name != commandName)
-                        continue;
-
-                    var isCheat = attribute.IsCheat;
-                    var command = new Command(method, name, isCheat, attribute.HelpText,
-                        new MulticastCommandParameters(attribute.MaxAllowedRegisteredInstances,
-                            attribute.FailOnTooManyInstances));
-
-                    multicastCommandRegistry.Overloads.Add(command);
-                }
-            }
-
-            if (multicastCommandRegistry.Overloads.Count == 0)
-            {
-                GD.PrintErr($"No command called {commandName} has been found for registration.");
-
-                multicastCommands.Remove(commandName);
-
-                return false;
-            }
-        }
-
-        if (multicastCommandRegistry.Overloads[0].MethodInfo.DeclaringType != owner.GetType())
-        {
-            GD.PrintErr("Attempted to register an overload outside the already registered class.");
-
-            return false;
-        }
-
-        foreach (var command in multicastCommandRegistry.Overloads)
-        {
-            var multicastParameters = command.MulticastParameters!;
-            var multicastAllowedInstances = multicastParameters.MaxAllowedRegisteredInstances;
-
-            if (multicastCommandRegistry.Owners.Count >= multicastAllowedInstances)
-            {
-                multicastParameters.Disabled = multicastParameters.FailOnTooManyInstances;
-
-                // This ignores command owner registration for *any* overload. This prevents having an owner list for
-                // each overload, which is much harder to maintain.
-                // If two overloads *must* have a different owner count, it is recommended to use a different command
-                // name instead.
-                return false;
-            }
-
-            multicastParameters.Disabled = false;
-        }
-
-        multicastCommandRegistry.Owners.Add(owner);
-
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -637,6 +556,102 @@ public class CommandRegistry : IDisposable
     }
 
     /// <summary>
+    ///   Registration path that skips the loaded check. Used by <see cref="RegisterCommands"/> to register the
+    ///   built-in listeners while the loading task is still running.
+    /// </summary>
+    private bool RegisterMulticastCommandListener<T>(T owner, string commandName)
+        where T : notnull
+    {
+        if (commands is null)
+        {
+            GD.PrintErr("Cannot register multicast commands before the command registry is initialised.");
+
+            return false;
+        }
+
+        if (commands.ContainsKey(commandName))
+        {
+            GD.PrintErr("Cannot register multicast command that overloads (has the same name of) a static" +
+                $"command. Please rename your multicast command. Current name: {commandName}");
+
+            return false;
+        }
+
+        if (!multicastCommands.TryGetValue(commandName, out var multicastCommandRegistry))
+        {
+            var type = owner.GetType();
+
+            // The command hasn't been registered yet, and we do so during runtime.
+            // Unlike static commands, multicast commands are instance members, so we only have class-specific
+            // overloads. Therefore, we only need to scan the methods in T.
+            multicastCommandRegistry = new MulticastCommandRegistry([], []);
+            multicastCommands.Add(commandName, multicastCommandRegistry);
+
+            const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
+            foreach (var method in type.GetMethods(flags))
+            {
+                if (!method.IsDefined(typeof(MulticastCommandAttribute), true))
+                    continue;
+
+                foreach (var attribute in method.GetCustomAttributes<MulticastCommandAttribute>(true))
+                {
+                    var name = attribute.CommandName.ToLowerInvariant();
+
+                    if (name != commandName)
+                        continue;
+
+                    var isCheat = attribute.IsCheat;
+                    var command = new Command(method, name, isCheat, attribute.HelpText,
+                        new MulticastCommandParameters(attribute.MaxAllowedRegisteredInstances,
+                            attribute.FailOnTooManyInstances));
+
+                    multicastCommandRegistry.Overloads.Add(command);
+                }
+            }
+
+            if (multicastCommandRegistry.Overloads.Count == 0)
+            {
+                GD.PrintErr($"No command called {commandName} has been found for registration.");
+
+                multicastCommands.Remove(commandName);
+
+                return false;
+            }
+        }
+
+        if (multicastCommandRegistry.Overloads[0].MethodInfo.DeclaringType != owner.GetType())
+        {
+            GD.PrintErr("Attempted to register an overload outside the already registered class.");
+
+            return false;
+        }
+
+        foreach (var command in multicastCommandRegistry.Overloads)
+        {
+            var multicastParameters = command.MulticastParameters!;
+            var multicastAllowedInstances = multicastParameters.MaxAllowedRegisteredInstances;
+
+            if (multicastCommandRegistry.Owners.Count >= multicastAllowedInstances)
+            {
+                multicastParameters.Disabled = multicastParameters.FailOnTooManyInstances;
+
+                // This ignores command owner registration for *any* overload. This prevents having an owner list for
+                // each overload, which is much harder to maintain.
+                // If two overloads *must* have a different owner count, it is recommended to use a different command
+                // name instead.
+                return false;
+            }
+
+            multicastParameters.Disabled = false;
+        }
+
+        multicastCommandRegistry.Owners.Add(owner);
+
+        return true;
+    }
+
+    /// <summary>
     ///   Lazily calls RegisterCommands. I found RegisterCommands to be a potential bottleneck in a future bigger
     ///   codebase, so I prefer deferring this loading process, which is non-critical, to a separate task, even though
     ///   right now it shouldn't take more than half a second.
@@ -659,8 +674,7 @@ public class CommandRegistry : IDisposable
 
         var tempDict = new Dictionary<string, List<Command>>();
 
-        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic |
-            BindingFlags.Static | BindingFlags.Instance;
+        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
         foreach (var assembly in assemblies)
         {
@@ -712,7 +726,7 @@ public class CommandRegistry : IDisposable
         foreach (var commandsArray in commands.Values)
         {
             foreach (var command in commandsArray)
-                TryRegisterMulticastCommandListener(command, "commands");
+                RegisterMulticastCommandListener(command, "commands");
         }
 
         GD.Print($"CommandRegistry: Loaded. Command groups: {commands.Count}.");

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-08-03 00:15+0000\n"
 "Last-Translator: Boberto KK <ulisesdecotto@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -199,6 +199,17 @@ msgstr "Hilos actuales:"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Escala de tiempo alternativa"
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Los microbios agresivos van a perseguir a su presa por distancias mas largas.\n"
+"y es mas probable que ataquen a otros depredadores cuando sean atacados.\n"
+"Los microbios pacíficos no atacarán a otros en distancias mayores\n"
+"y es menos probable que utilicen sus toxinas contra depredadores."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Siempre visible"
@@ -410,8 +421,13 @@ msgstr "Herramienta de exploración del Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Herramienta de exploración del Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo falló ejecutar"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Faltan los resultados del Auto-evo. Si cargaste una partida vieja, esto es de esperar. Si no cargaste una partida vieja, por favor reporta este bug y mandanos el archivo de registro de tu juego."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Faltan los resultados del Auto-evo. Si cargaste una partida vieja, esto es de esperar. Si no cargaste una partida vieja, por favor reporta este bug y mandanos el archivo de registro de tu juego."
@@ -764,9 +780,48 @@ msgstr "Celulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1408,6 +1463,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -1641,6 +1699,13 @@ msgstr ""
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de salida por defecto"
+
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr ""
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "Producción de ATP"
 
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr ""
@@ -2003,6 +2068,14 @@ msgstr "posee una mutación"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "No mutar (Solo si no hay buenas mutaciones)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Normal"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2167,9 +2240,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 #, fuzzy
@@ -2664,6 +2734,18 @@ msgid "GAMETE_PRODUCED"
 msgstr "Producción de ATP"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "Producción de ATP"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "anterior:"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "Producción de ATP"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
@@ -2673,6 +2755,9 @@ msgstr ""
 "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 #, fuzzy
@@ -3473,6 +3558,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr ""
 
@@ -3808,6 +3896,9 @@ msgstr "Volumen maestro"
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "Disparar toxina"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -4841,6 +4932,13 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "Producción de ATP"
+
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr ""
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Confirmar Borrar"
 
@@ -4872,6 +4970,9 @@ msgstr ""
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolución:"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "Núcleo"
@@ -5390,6 +5491,19 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "población:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -5578,6 +5692,13 @@ msgstr ""
 
 msgid "READY"
 msgstr ""
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -6325,6 +6446,9 @@ msgstr "Spawnear fosfato"
 msgid "SPECIALIZATION_COLON"
 msgstr "población:"
 
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr ""
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6389,9 +6513,6 @@ msgstr ""
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
 
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr ""
-
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(densidad de las nubes de compuestos en el ambiente)"
@@ -6410,6 +6531,10 @@ msgstr "Disparar toxina"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "población:"
 
 #, fuzzy
 msgid "START"
@@ -7639,6 +7764,14 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "posee una mutación"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "Normal"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7800,6 +7933,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

@@ -190,29 +190,11 @@ public class MulticellularSpeciesComparer
 
                 // Note anisogamy upgrade cost is *not* capped to the single action cost!
                 cost += Math.Min(Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST * costMultiplier, maxSingleActionCost);
-
-                // Upgrading doesn't let changing the original gamete cell for free.
-                // If upgrading from random mode, then the gamete A might be missing.
-                if (speciesA.GameteTypeA?.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
-                    reproductionCost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
             }
             else
             {
                 reproductionCost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
             }
-        }
-        else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy
-                 && speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
-        {
-            reproductionCost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
-        }
-        else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
-        {
-            if (speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
-                reproductionCost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
-
-            if (speciesA.GameteTypeB!.CellTypeName != speciesB.GameteTypeB?.CellTypeName)
-                reproductionCost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
         }
 
         if (speciesB.ReproductionMethod == MulticellularReproductionMethod.MassBudding)

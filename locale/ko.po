@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
 "PO-Revision-Date: 2026-07-23 05:41+0000\n"
 "Last-Translator: Yuchan An <chanyz1402@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -208,6 +208,18 @@ msgstr "저장 및 계속"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". 비율"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "환경"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"공격적인 미생물들은 먼 거리에 있는 사냥감도 쫓으려 할 것이며,\n"
+"포식자에게 공격을 받을 시 맞서 싸울 것 입니다.\n"
+"평화로운 미생물들은 멀리 있는 자들에겐 신경을 쓰지 않을 것이며,\n"
+"포식자들에게 독을 자주 사용하지 않을 것 입니다."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "언제나 보임"
@@ -420,8 +432,13 @@ msgstr "실행 상태:"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "실행 상태:"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo 실행 실패"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo 결과 중 빠진 것들이 있습니다. 만일 오래된 저장된 게임을 불러온 것 이라면 결과 중 몇 개가 빠진 것 입니다. 만일 아니라면 버그를 신고해주시고, 게임 로그 파일을 저희에게 보내주십시오."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo 결과 중 빠진 것들이 있습니다. 만일 오래된 저장된 게임을 불러온 것 이라면 결과 중 몇 개가 빠진 것 입니다. 만일 아니라면 버그를 신고해주시고, 게임 로그 파일을 저희에게 보내주십시오."
@@ -792,9 +809,48 @@ msgstr "섬유소"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
+msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
+msgstr ""
+
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
+msgstr ""
+
+msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+msgstr ""
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "재개"
+
+msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
+msgstr ""
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1496,6 +1552,9 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "클립보드에 오류 복사"
 
@@ -1745,6 +1804,14 @@ msgstr "점액 분비"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "기본 출력 기기"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "새 저장 생성"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "새 저장 생성"
 
 #, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
@@ -2116,6 +2183,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "종이 변이하지 않을 수 있도록 허용 (좋은 변이가 발견되지 않는 경우)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "이 세포 편집기에서 변이 점수(MP)를 소모하여 당신의 종에 세포 기관을 추가하거나 제거할 수 있습니다.\n"
@@ -2284,9 +2359,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 #, fuzzy
@@ -2804,10 +2876,25 @@ msgid "GAMETE_PRODUCED"
 msgstr "생산"
 
 #, fuzzy
+msgid "GAMETE_TYPE_A"
+msgstr "세포 종류 이름"
+
+#, fuzzy
+msgid "GAMETE_TYPE_ALL"
+msgstr "세포 종류 이름"
+
+#, fuzzy
+msgid "GAMETE_TYPE_B"
+msgstr "새 저장 생성"
+
+#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 #, fuzzy
@@ -3643,6 +3730,9 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(기관과 능력을 우리에게 알려진 생명(LAWK)으로 제한)"
 
+msgid "LAYOUT_TAB"
+msgstr ""
+
 msgid "LEAD_ARTIST"
 msgstr ""
 
@@ -3992,6 +4082,9 @@ msgstr "주 음량"
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
 
 #, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
@@ -5056,6 +5149,14 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "저장 폴더 열기"
 
 #, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "세포 종류 이름"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "새 저장 생성"
+
+#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "나가기 확인"
 
@@ -5093,6 +5194,9 @@ msgstr "새 저장 생성"
 #, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "해상도:"
+
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
 
 msgid "NUCLEUS"
 msgstr "핵"
@@ -5650,6 +5754,19 @@ msgstr "새 게임 시 미생물 인트로 재생"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "현재 설정으로 실행"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "개체수:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
 
@@ -5832,6 +5949,13 @@ msgstr "저장된 데이터 읽는 중"
 
 msgid "READY"
 msgstr "준비"
+
+msgid "REAPPLY_AUTOMATIC_LAYOUT"
+msgstr ""
+
+#, fuzzy
+msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
@@ -6636,6 +6760,10 @@ msgstr "인산염 배치"
 msgid "SPECIALIZATION_COLON"
 msgstr "개체수:"
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "새 저장 생성"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "마우스 특수 키 1"
 
@@ -6705,10 +6833,6 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "재개"
 
 #, fuzzy
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "새 저장 생성"
-
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
 
@@ -6725,6 +6849,10 @@ msgstr "새로운 키 배치 추가"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "크기:"
 
 #, fuzzy
 msgid "START"
@@ -8044,6 +8172,14 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
+msgstr "변이함"
+
+#, fuzzy
+msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -8208,6 +8344,9 @@ msgstr "휠 오른쪽으로"
 
 msgid "WHEEL_UP"
 msgstr "휠 위로"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr ""

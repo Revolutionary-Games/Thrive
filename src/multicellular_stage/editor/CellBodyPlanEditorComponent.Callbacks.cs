@@ -50,10 +50,6 @@ public partial class CellBodyPlanEditorComponent
         OnCellTypeAdded(data.CellType);
 
         OnCellToPlaceSelected(data.CellType.CellTypeName);
-
-        Editor.DirtyMutationPointsCache();
-
-        UpdateGameteDropdowns();
     }
 
     [ArchiveAllowedMethod]
@@ -62,26 +58,29 @@ public partial class CellBodyPlanEditorComponent
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
+        if (!data.Delete)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.CellType);
+        }
+
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
 
         if (ReferenceEquals(data.CellType, SporeCellType))
         {
-            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+            SporeCellType = null;
         }
 
         if (ReferenceEquals(data.CellType, GameteACellType))
         {
-            GameteACellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+            GameteACellType = null;
         }
 
         if (ReferenceEquals(data.CellType, GameteBCellType))
         {
-            GameteBCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+            GameteBCellType = null;
         }
-
-        UpdateGameteDropdowns();
     }
 
     [ArchiveAllowedMethod]
@@ -94,6 +93,7 @@ public partial class CellBodyPlanEditorComponent
 
         if (editedMicrobeCells.Contains(data.MovedHex))
         {
+            cellDataDirty = true;
             UpdateAlreadyPlacedVisuals();
 
             // TODO: notify auto-evo prediction once that is done
@@ -104,6 +104,8 @@ public partial class CellBodyPlanEditorComponent
         {
             editedMicrobeCells.AddFast(data.MovedHex, hexTemporaryMemory, hexTemporaryMemory2);
         }
+
+        cellDataDirty = true;
     }
 
     [ArchiveAllowedMethod]
@@ -116,6 +118,8 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateAlreadyPlacedVisuals();
         UpdateSpecializationDisplay();
+
+        cellDataDirty = true;
     }
 
     [ArchiveAllowedMethod]
@@ -131,7 +135,7 @@ public partial class CellBodyPlanEditorComponent
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
             or MulticellularReproductionMethod.SexualAnisogamy)
         {
-            OnReproductionMethodChangedToSexual();
+            UpdateSpecialCellTypeDisplays();
         }
 
         if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
@@ -141,6 +145,8 @@ public partial class CellBodyPlanEditorComponent
                 Math.Max(DesiredMassBuddingCellCount, Constants.MASS_BUDDING_MINIMUM_BUD_SIZE);
             UpdateMassBuddingCellCountSlider();
         }
+
+        OnReproductionMethodChangedToSexual();
 
         UpdateReproductionMethodChoice();
         UpdateAnisogamyStateAndCost();
@@ -159,71 +165,48 @@ public partial class CellBodyPlanEditorComponent
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
             or MulticellularReproductionMethod.SexualAnisogamy)
         {
-            OnReproductionMethodChangedToSexual();
+            UpdateSpecialCellTypeDisplays();
         }
+
+        OnReproductionMethodChangedToSexual();
 
         UpdateReproductionMethodChoice();
         UpdateAnisogamyStateAndCost();
     }
 
     [ArchiveAllowedMethod]
-    private void DoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    private void DoSpecialCellChangeAction(SpecialCellTypeChangeActionData data)
     {
-        ChangeSporeCellType(data.OldCellType, data.NewCellType);
+        ChangeCellType(data.OldCellType, data.NewCellType, data.CellArchetype);
     }
 
     [ArchiveAllowedMethod]
-    private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    private void UndoSpecialCellChangeAction(SpecialCellTypeChangeActionData data)
     {
-        ChangeSporeCellType(data.NewCellType, data.OldCellType);
+        if (data.NewCellType != null)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
+        }
+
+        ChangeCellType(data.NewCellType, data.OldCellType, data.CellArchetype);
     }
 
-    private void ChangeSporeCellType(CellType? oldCellType, CellType? newCellType)
+    private void ChangeCellType(CellType? oldCellType, CellType? newCellType, SpecialCellArchetype specialCellArchetype)
     {
         if (oldCellType != null)
         {
             if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(oldCellType))
-                GD.PrintErr("Failed to delete the spore cell type from species");
+                GD.PrintErr("Failed to delete a special cell type from species");
         }
+
+        SetSpecialCellType(specialCellArchetype, newCellType);
 
         if (newCellType != null)
         {
             OnCellTypeAdded(newCellType);
+
+            UpdateSpecialCellTypeDisplays();
         }
-
-        SporeCellType = newCellType;
-    }
-
-    [ArchiveAllowedMethod]
-    private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
-    {
-        GameteACellType = data.NewCellType;
-
-        UpdateGameteDropdowns();
-    }
-
-    [ArchiveAllowedMethod]
-    private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
-    {
-        GameteACellType = data.OldCellType;
-
-        UpdateGameteDropdowns();
-    }
-
-    [ArchiveAllowedMethod]
-    private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
-    {
-        GameteBCellType = data.NewCellType;
-
-        UpdateGameteDropdowns();
-    }
-
-    [ArchiveAllowedMethod]
-    private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
-    {
-        GameteBCellType = data.OldCellType;
-
-        UpdateGameteDropdowns();
     }
 
     private void OnCellTypeAdded(CellType added)
@@ -251,16 +234,50 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
     }
 
-    private void OnReproductionMethodChangedToSexual()
+    // These next 6 functions are only here for save compatibility and shouldn't be used otherwise
+    [ArchiveAllowedMethod]
+    private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
-        // Set default gamete types
-        GameteACellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+        // Because of the new gamete selector functionality, this intentionally does nothing
+        _ = data;
+    }
 
-        // Gamete B needs to be set if the reproduction method is anisogamous otherwise the type A is used by all cells
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
-            GameteBCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+    [ArchiveAllowedMethod]
+    private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        // Because of the new gamete selector functionality, this intentionally does nothing
+        _ = data;
+    }
 
-        UpdateGameteDropdowns();
+    [ArchiveAllowedMethod]
+    private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        // Because of the new gamete selector functionality, this intentionally does nothing
+        _ = data;
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        // Because of the new gamete selector functionality, this intentionally does nothing
+        _ = data;
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
+    {
+        ChangeCellType(data.OldCellType, data.NewCellType, SpecialCellArchetype.Spore);
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
+    {
+        if (data.NewCellType != null)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
+        }
+
+        ChangeCellType(data.NewCellType, data.OldCellType, SpecialCellArchetype.Spore);
     }
 
     [ArchiveAllowedMethod]
@@ -277,5 +294,15 @@ public partial class CellBodyPlanEditorComponent
         DesiredMassBuddingCellCount = data.OldCellCount;
 
         UpdateMassBuddingCellCountSlider();
+    }
+
+    private void OnReproductionMethodChangedToSexual()
+    {
+        // If the player hasn't set a sex type, force one to be set here now
+        if (SelectedGameteTypeForPlayer == GameteType.All)
+        {
+            GD.Print("Forcing gamete type for player after switching to a sexual reproduction method");
+            SelectedGameteTypeForPlayer = GameteType.A;
+        }
     }
 }

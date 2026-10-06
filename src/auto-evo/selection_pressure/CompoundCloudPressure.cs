@@ -109,7 +109,7 @@ public class CompoundCloudPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            nominalStorageCapacity = microbeSpecies.NominalStorageCapacity;
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {

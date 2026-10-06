@@ -967,10 +967,15 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         var (microbeSpeciesHexSizeAverage, microbeSpeciesHexSizeStandardDeviation) =
             worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).CalculateAverageAndStandardDeviation();
 
+        var (totalSeconds, totalSecondsStandardDeviation) = worldsList.Select(w => w.TotalTimeUsed.TotalSeconds)
+            .CalculateAverageAndStandardDeviation();
+
         var stringBuilder = new StringBuilder(1000);
         stringBuilder.Append(Localization.Translate("ALL_WORLDS_STATISTICS").FormatSafe(worldGenerations,
             totalSpeciesAverage.ToString("F2", CultureInfo.CurrentCulture),
             totalSpeciesStandardDeviation.ToString("F2", CultureInfo.CurrentCulture),
+            totalSeconds.ToString("F2", CultureInfo.CurrentCulture),
+            totalSecondsStandardDeviation.ToString("F2", CultureInfo.CurrentCulture),
             speciesStillAliveAverage.ToString("F2", CultureInfo.CurrentCulture),
             speciesStillAliveStandardDeviation.ToString("F2", CultureInfo.CurrentCulture),
             speciesCountPerPatchAverage.ToString("F2", CultureInfo.CurrentCulture),
