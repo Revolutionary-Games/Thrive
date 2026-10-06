@@ -87,22 +87,11 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
                 return;
             }
 
-            var texture = new DrawableTexture2D();
-            texture.Setup(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight(),
-                DrawableTexture2D.DrawableFormat.Rgba8, new Color(0.0f, 0.0f, 0.0f, 0.0f));
-
             ((ShaderMaterial)texturePaddingBlitMaterial).SetShaderParameter("jumpSize",
                 1.0f / texturizationTask.FinalImage.GetWidth());
 
-            texture.BlitRect(new Rect2I(Vector2I.Zero,
-                    new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
-                texturizationTask.FinalImage, material: texturePaddingBlitMaterial);
-
-            texture.BlitRect(new Rect2I(Vector2I.Zero,
-                    new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
-                ImageTexture.CreateFromImage(texture.GetImage()), material: texturePaddingBlitMaterial);
-
-            material.AlbedoTexture = texture;
+            material.AlbedoTexture = TexturizationHelpers.ApplyBlitMaterial(texturizationTask.FinalImage,
+                texturePaddingBlitMaterial, 10, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
             Mesh.SurfaceSetMaterial(0, material);
 
