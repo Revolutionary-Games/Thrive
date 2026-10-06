@@ -280,6 +280,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             instance.IsReadyForMacroscopic = reader.ReadBool();
         }
+        else
+        {
+            // It's fine to leave this false as the player can simply just go to the editor and check the new
+            // conditions which most players are probably not accidentally fulfilling. So not recalculating this here
+            // is mostly a minor inconvenience for players loading older saves.
+            instance.IsReadyForMacroscopic = false;
+        }
 
         return instance;
     }
