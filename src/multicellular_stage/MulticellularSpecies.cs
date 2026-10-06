@@ -12,7 +12,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 9;
+    public const ushort SERIALIZATION_VERSION = 10;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -110,6 +110,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     ///   changing to that reproduction method.
     /// </summary>
     public int MassBuddingCellCount { get; set; } = 1;
+
+    /// <summary>
+    ///   Flag set after editing the species whether this is valid for macroscopic conversion. For now, just set
+    ///   by the editor (not auto-evo / OnEdited).
+    /// </summary>
+    public bool IsReadyForMacroscopic { get; set; }
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
@@ -270,6 +276,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.UsesManualPlayerLayout = reader.ReadBool();
         }
 
+        if (version >= 10)
+        {
+            instance.IsReadyForMacroscopic = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -288,6 +299,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.WriteObjectOrNull(ModifiableGameteTypeB);
         writer.Write((int)PlayerGamete);
         writer.Write(UsesManualPlayerLayout);
+        writer.Write(IsReadyForMacroscopic);
     }
 
     public GameteType PickSpawnGameteType(Random random)

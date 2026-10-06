@@ -663,6 +663,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // A light refresh of data to not have to do potentially very expensive repositioning algorithm
         EditedSpecies.NotifyMembraneTypeChanged();
+
+        // Remember if the species is ready for macroscopic conversion
+        EditedSpecies.IsReadyForMacroscopic =
+            CellBodyPlanInternalCalculations.CalculateIsReadyForMacroscopic(EditedSpecies.EditorCells,
+                EditedSpecies.ReproductionMethod);
     }
 
     private void StopMembraneSwitchIfQueued()
