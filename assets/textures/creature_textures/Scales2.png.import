@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8lg3rapl5pq2"
-path="res://.godot/imported/Scales2.png-9af37ebd77fa5f2f7a24ce815112a171.ctex"
+path.s3tc="res://.godot/imported/Scales2.png-9af37ebd77fa5f2f7a24ce815112a171.s3tc.ctex"
+path.etc2="res://.godot/imported/Scales2.png-9af37ebd77fa5f2f7a24ce815112a171.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/creature_textures/Scales2.png"
-dest_files=["res://.godot/imported/Scales2.png-9af37ebd77fa5f2f7a24ce815112a171.ctex"]
+dest_files=["res://.godot/imported/Scales2.png-9af37ebd77fa5f2f7a24ce815112a171.s3tc.ctex", "res://.godot/imported/Scales2.png-9af37ebd77fa5f2f7a24ce815112a171.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
