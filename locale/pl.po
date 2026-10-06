@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 14:17+0300\n"
 "PO-Revision-Date: 2026-10-02 16:08+0000\n"
 "Last-Translator: Wojciech Roter <roterwojciech421@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -524,6 +524,10 @@ msgstr "Batypelagial"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Zostań organizmem wielokomórkowym ({0}/{1})"
 
@@ -861,6 +865,10 @@ msgstr "Klawisze oszustw włączone"
 
 msgid "CHEAT_MENU"
 msgstr "Menu oszustw"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Dostępne wyłącznie od fazy wielokomórkowej."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pokaż / ukryj procesy komórkowe"
@@ -3820,6 +3828,43 @@ msgstr "Makroskopijny"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Wczytywanie edytora mikrobów"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Wczytywanie edytora mikrobów"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Wczytywanie edytora mikrobów"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Wczytywanie edytora mikrobów"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Prototyp makroskopijności"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "rozmnażanie w biomie {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu Wielokomórkowca!\n"
+"\n"
+"Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
@@ -4576,7 +4621,7 @@ msgid "MOVE_TO_LAND"
 msgstr "Przemieść Się na Ląd"
 
 #, fuzzy
-msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP2"
 msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5279,6 +5324,10 @@ msgstr "Przesuń w prawo"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Przesuń w górę"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "i"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Dawni Developerzy"
@@ -10793,15 +10842,6 @@ msgstr "Oddal"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Wnikliwe statystyki odnośnie aktualnej rozgrywki"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Prototyp makroskopijności"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu Wielokomórkowca!\n"
-#~ "\n"
-#~ "Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Nie Możliwy Do Pochłonięcia"

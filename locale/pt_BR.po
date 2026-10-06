@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 14:17+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -520,6 +520,10 @@ msgstr "Batipelágico"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tornar-se Multicelular ({0}/{1})"
 
@@ -854,6 +858,10 @@ msgstr "Cheats ativados"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de Trapaças"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Disponível apenas a partir do Estágio Multicelular."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder processos da célula"
@@ -3770,6 +3778,43 @@ msgstr "Macroscópico"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Jato de Slime"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Editor Macroscópico"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Protótipo macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "se reproduzir no bioma {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
+"\n"
+"Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Editor Macroscópico"
 
@@ -4463,7 +4508,8 @@ msgstr "Mover para qualquer região"
 msgid "MOVE_TO_LAND"
 msgstr "Migrar para a terra"
 
-msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP2"
 msgstr ""
 "Ir para o Estágio Macroscópico. Disponível ao ter uma colônia grande o suficiente.\n"
 "Isso requer que você adicione células o suficiente no editor, então cresça sua colônia até o tamanho mínimo."
@@ -5135,6 +5181,10 @@ msgstr "Mover a câmera para a direita"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Mover a câmera para cima"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "e"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores Anteriores"
@@ -10312,15 +10362,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estatísticas do jogo atual"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Protótipo macroscópico"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
-#~ "\n"
-#~ "Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Imune ao engolimento"

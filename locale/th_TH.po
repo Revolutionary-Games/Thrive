@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 14:17+0300\n"
 "PO-Revision-Date: 2026-08-21 10:00+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -525,6 +525,10 @@ msgstr "เขตน้ำลึกปานกลาง (Bathypelagic zone)"
 msgid "BECOME_MACROSCOPIC"
 msgstr "ขยายร่างเป็นขนาดใหญ่ ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "ขยายร่างเป็นขนาดใหญ่ ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "วิวัฒนาการเป็นสิ่งมีชีวิตหลายเซลล์ ({0}/{1})"
 
@@ -869,6 +873,10 @@ msgstr "เปิดใช้งานปุ่มโกง"
 
 msgid "CHEAT_MENU"
 msgstr "เมนูของโหมดโกง"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "แสดง/ซ่อนกระบวนการของเซลล์"
@@ -3892,6 +3900,53 @@ msgstr ""
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "นิวเคลียส"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "วางออร์แกเนลล์"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "นิวเคลียส"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "วางออร์แกเนลล์"
@@ -4651,7 +4706,7 @@ msgid "MOVE_TO_LAND"
 msgstr "สูญพันธุ์ไปจากโลก"
 
 #, fuzzy
-msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP2"
 msgstr "ดำเนินการต่อ"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5357,6 +5412,10 @@ msgstr "เลื่อนไปทางขวา"
 
 msgid "PAN_CAMERA_UP"
 msgstr "เลื่อนขึ้น"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "และ"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""

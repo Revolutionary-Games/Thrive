@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 14:17+0300\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -523,6 +523,10 @@ msgstr "Batipelaginis"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tapti Daugialąsčiu ({0}/{1})"
 
@@ -858,6 +862,10 @@ msgstr "Įjungti sukčiavimo klavišai"
 
 msgid "CHEAT_MENU"
 msgstr "Sukčiavimo meniu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Rodyti / slėpti ląstelių procesus"
@@ -3808,6 +3816,40 @@ msgstr "Tapti Makroskopiniu ({0}/{1})"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Mikroorganizmo būsena"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Chemoreceptorius"
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
@@ -4499,7 +4541,7 @@ msgid "MOVE_TO_LAND"
 msgstr ""
 
 #, fuzzy
-msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP2"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5148,6 +5190,10 @@ msgstr ""
 
 msgid "PAN_CAMERA_UP"
 msgstr ""
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "ir"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""

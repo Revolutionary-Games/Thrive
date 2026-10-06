@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 14:17+0300\n"
 "PO-Revision-Date: 2026-09-22 15:32+0000\n"
 "Last-Translator: mousleep <willowisp0919@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -523,6 +523,10 @@ msgstr "深海層（バチペラジック）"
 msgid "BECOME_MACROSCOPIC"
 msgstr "巨視化する ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "巨視化する ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "多細胞化する（{0}/{1}）"
 
@@ -861,6 +865,10 @@ msgstr "チートキーが有効"
 
 msgid "CHEAT_MENU"
 msgstr "チートメニュー"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "微生物エディター"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "細胞プロセスを表示／非表示"
@@ -3593,6 +3601,38 @@ msgstr ""
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "微生物エディター"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "微生物エディター"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "微生物エディター"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "微生物エディター"
+
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "（AI生物が突然変異する速度）"
+
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "微生物エディター"
@@ -4208,8 +4248,9 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP2"
+msgstr "巨視化する ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4822,6 +4863,10 @@ msgstr ""
 
 msgid "PAN_CAMERA_UP"
 msgstr ""
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "かつ"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
