@@ -9,12 +9,21 @@ public partial class CreatureTexturePhotoBuilder : Node3D
 #pragma warning disable CA2213
     [Export]
     private MeshInstance3D meshInstance3D = null!;
+
+    private ShaderMaterial material = null!;
 #pragma warning restore CA2213
 
     private StringName projectionMatricesName = new("projectionMatrices");
     private StringName projectionMatrixSizeName = new("projectionMatrixCount");
     private StringName mainTextureName = new("mainTexture");
     private StringName projectedTextureName = new("projected");
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        material = (ShaderMaterial)meshInstance3D.MaterialOverride;
+    }
 
     public void SetMesh(Mesh mesh)
     {
@@ -23,17 +32,14 @@ public partial class CreatureTexturePhotoBuilder : Node3D
 
     public void SetProjectionMatrices(Array matrices)
     {
-        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatricesName, matrices);
-        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatrixSizeName, matrices.Count);
+        material.SetShaderParameter(projectionMatricesName, matrices);
+        material.SetShaderParameter(projectionMatrixSizeName, matrices.Count);
     }
 
     public void SetTextures(Texture2D? mainTexture, Texture2D? projectedTexture)
     {
-        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(mainTextureName,
-            mainTexture ?? default(Variant));
-
-        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectedTextureName,
-            projectedTexture ?? default(Variant));
+        material.SetShaderParameter(mainTextureName, mainTexture ?? default(Variant));
+        material.SetShaderParameter(projectedTextureName, projectedTexture ?? default(Variant));
     }
 
     protected override void Dispose(bool disposing)
