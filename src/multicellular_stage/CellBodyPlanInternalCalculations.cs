@@ -354,7 +354,9 @@ public static class CellBodyPlanInternalCalculations
                 throw new InvalidOperationException("Cell with no data set");
 
             totalSpecialization += cell.Data.CellType.CellTypeSpecializationBonus;
-            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data, bodyPlan);
+
+            // -1 is here because the bonus is always above 1, so we take out the base portion
+            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data, bodyPlan) - 1;
 
             cellTypes.Add(cell.Data.CellType.ReadableName);
         }
@@ -365,10 +367,10 @@ public static class CellBodyPlanInternalCalculations
         totalSpecialization /= bodyPlan.Count;
         totalAdjacencyBonus /= bodyPlan.Count;
 
-        if (totalSpecialization <= Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC)
+        if (totalSpecialization < Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC)
             return false;
 
-        if (totalAdjacencyBonus <= Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC)
+        if (totalAdjacencyBonus < Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC)
             return false;
 
         return true;
@@ -400,7 +402,7 @@ public static class CellBodyPlanInternalCalculations
             var cell = cells[i];
 
             totalSpecialization += cell.Data!.CellTypeSpecializationBonus;
-            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, cells);
+            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, cells) - 1;
 
             cellTypes.Add(cell.Data!.ReadableName);
         }
