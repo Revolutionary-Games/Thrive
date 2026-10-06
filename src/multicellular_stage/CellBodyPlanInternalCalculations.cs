@@ -326,4 +326,103 @@ public static class CellBodyPlanInternalCalculations
     {
         return 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * effectiveActomyosinCount;
     }
+
+    /// <summary>
+    ///   Checks if a species is ready for macroscopic. This variant just returns an overall bool rather than
+    ///   individual condition info.
+    /// </summary>
+    /// <returns>True if ready</returns>
+    public static bool CalculateIsReadyForMacroscopic(IReadOnlyIndividualLayout<IReadOnlyCellTemplate> bodyPlan,
+        MulticellularReproductionMethod reproductionMethod)
+    {
+        // NOTE: this code must be kept in sync with CalculateMacroscopicConditions
+        if (bodyPlan.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        if (reproductionMethod == MulticellularReproductionMethod.Budding)
+            return false;
+
+        float totalSpecialization = 0;
+        float totalAdjacencyBonus = 0;
+
+        // TODO: avoid this temporary memory
+        var cellTypes = new HashSet<string>();
+
+        foreach (var cell in bodyPlan)
+        {
+            if (cell.Data == null)
+                throw new InvalidOperationException("Cell with no data set");
+
+            totalSpecialization += cell.Data.CellType.CellTypeSpecializationBonus;
+            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data, bodyPlan);
+
+            cellTypes.Add(cell.Data.CellType.ReadableName);
+        }
+
+        if (cellTypes.Count < Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        totalSpecialization /= bodyPlan.Count;
+        totalAdjacencyBonus /= bodyPlan.Count;
+
+        if (totalSpecialization <= Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        if (totalAdjacencyBonus <= Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        return true;
+    }
+
+    public static void CalculateMacroscopicConditions(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        MulticellularReproductionMethod reproductionMethod, List<(bool FulFilled, string Description)> conditionResults)
+    {
+        conditionResults.Clear();
+
+        // NOTE: the check conditions have to be kept in sync with CalculateIsReadyForMacroscopic
+
+        bool cellCountPass = cells.Count >= Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC;
+        conditionResults.Add((cellCountPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_CELL_COUNT")
+                .FormatSafe(cells.Count, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)));
+
+        bool reproductionPass = reproductionMethod != MulticellularReproductionMethod.Budding;
+        conditionResults.Add((reproductionPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_REPRODUCTION_METHOD")));
+
+        float totalSpecialization = 0;
+        float totalAdjacencyBonus = 0;
+        var cellTypes = new HashSet<string>();
+
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+
+            totalSpecialization += cell.Data!.CellTypeSpecializationBonus;
+            totalAdjacencyBonus += GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, cells);
+
+            cellTypes.Add(cell.Data!.ReadableName);
+        }
+
+        bool typeCountPass = cellTypes.Count >= Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC;
+        conditionResults.Add((typeCountPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_CELL_TYPE_COUNT").FormatSafe(cellTypes.Count,
+                Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC)));
+
+        totalSpecialization /= cells.Count;
+        totalAdjacencyBonus /= cells.Count;
+
+        bool specializationPass = totalSpecialization >= Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC;
+        conditionResults.Add((specializationPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_SPECIALIZATION").FormatSafe(
+                Math.Round(totalSpecialization * 100, 1),
+                Math.Round(Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC * 100, 1))));
+
+        bool adjacencyPass = totalAdjacencyBonus >= Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC;
+        conditionResults.Add((adjacencyPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY").FormatSafe(
+                Math.Round(totalAdjacencyBonus * 100, 1),
+                Math.Round(Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC * 100, 1))));
+    }
 }
