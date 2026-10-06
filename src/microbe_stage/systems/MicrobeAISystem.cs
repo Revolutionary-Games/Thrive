@@ -169,6 +169,14 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             CleanMicrobeCache();
             CleanChunkCache();
             CleanSpeciesUsingVaryingCompound();
+
+            terrainCacheRebuildTimer += delta;
+            if (terrainCacheRebuildTimer > 10)
+            {
+                terrainChunkDataCache.Clear();
+                BuildTerrainChunksCache();
+                terrainCacheRebuildTimer = 0;
+            }
         }
 
         if (gameWorld == null)
@@ -228,14 +236,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             return;
 
         var strain = strainAffected.CurrentStrain;
-
-        terrainCacheRebuildTimer += delta;
-        if (terrainCacheRebuildTimer > 10)
-        {
-            terrainChunkDataCache.Clear();
-            BuildTerrainChunksCache();
-            terrainCacheRebuildTimer = 0;
-        }
 
         // This shouldn't be needed thanks to the check that this doesn't run on attached entities
         // ref var engulfable = ref entity.Get<Engulfable>();
