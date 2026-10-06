@@ -1800,7 +1800,7 @@ public static class Constants
 
     public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 15;
     public const int CELL_TYPES_REQUIRED_FOR_MACROSCOPIC = 3;
-    public const float SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC = 0.2f;
+    public const float SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC = 0.4f;
     public const float AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC = 0.1f;
 
     public const float BRAIN_POWER_REQUIRED_FOR_AWARE = 0.5f;
