@@ -1010,6 +1010,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var result = new MulticellularSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
+        result.IsReadyForMacroscopic = IsReadyForMacroscopic;
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
