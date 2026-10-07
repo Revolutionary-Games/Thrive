@@ -5,62 +5,87 @@ using static GdUnit4.Assertions;
 using static SimulationCacheTestFixtures;
 
 /// <summary>
-///   Public final-score characterizations, with one organelle or upgrade delta per matched pair.
-///   Raw scores only guard which tool is activated; final scores are the lasting regression seam.
+///   Public capability and defence contracts against a baseline computed in the same run.
+///   Tool routing guards the mechanism; organelle changes can also affect geometry, mass and metabolism.
 /// </summary>
 [TestSuite]
 [RequireGodotRuntime]
 public class SimulationCachePredationRoleTests
 {
-    [TestCase(false, false, false, 0.0f, 15.367006f)]
-    [TestCase(false, false, true, 0.0f, 46.101017f)]
-    [TestCase(false, true, false, 0.0f, 28.612566f)]
-    [TestCase(false, true, true, 0.0f, 85.8377f)]
-    [TestCase(true, false, false, 0.0f, 0.6317793f)]
-    [TestCase(true, false, true, 0.0f, 1.895338f)]
-    [TestCase(true, true, false, 0.0f, 8.119033f)]
-    [TestCase(true, true, true, 0.0f, 24.357098f)]
+    [TestCase(false, false, false)]
+    [TestCase(false, false, true)]
+    [TestCase(false, true, false)]
+    [TestCase(false, true, true)]
+    [TestCase(true, false, false)]
+    [TestCase(true, false, true)]
+    [TestCase(true, true, false)]
+    [TestCase(true, true, true)]
     public void OffensivePilusAcrossSpeciesPairings(bool multicellularPredator, bool multicellularPrey,
-        bool injectisome, float expectedControl, float expectedArmed)
+        bool injectisome)
     {
         var control = CreateRoleSpecies(201, multicellularPredator);
         var armed = CreateRoleSpecies(202, multicellularPredator,
             CreateOrganelle("pilus", new Hex(0, -4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
-        var prey = CreateRoleSpecies(203, multicellularPrey);
+        var controlPrey = CreateRoleSpecies(203, multicellularPrey);
+        var armedPrey = CreateRoleSpecies(204, multicellularPrey);
+        AssertCannotEngulf(control);
+        AssertCannotEngulf(armed);
         var initial = GetRaw(control);
         var changed = GetRaw(armed);
+        AssertThat(initial.PilusScore + initial.InjectisomeScore + initial.OxytoxyScore + initial.CytotoxinScore +
+                initial.MacrolideScore + initial.ChannelInhibitorScore + initial.OxygenMetabolismInhibitorScore)
+            .IsEqual(0.0f);
         AssertRawBits(changed,
             injectisome ?
                 initial with { InjectisomeScore = changed.InjectisomeScore } :
                 initial with { PilusScore = changed.PilusScore });
-        AssertThat(injectisome ? changed.InjectisomeScore > 0 : changed.PilusScore > 0).IsTrue();
+        AssertThat(injectisome ? changed.InjectisomeScore : changed.PilusScore).IsGreater(0.0f);
 
-        AssertScorePair(control, prey, armed, prey, expectedControl, expectedArmed);
+        // Cell walls and absent attack tools make the baseline unable to predate.
+        // The forward tool opens a physical attack path despite its additional mass and metabolic cost.
+        var (baseline, armedScore) = AssertScorePair(control, controlPrey, armed, armedPrey);
+        AssertThat(baseline).IsEqual(0.0f);
+        AssertThat(armedScore).IsGreater(baseline);
     }
 
-    [TestCase(false, false, 0.6317793f, 0.044224553f)]
-    [TestCase(false, true, 0.6317793f, 0.022112276f)]
-    [TestCase(true, false, 5.6066546f, 1.0482321f)]
-    [TestCase(true, true, 5.6066546f, 0.52411604f)]
-    public void RearPilusOnFleeingPrey(bool multicellular, bool injectisome,
-        float expectedControl, float expectedDefended)
+    [TestCase(false, false)]
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    [TestCase(true, true)]
+    public void RearPilusOnFleeingPrey(bool multicellular, bool injectisome)
     {
-        var predator = CreateRoleSpecies(211, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var controlPredator = CreateRoleSpecies(211, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var defendedPredator = CreateRoleSpecies(214, false, CreateOrganelle("pilus", new Hex(0, -4)));
         var control = CreateRoleSpecies(212, multicellular);
         var defended = CreateRoleSpecies(213, multicellular,
             CreateOrganelle("pilus", new Hex(0, 4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
         control.ModifiableBehaviour.Fear = defended.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         control.ModifiableBehaviour.Aggression = defended.ModifiableBehaviour.Aggression = 0;
+        AssertCannotEngulf(controlPredator);
+        AssertCannotEngulf(defendedPredator);
+        AssertThat(control.Behaviour.Fear).IsEqual(Constants.MAX_SPECIES_FEAR);
+        AssertThat(defended.Behaviour.Fear).IsEqual(Constants.MAX_SPECIES_FEAR);
+        AssertThat(control.Behaviour.Aggression).IsEqual(0.0f);
+        AssertThat(defended.Behaviour.Aggression).IsEqual(0.0f);
+        var cache = CreateCache();
+        AssertThat(cache.GetSpeedForSpecies(control)).IsGreater(0.0f);
+        AssertThat(cache.GetSpeedForSpecies(defended)).IsGreater(0.0f);
+
+        // The scoring rotation modifier must stay positive for rear-facing defence to work.
+        AssertThat(1.5f - cache.GetRotationSpeedForSpecies(defended) * 1.45f).IsGreater(0.0f);
         var initial = GetRaw(control);
         var changed = GetRaw(defended);
         AssertRawBits(changed,
             injectisome ?
                 initial with { DefensiveInjectisomeScore = changed.DefensiveInjectisomeScore } :
                 initial with { DefensivePilusScore = changed.DefensivePilusScore });
-        AssertThat(injectisome ? changed.DefensiveInjectisomeScore > 0 : changed.DefensivePilusScore > 0).IsTrue();
+        AssertThat(injectisome ? changed.DefensiveInjectisomeScore : changed.DefensivePilusScore).IsGreater(0.0f);
+        AssertThat(changed.PilusScore + changed.InjectisomeScore).IsEqual(0.0f);
 
-        AssertScorePair(predator, control, predator, defended,
-            expectedControl, expectedDefended);
+        // Fleeing prey can present the rear tool; adding it also changes mass and metabolism.
+        var (baseline, defendedScore) = AssertScorePair(controlPredator, control, defendedPredator, defended);
+        AssertThat(baseline).IsGreater(0.0f);
+        AssertThat(defendedScore).IsGreater(0.0f).IsLess(baseline);
     }
 
     [TestCase(false, ToxinType.Oxytoxy, 9.939762f, 9.953802f)]
@@ -109,45 +134,61 @@ public class SimulationCachePredationRoleTests
             expectedControl, expectedArmed, biome);
     }
 
-    [TestCase(false, false, 15.367006f, 0.11534659f)]
-    [TestCase(false, true, 15.367006f, 0.88910663f)]
-    [TestCase(true, false, 28.612566f, 10.973157f)]
-    [TestCase(true, true, 28.612566f, 1.986625f)]
-    public void PreySlimeOrMucocystDefence(bool multicellular, bool mucocyst,
-        float expectedControl, float expectedDefended)
+    [TestCase(false, false)]
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    [TestCase(true, true)]
+    public void PreySlimeOrMucocystDefence(bool multicellular, bool mucocyst)
     {
-        var predator = CreateRoleSpecies(231, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var controlPredator = CreateRoleSpecies(231, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var defendedPredator = CreateRoleSpecies(234, false, CreateOrganelle("pilus", new Hex(0, -4)));
         var control = CreateRoleSpecies(232, multicellular);
         var defended = CreateRoleSpecies(233, multicellular,
             CreateOrganelle("slimeJet", new Hex(0, 4), mucocyst ? SlimeJetComponent.MUCOCYST_UPGRADE_NAME : null));
+        AssertCannotEngulf(controlPredator);
+        AssertCannotEngulf(defendedPredator);
+
+        // Predators with slime jets ignore the prey's immobilising slime defence.
+        AssertThat(GetRaw(controlPredator).SlimeJetScore).IsEqual(0.0f);
+        AssertThat(GetRaw(defendedPredator).SlimeJetScore).IsEqual(0.0f);
         var initial = GetRaw(control);
         var changed = GetRaw(defended);
         AssertRawBits(changed,
             mucocyst ?
                 initial with { MucocystsScore = changed.MucocystsScore } :
                 initial with { SlimeJetScore = changed.SlimeJetScore });
-        AssertThat(mucocyst ? changed.MucocystsScore > 0 : changed.SlimeJetScore > 0).IsTrue();
+        AssertThat(mucocyst ? changed.MucocystsScore : changed.SlimeJetScore).IsGreater(0.0f);
+        AssertThat(mucocyst ? changed.SlimeJetScore : changed.MucocystsScore).IsEqual(0.0f);
 
-        AssertScorePair(predator, control, predator, defended,
-            expectedControl, expectedDefended);
+        // The defence fixture includes the added organelle's mass and metabolic effects.
+        var (baseline, defendedScore) = AssertScorePair(controlPredator, control, defendedPredator, defended);
+        AssertThat(baseline).IsGreater(0.0f);
+        AssertThat(defendedScore).IsGreater(0.0f).IsLess(baseline);
     }
 
-    [TestCase(false, 11.885521f, 22.295465f)]
-    [TestCase(true, 0.6260613f, 2.0284386f)]
-    public void PredatorPullingCiliaUpgrade(bool multicellular, float expectedControl, float expectedPulling)
+    [TestCase(false)]
+    [TestCase(true)]
+    public void PredatorPullingCiliaUpgrade(bool multicellular)
     {
         var control = CreateRoleSpecies(241, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
             CreateOrganelle("cilia", new Hex(4, 0)));
         var pulling = CreateRoleSpecies(242, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
             CreateOrganelle("cilia", new Hex(4, 0), CiliaComponent.CILIA_PULL_UPGRADE_NAME));
-        var prey = CreateRoleSpecies(243, false);
+        var controlPrey = CreateRoleSpecies(243, false);
+        var pullingPrey = CreateRoleSpecies(244, false);
+        AssertCannotEngulf(control);
+        AssertCannotEngulf(pulling);
         var initial = GetRaw(control);
         var changed = GetRaw(pulling);
         AssertRawBits(changed, initial with { PullingCiliaModifier = changed.PullingCiliaModifier });
+        AssertThat(initial.PilusScore).IsGreater(0.0f);
         AssertBits(initial.PullingCiliaModifier, 1.0f);
-        AssertThat(changed.PullingCiliaModifier > 1).IsTrue();
+        AssertThat(changed.PullingCiliaModifier).IsGreater(1.0f);
 
-        AssertScorePair(control, prey, pulling, prey, expectedControl, expectedPulling);
+        // Matching organelles and positions keep a reachable pilus catch path; only the cilia upgrade changes.
+        var (baseline, pullingScore) = AssertScorePair(control, controlPrey, pulling, pullingPrey);
+        AssertThat(baseline).IsGreater(0.0f);
+        AssertThat(pullingScore).IsGreater(baseline);
     }
 
     [TestCase(false, 0.17904808f, 0.16923125f)]
@@ -233,7 +274,7 @@ public class SimulationCachePredationRoleTests
     public void SelfPredationRemainsZero(bool multicellular)
     {
         var species = CreateRoleSpecies(271, multicellular, CreateOrganelle("pilus", new Hex(0, -4)));
-        AssertPredationLifecycle(species, species, 0);
+        AssertThat(AssertPredationLifecycle(species, species)).IsEqual(0.0f);
     }
 
     [TestCase(false)]
@@ -285,19 +326,16 @@ public class SimulationCachePredationRoleTests
         };
     }
 
-    private static void AssertScorePair(Species controlPredator, Species controlPrey,
-        Species changedPredator, Species changedPrey, float expectedControl, float expectedChanged,
-        BiomeConditions? biome = null)
+    private static void AssertCannotEngulf(Species species)
     {
-        biome ??= CreateBiome();
-        var control = CreateCache().GetPredationScore(controlPredator, controlPrey, biome);
-        var changed = CreateCache().GetPredationScore(changedPredator, changedPrey, biome);
-        AssertBits(control, expectedControl);
-        AssertBits(changed, expectedChanged);
-        AssertThat(float.IsFinite(control)).IsTrue();
-        AssertThat(float.IsFinite(changed)).IsTrue();
-        AssertDifferentBits(changed, control);
-        AssertPredationLifecycle(controlPredator, controlPrey, expectedControl, biome);
-        AssertPredationLifecycle(changedPredator, changedPrey, expectedChanged, biome);
+        if (species is MicrobeSpecies microbe)
+        {
+            AssertThat(microbe.CanEngulf).IsFalse();
+        }
+        else
+        {
+            foreach (var cellType in ((MulticellularSpecies)species).CellTypes)
+                AssertThat(cellType.MembraneType.CanEngulf).IsFalse();
+        }
     }
 }

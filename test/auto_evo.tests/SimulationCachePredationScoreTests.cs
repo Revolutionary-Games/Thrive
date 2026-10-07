@@ -14,35 +14,65 @@ public class SimulationCachePredationScoreTests
         var predator = CreateMicrobe(1, "NoTools", "cellulose", "cytoplasm");
         var prey = CreateMicrobe(2, "NoToolsPrey", "single", "cytoplasm");
 
-        AssertPredationLifecycle(predator, prey, 0.0f);
+        AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
     }
 
     [TestCase]
-    public void EngulfingPredatorScoreIsCharacterized()
+    public void DigestibleEngulfmentEnablesPredation()
     {
-        var predator = CreateMicrobe(3, "Engulfer", "single",
+        var control = CreateMicrobe(3, "CannotEngulf", "cellulose",
             "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
-        var prey = CreateMicrobe(4, "Engulfed", "single", "cytoplasm");
+        var engulfer = CreateMicrobe(4, "Engulfer", "single",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
+        var controlPrey = CreateMicrobe(5, "ControlPrey", "single", "cytoplasm");
+        var engulfedPrey = CreateMicrobe(6, "EngulfedPrey", "single", "cytoplasm");
+        var cache = CreateCache();
+        AssertThat(control.CanEngulf).IsFalse();
+        AssertThat(engulfer.CanEngulf).IsTrue();
+        var controlTools = cache.GetPredationToolsRawScores(control);
+        var engulfingTools = cache.GetPredationToolsRawScores(engulfer);
+        AssertRawBits(controlTools, engulfingTools);
+        AssertThat(engulfingTools.PilusScore + engulfingTools.InjectisomeScore + engulfingTools.OxytoxyScore +
+            engulfingTools.CytotoxinScore + engulfingTools.MacrolideScore + engulfingTools.ChannelInhibitorScore +
+            engulfingTools.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
+        AssertThat(engulfedPrey.MembraneType.DissolverEnzyme).IsEqual(Constants.LIPASE_ENZYME);
+        AssertThat(cache.GetBaseHexSizeForSpecies(engulfer))
+            .IsGreater(cache.GetBaseHexSizeForSpecies(engulfedPrey) * Constants.ENGULF_SIZE_RATIO_REQ);
 
-        AssertPredationLifecycle(predator, prey, 233.40552f);
+        // Switching membrane also affects movement and resistance; this is the engulfment capability boundary.
+        var (baseline, engulfingScore) = AssertScorePair(control, controlPrey, engulfer, engulfedPrey);
+        AssertThat(baseline).IsEqual(0.0f);
+        AssertThat(engulfingScore).IsGreater(baseline);
     }
 
     [TestCase]
-    public void PilusAndToxinPredatorScoreIsCharacterized()
+    public void PilusAndToxinPredatorHasPredationAbility()
     {
-        var predator = CreateMicrobe(5, "Armed", "cellulose", "cytoplasm", "pilus", "oxytoxy");
-        var prey = CreateMicrobe(6, "ArmouredPrey", "cellulose", "cytoplasm");
+        var predator = CreateMicrobe(7, "Armed", "cellulose", "cytoplasm");
+        predator.Organelles.Add(CreateOrganelle("pilus", new Hex(0, -1)));
+        predator.Organelles.Add(CreateOrganelle("oxytoxy", new Hex(0, 1)));
+        predator.OnEdited();
+        var prey = CreateMicrobe(8, "ArmouredPrey", "cellulose", "cytoplasm");
+        var raw = CreateCache().GetPredationToolsRawScores(predator);
+        AssertThat(predator.CanEngulf).IsFalse();
+        AssertThat(raw.PilusScore).IsGreater(0.0f);
 
-        AssertPredationLifecycle(predator, prey, 0.17211556f);
+        // The toxin carrier without a custom upgrade uses the default cytotoxin type.
+        AssertThat(raw.CytotoxinScore).IsGreater(0.0f);
+
+        // A compound loadout has an attack path; no monotonic stacking benefit is implied.
+        AssertThat(AssertPredationLifecycle(predator, prey)).IsGreater(0.0f);
     }
 
     [TestCase]
-    public void MulticellularPredatorScoreIsCharacterized()
+    public void SingleCellMulticellularPredatorHasPredationAbility()
     {
-        var predator = CreateMulticellularPredator(7);
-        var prey = CreateMicrobe(8, "MulticellularPrey", "single", "cytoplasm");
+        var predator = CreateMulticellularPredator(9);
+        var prey = CreateMicrobe(10, "MulticellularPrey", "single", "cytoplasm");
+        AssertThat(predator.EditorCells.Count).IsEqual(1);
+        AssertThat(predator.CellTypes[0].MembraneType.CanEngulf).IsTrue();
 
-        AssertPredationScoreGreaterThanZero(predator, prey);
+        AssertThat(AssertPredationLifecycle(predator, prey)).IsGreater(0.0f);
     }
 
     [TestCase("cellulose", Constants.CELLULASE_ENZYME, false)]
@@ -68,7 +98,7 @@ public class SimulationCachePredationScoreTests
         AssertThat(cellType.MembraneType.DissolverEnzyme).IsEqual(enzyme);
 
         var predator = CreateMembraneTestPredator(31);
-        AssertPredationLifecycle(predator, prey, 0.0f);
+        AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
 
         // A matching enzyme makes this same prey digestible at the public score seam.
         var equippedPredator = CreateMembraneTestPredator(32, enzyme);
@@ -100,7 +130,7 @@ public class SimulationCachePredationScoreTests
         }
         else
         {
-            AssertPredationLifecycle(predator, prey, 0.0f);
+            AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
         }
     }
 
@@ -130,36 +160,34 @@ public class SimulationCachePredationScoreTests
         }
         else
         {
-            AssertPredationLifecycle(predator, prey, 0.0f);
+            AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
         }
     }
 
     [TestCase]
     public void PreySlimeJetPropulsionReducesCatchability()
     {
-        var predator = CreateSlimeJetPredator(9);
-        var preyWithoutSlimeJet = CreatePrey(10, false);
-        var preyWithSlimeJet = CreatePrey(11, true);
-        var cache = new SimulationCache(new WorldGenerationSettings
-        {
-            Seed = 1,
-        });
-        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
-
+        var controlPredator = CreateSlimeJetPredator(11);
+        var changedPredator = CreateSlimeJetPredator(12);
+        var preyWithoutSlimeJet = CreatePrey(13, false);
+        var preyWithSlimeJet = CreatePrey(14, true);
+        var cache = CreateCache();
         var preyWithoutSlimeJetRawScores = cache.GetPredationToolsRawScores(preyWithoutSlimeJet);
         var preyWithSlimeJetRawScores = cache.GetPredationToolsRawScores(preyWithSlimeJet);
-        var scoreAgainstPreyWithoutSlimeJet = cache.GetPredationScore(predator, preyWithoutSlimeJet, biome);
-        var scoreAgainstPreyWithSlimeJet = cache.GetPredationScore(predator, preyWithSlimeJet, biome);
 
+        // Slime on both predators bypasses the prey's immobilising defence, leaving the catchability path.
+        AssertThat(cache.GetPredationToolsRawScores(controlPredator).SlimeJetScore).IsGreater(0.0f);
+        AssertThat(cache.GetPredationToolsRawScores(changedPredator).SlimeJetScore).IsGreater(0.0f);
         AssertThat(preyWithoutSlimeJetRawScores.SlimeJetScore).IsEqual(0.0f);
-        AssertThat(preyWithSlimeJetRawScores.SlimeJetScore > 0.0f).IsTrue();
-        AssertThat(float.IsFinite(scoreAgainstPreyWithoutSlimeJet)).IsTrue();
-        AssertThat(float.IsFinite(scoreAgainstPreyWithSlimeJet)).IsTrue();
-        AssertThat(scoreAgainstPreyWithoutSlimeJet > 0.0f).IsTrue();
-        AssertThat(scoreAgainstPreyWithSlimeJet > 0.0f).IsTrue();
-        AssertThat(scoreAgainstPreyWithoutSlimeJet).IsEqual(80417.01f);
-        AssertThat(scoreAgainstPreyWithSlimeJet).IsEqual(80317.52f);
-        AssertThat(scoreAgainstPreyWithSlimeJet < scoreAgainstPreyWithoutSlimeJet).IsTrue();
+        AssertThat(preyWithSlimeJetRawScores.SlimeJetScore).IsGreater(0.0f);
+        AssertThat(preyWithoutSlimeJetRawScores.MucocystsScore).IsEqual(0.0f);
+        AssertThat(preyWithSlimeJetRawScores.MucocystsScore).IsEqual(0.0f);
+
+        // Replacing the organelle also changes mass and metabolism; this fixture checks the resulting catchability.
+        var (baseline, propelledScore) =
+            AssertScorePair(controlPredator, preyWithoutSlimeJet, changedPredator, preyWithSlimeJet);
+        AssertThat(baseline).IsGreater(0.0f);
+        AssertThat(propelledScore).IsGreater(0.0f).IsLess(baseline);
     }
 
     [TestCase]

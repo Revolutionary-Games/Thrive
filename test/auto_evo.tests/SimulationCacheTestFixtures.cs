@@ -86,26 +86,42 @@ internal static class SimulationCacheTestFixtures
         AssertThat(BitConverter.SingleToInt32Bits(actual)).IsNotEqual(BitConverter.SingleToInt32Bits(other));
     }
 
+    internal static float AssertPredationLifecycle(Species predator, Species prey, BiomeConditions? biome = null)
+    {
+        var cache = CreateCache();
+        biome ??= CreateBiome();
+        var cold = cache.GetPredationScore(predator, prey, biome);
+        AssertThat(float.IsFinite(cold)).IsTrue();
+        AssertBits(cache.GetPredationScore(predator, prey, biome), cold);
+        cache.Clear();
+        AssertBits(cache.GetPredationScore(predator, prey, biome), cold);
+        return cold;
+    }
+
+    // Compatibility for the toxin snapshots that will be migrated separately.
     internal static void AssertPredationLifecycle(Species predator, Species prey, float expected,
         BiomeConditions? biome = null)
     {
-        var cache = CreateCache();
-        biome ??= CreateBiome();
-        AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
-        AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
-        cache.Clear();
-        AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
+        AssertBits(AssertPredationLifecycle(predator, prey, biome), expected);
     }
 
-    internal static void AssertPredationScoreGreaterThanZero(Species predator, Species prey,
+    internal static (float Control, float Changed) AssertScorePair(Species controlPredator, Species controlPrey,
+        Species changedPredator, Species changedPrey, BiomeConditions? biome = null)
+    {
+        biome ??= CreateBiome();
+        return (AssertPredationLifecycle(controlPredator, controlPrey, biome),
+            AssertPredationLifecycle(changedPredator, changedPrey, biome));
+    }
+
+    // Keep unmigrated toxin callers compiling until their mechanism scenarios replace the snapshots.
+    internal static void AssertScorePair(Species controlPredator, Species controlPrey,
+        Species changedPredator, Species changedPrey, float expectedControl, float expectedChanged,
         BiomeConditions? biome = null)
     {
-        var cache = CreateCache();
-        biome ??= CreateBiome();
-        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
-        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
-        cache.Clear();
-        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
+        var (control, changed) = AssertScorePair(controlPredator, controlPrey, changedPredator, changedPrey, biome);
+        AssertBits(control, expectedControl);
+        AssertBits(changed, expectedChanged);
+        AssertDifferentBits(changed, control);
     }
 
     internal static void AssertRawBits(SimulationCache.PredationToolsRawScores actual,
