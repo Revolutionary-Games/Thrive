@@ -106,7 +106,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private bool microbeCacheBuilt;
     private bool chunkCacheBuilt;
 
-    private double terrainCacheRebuildTimer;
+    private double terrainCacheRebuildTimer = 1000;
 
     private Vector3? potentiallyKnownPlayerPosition;
 
