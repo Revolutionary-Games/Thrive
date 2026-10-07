@@ -344,7 +344,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "macroscopicConditionsViewButton", "macroscopicConditionsView", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -412,6 +412,8 @@ playerGameteSelectionA = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginConta
 gameteSelectionALabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/GameteALabel")
 playerGameteSelectionB = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/PlayerGameteB")
 massBuddingReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions")
+macroscopicConditionsViewButton = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/MacroscopicCheck")
+macroscopicConditionsView = NodePath("MacroscopicConditionsPopup")
 hexPositionEffectsContainer = NodePath("AdjacencyFactorsContainer")
 hexEffectFont = ExtResource("4_h03u7")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
@@ -1046,6 +1048,11 @@ processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfiguration")
 
+[node name="MacroscopicCheck" type="Button" parent="RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1147404361, 743924629) index="23" unique_id=958512207]
+layout_mode = 2
+text = "CHECK_MACROSCOPIC_REQUIREMENTS"
+autowrap_mode = 3
+
 [node name="EditorComponentBottomLeftButtons" parent="." unique_id=1138987653 instance=ExtResource("13")]
 layout_mode = 1
 offset_top = -56.0
@@ -1253,6 +1260,14 @@ layout_mode = 2
 ShowSpinners = false
 ShowToggles = false
 
+[node name="MacroscopicConditionsPopup" parent="." unique_id=1890631163 instance=ExtResource("7")]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 0
+CenterText = false
+HideCancelButton = true
+DialogText = "MACROSCOPIC_CONDITIONS_INTRO"
+WindowTitle = "MACROSCOPIC_CONDITIONS_TITLE"
+
 [node name="CompleteEndosymbiosisWarning" parent="." unique_id=1481082194 instance=ExtResource("7")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
@@ -1306,6 +1321,7 @@ IsMulticellular = true
 [connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/MacroscopicCheck" to="." method="OpenMacroscopicRequirementsDialog"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]

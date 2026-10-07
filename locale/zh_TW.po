@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 16:10+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -518,6 +518,10 @@ msgstr "半深海帶"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成為宏觀生物（{0}／{1}）"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "成為宏觀生物（{0}／{1}）"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "成為多細胞生物（{0}／{1}）"
 
@@ -856,6 +860,10 @@ msgstr "啟用作弊鍵"
 
 msgid "CHEAT_MENU"
 msgstr "作弊選單"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "僅從[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]開始可用。"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏細胞代謝過程"
@@ -3754,6 +3762,46 @@ msgstr ""
 "\n"
 "關於宏觀階段的遊戲設計方案有一個單獨的頁面，詳細描述了該階段的機制。"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "宏觀生物編輯器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "宏觀生物編輯器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "宏觀生物編輯器"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "起始細胞數量"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "在 {0} 生物群系中繁殖"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏觀生物編輯器"
 
@@ -4443,7 +4491,14 @@ msgstr "移動至任何區域"
 msgid "MOVE_TO_LAND"
 msgstr "移動至陸地"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"進入多細胞階段（宏觀）。細胞群達到一定大小後即可解鎖。\n"
+"這需要您在編輯器中添加足夠的細胞，然後將您的細胞群發展到最低規模。"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "進入多細胞階段（宏觀）。細胞群達到一定大小後即可解鎖。\n"
 "這需要您在編輯器中添加足夠的細胞，然後將您的細胞群發展到最低規模。"
@@ -5116,6 +5171,10 @@ msgstr "向右平移"
 
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "且"
 
 msgid "PAST_DEVELOPERS"
 msgstr "過去的開發人員"
@@ -10824,13 +10883,6 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "自殺"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "選取的存檔已知會跟這個版本的Thrive不兼容。\n"
-#~ "而且也沒有適用的存檔更新器。\n"
-#~ "由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
