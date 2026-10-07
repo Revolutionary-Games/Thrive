@@ -96,7 +96,7 @@ public class AutoEvoRun
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Use Stopwatch.GetTimestamp to compare this with other Stopwatch timestamps.
+    ///     Use Stopwatch.GetElapsedTime to compare this with other Stopwatch timestamps.
     ///   </para>
     /// </remarks>
     public long FinishedAtTimestamp => Volatile.Read(ref finishedAtTimestamp);
