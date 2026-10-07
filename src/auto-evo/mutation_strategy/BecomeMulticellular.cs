@@ -24,7 +24,7 @@ public class BecomeMulticellular : IMutationStrategy<Species>
         // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
         // (the in-gameplay requirement of having a colony of size 5 can be supposed to happen anytime)
         // If more requirements are added for the player, that should extend to auto-evo as well.
-        /*var hasBindingFeature = false;
+        var hasBindingFeature = false;
         var count = organelles.Count;
         for (int i = 0; i < count; ++i)
         {
@@ -36,7 +36,7 @@ public class BecomeMulticellular : IMutationStrategy<Species>
         }
 
         if (!hasBindingFeature)
-            return null;*/
+            return null;
 
         var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, true);
 
