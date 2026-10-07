@@ -274,7 +274,6 @@ public class RunResults : IArchivable
         {
             results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
                 out var existing);
-            GD.Print("existing: " + existing + " mutant: " + population);
             population += existing;
         }
 
