@@ -275,7 +275,8 @@ public class GameWorld : IArchivable
         }
     }
 
-    public static MulticellularSpecies GenerateMulticellularVersion(MicrobeSpecies microbeSpecies, bool initialBlob)
+    public static MulticellularSpecies GenerateMulticellularVersion(MicrobeSpecies microbeSpecies, bool initialBlob,
+        bool calledFromAutoEvo = false)
     {
         var multicellularVersion = new MulticellularSpecies(microbeSpecies.ID, microbeSpecies.Genus,
             microbeSpecies.Epithet);
@@ -304,8 +305,19 @@ public class GameWorld : IArchivable
                 new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(1, 0), 0), new Hex(1, 0), 0),
                 workMemory1, workMemory2);
 
+            // Creating new gameplay layouts should use the cheaper algorithm if called from auto-evo
+            AlgorithmQuality algorithmQuality;
+            if (calledFromAutoEvo)
+            {
+                algorithmQuality = AlgorithmQuality.Low;
+            }
+            else
+            {
+                algorithmQuality = AlgorithmQuality.High;
+            }
+
             MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
-                multicellularVersion.ModifiableEditorCells, simpleLayout, AlgorithmQuality.High, workMemory1,
+                multicellularVersion.ModifiableEditorCells, simpleLayout, algorithmQuality, workMemory1,
                 workMemory2, workMemory3);
         }
         else

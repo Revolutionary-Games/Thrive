@@ -38,7 +38,7 @@ public class BecomeMulticellular : IMutationStrategy<Species>
         if (!hasBindingFeature)
             return null;*/
 
-        var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true);
+        var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, true);
 
         // Like with the player, becoming Multicellular does not cost any MP.
         return [new Mutant(newSpecies, mp)];
