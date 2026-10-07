@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-06 16:10+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "ABILITIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:318
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
 msgid "ABORT"
 msgstr ""
 
@@ -204,11 +204,11 @@ msgstr ""
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:154
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:157
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:974
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1040
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -508,7 +508,7 @@ msgstr ""
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:535
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:271
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
@@ -525,7 +525,7 @@ msgstr ""
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:258
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:261
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
@@ -585,7 +585,8 @@ msgstr ""
 msgid "AWARE_STAGE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:686
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:689
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:736
 #: ../src/general/MainMenu.tscn:433 ../src/general/MainMenu.tscn:499
 #: ../src/general/MainMenu.tscn:547 ../src/general/MainMenu.tscn:889
 #: ../src/general/NewGameSettings.tscn:1150 ../src/general/PauseMenu.tscn:289
@@ -1655,7 +1656,7 @@ msgstr ""
 msgid "CONCEPT_ART"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:108
 msgid "CONFIG"
 msgstr ""
 
@@ -1667,7 +1668,7 @@ msgstr ""
 msgid "CONFIRM_DELETE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:695
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:702
 #: ../src/general/PauseMenu.tscn:315
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:195
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:107
@@ -2157,11 +2158,11 @@ msgstr ""
 msgid "CURRENT_RESEARCH_PROGRESS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:218
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:903
+#: ../src/auto-evo/AutoEvoExploringTool.cs:969
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -2315,7 +2316,7 @@ msgstr ""
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:62 ../src/saving/SaveListItem.tscn:239
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:239
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr ""
 
@@ -3039,7 +3040,7 @@ msgstr ""
 msgid "EVENT_UPWELLING_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:570
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -3102,15 +3103,15 @@ msgstr ""
 msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:338
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:700
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:707
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:200
 msgid "EXPORT_SUCCESS"
 msgstr ""
@@ -3169,11 +3170,11 @@ msgstr ""
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:114 ../src/saving/SaveManagerGUI.tscn:154
+#: ../src/saving/SaveList.tscn:115 ../src/saving/SaveManagerGUI.tscn:154
 msgid "FAILED_SAVE_DELETION"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr ""
 
@@ -3243,11 +3244,11 @@ msgstr ""
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:278
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:281
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:487
+#: ../src/auto-evo/AutoEvoExploringTool.cs:532
 msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
@@ -3590,7 +3591,7 @@ msgstr ""
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:422
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 msgid "GENERATIONS"
 msgstr ""
 
@@ -4379,7 +4380,7 @@ msgstr ""
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:229
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:232
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
@@ -5110,7 +5111,7 @@ msgstr ""
 msgid "LOADING"
 msgstr ""
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:40 ../src/saving/SaveList.tscn:53
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:40 ../src/saving/SaveList.tscn:54
 #: ../src/saving/SaveListItem.tscn:82
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
@@ -5166,24 +5167,28 @@ msgstr ""
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:106
+#: ../src/saving/SaveList.tscn:107
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:74
+#: ../src/saving/SaveList.tscn:69 ../src/saving/SaveList.tscn:75
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:81
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:79
+#: ../src/saving/SaveList.tscn:80
 msgid "LOAD_INVALID_SAVE_WARNING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:697
+msgid "LOAD_SAVE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:396
@@ -5287,7 +5292,7 @@ msgstr ""
 msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:443
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:451
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
 msgstr ""
 
@@ -5303,7 +5308,7 @@ msgstr ""
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:430
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:438
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
 msgstr ""
 
@@ -5336,7 +5341,7 @@ msgstr ""
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "MAP"
 msgstr ""
 
@@ -5524,7 +5529,7 @@ msgstr ""
 msgid "MIB_VALUE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:132
 msgid "MICHE"
 msgstr ""
 
@@ -5598,7 +5603,7 @@ msgstr ""
 msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:626
 msgid "MICHE_TREE"
 msgstr ""
 
@@ -5628,8 +5633,8 @@ msgstr ""
 msgid "MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:939
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1026
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1005
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1092
 msgid "MICROBE_ENZYME_STATISTICS"
 msgstr ""
 
@@ -5737,27 +5742,27 @@ msgstr ""
 msgid "MICROBE_LOADING_TIP_9"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:935
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1021
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1087
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:931
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1014
+#: ../src/auto-evo/AutoEvoExploringTool.cs:997
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1080
 msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:916
-#: ../src/auto-evo/AutoEvoExploringTool.cs:926
-#: ../src/auto-evo/AutoEvoExploringTool.cs:943
-#: ../src/auto-evo/AutoEvoExploringTool.cs:993
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1007
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1033
+#: ../src/auto-evo/AutoEvoExploringTool.cs:982
+#: ../src/auto-evo/AutoEvoExploringTool.cs:992
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1009
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1059
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1073
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1099
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:922
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1000
+#: ../src/auto-evo/AutoEvoExploringTool.cs:988
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1066
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr ""
 
@@ -6135,7 +6140,7 @@ msgstr ""
 msgid "MOVEMENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
@@ -6287,7 +6292,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1125
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1133
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6336,7 +6341,7 @@ msgstr ""
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:383
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
@@ -6400,7 +6405,7 @@ msgstr ""
 msgid "NEWER"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:67
+#: ../src/saving/SaveList.tscn:68
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -6794,7 +6799,7 @@ msgstr ""
 msgid "OLDER"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:73
+#: ../src/saving/SaveList.tscn:74
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -7135,7 +7140,7 @@ msgstr ""
 msgid "PATCHES_NUMBER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:651
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:654
 msgid "PATCH_COLON"
 msgstr ""
 
@@ -7430,7 +7435,7 @@ msgstr ""
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:326
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:178
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
@@ -7672,8 +7677,8 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:645
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.cs:697
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:267
 msgid "READY"
 msgstr ""
 
@@ -7717,7 +7722,7 @@ msgstr ""
 msgid "RENDER_SCALE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:117
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:107
 msgid "REPORT"
 msgstr ""
@@ -7920,7 +7925,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:701 ../src/general/PauseMenu.cs:484
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -7991,7 +7996,7 @@ msgstr ""
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:273
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:276
 msgid "RUN_ONE_STEP"
 msgstr ""
 
@@ -8019,11 +8024,11 @@ msgstr ""
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:503
+#: ../src/auto-evo/AutoEvoExploringTool.cs:548
 msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:311
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:314
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
 
@@ -8068,7 +8073,7 @@ msgstr ""
 msgid "SAVE_CHEATS_USED"
 msgstr ""
 
-#: ../src/saving/SaveList.cs:237
+#: ../src/saving/SaveList.cs:240
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
@@ -8108,7 +8113,7 @@ msgstr ""
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
@@ -8128,11 +8133,11 @@ msgstr ""
 msgid "SAVE_SPACE_USED"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:100
+#: ../src/saving/SaveList.tscn:101
 msgid "SAVE_UPGRADE_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:99
+#: ../src/saving/SaveList.tscn:100
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
@@ -8247,28 +8252,28 @@ msgstr ""
 msgid "SELECTED_MOD"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:88
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:107
+#: ../src/saving/SaveList.tscn:108
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:96
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:429
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:432
 msgid "SELECT_A_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:658
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:661
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:97
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:457
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:460
 msgid "SELECT_A_SPECIES"
 msgstr ""
 
@@ -8665,7 +8670,7 @@ msgstr ""
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:450
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:453
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
 msgid "SPECIES"
 msgstr ""
@@ -8916,7 +8921,7 @@ msgstr ""
 msgid "STRATEGY_STAGES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:392
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:395
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
@@ -9515,7 +9520,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:481
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1128
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1136
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -10264,7 +10269,7 @@ msgstr ""
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:123
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:126
 msgid "VIEWER"
 msgstr ""
 
@@ -12616,7 +12621,7 @@ msgstr ""
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:99
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:102
 msgid "WORLD"
 msgstr ""
 
@@ -12624,7 +12629,7 @@ msgstr ""
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:185
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:188
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr ""
 
