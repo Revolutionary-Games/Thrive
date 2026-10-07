@@ -107,6 +107,12 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
             score += 1 / predationScore;
         }
 
+        // TODO: Remove this score increase meant to force lots of Multicellular species
+        if (species is MulticellularSpecies)
+        {
+            score *= 10.5f;
+        }
+
         return score;
     }
 
