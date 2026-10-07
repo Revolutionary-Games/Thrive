@@ -316,8 +316,12 @@ public class GameWorld : IArchivable
                 algorithmQuality = AlgorithmQuality.High;
             }
 
+            // Create an editor layout instance here so that it is not "missing" afterward, even though it is cleared
+            // immediately afterward. (otherwise, one is created anyway, just with a printed warning)
+            var editorLayout = multicellularVersion.ModifiableEditorCells = new IndividualHexLayout<CellTemplate>();
+
             MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
-                multicellularVersion.ModifiableEditorCells, simpleLayout, algorithmQuality, workMemory1,
+                editorLayout, simpleLayout, algorithmQuality, workMemory1,
                 workMemory2, workMemory3);
         }
         else
