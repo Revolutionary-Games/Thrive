@@ -33,7 +33,7 @@ public class AutoEvoRun
 
     private bool started;
     private volatile bool running;
-    private volatile bool finished;
+    private long finishedAtTimestamp;
     private volatile bool completionCommitted;
     private volatile bool aborted;
 
@@ -89,7 +89,17 @@ public class AutoEvoRun
     /// <summary>
     ///   True after all accepted work has stopped and the final duration and results are visible.
     /// </summary>
-    public bool Finished { get => finished; private set => finished = value; }
+    public bool Finished => FinishedAtTimestamp != 0;
+
+    /// <summary>
+    ///   The monotonic Stopwatch timestamp at completion, or zero before completion. This is independent of polling.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Use Stopwatch.GetElapsedTime to compare this with other Stopwatch timestamps.
+    ///   </para>
+    /// </remarks>
+    public long FinishedAtTimestamp => Volatile.Read(ref finishedAtTimestamp);
 
     /// <summary>
     ///   Whether cancellation was requested or a step failed. Wait for Finished before reusing the run's inputs.
@@ -611,7 +621,7 @@ public class AutoEvoRun
         // Prevent continuation between clearing Running and publishing completion.
         completionCommitted = true;
         Running = false;
-        Finished = true;
+        Volatile.Write(ref finishedAtTimestamp, Stopwatch.GetTimestamp());
     }
 
     /// <summary>
