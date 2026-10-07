@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-29 09:51+0300\n"
-"PO-Revision-Date: 2026-05-17 08:05+0000\n"
-"Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-10-05 19:49+0000\n"
+"Last-Translator: Lukša <lukajdag@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -85,9 +85,8 @@ msgstr "Odstranit"
 msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Dvojnásobná populace"
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Z duplikovat jednotky"
+msgstr "Duplikovat jednotky"
 
 msgid "ACTION_HALF_POPULATION"
 msgstr "Snížení populace na polovinu"
@@ -162,9 +161,8 @@ msgstr "(rychlost mutací AI druhů)"
 msgid "ALL"
 msgstr "Vše"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
+msgstr "Povolit změnu druhu při vyhynutí"
 
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "(dovoluje pokračovat ve hraní s jiným druhem v případě vyhynutí, než aby nastal konec hry)"
@@ -198,9 +196,8 @@ msgstr "Životní prostředí"
 msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
 msgstr "@"
 
-#, fuzzy
 msgid "ALWAYS_VISIBLE"
-msgstr "Viditelné"
+msgstr "Vždy viditelné"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Hlasitost prostředí"
@@ -211,9 +208,8 @@ msgstr "Amoniak"
 msgid "AMMONIA_COST"
 msgstr "Potřeba amoniaku:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Amoniak"
+msgstr "Úroveň amoniaku"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet automatických záloh k zachování:"
@@ -328,9 +324,8 @@ msgstr "Bez externích zdrojů"
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr "Bez glukózy"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Sirovodík"
+msgstr "bez sirovodíku"
 
 #, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
@@ -449,7 +444,7 @@ msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
 msgstr "Průměrná hodnota intenzity povrchového světla"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Průměrná povrchová úroveň dusíku"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
 msgstr ""
@@ -774,13 +769,13 @@ msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
 msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
-msgstr ""
+msgstr "Rozpoložení není možné kvůli překrývajících se buňkách."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
 msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
-msgstr ""
+msgstr "Rozpoložení není možné kvůli oddělených a překrývajících se buňkách."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
 msgstr ""
@@ -2230,6 +2225,7 @@ msgstr "Vstupte do editoru a upravte svůj druh"
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbióza"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} za sekundu"
 
@@ -2238,12 +2234,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Při konzumaci:\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -2382,6 +2372,9 @@ msgstr ""
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"Pád radioaktivního meteoru\n"
+"Zvýšil hodnoty oxidu uhličitého\n"
+"Vytvořil radioaktivní úlomky."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
@@ -5544,6 +5537,19 @@ msgstr "Spustit úvod do mikrobů v nové hře"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Hrát s vybraným nastavením"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populace:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACE:"
 
@@ -6572,6 +6578,10 @@ msgstr "Navštivte náš Patreon"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Název:"
 
 #, fuzzy
 msgid "START"
@@ -8010,6 +8020,9 @@ msgstr "Kolečkem vpravo"
 
 msgid "WHEEL_UP"
 msgstr "Kolečkem nahoru"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -9943,6 +9956,12 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Při konzumaci:\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

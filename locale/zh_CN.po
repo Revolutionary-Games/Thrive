@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-09-29 09:51+0300\n"
-"PO-Revision-Date: 2026-09-30 07:10+0000\n"
+"PO-Revision-Date: 2026-10-05 11:49+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -202,13 +202,11 @@ msgstr ""
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "备选的时间倍率"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr "环境"
+msgstr "总是在离开编辑器时重置世界环境"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "于"
+msgstr "（启用时，当你离开编辑器时环境将总是重新生成，先前的化合物云，地形，微生物，玩家生物和其储存空间，其他生物等将被移除，而不仅仅在你前往其他区域或位置时）"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "总是可见"
@@ -752,7 +750,7 @@ msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr "只能在主结构视图中旋转细胞"
 
 msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
-msgstr ""
+msgstr "注意：在自动模式下不会预览布局位移，因此在退出编辑器时可能因发生位移而导致最终布局略有差异。在手动模式下则会预览细胞类型的布局位移，这可能会导致手动模式与自动模式之间存在差异。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr "该手动细胞布局无效，请检查对应编辑器选项卡并修复或者禁用手动布局"
@@ -2204,19 +2202,13 @@ msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "内共生"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /秒"
+msgstr "{0}: {1} /秒"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}： +{1} ATP\n"
-"含消耗：\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "能量消耗压力"
@@ -5268,6 +5260,18 @@ msgstr "在开始新游戏时播放微生物阶段开场动画"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用当前设置"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr "基础加成 {0}"
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr "  基础加成 {0}"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "特化加成 {0}"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr "  特化加成 {0}"
+
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
@@ -6215,6 +6219,9 @@ msgstr "切换到冲刺模式。冲刺时细胞移动得更快，但会消耗更
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
+
+msgid "STANDARD_COLON_VALUE"
+msgstr "标准:{0}"
 
 msgid "START"
 msgstr "开始"
@@ -7611,6 +7618,9 @@ msgstr "向右滚轮"
 
 msgid "WHEEL_UP"
 msgstr "向上滚轮"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr "消耗时："
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10213,6 +10223,12 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}： +{1} ATP\n"
+#~ "含消耗：\n"
+#~ "{2}"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "孢子细胞类型"

@@ -6,7 +6,7 @@ using Godot;
 public static class CellBodyPlanInternalCalculations
 {
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<HexWithData<CellTemplate>> cells,
-        out float nominalCapacity)
+        out float nominalCapacity, StorageValueBreakdown? breakdown = null)
     {
         nominalCapacity = 0.0f;
 
@@ -21,11 +21,11 @@ public static class CellBodyPlanInternalCalculations
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
             var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ModifiableOrganelles,
-                totalSpecializationBonus);
+                totalSpecializationBonus, breakdown);
             nominalCapacity += totalNominalCap;
 
             MicrobeInternalCalculations.AddSpecificCapacity(cell.ModifiableOrganelles, capacities,
-                totalSpecializationBonus);
+                totalSpecializationBonus, breakdown);
         }
 
         return capacities;

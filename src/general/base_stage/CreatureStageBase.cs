@@ -319,6 +319,12 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         GD.PrintErr("This stage doesn't support view mode: " + mode);
     }
 
+    public virtual void OnStartMoveToEditor()
+    {
+        if (!MovingToEditor)
+            GD.PrintErr("On start move to editor should only be called once status flag is set");
+    }
+
     protected override void WriteBasePropertiesToArchive(ISArchiveWriter writer)
     {
         writer.Write(SERIALIZATION_VERSION_STAGE_BASE);

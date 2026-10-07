@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-29 09:51+0300\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
-"Last-Translator: JareelSkaj <jareelskaj@marcinwolny.net>\n"
+"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"PO-Revision-Date: 2026-10-02 16:08+0000\n"
+"Last-Translator: Wojciech Roter <roterwojciech421@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -52,13 +52,16 @@ msgstr "Akceptuj"
 msgid "ACHIEVEMENTS"
 msgstr "Osiągnięcia"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Osiągnięcia {0} / {1}"
+msgstr "Wczytywanie Pliku Osiągnięć Przerwane"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
+msgstr ""
+"Aktualizacja wybranego zapisu zawiodła przez następujący błąd:\n"
+"Dane mogą być zresetowane, jednak jeśli je usuniesz, stracisz cały postęp osiągnięć.\n"
+"{0}\n"
+"Chcesz kontynuować grę bez osiągnięć?\n"
+"Naciskając \"Zamknij\" opuścisz grę."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Osiągnięcia {0} / {1}"
@@ -105,15 +108,13 @@ msgstr ""
 "Osiadłe mikroby będą czekać w miejscu i oczekiwać zmian w otoczeniu zanim zaczną coś robić."
 
 msgid "ACTOMYOSIN"
-msgstr ""
+msgstr "Aktomiozyna"
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "Brak opisu"
+msgstr "Aktomiozyna to proste struktury mięśni, których kolonie komórek używają do bardziej efektywnego kierowania lub obracania się. Nie są dostępne dla sztywnych typów membran, ponieważ do działania potrzebują elastyczności kolonii. W związku z tym są najbardziej efektywne, gdy w komórce znajduje się tylko jedna taka organella i posiada ją wiele komórek w kolonii."
 
-#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Zmienia [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Zwiększa szybkość poruszania i obracania się kolonii komórek."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Dodatkowe walidacje wykryły błąd: {0}"
@@ -174,14 +175,16 @@ msgstr ""
 "  {0}\n"
 "[b]Ogólna liczba gatunków:[/b]\n"
 "  Średnio {1}; Standardowe odchylenie {2}\n"
-"[b]Gatunki wciąż żyjące:[/b]\n"
+"[b]Ogólna liczba sekund:[/b]\n"
 "  Średnio {3}; Standardowe odchylenie {4}\n"
-"[b]Liczba gatunków na obszar:[/b]\n"
+"[b]Gatunki, które przetrwały:[/b]\n"
 "  Średnio {5}; Standardowe odchylenie {6}\n"
-"[b]Ogólna populacja na obszar:[/b]\n"
+"[b]Liczba gatunków na obszar:[/b]\n"
 "  Średnio {7}; Standardowe odchylenie {8}\n"
-"[b]Średnia wielkość gatunków mikrobów w strefie:[/b]\n"
+"[b]Ogólna populacja na obszar:[/b]\n"
 "  Średnio {9}; Standardowe odchylenie {10}\n"
+"[b]Średnia wielkość gatunków mikrobów w strefie:\n"
+"  Średnio{11}; Standardowe odchylenie {12}\n"
 "\n"
 "[b]Ogólne dane organelli:[/b]"
 
@@ -2219,6 +2222,7 @@ msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbioza"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /sekundę"
 
@@ -2227,12 +2231,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Gdy konsumpcja:\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -5492,6 +5490,19 @@ msgstr "Odtwórz intro mikroba przy nowej grze"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Graj Z Obecnym Ustawieniem"
 
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populacja:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
@@ -5882,11 +5893,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Obróć w prawo"
 
 msgid "ROTATION_COLON"
-msgstr "Populacja:"
+msgstr "Obrót:"
 
-#, fuzzy
 msgid "ROTATION_FORCE"
-msgstr "Populacja:"
+msgstr "Szybkość obrotu:"
 
 msgid "RUNOFF_EVENT"
 msgstr "Spłukiwanie osadów"
@@ -6491,6 +6501,10 @@ msgstr "Odwiedź naszego Patreona"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pauzy"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Tytuł:"
 
 #, fuzzy
 msgid "START"
@@ -7952,6 +7966,9 @@ msgstr "Koło w prawo"
 
 msgid "WHEEL_UP"
 msgstr "Koło w górę"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10212,6 +10229,12 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Gdy konsumpcja:\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

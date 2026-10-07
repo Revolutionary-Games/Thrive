@@ -216,7 +216,18 @@ public partial class CellBodyPlanEditorComponent
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
 
         organismStatisticsPanel.UpdateGeneration(species.Generation);
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(editedMicrobeCells, out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 
