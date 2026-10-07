@@ -86,6 +86,43 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         return false;
     }
 
+    /// <summary>
+    ///   Clones organelles in their original order into an empty layout, excluding the given original reference.
+    ///   Later organelles overlapping earlier copies are skipped.
+    ///   The caller clears <paramref name="occupied"/> before copying.
+    /// </summary>
+    private static void CloneLayoutExcludingOrganelle(IReadOnlyList<OrganelleTemplate> sourceOrganelles,
+        OrganelleLayout<OrganelleTemplate> destination, OrganelleTemplate excludedOrganelle, HashSet<Hex> occupied)
+    {
+        var count = sourceOrganelles.Count;
+
+        for (var i = 0; i < count; ++i)
+        {
+            var parentOrganelle = sourceOrganelles[i];
+
+            if (ReferenceEquals(parentOrganelle, excludedOrganelle))
+                continue;
+
+            var definition = parentOrganelle.Definition;
+            var position = parentOrganelle.Position;
+            var orientation = parentOrganelle.Orientation;
+
+            // Same decision as CanPlace: skipped only if it overlaps an organelle copied earlier, which means the
+            // parent layout was already invalid
+            if (!destination.IsOrganellePositionFree(definition, position.Q, position.R, orientation, occupied, out _))
+                continue;
+
+            var rotated = definition.GetRotatedHexes(orientation);
+            int hexCount = rotated.Count;
+            for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
+            {
+                occupied.Add(rotated[rotatedIndex] + position);
+            }
+
+            destination.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
+        }
+    }
+
     private List<Mutant>? MutationsOfMicrobe(MicrobeSpecies baseSpecies, double mp, Random random)
     {
         if (mp < Constants.ORGANELLE_REMOVE_COST)
@@ -111,40 +148,10 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
             workMemory ??= new MutationWorkMemory();
 
-            // Is this the best way to do this? Probably not, but this is how mutations.cs does it
-            // and the other way outright did not work
-            // This is now slightly improved - hhyyrylainen
-            var count = baseSpecies.Organelles.Count;
-
             var occupied = workMemory.WorkingMemory3;
             occupied.Clear();
 
-            for (var i = 0; i < count; ++i)
-            {
-                var parentOrganelle = baseOrganelles[i];
-
-                if (ReferenceEquals(parentOrganelle, organelle))
-                    continue;
-
-                var definition = parentOrganelle.Definition;
-                var position = parentOrganelle.Position;
-                var orientation = parentOrganelle.Orientation;
-
-                // Same decision as CanPlace: skipped only if it overlaps an organelle copied earlier, which means the
-                // parent layout was already invalid
-                if (!newSpecies.Organelles.IsOrganellePositionFree(definition, position.Q, position.R, orientation,
-                        occupied, out _))
-                {
-                    continue;
-                }
-
-                var rotated = definition.GetRotatedHexes(orientation);
-                int hexCount = rotated.Count;
-                for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
-                    occupied.Add(rotated[rotatedIndex] + position);
-
-                newSpecies.Organelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
-            }
+            CloneLayoutExcludingOrganelle(baseOrganelles, newSpecies.Organelles, organelle, occupied);
 
             AttachIslandHexes(newSpecies.Organelles, workMemory);
 
@@ -207,64 +214,15 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                     var parentCellTypeOrganelles =
                         baseSpecies.ModifiableCellTypes[j].ModifiableOrganelles;
-                    var copyOrganelleCount = parentCellTypeOrganelles.Count;
 
-                    for (var k = 0; k < copyOrganelleCount; ++k)
-                    {
-                        var parentOrganelle = parentCellTypeOrganelles[k];
-
-                        if (ReferenceEquals(parentOrganelle, organelle))
-                            continue;
-
-                        var definition = parentOrganelle.Definition;
-                        var position = parentOrganelle.Position;
-                        var orientation = parentOrganelle.Orientation;
-
-                        if (!clonedCellType.ModifiableOrganelles.IsOrganellePositionFree(definition, position.Q,
-                                position.R, orientation, occupied, out _))
-                        {
-                            continue;
-                        }
-
-                        var rotated = definition.GetRotatedHexes(orientation);
-                        int hexCount = rotated.Count;
-                        for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
-                            occupied.Add(rotated[rotatedIndex] + position);
-
-                        clonedCellType.ModifiableOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
-                    }
+                    CloneLayoutExcludingOrganelle(parentCellTypeOrganelles.Organelles,
+                        clonedCellType.ModifiableOrganelles, organelle, occupied);
                 }
 
                 // Clone the organelles for the targeted cell type, excluding the targeted organelle
-                // Is this the best way to do this?
-                var organelleCount = baseCellType.Organelles.Count;
-
                 occupied.Clear();
 
-                for (var j = 0; j < organelleCount; ++j)
-                {
-                    var parentOrganelle = baseOrganelles[j];
-
-                    if (ReferenceEquals(parentOrganelle, organelle))
-                        continue;
-
-                    var definition = parentOrganelle.Definition;
-                    var position = parentOrganelle.Position;
-                    var orientation = parentOrganelle.Orientation;
-
-                    if (!newCellTypeOrganelles.IsOrganellePositionFree(definition, position.Q, position.R,
-                            orientation, occupied, out _))
-                    {
-                        continue;
-                    }
-
-                    var rotated = definition.GetRotatedHexes(orientation);
-                    int hexCount = rotated.Count;
-                    for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
-                        occupied.Add(rotated[rotatedIndex] + position);
-
-                    newCellTypeOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
-                }
+                CloneLayoutExcludingOrganelle(baseOrganelles, newCellTypeOrganelles, organelle, occupied);
 
                 AttachIslandHexes(newCellTypeOrganelles, workMemory);
 
