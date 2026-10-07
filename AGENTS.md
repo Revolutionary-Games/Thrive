@@ -46,6 +46,8 @@ Run checks relevant to the change when the environment permits, and report any c
 
 When reviewing changes, read and follow [`.github/copilot-instructions.md`](.github/copilot-instructions.md). It contains Thrive's dedicated PR review guide, including architecture-specific pitfalls and review scope for translations, shaders, and CI-covered checks.
 
+Automatic CI will run tests and ensure the code compiles.
+
 ## Further documentation
 
 The `doc/` directory is the primary technical reference. In addition to the guides linked above, consult [learning Godot](doc/learning_godot.md), [Auto-Evo](doc/auto_evo.md), [profiling](doc/profiling.md), and the other topic-specific documents when working in those areas.
