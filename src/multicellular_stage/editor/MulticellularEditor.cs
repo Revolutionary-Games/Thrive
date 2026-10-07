@@ -650,6 +650,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void OnAppliedEdits()
     {
+        // Remember if the species is ready for macroscopic conversion
+        EditedSpecies.IsReadyForMacroscopic =
+            CellBodyPlanInternalCalculations.CalculateIsReadyForMacroscopic(EditedSpecies.EditorCells,
+                EditedSpecies.ReproductionMethod);
+
         if (specialMembraneToSwitchOnExit == null)
             return;
 

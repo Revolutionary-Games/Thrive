@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
-"Last-Translator: Guno haozheum <15721507614@163.com>\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-05 11:49+0000\n"
+"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -515,6 +515,10 @@ msgstr "半深海带"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "成为宏观生物（{0}/{1}）"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
@@ -750,7 +754,7 @@ msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr "只能在主结构视图中旋转细胞"
 
 msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
-msgstr ""
+msgstr "注意：在自动模式下不会预览布局位移，因此在退出编辑器时可能因发生位移而导致最终布局略有差异。在手动模式下则会预览细胞类型的布局位移，这可能会导致手动模式与自动模式之间存在差异。"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr "该手动细胞布局无效，请检查对应编辑器选项卡并修复或者禁用手动布局"
@@ -859,6 +863,13 @@ msgstr "启用作弊键"
 
 msgid "CHEAT_MENU"
 msgstr "作弊菜单"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"如果在游戏设置中启用了细胞器解锁，那么[i]对于玩家细胞而言[/i]，以下条件中[i]至少有一个[/i]必须满足：\n"
+"\n"
+"[ul]速度低于 [b]15[/b]。[/ul]"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
@@ -2201,9 +2212,8 @@ msgstr "开启与该物种的内共生进程（在选定目标细胞器类型后
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "内共生"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /秒"
+msgstr "{0}: {1} /秒"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
@@ -3730,6 +3740,43 @@ msgstr "宏观生物"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "宏观阶段，细胞膜无法再被更改"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "宏观生物编辑器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "宏观生物编辑器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "宏观生物编辑器"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "起始细胞数量"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "宏观原型"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "在{0}群系中繁殖"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"祝贺你达到了多细胞阶段的宏观部分的原型！\n"
+"\n"
+"由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
 
@@ -4417,7 +4464,14 @@ msgstr "移动到任意地区"
 msgid "MOVE_TO_LAND"
 msgstr "成为陆地生物"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"进入后期多细胞阶段（宏观阶段）。在您有一个足够大的细胞群后即可解锁。\n"
+"这需要您在编辑器中添加足够多的细胞，然后让您的细胞群落发展到最低规模。"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "进入后期多细胞阶段（宏观阶段）。在您有一个足够大的细胞群后即可解锁。\n"
 "这需要您在编辑器中添加足够多的细胞，然后让您的细胞群落发展到最低规模。"
@@ -5064,6 +5118,10 @@ msgstr "向右平移"
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "和"
+
 msgid "PAST_DEVELOPERS"
 msgstr "过去的开发人员"
 
@@ -5266,17 +5324,16 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用当前设置"
 
 msgid "PLUS_FROM_BASE_VALUE"
-msgstr ""
+msgstr "基础加成 {0}"
 
 msgid "PLUS_FROM_BASE_VALUE_INDENTED"
-msgstr ""
+msgstr "  基础加成 {0}"
 
-#, fuzzy
 msgid "PLUS_FROM_SPECIALIZATION_VALUE"
-msgstr "专业化："
+msgstr "特化加成 {0}"
 
 msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
-msgstr ""
+msgstr "  特化加成 {0}"
 
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
@@ -6226,9 +6283,8 @@ msgstr "切换到冲刺模式。冲刺时细胞移动得更快，但会消耗更
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
 
-#, fuzzy
 msgid "STANDARD_COLON_VALUE"
-msgstr "标题："
+msgstr "标准:{0}"
 
 msgid "START"
 msgstr "开始"
@@ -7627,7 +7683,7 @@ msgid "WHEEL_UP"
 msgstr "向上滚轮"
 
 msgid "WHILE_CONSUMING_COLON"
-msgstr ""
+msgstr "消耗时："
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10774,15 +10830,6 @@ msgstr "缩小"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "关于当前游戏的统计数据"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "宏观原型"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "祝贺你达到了多细胞阶段的宏观部分的原型！\n"
-#~ "\n"
-#~ "由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "免疫胞吞"

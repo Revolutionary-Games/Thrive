@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -521,6 +521,10 @@ msgstr "Bathypélagique"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Devenir macroscopique ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Devenir macroscopique ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Devenir multicellulaire ({0}/{1})"
 
@@ -853,6 +857,10 @@ msgstr "Touches de triche activées"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de triche"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Seulement disponible à partir de la phase multicellulaire."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
@@ -3842,6 +3850,44 @@ msgstr "Macroscopique"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Prochainement."
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Chargement de l'Éditeur de microbe"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproduction dans le biome {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Chargement de l'Éditeur de microbe"
@@ -4578,6 +4624,10 @@ msgstr "Aller sur la terre ferme"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Passer à la phase suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
@@ -5281,6 +5331,10 @@ msgstr "Panoramique droit"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramique vers le haut"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "et"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Anciens développeurs"
@@ -11111,12 +11165,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suicide"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
-#~ "Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
 #, fuzzy
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"

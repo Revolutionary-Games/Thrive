@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
-"PO-Revision-Date: 2026-09-22 18:23+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-07 15:41+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -515,6 +515,9 @@ msgstr "Bathypelagic"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Cannot Become Macroscopic"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Become Multicellular ({0}/{1})"
 
@@ -859,6 +862,9 @@ msgstr "Cheat keys enabled"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
+
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Macroscopic Requirements"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide cell processes"
@@ -3728,6 +3734,33 @@ msgstr "Macroscopic"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Membrane can no longer be changed in the Macroscopic Stage"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr "All macroscopic conditions fulfilled. Grow after exiting the editor and click the \"become macroscopic\" button to advance."
+
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "The following conditions must be fulfilled in the editor before a species is qualified to move to the next stage (macroscopic stage). Otherwise the button to advance stages doesn't activate during the gameplay portion."
+
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Macroscopic Requirements Fulfilled"
+
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Macroscopic Stage Requirements"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr "Average cell adjacency bonus at least {0}% / {1}%"
+
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Cell count at least {0} / {1}"
+
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Cell types used in the body plan {0} / {1}"
+
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "Using a more advanced reproduction method than regular budding"
+
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Overall specialization of at least {0}% / {1}%"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Macroscopic Editor"
 
@@ -4418,7 +4451,12 @@ msgstr "Move to Land"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 "Move to the Macroscopic Stage. Available once you have a big enough cell colony.\n"
-"This requires you to add enough cells in the editor, then grow your colony to the minimum size."
+"This requires fulfilling certain requirements in the editor, then grow your colony to the minimum size."
+
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr ""
+"Move to the Macroscopic Stage. You are missing some species structure requirements!\n"
+"Check the missing requirements in the editor and fulfill them in order to activate this button then during the next gameplay cycle."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Move to the next stage of the game - Multicellular. Available once you have a big enough cell colony."
@@ -5061,6 +5099,9 @@ msgstr "Pan to the right"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Pan upwards"
+
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "PASSED: {0}"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Past Developers"

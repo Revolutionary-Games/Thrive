@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-06-11 13:41+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
@@ -521,6 +521,10 @@ msgstr "Thủy sâu"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Trở thành Vĩ mô ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Trở thành Vĩ mô ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Trở thành đa tế bào ({0}/{1})"
 
@@ -854,6 +858,9 @@ msgstr "Phím gian lận đã bật"
 
 msgid "CHEAT_MENU"
 msgstr "Menu gian lận"
+
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hiển thị / ẩn quá trình tế bào"
@@ -3621,6 +3628,42 @@ msgstr ""
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(tốc độ mà loài AI đột biến)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr ""
 
@@ -4238,8 +4281,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "Trở thành Vĩ mô ({0}/{1})"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Trở thành Vĩ mô ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4853,6 +4901,10 @@ msgstr ""
 
 msgid "PAN_CAMERA_UP"
 msgstr ""
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "và"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""

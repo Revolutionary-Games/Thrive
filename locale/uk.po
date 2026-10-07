@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: \"Waks (Walava)\" <dobranskijmaksim81@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -520,6 +520,10 @@ msgstr "Придоння"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Стати макроскопічним ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітинності ({0}/{1})"
 
@@ -862,6 +866,10 @@ msgstr "Кнопки ввімкнення читів"
 
 msgid "CHEAT_MENU"
 msgstr "Меню читів"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Доступне лише починаючи з Багатоклітинної Стадії й далі."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
@@ -3728,6 +3736,43 @@ msgstr "Макроскопічний"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "На макроскопічному етапі мембрану більше не можна змінювати"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Макроскопічний Редактор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Макроскопічний Редактор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Макроскопічний Редактор"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Початкова кількість клітин"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Макроскопічний прототип"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "розмноження в біомі {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
+"\n"
+"Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Макроскопічний Редактор"
 
@@ -4415,7 +4460,12 @@ msgstr "Переміститися на будь-яку ділянку"
 msgid "MOVE_TO_LAND"
 msgstr "Перейти на сушу"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Перейдіть до стадії пізньої багатоклітинності (макроскопічної). Доступна при достатньому розмірі клітинної колонії."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Перейдіть до стадії пізньої багатоклітинності (макроскопічної). Доступна при достатньому розмірі клітинної колонії."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5059,6 +5109,10 @@ msgstr "Повернути панораму вправо"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Повернути панораму вгору"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "та"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Колишні розробники"
@@ -10649,15 +10703,6 @@ msgstr "Віддалитись"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Детальна статистика про поточну гру"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Макроскопічний прототип"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
-#~ "\n"
-#~ "Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
 
 #~ msgid "HOLD_FOR_CURSOR"
 #~ msgstr "Утримуйте TODO: введення для курсору"

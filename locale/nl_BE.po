@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -532,6 +532,10 @@ msgstr "Bathypelagisch"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Word Macroscopisch ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Word Macroscopisch ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Word Meercellig ({0}/{1})"
 
@@ -865,6 +869,10 @@ msgstr "Cheattoetsen ingeschakeld"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Voorwaarden"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg celprocessen"
@@ -4029,6 +4037,46 @@ msgstr "Word Macroscopisch ({0}/{1})"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Slijmspuwer"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Microbe editor laden"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
+"En er is geen save-upgrade om deze save te upgraden.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
+"En er is geen save-upgrade om deze save te upgraden.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Microbe editor laden"
@@ -4782,7 +4830,12 @@ msgstr "Ga naar een Willekeurig Gebied"
 msgid "MOVE_TO_LAND"
 msgstr "Ga naar Land"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Ga over naar de late meercellige fase (macroscopisch). Beschikbaar wanneer jouw celkolonie groot genoeg is."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Ga over naar de late meercellige fase (macroscopisch). Beschikbaar wanneer jouw celkolonie groot genoeg is."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5504,6 +5557,10 @@ msgstr "Beweeg camera naar rechts"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Beweeg camera naar boven"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "en"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eerdere ontwikkelaars"
@@ -10795,13 +10852,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Zelfmoord"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
-#~ "En er is geen save-upgrade om deze save te upgraden.\n"
-#~ "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

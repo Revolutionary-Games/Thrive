@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-05 17:58+0200\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-05 19:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -515,6 +515,10 @@ msgstr "Batipelajik"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopik Ol ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Makroskopik Ol ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Çok Hücreli Ol ({0}/{1})"
 
@@ -858,6 +862,13 @@ msgstr "Hile tuşları etkin"
 
 msgid "CHEAT_MENU"
 msgstr "Hile menüsü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Eğer organel kilidini açma oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[ul][b]15[/b] değerinin altında hıza sahip olmak.[/ul]"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hücre işlemlerini göster / gizle"
@@ -2200,9 +2211,8 @@ msgstr "Bu tür için endosimbiyozu başlat (hedef organel türü seçildiğinde
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosimbiyoz"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /saniye"
+msgstr "{0}: {1} /saniye"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -3729,6 +3739,43 @@ msgstr "Makroskopik"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Hücre zarı, artık Makroskopik Evresi'nde değiştirilemez"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Makroskopik Editörü"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Makroskopik Editörü"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Makroskopik Editörü"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Başlangıçtaki hücre sayısı"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Makroskopik prototip"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} biyomunda çoğalmalı"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Tebrikler, Çok Hücreli Evresi'nin makroskopik kısmına ait prototipe ulaştın!\n"
+"\n"
+"Geliştirme koşullarından dolayı, bu versiyona 3D makroskopik oynanabilirlik ekleyemedik. Ama organizmanı oluşturmaya devam etmek için editöre dönebilirsin."
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü"
 
@@ -4416,7 +4463,14 @@ msgstr "Herhangi Bir Araziye Git"
 msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Makroskopik Evre'ye geç. Yeterince büyük bir hücre koloniniz olduğunda açılır.\n"
+"Bu evre, editörde yeterli miktarda hücre eklemeyi ve sonrasında koloninizi minimum büyüklüğe çıkarmayı gerektirir."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Makroskopik Evre'ye geç. Yeterince büyük bir hücre koloniniz olduğunda açılır.\n"
 "Bu evre, editörde yeterli miktarda hücre eklemeyi ve sonrasında koloninizi minimum büyüklüğe çıkarmayı gerektirir."
@@ -5063,6 +5117,10 @@ msgstr "Kamerayı sağa çevir"
 msgid "PAN_CAMERA_UP"
 msgstr "Kamerayı yukarı çevir"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "ve"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
 
@@ -5265,17 +5323,16 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
 msgid "PLUS_FROM_BASE_VALUE"
-msgstr ""
+msgstr "+{0} Temel"
 
 msgid "PLUS_FROM_BASE_VALUE_INDENTED"
-msgstr ""
+msgstr "  +{0} Baz"
 
-#, fuzzy
 msgid "PLUS_FROM_SPECIALIZATION_VALUE"
-msgstr "Özelleşme:"
+msgstr "+{0} Özelleşmede"
 
 msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
-msgstr ""
+msgstr "  +{0} Özelleşmede"
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
@@ -6225,9 +6282,8 @@ msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
 
-#, fuzzy
 msgid "STANDARD_COLON_VALUE"
-msgstr "Başlık:"
+msgstr "Standart: {0}"
 
 msgid "START"
 msgstr "Başla"
@@ -7624,7 +7680,7 @@ msgid "WHEEL_UP"
 msgstr "Fare tekeri yukarı"
 
 msgid "WHILE_CONSUMING_COLON"
-msgstr ""
+msgstr "Tüketirken:"
 
 msgid "WIKI"
 msgstr "Viki"
@@ -10790,15 +10846,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Mevcut oyunla ilgili bilgilendirici istatistikler"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Makroskopik prototip"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Tebrikler, Çok Hücreli Evresi'nin makroskopik kısmına ait prototipe ulaştın!\n"
-#~ "\n"
-#~ "Geliştirme koşullarından dolayı, bu versiyona 3D makroskopik oynanabilirlik ekleyemedik. Ama organizmanı oluşturmaya devam etmek için editöre dönebilirsin."
 
 #~ msgid "HOLD_FOR_CURSOR"
 #~ msgstr "İmleç için TODO: girdisini basılı tut"
