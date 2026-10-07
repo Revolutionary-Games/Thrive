@@ -324,6 +324,11 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 });
             }
         }
+        else if (control.MovementDirection != Vector3.Zero)
+        {
+            // Ensuring that flagella force is still added for single cell organisms.
+            force += thrustForce;
+        }
 
         // The sprinting force multiplier is applied here so that it modifies the total force from all cells.
         // (if a colony is involved)
