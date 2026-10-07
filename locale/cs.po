@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 16:10+0300\n"
 "PO-Revision-Date: 2026-10-05 19:49+0000\n"
 "Last-Translator: Lukša <lukajdag@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -512,6 +512,10 @@ msgstr "Batypelagiál (hloubka oceánu do 4000m)"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Stát se makroskopickým ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Stát se makroskopickým ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stát se mnohobuněčným ({0}/{1})"
 
@@ -846,6 +850,10 @@ msgstr "Cheatovací klávesy povoleny"
 
 msgid "CHEAT_MENU"
 msgstr "Cheatovací menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
@@ -3840,6 +3848,43 @@ msgstr "Makroskopický"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Slizová tryska"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Načítání makroskopického editoru"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Načítání makroskopického editoru"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Načítání makroskopického editoru"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Načítání makroskopického editoru"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Makroskopický prototyp"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound] produkce dosáhla {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Blahopřejeme, že jste se dostali k prototypu makroskopické části mnohobuněčného období!\n"
+"\n"
+"Kvůli vývojovým omezením jsme neměli možnost přidat 3D makroskopickou hratelnost v tomto vydání. Můžete se ale stále vrátit do editoru a pokračovat ve vývoji vašeho organismu."
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Načítání makroskopického editoru"
@@ -4607,6 +4652,10 @@ msgstr "Přesunout se na souš"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Přejití k dalšímu období (mnohobuněčné). Je k dispozici jakmile máte dostatečně velkou buněčnou kolonii."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Přejití k dalšímu období (mnohobuněčné). Je k dispozici jakmile máte dostatečně velkou buněčnou kolonii."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Přejití k dalšímu období (mnohobuněčné). Je k dispozici jakmile máte dostatečně velkou buněčnou kolonii."
 
@@ -5322,6 +5371,10 @@ msgstr "Posuň se doprava"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Posuň se nahoru"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "Fyzické podmínky"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Bývalí vývojáři"
@@ -10484,15 +10537,6 @@ msgstr "Oddálit"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Obohacující statistiky o nynější hře"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Makroskopický prototyp"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Blahopřejeme, že jste se dostali k prototypu makroskopické části mnohobuněčného období!\n"
-#~ "\n"
-#~ "Kvůli vývojovým omezením jsme neměli možnost přidat 3D makroskopickou hratelnost v tomto vydání. Můžete se ale stále vrátit do editoru a pokračovat ve vývoji vašeho organismu."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Imunní vůči vstřebání"

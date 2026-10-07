@@ -233,6 +233,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control massBuddingReproductionSection = null!;
+
+    [Export]
+    private Button macroscopicConditionsViewButton = null!;
+
+    [Export]
+    private CustomConfirmationDialog macroscopicConditionsView = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
