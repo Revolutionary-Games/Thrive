@@ -426,16 +426,24 @@ public static class CellBodyPlanInternalCalculations
         totalAdjacencyBonus /= cells.Count;
 
         bool specializationPass = totalSpecialization >= Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC;
+        var targetSpecialization = Math.Round(Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC * 100, 1);
+        var currentSpecialization = Math.Round(totalSpecialization * 100, 1);
+
+        // Force the display value lower if not fulfilled to avoid showing a rounded value at the threshold.
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (!specializationPass && targetSpecialization == currentSpecialization)
+            currentSpecialization -= 0.1;
+
         conditionResults.Add((specializationPass,
-            Localization.Translate("MACROSCOPIC_CONDITION_SPECIALIZATION").FormatSafe(
-                Math.Round(totalSpecialization * 100, 1),
-                Math.Round(Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC * 100, 1))));
+            Localization.Translate("MACROSCOPIC_CONDITION_SPECIALIZATION").FormatSafe(currentSpecialization,
+                targetSpecialization)));
 
         bool adjacencyPass = totalAdjacencyBonus >= Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC;
         var targetAdjacency = Math.Round(Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC * 100, 1);
         var currentAdjacency = Math.Round(totalAdjacencyBonus * 100, 1);
 
-        // Force the display value lower if not fulfilled to not get bug reports about an exact edge condition
+        // Force the display value lower if not fulfilled to not get bug reports about an exact edge condition.
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (!adjacencyPass && targetAdjacency == currentAdjacency)
             currentAdjacency -= 0.1;
 
