@@ -1235,10 +1235,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
             var gameWorld = loadedGameProperties.GameWorld;
 
-            var maxGeneration = gameWorld.GenerationHistory.Keys.Max();
-
             if (gameWorld.GenerationHistory.Count > 0)
             {
+                var maxGeneration = gameWorld.GenerationHistory.Keys.Max();
+
                 for (int i = 0; i <= maxGeneration; ++i)
                 {
                     if (gameWorld.GenerationHistory.TryGetValue(i, out var generationRecord))
