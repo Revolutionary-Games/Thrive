@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 16:10+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -523,6 +523,10 @@ msgstr "Bathypelagial"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Makroskopisch werden ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
@@ -869,6 +873,10 @@ msgstr "Cheat-Tasten aktiviert"
 
 msgid "CHEAT_MENU"
 msgstr "Cheatmenü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Verfügbar erst ab der Vielzeller-Phase."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozesse ein-/ausblenden"
@@ -3794,6 +3802,46 @@ msgstr "Makroskopisch"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Schleimdüse"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Lade Mikrobeneditor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Lade Mikrobeneditor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Lade Mikrobeneditor"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Anfängliche Zellenmenge"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
+"Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
+"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "Reproduktion im {0} Biom"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
+"Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
+"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Lade Mikrobeneditor"
@@ -4499,7 +4547,14 @@ msgstr "In ein Gebiet wechseln"
 msgid "MOVE_TO_LAND"
 msgstr "Landgang"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Gehe zur nächsten Stufe des Spiels über (Makroskopisch). Verfügbar, sobald du eine ausreichend große Zellkolonie hast.\n"
+"Füge eine ausreichende Anzahl Zellen im Editor hinzu und lass deine Kolonie dann auf die erforderliche Größe wachsen."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Gehe zur nächsten Stufe des Spiels über (Makroskopisch). Verfügbar, sobald du eine ausreichend große Zellkolonie hast.\n"
 "Füge eine ausreichende Anzahl Zellen im Editor hinzu und lass deine Kolonie dann auf die erforderliche Größe wachsen."
@@ -5192,6 +5247,10 @@ msgstr "Nach rechts schwenken"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Nach oben schwenken"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "und"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Frühere Entwickler(innen)"
@@ -10593,13 +10652,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suizid"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
-#~ "Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
-#~ "Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

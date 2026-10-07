@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-06 16:10+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -514,6 +514,10 @@ msgstr "Bathypelagisk"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Bliv makroskopisk ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Bliv makroskopisk ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Bliv flercellet ({0}/{1})"
 
@@ -858,6 +862,10 @@ msgstr "Snydetaster aktiveret"
 
 msgid "CHEAT_MENU"
 msgstr "Snyd menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Kun tilgængeligt fra Flercellestadiet og fremefter."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Vis / gem celle processer"
@@ -3731,6 +3739,47 @@ msgstr "Makroskopisk"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Membranen kan ikke længere ændres i Makroskopiskstadiet"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Makroskopisk editor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Makroskopisk editor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Makroskopisk editor"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Oprindeligt antal celler"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Membranen kan ikke længere ændres i Makroskopiskstadiet"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproducerer i {0} biomen"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopisk editor"
 
@@ -4419,7 +4468,14 @@ msgstr "Flyt til hvilken som helst patch"
 msgid "MOVE_TO_LAND"
 msgstr "Flyt til land"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Fortsæt til Makroskopiskstadiet. Tilgængeligt når din celle koloni er stor nok.\n"
+"Dette kræver at du tilføjer nok celler i editoren, og derefter vokser din koloni til minimumsstørrelsen."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Fortsæt til Makroskopiskstadiet. Tilgængeligt når din celle koloni er stor nok.\n"
 "Dette kræver at du tilføjer nok celler i editoren, og derefter vokser din koloni til minimumsstørrelsen."
@@ -5092,6 +5148,10 @@ msgstr "Panorer til højre"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Panorer opad"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "og"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Tidligere udviklere"

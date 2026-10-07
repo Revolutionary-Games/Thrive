@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-29 09:51+0300\n"
+"POT-Creation-Date: 2026-10-06 16:10+0300\n"
 "PO-Revision-Date: 2026-10-05 11:49+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -515,6 +515,10 @@ msgstr "半深海带"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "成为宏观生物（{0}/{1}）"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
@@ -859,6 +863,13 @@ msgstr "启用作弊键"
 
 msgid "CHEAT_MENU"
 msgstr "作弊菜单"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"如果在游戏设置中启用了细胞器解锁，那么[i]对于玩家细胞而言[/i]，以下条件中[i]至少有一个[/i]必须满足：\n"
+"\n"
+"[ul]速度低于 [b]15[/b]。[/ul]"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
@@ -3725,6 +3736,43 @@ msgstr "宏观生物"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "宏观阶段，细胞膜无法再被更改"
 
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "宏观生物编辑器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "宏观生物编辑器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "宏观生物编辑器"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "起始细胞数量"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "宏观原型"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "在{0}群系中繁殖"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"祝贺你达到了多细胞阶段的宏观部分的原型！\n"
+"\n"
+"由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
 
@@ -4412,7 +4460,14 @@ msgstr "移动到任意地区"
 msgid "MOVE_TO_LAND"
 msgstr "成为陆地生物"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"进入后期多细胞阶段（宏观阶段）。在您有一个足够大的细胞群后即可解锁。\n"
+"这需要您在编辑器中添加足够多的细胞，然后让您的细胞群落发展到最低规模。"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "进入后期多细胞阶段（宏观阶段）。在您有一个足够大的细胞群后即可解锁。\n"
 "这需要您在编辑器中添加足够多的细胞，然后让您的细胞群落发展到最低规模。"
@@ -5058,6 +5113,10 @@ msgstr "向右平移"
 
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "和"
 
 msgid "PAST_DEVELOPERS"
 msgstr "过去的开发人员"
@@ -10767,15 +10826,6 @@ msgstr "缩小"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "关于当前游戏的统计数据"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "宏观原型"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "祝贺你达到了多细胞阶段的宏观部分的原型！\n"
-#~ "\n"
-#~ "由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "免疫胞吞"
