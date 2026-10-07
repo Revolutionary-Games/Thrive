@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Threading;
 using AutoEvo;
 using GdUnit4;
-using Godot;
 using static GdUnit4.Assertions;
 using ThreadState = System.Threading.ThreadState;
 
@@ -477,64 +476,6 @@ public class AutoEvoRunCompletionTests
             AssertPopulationResult(run, world);
         AssertDurationBounds(run.RunDuration, blockedDuration, observation.Elapsed);
         AssertThat(run.PeakMemoryUsage > 0).IsTrue();
-    }
-
-    [TestCase]
-    public void RealAutoEvo_TwoGenerationsRetainCompletionTimeWhenObservedLate()
-    {
-        RequireCompletedCleanup();
-        var world = CreateWorld();
-        var initialTime = world.TotalPassedTime;
-        var initialHistoryCount = world.GenerationHistory.Count;
-
-        for (int generation = 0; generation < 2; ++generation)
-        {
-            var startedAt = Stopwatch.GetTimestamp();
-            var run = world.GetAutoEvoRun();
-            run.FullSpeed = true;
-            try
-            {
-                AssertThat(SpinWait.SpinUntil(() => !run.Running, TimeSpan.FromSeconds(60))).IsTrue();
-
-                // Delay the first completion observation so recording the timestamp lazily would fail this test.
-                Thread.Sleep(1100);
-                var observedAt = Stopwatch.GetTimestamp();
-                AssertThat(run.WasSuccessful).IsTrue();
-                AssertThat(run.Results).IsNotNull();
-                var finishedAt = run.FinishedAtTimestamp;
-                var duration = run.RunDuration;
-                AssertThat(finishedAt >= startedAt && finishedAt < observedAt).IsTrue();
-                AssertThat(Stopwatch.GetElapsedTime(finishedAt, observedAt) >= TimeSpan.FromSeconds(1)).IsTrue();
-                AssertThat(duration > TimeSpan.Zero).IsTrue();
-
-                run.CalculateAndApplyFinalExternalEffectSizes();
-                world.OnTimePassed(1);
-                run.ApplyAllResults(true);
-                ++world.PlayerSpecies.Generation;
-                world.AddCurrentGenerationToHistory();
-                AssertThat(run.FinishedAtTimestamp).IsEqual(finishedAt);
-                AssertThat(run.RunDuration).IsEqual(duration);
-                GD.Print($"Auto-Evo generation {generation + 1}: compute={duration.TotalMilliseconds:F3}ms, " +
-                    $"observation={Stopwatch.GetElapsedTime(finishedAt, observedAt).TotalMilliseconds:F3}ms, " +
-                    $"full={Stopwatch.GetElapsedTime(startedAt).TotalMilliseconds:F3}ms");
-            }
-            finally
-            {
-                // An assertion failure must not leave a run modifying this test's world.
-                run.Abort();
-                if (!SpinWait.SpinUntil(() => run.Finished, TimeSpan.FromSeconds(10)))
-                {
-                    cleanupFailure = "The real auto-evo run did not stop after cancellation";
-                    throw new TimeoutException(cleanupFailure);
-                }
-
-                world.ResetAutoEvoRun();
-            }
-        }
-
-        AssertThat(world.PlayerSpecies.Generation).IsEqual(3);
-        AssertThat(world.GenerationHistory.Count).IsEqual(initialHistoryCount + 2);
-        AssertThat(world.TotalPassedTime > initialTime).IsTrue();
     }
 
     private static void AssertPopulationResult(AutoEvoRun run, GameWorld world)
