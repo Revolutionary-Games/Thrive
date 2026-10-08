@@ -15,6 +15,9 @@
     "FeatureTags": [
       "Pilus"
     ],
+    "ToleranceEffects": {
+      "UV": -0.01
+    },
     "ShouldScale": false,
     "Density": 1500,
     "RelativeDensityVolume": 0,
@@ -82,6 +85,9 @@
     "Enzymes": {
       "rusticyanin": 1
     },
+    "ToleranceEffects": {
+      "UV": -0.05
+    },
     "Density": 1100,
     "IronBreakdownEfficiency": 1,
     "Graphics": {
@@ -120,6 +126,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.05,
       "Oxygen": -0.01
     },
     "Density": 1100,
@@ -169,6 +176,9 @@
     "FeatureTags": [
       "HydrogenSulfideProtection"
     ],
+    "ToleranceEffects": {
+      "UV": -0.05
+    },
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn"
@@ -210,6 +220,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.05,
       "Oxygen": 0.005
     },
     "Density": 1100,
@@ -311,7 +322,7 @@
       }
     },
     "ToleranceEffects": {
-      "UV": 0.03,
+      "UV": 0.05,
       "Oxygen": 0.015
     },
     "Density": 1600,
@@ -358,6 +369,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.04,
       "Oxygen": 0.035
     },
     "Density": 1000,
@@ -404,6 +416,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.05,
       "Oxygen": -0.04
     },
     "Density": 1000,
@@ -446,6 +459,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.07,
       "Oxygen": -0.07
     },
     "Density": 1000,
@@ -500,6 +514,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.07,
       "Oxygen": -0.02
     },
     "Density": 1100,
@@ -541,6 +556,7 @@
       "HeatCollecting"
     ],
     "ToleranceEffects": {
+      "UV": -0.04,
       "TemperatureRange": 2
     },
     "Density": 1200,
@@ -594,6 +610,9 @@
     "FeatureTags": [
       "HydrogenSulfideProtection"
     ],
+    "ToleranceEffects": {
+      "UV": -0.1
+    },
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chemoplast.tscn"
@@ -623,6 +642,9 @@
       "Movement": {
         "Momentum": 50
       }
+    },
+    "ToleranceEffects": {
+      "UV": -0.02
     },
     "Density": 1100,
     "RelativeDensityVolume": 1,
@@ -715,6 +737,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.07,
       "Oxygen": 0.08
     },
     "Density": 1000,
@@ -769,6 +792,7 @@
       }
     },
     "ToleranceEffects": {
+      "UV": -0.07,
       "Oxygen": 0.02
     },
     "Density": 1100,
@@ -918,7 +942,7 @@
       }
     },
     "ToleranceEffects": {
-      "UV": 0.08,
+      "UV": 0.25,
       "Oxygen": 0.035
     },
     "Density": 1800,
@@ -962,6 +986,9 @@
       "Storage": {
         "Capacity": 0.5
       }
+    },
+    "ToleranceEffects": {
+      "UV": 0.02
     },
     "Density": 800,
     "CorpseChunkGraphics": {
@@ -1033,6 +1060,9 @@
     "FeatureTags": [
       "Nucleus"
     ],
+    "ToleranceEffects": {
+      "UV": -0.22
+    },
     "ShouldScale": false,
     "Density": 500,
     "RelativeDensityVolume": 1,
@@ -1062,6 +1092,9 @@
     "Processes": {},
     "Components": {
       "Chemoreceptor": {}
+    },
+    "ToleranceEffects": {
+      "UV": -0.02
     },
     "Density": 1100,
     "Graphics": {
@@ -1098,7 +1131,7 @@
       "SlimeJet": {}
     },
     "ToleranceEffects": {
-      "UV": 0.01
+      "UV": 0.05
     },
     "Density": 1100,
     "Graphics": {
@@ -1234,6 +1267,7 @@
       "HeatCollecting"
     ],
     "ToleranceEffects": {
+      "UV": -0.05,
       "TemperatureRange": 5
     },
     "Density": 1200,
@@ -1276,6 +1310,9 @@
     "Processes": {},
     "Components": {
       "Cilia": {}
+    },
+    "ToleranceEffects": {
+      "UV": -0.02
     },
     "Density": 1100,
     "RelativeDensityVolume": 1,
@@ -1330,6 +1367,9 @@
     "Enzymes": {
       "lipase": 1
     },
+    "ToleranceEffects": {
+      "UV": -0.03
+    },
     "Density": 1000,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Lysosome.tscn"
@@ -1381,6 +1421,9 @@
     },
     "Enzymes": {
       "rusticyanin": 1
+    },
+    "ToleranceEffects": {
+      "UV": -0.1
     },
     "Density": 1100,
     "IronBreakdownEfficiency": 2,
@@ -1434,7 +1477,7 @@
       "RadiationBlock"
     ],
     "ToleranceEffects": {
-      "UV": 0.02
+      "UV": 0.35
     },
     "Density": 1300,
     "RelativeDensityVolume": 1,
@@ -1500,6 +1543,7 @@
       "Actomyosin": {}
     },
     "ToleranceEffects": {
+      "UV": -0.18,
       "PressureTolerance": 1000
     },
     "Density": 1200,
@@ -1549,7 +1593,7 @@
       "Axon"
     ],
     "ToleranceEffects": {
-      "UV": -0.1
+      "UV": -0.2
     },
     "Density": 1100,
     "RelativeDensityVolume": 1,

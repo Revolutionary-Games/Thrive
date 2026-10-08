@@ -33,12 +33,16 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
     public static ToleranceResult CalculateTolerances(MicrobeSpecies species, IBiomeConditions environment)
     {
+        GD.Print("a");
+        GD.Print(species.Tolerances.UVResistance);
         return CalculateTolerances(species.Tolerances, species.Organelles, species.CellTypeSpecializationBonus,
             environment);
     }
 
     public static ToleranceResult CalculateTolerances(MulticellularSpecies species, IBiomeConditions environment)
     {
+        GD.Print("b");
+        GD.Print(species.Tolerances.UVResistance);
         return CalculateTolerances(species.Tolerances, species.ModifiableEditorCells, environment);
     }
 
@@ -67,7 +71,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureMinimum = speciesTolerances.PressureMinimum,
             PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
+            UVResistance = speciesTolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE,
         };
 
         var noExtraEffects = resolvedTolerances;
@@ -93,7 +97,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureMinimum = speciesTolerances.PressureMinimum,
             PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
+            UVResistance = speciesTolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE,
         };
 
         var noExtraEffects = resolvedTolerances;
@@ -277,7 +281,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureMinimum = speciesTolerances.PressureMinimum,
             PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
+            UVResistance = speciesTolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE,
         };
 
         var noExtraEffects = resolvedTolerances;
@@ -517,6 +521,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (resolvedTolerances.OxygenResistance < 0)
             resolvedTolerances.OxygenResistance = 0;
 
+        //
         if (resolvedTolerances.UVResistance < 0)
             resolvedTolerances.UVResistance = 0;
     }

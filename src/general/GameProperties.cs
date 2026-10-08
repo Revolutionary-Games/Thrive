@@ -459,16 +459,16 @@ public class GameProperties : IArchivable
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
-            new Hex(0, 2), 0), workMemory1, workMemory2);
+            new Hex(1, 2), 0), workMemory1, workMemory2);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(-1, 2), 0), workMemory1, workMemory2);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
-            new Hex(1, 1), 0), workMemory1, workMemory2);
+            new Hex(0, 1), 0), workMemory1, workMemory2);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
-            new Hex(0, 1), 0), workMemory1, workMemory2);
+            new Hex(1, 1), 0), workMemory1, workMemory2);
 
         var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
@@ -477,6 +477,11 @@ public class GameProperties : IArchivable
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(cytoplasm,
             new Hex(-1, 0), 0), workMemory1, workMemory2);
+
+        var melanosome = simulationParameters.GetOrganelleType("melanosome");
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(melanosome,
+            new Hex(-1, 3), 1), workMemory1, workMemory2);
 
         playerSpecies.OnEdited();
         return playerSpecies;
