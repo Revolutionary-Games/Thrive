@@ -2612,7 +2612,15 @@ public partial class CellBodyPlanEditorComponent :
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
-        EnqueueAction(new CombinedEditorAction(action));
+
+        if (EnqueueAction(new CombinedEditorAction(action)))
+        {
+            if (Editor.TutorialState.Enabled)
+            {
+                Editor.TutorialState.SendEvent(TutorialEventType.MulticellularCellDuplicated,
+                    new StringEventArgs(newTypeName), this);
+            }
+        }
 
         duplicateCellTypeDialog.Hide();
     }

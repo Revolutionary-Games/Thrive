@@ -10,7 +10,7 @@ using Tutorial;
 /// </summary>
 public class TutorialState : ITutorialInput, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     /// <summary>
     ///   True when the tutorial has paused the game
@@ -95,6 +95,14 @@ public class TutorialState : ITutorialInput, IArchivable
     public MicrobeSpecializationTutorial MicrobeSpecializationTutorial { get; private set; } = new();
 
     public MulticellularSpecializationTutorial MulticellularSpecializationTutorial { get; private set; } = new();
+
+    public CellBodyPlanEditorIntroductionTutorial CellBodyPlanEditorIntroductionTutorial { get; private set; } = new();
+
+    public MacroscopicRequirementsTutorial MacroscopicRequirementsTutorial { get; private set; } = new();
+
+    public MulticellularCellEditorTutorial MulticellularCellEditorTutorial { get; private set; } = new();
+
+    public MulticellularCellDuplicateTutorial MulticellularCellDuplicateTutorial { get; private set; } = new();
 
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
@@ -223,6 +231,14 @@ public class TutorialState : ITutorialInput, IArchivable
             reader.ReadObjectProperties(instance.MulticellularSpecializationTutorial);
         }
 
+        if (version > 2)
+        {
+            reader.ReadObjectProperties(instance.CellBodyPlanEditorIntroductionTutorial);
+            reader.ReadObjectProperties(instance.MacroscopicRequirementsTutorial);
+            reader.ReadObjectProperties(instance.MulticellularCellEditorTutorial);
+            reader.ReadObjectProperties(instance.MulticellularCellDuplicateTutorial);
+        }
+
         if (instance.DisableShowingAlreadySeenTutorials)
         {
             instance.OnCompleteTutorialsAlreadySeen();
@@ -286,6 +302,10 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(BindingAgentsTutorial);
         writer.WriteObjectProperties(MicrobeSpecializationTutorial);
         writer.WriteObjectProperties(MulticellularSpecializationTutorial);
+        writer.WriteObjectProperties(CellBodyPlanEditorIntroductionTutorial);
+        writer.WriteObjectProperties(MacroscopicRequirementsTutorial);
+        writer.WriteObjectProperties(MulticellularCellEditorTutorial);
+        writer.WriteObjectProperties(MulticellularCellDuplicateTutorial);
     }
 
     /// <summary>
@@ -642,7 +662,11 @@ public class TutorialState : ITutorialInput, IArchivable
             NegativeAtpBalanceTutorial,
             PausingTutorial,
             SpeciesMemberDiedTutorial,
+            CellBodyPlanEditorIntroductionTutorial,
             MulticellularSpecializationTutorial,
+            MacroscopicRequirementsTutorial,
+            MulticellularCellEditorTutorial,
+            MulticellularCellDuplicateTutorial,
         ];
     }
 }

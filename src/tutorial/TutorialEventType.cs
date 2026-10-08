@@ -130,6 +130,23 @@ public enum TutorialEventType
     MulticellularEditorCellPlaced,
 
     /// <summary>
+    ///   Triggered when a cell type is duplicated, args is <see cref="StringEventArgs"/> giving the name of the new
+    ///   type.
+    /// </summary>
+    MulticellularCellDuplicated,
+
+    /// <summary>
+    ///   Triggered when the macroscopic requirements popup is opened.
+    /// </summary>
+    MulticellularMacroscopicRequirementsOpened,
+
+    /// <summary>
+    ///   Triggered when the player starts editing a cell type, args is <see cref="StringEventArgs"/> giving the name
+    ///   of the cell type.
+    /// </summary>
+    MulticellularCellTypeEditStarted,
+
+    /// <summary>
     ///   Player changed the <see cref="MicrobeEditorReportComponent"/> subtab, args is <see cref="StringEventArgs"/>
     /// </summary>
     ReportComponentSubtabChanged,

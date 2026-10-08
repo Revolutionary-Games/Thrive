@@ -82,6 +82,7 @@ public partial class CellBodyPlanEditorComponent
         _ = tutorial;
 
         gui.RightPanelScrollContainer = rightPanelScrollContainer;
+        gui.MacroscopicRequirementsButton = macroscopicConditionsViewButton;
     }
 
     protected override void OnTranslationsChanged()
@@ -807,5 +808,11 @@ public partial class CellBodyPlanEditorComponent
 
         macroscopicConditionsView.DialogText = macroscopicConditionResultsBuilder.ToString();
         macroscopicConditionsView.PopupCenteredShrink();
+
+        if (Editor.TutorialState.Enabled)
+        {
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularMacroscopicRequirementsOpened,
+                EventArgs.Empty, this);
+        }
     }
 }
