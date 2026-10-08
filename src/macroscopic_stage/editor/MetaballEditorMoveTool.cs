@@ -27,9 +27,7 @@ public partial class MetaballEditorMoveTool : Node3D
     private Vector3 rotationOrigin;
     private Vector3 initialRotation;
 
-    private bool dragging;
-
-    public bool IsDragging => dragging;
+    public bool IsDragging { get; private set; }
 
     public void InitializeDisplay(Vector3 parentPos, Vector3 metaballPos)
     {
@@ -42,7 +40,7 @@ public partial class MetaballEditorMoveTool : Node3D
         var camera = viewPort.GetCamera3D();
         var mousePos = viewPort.GetMousePosition();
 
-        if (dragging)
+        if (IsDragging)
         {
             SetTorusRotations(parentOrigin, GetDraggingPosition());
         }
@@ -103,7 +101,7 @@ public partial class MetaballEditorMoveTool : Node3D
 
     public void StopDragging()
     {
-        dragging = false;
+        IsDragging = false;
 
         horizontalRing.MaterialOverride = null;
         verticalRing.MaterialOverride = null;
@@ -174,7 +172,7 @@ public partial class MetaballEditorMoveTool : Node3D
 
         angleOffset = GetRotationAngle(camera.UnprojectPosition(rotationOrigin), mousePos);
 
-        dragging = true;
+        IsDragging = true;
 
         horizontalRing.MaterialOverride = null;
         verticalRing.MaterialOverride = null;
