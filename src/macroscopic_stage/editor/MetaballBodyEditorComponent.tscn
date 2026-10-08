@@ -676,17 +676,17 @@ autowrap_mode = 3
 layout_mode = 2
 selected = 0
 item_count = 6
-popup/item_0/text = "PLAIN_CREATURE_TEXTURE"
+popup/item_0/text = "CREATURE_SKIN_TYPE_PLAIN"
 popup/item_0/id = 0
-popup/item_1/text = "FUR_CREATURE_TEXTURE"
+popup/item_1/text = "CREATURE_SKIN_TYPE_FUR"
 popup/item_1/id = 1
-popup/item_2/text = "SKIN_CREATURE_TEXTURE"
+popup/item_2/text = "CREATURE_SKIN_TYPE_SKIN"
 popup/item_2/id = 2
-popup/item_3/text = "SCALES_CREATURE_TEXTURE"
+popup/item_3/text = "CREATURE_SKIN_TYPE_SCALES"
 popup/item_3/id = 3
-popup/item_4/text = "FEATHERS_CREATURE_TEXTURE"
+popup/item_4/text = "CREATURE_SKIN_TYPE_FEATHERS"
 popup/item_4/id = 4
-popup/item_5/text = "PEPPER_CREATURE_TEXTURE"
+popup/item_5/text = "CREATURE_SKIN_TYPE_PEPPER"
 popup/item_5/id = 5
 
 [node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1531646376]
