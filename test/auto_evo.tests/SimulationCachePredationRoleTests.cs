@@ -13,8 +13,6 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class SimulationCachePredationRoleTests
 {
-    private const string PILUS = "pilus";
-
     [TestCase(false, false, false)]
     [TestCase(false, false, true)]
     [TestCase(false, true, false)]
@@ -28,7 +26,7 @@ public class SimulationCachePredationRoleTests
     {
         var control = CreateRoleSpecies(201, multicellularPredator);
         var armed = CreateRoleSpecies(202, multicellularPredator,
-            CreateOrganelle(PILUS, new Hex(0, -4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
+            CreateOrganelle("pilus", new Hex(0, -4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
         var controlPrey = CreateRoleSpecies(203, multicellularPrey);
         var armedPrey = CreateRoleSpecies(204, multicellularPrey);
         AssertCannotEngulf(control);
@@ -57,11 +55,11 @@ public class SimulationCachePredationRoleTests
     [TestCase(true, true)]
     public void RearPilusOnFleeingPrey(bool multicellular, bool injectisome)
     {
-        var controlPredator = CreateRoleSpecies(211, false, CreateOrganelle(PILUS, new Hex(0, -4)));
-        var defendedPredator = CreateRoleSpecies(214, false, CreateOrganelle(PILUS, new Hex(0, -4)));
+        var controlPredator = CreateRoleSpecies(211, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var defendedPredator = CreateRoleSpecies(214, false, CreateOrganelle("pilus", new Hex(0, -4)));
         var control = CreateRoleSpecies(212, multicellular);
         var defended = CreateRoleSpecies(213, multicellular,
-            CreateOrganelle(PILUS, new Hex(0, 4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
+            CreateOrganelle("pilus", new Hex(0, 4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
         control.ModifiableBehaviour.Fear = defended.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         control.ModifiableBehaviour.Aggression = defended.ModifiableBehaviour.Aggression = 0;
         AssertCannotEngulf(controlPredator);
@@ -140,9 +138,9 @@ public class SimulationCachePredationRoleTests
     public void MacrolideImprovesPilusCaptureOfFleeingPrey(bool multicellular)
     {
         // Same carrier, geometry and toxicity: zero oxygen disables the control toxin's damage.
-        var control = CreateRoleSpecies(225, multicellular, CreateOrganelle(PILUS, new Hex(0, -1)),
+        var control = CreateRoleSpecies(225, multicellular, CreateOrganelle("pilus", new Hex(0, -1)),
             CreateToxin(new Hex(0, 1), ToxinType.Oxytoxy));
-        var slowed = CreateRoleSpecies(226, multicellular, CreateOrganelle(PILUS, new Hex(0, -1)),
+        var slowed = CreateRoleSpecies(226, multicellular, CreateOrganelle("pilus", new Hex(0, -1)),
             CreateToxin(new Hex(0, 1), ToxinType.Macrolide));
         var controlPrey = CreateRoleSpecies(227, multicellular);
         var slowedPrey = CreateRoleSpecies(228, multicellular);
@@ -261,8 +259,8 @@ public class SimulationCachePredationRoleTests
     [TestCase(true, true)]
     public void PreySlimeOrMucocystDefence(bool multicellular, bool mucocyst)
     {
-        var controlPredator = CreateRoleSpecies(231, false, CreateOrganelle(PILUS, new Hex(0, -4)));
-        var defendedPredator = CreateRoleSpecies(234, false, CreateOrganelle(PILUS, new Hex(0, -4)));
+        var controlPredator = CreateRoleSpecies(231, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var defendedPredator = CreateRoleSpecies(234, false, CreateOrganelle("pilus", new Hex(0, -4)));
         var control = CreateRoleSpecies(232, multicellular);
         var defended = CreateRoleSpecies(233, multicellular,
             CreateOrganelle("slimeJet", new Hex(0, 4), mucocyst ? SlimeJetComponent.MUCOCYST_UPGRADE_NAME : null));
@@ -291,9 +289,9 @@ public class SimulationCachePredationRoleTests
     [TestCase(true)]
     public void PredatorPullingCiliaUpgrade(bool multicellular)
     {
-        var control = CreateRoleSpecies(241, multicellular, CreateOrganelle(PILUS, new Hex(0, -4)),
+        var control = CreateRoleSpecies(241, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
             CreateOrganelle("cilia", new Hex(4, 0)));
-        var pulling = CreateRoleSpecies(242, multicellular, CreateOrganelle(PILUS, new Hex(0, -4)),
+        var pulling = CreateRoleSpecies(242, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
             CreateOrganelle("cilia", new Hex(4, 0), CiliaComponent.CILIA_PULL_UPGRADE_NAME));
         var controlPrey = CreateRoleSpecies(243, false);
         var pullingPrey = CreateRoleSpecies(244, false);
@@ -402,7 +400,7 @@ public class SimulationCachePredationRoleTests
     [TestCase(true)]
     public void SelfPredationRemainsZero(bool multicellular)
     {
-        var species = CreateRoleSpecies(271, multicellular, CreateOrganelle(PILUS, new Hex(0, -4)));
+        var species = CreateRoleSpecies(271, multicellular, CreateOrganelle("pilus", new Hex(0, -4)));
         AssertThat(AssertPredationLifecycle(species, species)).IsEqual(0.0f);
     }
 

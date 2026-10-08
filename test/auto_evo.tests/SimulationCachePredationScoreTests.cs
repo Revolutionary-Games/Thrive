@@ -8,17 +8,11 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class SimulationCachePredationScoreTests
 {
-    private const string CELLULOSE = "cellulose";
-    private const string CYTOPLASM = "cytoplasm";
-    private const string SINGLE = "single";
-    private const string PILUS = "pilus";
-    private const string CHEMORECEPTOR = "chemoreceptor";
-
     [TestCase]
     public void PredatorWithoutPredationAbilityScoresZero()
     {
-        var predator = CreateMicrobe(1, "NoTools", CELLULOSE, CYTOPLASM);
-        var prey = CreateMicrobe(2, "NoToolsPrey", SINGLE, CYTOPLASM);
+        var predator = CreateMicrobe(1, "NoTools", "cellulose", "cytoplasm");
+        var prey = CreateMicrobe(2, "NoToolsPrey", "single", "cytoplasm");
 
         AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
     }
@@ -26,12 +20,12 @@ public class SimulationCachePredationScoreTests
     [TestCase]
     public void DigestibleEngulfmentEnablesPredation()
     {
-        var control = CreateMicrobe(3, "CannotEngulf", CELLULOSE,
-            CYTOPLASM, CYTOPLASM, CYTOPLASM, CYTOPLASM);
-        var engulfer = CreateMicrobe(4, "Engulfer", SINGLE,
-            CYTOPLASM, CYTOPLASM, CYTOPLASM, CYTOPLASM);
-        var controlPrey = CreateMicrobe(5, "ControlPrey", SINGLE, CYTOPLASM);
-        var engulfedPrey = CreateMicrobe(6, "EngulfedPrey", SINGLE, CYTOPLASM);
+        var control = CreateMicrobe(3, "CannotEngulf", "cellulose",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
+        var engulfer = CreateMicrobe(4, "Engulfer", "single",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
+        var controlPrey = CreateMicrobe(5, "ControlPrey", "single", "cytoplasm");
+        var engulfedPrey = CreateMicrobe(6, "EngulfedPrey", "single", "cytoplasm");
         var cache = CreateCache();
         AssertThat(control.CanEngulf).IsFalse();
         AssertThat(engulfer.CanEngulf).IsTrue();
@@ -54,11 +48,11 @@ public class SimulationCachePredationScoreTests
     [TestCase]
     public void PilusAndToxinPredatorHasPredationAbility()
     {
-        var predator = CreateMicrobe(7, "Armed", CELLULOSE, CYTOPLASM);
-        predator.Organelles.Add(CreateOrganelle(PILUS, new Hex(0, -1)));
+        var predator = CreateMicrobe(7, "Armed", "cellulose", "cytoplasm");
+        predator.Organelles.Add(CreateOrganelle("pilus", new Hex(0, -1)));
         predator.Organelles.Add(CreateOrganelle("oxytoxy", new Hex(0, 1)));
         predator.OnEdited();
-        var prey = CreateMicrobe(8, "ArmouredPrey", CELLULOSE, CYTOPLASM);
+        var prey = CreateMicrobe(8, "ArmouredPrey", "cellulose", "cytoplasm");
         var raw = CreateCache().GetPredationToolsRawScores(predator);
         AssertThat(predator.CanEngulf).IsFalse();
         AssertThat(raw.PilusScore).IsGreater(0.0f);
@@ -74,27 +68,27 @@ public class SimulationCachePredationScoreTests
     public void SingleCellMulticellularPredatorHasPredationAbility()
     {
         var predator = CreateMulticellularPredator(9);
-        var prey = CreateMicrobe(10, "MulticellularPrey", SINGLE, CYTOPLASM);
+        var prey = CreateMicrobe(10, "MulticellularPrey", "single", "cytoplasm");
         AssertThat(predator.EditorCells.Count).IsEqual(1);
         AssertThat(predator.CellTypes[0].MembraneType.CanEngulf).IsTrue();
 
         AssertThat(AssertPredationLifecycle(predator, prey)).IsGreater(0.0f);
     }
 
-    [TestCase(CELLULOSE, Constants.CELLULASE_ENZYME, false)]
+    [TestCase("cellulose", Constants.CELLULASE_ENZYME, false)]
     [TestCase("chitin", Constants.CHITINASE_ENZYME, false)]
-    [TestCase(CELLULOSE, Constants.CELLULASE_ENZYME, true)]
+    [TestCase("cellulose", Constants.CELLULASE_ENZYME, true)]
     [TestCase("chitin", Constants.CHITINASE_ENZYME, true)]
     public void SingleCellMulticellularPreyRequiresItsMembraneEnzyme(string membrane, string enzyme,
         bool addUnusedCellType)
     {
-        var cellType = CreateCellType("Prey", membrane, CreateOrganelle(CYTOPLASM, new Hex(0, 0)));
+        var cellType = CreateCellType("Prey", membrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
         var prey = CreateMulticellular(30, "SingleCellPrey", (cellType, new Hex(0, 0)));
         if (addUnusedCellType)
         {
             // An unplaced type must not become the first selected real cell.
             prey.ModifiableCellTypes.Insert(0,
-                CreateCellType("Unused", SINGLE, CreateOrganelle(CYTOPLASM, new Hex(0, 0))));
+                CreateCellType("Unused", "single", CreateOrganelle("cytoplasm", new Hex(0, 0))));
             prey.OnEdited();
         }
 
@@ -113,14 +107,14 @@ public class SimulationCachePredationScoreTests
         AssertThat(score).IsGreater(0.0f);
     }
 
-    [TestCase(CELLULOSE, SINGLE)]
-    [TestCase(SINGLE, CELLULOSE)]
+    [TestCase("cellulose", "single")]
+    [TestCase("single", "cellulose")]
     public void MulticellularPreyUsesSmallerCellsMembraneEnzyme(string largerMembrane, string smallerMembrane)
     {
         var largerCell = CreateCellType("Larger", largerMembrane,
-            CreateOrganelle(CYTOPLASM, new Hex(0, 0)), CreateOrganelle(CYTOPLASM, new Hex(1, 0)));
+            CreateOrganelle("cytoplasm", new Hex(0, 0)), CreateOrganelle("cytoplasm", new Hex(1, 0)));
         var smallerCell = CreateCellType("Smaller", smallerMembrane,
-            CreateOrganelle(CYTOPLASM, new Hex(0, 0)));
+            CreateOrganelle("cytoplasm", new Hex(0, 0)));
         var prey = CreateMulticellular(33, "DifferentSizes",
             (largerCell, new Hex(0, 0)), (smallerCell, new Hex(2, 0)));
         var cache = CreateCache();
@@ -130,7 +124,7 @@ public class SimulationCachePredationScoreTests
         var predator = CreateMembraneTestPredator(34);
         var score = CalculatePredationScore(predator, prey);
         AssertThat(float.IsFinite(score)).IsTrue();
-        if (smallerMembrane == SINGLE)
+        if (smallerMembrane == "single")
         {
             AssertThat(score).IsGreater(0.0f);
         }
@@ -140,13 +134,13 @@ public class SimulationCachePredationScoreTests
         }
     }
 
-    [TestCase(CELLULOSE, SINGLE)]
-    [TestCase(SINGLE, CELLULOSE)]
+    [TestCase("cellulose", "single")]
+    [TestCase("single", "cellulose")]
     public void MulticellularPreyKeepsFirstCellTypesMembraneEnzymeOnEqualSizes(string firstMembrane,
         string secondMembrane)
     {
-        var firstCell = CreateCellType("First", firstMembrane, CreateOrganelle(CYTOPLASM, new Hex(0, 0)));
-        var secondCell = CreateCellType("Second", secondMembrane, CreateOrganelle(CYTOPLASM, new Hex(0, 0)));
+        var firstCell = CreateCellType("First", firstMembrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
+        var secondCell = CreateCellType("Second", secondMembrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
 
         // Place cells in the opposite order to CellTypes so the tie rule's ordering is explicit.
         var prey = CreateMulticellular(35, "EqualSizes",
@@ -160,7 +154,7 @@ public class SimulationCachePredationScoreTests
         var predator = CreateMembraneTestPredator(36);
         var score = CalculatePredationScore(predator, prey);
         AssertThat(float.IsFinite(score)).IsTrue();
-        if (firstMembrane == SINGLE)
+        if (firstMembrane == "single")
         {
             AssertThat(score).IsGreater(0.0f);
         }
@@ -307,8 +301,8 @@ public class SimulationCachePredationScoreTests
 
     private static MicrobeSpecies CreateMembraneTestPredator(uint id, string? enzyme = null)
     {
-        var predator = CreateMicrobe(id, "MembranePredator", SINGLE,
-            CYTOPLASM, CYTOPLASM, CYTOPLASM, CYTOPLASM);
+        var predator = CreateMicrobe(id, "MembranePredator", "single",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
         predator.IsBacteria = false;
         foreach (var organelle in predator.Organelles)
             organelle.Position = new Hex(organelle.Position.Q / 4, organelle.Position.R / 4);
@@ -337,7 +331,7 @@ public class SimulationCachePredationScoreTests
         float preyFear = Constants.MAX_SPECIES_FEAR)
     {
         var predator = CreateChannelInhibitorPredator(9);
-        var prey = CreateMicrobe(10, "ChannelInhibitorPrey", SINGLE, CYTOPLASM);
+        var prey = CreateMicrobe(10, "ChannelInhibitorPrey", "single", "cytoplasm");
         prey.ModifiableBehaviour.Fear = preyFear;
         prey.ModifiableBehaviour.Aggression = 0;
         var biome = CreateBiome();
@@ -362,7 +356,7 @@ public class SimulationCachePredationScoreTests
     private static MicrobeSpecies CreateChannelInhibitorPredator(uint id)
     {
         var simulationParameters = SimulationParameters.Instance;
-        var species = CreateMicrobe(id, "ChannelInhibitorPredator", SINGLE, CYTOPLASM, PILUS);
+        var species = CreateMicrobe(id, "ChannelInhibitorPredator", "single", "cytoplasm", "pilus");
         species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("oxytoxy"),
             new Hex(8, 0), 0)
         {
@@ -380,8 +374,8 @@ public class SimulationCachePredationScoreTests
     private static MicrobeSpecies CreateSlimeJetPredator(uint id)
     {
         var simulationParameters = SimulationParameters.Instance;
-        var species = CreateMicrobe(id, "SlimeJetPredator", CELLULOSE, CYTOPLASM);
-        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType(PILUS),
+        var species = CreateMicrobe(id, "SlimeJetPredator", "cellulose", "cytoplasm");
+        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("pilus"),
             new Hex(0, -4), 0));
         species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("slimeJet"),
             new Hex(0, 4), 0));
@@ -393,10 +387,10 @@ public class SimulationCachePredationScoreTests
     private static MicrobeSpecies CreatePrey(uint id, bool hasSlimeJet)
     {
         var simulationParameters = SimulationParameters.Instance;
-        var species = CreateMicrobe(id, hasSlimeJet ? "SlimeJetPrey" : "NoSlimeJetPrey", CELLULOSE,
-            CYTOPLASM);
+        var species = CreateMicrobe(id, hasSlimeJet ? "SlimeJetPrey" : "NoSlimeJetPrey", "cellulose",
+            "cytoplasm");
         species.Organelles.Add(new OrganelleTemplate(
-            simulationParameters.GetOrganelleType(hasSlimeJet ? "slimeJet" : CHEMORECEPTOR), new Hex(0, 4), 0));
+            simulationParameters.GetOrganelleType(hasSlimeJet ? "slimeJet" : "chemoreceptor"), new Hex(0, 4), 0));
         species.ModifiableBehaviour.Fear = 0;
         species.OnEdited();
 
@@ -406,9 +400,9 @@ public class SimulationCachePredationScoreTests
     private static MicrobeSpecies CreateEnergyLimitedMicrobe(uint id)
     {
         // Non-producing organelles make inhibition cross the osmoregulation threshold.
-        var species = CreateMicrobe(id, "EnergyLimited", CELLULOSE, CYTOPLASM,
-            CHEMORECEPTOR, CHEMORECEPTOR, CHEMORECEPTOR, CHEMORECEPTOR);
-        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType(PILUS),
+        var species = CreateMicrobe(id, "EnergyLimited", "cellulose", "cytoplasm",
+            "chemoreceptor", "chemoreceptor", "chemoreceptor", "chemoreceptor");
+        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("pilus"),
             new Hex(0, -4), 0));
         species.ModifiableBehaviour.Fear = 0;
         species.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
@@ -426,9 +420,9 @@ public class SimulationCachePredationScoreTests
     private static MicrobeSpecies CreateInhibitorMicrobe(uint id, ToxinType toxinType)
     {
         // Both variants have identical geometry, production and behaviour; only toxin type differs.
-        var species = CreateMicrobe(id, "Inhibitor", CELLULOSE,
-            CYTOPLASM, CYTOPLASM, CYTOPLASM, CYTOPLASM);
-        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType(PILUS),
+        var species = CreateMicrobe(id, "Inhibitor", "cellulose",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
+        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("pilus"),
             new Hex(0, -4), 0));
         species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("oxytoxy"),
             new Hex(0, 4), 0)
@@ -485,11 +479,11 @@ public class SimulationCachePredationScoreTests
 
     private static MulticellularSpecies CreateMulticellularPredator(uint id)
     {
-        var cellType = CreateCellType("Predator", SINGLE,
-            CreateOrganelle(CYTOPLASM, new Hex(0, 0)),
-            CreateOrganelle(CYTOPLASM, new Hex(4, 0)),
-            CreateOrganelle(CYTOPLASM, new Hex(8, 0)),
-            CreateOrganelle(CYTOPLASM, new Hex(12, 0)));
+        var cellType = CreateCellType("Predator", "single",
+            CreateOrganelle("cytoplasm", new Hex(0, 0)),
+            CreateOrganelle("cytoplasm", new Hex(4, 0)),
+            CreateOrganelle("cytoplasm", new Hex(8, 0)),
+            CreateOrganelle("cytoplasm", new Hex(12, 0)));
 
         return CreateMulticellular(id, "MulticellularPredator", (cellType, new Hex(0, 0)));
     }
