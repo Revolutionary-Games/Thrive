@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoEvo;
 using GdUnit4;
+using Systems;
 using static GdUnit4.Assertions;
 using static SimulationCacheTestFixtures;
 
@@ -12,6 +13,8 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class SimulationCachePredationRoleTests
 {
+    private const string PILUS = "pilus";
+
     [TestCase(false, false, false)]
     [TestCase(false, false, true)]
     [TestCase(false, true, false)]
@@ -25,7 +28,7 @@ public class SimulationCachePredationRoleTests
     {
         var control = CreateRoleSpecies(201, multicellularPredator);
         var armed = CreateRoleSpecies(202, multicellularPredator,
-            CreateOrganelle("pilus", new Hex(0, -4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
+            CreateOrganelle(PILUS, new Hex(0, -4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
         var controlPrey = CreateRoleSpecies(203, multicellularPrey);
         var armedPrey = CreateRoleSpecies(204, multicellularPrey);
         AssertCannotEngulf(control);
@@ -54,11 +57,11 @@ public class SimulationCachePredationRoleTests
     [TestCase(true, true)]
     public void RearPilusOnFleeingPrey(bool multicellular, bool injectisome)
     {
-        var controlPredator = CreateRoleSpecies(211, false, CreateOrganelle("pilus", new Hex(0, -4)));
-        var defendedPredator = CreateRoleSpecies(214, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var controlPredator = CreateRoleSpecies(211, false, CreateOrganelle(PILUS, new Hex(0, -4)));
+        var defendedPredator = CreateRoleSpecies(214, false, CreateOrganelle(PILUS, new Hex(0, -4)));
         var control = CreateRoleSpecies(212, multicellular);
         var defended = CreateRoleSpecies(213, multicellular,
-            CreateOrganelle("pilus", new Hex(0, 4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
+            CreateOrganelle(PILUS, new Hex(0, 4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
         control.ModifiableBehaviour.Fear = defended.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         control.ModifiableBehaviour.Aggression = defended.ModifiableBehaviour.Aggression = 0;
         AssertCannotEngulf(controlPredator);
@@ -88,50 +91,168 @@ public class SimulationCachePredationRoleTests
         AssertThat(defendedScore).IsGreater(0.0f).IsLess(baseline);
     }
 
-    [TestCase(false, ToxinType.Oxytoxy, 9.939762f, 9.953802f)]
-    [TestCase(false, ToxinType.Cytotoxin, 9.939762f, 9.303881f)]
-    [TestCase(false, ToxinType.Macrolide, 9.939762f, 42.95154f)]
-    [TestCase(false, ToxinType.ChannelInhibitor, 9.939762f, 8546.542f)]
-    [TestCase(false, ToxinType.OxygenMetabolismInhibitor, 9.939762f, 9.93459f)]
-    [TestCase(true, ToxinType.Oxytoxy, 0.31303066f, 0.33341095f)]
-    [TestCase(true, ToxinType.Cytotoxin, 0.31303066f, 0.32250232f)]
-    [TestCase(true, ToxinType.Macrolide, 0.31303066f, 14.746543f)]
-    [TestCase(true, ToxinType.ChannelInhibitor, 0.31303066f, 892.47577f)]
-    [TestCase(true, ToxinType.OxygenMetabolismInhibitor, 0.31303066f, 0.3331734f)]
-    public void SinglePredatorToxin(bool multicellular, ToxinType toxin,
-        float expectedControl, float expectedArmed)
+    [TestCase(false, ToxinType.Oxytoxy)]
+    [TestCase(false, ToxinType.Cytotoxin)]
+    [TestCase(false, ToxinType.OxygenMetabolismInhibitor)]
+    [TestCase(true, ToxinType.Oxytoxy)]
+    [TestCase(true, ToxinType.Cytotoxin)]
+    [TestCase(true, ToxinType.OxygenMetabolismInhibitor)]
+    public void DirectToxinEnablesPredation(bool multicellular, ToxinType toxin)
     {
-        // The pilus keeps the catch path reachable for macrolide, which cannot kill on its own.
-        // Replace one cytoplasm with a toxin organelle at the same hex: adding it would recenter the pilus.
-        var control = CreateRoleSpecies(221, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
-            CreateOrganelle("cytoplasm", new Hex(4, 0)));
-        var armed = CreateRoleSpecies(222, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
-            CreateToxin(new Hex(4, 0), toxin));
-        var prey = CreateRoleSpecies(223, multicellular);
-        prey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR * 0.25f;
-        prey.ModifiableBehaviour.Aggression = 0;
+        // Replacing the same-position placeholder opens only the selected direct attack path.
+        var control = CreateRoleSpecies(221, multicellular, CreateOrganelle("cytoplasm", new Hex(0, 1)));
+        var armed = CreateRoleSpecies(222, multicellular, CreateToxin(new Hex(0, 1), toxin));
+        var controlPrey = CreateRoleSpecies(223, multicellular);
+        var armedPrey = CreateRoleSpecies(224, multicellular);
+        SetHuntingBehaviour(control);
+        SetHuntingBehaviour(armed);
+        AssertCannotEngulf(control);
+        AssertCannotEngulf(armed);
         var initial = GetRaw(control);
         var changed = GetRaw(armed);
+        AssertNoTools(initial);
         var expectedRaw = toxin switch
         {
             ToxinType.Oxytoxy => initial with { OxytoxyScore = changed.OxytoxyScore },
             ToxinType.Cytotoxin => initial with { CytotoxinScore = changed.CytotoxinScore },
-            ToxinType.Macrolide => initial with { MacrolideScore = changed.MacrolideScore },
-            ToxinType.ChannelInhibitor => initial with { ChannelInhibitorScore = changed.ChannelInhibitorScore },
             ToxinType.OxygenMetabolismInhibitor =>
                 initial with { OxygenMetabolismInhibitorScore = changed.OxygenMetabolismInhibitorScore },
             _ => throw new ArgumentOutOfRangeException(nameof(toxin)),
         };
         AssertRawBits(changed, expectedRaw);
-        AssertThat(changed.OxytoxyScore + changed.CytotoxinScore + changed.MacrolideScore +
-            changed.ChannelInhibitorScore + changed.OxygenMetabolismInhibitorScore > 0).IsTrue();
-
+        AssertThat(changed.OxytoxyScore + changed.CytotoxinScore + changed.OxygenMetabolismInhibitorScore)
+            .IsGreater(0.0f);
         var biome = CreateBiome();
         var oxygen = biome.Compounds[Compound.Oxygen];
         oxygen.Ambient = 1;
         biome.ChangeableCompounds[Compound.Oxygen] = oxygen;
-        AssertScorePair(control, prey, armed, prey,
-            expectedControl, expectedArmed, biome);
+        AssertThat(biome.Compounds[Compound.Oxygen].Ambient).IsGreater(0.0f);
+        AssertToxinEncounter(armed, armedPrey, CreateCache(), changed.AverageToxicity);
+        AssertNoTools(GetRaw(controlPrey));
+
+        var (baseline, armedScore) = AssertScorePair(control, controlPrey, armed, armedPrey, biome);
+        AssertThat(baseline).IsEqual(0.0f);
+        AssertThat(armedScore).IsGreater(baseline);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void MacrolideImprovesPilusCaptureOfFleeingPrey(bool multicellular)
+    {
+        // Same carrier, geometry and toxicity: zero oxygen disables the control toxin's damage.
+        var control = CreateRoleSpecies(225, multicellular, CreateOrganelle(PILUS, new Hex(0, -1)),
+            CreateToxin(new Hex(0, 1), ToxinType.Oxytoxy));
+        var slowed = CreateRoleSpecies(226, multicellular, CreateOrganelle(PILUS, new Hex(0, -1)),
+            CreateToxin(new Hex(0, 1), ToxinType.Macrolide));
+        var controlPrey = CreateRoleSpecies(227, multicellular);
+        var slowedPrey = CreateRoleSpecies(228, multicellular);
+
+        // Hold the same positive specialization input low enough to keep toxin exposure below saturation.
+        SetSpecialization(control, 0.01f);
+        SetSpecialization(slowed, 0.01f);
+        SetHuntingBehaviour(control);
+        SetHuntingBehaviour(slowed);
+        controlPrey.ModifiableBehaviour.Fear = slowedPrey.ModifiableBehaviour.Fear =
+            Constants.MAX_SPECIES_FEAR * 0.25f;
+        controlPrey.ModifiableBehaviour.Aggression = slowedPrey.ModifiableBehaviour.Aggression = 0;
+        AssertCannotEngulf(control);
+        AssertCannotEngulf(slowed);
+        var initial = GetRaw(control);
+        var changed = GetRaw(slowed);
+        AssertThat(initial.PilusScore).IsGreater(0.0f);
+        AssertThat(initial.OxytoxyScore).IsGreater(0.0f);
+        AssertThat(changed.MacrolideScore).IsGreater(0.0f);
+        AssertRawBits(initial,
+            EmptyTools() with { PilusScore = initial.PilusScore, OxytoxyScore = initial.OxytoxyScore });
+        AssertRawBits(changed, initial with { OxytoxyScore = 0, MacrolideScore = changed.MacrolideScore });
+        AssertNoTools(GetRaw(controlPrey));
+        AssertNoTools(GetRaw(slowedPrey));
+        var biome = CreateBiome();
+        AssertThat(biome.Compounds[Compound.Oxygen].Ambient).IsEqual(0.0f);
+        var cache = CreateCache();
+        var predatorSpeed = cache.GetSpeedForSpecies(control);
+        var preySpeed = cache.GetSpeedForSpecies(controlPrey);
+        AssertBits(cache.GetSpeedForSpecies(slowed), predatorSpeed);
+        AssertBits(cache.GetSpeedForSpecies(slowedPrey), preySpeed);
+        AssertBits(cache.GetBaseHexSizeForSpecies(slowed), cache.GetBaseHexSizeForSpecies(control));
+        AssertBits(cache.GetBaseHexSizeForSpecies(slowedPrey), cache.GetBaseHexSizeForSpecies(controlPrey));
+        AssertBits(cache.GetRotationSpeedForSpecies(slowed), cache.GetRotationSpeedForSpecies(control));
+        AssertBits(cache.GetRotationSpeedForSpecies(slowedPrey), cache.GetRotationSpeedForSpecies(controlPrey));
+        AssertEnergyBits(cache.GetEnergyBalanceForSpecies(slowed, biome),
+            cache.GetEnergyBalanceForSpecies(control, biome));
+        AssertEnergyBits(cache.GetEnergyBalanceForSpecies(slowedPrey, biome),
+            cache.GetEnergyBalanceForSpecies(controlPrey, biome));
+        var hitProportion = AssertToxinEncounter(slowed, slowedPrey, cache, changed.AverageToxicity);
+        AssertThat(preySpeed).IsGreater(0.0f);
+        AssertThat(controlPrey.Behaviour.Fear).IsGreater(0.0f);
+        AssertThat(slowedPrey.Behaviour.Fear).IsEqual(controlPrey.Behaviour.Fear);
+        AssertThat(controlPrey.Behaviour.Aggression).IsEqual(0.0f);
+        AssertThat(slowedPrey.Behaviour.Aggression).IsEqual(0.0f);
+        var fleeingSpeed = preySpeed * controlPrey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        AssertThat(fleeingSpeed).IsGreater(0.0f).IsLess(predatorSpeed);
+        var slowFactor = 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(changed.AverageToxicity, ToxinType.Macrolide);
+        var slowedProportion = 1 - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
+            changed.MacrolideScore * hitProportion);
+        AssertThat(slowFactor).IsGreater(0.0f).IsLess(1.0f);
+        AssertThat(slowedProportion).IsGreater(0.0f).IsLess(1.0f);
+        AssertThat(fleeingSpeed * slowFactor).IsGreater(0.0f).IsLess(fleeingSpeed);
+
+        // A strictly faster predator keeps both catch paths positive; the partial slowing is not saturated.
+        // Fix sprint funding on every cold cache and Clear, while leaving a cache hit's inputs unchanged.
+        var baseline = AssertPredationLifecycle(control, controlPrey, biome,
+            (current, conditions) => DisableSprint(current, control, controlPrey, conditions));
+        var slowedScore = AssertPredationLifecycle(slowed, slowedPrey, biome,
+            (current, conditions) => DisableSprint(current, slowed, slowedPrey, conditions));
+        AssertThat(baseline).IsGreater(0.0f);
+        AssertThat(slowedScore).IsGreater(baseline);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void MacrolideWithoutAKillingToolScoresZero(bool multicellular)
+    {
+        var predator = CreateRoleSpecies(229, multicellular, CreateToxin(new Hex(0, 1), ToxinType.Macrolide));
+        var prey = CreateRoleSpecies(230, multicellular);
+        AssertCannotEngulf(predator);
+        var raw = GetRaw(predator);
+        AssertThat(raw.MacrolideScore).IsGreater(0.0f);
+        AssertRawBits(raw, EmptyTools() with { MacrolideScore = raw.MacrolideScore });
+        AssertNoTools(GetRaw(prey));
+        AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ChannelInhibitorKillsOnlyBelowOsmoregulationFunding(bool multicellular)
+    {
+        var control = CreateRoleSpecies(291, multicellular, CreateToxin(new Hex(0, 1), ToxinType.ChannelInhibitor));
+        var damaging = CreateRoleSpecies(292, multicellular, CreateToxin(new Hex(0, 1), ToxinType.ChannelInhibitor));
+        var controlPrey = CreateRoleSpecies(293, multicellular);
+        var damagedPrey = CreateRoleSpecies(294, multicellular);
+        SetHuntingBehaviour(control);
+        SetHuntingBehaviour(damaging);
+        AssertCannotEngulf(control);
+        AssertCannotEngulf(damaging);
+        var raw = GetRaw(control);
+        AssertThat(raw.ChannelInhibitorScore).IsGreater(0.0f);
+        AssertRawBits(raw, EmptyTools() with { ChannelInhibitorScore = raw.ChannelInhibitorScore });
+        AssertRawBits(GetRaw(damaging), raw);
+        AssertNoTools(GetRaw(controlPrey));
+        AssertNoTools(GetRaw(damagedPrey));
+        AssertToxinEncounter(damaging, damagedPrey, CreateCache(), raw.AverageToxicity);
+        var biome = CreateBiome();
+
+        // Synthetic public DTO inputs isolate the damaging threshold, independently of natural metabolism.
+        // Only ATP production differs; the callback also re-establishes the threshold after Clear.
+        var baseline = AssertPredationLifecycle(control, controlPrey, biome,
+            (current, conditions) => SetChannelTargetEnergy(current, controlPrey, conditions, 4.0f,
+                raw.AverageToxicity, false));
+        var damagingScore = AssertPredationLifecycle(damaging, damagedPrey, biome,
+            (current, conditions) => SetChannelTargetEnergy(current, damagedPrey, conditions, 2.0f,
+                raw.AverageToxicity, true));
+        AssertThat(baseline).IsEqual(0.0f);
+        AssertThat(damagingScore).IsGreater(baseline);
     }
 
     [TestCase(false, false)]
@@ -140,8 +261,8 @@ public class SimulationCachePredationRoleTests
     [TestCase(true, true)]
     public void PreySlimeOrMucocystDefence(bool multicellular, bool mucocyst)
     {
-        var controlPredator = CreateRoleSpecies(231, false, CreateOrganelle("pilus", new Hex(0, -4)));
-        var defendedPredator = CreateRoleSpecies(234, false, CreateOrganelle("pilus", new Hex(0, -4)));
+        var controlPredator = CreateRoleSpecies(231, false, CreateOrganelle(PILUS, new Hex(0, -4)));
+        var defendedPredator = CreateRoleSpecies(234, false, CreateOrganelle(PILUS, new Hex(0, -4)));
         var control = CreateRoleSpecies(232, multicellular);
         var defended = CreateRoleSpecies(233, multicellular,
             CreateOrganelle("slimeJet", new Hex(0, 4), mucocyst ? SlimeJetComponent.MUCOCYST_UPGRADE_NAME : null));
@@ -170,9 +291,9 @@ public class SimulationCachePredationRoleTests
     [TestCase(true)]
     public void PredatorPullingCiliaUpgrade(bool multicellular)
     {
-        var control = CreateRoleSpecies(241, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
+        var control = CreateRoleSpecies(241, multicellular, CreateOrganelle(PILUS, new Hex(0, -4)),
             CreateOrganelle("cilia", new Hex(4, 0)));
-        var pulling = CreateRoleSpecies(242, multicellular, CreateOrganelle("pilus", new Hex(0, -4)),
+        var pulling = CreateRoleSpecies(242, multicellular, CreateOrganelle(PILUS, new Hex(0, -4)),
             CreateOrganelle("cilia", new Hex(4, 0), CiliaComponent.CILIA_PULL_UPGRADE_NAME));
         var controlPrey = CreateRoleSpecies(243, false);
         var pullingPrey = CreateRoleSpecies(244, false);
@@ -191,26 +312,34 @@ public class SimulationCachePredationRoleTests
         AssertThat(pullingScore).IsGreater(baseline);
     }
 
-    [TestCase(false, 0.17904808f, 0.16923125f)]
-    [TestCase(true, 0.17904808f, 0.16923125f)]
-    public void PredatorToxicityAtFixedToxinTypeAndAmount(bool multicellular,
-        float expectedControl, float expectedToxic)
+    [TestCase(false)]
+    [TestCase(true)]
+    public void FixedToxinTypePreservesToxicityInputAndCacheLifecycle(bool multicellular)
     {
-        // Toxicity changes both damage and hit chance, so characterize the final result without choosing a direction.
-        var control = CreateRoleSpecies(251, multicellular, CreateToxin(new Hex(4, 0), ToxinType.Cytotoxin));
-        var toxic = CreateRoleSpecies(252, multicellular, CreateToxin(new Hex(4, 0), ToxinType.Cytotoxin, 0.25f));
-        var prey = CreateRoleSpecies(253, false);
+        // Toxicity affects both damage and hit chance: no universal final-score direction is asserted.
+        var controlToxin = CreateToxin(new Hex(0, 1), ToxinType.Cytotoxin);
+        var changedToxin = CreateToxin(new Hex(0, 1), ToxinType.Cytotoxin, 0.25f);
+        var control = CreateRoleSpecies(251, multicellular, controlToxin);
+        var toxic = CreateRoleSpecies(252, multicellular, changedToxin);
+        var controlPrey = CreateRoleSpecies(253, false);
+        var toxicPrey = CreateRoleSpecies(254, false);
+        AssertThat(controlToxin.GetActiveToxin()).IsEqual(ToxinType.Cytotoxin);
+        AssertThat(changedToxin.GetActiveToxin()).IsEqual(ToxinType.Cytotoxin);
+        AssertBits(controlToxin.GetActiveToxicity(), 0.0f);
+        AssertBits(changedToxin.GetActiveToxicity(), 0.25f);
         var initial = GetRaw(control);
         var changed = GetRaw(toxic);
         AssertBits(initial.AverageToxicity, 0);
         AssertBits(changed.AverageToxicity, 0.25f);
+        AssertThat(initial.CytotoxinScore).IsGreater(0.0f);
+        AssertThat(changed.CytotoxinScore).IsGreater(0.0f);
         AssertRawBits(changed, initial with
         {
             AverageToxicity = changed.AverageToxicity,
             CytotoxinScore = changed.CytotoxinScore,
         });
 
-        AssertScorePair(control, prey, toxic, prey, expectedControl, expectedToxic);
+        AssertScorePair(control, controlPrey, toxic, toxicPrey);
     }
 
     [TestCase(false, false)]
@@ -273,7 +402,7 @@ public class SimulationCachePredationRoleTests
     [TestCase(true)]
     public void SelfPredationRemainsZero(bool multicellular)
     {
-        var species = CreateRoleSpecies(271, multicellular, CreateOrganelle("pilus", new Hex(0, -4)));
+        var species = CreateRoleSpecies(271, multicellular, CreateOrganelle(PILUS, new Hex(0, -4)));
         AssertThat(AssertPredationLifecycle(species, species)).IsEqual(0.0f);
     }
 
@@ -293,6 +422,98 @@ public class SimulationCachePredationRoleTests
                 .IsInstanceOf<ArgumentException>();
             cache.Clear();
         }
+    }
+
+    private static SimulationCache.PredationToolsRawScores EmptyTools()
+    {
+        return default(SimulationCache.PredationToolsRawScores) with { PullingCiliaModifier = 1 };
+    }
+
+    private static void AssertNoTools(SimulationCache.PredationToolsRawScores raw)
+    {
+        AssertRawBits(raw, EmptyTools());
+    }
+
+    private static void SetSpecialization(Species species, float specialization)
+    {
+        if (species is MicrobeSpecies microbe)
+        {
+            microbe.CellTypeSpecializationBonus = specialization;
+            AssertBits(microbe.CellTypeSpecializationBonus, specialization);
+        }
+        else
+        {
+            var cellType = ((MulticellularSpecies)species).ModifiableCellTypes[0];
+            cellType.CellTypeSpecializationBonus = specialization;
+            AssertBits(cellType.CellTypeSpecializationBonus, specialization);
+        }
+    }
+
+    private static void SetHuntingBehaviour(Species species)
+    {
+        species.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
+        species.ModifiableBehaviour.Activity = Constants.MAX_SPECIES_ACTIVITY;
+        species.ModifiableBehaviour.Opportunism = Constants.MAX_SPECIES_OPPORTUNISM;
+    }
+
+    private static float AssertToxinEncounter(Species predator, Species prey, SimulationCache cache, float toxicity)
+    {
+        AssertThat(predator.Behaviour.Aggression).IsGreater(0.0f);
+        AssertThat(predator.Behaviour.Activity).IsGreater(0.0f);
+        AssertThat(predator.Behaviour.Opportunism).IsGreater(0.0f);
+        AssertThat(cache.GetSpeedForSpecies(predator)).IsGreater(0.0f);
+        AssertThat(MathF.Min(1, 1.5f - cache.GetRotationSpeedForSpecies(predator) * 1.45f)).IsGreater(0.0f);
+        var hitProportion = 1 - Constants.AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR /
+            MathF.Sqrt(cache.GetBaseHexSizeForSpecies(prey)) - toxicity / Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
+        AssertThat(hitProportion).IsGreater(0.0f);
+        AssertNoTools(GetRaw(prey));
+        return hitProportion;
+    }
+
+    private static void DisableSprint(SimulationCache cache, Species predator, Species prey, BiomeConditions biome)
+    {
+        cache.GetEnergyBalanceForSpecies(predator, biome).FinalBalance = 0;
+        cache.GetEnergyBalanceForSpecies(prey, biome).FinalBalance = 0;
+        AssertThat(cache.GetEnergyBalanceForSpecies(predator, biome).FinalBalance).IsEqual(0.0f);
+        AssertThat(cache.GetEnergyBalanceForSpecies(prey, biome).FinalBalance).IsEqual(0.0f);
+    }
+
+    private static void SetChannelTargetEnergy(SimulationCache cache, Species prey, BiomeConditions biome,
+        float production, float toxicity, bool damaging)
+    {
+        var energy = cache.GetEnergyBalanceForSpecies(prey, biome);
+        energy.TotalProduction = production;
+        energy.Osmoregulation = 2;
+        energy.TotalConsumptionStationary = 2;
+        energy.TotalMovement = 10;
+        energy.TotalConsumption = 12;
+        energy.FinalBalance = 0;
+        energy.FinalBalanceStationary = 0;
+        var inhibitedProduction = energy.TotalProduction * (1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor));
+        if (damaging)
+        {
+            AssertThat(inhibitedProduction).IsLess(energy.Osmoregulation);
+        }
+        else
+        {
+            AssertThat(inhibitedProduction).IsGreaterEqual(energy.Osmoregulation);
+        }
+    }
+
+    private static void AssertEnergyBits(EnergyBalanceInfoSimple actual, EnergyBalanceInfoSimple expected)
+    {
+        AssertBits(actual.BaseMovement, expected.BaseMovement);
+        AssertBits(actual.Flagella, expected.Flagella);
+        AssertBits(actual.Actomyosin, expected.Actomyosin);
+        AssertBits(actual.Cilia, expected.Cilia);
+        AssertBits(actual.TotalMovement, expected.TotalMovement);
+        AssertBits(actual.Osmoregulation, expected.Osmoregulation);
+        AssertBits(actual.TotalProduction, expected.TotalProduction);
+        AssertBits(actual.TotalConsumption, expected.TotalConsumption);
+        AssertBits(actual.TotalConsumptionStationary, expected.TotalConsumptionStationary);
+        AssertBits(actual.FinalBalance, expected.FinalBalance);
+        AssertBits(actual.FinalBalanceStationary, expected.FinalBalanceStationary);
     }
 
     private static Species CreateRoleSpecies(uint id, bool multicellular, params OrganelleTemplate[] tools)
