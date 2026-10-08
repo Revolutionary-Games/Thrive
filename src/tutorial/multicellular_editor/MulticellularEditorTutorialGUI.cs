@@ -20,6 +20,9 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow multicellularCellEditorTutorial = null!;
+
+    [Export]
+    private CustomWindow cellBodyPlanLayoutTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MulticellularEditor;
@@ -111,6 +114,25 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 multicellularCellEditorTutorial.Hide();
+            }
+        }
+    }
+
+    public bool CellBodyPlanLayoutTutorialVisible
+    {
+        get => cellBodyPlanLayoutTutorial.Visible;
+        set
+        {
+            if (value == cellBodyPlanLayoutTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                cellBodyPlanLayoutTutorial.Show();
+            }
+            else
+            {
+                cellBodyPlanLayoutTutorial.Hide();
             }
         }
     }

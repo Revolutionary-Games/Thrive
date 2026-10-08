@@ -104,6 +104,8 @@ public class TutorialState : ITutorialInput, IArchivable
 
     public MulticellularCellDuplicateTutorial MulticellularCellDuplicateTutorial { get; private set; } = new();
 
+    public CellBodyPlanLayoutTutorial CellBodyPlanLayoutTutorial { get; private set; } = new();
+
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
     public PausingTutorial PausingTutorial { get; private set; } = new();
@@ -306,6 +308,7 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(MacroscopicRequirementsTutorial);
         writer.WriteObjectProperties(MulticellularCellEditorTutorial);
         writer.WriteObjectProperties(MulticellularCellDuplicateTutorial);
+        writer.WriteObjectProperties(CellBodyPlanLayoutTutorial);
     }
 
     /// <summary>
@@ -667,6 +670,7 @@ public class TutorialState : ITutorialInput, IArchivable
             MacroscopicRequirementsTutorial,
             MulticellularCellEditorTutorial,
             MulticellularCellDuplicateTutorial,
+            CellBodyPlanLayoutTutorial,
         ];
     }
 }
