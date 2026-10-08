@@ -239,6 +239,7 @@ public class TutorialState : ITutorialInput, IArchivable
             reader.ReadObjectProperties(instance.MacroscopicRequirementsTutorial);
             reader.ReadObjectProperties(instance.MulticellularCellEditorTutorial);
             reader.ReadObjectProperties(instance.MulticellularCellDuplicateTutorial);
+            reader.ReadObjectProperties(instance.CellBodyPlanLayoutTutorial);
         }
 
         if (instance.DisableShowingAlreadySeenTutorials)

@@ -2707,6 +2707,8 @@ public partial class CellBodyPlanEditorComponent :
         if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
         {
             selectedSelectionMenuTab = selection;
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularBodyPlanEditorTabChanged,
+                new StringEventArgs(tab), this);
         }
 
         ApplySelectionMenuTab();

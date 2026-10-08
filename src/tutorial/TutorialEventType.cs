@@ -157,6 +157,11 @@ public enum TutorialEventType
     CellEditorTabChanged,
 
     /// <summary>
+    ///   Player changed the sub-tab of the multicellular body plan editor, args is <see cref="StringEventArgs"/>
+    /// </summary>
+    MulticellularBodyPlanEditorTabChanged,
+
+    /// <summary>
     ///   Player selected a patch in the microbe editor, args is <see cref="PatchEventArgs"/>
     /// </summary>
     MicrobeEditorPatchSelected,
