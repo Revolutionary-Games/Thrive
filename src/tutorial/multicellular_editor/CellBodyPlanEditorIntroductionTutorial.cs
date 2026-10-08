@@ -31,7 +31,7 @@ public class CellBodyPlanEditorIntroductionTutorial : TutorialPhase
         {
             var tab = ((StringEventArgs)args).Data;
 
-            if (tab == cellEditorTab && CanTrigger && !overallState.TutorialActive())
+            if (tab == cellEditorTab && !HasBeenShown && CanTrigger && !overallState.TutorialActive())
             {
                 Show();
             }

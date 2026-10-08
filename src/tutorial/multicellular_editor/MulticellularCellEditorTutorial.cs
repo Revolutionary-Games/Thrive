@@ -39,7 +39,7 @@ public class MulticellularCellEditorTutorial : TutorialPhase
         // Instead, we check for this event to know when the tab is actually usable.
         if (eventType == TutorialEventType.MulticellularCellTypeEditStarted)
         {
-            if (CanTrigger && !overallState.TutorialActive())
+            if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
             {
                 Show();
             }

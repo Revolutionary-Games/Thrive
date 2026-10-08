@@ -29,7 +29,7 @@ public class CellBodyPlanLayoutTutorial : TutorialPhase
     {
         if (eventType == TutorialEventType.MulticellularBodyPlanEditorTabChanged &&
             ((StringEventArgs)args).Data == layoutTab &&
-            CanTrigger && !overallState.TutorialActive())
+            !HasBeenShown && CanTrigger && !overallState.TutorialActive())
         {
             Show();
         }
