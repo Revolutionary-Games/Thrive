@@ -116,7 +116,7 @@ Description = "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="CellBodyPlanLayoutTutorial" parent="." instance=ExtResource("4_fr4jn")]
+[node name="CellBodyPlanLayoutTutorial" parent="." unique_id=1358695278 instance=ExtResource("4_fr4jn")]
 custom_minimum_size = Vector2(380, 300)
 layout_mode = 1
 anchors_preset = 6
@@ -124,21 +124,21 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -410.0
-offset_top = -220.0
+offset_left = -390.0
+offset_top = -252.0
 offset_right = -10.0
-offset_bottom = 220.0
+offset_bottom = 252.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="Spacer" type="Control" parent="CellBodyPlanLayoutTutorial/ScrollContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CellBodyPlanLayoutTutorial/ScrollContainer/VBoxContainer" parent_id_path=PackedInt32Array(1358695278, 1371081850) index="1" unique_id=766834728]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CellBodyPlanLayoutTutorial/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CellBodyPlanLayoutTutorial/ScrollContainer/VBoxContainer" parent_id_path=PackedInt32Array(1358695278, 1371081850) index="2" unique_id=927395638]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -152,3 +152,5 @@ text = "CLOSE"
 [connection signal="hidden" from="MulticellularCellEditorTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularCellEditorTutorial"]]
 [connection signal="hidden" from="CellBodyPlanLayoutTutorial" to="." method="OnSpecificCloseClicked" binds= ["CellBodyPlanLayoutTutorial"]]
 [connection signal="pressed" from="CellBodyPlanLayoutTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["CellBodyPlanLayoutTutorial"]]
+
+[editable path="CellBodyPlanLayoutTutorial"]
