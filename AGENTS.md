@@ -19,80 +19,64 @@ performance features and the Thrive Godot GDExtension.
 
 ## Reading requirements
 
-Read the shared requirements and then every task-specific route that applies. Tasks spanning
-several areas combine their routes. For each named section, locate it in the document and read
-the complete section, including all subsections; a link or heading name is only a navigation
-aid. Do not read unrelated sections just because they share a document.
+Apply the shared requirements and every task-specific route that fits the change; combine routes
+when work spans areas. Read each named section in full, including its subsections, but skip
+unrelated sections in the same document.
 
 ### Shared requirements
 
-- Before editing any repository file, read the complete [Git section](doc/style_guide.md#git) of the style guide.
-- Before changing source code, read the complete [Pull requests section](CONTRIBUTING.md#pull-requests)
-  of the contribution guide. Preserve relevant comments around changed code and update comments
-  made inaccurate by the change.
-- Before changing C# code, also read the style guide's introduction (from the title through the
-  text immediately before "Code style rules"), the complete [Code style rules](doc/style_guide.md#code-style-rules)
-  section, and the complete [Other recommended approaches](doc/style_guide.md#other-recommended-approaches)
-  section. Use nearby code for local patterns.
-- Before adding or editing non-code files such as Markdown documentation, JSON/configuration data,
-  Godot scenes/resources, or locale files, read the complete [Other files](doc/style_guide.md#other-files)
-  section. C++ source files follow the native code route below. For imported assets and generated
-  files, follow existing project conventions and avoid unrelated changes.
+- Any repository edit: style guide [Git section](doc/style_guide.md#git). Source code: contribution
+  guide [Pull requests section](CONTRIBUTING.md#pull-requests); preserve relevant comments and
+  update any made inaccurate by the change.
+- C# changes: style guide introduction through the text before
+  [Code style rules](doc/style_guide.md#code-style-rules), and [Other recommended
+  approaches](doc/style_guide.md#other-recommended-approaches); follow nearby code for local
+  patterns.
+- Non-code files (including Markdown, JSON/configuration, Godot resources, and locale files):
+  style guide [Other files](doc/style_guide.md#other-files). C++ follows the native code route;
+  use project conventions for imported assets and generated files.
 
 ### Task-specific requirements
 
-- For code that runs every frame or otherwise runs frequently, additionally read the complete
-  [Memory allocation](doc/style_guide.md#memory-allocation) section. This applies to frequent
-  ECS systems, Godot callbacks, and hot paths in native code.
-- When changing Godot nodes, scenes, or resources, additionally read the complete
-  [Godot usage](doc/style_guide.md#godot-usage) section. For a new Godot workflow or when Godot
-  editor behavior is unfamiliar, read all of [Learning Godot](doc/learning_godot.md) as well.
-- When adding or changing GUI behavior, also read all of
-  [Making Graphical User Interfaces](doc/making_guis.md), including its focus, navigation, and
-  tabs subsections. Combine this with the Godot usage route for scene or node changes.
-- When changing input handling, read the complete [Input section](doc/architecture.md#input) of
-  the architecture guide and all of [the input system guide](doc/input_system.md), in addition to
-  the C# and Godot routes that apply.
-- When changing gameplay rules, simulation behavior, or stage behavior, read the complete
-  [Gameplay changes](doc/style_guide.md#gameplay-changes) and [Folder Structure](doc/architecture.md#folder-structure)
-  sections.
-- When changing ECS components, systems, world creation, or threaded simulation, read the complete
-  [Entity Component System (ECS)](doc/architecture.md#entity-component-system-ecs) section, even
-  when the change does not alter gameplay rules. Follow its rules for data-only components,
-  `ThriveWorld.Create()`, system access/order metadata, thread safety, and command buffers.
-- When changing serialized data, save/load behavior, or compatibility with existing saves, read
-  all of [the Saving System guide](doc/saving_system.md). If changing ECS component persistence,
-  also read the architecture guide's complete [Saving and Loading](doc/architecture.md#saving-and-loading)
-  subsection. Keep older saves compatible or add the required version change and upgrader.
-- For new or changed translatable strings in C# code, read the complete `Working in C# files`
-  subsection in [the translation guide](doc/working_with_translations.md). For text in Godot
-  scenes, read its complete `Working in scene files` subsection. If adding or changing translation
-  keys, also read the complete `Updating the localizations` subsection. In all these cases, read
-  the complete `How the translations work` section of the translation guide. When editing `.po`
-  text, also read the complete `Translate the text` subsection; when adding a language, read the
-  complete `Translating the game into a new language` section, including all its subsections. For
-  localization tool setup, read only the matching subsection of `Localization tools` in
-  `doc/setup_instructions.md` (`Gettext tools`, `Poedit`, or `Custom merge driver`).
-- When changing Auto-Evo algorithms, selection pressures, mutations, or their tuning, read all of
-  [Auto-Evo](doc/auto_evo.md), in addition to the gameplay and C# routes that apply.
-- When changing native C++ code or the C#/C++ boundary, read the architecture guide's complete
-  [Native Code](doc/architecture.md#native-code) section, including its `C# Interop (P/Invoke)`
-  subsection. Follow the repository `.clang-format` and nearby native code.
-- When adding or changing debug console commands, read all of [The Debug Console](doc/debug_console.md).
-- When investigating or changing profiling workflows, read all of [Profiling](doc/profiling.md).
-- When changing Godot versions, read all of [Updating Godot Version](doc/updating_godot_version.md) and
-  the [Godot .NET version](doc/setup_instructions.md#godot-net-version) section of setup instructions.
-- When building the C# solution, read `Godot .NET version`, `Compiling C# Code`, and `C# packages`
-  in [the setup instructions](doc/setup_instructions.md). For code-only tests, read `C# packages`;
-  for game runs or Godot-using tests, also read `Native Libraries` and make the required Godot .NET
-  executable available on `PATH`. For formatting checks, read the complete `Running the Format Checks`
-  section. When troubleshooting, read only the subsection under `Additional Tips` that matches the
-  failure. Do not read the entire setup guide by default.
-- When adding or updating binary game assets, read the complete `Modellers, texture and GUI artists,
-  and Sound Engineers` section of [README.md](README.md) and the `Git with LFS` section of
-  `doc/setup_instructions.md`.
-- When packaging a release, read all of [Making Releases](doc/making_releases.md) and the
-  [Exporting the game](doc/setup_instructions.md#exporting-the-game) section of the setup instructions.
+- Frequent code (per-frame systems, callbacks, or native hot paths): style guide
+  [Memory allocation](doc/style_guide.md#memory-allocation).
+- Godot nodes/scenes/resources: style guide [Godot usage](doc/style_guide.md#godot-usage);
+  check existing project patterns because Thrive extends Godot defaults. For unfamiliar workflows
+  or editor behavior, read [Learning Godot](doc/learning_godot.md).
+- GUI behavior: [Making Graphical User Interfaces](doc/making_guis.md), plus the Godot route for
+  scene/node changes. Input handling:
+  architecture [Input](doc/architecture.md#input) and [the input system guide](doc/input_system.md).
+- Gameplay, simulation, or stage behavior: style guide
+  [Gameplay changes](doc/style_guide.md#gameplay-changes) and architecture
+  [Folder Structure](doc/architecture.md#folder-structure).
+- ECS components, systems, world creation, or threaded simulation: architecture
+  [Entity Component System](doc/architecture.md#entity-component-system-ecs). Keep components
+  data-only; put behavior in systems or same-file helpers, create worlds with `ThriveWorld.Create()`,
+  declare system access/order metadata, respect thread safety, and use command buffers for
+  structural changes during updates.
+- Serialized data, save/load, or save compatibility: [Saving System](doc/saving_system.md); ECS
+  persistence also needs architecture [Saving and Loading](doc/architecture.md#saving-and-loading).
+  Keep older saves compatible, adding a version change and upgrader when required.
+- Translations: [How the translations work](doc/working_with_translations.md#how-the-translations-work),
+  plus the relevant `Working in C# files`, `Working in scene files`, `Updating the localizations`,
+  `Translate the text`, or `Translating the game into a new language` subsection. For localization
+  tools, read only the relevant `Gettext tools`, `Poedit`, or `Custom merge driver` subsection under
+  setup [Localization tools](doc/setup_instructions.md#localization-tools). Use project localization
+  APIs, extract keys, and update the English translation as described in the guide.
+- Auto-Evo algorithms or tuning: [Auto-Evo](doc/auto_evo.md), plus applicable gameplay and C# routes.
+- Native C++ or the C#/C++ boundary: architecture [Native Code](doc/architecture.md#native-code),
+  including `C# Interop (P/Invoke)`; follow `.clang-format` and nearby code.
+- Debug console commands: [The Debug Console](doc/debug_console.md). Profiling workflows:
+  [Profiling](doc/profiling.md).
+- Godot version changes: [Updating Godot Version](doc/updating_godot_version.md) and setup
+  [Godot .NET version](doc/setup_instructions.md#godot-net-version).
+- C# builds: setup `Godot .NET version`, `Compiling C# Code`, and `C# packages`; code-only tests
+  need `C# packages`; Godot tests/runs also need `Native Libraries` and Godot .NET on `PATH`.
+  Formatting checks: `Running the Format Checks`; troubleshooting: only the relevant
+  `Additional Tips` subsection.
+- Binary game assets: README `Modellers, texture and GUI artists, and Sound Engineers` and setup
+  `Git with LFS`. Releases: [Making Releases](doc/making_releases.md) and setup
+  [Exporting the game](doc/setup_instructions.md#exporting-the-game).
 
 Keep changes focused. Avoid unrelated formatting or refactoring, especially in generated files,
 imported Godot resources, and vendored dependencies.
