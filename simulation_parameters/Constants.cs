@@ -2190,12 +2190,14 @@ public static class Constants
     // These values must be the same as in the editor
     public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
     public const float TOLERANCE_OXYGEN_STEP = 0.01f;
-    public const float TOLERANCE_UV_STEP = 0.05f;
+    public const float TOLERANCE_UV_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_UV_STEP = 0.01f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
     /// </summary>
     public const float TOLERANCE_UV_APPLY_AFTER = 0.01f;
+    public const float TOLERANCE_UV_DEFAULT_VALUE = 1.0f;
 
     public const float TOLERANCE_OXYGEN_APPLY_AFTER = 0.01f;
 

@@ -20,13 +20,13 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     /// <summary>
     ///   Temperature (in C) that this species likes to be in
     /// </summary>
-    public float PreferredTemperature { get; set; } = 15;
+    public float PreferredTemperature { get; set; }
 
     /// <summary>
     ///   How wide a temperature range this species can stay in effectively. The range of temperatures is
     ///   <c>PreferredTemperature - TemperatureTolerance</c> to <c>PreferredTemperature + TemperatureTolerance</c>
     /// </summary>
-    public float TemperatureTolerance { get; set; } = 21;
+    public float TemperatureTolerance { get; set; }
 
     /// <summary>
     ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
@@ -38,9 +38,9 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     ///     GUI will break when this data is fed in.
     ///   </para>
     /// </remarks>
-    public float PressureMinimum { get; set; } = 71325;
+    public float PressureMinimum { get; set; }
 
-    public float PressureTolerance { get; set; } = 2000000;
+    public float PressureTolerance { get; set; }
 
     public float UVResistance { get; set; }
     public float OxygenResistance { get; set; }

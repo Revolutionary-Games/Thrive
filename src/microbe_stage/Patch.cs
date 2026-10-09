@@ -643,7 +643,8 @@ public class Patch : IArchivable
         var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
-            UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
+            UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome) *
+                Constants.TOLERANCE_UV_RANGE_MAX,
             PressureMinimum = Math.Max(Biome.Pressure - Constants.TOLERANCE_INITIAL_PRESSURE_RANGE * 0.5f, 0),
             PressureTolerance = Constants.TOLERANCE_INITIAL_PRESSURE_RANGE,
             PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -
@@ -678,7 +679,7 @@ public class Patch : IArchivable
             result.UVResistance -= externalModifiers.UVResistance;
 
             // due to rounding make sure the tolerance is always in appropriate range
-            result.UVResistance = Math.Max(0, result.UVResistance);
+            result.UVResistance = Math.Max(result.UVResistance, 0);
             result.UVResistance = (float)(Math.Ceiling(result.UVResistance / Constants.TOLERANCE_UV_STEP) *
                 Constants.TOLERANCE_UV_STEP);
         }
