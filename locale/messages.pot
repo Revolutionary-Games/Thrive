@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"POT-Creation-Date: 2026-10-08 17:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgstr ""
 #: ../src/general/base_stage/EditorBase.cs:973
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:568
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:723
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:729
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -1342,6 +1342,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:320
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:437
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:482
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:146
 msgid "CLOSE"
 msgstr ""
 
@@ -2266,15 +2267,15 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:443
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:444
 msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:440
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:441
 msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:437
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:438
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr ""
 
@@ -2741,8 +2742,28 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr ""
 
-#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:38
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:133
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:97
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:115
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:61
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:43
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:79
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:18
@@ -3470,12 +3491,12 @@ msgstr ""
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:508
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:509
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:815
 msgid "GAMETE_CELL_TYPE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:495
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:496
 msgid "GAMETE_CELL_TYPE_A"
 msgstr ""
 
@@ -5274,20 +5295,20 @@ msgstr ""
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:800
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:801
 msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:775
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:776
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1268
 msgid "MACROSCOPIC_CONDITIONS_INTRO"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:801
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:802
 msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:805
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:806
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1269
 msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr ""
@@ -6559,7 +6580,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2600
 #: ../src/gui_common/menus/OptionsMenu.tscn:746
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:503
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:353
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:354
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:145
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:154
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:163
@@ -7128,7 +7149,7 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:790
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:791
 msgid "PASSED_FULFILLED_CONDITION"
 msgstr ""
 
@@ -8350,7 +8371,7 @@ msgstr ""
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:501
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:502
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:831
 msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
 msgstr ""
