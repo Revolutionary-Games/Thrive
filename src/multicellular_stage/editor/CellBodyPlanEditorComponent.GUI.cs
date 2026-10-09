@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Godot;
 using Systems;
 
@@ -10,6 +11,10 @@ using Systems;
 public partial class CellBodyPlanEditorComponent
 {
     private readonly List<Label> activeToleranceWarnings = new();
+
+    private readonly List<(bool FulFilled, string Description)> macroscopicConditionResults = new();
+
+    private readonly StringBuilder macroscopicConditionResultsBuilder = new();
 
     private int usedToleranceWarnings;
 
@@ -77,6 +82,7 @@ public partial class CellBodyPlanEditorComponent
         _ = tutorial;
 
         gui.RightPanelScrollContainer = rightPanelScrollContainer;
+        gui.MacroscopicRequirementsButton = macroscopicConditionsViewButton;
     }
 
     protected override void OnTranslationsChanged()
@@ -748,5 +754,65 @@ public partial class CellBodyPlanEditorComponent
     private void OnReapplyAutomaticLayoutButtonPressed()
     {
         OnReapplyAutomaticLayoutPressed();
+    }
+
+    private void OpenMacroscopicRequirementsDialog()
+    {
+        // It would be nice to avoid this duplicate data generation, but for safety the GetEditedCellDataIfEdited
+        // method needs to be called for now.
+        var cellDataToUse = new List<HexWithData<CellTemplate>>();
+
+        foreach (var editedCell in editedMicrobeCells)
+        {
+            cellDataToUse.Add(new HexWithData<CellTemplate>(new CellTemplate(
+                GetEditedCellDataIfEdited(editedCell.Data!.ModifiableCellType),
+                editedCell.Position, editedCell.Orientation), editedCell.Position, editedCell.Orientation));
+        }
+
+        CellBodyPlanInternalCalculations.CalculateMacroscopicConditions(cellDataToUse, ReproductionMethod,
+            macroscopicConditionResults);
+
+        macroscopicConditionResultsBuilder.Clear();
+        macroscopicConditionResultsBuilder.Append(Localization.Translate("MACROSCOPIC_CONDITIONS_INTRO"));
+        macroscopicConditionResultsBuilder.Append('\n');
+        bool canBecomeMacroscopic = true;
+
+        foreach (var (fulfilled, description) in macroscopicConditionResults)
+        {
+            macroscopicConditionResultsBuilder.Append('\n');
+
+            if (!fulfilled)
+            {
+                canBecomeMacroscopic = false;
+                macroscopicConditionResultsBuilder.Append(description);
+            }
+            else
+            {
+                macroscopicConditionResultsBuilder.Append(Localization.Translate("PASSED_FULFILLED_CONDITION")
+                    .FormatSafe(description));
+            }
+        }
+
+        macroscopicConditionResultsBuilder.Append('\n');
+        macroscopicConditionResultsBuilder.Append('\n');
+
+        if (canBecomeMacroscopic)
+        {
+            macroscopicConditionResultsBuilder.Append(Localization.Translate("MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"));
+            macroscopicConditionsView.WindowTitle = Localization.Translate("MACROSCOPIC_CONDITIONS_READY_TITLE");
+        }
+        else
+        {
+            macroscopicConditionsView.WindowTitle = Localization.Translate("MACROSCOPIC_CONDITIONS_TITLE");
+        }
+
+        macroscopicConditionsView.DialogText = macroscopicConditionResultsBuilder.ToString();
+        macroscopicConditionsView.PopupCenteredShrink();
+
+        if (Editor.TutorialState.Enabled)
+        {
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularMacroscopicRequirementsOpened,
+                EventArgs.Empty, this);
+        }
     }
 }

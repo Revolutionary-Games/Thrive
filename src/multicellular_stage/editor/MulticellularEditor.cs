@@ -621,6 +621,12 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
                     cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
+
+                    if (TutorialState.Enabled)
+                    {
+                        TutorialState.SendEvent(TutorialEventType.MulticellularCellTypeEditStarted,
+                            new StringEventArgs(selectedCellTypeToEdit.CellTypeName), this);
+                    }
                 }
 
                 break;
@@ -650,6 +656,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void OnAppliedEdits()
     {
+        // Remember if the species is ready for macroscopic conversion
+        EditedSpecies.IsReadyForMacroscopic =
+            CellBodyPlanInternalCalculations.CalculateIsReadyForMacroscopic(EditedSpecies.EditorCells,
+                EditedSpecies.ReproductionMethod);
+
         if (specialMembraneToSwitchOnExit == null)
             return;
 

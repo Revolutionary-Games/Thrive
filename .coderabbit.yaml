@@ -3,8 +3,11 @@ reviews:
   path_filters:
     - "**/*"
     - "!**/*.pot"
-    - "!**/*.po"
-    - "**/en.po"
+    # Exclude every PO file except the English source catalog (en.po).
+    - "!**/[!e]*.po"
+    - "!**/e.po"
+    - "!**/e[!n]*.po"
+    - "!**/en?*.po"
   auto_review:
     ignore_usernames:
       - "revolutionary-translation-bot"

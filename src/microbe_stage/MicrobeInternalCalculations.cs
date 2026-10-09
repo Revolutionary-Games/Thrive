@@ -267,6 +267,24 @@ public static class MicrobeInternalCalculations
     }
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
+    /// <summary>
+    ///   Calculates the speed for a cell.
+    /// </summary>
+    /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
+    /// <param name="membraneType">The membrane type for this cell</param>
+    /// <param name="membraneRigidity">The membrane rigidity for this cell</param>
+    /// <param name="isBacteria">True if this cell does not have a nucleus</param>
+    /// <param name="totalSpecializationBonus">
+    ///   Total bonus that organelles should get to their functioning. This includes the cell specialization bonus,
+    ///   but potentially also cell adjacency bonuses.
+    /// </param>
+    /// <param name="useEstimate">
+    ///   If true, uses a mass estimate algorithm instead of generating shapeMasses. This is generally for auto-evo,
+    ///   since in that context generating a shapeMass takes too long.
+    /// </param>
+    /// <returns>
+    ///   A single speed value taking into account both thrust and drag.
+    /// </returns>
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
@@ -277,14 +295,7 @@ public static class MicrobeInternalCalculations
         // This is why Auto-Evo just estimates the value of the output instead
         if (!useEstimate)
         {
-            var averageDensity = CalculateAverageDensity(organelles);
-
-            var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
-
-            var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-                averageDensity, isBacteria);
-
-            shapeMass = shape.GetMass();
+            shapeMass = CalculateShapeMass(organelles, membraneType, isBacteria);
         }
 
         float organelleMovementForce = 0;
@@ -347,7 +358,7 @@ public static class MicrobeInternalCalculations
 
         // If this estimate could be made more accurate without additional computation that would be great
         // but it is close enough for now
-        massEstimate *= 1.4f;
+        massEstimate *= Constants.MASS_ESTIMATE_MULTIPLIER;
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
 
@@ -376,6 +387,19 @@ public static class MicrobeInternalCalculations
         float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
         return finalSpeed;
+    }
+
+    public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
+        bool isBacteria)
+    {
+        var averageDensity = CalculateAverageDensity(organelles);
+
+        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+            averageDensity, isBacteria);
+
+        return shape.GetMass();
     }
 
     public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount,

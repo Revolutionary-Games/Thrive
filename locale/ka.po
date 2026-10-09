@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-08 17:21+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -512,6 +512,10 @@ msgstr "ბათიპელაგიური"
 msgid "BECOME_MACROSCOPIC"
 msgstr "მაკროსკოპულად გახდომა ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "მაკროსკოპულად გახდომა ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "მრავალუჯრედიანად გახდომა ({0}/{1})"
 
@@ -847,6 +851,10 @@ msgstr "ჩიტის ღილაკები ჩართულია"
 
 msgid "CHEAT_MENU"
 msgstr "ჩიტების მენიუ"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "მხოლოდ, ხელმისაწვდომია [color=#3796e1][url=thriveopedia:macroscopic_stage]მაკროსკოპული ფაზის[/url][/color] შემდეგ."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "უჯრედის პროცესების ჩვენება/დამალვა"
@@ -2012,7 +2020,62 @@ msgstr ""
 "ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
 "\n"
@@ -3536,6 +3599,10 @@ msgstr "ჩავტვირთო არასწორი შენახუ�
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "თამაშის ჩატვირთვა"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "ლ"
 
@@ -3595,6 +3662,47 @@ msgstr "მაკროსკოპული"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "მაკროსკოპულ ფაზაში მემბრანას ვეღარ შეცვლით"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "მაკროსკოპული რედაქტორი"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "მაკროსკოპული რედაქტორი"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "მაკროსკოპული რედაქტორი"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "უჯრედების საწყისი რაოდენობა"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "მაკროსკოპულ ფაზაში მემბრანას ვეღარ შეცვლით"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "გამრავლება {0} ბიომში"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "მაკროსკოპული რედაქტორი"
@@ -4234,7 +4342,14 @@ msgstr "გადასვლა ნებისმიერი ბიომი�
 msgid "MOVE_TO_LAND"
 msgstr "მიწაზე გადასვლა"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"გვიან მრავალუჯრედიან ფაზაზე გადასვლა. ხელმისაწვდომია, მხოლოდ,როცა საკმარისად დიდი უჯრედების კოლონია გაგაჩნიათ.\n"
+"ამას სჭირდება, რომ დაამატოთ რედაქტორში საკმარისი უჯრედები, შემდეგ კი გაზარდეთ კოლონია მინიმალურ ზომამდე."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "გვიან მრავალუჯრედიან ფაზაზე გადასვლა. ხელმისაწვდომია, მხოლოდ,როცა საკმარისად დიდი უჯრედების კოლონია გაგაჩნიათ.\n"
 "ამას სჭირდება, რომ დაამატოთ რედაქტორში საკმარისი უჯრედები, შემდეგ კი გაზარდეთ კოლონია მინიმალურ ზომამდე."
@@ -4859,6 +4974,10 @@ msgstr "მარჯვნივ მიწევა"
 
 msgid "PAN_CAMERA_UP"
 msgstr "აბრუნება"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "და"
 
 msgid "PAST_DEVELOPERS"
 msgstr "ყოფილი პროგრამისტები"
