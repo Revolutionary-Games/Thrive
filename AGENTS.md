@@ -28,8 +28,8 @@ unrelated sections in the same document.
 - Any repository edit: style guide [Git section](doc/style_guide.md#git). Source code: contribution
   guide [Pull requests section](CONTRIBUTING.md#pull-requests); preserve relevant comments and
   update any made inaccurate by the change.
-- C# changes: style guide introduction through the text before
-  [Code style rules](doc/style_guide.md#code-style-rules), and [Other recommended
+- C# changes: style guide introduction and especially the
+  [Code style rules](doc/style_guide.md#code-style-rules) section, and [Other recommended
   approaches](doc/style_guide.md#other-recommended-approaches); follow nearby code for local
   patterns.
 - Non-code files (including Markdown, JSON/configuration, Godot resources, and locale files):
