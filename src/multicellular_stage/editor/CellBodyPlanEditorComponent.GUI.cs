@@ -782,17 +782,9 @@ public partial class CellBodyPlanEditorComponent
 
             macroscopicConditionResultsBuilder.Append(GUICommon.RequirementFulfillmentIconRichText(fulfilled));
             macroscopicConditionResultsBuilder.Append(' ');
+            macroscopicConditionResultsBuilder.Append(description);
 
-            if (!fulfilled)
-            {
-                canBecomeMacroscopic = false;
-                macroscopicConditionResultsBuilder.Append(description);
-            }
-            else
-            {
-                macroscopicConditionResultsBuilder.Append(Localization.Translate("PASSED_FULFILLED_CONDITION")
-                    .FormatSafe(description));
-            }
+            canBecomeMacroscopic &= fulfilled;
         }
 
         macroscopicConditionResultsBuilder.Append('\n');
