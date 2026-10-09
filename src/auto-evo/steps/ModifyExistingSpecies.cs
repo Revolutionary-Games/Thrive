@@ -135,6 +135,22 @@ public class ModifyExistingSpecies : IRunStep
                     if (species is MicrobeSpecies or MulticellularSpecies)
                     {
                         GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
+
+                        // If the species is a MicrobeSpecies, check if it can become Multicellular,
+                        // and if so, generate Multicellular mutants.
+                        if (species is MicrobeSpecies microbeSpecies)
+                        {
+                            var newSpecies = AttemptBecomingMulticellular(microbeSpecies);
+
+                            if (newSpecies != null)
+                            {
+                                newSpecies.OnAttemptedInAutoEvo(true, false);
+                                mutationsToTry.Add(new Mutation(species, newSpecies,
+                                    RunResults.NewSpeciesType.SplitDueToMutation));
+
+                                GetMutationsForSpecies(newSpecies, patch.SpeciesInPatch.Count);
+                            }
+                        }
                     }
                 }
                 else
@@ -293,6 +309,31 @@ public class ModifyExistingSpecies : IRunStep
 
         // More steps to run
         return false;
+    }
+
+    private static MulticellularSpecies? AttemptBecomingMulticellular(MicrobeSpecies baseMicrobeSpecies)
+    {
+        var organelles = baseMicrobeSpecies.Organelles;
+
+        // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
+        // (the in-gameplay requirement of having a colony of size 5 can be supposed to happen anytime)
+        // If more requirements are added for the player, that should extend to auto-evo as well.
+        var hasBindingFeature = false;
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            if (organelles[i].Definition.HasBindingFeature)
+            {
+                hasBindingFeature = true;
+                break;
+            }
+        }
+
+        if (!hasBindingFeature)
+            return null;
+
+        var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, true);
+        return newSpecies;
     }
 
     private static void PruneMutations(List<Mutant> addResultsTo, Species baseSpecies,
