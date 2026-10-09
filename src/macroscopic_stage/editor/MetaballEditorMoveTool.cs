@@ -137,7 +137,7 @@ public partial class MetaballEditorMoveTool : Node3D
             return float.MaxValue;
         }
 
-        return MathF.Abs(intersection.Value.DistanceSquaredTo(ring.GlobalPosition) - ring.Scale.X * ring.Scale.X);
+        return MathF.Abs(intersection.Value.DistanceTo(ring.GlobalPosition) - ring.Scale.X);
     }
 
     private void StartDraggingArrow(MeshInstance3D ring, Camera3D camera, Vector2 mousePos, Vector3 parentPos,
