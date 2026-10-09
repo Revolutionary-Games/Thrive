@@ -20,8 +20,7 @@ public partial class MetaballBodyEditorComponent
 
         if (metaball == metaballSelectedForMoving)
         {
-            metaballSelectedForMoving = null;
-            moveTool.EndDisplay();
+            HideTransformTools();
         }
     }
 

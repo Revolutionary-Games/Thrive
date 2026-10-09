@@ -148,14 +148,16 @@ public partial class MetaballBodyEditorComponent :
         get => selectedTransformTool;
         set
         {
+            if (selectedTransformTool == value)
+                return;
+
             selectedTransformTool = value;
 
             moveToolButton.ButtonPressed = selectedTransformTool == TransformTool.Movement;
 
             if (selectedTransformTool == TransformTool.None)
             {
-                metaballSelectedForMoving = null;
-                moveTool.EndDisplay();
+                HideTransformTools();
             }
             else
             {
@@ -519,8 +521,7 @@ public partial class MetaballBodyEditorComponent :
             }
 
             // The player clicked away from the movement tool, so it should be hidden
-            metaballSelectedForMoving = null;
-            moveTool.EndDisplay();
+            HideTransformTools();
         }
 
         GetMouseMetaball(out _, out var metaball);
@@ -579,6 +580,16 @@ public partial class MetaballBodyEditorComponent :
         EnqueueAction(multiAction);
 
         return true;
+    }
+
+    public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
+    {
+        base.SetEditorWorldTabSpecificObjectVisibility(shown);
+
+        if (!shown)
+        {
+            HideTransformTools();
+        }
     }
 
     protected CellType CellTypeFromName(string name)
@@ -1203,6 +1214,15 @@ public partial class MetaballBodyEditorComponent :
         EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
+    /// <summary>
+    ///   Hides transform tools, such as the movement rings. For now, that's the only transform tools there is.
+    /// </summary>
+    private void HideTransformTools()
+    {
+        metaballSelectedForMoving = null;
+        moveTool.EndDisplay();
+    }
+
     private void OnMetaballsChanged()
     {
         UpdateAlreadyPlacedVisuals();
@@ -1460,8 +1480,7 @@ public partial class MetaballBodyEditorComponent :
 
         if (PreviewMode)
         {
-            metaballSelectedForMoving = null;
-            moveTool.EndDisplay();
+            HideTransformTools();
         }
     }
 }
