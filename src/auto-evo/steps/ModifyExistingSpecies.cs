@@ -143,11 +143,7 @@ public class ModifyExistingSpecies : IRunStep
                             var multicellularBase = AttemptBecomingMulticellular(microbeSpecies);
 
                             if (multicellularBase != null)
-                            {
-                                multicellularBase.OnAttemptedInAutoEvo(true, false);
-
                                 GetMutationsForSpecies(multicellularBase, patch.SpeciesInPatch.Count, species);
-                            }
                         }
                     }
                 }
@@ -331,6 +327,7 @@ public class ModifyExistingSpecies : IRunStep
             return null;
 
         var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, true);
+        newSpecies.OnAttemptedInAutoEvo(true, false);
         return newSpecies;
     }
 
