@@ -307,6 +307,10 @@ public class ModifyExistingSpecies : IRunStep
 
     private static MulticellularSpecies? AttemptBecomingMulticellular(MicrobeSpecies baseMicrobeSpecies)
     {
+        // We don't generate new Multicellular species for the player species.
+        if (baseMicrobeSpecies.PlayerSpecies)
+            return null;
+
         var organelles = baseMicrobeSpecies.Organelles;
 
         // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
