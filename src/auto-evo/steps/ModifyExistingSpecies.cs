@@ -140,15 +140,13 @@ public class ModifyExistingSpecies : IRunStep
                         // and if so, generate Multicellular mutants.
                         if (species is MicrobeSpecies microbeSpecies)
                         {
-                            var newSpecies = AttemptBecomingMulticellular(microbeSpecies);
+                            var multicellularBase = AttemptBecomingMulticellular(microbeSpecies);
 
-                            if (newSpecies != null)
+                            if (multicellularBase != null)
                             {
-                                newSpecies.OnAttemptedInAutoEvo(true, false);
-                                mutationsToTry.Add(new Mutation(species, newSpecies,
-                                    RunResults.NewSpeciesType.SplitDueToMutation));
+                                multicellularBase.OnAttemptedInAutoEvo(true, false);
 
-                                GetMutationsForSpecies(newSpecies, patch.SpeciesInPatch.Count);
+                                GetMutationsForSpecies(multicellularBase, patch.SpeciesInPatch.Count, species);
                             }
                         }
                     }
@@ -404,7 +402,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(Species species, int speciesInPatch)
+    private void GetMutationsForSpecies(Species species, int speciesInPatch, Species? trueParent = null)
     {
         // We avoid auto-evo taking forever by skipping any (probably player) species that has far too many cells
         if (species is MulticellularSpecies { GameplayCells.Count: > Constants.AUTO_EVO_CUTOFF_CELL_COUNT })
@@ -418,7 +416,7 @@ public class ModifyExistingSpecies : IRunStep
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
         inputSpecies.Add(new Mutant(species, totalMP));
 
-        GenerateMutations(species, miche!, 1, false, speciesInPatch);
+        GenerateMutations(species, miche!, 1, false, speciesInPatch, trueParent);
     }
 
     /// <summary>
@@ -455,7 +453,7 @@ public class ModifyExistingSpecies : IRunStep
     ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
     private void GenerateMutations(Species baseSpecies, Miche currentMiche, int depth, bool lastChild,
-        int speciesInPatch)
+        int speciesInPatch, Species? trueParent = null)
     {
         var baseSpeciesMutant = new Mutant(baseSpecies,
             Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier);
@@ -601,7 +599,15 @@ public class ModifyExistingSpecies : IRunStep
 
             foreach (var species in lastGeneratedMutations)
             {
-                mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+                // If there is a designated parent species different from the base species, use that.
+                if (trueParent != null)
+                {
+                    mutationsToTry.Add(new Mutation(trueParent, species, RunResults.NewSpeciesType.SplitDueToMutation));
+                }
+                else
+                {
+                    mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+                }
             }
 
             pressureStack.Pop();
@@ -622,7 +628,7 @@ public class ModifyExistingSpecies : IRunStep
                 foreach (var child in currentMiche.Children)
                 {
                     bool isLast = index == childCount - 1;
-                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch);
+                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch, trueParent);
                     ++index;
                 }
             }
