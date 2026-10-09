@@ -780,6 +780,9 @@ public partial class CellBodyPlanEditorComponent
         {
             macroscopicConditionResultsBuilder.Append('\n');
 
+            macroscopicConditionResultsBuilder.Append(GUICommon.RequirementFulfillmentIconRichText(fulfilled));
+            macroscopicConditionResultsBuilder.Append(' ');
+
             if (!fulfilled)
             {
                 canBecomeMacroscopic = false;
