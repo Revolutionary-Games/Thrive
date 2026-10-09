@@ -15,7 +15,6 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public GeneralAvoidPredationSelectionPressure(float weight) : base(weight, [
-        new BecomeMulticellular(),
         AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
         new AddOrganelleAnywhere(organelle => organelle.InternalName == CommonMutationFunctions.Nucleus.InternalName),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
