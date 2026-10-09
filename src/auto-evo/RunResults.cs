@@ -260,15 +260,25 @@ public class RunResults : IArchivable
     }
 
     public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
-        NewSpeciesType addType, Species parentSpecies)
+        NewSpeciesType addType, Species parentSpecies, bool inheritingPopulation)
     {
         MakeSureResultExistsForSpecies(species);
 
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
 
+        var population = initialPopulationInPatch.Value;
+
+        // If set as inheriting, the population of the parent species is added to the new species
+        if (inheritingPopulation)
+        {
+            results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
+                out var existing);
+            population += existing;
+        }
+
         results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
-            Math.Max(initialPopulationInPatch.Value, 0);
+            Math.Max(population, 0);
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
