@@ -86,26 +86,30 @@ internal static class SimulationCacheTestFixtures
         AssertThat(BitConverter.SingleToInt32Bits(actual)).IsNotEqual(BitConverter.SingleToInt32Bits(other));
     }
 
-    internal static void AssertPredationLifecycle(Species predator, Species prey, float expected,
-        BiomeConditions? biome = null)
+    internal static float AssertPredationLifecycle(Species predator, Species prey, BiomeConditions? biome = null,
+        Action<SimulationCache, BiomeConditions>? initialize = null)
     {
         var cache = CreateCache();
         biome ??= CreateBiome();
-        AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
-        AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
+        initialize?.Invoke(cache, biome);
+        var cold = cache.GetPredationScore(predator, prey, biome);
+        AssertThat(float.IsFinite(cold)).IsTrue();
+        AssertBits(cache.GetPredationScore(predator, prey, biome), cold);
+        var fresh = CreateCache();
+        initialize?.Invoke(fresh, biome);
+        AssertBits(fresh.GetPredationScore(predator, prey, biome), cold);
         cache.Clear();
-        AssertBits(cache.GetPredationScore(predator, prey, biome), expected);
+        initialize?.Invoke(cache, biome);
+        AssertBits(cache.GetPredationScore(predator, prey, biome), cold);
+        return cold;
     }
 
-    internal static void AssertPredationScoreGreaterThanZero(Species predator, Species prey,
-        BiomeConditions? biome = null)
+    internal static (float Control, float Changed) AssertScorePair(Species controlPredator, Species controlPrey,
+        Species changedPredator, Species changedPrey, BiomeConditions? biome = null)
     {
-        var cache = CreateCache();
         biome ??= CreateBiome();
-        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
-        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
-        cache.Clear();
-        AssertThat(cache.GetPredationScore(predator, prey, biome) > 0.0f);
+        return (AssertPredationLifecycle(controlPredator, controlPrey, biome),
+            AssertPredationLifecycle(changedPredator, changedPrey, biome));
     }
 
     internal static void AssertRawBits(SimulationCache.PredationToolsRawScores actual,
