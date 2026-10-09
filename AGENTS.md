@@ -33,8 +33,8 @@ unrelated sections in the same document.
   approaches](doc/style_guide.md#other-recommended-approaches); follow nearby code for local
   patterns.
 - Non-code files (including Markdown, JSON/configuration, Godot resources, and locale files):
-  style guide [Other files](doc/style_guide.md#other-files). C++ follows the native code route;
-  use project conventions for imported assets and generated files.
+  style guide [Other files](doc/style_guide.md#other-files). C++ follows the native code 
+  route (and uses `clang-format`); use project conventions for imported assets and generated files.
 
 ### Task-specific requirements
 
