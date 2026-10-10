@@ -31,4 +31,23 @@ public partial class MetaballBodyEditorComponent
     {
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
+
+    private void ChangeCurrentTransformTool(int to)
+    {
+        if (MovingPlacedMetaball != null)
+        {
+            return;
+        }
+
+        var newTool = (TransformTool)to;
+
+        if (newTool == SelectedTransformTool)
+        {
+            // Toggle the tool off
+            SelectedTransformTool = TransformTool.None;
+            return;
+        }
+
+        SelectedTransformTool = newTool;
+    }
 }
