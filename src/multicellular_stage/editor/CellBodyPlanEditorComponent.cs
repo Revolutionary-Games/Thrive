@@ -233,6 +233,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control massBuddingReproductionSection = null!;
+
+    [Export]
+    private Button macroscopicConditionsViewButton = null!;
+
+    [Export]
+    private CustomConfirmationDialog macroscopicConditionsView = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -264,6 +270,8 @@ public partial class CellBodyPlanEditorComponent :
     private CellType? gameteBCellType;
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
+
+    private StorageValueBreakdown? storageValueBreakdown;
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -1330,9 +1338,11 @@ public partial class CellBodyPlanEditorComponent :
         return base.RotateLeft();
     }
 
-    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    public Dictionary<Compound, float> GetAdditionalCapacities(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        out float nominalCapacity, StorageValueBreakdown? breakdown = null)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells, out nominalCapacity,
+            breakdown);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -2208,7 +2218,17 @@ public partial class CellBodyPlanEditorComponent :
     {
         var latestTypes = GetCurrentCellsWithLatestTypes();
 
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(latestTypes, out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));
@@ -2592,7 +2612,15 @@ public partial class CellBodyPlanEditorComponent :
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
-        EnqueueAction(new CombinedEditorAction(action));
+
+        if (EnqueueAction(new CombinedEditorAction(action)))
+        {
+            if (Editor.TutorialState.Enabled)
+            {
+                Editor.TutorialState.SendEvent(TutorialEventType.MulticellularCellDuplicated,
+                    new StringEventArgs(newTypeName), this);
+            }
+        }
 
         duplicateCellTypeDialog.Hide();
     }
@@ -2679,6 +2707,8 @@ public partial class CellBodyPlanEditorComponent :
         if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
         {
             selectedSelectionMenuTab = selection;
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularBodyPlanEditorTabChanged,
+                new StringEventArgs(tab), this);
         }
 
         ApplySelectionMenuTab();

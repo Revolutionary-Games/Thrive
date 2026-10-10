@@ -21,6 +21,11 @@ public interface ICreatureStage : IStageBase, IReturnableGameState
 
     public void MoveToEditor();
 
+    /// <summary>
+    ///   Allows stages to perform some actions when the move to editor is initiated
+    /// </summary>
+    public void OnStartMoveToEditor();
+
     public void MoveToPatch(Patch patch);
 
     /// <summary>

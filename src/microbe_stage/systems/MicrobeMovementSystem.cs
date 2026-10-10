@@ -327,6 +327,24 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 });
             }
         }
+        else if (control.MovementDirection != Vector3.Zero)
+        {
+            // Ensuring that flagella force is still added for single cell organisms.
+            force += thrustForce;
+        }
+
+        // The sprinting force multiplier is applied here so that it modifies the total force from all cells.
+        // (if a colony is involved)
+        if (usesSprintingForce && control.Sprinting)
+        {
+            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+
+            strain.IsUnderStrain = true;
+        }
+        else
+        {
+            strain.IsUnderStrain = false;
+        }
 
         // force from organelles is merged into main force from here on.
         force += organelleForce;
@@ -454,6 +472,9 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // also has to be changed
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
+
+        // leader's flagella thrust is added after base speed is modified.
+        force += thrustForce;
 
         float actomyosinCount = 0;
         if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })

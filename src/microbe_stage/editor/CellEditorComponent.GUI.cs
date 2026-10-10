@@ -814,7 +814,19 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         organismStatisticsPanel.UpdateGeneration(species.Generation);
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        storageValueBreakdown.Clear();
+        GetAdditionalCapacities(out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 
