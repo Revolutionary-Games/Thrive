@@ -3032,6 +3032,7 @@ public partial class CellEditorComponent :
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
+        PauseMenu.Instance.SetNewSaveName(newName.Replace(' ', '_'));
 
         if (IsMulticellularEditor)
         {
