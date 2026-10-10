@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
+"POT-Creation-Date: 2026-10-08 17:21+0300\n"
 "PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -512,6 +512,10 @@ msgid "BECOME_MACROSCOPIC"
 msgstr "Stať sa makroskopickým ({0}/{1})"
 
 #, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Stať sa makroskopickým ({0}/{1})"
+
+#, fuzzy
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stať sa viacbunkovým ({0}/{1})"
 
@@ -856,6 +860,10 @@ msgstr "Cheaty povolené"
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
 
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Termosyntáza"
+
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobraziť / skryť bunkové procesy"
 
@@ -1016,23 +1024,15 @@ msgid "COLLISION_SHAPE"
 msgstr "Umiestniť entity s kolíznymi tvarmi"
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Rotácia:"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Rotácia:"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 #, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgid "COLONY_ROTATION_INCREASE"
 msgstr "Rotácia:"
 
 #, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgid "COLONY_SPEED_INCREASE"
 msgstr "Rotácia:"
 
 msgid "COLOUR"
@@ -2097,7 +2097,27 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
@@ -2202,10 +2222,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3786,6 +3802,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Načítať hru"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3854,6 +3874,40 @@ msgstr "Stať sa makroskopickým ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Vyžaduje jadro"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Načítavanie editora mikróbov"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Načítavanie editora mikróbov"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Načítavanie editora mikróbov"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Načítavanie editora mikróbov"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Vyžaduje jadro"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Záporná bilancia ATP"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4575,6 +4629,10 @@ msgstr "Mod na nahranie:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Stať sa makroskopickým ({0}/{1})"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Stať sa makroskopickým ({0}/{1})"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5090,10 +5148,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Mnohobunkový"
 
@@ -5260,6 +5314,10 @@ msgstr "Pohyb kamery doprava"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Pohyb kamery nahor"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "Fyzické podmienky"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Bývalí vývojári"
@@ -5470,6 +5528,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Prehrať úvodné video do mikróbov v novej hre"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populácia:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6497,6 +6568,10 @@ msgstr "Pozastaviť hru"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Názov:"
 
 #, fuzzy
 msgid "START"
@@ -7785,6 +7860,9 @@ msgstr "Skrolovať doprava"
 
 msgid "WHEEL_UP"
 msgstr "Skrolovať hore"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -9681,6 +9759,10 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

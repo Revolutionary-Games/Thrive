@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
+"POT-Creation-Date: 2026-10-08 17:21+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -537,6 +537,10 @@ msgstr "Batipelagik"
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Nitrogenase"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -886,6 +890,10 @@ msgid "CHEAT_MENU"
 msgstr "Menu Cheat"
 
 #, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
+
+#, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
@@ -1058,23 +1066,15 @@ msgid "COLLISION_SHAPE"
 msgstr "Munculkan entitas dengan bentukan pendeteksi benturan"
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "{0} populasi berubah {1} karena: {2}"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "{0} populasi berubah {1} karena: {2}"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgid "COLONY_ROTATION_INCREASE"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgid "COLONY_SPEED_INCREASE"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
 msgid "COLOUR"
@@ -2210,7 +2210,57 @@ msgstr ""
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Selamat Datang ke Editor Mikroba.\n"
 "Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
@@ -2326,10 +2376,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3960,6 +4006,10 @@ msgstr ""
 "Save ini kemungkinan rusak atau format baru yang tidak dimengerti versi Thrive saat ini.\n"
 "Apakah kamu ingin tetap memuat save ini?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Muat Permainan"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4029,6 +4079,46 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Nukleus"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Memuat Editor Mikroba"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi Thrive ini.\n"
+"Dan tidak ada save upgrader untuk memperbarui save ini.\n"
+"Karena Thrive masih dalam tahap awal pengembangan, kompatibilitas save bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save upgrader."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi Thrive ini.\n"
+"Dan tidak ada save upgrader untuk memperbarui save ini.\n"
+"Karena Thrive masih dalam tahap awal pengembangan, kompatibilitas save bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save upgrader."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4839,6 +4929,10 @@ msgstr "Pindah ke Daerah Ini"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Tambah keybind baru"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5381,10 +5475,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Tusuk sel lain dengan ini."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Tusuk sel lain dengan ini."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Letakkan organel"
 
@@ -5553,6 +5643,10 @@ msgstr "Geser ke kanan"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Geser ke atas"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "dan"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Pengembang Masa Lalu"
@@ -5777,6 +5871,19 @@ msgstr "Putar Video Pengantar Mikroba saat Permainan Baru"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Main Dengan Pengaturan Saat Ini"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populasi:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
@@ -6850,6 +6957,10 @@ msgstr "Tambah keybind baru"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Ukuran:"
 
 #, fuzzy
 msgid "START"
@@ -8372,6 +8483,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -10334,6 +10448,10 @@ msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Buat Sel Baru"
 
@@ -10804,13 +10922,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Tambah keybind baru"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi Thrive ini.\n"
-#~ "Dan tidak ada save upgrader untuk memperbarui save ini.\n"
-#~ "Karena Thrive masih dalam tahap awal pengembangan, kompatibilitas save bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save upgrader."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

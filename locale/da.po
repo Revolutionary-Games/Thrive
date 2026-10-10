@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
-"PO-Revision-Date: 2026-08-31 14:26+0000\n"
+"POT-Creation-Date: 2026-10-08 17:21+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -514,6 +514,10 @@ msgstr "Bathypelagisk"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Bliv makroskopisk ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Bliv makroskopisk ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Bliv flercellet ({0}/{1})"
 
@@ -859,6 +863,10 @@ msgstr "Snydetaster aktiveret"
 msgid "CHEAT_MENU"
 msgstr "Snyd menu"
 
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Kun tilgængeligt fra Flercellestadiet og fremefter."
+
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Vis / gem celle processer"
 
@@ -1013,23 +1021,13 @@ msgstr "Kystnær"
 msgid "COLLISION_SHAPE"
 msgstr "Vis physics debug former"
 
-#, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Koloni rotation"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Koloni hastighed"
-
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Denne fane tillader indstilling af rækkefølgen koloniens celler gror i, hvor den første celle i rækken er rod cellen. Du kan bruge det til at prioritere væksten af vigtige celler, eller sørge for at koloniens produktion og forbrug er balanceret."
 
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgid "COLONY_ROTATION_INCREASE"
 msgstr "Koloni rotation"
 
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgid "COLONY_SPEED_INCREASE"
 msgstr "Koloni hastighed"
 
 msgid "COLOUR"
@@ -2121,7 +2119,62 @@ msgstr ""
 "Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
 "\n"
@@ -2210,6 +2263,7 @@ msgstr "Start endosybiose for denne art (tilgængelig så snart mål organeltype
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /sekundet"
 
@@ -2218,12 +2272,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Mens der fortæres:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Energiforbrugs pres"
@@ -3683,6 +3731,10 @@ msgstr ""
 "Denne lagring er højst sandsyneligt korrupt, eller i et nyere format ikke understøttet af denne udgave af Thrive.\n"
 "Vil du forsøge at hente denne lagring alligevel?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Indlæs spil"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3745,6 +3797,47 @@ msgstr "Makroskopisk"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Membranen kan ikke længere ændres i Makroskopiskstadiet"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Makroskopisk editor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Makroskopisk editor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Makroskopisk editor"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Oprindeligt antal celler"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Membranen kan ikke længere ændres i Makroskopiskstadiet"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproducerer i {0} biomen"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopisk editor"
@@ -4434,7 +4527,14 @@ msgstr "Flyt til hvilken som helst patch"
 msgid "MOVE_TO_LAND"
 msgstr "Flyt til land"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Fortsæt til Makroskopiskstadiet. Tilgængeligt når din celle koloni er stor nok.\n"
+"Dette kræver at du tilføjer nok celler i editoren, og derefter vokser din koloni til minimumsstørrelsen."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Fortsæt til Makroskopiskstadiet. Tilgængeligt når din celle koloni er stor nok.\n"
 "Dette kræver at du tilføjer nok celler i editoren, og derefter vokser din koloni til minimumsstørrelsen."
@@ -4959,10 +5059,6 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axoner er nervefibre som neuroner bruger til at kommunikere og forbinde med hinanden Placering af denne organel omdanner celletypen til hjernevæv."
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Kan bruges til at stikke andre celler eller til at forsvare imod deres toksiner."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Makroskopisk"
 
@@ -5111,6 +5207,10 @@ msgstr "Panorer til højre"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Panorer opad"
+
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "og"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Tidligere udviklere"
@@ -5315,6 +5415,19 @@ msgstr "Afspil mikrobe intro ved nyt spil"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Spil med nuværende indstillinger"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Specialisering:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "BESTAND:"
@@ -6283,6 +6396,10 @@ msgstr "Slå sprinttilstand til/fra. Sprintende celler bevæger sig hurtigere, m
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausemenu"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titel:"
 
 msgid "START"
 msgstr "Start"
@@ -7683,6 +7800,9 @@ msgstr "Musehjul højre"
 
 msgid "WHEEL_UP"
 msgstr "Musehjul op"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -9350,6 +9470,12 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Mens der fortæres:\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
