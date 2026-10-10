@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-08 17:21+0300\n"
+"POT-Creation-Date: 2026-10-11 00:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1382,16 +1382,16 @@ msgstr ""
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:919
-msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr ""
-
 #: ../src/gui_common/tooltip/ToolTipManager.cs:882
-msgid "COLONY_ROTATION_INCREASE"
+msgid "COLONY_BASE_ROTATION_INCREASE"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.cs:881
-msgid "COLONY_SPEED_INCREASE"
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr ""
+
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:919
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:901
@@ -5313,23 +5313,23 @@ msgstr ""
 msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:451
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:479
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:393
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:421
 msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:418
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:446
 msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:398
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:426
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:438
+#: ../src/multicellular_stage/CellBodyPlanInternalCalculations.cs:466
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
 msgstr ""
 
