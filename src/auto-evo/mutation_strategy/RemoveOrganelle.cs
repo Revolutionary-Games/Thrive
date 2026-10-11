@@ -94,8 +94,9 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     private static void CloneLayoutExcludingOrganelle(IReadOnlyList<OrganelleTemplate> sourceOrganelles,
         OrganelleLayout<OrganelleTemplate> destination, OrganelleTemplate excludedOrganelle, HashSet<Hex> occupied)
     {
-        var count = sourceOrganelles.Count;
+        occupied.Clear();
 
+        var count = sourceOrganelles.Count;
         for (var i = 0; i < count; ++i)
         {
             var parentOrganelle = sourceOrganelles[i];
