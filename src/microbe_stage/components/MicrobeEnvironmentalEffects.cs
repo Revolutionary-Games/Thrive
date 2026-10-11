@@ -78,7 +78,7 @@ public static class MicrobeEnvironmentalEffectsHelpers
 #endif
         }
 
-        effects.OsmoregulationMultiplier = toleRanceData.OsmoregulationModifier;
+        effects.OsmoregulationMultiplier = toleRanceData.OsmoregulationModifier + toleRanceData.SliderOsmoregulationAdditionalModifier;
 
         effects.HealthMultiplier = toleRanceData.HealthModifier;
 

@@ -2182,9 +2182,9 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
 
     // These values must be the same as in the editor
-    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.2f;
     public const float TOLERANCE_OXYGEN_STEP = 0.01f;
-    public const float TOLERANCE_UV_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_UV_RANGE_MAX = 0.2f;
     public const float TOLERANCE_UV_STEP = 0.01f;
 
     /// <summary>
@@ -2230,10 +2230,12 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
 
     public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
+    public const float TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX = 1.6f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER = 1.5f;
 
     public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
+    public const float TOLERANCE_UV_SPEED_MODIFIER_MAX = 1.5f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MODIFIER = 1.5f;
 
     /// <summary>
     ///   This is an additional modifier on top of the averaging effect applied to make the values less extreme.

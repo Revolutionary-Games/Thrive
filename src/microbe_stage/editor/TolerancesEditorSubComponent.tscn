@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="11_5y3m2"]
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="12_3r1ho"]
+[ext_resource type="Texture2D" uid="uid://w33dve6al45k" path="res://assets/textures/gui/bevel/osmoregulationIcon.png" id="14_3r1ho"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="14_n6u17"]
+[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="15_n6u17"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftstq"]
 content_margin_top = 1.0
@@ -24,15 +26,25 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6u17"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_evsrs"]
+font = ExtResource("15_n6u17")
+font_size = 12
+font_color = Color(1, 0, 0, 1)
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_xmghy"]
 color = Color(0.439216, 0.623529, 0.623529, 1)
 thickness = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_jstjb"]
+font = ExtResource("15_n6u17")
+font_size = 12
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fy504"]
 color = Color(0.4392157, 0.62352943, 0.62352943, 1)
 thickness = 5
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" unique_id=1336617322 node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "oxygenResistanceSpacer", "uvResistanceSlider", "uvResistanceSpacer", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureRangeDisplay", "temperatureLabelContainer", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureRangeDisplay", "pressureLabelContainer", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceRangeDisplay", "oxygenResistanceLabelContainer", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceRangeDisplay", "uvResistanceLabelContainer")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" unique_id=1336617322 node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "oxygenResistanceSpacer", "uvResistanceSlider", "uvResistanceSpacer", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureRangeDisplay", "temperatureLabelContainer", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureRangeDisplay", "pressureLabelContainer", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOsmoregulationCostLabelContainer", "oxygenResistanceOsmoregulationCostLabel", "oxygenResistanceRangeDisplay", "oxygenResistanceLabelContainer", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceOsmoregulationCostLabelContainer", "uvResistanceOsmoregulationCostLabel", "uvResistanceRangeDisplay", "uvResistanceLabelContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -66,10 +78,14 @@ pressureRangeDisplay = NodePath("Pressure/RangeDisplayContainer/VBoxContainer/Pr
 pressureLabelContainer = NodePath("Pressure/PressureLabelContainer")
 oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer2/Modifier/ModifierValue")
 oxygenResistanceTotalLabel = NodePath("Oxygen/HBoxContainer2/Total/TotalValue")
+oxygenResistanceOsmoregulationCostLabelContainer = NodePath("Oxygen/HBoxContainer2/OsmoregulationCost")
+oxygenResistanceOsmoregulationCostLabel = NodePath("Oxygen/HBoxContainer2/OsmoregulationCost/OsmoregulationCostValue")
 oxygenResistanceRangeDisplay = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/OxygenRangeDisplay")
 oxygenResistanceLabelContainer = NodePath("Oxygen/OxygenLabelContainer")
 uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/Modifier/ModiferValue")
 uvResistanceTotalLabel = NodePath("UV/HBoxContainer2/Total/TotalValue")
+uvResistanceOsmoregulationCostLabelContainer = NodePath("UV/HBoxContainer2/OsmoregulationCost")
+uvResistanceOsmoregulationCostLabel = NodePath("UV/HBoxContainer2/OsmoregulationCost/OsmoregulationCostValue")
 uvResistanceRangeDisplay = NodePath("UV/RangeDisplayContainer/VBoxContainer/UVRangeDisplay")
 uvResistanceLabelContainer = NodePath("UV/UVLabelContainer")
 badValueFontTiny = ExtResource("5_evsrs")
@@ -438,6 +454,26 @@ layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("11_5y3m2")
 
+[node name="OsmoregulationCost" type="HBoxContainer" parent="Oxygen/HBoxContainer2" unique_id=1198487596]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OsmoregulationCostTexture" type="TextureRect" parent="Oxygen/HBoxContainer2/OsmoregulationCost" unique_id=56414278]
+layout_mode = 2
+texture = ExtResource("14_3r1ho")
+expand_mode = 3
+
+[node name="OsmoregulationCostLabel" type="Label" parent="Oxygen/HBoxContainer2/OsmoregulationCost" unique_id=556745347]
+layout_mode = 2
+text = "COST"
+label_settings = ExtResource("11_5y3m2")
+
+[node name="OsmoregulationCostValue" type="Label" parent="Oxygen/HBoxContainer2/OsmoregulationCost" unique_id=1650815883]
+layout_mode = 2
+text = "-10%"
+label_settings = SubResource("LabelSettings_evsrs")
+
 [node name="Total" type="HBoxContainer" parent="Oxygen/HBoxContainer2" unique_id=666059195]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -486,20 +522,20 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-size_flags_stretch_ratio = 10.0
+size_flags_stretch_ratio = 20.0
 focus_neighbor_top = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
 focus_neighbor_bottom = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/HBoxContainer/UVResistanceSlider")
 focus_next = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/HBoxContainer/UVResistanceSlider")
 focus_previous = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxLine_xmghy")
-max_value = 0.1
+max_value = 0.2
 step = 0.01
 
 [node name="OxygenResistanceSpacer" type="Control" parent="Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer" unique_id=574488409]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 90.0
+size_flags_stretch_ratio = 80.0
 focus_neighbor_top = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
 focus_neighbor_bottom = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/HBoxContainer/UVResistanceSlider")
 focus_next = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/HBoxContainer/UVResistanceSlider")
@@ -560,6 +596,26 @@ layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("11_5y3m2")
 
+[node name="OsmoregulationCost" type="HBoxContainer" parent="UV/HBoxContainer2" unique_id=2140078124]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OsmoregulationCostTexture" type="TextureRect" parent="UV/HBoxContainer2/OsmoregulationCost" unique_id=1772651422]
+layout_mode = 2
+texture = ExtResource("14_3r1ho")
+expand_mode = 3
+
+[node name="OsmoregulationCostLabel" type="Label" parent="UV/HBoxContainer2/OsmoregulationCost" unique_id=335533714]
+layout_mode = 2
+text = "COST"
+label_settings = ExtResource("11_5y3m2")
+
+[node name="OsmoregulationCostValue" type="Label" parent="UV/HBoxContainer2/OsmoregulationCost" unique_id=904363195]
+layout_mode = 2
+text = "-10%"
+label_settings = SubResource("LabelSettings_jstjb")
+
 [node name="Total" type="HBoxContainer" parent="UV/HBoxContainer2" unique_id=654430034]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -607,18 +663,18 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-size_flags_stretch_ratio = 10.0
+size_flags_stretch_ratio = 20.0
 focus_neighbor_top = NodePath("../../../../../Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
 focus_previous = NodePath("../../../../../Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxLine_fy504")
-max_value = 0.1
+max_value = 0.2
 step = 0.01
 
 [node name="UVResistanceSpacer" type="Control" parent="UV/RangeDisplayContainer/VBoxContainer/HBoxContainer" unique_id=1142559623]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 90.0
+size_flags_stretch_ratio = 80.0
 focus_neighbor_top = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
 focus_neighbor_bottom = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
 focus_next = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")

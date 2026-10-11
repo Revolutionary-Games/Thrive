@@ -604,6 +604,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             HealthModifier = 1,
             OsmoregulationModifier = 1,
+            SliderOsmoregulationAdditionalModifier = 0,
             ProcessSpeedModifier = 1,
         };
 

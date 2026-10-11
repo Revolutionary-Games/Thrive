@@ -80,7 +80,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, speciesTolerances, environment,
+            excludePositiveBuffs);
     }
 
     /// <summary>
@@ -104,7 +105,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, speciesTolerances, environment,
+            excludePositiveBuffs);
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
@@ -290,7 +292,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, speciesTolerances, environment,
+            excludePositiveBuffs);
     }
 
     public static void ApplyCellEffectsOnTolerances(IndividualHexLayout<CellTemplate> cells,
@@ -432,6 +435,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.ProcessSpeedModifier = 1;
         result.HealthModifier = 1;
         result.OsmoregulationModifier = 1;
+        result.SliderOsmoregulationAdditionalModifier = 0;
 
         var temperatureScore = (float)data.TemperatureScore;
         if (temperatureScore < 1)
@@ -468,15 +472,25 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (oxygenScore < 1)
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_OXYGEN_HEALTH_MIN, oxygenScore);
-            result.OsmoregulationModifier *=
-                Math.Min(Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MAX, 2 - oxygenScore);
+            result.ProcessSpeedModifier *=
+                Math.Min(Constants.TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX, 2 - oxygenScore);
+        }
+
+        if (data.OxygenResistance > 0)
+        {
+            result.SliderOsmoregulationAdditionalModifier += data.OxygenResistance * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER;
         }
 
         var uvScore = (float)data.UVScore;
         if (uvScore < 1)
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, uvScore);
-            result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_MAX, 2 - uvScore);
+            result.ProcessSpeedModifier *= Math.Min(Constants.TOLERANCE_UV_SPEED_MODIFIER_MAX, 2 - uvScore);
+        }
+
+        if (data.UVResistance > 0)
+        {
+            result.SliderOsmoregulationAdditionalModifier += data.UVResistance * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER;
         }
 
 #if DEBUG
@@ -521,13 +535,14 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (resolvedTolerances.OxygenResistance < 0)
             resolvedTolerances.OxygenResistance = 0;
 
-        //
         if (resolvedTolerances.UVResistance < 0)
             resolvedTolerances.UVResistance = 0;
     }
 
     private static ToleranceResult CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, IBiomeConditions environment, bool excludePositiveBuffs)
+        in ToleranceValues noExtraEffects, IReadOnlyEnvironmentalTolerances customTolerances,
+        IBiomeConditions environment,
+        bool excludePositiveBuffs)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -542,6 +557,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
+        result.OxygenResistance = customTolerances.OxygenResistance;
+        result.UVResistance = customTolerances.UVResistance;
 
         // Need to get minimum pressure a little bit below perfect pressure to make sure microbes can adjust perfectly
         result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PressureMinimum -
