@@ -769,7 +769,6 @@
       }
     },
     "ToleranceEffects": {
-      "UV": -0.07,
       "Oxygen": 0.02
     },
     "Density": 1100,
@@ -965,7 +964,7 @@
       }
     },
     "ToleranceEffects": {
-      "UV": 0.02
+      "UV": 0.025
     },
     "Density": 800,
     "CorpseChunkGraphics": {
@@ -1102,7 +1101,7 @@
       "SlimeJet": {}
     },
     "ToleranceEffects": {
-      "UV": 0.05
+      "UV": 0.06
     },
     "Density": 1100,
     "Graphics": {
@@ -1456,6 +1455,12 @@
         "DamageFromSource": {
           "SourceName": "radiation",
           "Amount": 1
+        }
+      },
+      {
+        "PatchCompound": {
+          "Compound": "sunlight",
+          "Min": 100
         }
       }
     ],

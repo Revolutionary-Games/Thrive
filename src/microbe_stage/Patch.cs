@@ -643,8 +643,7 @@ public class Patch : IArchivable
         var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
-            UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome) *
-                Constants.TOLERANCE_UV_RANGE_MAX,
+            UVResistance = 0,
             PressureMinimum = Math.Max(Biome.Pressure - Constants.TOLERANCE_INITIAL_PRESSURE_RANGE * 0.5f, 0),
             PressureTolerance = Constants.TOLERANCE_INITIAL_PRESSURE_RANGE,
             PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -

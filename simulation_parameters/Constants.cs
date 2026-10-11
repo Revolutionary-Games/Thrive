@@ -2231,11 +2231,11 @@ public static class Constants
 
     public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
     public const float TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX = 1.6f;
-    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER = 1.5f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER = 1.0f;
 
     public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
     public const float TOLERANCE_UV_SPEED_MODIFIER_MAX = 1.5f;
-    public const float TOLERANCE_UV_OSMOREGULATION_MODIFIER = 1.5f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MODIFIER = 1.0f;
 
     /// <summary>
     ///   This is an additional modifier on top of the averaging effect applied to make the values less extreme.
