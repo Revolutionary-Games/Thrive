@@ -208,35 +208,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
         tolerances.PressureTolerance += totalPressureToleranceChange;
     }
 
-    /// <summary>
-    ///   Simple <see cref="IPlayerReadableName"/> for things that are just a label (for example "cell size" in
-    ///   tolerance effect summaries)
-    /// </summary>
-    public class SimpleReadableName : IPlayerReadableName
-    {
-        public SimpleReadableName(string readableName)
-        {
-            ReadableName = readableName;
-        }
-
-        public string ReadableName { get; }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is SimpleReadableName other && ReadableName == other.ReadableName;
-        }
-
-        public override int GetHashCode()
-        {
-            return ReadableName.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return ReadableName;
-        }
-    }
-
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
         ToleranceModifier modifier, Dictionary<IPlayerReadableName, float> result)
     {
@@ -270,8 +241,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
         ToleranceModifier modifier, Dictionary<IPlayerReadableName, float> result)
     {
         result.Clear();
-
-        var cellSizeLabel = new SimpleReadableName(Localization.Translate("CELL_SIZE"));
 
         // Apply the same averaging as the real ApplyCellEffectsOnTolerances method
         double inverseCellCount = 1.0 / cells.Count;
@@ -307,14 +276,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
             // Need to apply the multiplier so that this matches the actual calculation method
             result[cellType] = (float)(existingValue +
                 totalEffect * inverseCellCount * Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
-
-            //
-            // if (modifier == ToleranceModifier.UV)
-            // {
-            //     var cellSizeLabelValue = result.GetValueOrDefault(cellSizeLabel, 0);
-            //
-            //     result[cellSizeLabel] = (float)(cellSizeLabelValue * inverseCellCount * Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
-            // }
         }
     }
 

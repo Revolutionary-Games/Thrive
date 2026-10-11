@@ -1064,7 +1064,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
             throw new ArgumentException("Uninitialized environmental tolerances");
 #endif
 
-        osmoregulation *= environmentTolerances.OsmoregulationModifier + environmentTolerances.SliderOsmoregulationAdditionalModifier;
+        osmoregulation *= environmentTolerances.OsmoregulationModifier +
+            environmentTolerances.SliderOsmoregulationAdditionalModifier;
 
         // Apply energy cost multiplier from difficulty setting to player species
         if (isPlayerSpecies)

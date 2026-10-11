@@ -87,22 +87,22 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     {
         ToleranceChangedStats changes = 0;
 
-        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.01f ||
-            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.01f)
+        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.001f ||
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.001f)
         {
             changes |= ToleranceChangedStats.Temperature;
         }
 
-        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
-            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
+        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.001f ||
+            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.001f)
         {
             changes |= ToleranceChangedStats.Pressure;
         }
 
-        if (Math.Abs(UVResistance - other.UVResistance) > 0.01f)
+        if (Math.Abs(UVResistance - other.UVResistance) > 0.001f)
             changes |= ToleranceChangedStats.UVResistance;
 
-        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.01f)
+        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.001f)
             changes |= ToleranceChangedStats.OxygenResistance;
 
         return changes;
