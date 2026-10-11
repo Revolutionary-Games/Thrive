@@ -559,12 +559,18 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        var multiAction = GetMultiActionWithOccupancies([
-            (moveTool.GetDraggingPosition(),
-                (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent),
-        ], [metaballSelectedForMoving], true);
-
         moveTool.StopDragging();
+
+        var newPos = moveTool.GetDraggingPosition();
+
+        if (metaballSelectedForMoving.Position.DistanceSquaredTo(newPos) < MathUtils.EPSILON)
+        {
+            return true;
+        }
+
+        var multiAction = GetMultiActionWithOccupancies([
+            (newPos, (MacroscopicMetaball?)metaballSelectedForMoving.ModifiableParent),
+        ], [metaballSelectedForMoving], true);
 
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
         {
