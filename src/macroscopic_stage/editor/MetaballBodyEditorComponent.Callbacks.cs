@@ -18,7 +18,7 @@ public partial class MetaballBodyEditorComponent
     {
         metaballDisplayDataDirty = true;
 
-        if (metaball == metaballSelectedForMoving)
+        if (ReferenceEquals(metaball, metaballSelectedForMoving))
         {
             HideTransformTools();
         }
