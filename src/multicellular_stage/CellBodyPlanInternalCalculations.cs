@@ -35,31 +35,34 @@ public static class CellBodyPlanInternalCalculations
     ///   Calculates a colony's speed. The algorithm is an approximation but should be based on the one in
     ///   MicrobeMovementSystem.cs
     /// </summary>
-    public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
+    public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells, bool useEstimate = false)
     {
         var leader = cells[0].Data!;
 
         var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
             GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
-        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus);
 
+        // Just in case there is a colony with only one cell:
         if (cells.Count == 1)
-            return speed;
+        {
+            return MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
+                leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus, useEstimate);
+        }
+
+        var speed = MicrobeInternalCalculations.CalculateBaseMovement(leader.MembraneType, leader.MembraneRigidity,
+            leader.ModifiableOrganelles.HexCount, leader.IsBacteria);
 
         ModifyCellSpeedWithColony(ref speed, cells.Count);
 
+        var shapeMass = 0.0f;
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
-        var actomyosinCount = CalculateEffectiveActomyosinCount(leader) * leaderTotalSpecializationBonus;
+        var actomyosinCount = 0.0f;
 
         foreach (var hex in cells)
         {
             var cell = hex.Data!;
-
-            if (cell == leader)
-                continue;
 
             var cellActomyosinCount = 0;
 
@@ -67,9 +70,19 @@ public static class CellBodyPlanInternalCalculations
             var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
+            // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to
+            // figure out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
+            // This is why Auto-Evo just estimates the value of the output instead
+            if (!useEstimate)
+            {
+                shapeMass += MicrobeInternalCalculations.CalculateShapeMass(cell.ModifiableOrganelles,
+                    cell.MembraneType, cell.IsBacteria);
+            }
+
             foreach (var organelle in cell.Organelles)
             {
-                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
+                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount *
+                    Constants.MASS_ESTIMATE_MULTIPLIER;
 
                 if (organelle.Definition.HasActomyosinComponent)
                     ++cellActomyosinCount;
@@ -102,7 +115,9 @@ public static class CellBodyPlanInternalCalculations
             }
         }
 
-        speed = speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+        var finalMass = useEstimate ? massEstimate : shapeMass;
+
+        speed = (speed + addedSpeed) / finalMass;
 
         // This matches the bonus applied to colony members in MicrobeMovementSystem.
         return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
