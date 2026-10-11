@@ -365,7 +365,7 @@ duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
 cannotReduceBrainPowerPopup = NodePath("CannotReduceBrainPowerStage")
 toleranceWarningsFont = ExtResource("7_ck2k0")
-moveToolButton = NodePath("LeftPanel/HBoxContainer/VBoxContainer/MoveButton")
+moveToolButton = NodePath("LeftPanel/HBoxContainer/VBoxContainer/RotateToolButton")
 metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
@@ -699,9 +699,10 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/HBoxContainer" unique_id=2073760761]
 layout_mode = 2
 
-[node name="MoveButton" type="TextureButton" parent="LeftPanel/HBoxContainer/VBoxContainer" unique_id=167720140]
+[node name="RotateToolButton" type="TextureButton" parent="LeftPanel/HBoxContainer/VBoxContainer" unique_id=167720140]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
+tooltip_text = "ROTATE_TOOL_BUTTON_TOOLTIP"
 toggle_mode = true
 texture_normal = ExtResource("10_e32cu")
 texture_pressed = ExtResource("11_bgu53")
@@ -891,7 +892,7 @@ layout_mode = 0
 [connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
 [connection signal="OnTolerancesChanged" from="LeftPanel/HBoxContainer/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
-[connection signal="pressed" from="LeftPanel/HBoxContainer/VBoxContainer/MoveButton" to="." method="ChangeCurrentTransformTool" binds= [1]]
+[connection signal="pressed" from="LeftPanel/HBoxContainer/VBoxContainer/RotateToolButton" to="." method="ChangeCurrentTransformTool" binds= [1]]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
