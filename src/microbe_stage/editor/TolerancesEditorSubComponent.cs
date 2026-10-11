@@ -962,8 +962,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         oxygenResistanceOsmoregulationCostLabelContainer.Visible = CurrentTolerances.OxygenResistance > 0;
         oxygenResistanceOsmoregulationCostLabel.Text =
-            percentageFormat.FormatSafe(Math.Round(
-                CurrentTolerances.OxygenResistance * 100 * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER, 1));
+            percentageFormat.FormatSafe(Math.Round(Math.Min(
+                    Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX, CurrentTolerances.OxygenResistance) * 100 *
+                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER), 1);
 
         // Epsilon is subtracted here to avoid -0 triggering this
         if (oxygenResistanceWithOrganelles < requiredOxygenResistance - MathUtils.EPSILON)
@@ -1004,7 +1005,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // UV Resistance
 
-        var uvResistanceWithOrganelles = Math.Max(Constants.TOLERANCE_UV_DEFAULT_VALUE + CurrentTolerances.UVResistance +
+        var uvResistanceWithOrganelles = Math.Max(Constants.TOLERANCE_UV_DEFAULT_VALUE +
+            CurrentTolerances.UVResistance +
             organelleModifiers.UVResistance, 0);
 
         uvResistanceRangeDisplay.SetBoundPositionsManual(0, uvResistanceWithOrganelles);
@@ -1014,8 +1016,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         uvResistanceOsmoregulationCostLabelContainer.Visible = CurrentTolerances.UVResistance > 0;
         uvResistanceOsmoregulationCostLabel.Text =
-            percentageFormat.FormatSafe(
-                Math.Round(CurrentTolerances.UVResistance * 100 * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER, 1));
+            percentageFormat.FormatSafe(Math.Round(
+                Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_COST_MAX, CurrentTolerances.UVResistance) * 100 *
+                Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER), 1);
 
         if (uvResistanceWithOrganelles < requiredUVResistance - MathUtils.EPSILON)
         {

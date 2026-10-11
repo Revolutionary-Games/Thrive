@@ -111,6 +111,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float totalTemperatureChange = 0;
         float totalOxygenChange = 0;
         float totalUvChange = 0;
+        float totalUvPenalty = 0;
         float totalPressureMinimumChange = 0;
         float totalPressureToleranceChange = 0;
 
@@ -133,7 +134,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 totalPressureToleranceChange += pressureToleranceChange;
             }
 
-            totalUvChange -= Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
+            totalUvPenalty += Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
         }
 
         // apply specialization bonus
@@ -149,7 +150,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         // Then apply all at once
         tolerances.TemperatureTolerance += totalTemperatureChange;
         tolerances.OxygenResistance += totalOxygenChange;
-        tolerances.UVResistance += totalUvChange;
+        tolerances.UVResistance += totalUvChange - totalUvPenalty;
         tolerances.PressureMinimum -= totalPressureMinimumChange;
         tolerances.PressureTolerance += totalPressureToleranceChange;
     }
@@ -163,6 +164,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float totalTemperatureChange = 0;
         float totalOxygenChange = 0;
         float totalUvChange = 0;
+        float totalUvPenalty = 0;
         float totalPressureMinimumChange = 0;
         float totalPressureToleranceChange = 0;
 
@@ -184,7 +186,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 totalPressureToleranceChange += pressureToleranceChange;
             }
 
-            totalUvChange -= Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
+            totalUvPenalty += Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
         }
 
         // apply specialization bonus
@@ -200,7 +202,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         // Then apply all at once
         tolerances.TemperatureTolerance += totalTemperatureChange;
         tolerances.OxygenResistance += totalOxygenChange;
-        tolerances.UVResistance += totalUvChange;
+        tolerances.UVResistance += totalUvChange - totalUvPenalty;
         tolerances.PressureMinimum -= totalPressureMinimumChange;
         tolerances.PressureTolerance += totalPressureToleranceChange;
     }
@@ -489,26 +491,27 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_OXYGEN_HEALTH_MIN, oxygenScore);
             result.ProcessSpeedModifier *=
-                Math.Min(Constants.TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX, 2 - oxygenScore);
+                Math.Max(Constants.TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX, oxygenScore);
         }
 
         if (data.OxygenResistance > 0)
         {
-            result.SliderOsmoregulationAdditionalModifier +=
-                data.OxygenResistance * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER;
+            result.SliderOsmoregulationAdditionalModifier += Math.Min(
+                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX,
+                data.OxygenResistance * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER);
         }
 
         var uvScore = (float)data.UVScore;
         if (uvScore < 1)
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, uvScore);
-            result.ProcessSpeedModifier *= Math.Min(Constants.TOLERANCE_UV_SPEED_MODIFIER_MAX, 2 - uvScore);
+            result.ProcessSpeedModifier *= Math.Max(Constants.TOLERANCE_UV_SPEED_MODIFIER_MAX, uvScore);
         }
 
         if (data.UVResistance > 0)
         {
-            result.SliderOsmoregulationAdditionalModifier +=
-                data.UVResistance * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER;
+            result.SliderOsmoregulationAdditionalModifier += Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_COST_MAX,
+                data.UVResistance * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER);
         }
 
 #if DEBUG
