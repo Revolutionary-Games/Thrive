@@ -299,9 +299,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
         }
 
-        // specialization bonus applies to speed from organelles
-        organelleForce *= totalSpecializationBonus;
-
         bool hasColony = entity.Has<MicrobeColony>();
 
         if (control.MovementDirection != Vector3.Zero && hasColony)
