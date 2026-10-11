@@ -785,7 +785,8 @@ public partial class CellBodyPlanEditorComponent
             macroscopicConditionResultsBuilder.Append(' ');
             macroscopicConditionResultsBuilder.Append(description);
 
-            canBecomeMacroscopic &= fulfilled;
+            if (!fulfilled)
+                canBecomeMacroscopic = false;
         }
 
         macroscopicConditionResultsBuilder.Append('\n');
