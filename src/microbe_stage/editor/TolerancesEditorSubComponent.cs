@@ -1004,8 +1004,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // UV Resistance
 
-        var uvResistanceWithOrganelles = Constants.TOLERANCE_UV_DEFAULT_VALUE + CurrentTolerances.UVResistance +
-            organelleModifiers.UVResistance;
+        var uvResistanceWithOrganelles = Math.Max(Constants.TOLERANCE_UV_DEFAULT_VALUE + CurrentTolerances.UVResistance +
+            organelleModifiers.UVResistance, 0);
 
         uvResistanceRangeDisplay.SetBoundPositionsManual(0, uvResistanceWithOrganelles);
         uvResistanceRangeDisplay.UpdateMarker(requiredUVResistance);

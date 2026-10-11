@@ -1,6 +1,5 @@
 ﻿/// <summary>
-///   Simple <see cref="IPlayerReadableName"/> for things that are just a label (for example "cell size" in
-///   tolerance effect summaries)
+///   Simple <see cref="IPlayerReadableName"/> for things that are just a label
 /// </summary>
 public class SimpleReadableName : IPlayerReadableName
 {

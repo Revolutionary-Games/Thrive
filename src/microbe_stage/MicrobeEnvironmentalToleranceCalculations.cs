@@ -119,23 +119,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             var organelleDefinition = organelles[i].Definition;
 
-            var temperatureChange = organelleDefinition.ToleranceModifierTemperatureRange;
-            var oxygenChange = organelleDefinition.ToleranceModifierOxygen;
-            var uvChange = organelleDefinition.ToleranceModifierUV;
-            var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
+            if (organelleDefinition.AffectsTolerances)
+            {
+                var temperatureChange = organelleDefinition.ToleranceModifierTemperatureRange;
+                var oxygenChange = organelleDefinition.ToleranceModifierOxygen;
+                var uvChange = organelleDefinition.ToleranceModifierUV;
+                var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
 
-            uvChange -= 0.02f * organelleDefinition.HexCount;
+                // Buffer all changes so that float rounding doesn't cause us issues
+                totalTemperatureChange += temperatureChange;
+                totalOxygenChange += oxygenChange;
+                totalUvChange += uvChange;
+                totalPressureToleranceChange += pressureToleranceChange;
+            }
 
-            // if (organelleDefinition.AffectsTolerances)
-            // {
-
-            // Buffer all changes so that float rounding doesn't cause us issues
-            totalTemperatureChange += temperatureChange;
-            totalOxygenChange += oxygenChange;
-            totalUvChange += uvChange;
-            totalPressureToleranceChange += pressureToleranceChange;
-
-            // }
+            totalUvChange -= Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
         }
 
         // apply specialization bonus
@@ -172,22 +170,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             var organelleDefinition = organelle.Definition;
 
-            // if (organelleDefinition.AffectsTolerances)
-            // {
-            var temperatureChange = organelleDefinition.ToleranceModifierTemperatureRange;
-            var oxygenChange = organelleDefinition.ToleranceModifierOxygen;
-            var uvChange = organelleDefinition.ToleranceModifierUV;
-            var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
+            if (organelleDefinition.AffectsTolerances)
+            {
+                var temperatureChange = organelleDefinition.ToleranceModifierTemperatureRange;
+                var oxygenChange = organelleDefinition.ToleranceModifierOxygen;
+                var uvChange = organelleDefinition.ToleranceModifierUV;
+                var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
 
-            uvChange -= 0.02f * organelleDefinition.HexCount;
+                // Buffer all changes so that float rounding doesn't cause us issues
+                totalTemperatureChange += temperatureChange;
+                totalOxygenChange += oxygenChange;
+                totalUvChange += uvChange;
+                totalPressureToleranceChange += pressureToleranceChange;
+            }
 
-            // Buffer all changes so that float rounding doesn't cause us issues
-            totalTemperatureChange += temperatureChange;
-            totalOxygenChange += oxygenChange;
-            totalUvChange += uvChange;
-            totalPressureToleranceChange += pressureToleranceChange;
-
-            // }
+            totalUvChange -= Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
         }
 
         // apply specialization bonus
