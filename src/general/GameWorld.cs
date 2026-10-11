@@ -280,7 +280,15 @@ public class GameWorld : IArchivable
     {
         var multicellularVersion = new MulticellularSpecies(microbeSpecies.ID, microbeSpecies.Genus,
             microbeSpecies.Epithet);
-        microbeSpecies.CopyDataToConvertedSpecies(multicellularVersion);
+
+        if (calledFromAutoEvo)
+        {
+            microbeSpecies.ClonePropertiesTo(multicellularVersion);
+        }
+        else
+        {
+            microbeSpecies.CopyDataToConvertedSpecies(multicellularVersion);
+        }
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
