@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://dbjgad8mu7gbp" path="res://assets/textures/gui/bevel/rotateButtonHover.svg" id="12_wh011"]
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
+[ext_resource type="Texture2D" uid="uid://ihusnwwiiwpv" path="res://assets/textures/gui/bevel/rotate_disabled.svg" id="13_bgu53"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="13_wsdas"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="14"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="14_e8ubw"]
@@ -705,6 +706,7 @@ toggle_mode = true
 texture_normal = ExtResource("10_e32cu")
 texture_pressed = ExtResource("11_bgu53")
 texture_hover = ExtResource("12_wh011")
+texture_disabled = ExtResource("13_bgu53")
 ignore_texture_size = true
 stretch_mode = 0
 
