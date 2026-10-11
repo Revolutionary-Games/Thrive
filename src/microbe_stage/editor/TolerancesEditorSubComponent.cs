@@ -964,7 +964,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         oxygenResistanceOsmoregulationCostLabel.Text =
             percentageFormat.FormatSafe(Math.Round(Math.Min(
                     Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX, CurrentTolerances.OxygenResistance) * 100 *
-                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER), 1);
+                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER, 1));
 
         // Epsilon is subtracted here to avoid -0 triggering this
         if (oxygenResistanceWithOrganelles < requiredOxygenResistance - MathUtils.EPSILON)

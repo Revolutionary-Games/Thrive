@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// </summary>
 public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmentalTolerances
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     [Flags]
     public enum ToleranceChangedStats
@@ -138,6 +138,11 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
 
         UVResistance = reader.ReadFloat();
         OxygenResistance = reader.ReadFloat();
+
+        if (version <= 2)
+        {
+            UVResistance = Math.Min(UVResistance, Constants.TOLERANCE_UV_RANGE_MAX);
+        }
     }
 
     public override bool Equals(object? obj)
