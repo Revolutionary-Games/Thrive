@@ -490,7 +490,7 @@ public partial class MetaballBodyEditorComponent :
         return true;
     }
 
-    [RunOnKeyDown("e_primary")]
+    [RunOnKeyDown("e_primary", Priority = 2)]
     public bool TryUseMetaballTransformTools()
     {
         if (selectedTransformTool == TransformTool.None)
@@ -498,9 +498,8 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
         if (!Visible)
-            return false;
+            return true;
 
         if (PreviewMode)
             return false;
@@ -540,7 +539,7 @@ public partial class MetaballBodyEditorComponent :
         return true;
     }
 
-    [RunOnKeyUp("e_primary")]
+    [RunOnKeyUp("e_primary", Priority = 3)]
     public bool TryStopUsingTransformTools()
     {
         if (selectedTransformTool == TransformTool.None)
