@@ -889,7 +889,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// <summary>
     ///   This updates the metaball displayer that is used to show the currently placed metaballs in the edited layout
     /// </summary>
-    protected void UpdateAlreadyPlacedVisuals()
+    protected virtual void UpdateAlreadyPlacedVisuals()
     {
         if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
             throw new InvalidOperationException("Editor component not initialized");

@@ -536,6 +536,8 @@ public partial class MetaballBodyEditorComponent :
         movingToolPreviewMetaballs.Clear();
         AddDescendantMetaballs(metaballSelectedForMoving, movingToolPreviewMetaballs);
 
+        UpdateAlreadyPlacedVisuals();
+
         return true;
     }
 
@@ -757,6 +759,16 @@ public partial class MetaballBodyEditorComponent :
         }
 
         return highestPointInMiddleRows;
+    }
+
+    protected override void UpdateAlreadyPlacedVisuals()
+    {
+        if (structuralMetaballDisplayer is MacroscopicMetaballDisplayer macroscopicMetaballDisplayer)
+        {
+            macroscopicMetaballDisplayer.SetMetaballsToHighlight(movingToolPreviewMetaballs);
+        }
+
+        base.UpdateAlreadyPlacedVisuals();
     }
 
     private void UpdateGUIAfterLoadingSpecies()
@@ -1220,6 +1232,8 @@ public partial class MetaballBodyEditorComponent :
     {
         metaballSelectedForMoving = null;
         moveTool.EndDisplay();
+        movingToolPreviewMetaballs.Clear();
+        UpdateAlreadyPlacedVisuals();
     }
 
     private void OnMetaballsChanged()
