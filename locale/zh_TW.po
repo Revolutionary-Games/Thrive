@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -200,6 +200,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "環境"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "總是可見"
@@ -510,6 +518,10 @@ msgstr "半深海帶"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成為宏觀生物（{0}／{1}）"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "成為宏觀生物（{0}／{1}）"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "成為多細胞生物（{0}／{1}）"
 
@@ -744,6 +756,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -845,6 +860,10 @@ msgstr "啟用作弊鍵"
 
 msgid "CHEAT_MENU"
 msgstr "作弊選單"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "僅從[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]開始可用。"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏細胞代謝過程"
@@ -2192,6 +2211,7 @@ msgstr "開始該物種的內共生（選擇目標細胞器類型後可用）"
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "內共生"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}：{1} /s"
 
@@ -2200,12 +2220,6 @@ msgstr "{0}：-{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}：+{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}：+{1} ATP\n"
-"消耗時：\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "能量消耗壓力"
@@ -3679,6 +3693,10 @@ msgstr ""
 "此存檔很可能已損壞，或來自此版本的 Thrive 無法識別的新格式。\n"
 "您仍然想嘗試載入此存檔嗎？"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "載入遊戲"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3747,6 +3765,46 @@ msgstr ""
 "玩家將成為一個宏觀生物。這改變了遊戲的規模，使微生物不再可見，玩家轉而雕塑組織，而不是放置單個細胞。\n"
 "\n"
 "關於宏觀階段的遊戲設計方案有一個單獨的頁面，詳細描述了該階段的機制。"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "宏觀生物編輯器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "宏觀生物編輯器"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "宏觀生物編輯器"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "起始細胞數量"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "在 {0} 生物群系中繁殖"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏觀生物編輯器"
@@ -4437,7 +4495,14 @@ msgstr "移動至任何區域"
 msgid "MOVE_TO_LAND"
 msgstr "移動至陸地"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"進入多細胞階段（宏觀）。細胞群達到一定大小後即可解鎖。\n"
+"這需要您在編輯器中添加足夠的細胞，然後將您的細胞群發展到最低規模。"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "進入多細胞階段（宏觀）。細胞群達到一定大小後即可解鎖。\n"
 "這需要您在編輯器中添加足夠的細胞，然後將您的細胞群發展到最低規模。"
@@ -5111,6 +5176,10 @@ msgstr "向右平移"
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "且"
+
 msgid "PAST_DEVELOPERS"
 msgstr "過去的開發人員"
 
@@ -5314,6 +5383,19 @@ msgstr "在開始新遊戲時播放微生物開場動畫"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用當前設定"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "特化："
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "物種量："
@@ -6284,6 +6366,10 @@ msgstr "切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暫停選單"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "標題："
 
 msgid "START"
 msgstr "開始"
@@ -7684,6 +7770,9 @@ msgstr "滾輪向右"
 
 msgid "WHEEL_UP"
 msgstr "滾輪向上"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10253,6 +10342,12 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "縮小"
 
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}：+{1} ATP\n"
+#~ "消耗時：\n"
+#~ "{2}"
+
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "創建新細胞類型"
@@ -10792,13 +10887,6 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "自殺"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "選取的存檔已知會跟這個版本的Thrive不兼容。\n"
-#~ "而且也沒有適用的存檔更新器。\n"
-#~ "由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

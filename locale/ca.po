@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -203,6 +203,14 @@ msgstr "Fils actuals:"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". La velocitat augmenta proporcionalment"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Entorn"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -524,6 +532,10 @@ msgstr "Zona batipelàgica"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 
@@ -776,6 +788,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -862,6 +877,10 @@ msgstr "Trucs activats"
 
 msgid "CHEAT_MENU"
 msgstr "Menú de trucs"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar els procesos del microbi"
@@ -2281,10 +2300,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3897,6 +3912,10 @@ msgstr ""
 "És probable que aquest arxiu de guardat sigui corrupte, o que pertanyi a un format nou, no entès per aquesta versió de Thrive.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Carregar una partida"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3966,6 +3985,43 @@ msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Raig de llim"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "S'està carregant l'Editor de Microbi"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "S'està carregant l'Editor de Microbi"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "S'està carregant l'Editor de Microbi"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "S'està carregant l'Editor de Microbi"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Prototip Macroscòpic"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Enhorabone per haver arribat al prototip de la part macroscòpica de l'Estadi Multicel·lular!\n"
+"\n"
+"Degut a limitacions de desenvolupament, no hem pogut afegir jugabilitat a la part 3D macroscòpica en aquesta versió. No obstant, pots tornar a l'editor per seguir construïnt el teu organisme."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4770,6 +4826,10 @@ msgstr "Mod a Carregar:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
 
@@ -5514,6 +5574,10 @@ msgstr "Desplaçar cap a la dreta"
 msgid "PAN_CAMERA_UP"
 msgstr "Desplaçar cap amunt"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "Condicions Físiques"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolupadors passats"
 
@@ -5732,6 +5796,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mostrar la cinemàtica d'entrada a l'Estadi de Microbi en una nova partida"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "població:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6784,6 +6861,10 @@ msgstr "Pausar el joc"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Títol:"
 
 #, fuzzy
 msgid "START"
@@ -8303,6 +8384,9 @@ msgstr "Rodeta dreta"
 
 msgid "WHEEL_UP"
 msgstr "Rodeta amunt"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10290,6 +10374,10 @@ msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Crear un nou Tipus de Cèl·lula"
 
@@ -10788,15 +10876,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estadístiques sobre la partida actual"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Prototip Macroscòpic"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Enhorabone per haver arribat al prototip de la part macroscòpica de l'Estadi Multicel·lular!\n"
-#~ "\n"
-#~ "Degut a limitacions de desenvolupament, no hem pogut afegir jugabilitat a la part 3D macroscòpica en aquesta versió. No obstant, pots tornar a l'editor per seguir construïnt el teu organisme."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Invulnerable a l'Engoliment"

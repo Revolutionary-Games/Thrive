@@ -386,6 +386,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 
         result.Consumption["osmoregulation"] = result.Osmoregulation;
+
+        result.SpecializationFactor = specializationFactor;
     }
 
     /// <summary>

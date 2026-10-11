@@ -161,6 +161,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private StorageValueBreakdown? storageValueBreakdown;
+
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);
 
@@ -201,6 +203,11 @@ public partial class OrganismStatisticsPanel : PanelContainer
         if (energyBalanceInfo != null)
         {
             UpdateEnergyBalance(energyBalanceInfo);
+        }
+
+        if (storageValueBreakdown != null)
+        {
+            UpdateStorage(storageValueBreakdown);
         }
 
         UpdateStageDependentText();
@@ -301,12 +308,18 @@ public partial class OrganismStatisticsPanel : PanelContainer
                 GD.PrintErr("Tracking for used compounds for energy not set up");
             }
 
-            bool includedRequirement = false;
+            atpToolTipTextBuilder.Clear();
+            atpToolTipTextBuilder.Append(Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
+                SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
+                Math.Round(energyBalance.Production[subBar.Name], 3)));
+
+            AppendBreakdownToTooltip(atpToolTipTextBuilder, energyBalance.Production[subBar.Name],
+                energyBalance.SpecializationFactor, 3, false);
+
+            var includedRequirement = false;
 
             if (requiredCompounds is { Count: > 0 })
             {
-                atpToolTipTextBuilder.Clear();
-
                 var translationFormat = Localization.Translate("ENERGY_BALANCE_REQUIRED_COMPOUND_LINE");
 
                 foreach (var requiredCompound in requiredCompounds)
@@ -318,31 +331,23 @@ public partial class OrganismStatisticsPanel : PanelContainer
                     if (compound.IsEnvironmental)
                         continue;
 
-                    if (atpToolTipTextBuilder.Length > 0)
+                    // If this is the first compound we're adding, add the "While consuming:" label
+                    if (!includedRequirement)
+                    {
                         atpToolTipTextBuilder.Append('\n');
+                        atpToolTipTextBuilder.Append(Localization.Translate("WHILE_CONSUMING_COLON"));
+                        includedRequirement = true;
+                    }
 
+                    atpToolTipTextBuilder.Append('\n');
                     atpToolTipTextBuilder.Append(translationFormat.FormatSafe(compound.Name,
                         Math.Round(requiredCompound.Value, 2)));
-                }
-
-                // As we don't check for environmental compounds before starting the loop, we might not find any valid
-                // data in the end in which case this needs to be skipped
-                if (atpToolTipTextBuilder.Length > 0)
-                {
-                    tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT")
-                        .FormatSafe(SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
-                            Math.Round(energyBalance.Production[subBar.Name], 3), atpToolTipTextBuilder.ToString());
-                    includedRequirement = true;
+                    AppendBreakdownToTooltip(atpToolTipTextBuilder, requiredCompound.Value,
+                        energyBalance.SpecializationFactor, 2, true);
                 }
             }
 
-            if (!includedRequirement)
-            {
-                // Normal display if didn't show with a requirement
-                tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
-                    SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
-                    Math.Round(energyBalance.Production[subBar.Name], 3));
-            }
+            tooltip.Description = atpToolTipTextBuilder.ToString();
         }
 
         foreach (var subBar in atpConsumptionBar.SubBars)
@@ -438,46 +443,37 @@ public partial class OrganismStatisticsPanel : PanelContainer
         hpLabel.Value = MathF.Round(hp, 1);
     }
 
-    public void UpdateStorage(Dictionary<Compound, float> storage, float nominalStorage)
+    public void UpdateStorage(StorageValueBreakdown storage)
     {
-        // Storage values can be as low as 0.25 so 2 decimals are needed
-        storageLabel.Value = MathF.Round(nominalStorage, 2);
+        storageValueBreakdown = storage;
 
-        if (storage.Count == 0)
-        {
-            storageLabel.UnRegisterFirstToolTipForControl();
-            return;
-        }
+        // Storage values can be as low as 0.25 so 2 decimals are needed
+        storageLabel.Value = MathF.Round(storage.NominalStorage.Total, 2);
 
         var tooltip = ToolTipManager.Instance.GetToolTip("storageDetails", "editor");
-        if (tooltip == null)
-        {
-            GD.PrintErr("Can't update storage tooltip");
-            return;
-        }
+        var description = new StringBuilder();
+        description.Append(Localization.Translate("CELL_STAT_STORAGE_TOOLTIP"));
 
-        if (!storageLabel.IsToolTipRegistered(tooltip))
-            storageLabel.RegisterToolTipForControl(tooltip, true);
+        var totalText = Localization.Translate("STANDARD_COLON_VALUE");
+        description.Append("\n\n");
+        description.Append(totalText.FormatSafe(Math.Round(storage.NominalStorage.Total, 2)));
 
-        var description = new LocalizedStringBuilder(100);
-
-        bool first = true;
+        AppendBreakdownToTooltip(description, storage.NominalStorage, 2, true);
 
         var simulationParameters = SimulationParameters.Instance;
 
-        foreach (var entry in storage)
+        foreach (var entry in storage.SpecificStorage)
         {
-            if (!first)
-                description.Append("\n");
+            var totalSpecificStorage = ValueBreakdown.Add(entry.Value, storage.NominalStorage);
 
-            first = false;
-
-            description.Append(simulationParameters.GetCompoundDefinition(entry.Key).Name);
+            description.Append('\n');
+            description.Append(Localization.Translate(simulationParameters.GetCompoundDefinition(entry.Key).Name));
             description.Append(": ");
-            description.Append(entry.Value);
+            description.Append(Math.Round(totalSpecificStorage.Total, 2));
+            AppendBreakdownToTooltip(description, totalSpecificStorage, 2, true);
         }
 
-        tooltip.Description = description.ToString();
+        tooltip?.Description = description.ToString();
     }
 
     public void UpdateTotalDigestionSpeed(float speed)
@@ -687,6 +683,48 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
     {
         return bar.OrderBy(i => i.Key, atpComparer).ToList();
+    }
+
+    private void AppendBreakdownToTooltip(StringBuilder stringBuilder, float totalValue, float specializationBonus,
+        int decimalPlaces, bool useIndent)
+    {
+        ValueBreakdown valueBreakdown = new()
+        {
+            Total = totalValue,
+            Base = totalValue / specializationBonus,
+        };
+        valueBreakdown.Specialization = valueBreakdown.Total - valueBreakdown.Base;
+
+        AppendBreakdownToTooltip(stringBuilder, valueBreakdown, decimalPlaces, useIndent);
+    }
+
+    private void AppendBreakdownToTooltip(StringBuilder stringBuilder, ValueBreakdown valueBreakdown, int decimalPlaces,
+        bool useIndent)
+    {
+        if (Math.Abs(valueBreakdown.Specialization) < MathUtils.EPSILON)
+        {
+            return;
+        }
+
+        string baseText;
+        string specializationText;
+
+        if (useIndent)
+        {
+            baseText = Localization.Translate("PLUS_FROM_BASE_VALUE_INDENTED");
+            specializationText = Localization.Translate("PLUS_FROM_SPECIALIZATION_VALUE_INDENTED");
+        }
+        else
+        {
+            baseText = Localization.Translate("PLUS_FROM_BASE_VALUE");
+            specializationText = Localization.Translate("PLUS_FROM_SPECIALIZATION_VALUE");
+        }
+
+        stringBuilder.Append('\n');
+        stringBuilder.Append(baseText.FormatSafe(Math.Round(valueBreakdown.Base, decimalPlaces)));
+
+        stringBuilder.Append('\n');
+        stringBuilder.Append(specializationText.FormatSafe(Math.Round(valueBreakdown.Specialization, decimalPlaces)));
     }
 
     private class ATPComparer : IComparer<string>

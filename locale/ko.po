@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-07-23 05:41+0000\n"
 "Last-Translator: Yuchan An <chanyz1402@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -208,6 +208,18 @@ msgstr "저장 및 계속"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". 비율"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "환경"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"공격적인 미생물들은 먼 거리에 있는 사냥감도 쫓으려 할 것이며,\n"
+"포식자에게 공격을 받을 시 맞서 싸울 것 입니다.\n"
+"평화로운 미생물들은 멀리 있는 자들에겐 신경을 쓰지 않을 것이며,\n"
+"포식자들에게 독을 자주 사용하지 않을 것 입니다."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "언제나 보임"
@@ -541,6 +553,10 @@ msgstr "심해수층"
 msgid "BECOME_MACROSCOPIC"
 msgstr "거시 생물로 변화하기 ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "거시 생물로 변화하기 ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "다세포 생물로 변화하기 ({0}/{1})"
 
@@ -803,6 +819,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -890,6 +909,10 @@ msgstr "치트 키 활성화"
 
 msgid "CHEAT_MENU"
 msgstr "치트 메뉴"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -2344,9 +2367,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 #, fuzzy
@@ -3949,6 +3969,10 @@ msgstr ""
 "변형되었거나 현재 버전의 Thrive에서 불러올 수 없는 형식의 저장입니다.\n"
 "그래도 저장을 불러오시겠습니까?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "불러오기"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4020,6 +4044,44 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "점액 분출"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "미생물 편집기 불러오는 중"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "미생물 편집기 불러오는 중"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "미생물 편집기 불러오는 중"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "미생물 편집기 불러오는 중"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"선택된 저장은 이 버전의 Thrive와 호환되지 않을 것입니다.\n"
+"Thrive의 개발은 한참 진행 중 이며 저장 간 호환은 우선적이지 않으므로, 이전 버전의 저장을 변환하는 것은 지원되지 않습니다."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"선택된 저장은 이 버전의 Thrive와 호환되지 않을 것입니다.\n"
+"Thrive의 개발은 한참 진행 중 이며 저장 간 호환은 우선적이지 않으므로, 이전 버전의 저장을 변환하는 것은 지원되지 않습니다."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4812,6 +4874,10 @@ msgstr "육지로 이주"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "새로운 키 배치 추가"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5523,6 +5589,10 @@ msgstr "오른쪽으로 시야 이동"
 msgid "PAN_CAMERA_UP"
 msgstr "위쪽으로 시야 이동"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "물리적 상태"
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5741,6 +5811,19 @@ msgstr "새 게임 시 미생물 인트로 재생"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "현재 설정으로 실행"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "개체수:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
@@ -6824,6 +6907,10 @@ msgstr "새로운 키 배치 추가"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "크기:"
 
 #, fuzzy
 msgid "START"
@@ -8315,6 +8402,9 @@ msgstr "휠 오른쪽으로"
 
 msgid "WHEEL_UP"
 msgstr "휠 위로"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr ""
@@ -10755,12 +10845,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "새로운 키 배치 추가"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "선택된 저장은 이 버전의 Thrive와 호환되지 않을 것입니다.\n"
-#~ "Thrive의 개발은 한참 진행 중 이며 저장 간 호환은 우선적이지 않으므로, 이전 버전의 저장을 변환하는 것은 지원되지 않습니다."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

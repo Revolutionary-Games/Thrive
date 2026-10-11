@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-09-17 19:57+0000\n"
 "Last-Translator: fractalino <francescosollazzi37@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -203,6 +203,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Scala temporale alternativa"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ambiente"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visibile"
@@ -512,6 +520,10 @@ msgstr "Batipelagico"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Diventa macroscopico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Diventa macroscopico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Diventa multicellulare ({0}/{1})"
 
@@ -746,6 +758,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -858,6 +873,10 @@ msgstr "Abilita i trucchi"
 
 msgid "CHEAT_MENU"
 msgstr "Menù dei trucchi"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "La centrale energetica della cellula. Il mitocondrio è una struttura a doppia membrana piena di proteine ed enzimi. Si tratta di un organismo procariote, vivente all'interno di un eucariote. Converte il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] con un'efficienza di gran lunga superiore a quella del citoplasma. Questo processo si chiama [b]respirazione aerobica[/b]. Tuttavia, ha bisogno di [thrive:compound type=\"oxygen\"][/thrive:compound] per funzionare, e livelli inferiori nell'ambiente lo rallentano."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostra/nascondi i processi cellulari"
@@ -2255,13 +2274,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Mentre si consuma\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3885,6 +3897,10 @@ msgstr ""
 "Questo salvataggio è probabilmete corrotto, oppure appartiene a un nuovo formato, non compreso da questa versione di Thrive.\n"
 "Vuoi provare a caricarlo ugualmente?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Carica partita"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3955,6 +3971,43 @@ msgstr "Diventa macroscopico ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Propulsore a melma"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Caricamento dell'Editor Microbico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Caricamento dell'Editor Microbico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Caricamento dell'Editor Microbico"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Conteggio iniziale delle cellule"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Prototipo sezione macroscopica"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Complimenti per aver raggiunto il prototipo della sezione macroscopica della Fase Multicellulare!\n"
+"\n"
+"Date limitazioni nello sviluppo, non siamo riusciti ad aggiungere gameplay 3D in questa versione. Tuttavia, puoi tornare all'editor e continuare a costruire il tuo organismo."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4744,6 +4797,10 @@ msgstr "Mod da caricare:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Avanza alla prossima fase di gioco (multicellulare). Disponibile una volta che hai una colonia cellulare sufficientemente grande."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Avanza alla prossima fase di gioco (multicellulare). Disponibile una volta che hai una colonia cellulare sufficientemente grande."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Avanza alla prossima fase di gioco (multicellulare). Disponibile una volta che hai una colonia cellulare sufficientemente grande."
 
@@ -5494,6 +5551,10 @@ msgstr "Sposta la visuale verso destra"
 msgid "PAN_CAMERA_UP"
 msgstr "Sposta la visuale verso l'alto"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "e"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Sviluppatori passati"
 
@@ -5712,6 +5773,19 @@ msgstr "Riproduci filmato iniziale microbico in nuove partite"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Gioca nello scenario attuale"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "popolazione:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
@@ -6761,6 +6835,10 @@ msgstr "Metti in pausa il gioco"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menù di pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titolo:"
 
 #, fuzzy
 msgid "START"
@@ -8286,6 +8364,9 @@ msgstr "Scorri a destra (rotellina del mouse)"
 
 msgid "WHEEL_UP"
 msgstr "Scorri su (rotellina del mouse)"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10267,6 +10348,13 @@ msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Mentre si consuma\n"
+#~ "{2}"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Crea un nuovo tipo di cellula"
 
@@ -10786,15 +10874,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Dati interessanti sulla partita attuale"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Prototipo sezione macroscopica"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Complimenti per aver raggiunto il prototipo della sezione macroscopica della Fase Multicellulare!\n"
-#~ "\n"
-#~ "Date limitazioni nello sviluppo, non siamo riusciti ad aggiungere gameplay 3D in questa versione. Tuttavia, puoi tornare all'editor e continuare a costruire il tuo organismo."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Immune alla fagocitazione"

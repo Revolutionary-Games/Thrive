@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -199,6 +199,14 @@ msgstr "Észlelhető szálak:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Környezet"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Mindig látható"
@@ -514,6 +522,10 @@ msgstr "Batipelágikus"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroszkopikussá válás ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Makroszkopikussá válás ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Többsejtűvé válás ({0}/{1})"
 
@@ -751,6 +763,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -837,6 +852,10 @@ msgstr "Csalások engedélyezve"
 
 msgid "CHEAT_MENU"
 msgstr "Csalások menü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Csak a Többsejtű szakasztól kezdve elérhető."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "A sejt folyamatainak mutatása/elrejtése"
@@ -2306,10 +2325,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3944,6 +3959,10 @@ msgstr ""
 "Ez a mentés nagy eséllyel korruptált, vagy új formátumú, amit a Thrive ezen verziója nem ismer fel.\n"
 "Biztos be akarod tölteni ezt a mentést?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Játék betöltése"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -4017,6 +4036,40 @@ msgstr "Makroszkopikussá válni ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Nyálka jet"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Sejtszerkesztő betöltése"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Sejtszerkesztő betöltése"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Sejtszerkesztő betöltése"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Sejtszerkesztő betöltése"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Betöltöd ezt az inkompatibilis mentést?"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Betöltöd ezt az inkompatibilis mentést?"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4816,6 +4869,10 @@ msgstr "Feltöltendő mod:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Öngyilkosság"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Öngyilkosság"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Átlépés a többsejtű szakaszba. Akkor lesz elérhető, amikor a sejtkolónia kellően nagy."
 
@@ -5551,6 +5608,10 @@ msgstr "Pásztázás jobbra"
 msgid "PAN_CAMERA_UP"
 msgstr "Pásztázás felfelé"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "és"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Korábbi Fejlesztők"
 
@@ -5760,6 +5821,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Új játék esetén az intró lejátszása"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Populáció:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6813,6 +6887,10 @@ msgstr "Játék szüneteltetése"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menü"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Cím:"
 
 #, fuzzy
 msgid "START"
@@ -8279,6 +8357,9 @@ msgstr "Görgetés jobbra"
 
 msgid "WHEEL_UP"
 msgstr "Görgetés fel"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10293,6 +10374,10 @@ msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Új sejttípus létrehozása"
 
@@ -10771,10 +10856,6 @@ msgstr "Távolodás"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Jelenlegi statisztikák a játékról"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr "Betöltöd ezt az inkompatibilis mentést?"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

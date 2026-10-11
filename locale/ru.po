@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
-"Last-Translator: Исаия Брайнин <fadingsoul90@gmail.com>\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -199,6 +199,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Альтернативная временная шкала"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Окружающая среда"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "При"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -509,6 +517,10 @@ msgstr "Батипелагический"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Стать макроскопическим ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Стать многоклеточным ({0}/{1})"
 
@@ -743,6 +755,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -850,6 +865,10 @@ msgstr "Чит-коды включены"
 
 msgid "CHEAT_MENU"
 msgstr "Чит-меню"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Доступно лишь после [color=#3796e1][url=thriveopedia:macroscopic_stage]Макроскопической Стадии[/url][/color]."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показать/скрыть процессы клетки"
@@ -2197,6 +2216,7 @@ msgstr "Начать эндосимбиоз с этим видом (Доступ
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Эндосимбиоз"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /second"
 
@@ -2205,12 +2225,6 @@ msgstr "{0}: -{1} АТФ"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} АТФ\n"
-"При потреблении:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Давление Потребления Энергии"
@@ -3679,6 +3693,10 @@ msgstr ""
 "Это сохранение скорее всего повреждено или нового формата, который не понимается текущей версией Thrive.\n"
 "Всё равно попробовать загрузить сохранение?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Загрузить игру"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Л"
 
@@ -3741,6 +3759,43 @@ msgstr "Макроскопический"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Смена Мембраны более невозможна в Макроскопической Стадии"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Макроскопический Редактор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Макроскопический Редактор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Макроскопический Редактор"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Начальный подсчет клеток"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Макроскопический прототип"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "размножение в биоме {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Поздравляем, вы дошли до прототипа макроскопической секции многоклеточной стадии!\n"
+"\n"
+"Из-за ограничений разработки, мы не смогли добавить трёхмерный макроскопический геймплей в этом релизе. Но вы можете вернуться в редактор, чтобы продолжить изменять свой организм."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Макроскопический Редактор"
@@ -4430,7 +4485,14 @@ msgstr "Двигаться к любому биому"
 msgid "MOVE_TO_LAND"
 msgstr "Переместиться на сушу"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Перейти к многоклеточной стадии. Доступно после сбора достаточно большой колонии клеток.\n"
+"Это требует от тебя добавить достаточно клеток в редакторе, затем вырастить свою колонию до минимального размера."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Перейти к многоклеточной стадии. Доступно после сбора достаточно большой колонии клеток.\n"
 "Это требует от тебя добавить достаточно клеток в редакторе, затем вырастить свою колонию до минимального размера."
@@ -5083,6 +5145,10 @@ msgstr "Переместить вправо"
 msgid "PAN_CAMERA_UP"
 msgstr "Переместить вверх"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "И"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Бывшие Разработчики"
 
@@ -5284,6 +5350,19 @@ msgstr "Проигрывать вступление микроба при нов
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Играть с текущими настройками"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Специализация:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
@@ -5519,9 +5598,8 @@ msgstr "Массовое почкование"
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL"
-msgstr "Бесполое"
+msgstr "Половое"
 
 #, fuzzy
 msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
@@ -6245,6 +6323,10 @@ msgstr "Переключает режим спринтинга. Во время 
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Имя:"
 
 msgid "START"
 msgstr "Начать"
@@ -7637,6 +7719,9 @@ msgstr "Колёсико вправо"
 
 msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "наша Wiki"
@@ -10221,6 +10306,12 @@ msgstr "Увеличить масштаб"
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} АТФ\n"
+#~ "При потреблении:\n"
+#~ "{2}"
+
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Тип споровых клеток"
 
@@ -10804,15 +10895,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Полная статистика о текущей игре"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Макроскопический прототип"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Поздравляем, вы дошли до прототипа макроскопической секции многоклеточной стадии!\n"
-#~ "\n"
-#~ "Из-за ограничений разработки, мы не смогли добавить трёхмерный макроскопический геймплей в этом релизе. Но вы можете вернуться в редактор, чтобы продолжить изменять свой организм."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Неуязвимо к поглощению"

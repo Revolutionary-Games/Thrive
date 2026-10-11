@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -201,6 +201,14 @@ msgstr ""
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Taux changent"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Environnement"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Toujours visible"
@@ -513,6 +521,10 @@ msgstr "Bathypélagique"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Devenir macroscopique ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Devenir macroscopique ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Devenir multicellulaire ({0}/{1})"
 
@@ -748,6 +760,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -764,16 +779,16 @@ msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "La disposition est invalide car il y a des cellules qui se chevauchent et que trop the adjacences sont perdues (voir les flèches rouges)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
-msgstr ""
+msgstr "La disposition est invalide car il y a des cellules se chevauchant et des cellules déconnectées."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
-msgstr ""
+msgstr "Dans cet onglet vous pouvez voir la disposition complète actuelle qui est utilisée pour votre colonie de cellule durant le gameplay et la modifier quand vous utilisez la disposition manuelle."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
-msgstr ""
+msgstr "Cliquez sur une cellule pour commencer à la déplacer. Déplacez les cellules à des positions que vous voulez. Toutes les cellules doivent être connectées et être proche de l'endroit où elles doivent être dans la structure. Editer les organites peut créer des chevauchements qui doivent être résolus pour que la disposition manuelle soit correcte. Quitter le mode the disposition manuel perd tous les changements en cours."
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -842,6 +857,10 @@ msgstr "Touches de triche activées"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de triche"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Seulement disponible à partir de la phase multicellulaire."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
@@ -2215,6 +2234,7 @@ msgstr "Commencer l'endosymbiose avec cette espèce (disponible après avoir sé
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0} : {1} /seconde"
 
@@ -2223,13 +2243,6 @@ msgstr "{0} : -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0} : +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0} : +{1} ATP\n"
-"En consommant :\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3766,6 +3779,10 @@ msgstr ""
 "Il semble que la sauvegarde soit corrompue ou d'un nouveau format non compris par cette version de Thrive.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Charger une partie"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3832,6 +3849,44 @@ msgstr "Macroscopique"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Prochainement."
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Chargement de l'Éditeur de microbe"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproduction dans le biome {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4569,6 +4624,10 @@ msgstr "Aller sur la terre ferme"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Passer à la phase suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
@@ -5273,6 +5332,10 @@ msgstr "Panoramique droit"
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramique vers le haut"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "et"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Anciens développeurs"
 
@@ -5483,6 +5546,19 @@ msgstr "Jouer l'introduction à chaque nouvelle partie"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jouer avec les paramètres actuels"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "population :"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
@@ -6492,6 +6568,10 @@ msgstr "Visitez notre page Patreon"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titre :"
 
 msgid "START"
 msgstr "Démarrer"
@@ -7973,6 +8053,9 @@ msgstr "Roulette droite"
 
 msgid "WHEEL_UP"
 msgstr "Molette avant"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10495,6 +10578,13 @@ msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0} : +{1} ATP\n"
+#~ "En consommant :\n"
+#~ "{2}"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Créer un nouveau type de cellule"
 
@@ -11075,12 +11165,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suicide"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
-#~ "Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
 #, fuzzy
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"

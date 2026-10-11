@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -200,6 +200,14 @@ msgstr ""
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Beoordeel schalen"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Omgeving"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altijd Zichtbaar"
@@ -524,6 +532,10 @@ msgstr "Bathypelagisch"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Word Macroscopisch ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Word Macroscopisch ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Word Meercellig ({0}/{1})"
 
@@ -766,6 +778,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -854,6 +869,10 @@ msgstr "Cheattoetsen ingeschakeld"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Voorwaarden"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg celprocessen"
@@ -2313,10 +2332,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3947,6 +3962,10 @@ msgstr ""
 "Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer formaat dat niet wordt begrepen door deze versie van Thrive.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Spel Laden"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -4017,6 +4036,46 @@ msgstr "Word Macroscopisch ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Slijmspuwer"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Microbe editor laden"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
+"En er is geen save-upgrade om deze save te upgraden.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
+"En er is geen save-upgrade om deze save te upgraden.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4771,7 +4830,12 @@ msgstr "Ga naar een Willekeurig Gebied"
 msgid "MOVE_TO_LAND"
 msgstr "Ga naar Land"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Ga over naar de late meercellige fase (macroscopisch). Beschikbaar wanneer jouw celkolonie groot genoeg is."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Ga over naar de late meercellige fase (macroscopisch). Beschikbaar wanneer jouw celkolonie groot genoeg is."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5494,6 +5558,10 @@ msgstr "Beweeg camera naar rechts"
 msgid "PAN_CAMERA_UP"
 msgstr "Beweeg camera naar boven"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "en"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Eerdere ontwikkelaars"
 
@@ -5709,6 +5777,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel microbe intro bij nieuw spel"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Totale populatie:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6778,6 +6859,10 @@ msgstr "Pauzeer het spel"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Grootte:"
 
 #, fuzzy
 msgid "START"
@@ -8265,6 +8350,9 @@ msgstr "Wiel naar rechts"
 
 msgid "WHEEL_UP"
 msgstr "Wiel naar boven"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10274,6 +10362,10 @@ msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Maak Een Nieuw Celtype"
 
@@ -10760,13 +10852,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Zelfmoord"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
-#~ "En er is geen save-upgrade om deze save te upgraden.\n"
-#~ "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

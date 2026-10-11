@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -199,6 +199,14 @@ msgstr "Nuvarande trådar:"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Betygsskalor"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Miljö"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Alltid synlig"
@@ -525,6 +533,10 @@ msgstr "Bathypelagisk"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Bli Makroskopisk ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Bli Makroskopisk ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Bli Flercellig ({0}/{1})"
 
@@ -781,6 +793,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -868,6 +883,10 @@ msgstr "Fuskknappar på"
 
 msgid "CHEAT_MENU"
 msgstr "Fusk meny"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Visa / göm cellprocesser"
@@ -2347,10 +2366,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}:+{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}:+{1} ATP"
 
 #, fuzzy
@@ -3957,6 +3972,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Ladda Spel"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4027,6 +4046,53 @@ msgstr "Bli Makroskopisk ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Slemmstråle"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Laddar mikrobredigerare"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Slemmstråle"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Prokaryota strukturer\n"
+"\n"
+"Metabolosomer: Producerar ATP från glukos\n"
+"\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"\n"
+"Rusticyanin: Omvandlar järn till ATP\n"
+"\n"
+"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+"\n"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4794,6 +4860,10 @@ msgstr "Flytta till Denna Plats"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Självmord"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Självmord"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5516,6 +5586,10 @@ msgstr "Panorera höger"
 msgid "PAN_CAMERA_UP"
 msgstr "Panorera uppåt"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "och"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Tidigare utvecklare"
 
@@ -5731,6 +5805,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spela Mikrobintro i ett nytt spel"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "befolkning:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6806,6 +6893,10 @@ msgstr "Självmord"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausmeny"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Storlek:"
 
 #, fuzzy
 msgid "START"
@@ -8274,6 +8365,9 @@ msgstr "Skrolla Höger"
 
 msgid "WHEEL_UP"
 msgstr "Skrolla up"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr ""
@@ -10212,6 +10306,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}:+{1} ATP"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

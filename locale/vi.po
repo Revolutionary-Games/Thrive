@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-06-11 13:41+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
@@ -199,6 +199,17 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Thời gian thay thế"
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Vi sinh vật hung hăng sẽ rượt đuổi con mồi từ khoảng cách xa hơn\n"
+"và có xu hướng chống trả kẻ săn mồi khi bị tấn công.\n"
+"Vi sinh vật hiền hòa sẽ không chủ động tiếp cận các sinh vật khác từ xa\n"
+"và ít có khả năng sử dụng độc tố để chống lại kẻ săn mồi."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Luôn hiển thị"
@@ -510,6 +521,10 @@ msgstr "Thủy sâu"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Trở thành Vĩ mô ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Trở thành Vĩ mô ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Trở thành đa tế bào ({0}/{1})"
 
@@ -745,6 +760,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -840,6 +858,9 @@ msgstr "Phím gian lận đã bật"
 
 msgid "CHEAT_MENU"
 msgstr "Menu gian lận"
+
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hiển thị / ẩn quá trình tế bào"
@@ -2120,9 +2141,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3543,6 +3561,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Tải trò chơi"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3605,6 +3627,42 @@ msgstr ""
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr ""
+
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(tốc độ mà loài AI đột biến)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr ""
@@ -4223,8 +4281,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "Trở thành Vĩ mô ({0}/{1})"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Trở thành Vĩ mô ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4839,6 +4902,10 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "và"
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5028,6 +5095,23 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr ""
+"Chuyên hoá một tế bào để sử dụng ít loại bào tử hơn sẽ tăng hiệu quả của tất cả các bào tử trong tế bào đó.  \n"
+"Hiệu lực hiện tại là {0}% (cường độ tối đa tăng theo kích thước tế bào cho tới {3} ô lục giác)  \n"
+"Hiệu lực hiện tại được cấp vì có {1} ô {2}.  \n"
+"Hiệu lực tăng khi đặt nhiều bào tử của loại phổ biến nhất và loại bỏ các bào tử loại khác."
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -5979,6 +6063,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -7184,6 +7271,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

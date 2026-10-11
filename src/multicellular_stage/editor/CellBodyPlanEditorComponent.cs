@@ -107,6 +107,9 @@ public partial class CellBodyPlanEditorComponent :
     private Label layoutExplanationLabel = null!;
 
     [Export]
+    private Label layoutShiftNoteLabel = null!;
+
+    [Export]
     private Control layoutCalculationSpinner = null!;
 
     [Export]
@@ -230,6 +233,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control massBuddingReproductionSection = null!;
+
+    [Export]
+    private Button macroscopicConditionsViewButton = null!;
+
+    [Export]
+    private CustomConfirmationDialog macroscopicConditionsView = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -261,6 +270,8 @@ public partial class CellBodyPlanEditorComponent :
     private CellType? gameteBCellType;
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
+
+    private StorageValueBreakdown? storageValueBreakdown;
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -527,7 +538,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else if (!layoutCalculationRequested)
             {
-                SetFullLayoutPreview(calculation.Result.Gameplay);
+                SetFullLayoutPreview(calculation.Result.Wrapped);
                 RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
                 if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
                     CopyLayout(fullLayoutPreview, manualFullLayout);
@@ -1327,9 +1338,11 @@ public partial class CellBodyPlanEditorComponent :
         return base.RotateLeft();
     }
 
-    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    public Dictionary<Compound, float> GetAdditionalCapacities(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        out float nominalCapacity, StorageValueBreakdown? breakdown = null)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells, out nominalCapacity,
+            breakdown);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -2205,7 +2218,17 @@ public partial class CellBodyPlanEditorComponent :
     {
         var latestTypes = GetCurrentCellsWithLatestTypes();
 
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(latestTypes, out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));

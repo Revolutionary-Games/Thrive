@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-02-18 15:13+0000\n"
 "Last-Translator: Deleted User <noreply+90@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -205,6 +205,18 @@ msgstr "Esošie pavedieni:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Vide"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Agresīvi mikrobi savu upuri dzīs ļoti tālas distances\n"
+"un ir tie, kuri visbiežāk cīnīsies ar plēsējiem, kad tie uzbrūk.\n"
+"Miermīlīgi mikrobrobi necīnīsies ar citiem pāri tālām distancēm\n"
+"un retāk lietos toksīnus pret plēsējiem."
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -524,6 +536,10 @@ msgstr "Batipelaģiāle"
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Nitrāzes"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -786,6 +802,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -874,6 +893,10 @@ msgstr ""
 
 msgid "CHEAT_MENU"
 msgstr "Krāpšanās izvēlne (Čīti)"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Apraksts:"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -2319,10 +2342,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3936,6 +3955,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Lādējas"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4004,6 +4027,46 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Kodols"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Novietot organoīdu"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
+"Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
+"Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4771,6 +4834,10 @@ msgstr "Izmira no plankuma"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5489,6 +5556,10 @@ msgstr "Panoramējiet pa labi"
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramējiet uz augšu"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "Fiziskie apstākļi"
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5707,6 +5778,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Kopējā Populācija:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6767,6 +6851,10 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Izmērs:"
 
 #, fuzzy
 msgid "START"
@@ -8258,6 +8346,9 @@ msgstr "Rullīte pa labi"
 
 msgid "WHEEL_UP"
 msgstr "Rullīte uz augšu"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr ""
@@ -10189,6 +10280,10 @@ msgid "ZOOM_OUT"
 msgstr "Attālināt"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Izveidot jaunu saglabāšanas failu"
 
@@ -10599,12 +10694,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Sugu saraksts"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
-#~ "Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

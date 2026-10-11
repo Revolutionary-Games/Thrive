@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -209,6 +209,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ambiente"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -528,6 +536,10 @@ msgstr "Zona Batipelágica"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tornar-se Multicelular ({0}/{1})"
 
@@ -771,6 +783,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -859,6 +874,10 @@ msgstr "Chaves de Cheats ativadas"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat Menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "A ser anunciado"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar processos de célula"
@@ -2271,10 +2290,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3803,6 +3818,10 @@ msgstr ""
 "Este jogo guardado provavelmente está corrompido ou num formato mais recente que não é compreendido por esta versão do Thrive.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Carregar Jogo"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3871,6 +3890,46 @@ msgstr "Tornar-se Macroscópico ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Sem efeitos."
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "A carregar o Editor de Micróbio"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
+"Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproduzindo no bioma {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
+"Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4646,6 +4705,10 @@ msgstr "Mod a Carregar:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Suicídio"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Suicídio"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5349,6 +5412,10 @@ msgstr "Mover a câmara para a direita"
 msgid "PAN_CAMERA_UP"
 msgstr "Mover a câmara para cima"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "e"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores anteriores"
 
@@ -5567,6 +5634,19 @@ msgstr "Jogar a Introdução ao Micróbio num Novo Jogo"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jogar com definições atuais"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "População:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
@@ -6592,6 +6672,10 @@ msgstr "Visite a nossa pagina de Patreon"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titulo:"
 
 #, fuzzy
 msgid "START"
@@ -8061,6 +8145,9 @@ msgstr "Clique roda direita"
 
 msgid "WHEEL_UP"
 msgstr "Scroll para cima"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10027,6 +10114,10 @@ msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Criar um novo tipo de célula"
 
@@ -10523,13 +10614,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suicídio"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
-#~ "Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
-#~ "Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

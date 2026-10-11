@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Deleted User <noreply+56@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -202,6 +202,14 @@ msgstr "Sačuvaj i nastavi"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Stopa skalira se"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Životna sredina"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -526,6 +534,10 @@ msgstr "Bathipelagik"
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Nitrogenaza"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -785,6 +797,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -873,6 +888,10 @@ msgstr "Uključi tasteri za varanja"
 #, fuzzy
 msgid "CHEAT_MENU"
 msgstr "Varanje"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
 
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -2262,9 +2281,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 #, fuzzy
@@ -3837,6 +3853,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Učitajte Igru"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3907,6 +3927,40 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Ćelijsko Jezgro"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Učitavanje Uređivača Mikroba"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Ćelijsko Jezgro"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4620,6 +4674,10 @@ msgstr "POPULACIJA:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Dodajte novo vezivanje tastera"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5311,6 +5369,9 @@ msgstr "Okrenite kameru udesno"
 msgid "PAN_CAMERA_UP"
 msgstr "Okrenite kameru prema gore"
 
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr ""
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5523,6 +5584,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Pustite uvodni video za mikrobe na Novoj Igri"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6599,6 +6673,10 @@ msgstr "Dodajte novo vezivanje tastera"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Veličina:"
 
 #, fuzzy
 msgid "START"
@@ -7906,6 +7984,9 @@ msgstr "Pomerite se udesno"
 
 msgid "WHEEL_UP"
 msgstr "Pomeranje nagore"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr ""

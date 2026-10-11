@@ -340,7 +340,14 @@ public class ModifyExistingSpecies : IRunStep
     {
         result.Clear();
 
-        mutated.Sort(sorter);
+        try
+        {
+            mutated.Sort(sorter);
+        }
+        finally
+        {
+            sorter.Clear();
+        }
 
         foreach (var tuple in mutated)
         {
@@ -628,7 +635,11 @@ public class ModifyExistingSpecies : IRunStep
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
 
-        // This directly references to the stack type to avoid an enumerator allocation in the foreach loop in Compare
+        // Only reused within one sort. Reference identity avoids conflating distinct mutant records.
+        private readonly Dictionary<Mutant, float> strengths = new(ReferenceEqualityComparer.Instance);
+        private readonly List<float> baseScores = new();
+
+        // Use the concrete Stack type to avoid allocating an enumerator in GetStrength.
         private Stack<SelectionPressure> pressures = null!;
         private Species baseSpecies = null!;
 
@@ -636,6 +647,12 @@ public class ModifyExistingSpecies : IRunStep
         {
             pressures = selectionPressures;
             baseSpecies = species;
+        }
+
+        public void Clear()
+        {
+            strengths.Clear();
+            baseScores.Clear();
         }
 
         public int Compare(Mutant? x, Mutant? y)
@@ -647,17 +664,8 @@ public class ModifyExistingSpecies : IRunStep
             if (x is null)
                 return 1;
 
-            var strengthX = 0.0f;
-            var strengthY = 0.0f;
-
-            foreach (var pressure in pressures)
-            {
-                strengthX += cache.GetPressureScore(pressure, patch, x.Species) /
-                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
-
-                strengthY += cache.GetPressureScore(pressure, patch, y.Species) /
-                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
-            }
+            var strengthX = GetStrength(x);
+            var strengthY = GetStrength(y);
 
             if (strengthX > strengthY)
                 return -1;
@@ -672,6 +680,27 @@ public class ModifyExistingSpecies : IRunStep
                 return 1;
 
             return 0;
+        }
+
+        private float GetStrength(Mutant mutant)
+        {
+            if (strengths.TryGetValue(mutant, out var strength))
+                return strength;
+
+            strength = 0.0f;
+            int index = 0;
+            foreach (var pressure in pressures)
+            {
+                if (index == baseScores.Count)
+                    baseScores.Add(cache.GetPressureScore(pressure, patch, baseSpecies));
+
+                strength += cache.GetPressureScore(pressure, patch, mutant.Species) /
+                    baseScores[index] * pressure.Weight;
+                ++index;
+            }
+
+            strengths.Add(mutant, strength);
+            return strength;
         }
     }
 }

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-09-23 13:55+0000\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-05 19:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -201,6 +201,12 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Alternatif zaman ölçeği"
+
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Editörden ayrılırken dünya ortamını sıfırla"
+
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "(etkinleştirildiğinde; bulutlar, çevre, mikroplar, oyuncu organizması ve deposu, diğer yaşayan şeyler vb. yalnızca yeni bir araziye ya da konuma taşındığınız zaman değil, editörden ayrıldığınız her an kaldırılır ve ortam yeniden oluşturulur)"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -509,6 +515,10 @@ msgstr "Batipelajik"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopik Ol ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Makroskopik Ol ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Çok Hücreli Ol ({0}/{1})"
 
@@ -743,23 +753,26 @@ msgstr "Hücreleri etrafta hareket ettirmek için manuel düzene geç"
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr "Hücreleri döndürme işlemi yalnızca ana yapı görünümünde yapılabilir"
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr "Not: Otomatik modda düzen kaymaları önizlenmez. Bu nedenle, editörden çıkarken gerçekleşen kayma sonucunda düzen tam olarak aynı kalmayabilir. Manuel modda hücre türlerinin düzen kaymaları önizlenir. Bu da, manuel ve otomatik modlar arasında farklılıklara yol açabilir."
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr "Bu manuel hücre düzeni geçersiz, lütfen bunu editör sekmesinden inceleyin ve düzeltin veya manuel düzeni devre dışı bırakın"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "Bu düzen geçersiz çünkü hücreler hedeflenen yakınlıklarını kaybetti. Bu hücreleri, hedef pozisyonlarının yakınına taşıyın (kırmızı oklara bakın)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr "Bu düzen geçersiz çünkü bağlanmamış hücreler var"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
-msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var . Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
+msgstr "Bu düzen geçersiz çünkü uygun olmayan büyüme sırasına sahip hücreler var. Bu hücrelerin yerini değişitirin veya büyüme sırası sekmesinden büyüme sırasını ayarlayın."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr "Bu düzen geçersiz çünkü çakışan hücreler var."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "Bu düzen geçersiz çünkü çakışan hücreler var ve hücreler hedeflenen yakınlıklarını kaybetti (kırmızı oklara bakın)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr "Bu düzen geçersiz çünkü çakışan ve bağlanmamış hücreler var."
@@ -849,6 +862,13 @@ msgstr "Hile tuşları etkin"
 
 msgid "CHEAT_MENU"
 msgstr "Hile menüsü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Eğer organel kilidini açma oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[ul][b]15[/b] değerinin altında hıza sahip olmak.[/ul]"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hücre işlemlerini göster / gizle"
@@ -2192,19 +2212,13 @@ msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosimbiyoz"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /saniye"
+msgstr "{0}: {1} /saniye"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Şu tüketildiğinde:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Enerji Tüketim Baskısı"
@@ -3658,6 +3672,10 @@ msgstr ""
 "Bu kayıt büyük ihtimalle bozuk ya da mevcut Thrive sürümü tarafından bilinmeyen yeni bir formatta yazılmış.\n"
 "Yine de bu kaydı yüklemeyi denemek ister misiniz?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Oyun Yükle"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Y"
 
@@ -3720,6 +3738,43 @@ msgstr "Makroskopik"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Hücre zarı, artık Makroskopik Evresi'nde değiştirilemez"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Makroskopik Editörü"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Makroskopik Editörü"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Makroskopik Editörü"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Başlangıçtaki hücre sayısı"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Makroskopik prototip"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} biyomunda çoğalmalı"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Tebrikler, Çok Hücreli Evresi'nin makroskopik kısmına ait prototipe ulaştın!\n"
+"\n"
+"Geliştirme koşullarından dolayı, bu versiyona 3D makroskopik oynanabilirlik ekleyemedik. Ama organizmanı oluşturmaya devam etmek için editöre dönebilirsin."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü"
@@ -4408,7 +4463,14 @@ msgstr "Herhangi Bir Araziye Git"
 msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Makroskopik Evre'ye geç. Yeterince büyük bir hücre koloniniz olduğunda açılır.\n"
+"Bu evre, editörde yeterli miktarda hücre eklemeyi ve sonrasında koloninizi minimum büyüklüğe çıkarmayı gerektirir."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Makroskopik Evre'ye geç. Yeterince büyük bir hücre koloniniz olduğunda açılır.\n"
 "Bu evre, editörde yeterli miktarda hücre eklemeyi ve sonrasında koloninizi minimum büyüklüğe çıkarmayı gerektirir."
@@ -5055,6 +5117,10 @@ msgstr "Kamerayı sağa çevir"
 msgid "PAN_CAMERA_UP"
 msgstr "Kamerayı yukarı çevir"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "ve"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
 
@@ -5255,6 +5321,18 @@ msgstr "Yeni oyunda mikrop tanıtımını oynat"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr "+{0} Temel"
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr "  +{0} Baz"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "+{0} Özelleşmede"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr "  +{0} Özelleşmede"
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
@@ -6203,6 +6281,9 @@ msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
+
+msgid "STANDARD_COLON_VALUE"
+msgstr "Standart: {0}"
 
 msgid "START"
 msgstr "Başla"
@@ -7597,6 +7678,9 @@ msgstr "Fare tekeri sağa"
 
 msgid "WHEEL_UP"
 msgstr "Fare tekeri yukarı"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr "Tüketirken:"
 
 msgid "WIKI"
 msgstr "Viki"
@@ -10199,6 +10283,12 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Şu tüketildiğinde:\n"
+#~ "{2}"
+
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Spor hücresi türü"
 
@@ -10756,15 +10846,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Mevcut oyunla ilgili bilgilendirici istatistikler"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Makroskopik prototip"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Tebrikler, Çok Hücreli Evresi'nin makroskopik kısmına ait prototipe ulaştın!\n"
-#~ "\n"
-#~ "Geliştirme koşullarından dolayı, bu versiyona 3D makroskopik oynanabilirlik ekleyemedik. Ama organizmanı oluşturmaya devam etmek için editöre dönebilirsin."
 
 #~ msgid "HOLD_FOR_CURSOR"
 #~ msgstr "İmleç için TODO: girdisini basılı tut"

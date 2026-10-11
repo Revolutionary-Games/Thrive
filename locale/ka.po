@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-09-19 09:13+0000\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -195,6 +195,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "ალტერნატიული დროის გრაფიკი"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "გარემო"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "დრო"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "ყოველთვის ხილული"
@@ -504,6 +512,10 @@ msgstr "ბათიპელაგიური"
 msgid "BECOME_MACROSCOPIC"
 msgstr "მაკროსკოპულად გახდომა ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "მაკროსკოპულად გახდომა ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "მრავალუჯრედიანად გახდომა ({0}/{1})"
 
@@ -738,6 +750,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -836,6 +851,10 @@ msgstr "ჩიტის ღილაკები ჩართულია"
 
 msgid "CHEAT_MENU"
 msgstr "ჩიტების მენიუ"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "მხოლოდ, ხელმისაწვდომია [color=#3796e1][url=thriveopedia:macroscopic_stage]მაკროსკოპული ფაზის[/url][/color] შემდეგ."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "უჯრედის პროცესების ჩვენება/დამალვა"
@@ -2090,6 +2109,7 @@ msgstr "ენდოსიმბიოზის დაწყება ამ ს
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "ენდოსიმბიოზი"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /წმ"
 
@@ -2098,12 +2118,6 @@ msgstr "{0}: -{1} ატფ"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ატფ"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ატფ\n"
-"და იხარჯება:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "ენერგიის მოხმარების წნევა"
@@ -3530,6 +3544,10 @@ msgstr "ჩავტვირთო არასწორი შენახუ�
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "თამაშის ჩატვირთვა"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "ლ"
 
@@ -3589,6 +3607,47 @@ msgstr "მაკროსკოპული"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "მაკროსკოპულ ფაზაში მემბრანას ვეღარ შეცვლით"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "მაკროსკოპული რედაქტორი"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "მაკროსკოპული რედაქტორი"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "მაკროსკოპული რედაქტორი"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "უჯრედების საწყისი რაოდენობა"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "მაკროსკოპულ ფაზაში მემბრანას ვეღარ შეცვლით"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "გამრავლება {0} ბიომში"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "მაკროსკოპული რედაქტორი"
@@ -4228,7 +4287,14 @@ msgstr "გადასვლა ნებისმიერი ბიომი�
 msgid "MOVE_TO_LAND"
 msgstr "მიწაზე გადასვლა"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"გვიან მრავალუჯრედიან ფაზაზე გადასვლა. ხელმისაწვდომია, მხოლოდ,როცა საკმარისად დიდი უჯრედების კოლონია გაგაჩნიათ.\n"
+"ამას სჭირდება, რომ დაამატოთ რედაქტორში საკმარისი უჯრედები, შემდეგ კი გაზარდეთ კოლონია მინიმალურ ზომამდე."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "გვიან მრავალუჯრედიან ფაზაზე გადასვლა. ხელმისაწვდომია, მხოლოდ,როცა საკმარისად დიდი უჯრედების კოლონია გაგაჩნიათ.\n"
 "ამას სჭირდება, რომ დაამატოთ რედაქტორში საკმარისი უჯრედები, შემდეგ კი გაზარდეთ კოლონია მინიმალურ ზომამდე."
@@ -4854,6 +4920,10 @@ msgstr "მარჯვნივ მიწევა"
 msgid "PAN_CAMERA_UP"
 msgstr "აბრუნება"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "და"
+
 msgid "PAST_DEVELOPERS"
 msgstr "ყოფილი პროგრამისტები"
 
@@ -5052,6 +5122,19 @@ msgstr "მიკრობი შესავლის დაკვრა ახ
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "თამაში მიმდინარე პარამეტრით"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "სპეციალიზაცია:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "პოპულაცია:"
@@ -5978,6 +6061,10 @@ msgstr "სირბილის რეჟიმის გადართვა.
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "პაუზის მენიუ"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "სათაური:"
 
 msgid "START"
 msgstr "დაწყება"
@@ -7178,6 +7265,9 @@ msgstr "ბორბალი მარჯვნივ"
 
 msgid "WHEEL_UP"
 msgstr "ბორბალი ზემოთ"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "ვიკი"
@@ -8760,6 +8850,12 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ატფ\n"
+#~ "და იხარჯება:\n"
+#~ "{2}"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "სპორის უჯრედის ტიპი"

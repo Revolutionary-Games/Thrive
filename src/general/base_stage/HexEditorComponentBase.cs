@@ -763,6 +763,18 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         return hex;
     }
 
+    /// <summary>
+    ///   Makes sure that there are enough hover hexes for the requested number of simultaneous uses.
+    /// </summary>
+    /// <param name="requiredCount">The total number of hover hexes that need to be available.</param>
+    protected void EnsureHoverHexes(int requiredCount)
+    {
+        while (hoverHexes.Count < requiredCount)
+        {
+            hoverHexes.Add(CreateEditorHex());
+        }
+    }
+
     protected SceneDisplayer CreatePreviewModelHolder()
     {
         var node = (SceneDisplayer)modelScene.Instantiate();
@@ -1048,6 +1060,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             if (duplicate)
                 continue;
 
+            EnsureHoverHexes(usedHoverHex + 1);
             var hoverHex = hoverHexes[usedHoverHex++];
 
             hoverHex.Position = pos;

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-09-13 20:12+0000\n"
-"Last-Translator: Lucas Henrique Alves Almeida <lukkas.hnr@gmail.com>\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -201,6 +201,14 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Escala de tempo alternativa"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ambiente"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visível"
@@ -512,6 +520,10 @@ msgstr "Batipelágico"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tornar-se Multicelular ({0}/{1})"
 
@@ -749,6 +761,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -843,6 +858,10 @@ msgstr "Cheats ativados"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de Trapaças"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Disponível apenas a partir do Estágio Multicelular."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder processos da célula"
@@ -2201,6 +2220,7 @@ msgstr "Começar a endossimbiose para esta espécie (disponível assim que o tip
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endossimbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /segundo"
 
@@ -2209,12 +2229,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Enquanto consome:\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3697,6 +3711,10 @@ msgstr ""
 "O salvamento pode estar corrupto ou é um formato mais novo que não é entendido por essa versão de Thrive.\n"
 "Deseja carregar o jogo salvo mesmo assim?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Carregar Jogo"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3763,6 +3781,43 @@ msgstr "Macroscópico"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Jato de Slime"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Editor Macroscópico"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Protótipo macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "se reproduzir no bioma {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
+"\n"
+"Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Editor Macroscópico"
@@ -4457,7 +4512,14 @@ msgstr "Mover para qualquer região"
 msgid "MOVE_TO_LAND"
 msgstr "Migrar para a terra"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Ir para o Estágio Macroscópico. Disponível ao ter uma colônia grande o suficiente.\n"
+"Isso requer que você adicione células o suficiente no editor, então cresça sua colônia até o tamanho mínimo."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Ir para o Estágio Macroscópico. Disponível ao ter uma colônia grande o suficiente.\n"
 "Isso requer que você adicione células o suficiente no editor, então cresça sua colônia até o tamanho mínimo."
@@ -5130,6 +5192,10 @@ msgstr "Mover a câmera para a direita"
 msgid "PAN_CAMERA_UP"
 msgstr "Mover a câmera para cima"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "e"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores Anteriores"
 
@@ -5335,6 +5401,19 @@ msgstr "Reproduzir a introdução do Estágio Microbial em novo jogo"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jogar com essas configurações"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "população:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
@@ -6324,6 +6403,10 @@ msgstr "Ativar/Desativar correr. Correr faz com que as células se movam mais r�
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Título:"
 
 msgid "START"
 msgstr "Começar"
@@ -7727,6 +7810,9 @@ msgstr "Rolar para a direita"
 
 msgid "WHEEL_UP"
 msgstr "Rolar para cima"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -9724,6 +9810,12 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Enquanto consome:\n"
+#~ "{2}"
+
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Criar novo tipo de célula"
@@ -10280,15 +10372,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estatísticas do jogo atual"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Protótipo macroscópico"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
-#~ "\n"
-#~ "Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Imune ao engolimento"

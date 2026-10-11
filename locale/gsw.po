@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -200,6 +200,18 @@ msgstr ""
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Umgebig"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Aggressivi Mikrobe jagged ihri Beuti über grösseri Dischtanze\n"
+"und kämpfed eher gege Aagrifer, wenn sie aagriffe werdet.\n"
+"Friedlichi Mikrobe grifed anderi nöd über grosseri Dischtanze aa\n"
+"und setzed seltener Giftstoff gege Aagrifer i."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Duurhaft sichtbar"
@@ -511,6 +523,10 @@ msgstr "Bathypelagial"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werde ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Makroskopisch werde ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werde ({0}/{1})"
 
@@ -748,6 +764,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -846,6 +865,10 @@ msgstr "Cheat-Taschte aktiviere"
 
 msgid "CHEAT_MENU"
 msgstr "Cheatmenü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Makroskopische Editor wird g'ladde"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozess I-/usblende"
@@ -2205,6 +2228,7 @@ msgstr "Fang mit Endosymbiose für die Spezies aa (verfüegbar, wenn Zielorganel
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /Sekunde"
 
@@ -2213,12 +2237,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Bim Verbruuch vo:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
@@ -3695,6 +3713,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Spiel ladde"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3756,6 +3778,46 @@ msgstr ""
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Makroskopische Editor wird g'ladde"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Makroskopische Editor wird g'ladde"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Makroskopische Editor wird g'ladde"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Makroskopische Editor wird g'ladde"
+
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(Mutationsgschwindigkeit für KI-gstüürti Spezie)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4373,8 +4435,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "Makroskopisch werde ({0}/{1})"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Makroskopisch werde ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4988,6 +5055,10 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "und"
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5180,6 +5251,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Beschriibig:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6119,6 +6203,10 @@ msgstr ""
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Horizontal:"
 
 msgid "START"
 msgstr ""
@@ -7272,6 +7360,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -8838,6 +8929,12 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Bim Verbruuch vo:\n"
+#~ "{2}"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -212,6 +212,14 @@ msgstr "Simpan dan lanjut"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Lingkungan"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -529,6 +537,10 @@ msgstr "Batipelagik"
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Nitrogenase"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -786,6 +798,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -873,6 +888,10 @@ msgstr "Aktifkan tombol cheat"
 
 msgid "CHEAT_MENU"
 msgstr "Menu Cheat"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
 
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -2307,10 +2326,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3941,6 +3956,10 @@ msgstr ""
 "Save ini kemungkinan rusak atau format baru yang tidak dimengerti versi Thrive saat ini.\n"
 "Apakah kamu ingin tetap memuat save ini?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Muat Permainan"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4010,6 +4029,46 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Nukleus"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Memuat Editor Mikroba"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi Thrive ini.\n"
+"Dan tidak ada save upgrader untuk memperbarui save ini.\n"
+"Karena Thrive masih dalam tahap awal pengembangan, kompatibilitas save bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save upgrader."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi Thrive ini.\n"
+"Dan tidak ada save upgrader untuk memperbarui save ini.\n"
+"Karena Thrive masih dalam tahap awal pengembangan, kompatibilitas save bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save upgrader."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4820,6 +4879,10 @@ msgstr "Pindah ke Daerah Ini"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Tambah keybind baru"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5531,6 +5594,10 @@ msgstr "Geser ke kanan"
 msgid "PAN_CAMERA_UP"
 msgstr "Geser ke atas"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "dan"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Pengembang Masa Lalu"
 
@@ -5754,6 +5821,19 @@ msgstr "Putar Video Pengantar Mikroba saat Permainan Baru"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Main Dengan Pengaturan Saat Ini"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populasi:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
@@ -6827,6 +6907,10 @@ msgstr "Tambah keybind baru"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Ukuran:"
 
 #, fuzzy
 msgid "START"
@@ -8349,6 +8433,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -10311,6 +10398,10 @@ msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Buat Sel Baru"
 
@@ -10781,13 +10872,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Tambah keybind baru"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi Thrive ini.\n"
-#~ "Dan tidak ada save upgrader untuk memperbarui save ini.\n"
-#~ "Karena Thrive masih dalam tahap awal pengembangan, kompatibilitas save bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save upgrader."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

@@ -352,6 +352,16 @@ public static class MichePopulation
             }
         }
 
+        WritePatchPopulationResults(simulationConfiguration, patch, populations, trackEnergy, workMemory, cache);
+    }
+
+    private static void WritePatchPopulationResults(SimulationConfiguration simulationConfiguration, Patch patch,
+        RunResults populations, bool trackEnergy, WorkingMemory workMemory, SimulationCache cache)
+    {
+        var species = workMemory.Species;
+        var leafNodes = workMemory.LeafNodes;
+        var energyDictionary = workMemory.Energy;
+
         foreach (var currentSpecies in species)
         {
             if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)

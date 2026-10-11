@@ -1307,6 +1307,8 @@ public static class Constants
     public const float MICROBE_MATE_FORCE_SPAWN_INTERVAL = 90;
     public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
 
+    public const float GAMETE_FUSION_ANIMATION_DURATION = 5.0f;
+
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
     public const int CORPSE_CHUNK_DIVISOR = 4;
@@ -1795,7 +1797,11 @@ public static class Constants
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
-    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
+
+    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 15;
+    public const int CELL_TYPES_REQUIRED_FOR_MACROSCOPIC = 3;
+    public const float SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC = 0.4f;
+    public const float AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC = 0.1f;
 
     public const float BRAIN_POWER_REQUIRED_FOR_AWARE = 0.5f;
     public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;

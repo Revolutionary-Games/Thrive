@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -197,6 +197,18 @@ msgstr "Gijų skaičius:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Aplinka"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr ""
+"Agresyvūs mikrobai vysis grobį didesnius atstumus\n"
+"ir bus labiau linkę kovoti su grobuoniu, kai šis užpuls.\n"
+"Taikūs mikrobai nepuls kitų per didesnį atstumą\n"
+"ir bus mažiau linkę naudoti toksinus prieš grobuonis."
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Visada Matomas"
@@ -511,6 +523,10 @@ msgstr "Batipelaginis"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tapti Daugialąsčiu ({0}/{1})"
 
@@ -754,6 +770,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -843,6 +862,10 @@ msgstr "Įjungti sukčiavimo klavišai"
 
 msgid "CHEAT_MENU"
 msgstr "Sukčiavimo meniu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Rodyti / slėpti ląstelių procesus"
@@ -2216,9 +2239,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 #, fuzzy
@@ -3730,6 +3750,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Įkelti žaidimą"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3795,6 +3819,40 @@ msgstr "Tapti Makroskopiniu ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Mikroorganizmo būsena"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Chemoreceptorius"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4490,6 +4548,10 @@ msgstr ""
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5137,6 +5199,10 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "ir"
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5337,6 +5403,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Specializacija:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6315,6 +6394,10 @@ msgstr "Baigti žaidimą"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Pavadinimas:"
 
 #, fuzzy
 msgid "START"
@@ -7547,6 +7630,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

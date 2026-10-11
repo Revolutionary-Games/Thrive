@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -205,6 +205,14 @@ msgstr "Nunaj fadenoj:"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Takso-skalo"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Medio"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -535,6 +543,10 @@ msgstr "Batipelagika"
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Nitrogenazo"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -799,6 +811,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -887,6 +902,10 @@ msgstr "Trompaĵoj estas ebligitaj"
 #, fuzzy
 msgid "CHEAT_MENU"
 msgstr "Trompaĵoj"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -2343,10 +2362,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -3964,6 +3979,10 @@ msgstr ""
 "Ĉi tiu konservado plej verŝajne estas korupta aŭ kun pli nova formato, kiu ne estas komprenebla en ĉi tiu versio de Thrive.\n"
 "Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Ŝarĝu"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4034,6 +4053,44 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Kerno/Nukleo"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio de Thrive.\n"
+"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn konservadojn."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio de Thrive.\n"
+"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn konservadojn."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4851,6 +4908,10 @@ msgstr "Moviĝu al ĉi tiu loko"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Aldonunovan funkcion por klavo"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5567,6 +5628,10 @@ msgstr "Movigu dekstren"
 msgid "PAN_CAMERA_UP"
 msgstr "Movigu supren"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "Fizikaj Kondiĉoj"
+
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5787,6 +5852,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Ludu Mikroban Enkondukon en ĉiu Nova Ludo"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6886,6 +6964,10 @@ msgstr "Aldonunovan funkcion por klavo"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Grandeco:"
 
 #, fuzzy
 msgid "START"
@@ -8393,6 +8475,9 @@ msgstr "Rado dekstre"
 
 msgid "WHEEL_UP"
 msgstr "Rado supren"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr ""
@@ -10523,6 +10608,10 @@ msgid "ZOOM_OUT"
 msgstr "Malzomu"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Kreu Novan Konservadon"
 
@@ -10982,12 +11071,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Aldonunovan funkcion por klavo"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio de Thrive.\n"
-#~ "Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn konservadojn."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

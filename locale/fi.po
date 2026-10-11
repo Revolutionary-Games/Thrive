@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -204,6 +204,14 @@ msgstr "Nykyinen suorittajien määrä:"
 #, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ". Nopeus skaalautuu"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Ympäristö"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Aina näkyvä"
@@ -518,6 +526,10 @@ msgstr "Batypelaginen vyöhyke"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Muutu Makroskooppiseksi ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Muutu Monisoluiseksi ({0}/{1})"
 
@@ -774,6 +786,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -863,6 +878,10 @@ msgstr "Huijauskoodit aktiivisia"
 
 msgid "CHEAT_MENU"
 msgstr "Huijausvalikko"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näytä / piilota solun toiminnot"
@@ -2371,10 +2390,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -4001,6 +4016,10 @@ msgstr "Lataa rikkinäinen tallennus?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Lataa Peli"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4072,6 +4091,40 @@ msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Tuma"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Ladataan mikrobieditoria"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Ladataan mikrobieditoria"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Ladataan mikrobieditoria"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Ladataan mikrobieditoria"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Makroskooppisen vaiheen prototyyppi"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Lataa epäyhteensopiva tallennus?"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4898,6 +4951,10 @@ msgstr "Lähetettävä Modi:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Lisää uusi syöte"
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -5615,6 +5672,10 @@ msgstr "Siirrä kameraa oikealle"
 msgid "PAN_CAMERA_UP"
 msgstr "Siirrä kameraa ylöspäin"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "ja"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Entiset kehittäjät"
 
@@ -5839,6 +5900,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Näytä mikrobi-intro aloitettaessa uusi peli"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "populaatio:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6917,6 +6991,10 @@ msgstr "Laita peli tauolle"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Koko:"
 
 #, fuzzy
 msgid "START"
@@ -8428,6 +8506,9 @@ msgstr "Hiiren rulla oikealle"
 
 msgid "WHEEL_UP"
 msgstr "Hiiren rulla ylös"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10527,6 +10608,10 @@ msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Luo uusi soluelin"
 
@@ -11048,13 +11133,6 @@ msgstr "Zoomaa ulospäin"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Kuole"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Makroskooppisen vaiheen prototyyppi"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr "Lataa epäyhteensopiva tallennus?"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Immuuni Nielaisulle"

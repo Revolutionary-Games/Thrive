@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-07 15:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -217,6 +217,14 @@ msgstr "Praegused lõimed:"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT"
+msgstr "Keskkond"
+
+#, fuzzy
+msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
+msgstr "@"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -553,6 +561,10 @@ msgstr "Batüpelaagiline"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Muuta makroskoopiliseks ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Hakka mitmerakuliseks ({0}/{1})"
 
@@ -808,6 +820,9 @@ msgstr ""
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
 msgstr ""
 
+msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
+msgstr ""
+
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
@@ -896,6 +911,10 @@ msgstr "Petuklahvid on lubatud"
 
 msgid "CHEAT_MENU"
 msgstr "Pettuste menüü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Kuva/peida rakuprotsessid"
@@ -2370,10 +2389,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
 #, fuzzy
@@ -4029,6 +4044,10 @@ msgstr ""
 "See salvestamine on tõenäoliselt rikutud või uuem vorming, mida see Thrive'i versioon ei mõista.\n"
 "Kas soovite siiski proovida salvestust laadida?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Laadi mäng"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -4100,6 +4119,46 @@ msgstr "Muuta makroskoopiliseks ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Tuum"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Mikroobide redaktori laadimine"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Laadimiseks valitud salvestus on teadaolevalt Thrive'i selle versiooniga ühildumatu.\n"
+"Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
+"Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Laadimiseks valitud salvestus on teadaolevalt Thrive'i selle versiooniga ühildumatu.\n"
+"Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
+"Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4920,6 +4979,10 @@ msgstr "Modifikatsioon üleslaadimiseks:"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
@@ -5670,6 +5733,10 @@ msgstr "Paneerige paremale"
 msgid "PAN_CAMERA_UP"
 msgstr "Panner ülespoole"
 
+#, fuzzy
+msgid "PASSED_FULFILLED_CONDITION"
+msgstr "Füüsilised tingimused"
+
 msgid "PAST_DEVELOPERS"
 msgstr "Varasemad arendajad"
 
@@ -5888,6 +5955,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mängige uues mängus mikroobide tutvustust"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "elanikkond:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6958,6 +7038,10 @@ msgstr "Peata mäng"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Suurus:"
 
 #, fuzzy
 msgid "START"
@@ -8476,6 +8560,9 @@ msgstr "Ratas paremale"
 
 msgid "WHEEL_UP"
 msgstr "Ratas üles"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI"
@@ -10583,6 +10670,10 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr "{0}: +{1} ATP"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Looge uus lahtritüüp"
 
@@ -11100,13 +11191,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "vabasurm"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Laadimiseks valitud salvestus on teadaolevalt Thrive'i selle versiooniga ühildumatu.\n"
-#~ "Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
-#~ "Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
