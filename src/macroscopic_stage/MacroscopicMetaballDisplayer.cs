@@ -154,7 +154,7 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
     public void SetMetaballsToHighlight(List<MacroscopicMetaball> metaballs)
     {
         metaballsToHighlight?.Clear();
-        metaballsToHighlight ??= new();
+        metaballsToHighlight ??= new HashSet<MacroscopicMetaball>();
 
         for (int i = 0; i < metaballs.Count; ++i)
         {
