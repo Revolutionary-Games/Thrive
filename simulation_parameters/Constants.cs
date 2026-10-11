@@ -285,6 +285,12 @@ public static class Constants
     public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
 
     /// <summary>
+    ///   This is used to make mass estimates for Microbe(/CellBodyPlan)InternalCalculations (used for auto-evo)
+    ///   closer to the numbers for generated "shape masses" (used for the editors)
+    /// </summary>
+    public const float MASS_ESTIMATE_MULTIPLIER = 1.4f;
+
+    /// <summary>
     ///   This is used to slightly debuff colony movement
     /// </summary>
     public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
