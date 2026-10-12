@@ -259,17 +259,24 @@ public class RunResults : IArchivable
         }
     }
 
+    /// <summary>
+    ///   Registers a new species for the <see cref="RegisterNewSpecies"/> step. Absolutely should not be used in other
+    ///   steps, as it requires populations to already be calculated.
+    /// </summary>
     public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
         NewSpeciesType addType, Species parentSpecies, bool inheritingPopulation)
     {
         MakeSureResultExistsForSpecies(species);
+        MakeSureResultExistsForSpecies(parentSpecies);
 
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
 
         var population = initialPopulationInPatch.Value;
 
-        // If set as inheriting, the population of the parent species is added to the new species
+        // If set as inheriting, the population of the parent species is added to the new species.
+        // Because of this, it needs to be assured that the population of the parent species has already been calculated
+        // in a previous step and is not otherwise modified in this step.
         if (inheritingPopulation)
         {
             results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
