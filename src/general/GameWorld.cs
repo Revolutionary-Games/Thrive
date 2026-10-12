@@ -276,7 +276,7 @@ public class GameWorld : IArchivable
     }
 
     public static MulticellularSpecies GenerateMulticellularVersion(MicrobeSpecies microbeSpecies, bool initialBlob,
-        bool calledFromAutoEvo = false)
+        List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, bool calledFromAutoEvo = false)
     {
         var multicellularVersion = new MulticellularSpecies(microbeSpecies.ID, microbeSpecies.Genus,
             microbeSpecies.Epithet);
@@ -290,10 +290,9 @@ public class GameWorld : IArchivable
             microbeSpecies.CopyDataToConvertedSpecies(multicellularVersion);
         }
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-        var workMemory3 = new HashSet<Hex>();
-
+        workMemory1.Clear();
+        workMemory2.Clear();
+        workMemory3.Clear();
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
         multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
@@ -905,7 +904,12 @@ public class GameWorld : IArchivable
         if (microbeSpecies.IsBacteria)
             throw new ArgumentException("bacteria can't turn multicellular");
 
-        var multicellularVersion = GenerateMulticellularVersion(microbeSpecies, initialBlob);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+        var workMemory3 = new HashSet<Hex>();
+
+        var multicellularVersion = GenerateMulticellularVersion(microbeSpecies, initialBlob,
+            workMemory1, workMemory2, workMemory3);
 
         multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);

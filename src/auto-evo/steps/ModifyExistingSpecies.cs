@@ -305,36 +305,6 @@ public class ModifyExistingSpecies : IRunStep
         return false;
     }
 
-    private static MulticellularSpecies? AttemptBecomingMulticellular(MicrobeSpecies baseMicrobeSpecies)
-    {
-        // We don't generate new Multicellular species for the player species.
-        if (baseMicrobeSpecies.PlayerSpecies)
-            return null;
-
-        var organelles = baseMicrobeSpecies.Organelles;
-
-        // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
-        // (the in-gameplay requirement of having a colony of size 5 can be supposed to happen anytime)
-        // If more requirements are added for the player, that should extend to auto-evo as well.
-        var hasBindingFeature = false;
-        var count = organelles.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            if (organelles[i].Definition.HasBindingFeature)
-            {
-                hasBindingFeature = true;
-                break;
-            }
-        }
-
-        if (!hasBindingFeature)
-            return null;
-
-        var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, true);
-        newSpecies.OnAttemptedInAutoEvo(true, false);
-        return newSpecies;
-    }
-
     private static void PruneMutations(List<Mutant> addResultsTo, Species baseSpecies,
         List<Mutant> mutated, Patch patch, SimulationCache cache,
         Stack<SelectionPressure> selectionPressures)
@@ -643,6 +613,37 @@ public class ModifyExistingSpecies : IRunStep
 
             pressureStack.Pop();
         }
+    }
+
+    private MulticellularSpecies? AttemptBecomingMulticellular(MicrobeSpecies baseMicrobeSpecies)
+    {
+        // We don't generate new Multicellular species for the player species.
+        if (baseMicrobeSpecies.PlayerSpecies)
+            return null;
+
+        var organelles = baseMicrobeSpecies.Organelles;
+
+        // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
+        // (the in-gameplay requirement of having a colony of size 5 can be supposed to happen anytime)
+        // If more requirements are added for the player, that should extend to auto-evo as well.
+        var hasBindingFeature = false;
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            if (organelles[i].Definition.HasBindingFeature)
+            {
+                hasBindingFeature = true;
+                break;
+            }
+        }
+
+        if (!hasBindingFeature)
+            return null;
+
+        var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, hexTemporaryMemory1,
+            hexTemporaryMemory2, hexTemporaryMemory3, true);
+        newSpecies.OnAttemptedInAutoEvo(true, false);
+        return newSpecies;
     }
 
     private record struct Mutation(Species ParentSpecies, Species MutatedSpecies, RunResults.NewSpeciesType AddType);
