@@ -640,7 +640,7 @@ public class ModifyExistingSpecies : IRunStep
         if (!hasBindingFeature)
             return null;
 
-        var newSpecies = GameWorld.GenerateMulticellularVersion(baseMicrobeSpecies, true, hexTemporaryMemory1,
+        var newSpecies = MicrobeSpecies.GenerateMulticellularVersion(baseMicrobeSpecies, true, hexTemporaryMemory1,
             hexTemporaryMemory2, hexTemporaryMemory3, true);
         newSpecies.OnAttemptedInAutoEvo(true, false);
         return newSpecies;
