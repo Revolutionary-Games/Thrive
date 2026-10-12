@@ -25,11 +25,12 @@ public class CellBodyPlanInternalCalculationsTests
         var zeroActomyosinBonus = CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(0);
         var oneActomyosinBonus = CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(1);
         var twoActomyosinBonus = CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(2);
+
         // The higher the rotation value, the slower the rotation is,
         // but this bonus is used to multiply the denominator in the rotation calculation.
 
         // Having one Actomyosin provides a bonus, while 0 Actomyosin does not.
-        Assert.True(Math.Abs(zeroActomyosinBonus - 1.0f) < Single.Epsilon);
+        Assert.True(Math.Abs(zeroActomyosinBonus - 1.0f) < float.Epsilon);
         Assert.True(1 / zeroActomyosinBonus > 1 / oneActomyosinBonus);
 
         // Having two Actomyosins provides more of a bonus than having one.
