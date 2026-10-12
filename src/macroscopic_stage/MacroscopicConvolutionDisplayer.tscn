@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://bl3sh4eprp8ys" path="res://shaders/TexturePaddingJumpFill.gdshader" id="2_8nkgx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vu4kk"]
+resource_local_to_scene = true
 shader = ExtResource("2_8nkgx")
 shader_parameter/jumpSize = 0.0
 
