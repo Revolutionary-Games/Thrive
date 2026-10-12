@@ -45,5 +45,7 @@ public partial class CreatureTexturePhotoBuilder : Node3D
             mainTextureName.Dispose();
             projectedTextureName.Dispose();
         }
+
+        base.Dispose(disposing);
     }
 }
