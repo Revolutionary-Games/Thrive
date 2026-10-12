@@ -35,31 +35,34 @@ public static class CellBodyPlanInternalCalculations
     ///   Calculates a colony's speed. The algorithm is an approximation but should be based on the one in
     ///   MicrobeMovementSystem.cs
     /// </summary>
-    public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
+    public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells, bool useEstimate = false)
     {
         var leader = cells[0].Data!;
 
         var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
             GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
-        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus);
 
+        // Just in case there is a colony with only one cell:
         if (cells.Count == 1)
-            return speed;
+        {
+            return MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
+                leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus, useEstimate);
+        }
+
+        var speed = MicrobeInternalCalculations.CalculateBaseMovement(leader.MembraneType, leader.MembraneRigidity,
+            leader.ModifiableOrganelles.HexCount, leader.IsBacteria);
 
         ModifyCellSpeedWithColony(ref speed, cells.Count);
 
+        var shapeMass = 0.0f;
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
-        var actomyosinCount = CalculateEffectiveActomyosinCount(leader) * leaderTotalSpecializationBonus;
+        var actomyosinCount = 0.0f;
 
         foreach (var hex in cells)
         {
             var cell = hex.Data!;
-
-            if (cell == leader)
-                continue;
 
             var cellActomyosinCount = 0;
 
@@ -67,9 +70,19 @@ public static class CellBodyPlanInternalCalculations
             var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
+            // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to
+            // figure out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
+            // This is why Auto-Evo just estimates the value of the output instead
+            if (!useEstimate)
+            {
+                shapeMass += MicrobeInternalCalculations.CalculateShapeMass(cell.ModifiableOrganelles,
+                    cell.MembraneType, cell.IsBacteria);
+            }
+
             foreach (var organelle in cell.Organelles)
             {
-                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
+                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount *
+                    Constants.MASS_ESTIMATE_MULTIPLIER;
 
                 if (organelle.Definition.HasActomyosinComponent)
                     ++cellActomyosinCount;
@@ -102,7 +115,9 @@ public static class CellBodyPlanInternalCalculations
             }
         }
 
-        speed = speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+        var finalMass = useEstimate ? massEstimate : shapeMass;
+
+        speed = (speed + addedSpeed) / finalMass;
 
         // This matches the bonus applied to colony members in MicrobeMovementSystem.
         return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
@@ -325,5 +340,130 @@ public static class CellBodyPlanInternalCalculations
     public static float CalculateActomyosinMovementMultiplier(float effectiveActomyosinCount)
     {
         return 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * effectiveActomyosinCount;
+    }
+
+    /// <summary>
+    ///   Checks if a species is ready for macroscopic. This variant just returns an overall bool rather than
+    ///   individual condition info.
+    /// </summary>
+    /// <returns>True if ready</returns>
+    public static bool CalculateIsReadyForMacroscopic(IReadOnlyIndividualLayout<IReadOnlyCellTemplate> bodyPlan,
+        MulticellularReproductionMethod reproductionMethod)
+    {
+        // NOTE: this code must be kept in sync with CalculateMacroscopicConditions
+        if (bodyPlan.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        if (reproductionMethod == MulticellularReproductionMethod.Budding)
+            return false;
+
+        float totalSpecialization = 0;
+        float totalAdjacencyBonus = 0;
+
+        // TODO: avoid this temporary memory
+        var cellTypes = new HashSet<string>();
+
+        foreach (var cell in bodyPlan)
+        {
+            if (cell.Data == null)
+                throw new InvalidOperationException("Cell with no data set");
+
+            var adjacencySpecialization = GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, bodyPlan);
+            totalSpecialization += cell.Data!.CellType.CellTypeSpecializationBonus * adjacencySpecialization;
+
+            // -1 is here because the bonus is always above 1, so we take out the base portion
+            totalAdjacencyBonus += adjacencySpecialization - 1;
+
+            cellTypes.Add(cell.Data.CellType.ReadableName);
+        }
+
+        if (cellTypes.Count < Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        totalSpecialization /= bodyPlan.Count;
+
+        // Convert from a multiplier to a raw fraction
+        totalSpecialization -= 1;
+
+        totalAdjacencyBonus /= bodyPlan.Count;
+
+        if (totalSpecialization < Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        if (totalAdjacencyBonus < Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC)
+            return false;
+
+        return true;
+    }
+
+    public static void CalculateMacroscopicConditions(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        MulticellularReproductionMethod reproductionMethod, List<(bool FulFilled, string Description)> conditionResults)
+    {
+        conditionResults.Clear();
+
+        // NOTE: the check conditions have to be kept in sync with CalculateIsReadyForMacroscopic
+
+        bool cellCountPass = cells.Count >= Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC;
+        conditionResults.Add((cellCountPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_CELL_COUNT")
+                .FormatSafe(cells.Count, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)));
+
+        bool reproductionPass = reproductionMethod != MulticellularReproductionMethod.Budding;
+        conditionResults.Add((reproductionPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_REPRODUCTION_METHOD")));
+
+        float totalSpecialization = 0;
+        float totalAdjacencyBonus = 0;
+        var cellTypes = new HashSet<string>();
+
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+
+            var adjacencySpecialization = GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, cells);
+            totalSpecialization += cell.Data!.CellTypeSpecializationBonus * adjacencySpecialization;
+            totalAdjacencyBonus += adjacencySpecialization - 1;
+
+            cellTypes.Add(cell.Data!.ReadableName);
+        }
+
+        bool typeCountPass = cellTypes.Count >= Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC;
+        conditionResults.Add((typeCountPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_CELL_TYPE_COUNT").FormatSafe(cellTypes.Count,
+                Constants.CELL_TYPES_REQUIRED_FOR_MACROSCOPIC)));
+
+        totalSpecialization /= cells.Count;
+
+        // Convert from a multiplier to a raw fraction
+        totalSpecialization -= 1;
+
+        totalAdjacencyBonus /= cells.Count;
+
+        bool specializationPass = totalSpecialization >= Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC;
+        var targetSpecialization = Math.Round(Constants.SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC * 100, 1);
+        var currentSpecialization = Math.Round(totalSpecialization * 100, 1);
+
+        // Force the display value lower if not fulfilled to avoid showing a rounded value at the threshold.
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (!specializationPass && targetSpecialization == currentSpecialization)
+            currentSpecialization -= 0.1;
+
+        conditionResults.Add((specializationPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_SPECIALIZATION").FormatSafe(currentSpecialization,
+                targetSpecialization)));
+
+        bool adjacencyPass = totalAdjacencyBonus >= Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC;
+        var targetAdjacency = Math.Round(Constants.AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC * 100, 1);
+        var currentAdjacency = Math.Round(totalAdjacencyBonus * 100, 1);
+
+        // Force the display value lower if not fulfilled to not get bug reports about an exact edge condition.
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (!adjacencyPass && targetAdjacency == currentAdjacency)
+            currentAdjacency -= 0.1;
+
+        conditionResults.Add((adjacencyPass,
+            Localization.Translate("MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY")
+                .FormatSafe(currentAdjacency, targetAdjacency)));
     }
 }

@@ -233,6 +233,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control massBuddingReproductionSection = null!;
+
+    [Export]
+    private Button macroscopicConditionsViewButton = null!;
+
+    [Export]
+    private CustomConfirmationDialog macroscopicConditionsView = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -2606,7 +2612,15 @@ public partial class CellBodyPlanEditorComponent :
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
-        EnqueueAction(new CombinedEditorAction(action));
+
+        if (EnqueueAction(new CombinedEditorAction(action)))
+        {
+            if (Editor.TutorialState.Enabled)
+            {
+                Editor.TutorialState.SendEvent(TutorialEventType.MulticellularCellDuplicated,
+                    new StringEventArgs(newTypeName), this);
+            }
+        }
 
         duplicateCellTypeDialog.Hide();
     }
@@ -2693,6 +2707,8 @@ public partial class CellBodyPlanEditorComponent :
         if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
         {
             selectedSelectionMenuTab = selection;
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularBodyPlanEditorTabChanged,
+                new StringEventArgs(tab), this);
         }
 
         ApplySelectionMenuTab();
