@@ -183,6 +183,9 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         if (focused != speciesNameEdit || controlsHoveredOver)
             return;
 
+        if (ShowCellTypeNameValidationError())
+            return;
+
         PerformValidation(speciesNameEdit.Text);
     }
 
@@ -232,18 +235,21 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
     private void OnNameTextEntered(string newText)
     {
-        if (!UseSpeciesNameValidation && nameValidationError != null)
-        {
-            GetViewport().SetInputAsHandled();
-            ToolTipManager.Instance.ShowPopup(nameValidationError, 2.5f);
-            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
-        }
-        else
-        {
+        if (!ShowCellTypeNameValidationError())
             PerformValidation(newText);
-        }
 
         EmitSignal(SignalName.OnNameSet, newText);
+    }
+
+    private bool ShowCellTypeNameValidationError()
+    {
+        if (UseSpeciesNameValidation || nameValidationError == null)
+            return false;
+
+        GetViewport().SetInputAsHandled();
+        ToolTipManager.Instance.ShowPopup(nameValidationError, 2.5f);
+        speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
+        return true;
     }
 
     private void PerformValidation(string text)
