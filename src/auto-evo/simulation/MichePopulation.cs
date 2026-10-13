@@ -212,6 +212,34 @@ public static class MichePopulation
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
+        if (!TryPreparePatchStep(simulationConfiguration, patch, genericSpecies, populations, insertWorkingMemory,
+                workMemory, cache))
+        {
+            return;
+        }
+
+        foreach (var node in workMemory.LeafNodes)
+        {
+            float totalScore = CalculateLeafSpeciesScores(simulationConfiguration, patch, node, workMemory, cache);
+
+            // No need to process species if there isn't any score to give any energy
+            if (totalScore <= 0)
+                continue;
+
+            AccumulateLeafEnergy(populations, patch, node, trackEnergy, workMemory, totalScore);
+        }
+
+        WritePatchPopulationResults(simulationConfiguration, patch, populations, trackEnergy, workMemory, cache);
+    }
+
+    /// <summary>
+    ///   Prepares the patch species and rebuilds leaf and energy scratch when there are species to simulate.
+    /// </summary>
+    /// <returns>False only when there are no species in the patch.</returns>
+    private static bool TryPreparePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
+        IEnumerable<Species> genericSpecies, RunResults populations, Miche.InsertWorkingMemory insertWorkingMemory,
+        WorkingMemory workMemory, SimulationCache cache)
+    {
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetModifiableMicheForPatch(patch);
 
@@ -234,7 +262,7 @@ public static class MichePopulation
 
         // Skip if there aren't any species in this patch
         if (species.Count < 1)
-            return;
+            return false;
 
         var leafNodes = workMemory.LeafNodes;
         leafNodes.Clear();
@@ -250,109 +278,121 @@ public static class MichePopulation
             energyDictionary.Add(currentSpecies, 0.0f);
         }
 
+        return true;
+    }
+
+    /// <summary>
+    ///   Rebuilds per-leaf scoring scratch and stores species scores in working memory.
+    /// </summary>
+    /// <returns>Total score across the species in this leaf.</returns>
+    private static float CalculateLeafSpeciesScores(SimulationConfiguration simulationConfiguration, Patch patch,
+        Miche node, WorkingMemory workMemory, SimulationCache cache)
+    {
+        var species = workMemory.Species;
         var currentBackTraversal = workMemory.BackTraversal;
         var scoresDictionary = workMemory.Scores;
         var occupantScores = workMemory.OccupantScores;
 
-        foreach (var node in leafNodes)
+        float totalScore = 0;
+
+        scoresDictionary.Clear();
+        foreach (var entry in species)
         {
-            float totalScore = 0;
-
-            scoresDictionary.Clear();
-            foreach (var entry in species)
-            {
-                scoresDictionary[entry] = 0;
-            }
-
-            currentBackTraversal.Clear();
-            node.BackTraversal(currentBackTraversal);
-
-            occupantScores.Clear();
-            var occupantSpecies = node.Occupant;
-
-            if (occupantSpecies is not null and not MicrobeSpecies and not MulticellularSpecies)
-            {
-                throw new InvalidOperationException(
-                    $"Miche occupant type {occupantSpecies.GetType().Name} is incompatible with cellular population " +
-                    "scoring");
-            }
-
-            foreach (var currentSpecies in species)
-            {
-                if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
-                    continue;
-
-                var traversalScore = 0.0f;
-
-                var count = currentBackTraversal.Count;
-                for (int i = 0; i < count; ++i)
-                {
-                    var currentMiche = currentBackTraversal[i];
-                    var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, currentSpecies);
-
-                    if (rawScore <= 0)
-                    {
-                        traversalScore = 0;
-                        break;
-                    }
-
-                    var occupantScore = 0.0f;
-
-                    if (occupantSpecies != null)
-                    {
-                        // Only read resident scores when a species reaches this part of the path.
-                        // Reached entries form a prefix, even when earlier species stop at a zero raw score.
-                        if (i == occupantScores.Count)
-                        {
-                            occupantScores.Add(cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies));
-                        }
-
-                        occupantScore = occupantScores[i];
-                    }
-
-                    // If the occupant is somehow terrible, avoid division by zero
-                    if (occupantScore <= 0)
-                    {
-                        // And give a relative score above 1 so that this is considered better than the
-                        // current occupant
-                        traversalScore += 2 * currentMiche.Pressure.Weight;
-                        continue;
-                    }
-
-                    // Weighted score is intentionally not used here as negatives break everything
-                    var score = rawScore / occupantScore * currentMiche.Pressure.Weight;
-
-                    if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
-                        score *= score;
-
-                    traversalScore += score;
-                }
-
-                totalScore += traversalScore;
-                scoresDictionary[currentSpecies] += traversalScore;
-            }
-
-            // No need to process species if there isn't any score to give any energy
-            if (totalScore <= 0)
-                continue;
-
-            var availableEnergy = node.Pressure.GetEnergy(patch);
-
-            foreach (var currentSpecies in species)
-            {
-                var micheEnergy = availableEnergy * (scoresDictionary[currentSpecies] / totalScore);
-
-                if (trackEnergy && micheEnergy > 0)
-                {
-                    populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
-                        scoresDictionary[currentSpecies], totalScore, micheEnergy, availableEnergy);
-                }
-
-                energyDictionary[currentSpecies] += micheEnergy;
-            }
+            scoresDictionary[entry] = 0;
         }
 
-        WritePatchPopulationResults(simulationConfiguration, patch, populations, trackEnergy, workMemory, cache);
+        currentBackTraversal.Clear();
+        node.BackTraversal(currentBackTraversal);
+
+        occupantScores.Clear();
+        var occupantSpecies = node.Occupant;
+
+        if (occupantSpecies is not null and not MicrobeSpecies and not MulticellularSpecies)
+        {
+            throw new InvalidOperationException(
+                $"Miche occupant type {occupantSpecies.GetType().Name} is incompatible with cellular population " +
+                "scoring");
+        }
+
+        foreach (var currentSpecies in species)
+        {
+            if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
+                continue;
+
+            var traversalScore = 0.0f;
+
+            var count = currentBackTraversal.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var currentMiche = currentBackTraversal[i];
+                var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, currentSpecies);
+
+                if (rawScore <= 0)
+                {
+                    traversalScore = 0;
+                    break;
+                }
+
+                var occupantScore = 0.0f;
+
+                if (occupantSpecies != null)
+                {
+                    // Only read resident scores when a species reaches this part of the path.
+                    // Reached entries form a prefix, even when earlier species stop at a zero raw score.
+                    if (i == occupantScores.Count)
+                    {
+                        occupantScores.Add(cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies));
+                    }
+
+                    occupantScore = occupantScores[i];
+                }
+
+                // If the occupant is somehow terrible, avoid division by zero
+                if (occupantScore <= 0)
+                {
+                    // And give a relative score above 1 so that this is considered better than the
+                    // current occupant
+                    traversalScore += 2 * currentMiche.Pressure.Weight;
+                    continue;
+                }
+
+                // Weighted score is intentionally not used here as negatives break everything
+                var score = rawScore / occupantScore * currentMiche.Pressure.Weight;
+
+                if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
+                    score *= score;
+
+                traversalScore += score;
+            }
+
+            totalScore += traversalScore;
+            scoresDictionary[currentSpecies] += traversalScore;
+        }
+
+        return totalScore;
+    }
+
+    private static void AccumulateLeafEnergy(RunResults populations, Patch patch, Miche node, bool trackEnergy,
+        WorkingMemory workMemory, float totalScore)
+    {
+        var species = workMemory.Species;
+        var scoresDictionary = workMemory.Scores;
+        var energyDictionary = workMemory.Energy;
+
+        var availableEnergy = node.Pressure.GetEnergy(patch);
+
+        foreach (var currentSpecies in species)
+        {
+            var micheEnergy = availableEnergy * (scoresDictionary[currentSpecies] / totalScore);
+
+            if (trackEnergy && micheEnergy > 0)
+            {
+                populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
+                    scoresDictionary[currentSpecies], totalScore, micheEnergy, availableEnergy);
+            }
+
+            energyDictionary[currentSpecies] += micheEnergy;
+        }
     }
 
     private static void WritePatchPopulationResults(SimulationConfiguration simulationConfiguration, Patch patch,
