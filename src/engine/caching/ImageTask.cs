@@ -39,6 +39,8 @@ public class ImageTask : IImageTask
 
     public string? CachePath { get; set; }
 
+    public int DesiredResolution { get; set; } = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
+
     internal IScenePhotographable? ScenePhotographable { get; }
     internal ISimulationPhotographable? SimulationPhotographable { get; }
 
@@ -55,8 +57,10 @@ public class ImageTask : IImageTask
 
     public ulong CalculateCacheHash()
     {
-        return ScenePhotographable?.GetVisualHashCode() ?? SimulationPhotographable?.GetVisualHashCode() ??
+        var baseHash = ScenePhotographable?.GetVisualHashCode() ?? SimulationPhotographable?.GetVisualHashCode() ??
             throw new InvalidOperationException("Image task has neither scene or simulation photograph data");
+
+        return PhotoStudio.GetResolutionAwareHash(baseHash, DesiredResolution);
     }
 
     public void Save()
@@ -119,6 +123,12 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         get => loadPath;
         set => throw new NotSupportedException("Loadable cache image must have final path set initially");
     }
+
+    /// <summary>
+    ///   The desired resolution of the image is already contained within <see cref="hash"/>, so this doesn't do
+    ///   anything.
+    /// </summary>
+    public int DesiredResolution => Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
 
     public ulong CalculateCacheHash()
     {

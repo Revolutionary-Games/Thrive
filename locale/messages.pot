@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 17:17+0300\n"
+"POT-Creation-Date: 2026-10-13 17:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,7 +297,7 @@ msgstr ""
 msgid "ANTI_ALIASING_TAA"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:491
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "APPEARANCE"
 msgstr ""
 
@@ -679,7 +679,7 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:474
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:477
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:707
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:563
 msgid "BEHAVIOUR"
@@ -911,7 +911,7 @@ msgstr ""
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:724
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:745
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1216
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1097
 msgid "CANCEL_ACTION_CAPITAL"
@@ -922,12 +922,12 @@ msgstr ""
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:807
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:828
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1178
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:808
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:829
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1179
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
@@ -943,15 +943,15 @@ msgstr ""
 msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:873
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:925
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:813
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:834
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:814
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:835
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
@@ -1004,7 +1004,7 @@ msgstr ""
 msgid "CELL"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:568
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:571
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:639
 msgid "CELLS"
 msgstr ""
@@ -2088,11 +2088,11 @@ msgstr ""
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:821
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:842
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:832
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:853
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -2102,6 +2102,34 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:110
 msgid "CREATING_OBJECTS_FROM_SAVE"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:687
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:681
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:689
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:679
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:685
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:683
+msgid "CREATURE_SKIN_TYPE_SKIN"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:351
@@ -2279,7 +2307,7 @@ msgstr ""
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:591
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:594
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:174
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:662
 msgid "DELETE"
@@ -2477,11 +2505,11 @@ msgstr ""
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:802
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:823
 msgid "DISCONNECTED_METABALLS"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:801
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:822
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
@@ -2604,7 +2632,7 @@ msgstr ""
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:597
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:600
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:668
 msgid "DUPLICATE_TYPE"
 msgstr ""
@@ -2957,7 +2985,7 @@ msgstr ""
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:543
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:546
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:745
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:597
 msgid "ENVIRONMENT_TOLERANCE"
@@ -4457,7 +4485,7 @@ msgstr ""
 msgid "INTERACTION_CONSTRUCT"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicCreature.cs:475
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:477
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
@@ -4469,7 +4497,7 @@ msgstr ""
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicCreature.cs:465
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:467
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
@@ -4485,7 +4513,7 @@ msgstr ""
 msgid "INTERACTION_HARVEST"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicCreature.cs:451
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:453
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -4493,11 +4521,11 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicCreature.cs:428
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:430
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:458
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:461
 msgid "INTERNALS"
 msgstr ""
 
@@ -5975,7 +6003,7 @@ msgstr ""
 msgid "MODIFY_ORGANELLE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:581
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:584
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:652
 msgid "MODIFY_TYPE"
 msgstr ""
@@ -6161,7 +6189,7 @@ msgid "MOVE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:8
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:509
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:512
 msgid "MOVEMENT"
 msgstr ""
 
@@ -6454,17 +6482,17 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:847
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:868
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1231
 msgid "NEW_NAME"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:842
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:863
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1226
 msgid "NEW_NAME_COLON"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:734
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:755
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1226
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:570
@@ -7763,12 +7791,12 @@ msgstr ""
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:526
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:529
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "REPRODUCTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:634
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:637
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
@@ -7797,7 +7825,7 @@ msgstr ""
 msgid "REPRODUCTION_MASS_BUDDING"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:625
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:628
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:704
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -7878,7 +7906,7 @@ msgstr ""
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:789
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:810
 msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
@@ -8950,7 +8978,7 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:441
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:444
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:671
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 msgid "STRUCTURE"
