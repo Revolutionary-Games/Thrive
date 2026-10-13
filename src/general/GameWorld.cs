@@ -843,7 +843,7 @@ public class GameWorld : IArchivable
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        var multicellularVersion = MicrobeSpecies.GenerateMulticellularVersion(microbeSpecies, initialBlob,
+        var multicellularVersion = microbeSpecies.GenerateMulticellularVersion(initialBlob,
             workMemory1, workMemory2, workMemory3);
 
         multicellularVersion.OnEdited();

@@ -180,74 +180,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         return true;
     }
 
-    /// <summary>
-    ///   Generates a MulticellularSpecies using this MicrobeSpecies as a base
-    /// </summary>
-    public static MulticellularSpecies GenerateMulticellularVersion(MicrobeSpecies microbeSpecies, bool initialBlob,
-        List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, bool calledFromAutoEvo = false)
-    {
-        var multicellularVersion = new MulticellularSpecies(microbeSpecies.ID, microbeSpecies.Genus,
-            microbeSpecies.Epithet);
-
-        if (calledFromAutoEvo)
-        {
-            microbeSpecies.ClonePropertiesTo(multicellularVersion);
-        }
-        else
-        {
-            microbeSpecies.CopyDataToConvertedSpecies(multicellularVersion);
-        }
-
-        workMemory1.Clear();
-        workMemory2.Clear();
-        workMemory3.Clear();
-        var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
-        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
-
-        if (initialBlob)
-        {
-            // As it is simpler to use the editor layout, we create that primarily and then rely on the algorithm to
-            // convert it to a gameplay layout
-            var simpleLayout = new IndividualHexLayout<CellTemplate>();
-
-            simpleLayout.AddFast(
-                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(0, 0), 0), new Hex(0, 0), 0),
-                workMemory1, workMemory2);
-            simpleLayout.AddFast(
-                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(-1, 1), 0), new Hex(-1, 1), 0),
-                workMemory1, workMemory2);
-            simpleLayout.AddFast(
-                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(1, 0), 0), new Hex(1, 0), 0),
-                workMemory1, workMemory2);
-
-            // Creating new gameplay layouts should use the cheaper algorithm if called from auto-evo
-            AlgorithmQuality algorithmQuality;
-            if (calledFromAutoEvo)
-            {
-                algorithmQuality = AlgorithmQuality.Low;
-            }
-            else
-            {
-                algorithmQuality = AlgorithmQuality.High;
-            }
-
-            // Create an editor layout instance here so that it is not "missing" afterward, even though it is cleared
-            // immediately afterward. (otherwise, one is created anyway, just with a printed warning)
-            var editorLayout = multicellularVersion.ModifiableEditorCells = new IndividualHexLayout<CellTemplate>();
-
-            MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
-                editorLayout, simpleLayout, algorithmQuality, workMemory1,
-                workMemory2, workMemory3);
-        }
-        else
-        {
-            multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
-                workMemory1, workMemory2);
-        }
-
-        return multicellularVersion;
-    }
-
     public static MicrobeSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
@@ -470,6 +402,73 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     public override float GetPredationTargetSizeFactor()
     {
         return Organelles.Count;
+    }
+
+    /// <summary>
+    ///   Generates a MulticellularSpecies using this MicrobeSpecies as a base
+    /// </summary>
+    public MulticellularSpecies GenerateMulticellularVersion(bool initialBlob, List<Hex> workMemory1,
+        List<Hex> workMemory2, HashSet<Hex> workMemory3, bool calledFromAutoEvo = false)
+    {
+        var multicellularVersion = new MulticellularSpecies(ID, Genus, Epithet);
+
+        if (calledFromAutoEvo)
+        {
+            ClonePropertiesTo(multicellularVersion);
+        }
+        else
+        {
+            CopyDataToConvertedSpecies(multicellularVersion);
+        }
+
+        workMemory1.Clear();
+        workMemory2.Clear();
+        workMemory3.Clear();
+        var stemCellType = new CellType(this, workMemory1, workMemory2);
+        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
+
+        if (initialBlob)
+        {
+            // As it is simpler to use the editor layout, we create that primarily and then rely on the algorithm to
+            // convert it to a gameplay layout
+            var simpleLayout = new IndividualHexLayout<CellTemplate>();
+
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(0, 0), 0), new Hex(0, 0), 0),
+                workMemory1, workMemory2);
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(-1, 1), 0), new Hex(-1, 1), 0),
+                workMemory1, workMemory2);
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(1, 0), 0), new Hex(1, 0), 0),
+                workMemory1, workMemory2);
+
+            // Creating new gameplay layouts should use the cheaper algorithm if called from auto-evo
+            AlgorithmQuality algorithmQuality;
+            if (calledFromAutoEvo)
+            {
+                algorithmQuality = AlgorithmQuality.Low;
+            }
+            else
+            {
+                algorithmQuality = AlgorithmQuality.High;
+            }
+
+            // Create an editor layout instance here so that it is not "missing" afterward, even though it is cleared
+            // immediately afterward. (otherwise, one is created anyway, just with a printed warning)
+            var editorLayout = multicellularVersion.ModifiableEditorCells = new IndividualHexLayout<CellTemplate>();
+
+            MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
+                editorLayout, simpleLayout, algorithmQuality, workMemory1,
+                workMemory2, workMemory3);
+        }
+        else
+        {
+            multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
+                workMemory1, workMemory2);
+        }
+
+        return multicellularVersion;
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
