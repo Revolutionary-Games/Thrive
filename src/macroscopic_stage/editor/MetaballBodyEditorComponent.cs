@@ -502,11 +502,6 @@ public partial class MetaballBodyEditorComponent :
             return true;
         }
 
-        if (metaballSelectedForMoving != null)
-        {
-            return true;
-        }
-
         GetMouseMetaball(out _, out var metaball);
 
         var metaballs = new List<MacroscopicMetaball>();
@@ -543,6 +538,8 @@ public partial class MetaballBodyEditorComponent :
 
         if (PreviewMode)
             return false;
+
+        metaballPopupMenu.Close();
 
         if (MovingPlacedMetaball != null || !string.IsNullOrEmpty(activeActionName))
         {
@@ -847,6 +844,8 @@ public partial class MetaballBodyEditorComponent :
 
     private void ShowCellMenu(IEnumerable<MacroscopicMetaball> selectedMetaballs)
     {
+        HideTransformTools();
+
         metaballPopupMenu.SelectedMetaballs = selectedMetaballs.ToList();
         metaballPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
 
