@@ -650,6 +650,7 @@ public class TutorialState : ITutorialInput, IArchivable
             NucleusTutorial,
             MicrobeSpecializationTutorial,
             BindingAgentsTutorial,
+            MulticellularActomyosinTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
@@ -680,7 +681,6 @@ public class TutorialState : ITutorialInput, IArchivable
             MulticellularCellEditorTutorial,
             MulticellularCellDuplicateTutorial,
             CellBodyPlanLayoutTutorial,
-            MulticellularActomyosinTutorial,
         ];
     }
 }
