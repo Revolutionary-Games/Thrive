@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 19:14+0200\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2026-05-13 03:56+0000\n"
 "Last-Translator: Deleted User <noreply+56@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -1092,16 +1092,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "популација:"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "популација:"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "популација:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "популација:"
 
 msgid "COLOUR"
 msgstr "Боја"
@@ -2229,6 +2229,16 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Добродошли у Уредник Микроба.\n"
+"Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
+"\n"
+"На овој картици можете видети извештај о томе које врсте постоје, где и које су њихове популације. Такође можете видети промене животне средине на врху.\n"
+"\n"
+"Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "Добродошли у Уредник Микроба.\n"
 "Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
@@ -5677,10 +5687,6 @@ msgstr "Окрените камеру удесно"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Окрените камеру према горе"
-
-#, fuzzy
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "Физички Услови"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
@@ -10635,6 +10641,10 @@ msgstr "Зумирати"
 
 msgid "ZOOM_OUT"
 msgstr "Одзумирати"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "Физички Услови"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 19:14+0200\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: \"Waks (Walava)\" <dobranskijmaksim81@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1027,16 +1027,14 @@ msgstr "Узбережжя"
 msgid "COLLISION_SHAPE"
 msgstr "Cпавнити сутності з формами зіткнення"
 
-#, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Обертання колонії"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Швидкість колонії"
-
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Ця вкладка дозволяє налаштувати порядок, у якому ростуть клітини колонії, причому перша клітина в цьому порядку є кореневою (або бруньковою) клітиною. Ви можете використовувати це, щоб надавати пріоритет росту важливіших клітин або забезпечити належний баланс між виробництвом і споживанням колонії."
+
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Обертання колонії"
+
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Швидкість колонії"
 
 msgid "COLOUR"
 msgstr "Колір"
@@ -2120,6 +2118,17 @@ msgstr ""
 "Спеціалізацію можна підвищити, використовуючи лише кілька типів органел або навіть лише один.\n"
 "\n"
 "Спробуйте розмістити органелу, якої у вас уже найбільше, щоб підвищити спеціалізацію, або інший тип, щоб [i]знизити[/i] спеціалізацію та побачити, який це матиме ефект."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
@@ -5166,10 +5175,6 @@ msgstr "Повернути панораму вправо"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Повернути панораму вгору"
-
-#, fuzzy
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "та"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Колишні розробники"
@@ -10191,6 +10196,10 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "та"
 
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 19:14+0200\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -1014,16 +1014,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "{0} الاستهلاك"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "{0} الاستهلاك"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "{0} الاستهلاك"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "{0} الاستهلاك"
 
 msgid "COLOUR"
 msgstr "اللون"
@@ -2025,6 +2025,10 @@ msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء ي�
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #, fuzzy
@@ -5061,10 +5065,6 @@ msgstr "تحريك الكاميرا الى اليمين"
 
 msgid "PAN_CAMERA_UP"
 msgstr "تحريك الكاميرا الى الاعلى"
-
-#, fuzzy
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "و"
 
 msgid "PAST_DEVELOPERS"
 msgstr "المطورين الماضين"
@@ -9529,6 +9529,10 @@ msgstr "تقريب الشاشة"
 
 msgid "ZOOM_OUT"
 msgstr "ابعاد الشاشة"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "و"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

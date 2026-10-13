@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 19:14+0200\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2026-10-12 07:31+0000\n"
 "Last-Translator: autodiag2 <autodiag@netcourrier.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1019,16 +1019,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Créer les entités avec les formes de collision"
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Rotation :"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Rotation :"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Rotation :"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Rotation :"
 
 msgid "COLOUR"
 msgstr "Couleur"
@@ -2132,6 +2132,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
 "\n"
@@ -5384,10 +5395,6 @@ msgstr "Panoramique droit"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramique vers le haut"
-
-#, fuzzy
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "et"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Anciens développeurs"
@@ -10629,6 +10636,10 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "et"
 
 #, fuzzy
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"

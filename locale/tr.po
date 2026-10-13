@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 19:14+0200\n"
-"PO-Revision-Date: 2026-10-11 09:09+0000\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
+"PO-Revision-Date: 2026-10-12 16:58+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -111,7 +111,7 @@ msgid "ACTOMYOSIN"
 msgstr "Aktomiyozin"
 
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "Aktomiyozinler, hücre kolonilerinin kendilerini bir yöne çekmek ya da döndürmek için kullanabileceği basit kas yapılarıdır. Bu yapılar koloninin esnekliğine dayandığından, duvar tipi hücre zarları için mevcut değildir. Bunun da bir sonucu olarak, her hücrede yalnızca bir tane bulunması ama kolonideki birçok hücrenin bu organeli taşıması durumunda, bu yapılar en etkili haldedir."
+msgstr "Aktomiyozinler, hücre kolonilerinin kendilerini bir yöne çekmek ya da döndürmek için kullanabileceği basit kas yapılarıdır. Bu yapıların işlevi koloninin esnekliğine dayandığından, duvar tipi hücre zarları için mevcut değildir. Bunun da bir sonucu olarak, her hücrede yalnızca bir tane bulunması ama kolonideki birçok hücrenin bu organeli taşıması durumunda, bu yapılar en etkili haldedir."
 
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr "Bir hücre kolonisinin hareket ve dönme hızını arttırır."
@@ -1021,16 +1021,14 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
-#, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Koloni Dönme Hızı"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Koloni Hızı"
-
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
+
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Koloni Dönme Hızı"
+
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Koloni Hızı"
 
 msgid "COLOUR"
 msgstr "Renk"
@@ -2119,6 +2117,20 @@ msgstr ""
 "Özelleşme, yalnızca birkaç organel türü, hatta yalnızca bir tanesi, kullanılarak arttırılabilir.\n"
 "\n"
 "Özelleşmenizi arttırmak için zaten fazlasına sahip olduğunuz bir organeli yerleştirmeyi deneyin ya da ne tür etkiye sahip olduğunu görmek üzere özelleşmeyi [i]azaltmak[/i] için başka bir organel türünü yerleştirmeyi deneyin."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Artık ana editörün bir beden planı editörü olduğu [b]Çok Hücreli Editörü'ne[/b] hoş geldiniz.\n"
+"\n"
+"Temelde, türünüzü düzenlemek hala mikrop evresine benzer:\n"
+"- Soldaki panelden bir parça (bu sefer hücre türleri) seçin\n"
+"- Ardından, ekranı ortasındaki altıgen ızgarada, bedeninize yerleştirin\n"
+"- Sağdaki panelde, bazı bilinen istatistikleri görürsünüz\n"
+"\n"
+"Buradaki önemli fark, artık hücre türlerinde değişiklik yaparak yerleştireceğiniz tüm parçaları sizin oluşturmanızın gerektiğidir.\n"
+"\n"
+"Devam etmek için beden planınızdan yeni bir hücre yerleştirmeyi deneyin."
 
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
@@ -3801,19 +3813,19 @@ msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr "Makroskopik Evresi Gereksinimleri"
 
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
-msgstr "Ortalama hücre yakınlığı bonusu en az %{0} / %{1}"
+msgstr "Ortalama hücre yakınlığı bonusu en az %{1} (şu anda %{0})"
 
 msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
-msgstr "Hücre sayısı en az {0} / {1}"
+msgstr "Hücre sayısı en az {1} (şu anda {0})"
 
 msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
-msgstr "Beden planında kullanılan hücre türleri {0} / {1}"
+msgstr "Beden planında kullanılan hücre türleri {1} (şu anda {0})"
 
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
 msgstr "Normal tomurcuklanmadan daha ileri bir üreme yöntemi kullanmak"
 
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
-msgstr "Toplam özelleşme en az %{0} / %{1}"
+msgstr "Toplam özelleşme en az %{1} (şu anda %{0})"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü"
@@ -5153,9 +5165,6 @@ msgstr "Kamerayı sağa çevir"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Kamerayı yukarı çevir"
-
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "AŞILAN: {0}"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
@@ -10318,6 +10327,9 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "AŞILAN: {0}"
 
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
