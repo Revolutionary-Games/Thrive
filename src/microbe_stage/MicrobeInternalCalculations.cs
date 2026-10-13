@@ -480,7 +480,7 @@ public static class MicrobeInternalCalculations
 
         ciliaFactor *= totalOrganelleBonus;
 
-        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA * baseRotationMultiplier + ciliaFactor + inertia)
+        return inertia / ((Constants.CELL_ROTATION_INFLECTION_INERTIA + inertia) * baseRotationMultiplier + ciliaFactor)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
     }
 
