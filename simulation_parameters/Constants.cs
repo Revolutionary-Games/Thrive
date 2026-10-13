@@ -370,7 +370,7 @@ public static class Constants
     public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = 0.5f;
     public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
     public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
-    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.3f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.25f;
     public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
 
     // TODO: harsher wording in the tooltip
