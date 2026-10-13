@@ -7,7 +7,7 @@ public static class PlayerNameUtils
 {
     public const int DEFAULT_MAXIMUM_PLAYER_NAME_LENGTH = 100;
 
-    private static readonly char[] InvalidNodeNameCharacters = ['/', ':', '%', '@'];
+    private static readonly char[] InvalidNodeNameCharacters = ['/', ':', '%', '@', '"'];
 
     /// <summary>
     ///   Checks whether a player-given name is safe to use as a Godot node name.
