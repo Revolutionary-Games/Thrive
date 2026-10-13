@@ -901,17 +901,12 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         if (PreviewMode)
         {
-            UpdateVisualMetaballDisplay();
+            visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
         }
         else
         {
             structuralMetaballDisplayer.DisplayFromLayout(editedMetaballs);
         }
-    }
-
-    protected virtual void UpdateVisualMetaballDisplay()
-    {
-        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
     }
 
     protected virtual void PerformActiveAction()

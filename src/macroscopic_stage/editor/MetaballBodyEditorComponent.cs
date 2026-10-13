@@ -806,19 +806,14 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void UpdateAlreadyPlacedVisuals()
     {
-        if (structuralMetaballDisplayer is MacroscopicMetaballDisplayer macroscopicMetaballDisplayer)
+        if (!PreviewMode && structuralMetaballDisplayer is MacroscopicMetaballDisplayer macroscopicMetaballDisplayer)
         {
             macroscopicMetaballDisplayer.SetMetaballsToHighlight(movingToolPreviewMetaballs);
         }
 
         base.UpdateAlreadyPlacedVisuals();
-    }
 
-    protected override void UpdateVisualMetaballDisplay()
-    {
-        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
-
-        if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
+        if (PreviewMode && visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
         {
             displayer.Texturize(editedMetaballs, skinType);
         }
