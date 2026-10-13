@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="4_fr4jn"]
 
-[node name="MulticellularEditorTutorialGUI" type="Control" unique_id=442652590 node_paths=PackedStringArray("specializationTutorial", "cellBodyPlanEditorIntroductionTutorial", "macroscopicRequirementsTutorial", "cellDuplicationTutorial", "multicellularCellEditorTutorial", "cellBodyPlanLayoutTutorial", "actomyosinTutorial")]
+[node name="MulticellularEditorTutorialGUI" type="Control" unique_id=442652590 node_paths=PackedStringArray("specializationTutorial", "cellBodyPlanEditorIntroductionTutorial", "macroscopicRequirementsTutorial", "cellDuplicationTutorial", "multicellularCellEditorTutorial", "cellBodyPlanLayoutTutorial")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -22,7 +22,6 @@ macroscopicRequirementsTutorial = NodePath("MacroscopicRequirementsTutorial")
 cellDuplicationTutorial = NodePath("CellDuplicationTutorial")
 multicellularCellEditorTutorial = NodePath("MulticellularCellEditorTutorial")
 cellBodyPlanLayoutTutorial = NodePath("CellBodyPlanLayoutTutorial")
-actomyosinTutorial = NodePath("ActomyosinTutorial")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." unique_id=42779509 instance=ExtResource("3")]
 layout_mode = 0
@@ -147,7 +146,6 @@ theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [node name="ActomyosinTutorial" parent="." unique_id=1849285023 instance=ExtResource("4_fr4jn")]
-visible = true
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 6
