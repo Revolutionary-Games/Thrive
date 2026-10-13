@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public static class PlayerNameUtils
 {
-    public const int DEFAULT_MAXIMUM_PLAYER_NAME_LENGTH = 80;
+    public const int DEFAULT_MAXIMUM_PLAYER_NAME_LENGTH = 100;
 
     private static readonly char[] InvalidNodeNameCharacters = ['/', ':', '%', '@'];
 
