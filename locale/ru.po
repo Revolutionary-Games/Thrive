@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 08:24+0300\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -167,6 +167,7 @@ msgstr "(позволяет продолжить игру, но уже за др
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Общая статистика всех миров"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Поколения:[/b]\n"
@@ -1570,34 +1571,6 @@ msgstr "Создание..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
 
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "Тип Токсина:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr "Тип Токсина:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "Тип Токсина:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr "Тип Токсина:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Тип Токсина:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SCALES"
-msgstr "Тип Токсина:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "Тип Токсина:"
-
 msgid "CREDITS"
 msgstr "Титры"
 
@@ -2155,6 +2128,17 @@ msgstr ""
 "Попробуйте поставить органеллу, уже представленную в вашей клетке, для повышения Специализации, или же иной тип, уже для [i]понижения[/i] Специализации."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"В многоклеточных, специализация клеток по-прежнему действует и дает прежние бонусы.\n"
+"\n"
+"Однако, система дополнена бонусами за соседство ячеек. А на экране специализации теперь отображается [u]средняя специализация[/u] по всему плану тела.\n"
+"\n"
+"Когда клетки одного типа располагаются рядом друг с другом, каждая из них получает [b]дополнительную[/b] специализацию.\n"
+"\n"
+"Попробуйте поставить ячейку рядом с ячейкой того же типа, чтобы увидеть зеленые стрелки, указывающие на бонусы."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
 "В многоклеточных, специализация клеток по-прежнему действует и дает прежние бонусы.\n"
@@ -2298,6 +2282,7 @@ msgstr "Начать эндосимбиоз с этим видом (Доступ
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Эндосимбиоз"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /second"
 
@@ -4566,6 +4551,7 @@ msgstr "Двигаться к любому биому"
 msgid "MOVE_TO_LAND"
 msgstr "Переместиться на сушу"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 "Перейти к многоклеточной стадии. Доступно после сбора достаточно большой колонии клеток.\n"
@@ -8549,6 +8535,7 @@ msgstr "Каждый [b]Жгутик[/b] обеспечивает направл
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Жгутики[/b] — это похожие на волоски нити на внешней поверхности клетки, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для увеличения скорости движения клетки в одном направлении. Сила тяги направлена в сторону, противоположную направлению вращения жгутика."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Никаких изменений."
 
@@ -8803,6 +8790,7 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color] и[color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color] производят [thrive:compound type=\"atp\"][/thrive:compound] бесплатно, пока окружающая среда достатчно горячая."
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "В этом разделе собраны все советы для этапа «Микробы», которые отображаются на экранах загрузки.\n"
@@ -9289,6 +9277,7 @@ msgstr ""
 "[ul]Содержит по меньшей мере [b]4[/b]  [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосомы[/url][/color][/b] по крайней мере, в течение [b]5[/b] поколений подряд.\n"
 "Производит по крайней мере [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/ul]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "Митохондрия — это двухслойная (имеет внутреннюю и внешнюю мембраны) органелла, генерирующая АТФ путем Окислительного Фосфорилирования. В этом процессе, энергия генерируется от распада питательных веществ (например глюкоза или жиры), используя протонный градиент через внутреннюю мембрану, а затем использовать для превращения АДФ в АТФ.\n"
@@ -9524,6 +9513,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосома[/url][/color][/b], которая производит [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, которого можно запустить в качестве токсичного снаряда. Усовершенствованная версия [b][color=#3796e1][url=thriveopedia:oxytoxy]Токсиновой Вакуоли[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Нет модификаций."
 
@@ -9902,6 +9892,7 @@ msgstr ""
 "\n"
 "Также важно отметить, что Органелла использует [thrive:compound type=\"glucose\"][/thrive:compound], а не [thrive:compound type=\"atp\"][/thrive:compound], так что проверяйте баланс веществ в клетке, когда добавляете органеллу."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
@@ -10162,6 +10153,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] , производящая [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, который можно запустить, как токсичный снаряд. Улучшенная версия [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Нет модификаций."
 
@@ -10377,21 +10369,14 @@ msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
 #, fuzzy
-#~ msgid "PEPPER_CREATURE_TEXTURE"
-#~ msgstr "Температура"
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "И"
 
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
 #~ "{0}: +{1} АТФ\n"
 #~ "При потреблении:\n"
 #~ "{2}"
-
-#, fuzzy
-#~ msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-#~ msgstr "Тип споровых клеток"
-
-#~ msgid "AUTO_EVO_FAILED"
-#~ msgstr "Не удалось запустить Авто-Эво"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Тип споровых клеток"
@@ -10450,6 +10435,10 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"
 #~ msgstr "Давление"
+
+#, fuzzy
+#~ msgid "TEMPERATURE_VALUE"
+#~ msgstr "Температура"
 
 #~ msgid "SPEED"
 #~ msgstr "Скорость"
@@ -10973,15 +10962,6 @@ msgstr "Уменьшить масштаб"
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Полная статистика о текущей игре"
 
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Макроскопический прототип"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Поздравляем, вы дошли до прототипа макроскопической секции многоклеточной стадии!\n"
-#~ "\n"
-#~ "Из-за ограничений разработки, мы не смогли добавить трёхмерный макроскопический геймплей в этом релизе. Но вы можете вернуться в редактор, чтобы продолжить изменять свой организм."
-
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Неуязвимо к поглощению"
 
@@ -11272,11 +11252,3 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "EVENT_TOOLTIP_ERUPTION"
 #~ msgstr "{0}: +{1} АТФ"
-
-#, fuzzy
-#~ msgid "TEMPERATURE_VALUE"
-#~ msgstr "Температура"
-
-#, fuzzy
-#~ msgid "PASSED_FULFILLED_CONDITION"
-#~ msgstr "И"

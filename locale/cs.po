@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 08:24+0300\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2026-10-08 14:07+0000\n"
-"Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
+"Last-Translator: Lukša <lukajdag@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1566,34 +1566,6 @@ msgstr "Vytváření..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Vytváření objektů z uložené pozice"
 
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "Typ toxinu:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr "Typ toxinu:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "Typ toxinu:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr "Typ toxinu:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Typ toxinu:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SCALES"
-msgstr "Typ toxinu:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "Typ toxinu:"
-
 msgid "CREDITS"
 msgstr "Poděkování"
 
@@ -2155,6 +2127,15 @@ msgstr ""
 "Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
 "Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
@@ -2305,6 +2286,7 @@ msgstr "Vstupte do editoru a upravte svůj druh"
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbióza"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} za sekundu"
 
@@ -10081,18 +10063,15 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "Fyzické podmínky"
+
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
 #~ "{0}: +{1} ATP\n"
 #~ "Při konzumaci:\n"
 #~ "{2}"
-
-#, fuzzy
-#~ msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-#~ msgstr "Vytvořit nový typ buňky"
-
-#~ msgid "AUTO_EVO_FAILED"
-#~ msgstr "Nezdařilo se spustit Auto-evo"
 
 #, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
@@ -10616,15 +10595,6 @@ msgstr "Oddálit"
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Obohacující statistiky o nynější hře"
 
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Makroskopický prototyp"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Blahopřejeme, že jste se dostali k prototypu makroskopické části mnohobuněčného období!\n"
-#~ "\n"
-#~ "Kvůli vývojovým omezením jsme neměli možnost přidat 3D makroskopickou hratelnost v tomto vydání. Můžete se ale stále vrátit do editoru a pokračovat ve vývoji vašeho organismu."
-
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Imunní vůči vstřebání"
 
@@ -10896,7 +10866,3 @@ msgstr "Oddálit"
 
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". Stupnice hodnocení"
-
-#, fuzzy
-#~ msgid "PASSED_FULFILLED_CONDITION"
-#~ msgstr "Fyzické podmínky"

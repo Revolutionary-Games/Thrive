@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 08:24+0300\n"
-"PO-Revision-Date: 2026-10-09 13:09+0000\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
+"PO-Revision-Date: 2026-10-12 16:58+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -111,7 +111,7 @@ msgid "ACTOMYOSIN"
 msgstr "肌动球蛋白"
 
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "肌动球蛋白是细胞群落用来向一个方向运动或旋转的简单肌肉结构。它们依赖于细胞群落的收缩来起作用，所以与各种细胞壁不兼容，并且在每个细胞只有一个，但群落里很多细胞都有的情况下最为高效。"
+msgstr "肌动球蛋白是细胞群落用来向一个方向运动或旋转的简单肌肉结构。它们依赖于细胞群落的伸缩来起作用，所以与各种细胞壁不兼容，并且在每个细胞只有一个，但群落里很多细胞都有的情况下最为高效。"
 
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr "增加细胞群落的移动和旋转速度。"
@@ -174,14 +174,16 @@ msgstr ""
 "  {0}\n"
 "[b]总物种数：[/b]\n"
 "  平均值 {1}；标准差 {2}\n"
-"[b]现存物种数：[/b]\n"
+"[b]总秒数：[/b]\n"
 "  平均值 {3}；标准差 {4}\n"
-"[b]各区域物种数量：[/b]\n"
+"[b]现存物种数：[/b]\n"
 "  平均值 {5}；标准差 {6}\n"
-"[b]各区域总种群数量：[/b]\n"
+"[b]各区域物种数量：[/b]\n"
 "  平均值 {7}；标准差 {8}\n"
-"[b]微生物物种平均大小：[/b]\n"
+"[b]各区域总种群数量：[/b]\n"
 "  平均值 {9}；标准差 {10}\n"
+"[b]微生物物种平均大小：[/b]\n"
+"  平均值 {11}；标准差 {12}\n"
 "\n"
 "[b]基本细胞器数据：[/b]"
 
@@ -1562,34 +1564,6 @@ msgstr "创建中……"
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
 
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "毒素类型："
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr "毒素类型："
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "毒素类型："
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr "毒素类型："
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "毒素类型："
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SCALES"
-msgstr "毒素类型："
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "毒素类型："
-
 msgid "CREDITS"
 msgstr "制作人名单"
 
@@ -2145,6 +2119,20 @@ msgstr ""
 "\n"
 "尝试放置一个您当前拥有数量最多的细胞器来提升您的特化程度，或者放置其他类型的细胞器来[i]降低[/i]特化程度，看看会产生什么效果。"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"欢迎来到[b]多细胞编辑器[/b]，现在编辑器的主选项卡是个躯体设计编辑器。\n"
+"\n"
+"归根结底，如何编辑你的物种和微生物阶段时仍然差不多：\n"
+"- 你从左侧面板选中一个部件（现在是细胞类型）\n"
+"- 然后你在屏幕中央的六边形格子里把它们放置进身体\n"
+"- 在右边你还能看到一些熟悉的统计数据\n"
+"\n"
+"核心区别在于，你现在必须自己创建所有放置的部件：通过编辑细胞类型。\n"
+"\n"
+"试着在你的身体里放置一个新的细胞以继续。"
+
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
 "这里是布局设计选项卡，提供了对游戏中你的细胞群落完全生长后形状的高级视图。\n"
@@ -2287,7 +2275,7 @@ msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "内共生"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /秒"
+msgstr "{0}: {1} /秒"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
@@ -2757,7 +2745,7 @@ msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "基本游戏系统"
 
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "{0}的配子"
+msgstr "{0} ({1})的配子"
 
 msgid "GAMETE_CELL_TYPE"
 msgstr "配子细胞类型"
@@ -2907,7 +2895,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "上帝工具"
 
 msgid "GOING_NUCLEAR"
-msgstr "迈向真核"
+msgstr "拥核"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "呆滞眼球细胞"
@@ -3610,7 +3598,7 @@ msgid "LIFE_ORIGIN_POND"
 msgstr "温暖的小片水域"
 
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "如果LAWK启用，部分选项将不可用"
+msgstr "启用“仅限已知生命形式”时，部分选项不可用"
 
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "热泉"
@@ -3826,19 +3814,19 @@ msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr "迈向宏观阶段的要求"
 
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
-msgstr "细胞平均相邻加成至少达到{0}% / {1}%"
+msgstr "细胞平均相邻加成至少达到{1}%（目前有{0}%）"
 
 msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
-msgstr "细胞数量至少达到{0} / {1}"
+msgstr "细胞数量至少达到 {1}（目前有{0}个）"
 
 msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
-msgstr "躯体设计中至少用到{0} / {1}种细胞"
+msgstr "躯体设计中至少用到{1}种细胞（目前有{0}种）"
 
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
 msgstr "使用比普通出芽繁殖更高级的繁殖方式"
 
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
-msgstr "总体特化水平至少达到{0}% / {1}%"
+msgstr "总体特化水平至少达到{1}%（目前有{0}%）"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
@@ -4529,8 +4517,8 @@ msgstr "成为陆地生物"
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
-"进入后期多细胞阶段（宏观阶段）。在您有一个足够大的细胞群后即可解锁。\n"
-"这需要您在编辑器中添加足够多的细胞，然后让您的细胞群落发展到最低规模。"
+"进入宏观阶段。在您的细胞群落足够大后即可解锁。\n"
+"这需要您在编辑器中满足特定条件，然后让您的细胞群落发展到最低规模。"
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
@@ -4722,7 +4710,7 @@ msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "开始新游戏"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr "注意：您可以随时在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]选项菜单[/url][/color]中更改性能相关选项以提高游戏性能"
+msgstr "注意：您随时可以在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]选项菜单[/url][/color]中更改相关选项，以提高游戏性能"
 
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我的绝棒的Mod"
@@ -5015,7 +5003,7 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变您的设置"
 
 msgid "OPTION_USED_FOR_PLAYER"
-msgstr "玩家配子类型"
+msgstr "选为玩家配子类型"
 
 msgid "ORGANELLES"
 msgstr "细胞器"
@@ -7780,7 +7768,7 @@ msgstr "无代谢过程。"
 
 msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
 msgstr ""
-"如果在游戏设置中启用了细胞器升级，那么[i]对于玩家细胞而言[/i]，以下条件中[i]至少有一个[/i]必须满足：\n"
+"如果在游戏设置中启用了细胞器解锁，那么[i]对于玩家细胞而言[/i]，以下条件中[i]至少有一个[/i]必须满足：\n"
 "\n"
 "[ul]速度低于 [b]15[/b]。[/ul]"
 
@@ -8494,7 +8482,10 @@ msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]鞭毛[/b]是位于细胞外部的毛状细丝，通过消耗 [thrive:compound type=\"atp\"][/thrive:compound] 来提高细胞在一个方向上的移动速度。推力的方向与鞭毛的方向相反。"
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "无修改"
+msgstr ""
+"[b]鞭毛长度[/b]\n"
+"\n"
+"增加鞭毛长度可以增大其推力，但同时也会增大移动时的ATP消耗量。"
 
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "无代谢过程"
@@ -8779,7 +8770,7 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以通过化能质体和化能合成蛋白转化为 [thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以通过铁硫菌蓝蛋白或铁化能质体转化为 [thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
-"在微生物阶段，每次进入编辑器代表了 1 亿年的进化。\n"
+"在微生物阶段，每次进入编辑器代表了五千万年的进化。\n"
 "\n"
 "您可以吞噬漂浮物质的碎块，无论它们是死细胞的残骸还是矿物质。\n"
 "\n"
@@ -9452,7 +9443,7 @@ msgstr ""
 
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
-"如果细胞至少有一个[b]毒素酶体[/b]或[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]，它就可以发射毒素弹，通过排出储存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 来做到。这些弹体会损害其他物种的细胞，但不会伤害发射者同物种的成员。\n"
+"如果细胞至少有一个[b]毒素体[/b]或[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]，它就可以发射毒素弹，通过排出储存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 来做到。这些弹体会损害其他物种的细胞，但不会伤害发射者同物种的成员。\n"
 "\n"
 "伤害与发射的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 量成正比。\n"
 "\n"
@@ -9462,7 +9453,20 @@ msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "修改 [b][color=#3796e1][url=thriveopedia:metabolosome]代谢体[/url][/color][/b]来产生[thrive:compound type=\"oxytoxy\"][/thrive:compound]，一种可以被作为有毒抛射体发射的化合物。[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]的下位版本。"
 
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "无修改。"
+msgstr ""
+"[b]毒素类型[/b]\n"
+"\n"
+"选择此 [b]氧毒体[/b] 发射哪种毒素。能够发射多种毒素的细胞会在每次射击时交替使用这些毒素。\n"
+"\n"
+"[ul][b]氧化毒素：[/b] 一种基于氧的强效伤害性毒素，会造成细胞损伤。目标物种拥有的耗氧部件越多，效果越差。\n"
+"[b]细胞毒素：[/b]（默认）一种简单的伤害性毒素，造成固定数值的伤害。\n"
+"[b]大环内酯：[/b] 一种减缓受影响目标速度的毒素。\n"
+"[b]通道抑制剂：[/b] 一种抑制受影响细胞 ATP 产生的毒素，可能使其减速甚至受损。\n"
+"[b]氰化物：[/b] 一种针对氧代谢的强效伤害性毒素。目标物种拥有的耗氧部件越多，效果越好。[/ul]\n"
+"\n"
+"[b]射速与毒性[/b]\n"
+"\n"
+"决定射速与每次射击效果之间的平衡。"
 
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr ""
@@ -9487,7 +9491,7 @@ msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr ""
 "毒素是在细胞战斗中的宝贵武器。 它们是游戏中目前唯一的远程攻击方法，吞噬和[b][color=#3796e1][url=thriveopedia:pilus]掠食性菌毛[/url][/color][/b]更类似于近战武器 。\n"
 "\n"
-"[b]毒素酶体[/b]及其真核版本[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]也可用作防御目的。 吞噬另一个具有这些细胞器的细胞的生物会在猎物被消化时受到伤害，这可以对更大的掠食者起到威慑作用。"
+"[b]毒素体[/b]及其真核版本[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]也可用作防御目的。 吞噬另一个具有这些细胞器的细胞的生物会在猎物被消化时受到伤害，这可以对更大的掠食者起到威慑作用。"
 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "无升级。"
@@ -9607,7 +9611,7 @@ msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "细胞器"
 
 msgid "WIKI_PAGE_OXYTOXISOME"
-msgstr "毒素体"
+msgstr "氧毒体"
 
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "掠食性菌毛"
@@ -9655,7 +9659,7 @@ msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 "如果一个细胞有[b]掠食性菌毛[/b]，其他物种的细胞与其接触时就会受到严重伤害。 如果两个细胞都有[b]掠食性菌毛[/b]，它们可能会阻挡彼此的攻击。\n"
 "\n"
-"[b]掠食性菌毛[/b]也能阻挡毒素弹。 请参阅[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶体[/url][/color][/b]和[b][color=#3796e1][url=thriveopedia:oxytoxy ]毒素液泡[/url][/color][/b]。"
+"[b]掠食性菌毛[/b]也能阻挡毒素弹。 请参阅[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒体[/url][/color][/b]和[b][color=#3796e1][url=thriveopedia:oxytoxy ]毒素液泡[/url][/color][/b]。"
 
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
@@ -9839,7 +9843,10 @@ msgstr ""
 "同样重要的是要注意，此细胞器使用[thrive:compound type=\"glucose\"][/thrive:compound] 而非[thrive:compound type=\"atp\"][/thrive:compound]，所以添加此细胞器时一定要检查细胞的化合物平衡。"
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr "无升级"
+msgstr ""
+"[b]黏液囊[/b]\n"
+"\n"
+"花费 [b]40[/b] 突变点，可在放置 [b]粘液喷射器[/b] 后将其改造为 [b]黏液囊[/b]。激活时，它们会在细胞周围形成一层保护性粘液鞘，使细胞暂时免疫所有伤害来源。"
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr "本阶段尚未开始开发。今年来，对于此阶段的理论与游戏玩法的讨论不多。一旦社会阶段开始正式开发，讨论将需要恢复。"
@@ -10089,23 +10096,36 @@ msgstr "无升级。"
 
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
-"如果细胞拥有至少一个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒素体[/url][/color][/b]或[b]毒素液泡[/b]，就可以发射毒素射弹，并在此过程中消耗储存的 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。这些射弹会对其他物种的细胞造成伤害，但不会伤害同物种的成员。\n"
+"如果细胞拥有至少一个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒体[/url][/color][/b]或[b]毒素液泡[/b]，就可以发射毒素射弹，并在此过程中消耗储存的 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。这些射弹会对其他物种的细胞造成伤害，但不会伤害同物种的成员。\n"
 "\n"
 "伤害与发射的 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 数量成正比。\n"
 "\n"
 "增加 2% [thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
-msgstr "修改过的[b][color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color][/b]，生产[thrive:compound type=\"oxytoxy\"][/thrive:compound] ，可以作为发射毒素弹的部件。 [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶体（毒素体）[/url][/color][/b]的高级版本。"
+msgstr "修改过的[b][color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color][/b]，生产[thrive:compound type=\"oxytoxy\"][/thrive:compound] ，可以作为发射毒素弹的部件。 [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒体[/url][/color][/b]的高级版本。"
 
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr "无修改。"
+msgstr ""
+"[b]毒素类型[/b]\n"
+"\n"
+"选择此 [b]毒素液泡[/b] 发射哪种毒素。能够发射多种毒素的细胞会在每次射击时交替使用这些毒素。\n"
+"\n"
+"[ul][b]氧化毒素：[/b] 一种基于氧的强效伤害性毒素，会造成细胞损伤。目标物种拥有的耗氧部件越多，效果越差。\n"
+"[b]细胞毒素：[/b]（默认）一种简单的伤害性毒素，造成固定数值的伤害。\n"
+"[b]大环内酯：[/b] 一种减缓受影响目标速度的毒素。\n"
+"[b]通道抑制剂：[/b] 一种抑制受影响细胞 ATP 产生的毒素，可能使其减速甚至受损。\n"
+"[b]氰化物：[/b] 一种针对氧代谢的强效伤害性毒素。目标物种拥有的耗氧部件越多，效果越好。[/ul]\n"
+"\n"
+"[b]射速与毒性[/b]\n"
+"\n"
+"决定射速与每次射击效果之间的平衡。"
 
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr ""
 "[b]氧化毒素合成[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type =\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"生产[thrive:compound type=\"oxytoxy\"][/thrive:compound]，效率比[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒素酶体[/url][/color][/b]高。 速率与环境中[thrive:compound type=\"oxygen\"][/thrive:compound] 的量成正比。"
+"生产[thrive:compound type=\"oxytoxy\"][/thrive:compound]，效率比[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒体[/url][/color][/b]高。 速率与环境中[thrive:compound type=\"oxygen\"][/thrive:compound] 的量成正比。"
 
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
@@ -10114,13 +10134,13 @@ msgstr ""
 "如果在游戏设定中启用了细胞器升级，则对于[i]玩家细胞[/i]，必须同时满足以下条件[i]两者[/i]：\n"
 "\n"
 "[ul]到目前为止，在整个游戏中至少吞噬了 [b]10[/b] 个细胞。\n"
-"至少连续[b]5[/b] 代中包含[b]1[/b] 个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶体[/url] [/color][/b]。 [/ul]"
+"至少连续[b]5[/b] 代中包含[b]1[/b] 个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒体[/url] [/color][/b]。 [/ul]"
 
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
-msgstr "与[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒素酶体[/url][/color][/b]类似，但有更高的[thrive:compound type=\"oxytoxy\"] [/thrive:compound] 生产效率，还有着没有[b]糖酵解[/b]产生代谢化合物的好处。"
+msgstr "与[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒体[/url][/color][/b]类似，但有更高的[thrive:compound type=\"oxytoxy\"] [/thrive:compound] 生产效率，还有着没有[b]糖酵解[/b]产生代谢化合物的好处。"
 
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "无升级。"
@@ -10165,13 +10185,13 @@ msgid "WIN_BOX_TITLE"
 msgstr "您已发展繁荣（Thrived）！"
 
 msgid "WIN_TEXT_2"
-msgstr "恭喜！您已赢得了《Thrive》的当前版本！本消息消失后，如果您愿意，可以继续留在当前游戏中，或者前往新世界开始新的一局。您也可以完善你的细胞形态，然后尝试体验后续的游戏原型。"
+msgstr "恭喜！您已在当前版本的《Thrive》取得了胜利！本消息消失后，如果您愿意，可以继续留在当前游戏中，或者前往新世界开始新的一局。您也可以完善您的细胞形态，然后尝试体验后续的游戏原型。"
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "项目更新说明"
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "这个项目的这个版本在在Steam创意工坊显示的更新说明（可选）"
+msgstr "该项目的该版本在Steam创意工坊显示的更新说明（可选）"
 
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "项目描述："
@@ -10192,10 +10212,10 @@ msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "项目已经上传到了Steam创意工坊，但是在其变得可见之前您需要同意创意工坊的[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服务条款[/url][/color]"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr "通过提交此项目，您表示您同意Steam创意工坊的[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服务条款[/url][/color]"
+msgstr "提交此项目，即表示您表示您同意Steam创意工坊的[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服务条款[/url][/color]"
 
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr "一旦一个项目变得可见，它就会被所有人看到"
+msgstr "一旦一个项目被设为可见，它将对所有人可见"
 
 msgid "WORLD"
 msgstr "世界"
@@ -10208,7 +10228,7 @@ msgstr "当前世界的统计数据"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
-"包含测试阶段: {0}\n"
+"包含后期阶段原型: {0}\n"
 "包含彩蛋: {1}"
 
 msgid "WORLD_MISC_DETAILS_STRING_2"
@@ -10272,7 +10292,7 @@ msgid "WRONG_GROWTH_ORDER"
 msgstr "错误的生长顺序"
 
 msgid "WRONG_GROWTH_ORDER_TEXT"
-msgstr "群落的生长顺序导致部分细胞与主体分离。这种情况发生在某个细胞的生长顺序排在了将其连接至根部的中间细胞之前。请检查“生长顺序”选项卡中标红的细胞，并修正排序。"
+msgstr "群落的生长顺序导致部分细胞与主体分离。这种情况发生在某个细胞的生长顺序排在了将其连接至根部的中间细胞之前。请检查「生长顺序」选项卡中标红的细胞，并修正排序。"
 
 msgid "XBOX360"
 msgstr "Xbox 360"
@@ -10290,7 +10310,7 @@ msgid "YEARS"
 msgstr "年"
 
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
-msgstr "该页面的内容尚未被完全实现到游戏中，并且有可能会变化。"
+msgstr "该页面的内容尚未在游戏中完全实现，并且有可能会变化。"
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
@@ -10312,21 +10332,14 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
-#, fuzzy
-#~ msgid "PEPPER_CREATURE_TEXTURE"
-#~ msgstr "温度"
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "已通过：{0}"
 
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
 #~ "{0}： +{1} ATP\n"
 #~ "含消耗：\n"
 #~ "{2}"
-
-#~ msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-#~ msgstr "选择从何种细胞开始繁殖周期"
-
-#~ msgid "AUTO_EVO_FAILED"
-#~ msgstr "自动演化未能正常运行"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "孢子细胞类型"
@@ -10385,6 +10398,10 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"
 #~ msgstr "压力"
+
+#, fuzzy
+#~ msgid "TEMPERATURE_VALUE"
+#~ msgstr "温度"
 
 #~ msgid "SPEED"
 #~ msgstr "速度"
@@ -10862,15 +10879,6 @@ msgstr "缩小"
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "关于当前游戏的统计数据"
 
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "宏观原型"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "祝贺你达到了多细胞阶段的宏观部分的原型！\n"
-#~ "\n"
-#~ "由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
-
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "免疫胞吞"
 
@@ -11161,10 +11169,3 @@ msgstr "缩小"
 
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". 产出速率取决于"
-
-#, fuzzy
-#~ msgid "TEMPERATURE_VALUE"
-#~ msgstr "温度"
-
-#~ msgid "PASSED_FULFILLED_CONDITION"
-#~ msgstr "已通过：{0}"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 08:24+0300\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
 "PO-Revision-Date: 2025-09-24 02:53+0000\n"
 "Last-Translator: Emanuel Gossain <thisisfor33@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -1546,34 +1546,6 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "Umjetnik:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr "Umjetnik:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "Umjetnik:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr "Umjetnik:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Umjetnik:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SCALES"
-msgstr "Umjetnik:"
-
-#, fuzzy
-msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "Umjetnik:"
-
 msgid "CREDITS"
 msgstr ""
 
@@ -2062,6 +2034,15 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
+"\n"
+"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
+"\n"
+"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
 "\n"
@@ -4542,8 +4523,9 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "Stadij mikroba"
 
 #, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
@@ -9649,6 +9631,10 @@ msgid "ZOOM_OUT"
 msgstr "Povećaj"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "i"
+
+#, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
@@ -9855,7 +9841,3 @@ msgstr "Povećaj"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Dopusti vrstama da ne migriraju (ako nema dobrog mjesta za migraciju)"
-
-#, fuzzy
-#~ msgid "PASSED_FULFILLED_CONDITION"
-#~ msgstr "i"

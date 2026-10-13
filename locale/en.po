@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 08:24+0300\n"
-"PO-Revision-Date: 2026-10-08 17:35+0300\n"
+"POT-Creation-Date: 2026-10-12 17:17+0300\n"
+"PO-Revision-Date: 2026-10-13 16:59+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1564,27 +1564,6 @@ msgstr "Creating..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creating objects from save"
 
-msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "Skin Type:"
-
-msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr "Feathers"
-
-msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "Fur"
-
-msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr "Pepper"
-
-msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Uniform"
-
-msgid "CREATURE_SKIN_TYPE_SCALES"
-msgstr "Scales"
-
-msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "Skin"
-
 msgid "CREDITS"
 msgstr "Credits"
 
@@ -2139,6 +2118,14 @@ msgstr ""
 "Specialization can be increased by only using a few organelle types, or even just one. \n"
 "\n"
 "Try placing an organelle you already have the most of to increase your specialization or another type to [i]lower[/i] the specialization to see what effect that has."
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"As your cell colony grows larger, it may become slow to move and turn.\n"
+"\n"
+"You should consider adding the [b]actomyosin[/b] organelle to multiple cells in your body plan to increase your [u]colony[/u] movement and turning speed.\n"
+"\n"
+"To do so, select a cell type to edit from the left panel, then place an [b]actomyosin[/b] organelle in the cell editor tab to continue."
 
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
@@ -4525,7 +4512,7 @@ msgstr "Move to Land"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 "Move to the Macroscopic Stage. Available once you have a big enough cell colony.\n"
-"This requires you to add enough cells in the editor, then grow your colony to the minimum size."
+"This requires fulfilling certain requirements in the editor, then grow your colony to the minimum size."
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
@@ -10339,6 +10326,9 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "PASSED: {0}"
+
 #~ msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 #~ msgstr "Select a cell type to duplicate from"
 
@@ -11233,6 +11223,3 @@ msgstr "Zoom out"
 
 #~ msgid "OXYTOXY"
 #~ msgstr "OxyToxy"
-
-#~ msgid "PASSED_FULFILLED_CONDITION"
-#~ msgstr "PASSED: {0}"
