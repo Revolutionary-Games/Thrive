@@ -1,5 +1,4 @@
 ﻿using System;
-using Godot;
 
 /// <summary>
 ///   Helpers for validating names entered by the player.
