@@ -177,6 +177,11 @@ public enum TutorialEventType
     MicrobeEditorOrganellePlaced,
 
     /// <summary>
+    ///   Player removed an organelle, args is <see cref="OrganelleRemovedEventArgs"/>
+    /// </summary>
+    MicrobeEditorOrganelleRemoved,
+
+    /// <summary>
     ///   Player modified an organelle (modification was started, not finished yet)
     /// </summary>
     MicrobeEditorOrganelleModified,

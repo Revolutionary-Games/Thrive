@@ -10,7 +10,7 @@ using Tutorial;
 /// </summary>
 public class TutorialState : ITutorialInput, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
 
     /// <summary>
     ///   True when the tutorial has paused the game
@@ -105,6 +105,8 @@ public class TutorialState : ITutorialInput, IArchivable
     public MulticellularCellDuplicateTutorial MulticellularCellDuplicateTutorial { get; private set; } = new();
 
     public CellBodyPlanLayoutTutorial CellBodyPlanLayoutTutorial { get; private set; } = new();
+
+    public MulticellularActomyosinTutorial MulticellularActomyosinTutorial { get; private set; } = new();
 
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
@@ -242,6 +244,11 @@ public class TutorialState : ITutorialInput, IArchivable
             reader.ReadObjectProperties(instance.CellBodyPlanLayoutTutorial);
         }
 
+        if (version > 3)
+        {
+            reader.ReadObjectProperties(instance.MulticellularActomyosinTutorial);
+        }
+
         if (instance.DisableShowingAlreadySeenTutorials)
         {
             instance.OnCompleteTutorialsAlreadySeen();
@@ -310,6 +317,7 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(MulticellularCellEditorTutorial);
         writer.WriteObjectProperties(MulticellularCellDuplicateTutorial);
         writer.WriteObjectProperties(CellBodyPlanLayoutTutorial);
+        writer.WriteObjectProperties(MulticellularActomyosinTutorial);
     }
 
     /// <summary>
@@ -642,6 +650,7 @@ public class TutorialState : ITutorialInput, IArchivable
             NucleusTutorial,
             MicrobeSpecializationTutorial,
             BindingAgentsTutorial,
+            MulticellularActomyosinTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
