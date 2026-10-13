@@ -1,7 +1,6 @@
 ﻿namespace Tutorial;
 
 using System;
-using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -62,18 +61,35 @@ public class MulticellularActomyosinTutorial : MulticellularEditorEntryCountingT
                 break;
             }
 
+            case TutorialEventType.MicrobeEditorOrganelleRemoved:
+            {
+                // Actomyosin can be deleted like normal organelles (as it is normal), so we need to also track removal
+                // events rather than just undo / redo events like the nucleus tutorial does.
+                if (args is OrganelleRemovedEventArgs eventArgs &&
+                    eventArgs.Definition.InternalName == actomyosin.InternalName)
+                {
+                    hasActomyosin = false;
+                }
+
+                break;
+            }
+
             case TutorialEventType.EditorUndo:
             {
                 var editorActionEventArgs = (EditorActionEventArgs)args;
 
                 foreach (var data in editorActionEventArgs.Action.Data)
                 {
-                    if (data is not OrganellePlacementActionData organellePlacementData)
-                        continue;
-
-                    if (organellePlacementData.PlacedHex.Definition.InternalName == actomyosin.InternalName)
+                    if (data is OrganellePlacementActionData organellePlacementData &&
+                        organellePlacementData.PlacedHex.Definition.InternalName == actomyosin.InternalName)
                     {
                         hasActomyosin = false;
+                    }
+
+                    if (data is OrganelleRemoveActionData organelleRemoveData &&
+                        organelleRemoveData.RemovedHex.Definition.InternalName == actomyosin.InternalName)
+                    {
+                        hasActomyosin = true;
                     }
                 }
 
@@ -86,12 +102,16 @@ public class MulticellularActomyosinTutorial : MulticellularEditorEntryCountingT
 
                 foreach (var data in editorActionEventArgs.Action.Data)
                 {
-                    if (data is not OrganellePlacementActionData organellePlacementData)
-                        continue;
-
-                    if (organellePlacementData.PlacedHex.Definition.InternalName == actomyosin.InternalName)
+                    if (data is OrganellePlacementActionData organellePlacementData &&
+                        organellePlacementData.PlacedHex.Definition.InternalName == actomyosin.InternalName)
                     {
                         hasActomyosin = true;
+                    }
+
+                    if (data is OrganelleRemoveActionData organelleRemoveData &&
+                        organelleRemoveData.RemovedHex.Definition.InternalName == actomyosin.InternalName)
+                    {
+                        hasActomyosin = false;
                     }
                 }
 

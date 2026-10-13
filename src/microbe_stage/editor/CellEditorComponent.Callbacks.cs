@@ -94,6 +94,15 @@ public partial class CellEditorComponent
 
             editedMicrobeOrganelles.Remove(newlyInitializedOrganelle);
         }
+
+        // Theoretically, the semantics of this check are not fully correct because even replaced organelles are kind
+        // of removed. However, as it is only used for cytoplasm currently and no tutorial cares about that,
+        // this doesn't really matter at the moment.
+        if (!data.GotReplaced)
+        {
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganelleRemoved,
+                new OrganelleRemovedEventArgs(data.RemovedHex.Definition), this);
+        }
     }
 
     [ArchiveAllowedMethod]
