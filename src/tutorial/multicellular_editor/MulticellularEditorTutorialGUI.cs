@@ -23,6 +23,9 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow cellBodyPlanLayoutTutorial = null!;
+
+    [Export]
+    private CustomWindow actomyosinTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MulticellularEditor;
@@ -156,6 +159,25 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 macroscopicRequirementsTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ActomyosinTutorialVisible
+    {
+        get => actomyosinTutorial.Visible;
+        set
+        {
+            if (value == actomyosinTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                actomyosinTutorial.Show();
+            }
+            else
+            {
+                actomyosinTutorial.Hide();
             }
         }
     }
