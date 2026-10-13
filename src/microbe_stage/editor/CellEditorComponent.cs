@@ -1116,7 +1116,7 @@ public partial class CellEditorComponent :
         editedProperties.Colour = Colour;
         editedProperties.MembraneRigidity = Rigidity;
 
-        if (!IsMulticellularEditor)
+        if (!IsMulticellularEditor && !IsMacroscopicEditor)
         {
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
