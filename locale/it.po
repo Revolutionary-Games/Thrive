@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 01:44+0300\n"
+"POT-Creation-Date: 2026-10-13 12:09+0300\n"
 "PO-Revision-Date: 2026-09-17 19:57+0000\n"
 "Last-Translator: fractalino <francescosollazzi37@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -827,6 +827,10 @@ msgstr ""
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Esiste già un file con lo stesso nome ({0}). Vuoi sovrascriverlo?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Le note sull'aggiornamento sono troppo lughe"
@@ -5790,6 +5794,21 @@ msgstr "Duplica giocatore"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Il giocatore si è estinto"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Il salvataggio contiene uno stato di gioco non valido"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. Convertono il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] molto più velocemente rispetto a quanto farebbe il citoplasma. Questo processo si chiama [b]respirazione aerobica[/b]. Tuttavia, richiedono [thrive:compound type=\"oxygen\"][/thrive:compound] per funzionare: livelli più bassi li rallentano. Siccome i metabolosomi sono sospesi direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Questo nome è troppo lungo!"
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"

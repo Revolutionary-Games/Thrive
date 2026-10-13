@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 01:44+0300\n"
+"POT-Creation-Date: 2026-10-13 12:09+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -826,6 +826,10 @@ msgstr ""
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do Tipo de Célula"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "O nome do arquivo ({0}) já existe. Sobrescrever?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de mudança são muito longas"
@@ -5417,6 +5421,21 @@ msgstr "Duplicar Jogador"
 
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador foi extinto"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Salvamento tem save game scene inválida"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Precisa receber dano por radiação estando próxima a um pedaço radioativo"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "O nome da espécie é grande demais!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
