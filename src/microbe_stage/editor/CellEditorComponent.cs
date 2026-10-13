@@ -480,7 +480,11 @@ public partial class CellEditorComponent :
         }
     }
 
-    public Func<string, bool>? ValidateNewCellTypeName { get; set; }
+    /// <summary>
+    ///   Function to validate a new cell type name. Returns a nullable string which is the error message if the name
+    ///   is invalid. If the return value is null, the name is valid.
+    /// </summary>
+    public Func<string, string?>? ValidateNewCellTypeName { get; set; }
 
     /// <summary>
     ///   True when there are pending endosymbiosis actions. Only works after the editor is fully initialized.
@@ -578,7 +582,7 @@ public partial class CellEditorComponent :
     {
         base.Init(owningEditor, fresh);
 
-        if (IsMulticellularEditor && ValidateNewCellTypeName == null)
+        if ((IsMulticellularEditor || IsMacroscopicEditor) && ValidateNewCellTypeName == null)
         {
             throw new InvalidOperationException("The new cell type name validation callback needs to be set");
         }
@@ -655,7 +659,7 @@ public partial class CellEditorComponent :
             VerifyEditedOrganellesDoNotReferToOriginalData();
         }
 
-        if (IsMulticellularEditor)
+        if (IsMulticellularEditor || IsMacroscopicEditor)
         {
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
             componentBottomLeftButtons.UseSpeciesNameValidation = false;
@@ -1091,7 +1095,21 @@ public partial class CellEditorComponent :
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
 
-        editedProperties.UpdateNameIfValid(newName);
+        if (IsMulticellularEditor || IsMacroscopicEditor)
+        {
+            if (ValidateNewCellTypeName!(newName) == null)
+            {
+                editedProperties.UpdateNameIfValid(newName);
+            }
+            else
+            {
+                GD.PrintErr("Invalid name on finishing cell editor, not applying name");
+            }
+        }
+        else
+        {
+            editedProperties.UpdateNameIfValid(newName);
+        }
 
         // Update membrane
         editedProperties.MembraneType = Membrane;
@@ -3033,16 +3051,19 @@ public partial class CellEditorComponent :
     {
         newName = newText;
 
-        if (IsMulticellularEditor)
+        if (IsMulticellularEditor || IsMacroscopicEditor)
         {
             if (HasNewName())
             {
-                componentBottomLeftButtons.ReportValidityOfName(ValidateNewCellTypeName!(newText));
+                var errorMessage = ValidateNewCellTypeName!(newText);
+                componentBottomLeftButtons.ReportValidityOfName(errorMessage == null, errorMessage,
+                    Localization.Translate("PLAYER_NAME_REQUIREMENTS"));
             }
             else
             {
                 // The name hasn't changed and should remain valid
-                componentBottomLeftButtons.ReportValidityOfName(true);
+                componentBottomLeftButtons.ReportValidityOfName(true, null,
+                    Localization.Translate("PLAYER_NAME_REQUIREMENTS"));
             }
         }
     }

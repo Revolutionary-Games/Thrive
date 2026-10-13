@@ -48,6 +48,8 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
     /// </summary>
     private bool controlsHoveredOver;
 
+    private string? nameValidationError;
+
     [Signal]
     public delegate void OnNewClickedEventHandler();
 
@@ -148,15 +150,23 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         };
     }
 
-    public void ReportValidityOfName(bool valid)
+    public void ReportValidityOfName(bool valid, string? errorMessage = null, string? validMessage = null)
     {
         if (valid)
         {
             GUICommon.MarkInputAsValid(speciesNameEdit);
+            speciesNameEdit.TooltipText = validMessage ?? string.Empty;
+            nameValidationError = null;
         }
         else
         {
             GUICommon.MarkInputAsInvalid(speciesNameEdit);
+
+            if (errorMessage != null)
+            {
+                speciesNameEdit.TooltipText = errorMessage;
+                nameValidationError = errorMessage;
+            }
         }
     }
 
@@ -222,7 +232,17 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
     private void OnNameTextEntered(string newText)
     {
-        PerformValidation(newText);
+        if (!UseSpeciesNameValidation && nameValidationError != null)
+        {
+            GetViewport().SetInputAsHandled();
+            ToolTipManager.Instance.ShowPopup(nameValidationError, 2.5f);
+            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
+        }
+        else
+        {
+            PerformValidation(newText);
+        }
+
         EmitSignal(SignalName.OnNameSet, newText);
     }
 
