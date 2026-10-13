@@ -171,9 +171,12 @@ public static class CellBodyPlanInternalCalculations
 
         // We first calculate the actomyosin bonuses, because the individual cell calculations will be using it.
         float actomyosinCount = 0;
+        int count = cells.Count;
 
-        foreach (var colonyMember in cells)
+        for (int i = 0; i < count; ++i)
         {
+            var colonyMember = cells[i];
+
             var colonyMemberData = colonyMember.Data!;
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
@@ -184,8 +187,9 @@ public static class CellBodyPlanInternalCalculations
         // The actomyosin bonus should only be applied to base rotation speed, not organelles.
         var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(actomyosinCount);
 
-        foreach (var colonyMember in cells)
+        for (int i = 0; i < count; ++i)
         {
+            var colonyMember = cells[i];
             var colonyMemberData = colonyMember.Data!;
 
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
