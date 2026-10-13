@@ -125,6 +125,8 @@ public class MulticellularActomyosinTutorial : MulticellularEditorEntryCountingT
                 if (tab == cellEditorTab && !hasActomyosin && CanTrigger && !overallState.TutorialActive())
                 {
                     if (sender is MulticellularEditor editor &&
+                        !actomyosin.IsIncompatibleWithMembrane(editor.EditedSpecies.ModifiableEditorCells[0].Data!
+                            .MembraneType) &&
                         editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(actomyosin, editor.UnlocksDataSource,
                             editor.CurrentGame, false))
                     {
