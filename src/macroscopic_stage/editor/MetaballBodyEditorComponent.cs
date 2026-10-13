@@ -10,7 +10,7 @@ using SharedBase.Archive;
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -96,6 +96,9 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private BaseButton moveToolButton = null!;
 
+    [Export]
+    private OptionButton creatureSkinTypeChoiceButton = null!;
+
     private PackedScene visualMetaballDisplayerScene = null!;
 
     private PackedScene structuralMetaballDisplayerScene = null!;
@@ -116,6 +119,8 @@ public partial class MetaballBodyEditorComponent :
     private MacroscopicMetaball? metaballSelectedForMoving;
     private List<MacroscopicMetaball> movingToolPreviewMetaballs = new();
 
+    private CreatureSkinType skinType;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -132,6 +137,19 @@ public partial class MetaballBodyEditorComponent :
     {
         None,
         Movement,
+    }
+
+    public CreatureSkinType SkinType
+    {
+        get => skinType;
+        set
+        {
+            skinType = value;
+
+            UpdateSkinTypeButton();
+
+            UpdateAlreadyPlacedVisuals();
+        }
     }
 
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
@@ -172,6 +190,19 @@ public partial class MetaballBodyEditorComponent :
     }
 
     protected override bool ForceHideHover => false;
+
+    protected override bool VisualMetaballsLoading
+    {
+        get
+        {
+            if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer macroscopicConvolutionDisplayer)
+            {
+                return macroscopicConvolutionDisplayer.Generating;
+            }
+
+            return false;
+        }
+    }
 
     public override void _Ready()
     {
@@ -288,6 +319,8 @@ public partial class MetaballBodyEditorComponent :
         writer.Write((int)selectedSelectionMenuTab);
 
         writer.WriteObjectProperties(tolerancesEditor);
+
+        writer.Write((int)skinType);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -304,6 +337,11 @@ public partial class MetaballBodyEditorComponent :
         if (version >= 2)
         {
             reader.ReadObjectProperties(tolerancesEditor);
+        }
+
+        if (version >= 3)
+        {
+            skinType = (CreatureSkinType)reader.ReadInt32();
         }
     }
 
@@ -367,6 +405,8 @@ public partial class MetaballBodyEditorComponent :
             GD.Print("Applying tissue type edits to real cell data");
             CellTypeVisualsOverride.ApplyChanges();
         }
+
+        Editor.EditedSpecies.SkinType = SkinType;
 
         var previousStage = editedSpecies.MacroscopicType;
 
@@ -777,12 +817,24 @@ public partial class MetaballBodyEditorComponent :
         base.UpdateAlreadyPlacedVisuals();
     }
 
+    protected override void UpdateVisualMetaballDisplay()
+    {
+        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
+
+        if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
+        {
+            displayer.Texturize(editedMetaballs, skinType);
+        }
+    }
+
     private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting macroscopic editor with: ", editedMetaballs.Count, " metaballs in the species");
 
         SetSpeciesInfo(newName,
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
+
+        SkinType = Editor.EditedSpecies.SkinType;
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)
@@ -1282,7 +1334,10 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnNewCellTypeNameChanged(string newText)
     {
-        if (!IsNewCellTypeNameValid(newText))
+        var errorMessage = Editor.GetNewCellTypeNameValidationError(newText);
+        duplicateCellTypeName.TooltipText = errorMessage ?? Localization.Translate("PLAYER_NAME_REQUIREMENTS");
+
+        if (errorMessage != null)
         {
             GUICommon.MarkInputAsInvalid(duplicateCellTypeName);
         }
@@ -1290,14 +1345,6 @@ public partial class MetaballBodyEditorComponent :
         {
             GUICommon.MarkInputAsValid(duplicateCellTypeName);
         }
-    }
-
-    private bool IsNewCellTypeNameValid(string text)
-    {
-        // Name is invalid if it is empty or a duplicate
-        // TODO: should this ensure the name doesn't have trailing whitespace?
-        return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.ModifiableCellTypes.Any(c =>
-            c.CellTypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private void OnNewCellTextAccepted(string text)
@@ -1313,9 +1360,12 @@ public partial class MetaballBodyEditorComponent :
     {
         var newTypeName = duplicateCellTypeName.Text;
 
-        if (!IsNewCellTypeNameValid(newTypeName))
+        var errorMessage = Editor.GetNewCellTypeNameValidationError(newTypeName);
+        if (errorMessage != null)
         {
+            duplicateCellTypeName.TooltipText = errorMessage;
             GD.Print("Bad name for new cell type");
+            ToolTipManager.Instance.ShowPopup(errorMessage, 2.5f);
             Editor.OnInvalidAction();
             return;
         }

@@ -39,12 +39,12 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
-            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
-
         // Just in case there is a colony with only one cell:
         if (cells.Count == 1)
         {
+            var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
+
             return MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
                 leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus, useEstimate);
         }
@@ -115,12 +115,12 @@ public static class CellBodyPlanInternalCalculations
             }
         }
 
+        // Actomyosin buffs the base movement of cells (not from organelles)
+        speed *= CalculateActomyosinMovementMultiplier(actomyosinCount);
+
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
-        speed = (speed + addedSpeed) / finalMass;
-
-        // This matches the bonus applied to colony members in MicrobeMovementSystem.
-        return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
+        return (speed + addedSpeed) / finalMass;
     }
 
     /// <summary>
@@ -168,10 +168,28 @@ public static class CellBodyPlanInternalCalculations
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
         float totalRotationSpeed = 0;
-        float actomyosinCount = 0;
 
-        foreach (var colonyMember in cells)
+        // We first calculate the actomyosin bonuses, because the individual cell calculations will be using it.
+        float actomyosinCount = 0;
+        int count = cells.Count;
+
+        for (int i = 0; i < count; ++i)
         {
+            var colonyMember = cells[i];
+
+            var colonyMemberData = colonyMember.Data!;
+            var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
+
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
+        }
+
+        // The actomyosin bonus should only be applied to base rotation speed, not organelles.
+        var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(actomyosinCount);
+
+        for (int i = 0; i < count; ++i)
+        {
+            var colonyMember = cells[i];
             var colonyMemberData = colonyMember.Data!;
 
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
@@ -183,11 +201,10 @@ public static class CellBodyPlanInternalCalculations
             totalRotationSpeed += AdjustedColonyMemberRotationFromPosition(
                 Hex.AxialToCartesian(colonyMember.Position) * 10,
                 MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
-                    memberTotalSpecializationBonus));
-            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
+                    memberTotalSpecializationBonus, actomyosinMultiplier));
         }
 
-        return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);
+        return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, cells.Count);
     }
 
     public static float AdjustedColonyMemberRotationFromPosition(Vector3 relativePosition, float rawRotation)
@@ -202,17 +219,17 @@ public static class CellBodyPlanInternalCalculations
         return rawRotation / (1 + Constants.COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE * distance);
     }
 
-    public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, float effectiveActomyosinCount,
-        int totalCellCount)
+    public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, int totalCellCount)
     {
-        var rotationSpeedWithCellCountPenalty =
-            averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
+        return averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
+    }
 
-        // Rotation values as calculated by this function mean that the higher the value, the slower the rotation is.
-        // So as actomyosin bonus goes higher, it needs to lower this value. Which is why we are dividing by the bonus
-        // to lower the "speed" value and thus make rotation faster.
-        return rotationSpeedWithCellCountPenalty /
-            (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
+    public static float CalculateActomyosinRotationMultiplier(float effectiveActomyosinCount)
+    {
+        // The higher the rotation value, the slower the rotation is.
+        // But this is used to multiply the denominator in the rotation calculation, so higher numbers result in faster
+        // rotation.
+        return 1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount;
     }
 
     /// <summary>
