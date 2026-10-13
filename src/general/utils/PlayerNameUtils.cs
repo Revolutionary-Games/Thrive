@@ -7,7 +7,7 @@ public static class PlayerNameUtils
 {
     public const int DEFAULT_MAXIMUM_PLAYER_NAME_LENGTH = 100;
 
-    private static readonly char[] InvalidNodeNameCharacters = ['/', ':', '%', '@', '"'];
+    private static readonly char[] InvalidNodeNameCharacters = ['/', ':', '%', '@', '"', '.'];
 
     /// <summary>
     ///   Checks whether a player-given name is safe to use as a Godot node name.
@@ -36,7 +36,9 @@ public static class PlayerNameUtils
             return false;
         }
 
-        if (name.IndexOfAny(InvalidNodeNameCharacters) >= 0 || name is "." or "..")
+        // "." and ".." as names are disallowed, but the character list contains a dot as Godot does automatic
+        // remapping for it, so that's also bad to allow in a name.
+        if (name.IndexOfAny(InvalidNodeNameCharacters) >= 0)
         {
             errorMessage = Localization.Translate("PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS");
             return false;
