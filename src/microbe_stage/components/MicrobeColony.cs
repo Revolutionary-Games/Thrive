@@ -1052,7 +1052,8 @@ public static class MicrobeColonyHelpers
 
         // We first calculate the axon and actomyosin bonuses, because the individual cell calculations will be using
         // them.
-        var effectiveAxonCount = 0.0f;
+        var axonPower = 0.0f;
+        var axonCount = 0;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1062,7 +1063,10 @@ public static class MicrobeColonyHelpers
                 var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 if (memberOrganelleContainer.HasAxon)
-                    effectiveAxonCount += memberTotalSpecializationBonus;
+                {
+                    axonPower += memberTotalSpecializationBonus;
+                    ++axonCount;
+                }
 
                 effectiveActomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
                     memberTotalSpecializationBonus;
@@ -1074,7 +1078,7 @@ public static class MicrobeColonyHelpers
             }
         }
 
-        var axonBonus = CellBodyPlanInternalCalculations.CalculateAxonRotationMultiplier(effectiveAxonCount);
+        var axonBonus = CellBodyPlanInternalCalculations.CalculateAxonRotationMultiplier(axonPower, axonCount);
         var actomyosinMultiplier =
             CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(effectiveActomyosinCount * axonBonus);
 

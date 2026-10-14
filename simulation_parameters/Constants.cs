@@ -381,6 +381,9 @@ public static class Constants
     public const float AXON_MOVEMENT_BUFF_PER = 0.15f;
     public const float AXON_ROTATION_BUFF_PER = 0.15f;
 
+    // Diminishing returns on multiple axons higher numbers are harsher.
+    public const float AXON_DIMINISHING_RETURNS_SCALE = 0.5f;
+
     // TODO: harsher wording in the tooltip
 
     public const int MICROBE_SPAWN_RADIUS = 350;

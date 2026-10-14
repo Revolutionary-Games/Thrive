@@ -474,12 +474,14 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 * leaderTotalSpecializationBonus;
         }
 
-        float effectiveAxonCount = 0.0f;
+        var axonPower = 0.0f;
+        var axonCount = 0;
         if (leaderOrganelles.HasAxon)
         {
             if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
             {
-                effectiveAxonCount = leaderTotalSpecializationBonus;
+                axonPower = leaderTotalSpecializationBonus;
+                ++axonCount;
             }
         }
 
@@ -526,13 +528,15 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             {
                 if (TryActivateAxon(memberCompounds, energyCostMultiplier, delta))
                 {
-                    effectiveAxonCount += memberTotalSpecializationBonus;
+                    axonPower += memberTotalSpecializationBonus;
+                    ++axonCount;
                 }
             }
         }
 
         // The coordination bonus from axons should apply to all propulsion granted by organelles
-        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(effectiveAxonCount);
+        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(axonPower,
+            axonCount);
         organelleForce *= axonMovementMultiplier;
 
         // Actomyosin buffs the base movement of cells (not from organelles)
