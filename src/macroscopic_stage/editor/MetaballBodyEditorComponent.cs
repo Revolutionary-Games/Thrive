@@ -12,9 +12,6 @@ public partial class MetaballBodyEditorComponent :
 {
     public const ushort SERIALIZATION_VERSION = 3;
 
-    [Export]
-    public int MaxToleranceWarnings = 3;
-
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
@@ -54,7 +51,7 @@ public partial class MetaballBodyEditorComponent :
     private PanelContainer toleranceTab = null!;
 
     [Export]
-    private Container toleranceWarningContainer = null!;
+    private ToleranceWarningsPanel toleranceWarningsPanel = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -86,9 +83,6 @@ public partial class MetaballBodyEditorComponent :
 
     [Export]
     private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
-
-    [Export]
-    private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
     private OptionButton creatureSkinTypeChoiceButton = null!;

@@ -16,8 +16,6 @@ public partial class CellBodyPlanEditorComponent
 
     private readonly StringBuilder macroscopicConditionResultsBuilder = new();
 
-    private int usedToleranceWarnings;
-
     private bool changingPlayerGameteTypeAutomatically;
 
     /// <summary>
@@ -331,15 +329,11 @@ public partial class CellBodyPlanEditorComponent
         // inexplicably also a bonus percentage as that would be very confusing to see.
         var tolerances = CalculateRawTolerances(true);
 
-        MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
-            activeToleranceWarnings, tolerances,
-            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
-            toleranceWarningsFont, MaxToleranceWarnings);
+        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningsPanel,
+            out bool areToleranceWarnings);
 
-        if (usedToleranceWarnings > 0)
-        {
-            tolerancesTabButton.Visible = true;
-        }
+        tolerancesTabButton.Visible = areToleranceWarnings;
     }
 
     private void OnTolerancesEditorChangedData()

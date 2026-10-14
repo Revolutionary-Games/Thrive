@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"POT-Creation-Date: 2026-10-14 22:50+0200\n"
 "PO-Revision-Date: 2026-10-14 11:05+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -5473,6 +5473,9 @@ msgstr "Preview image file is too large"
 msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Bioprocesses Speed"
+
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processing loaded objects"
 
@@ -6916,10 +6919,10 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Toggle unbinding"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr "Preferred pressure is too high by {0}"
+msgstr "Preferred pressure is too high by {0}kPa"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr "Preferred temperature is too high by {0}"
+msgstr "Preferred temperature is too high by {0}℃"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr "Oxygen protection too low, needs to be {0}% higher"
@@ -6932,9 +6935,6 @@ msgstr "Preferred temperature is too low by {0}"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV protection too low, needs to be {0}% higher"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -10361,6 +10361,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+#~ msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
 
 #~ msgid "PASSED_FULFILLED_CONDITION"
 #~ msgstr "PASSED: {0}"

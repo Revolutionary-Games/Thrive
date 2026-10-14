@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_nj0t6"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="4_h03u7"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
+[ext_resource type="PackedScene" uid="uid://dad6elomccmtr" path="res://src/microbe_stage/editor/ToleranceWarningsPanel.tscn" id="6_cmivo"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_pwhoj"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
@@ -29,6 +30,18 @@
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="23_hoe4k"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="30_4y6am"]
 [ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmivo"]
+bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
@@ -344,7 +357,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "macroscopicConditionsViewButton", "macroscopicConditionsView", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningsPanel", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "macroscopicConditionsViewButton", "macroscopicConditionsView", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -367,7 +380,7 @@ growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/Edi
 showGrowthOrderCoordinates = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates")
 tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
-toleranceWarningContainer = NodePath("ToleranceWarnings")
+toleranceWarningsPanel = NodePath("MarginContainer/ToleranceWarningsPanel")
 layoutTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout")
 automaticLayoutButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/AutomaticLayout")
 reapplyAutomaticLayoutButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/ReapplyAutomaticLayout")
@@ -392,7 +405,6 @@ rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatistic
 negativeAtpPopup = NodePath("NegativeAtpWarning")
 wrongGrowthOrderPopup = NodePath("WrongGrowthOrderError")
 specialCellTypeUnsetPopup = NodePath("SpecialCellTypeUnset")
-toleranceWarningsFont = ExtResource("6_pwhoj")
 reproductionMethodDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton")
 sporeCellTypeMakerButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/CellTypePicker")
 gameteACellTypeMakerButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/CellTypeMakerButton")
@@ -457,6 +469,20 @@ grow_horizontal = 2
 
 [node name="LightConfiguration" parent="TopPanel" unique_id=890941162 instance=ExtResource("3_nj0t6")]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=246108099]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 380
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 313
+
+[node name="ToleranceWarningsPanel" parent="MarginContainer" unique_id=749578005 instance=ExtResource("6_cmivo")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cmivo")
 
 [node name="LeftPanel" type="MarginContainer" parent="." unique_id=1196894992]
 custom_minimum_size = Vector2(350, 0)
@@ -1131,17 +1157,6 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge" unique_id=1801267847]
 libraries/ = SubResource("AnimationLibrary_1nh8x")
-
-[node name="ToleranceWarnings" type="VBoxContainer" parent="." unique_id=1671395948]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -286.0
-offset_top = 78.0
-offset_right = 352.0
-offset_bottom = 250.0
-grow_horizontal = 2
 
 [node name="IslandError" parent="." unique_id=1836343245 instance=ExtResource("7")]
 custom_minimum_size = Vector2(600, 0)

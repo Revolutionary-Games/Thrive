@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://caq4oh00j7yin" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://u7xx74aaed4e" path="res://src/macroscopic_stage/editor/MetaballPopupMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dad6elomccmtr" path="res://src/microbe_stage/editor/ToleranceWarningsPanel.tscn" id="4_s8mic"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="7_ck2k0"]
@@ -15,7 +16,19 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="13_wsdas"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="14"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="14_e8ubw"]
-[ext_resource type="PackedScene" path="res://src/gui_common/LoadingSpinner.tscn" id="16_enpqv"]
+[ext_resource type="PackedScene" uid="uid://xt3sn0ixehuh" path="res://src/gui_common/LoadingSpinner.tscn" id="16_enpqv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8mic"]
+bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxTexture" id="1"]
 texture = ExtResource("2")
@@ -331,7 +344,7 @@ _data = {
 &"show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "creatureSkinTypeChoiceButton", "creatureGenerationSpinner", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningsPanel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "creatureSkinTypeChoiceButton", "creatureGenerationSpinner", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,7 +364,7 @@ appearanceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/Edit
 behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
 tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
-toleranceWarningContainer = NodePath("ToleranceWarnings")
+toleranceWarningsPanel = NodePath("MarginContainer/ToleranceWarningsPanel")
 cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
 modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
 deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
@@ -361,7 +374,6 @@ duplicateCellTypeDialog = NodePath("NewTissueTypeSetup")
 duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
 cannotReduceBrainPowerPopup = NodePath("CannotReduceBrainPowerStage")
-toleranceWarningsFont = ExtResource("7_ck2k0")
 creatureSkinTypeChoiceButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton")
 creatureGenerationSpinner = NodePath("LoadingSpinner")
 metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
@@ -371,6 +383,20 @@ mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2
 cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
 finishButtonWarningBadge = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 finishOrNextButton = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1784104461]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 380
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 313
+
+[node name="ToleranceWarningsPanel" parent="MarginContainer" unique_id=749578005 instance=ExtResource("4_s8mic")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8mic")
 
 [node name="LeftPanel" type="MarginContainer" parent="." unique_id=683719246]
 custom_minimum_size = Vector2(350, 0)
@@ -779,17 +805,6 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge" unique_id=32013440]
 libraries/ = SubResource("AnimationLibrary_vbjf3")
-
-[node name="ToleranceWarnings" type="VBoxContainer" parent="." unique_id=858270649]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -286.0
-offset_top = 78.0
-offset_right = 352.0
-offset_bottom = 250.0
-grow_horizontal = 2
 
 [node name="MetaballSizeControls" type="MarginContainer" parent="." unique_id=321398276]
 layout_mode = 1
