@@ -299,13 +299,21 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.Redo();
     }
 
-    public bool IsNewCellTypeNameValid(string newName)
+    public string? GetNewCellTypeNameValidationError(string newName)
     {
-        // Name is invalid if it is empty or a duplicate
-        // TODO: should this ensure the name doesn't have trailing whitespace?
-        // If so, CellTemplate.UpdateNameIfValid should be updated as well
-        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.ModifiableCellTypes.Any(c =>
-            c.CellTypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+        if (!PlayerNameUtils.IsValidPlayerGivenName(newName, out var errorMessage))
+            return errorMessage;
+
+        if (!IsCellTypeNameUnique(newName))
+            return Localization.Translate("CELL_TYPE_NAME_ALREADY_EXISTS");
+
+        return null;
+    }
+
+    public bool IsCellTypeNameUnique(string name)
+    {
+        return !EditedSpecies.ModifiableCellTypes.Any(c =>
+            c.CellTypeName.Equals(name, StringComparison.InvariantCultureIgnoreCase));
     }
 
     public override void Undo()
@@ -437,7 +445,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         bodyPlanEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
         cellEditorTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
-        cellEditorTab.ValidateNewCellTypeName = IsNewCellTypeNameValid;
+        cellEditorTab.ValidateNewCellTypeName = GetNewCellTypeNameValidationError;
 
         foreach (var editorComponent in GetAllEditorComponents())
         {

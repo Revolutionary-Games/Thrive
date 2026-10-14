@@ -48,6 +48,8 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
     /// </summary>
     private bool controlsHoveredOver;
 
+    private string? nameValidationError;
+
     [Signal]
     public delegate void OnNewClickedEventHandler();
 
@@ -148,15 +150,23 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         };
     }
 
-    public void ReportValidityOfName(bool valid)
+    public void ReportValidityOfName(bool valid, string? errorMessage = null, string? validMessage = null)
     {
         if (valid)
         {
             GUICommon.MarkInputAsValid(speciesNameEdit);
+            speciesNameEdit.TooltipText = validMessage ?? string.Empty;
+            nameValidationError = null;
         }
         else
         {
             GUICommon.MarkInputAsInvalid(speciesNameEdit);
+
+            if (errorMessage != null)
+            {
+                speciesNameEdit.TooltipText = errorMessage;
+                nameValidationError = errorMessage;
+            }
         }
     }
 
@@ -171,6 +181,9 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
         // Ignore if the species name line edit wasn't focused or if one of our controls is hovered
         if (focused != speciesNameEdit || controlsHoveredOver)
+            return;
+
+        if (ShowCellTypeNameValidationError())
             return;
 
         PerformValidation(speciesNameEdit.Text);
@@ -222,8 +235,21 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
     private void OnNameTextEntered(string newText)
     {
-        PerformValidation(newText);
+        if (!ShowCellTypeNameValidationError())
+            PerformValidation(newText);
+
         EmitSignal(SignalName.OnNameSet, newText);
+    }
+
+    private bool ShowCellTypeNameValidationError()
+    {
+        if (UseSpeciesNameValidation || nameValidationError == null)
+            return false;
+
+        GetViewport().SetInputAsHandled();
+        ToolTipManager.Instance.ShowPopup(nameValidationError, 2.5f);
+        speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
+        return true;
     }
 
     private void PerformValidation(string text)
