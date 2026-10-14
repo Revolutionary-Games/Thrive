@@ -91,7 +91,10 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     ///   Later organelles overlapping earlier copies are skipped.
     ///   <paramref name="occupied"/> is cleared before copying.
     /// </summary>
+    /// <param name="sourceOrganelles">The original organelles to copy in order.</param>
+    /// <param name="destination">The empty layout to receive the cloned organelles.</param>
     /// <param name="excludedOrganelle">The original reference to omit, or null to copy without an exclusion.</param>
+    /// <param name="occupied">Working storage for the hexes occupied by the copied organelles.</param>
     private static void CloneLayout(IReadOnlyList<OrganelleTemplate> sourceOrganelles,
         OrganelleLayout<OrganelleTemplate> destination, OrganelleTemplate? excludedOrganelle, HashSet<Hex> occupied)
     {
