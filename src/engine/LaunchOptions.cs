@@ -13,6 +13,7 @@ public static class LaunchOptions
     private static readonly Lazy<bool> SkipCPUCheckOption = new(ReadSkipCPUCheck);
     private static readonly Lazy<bool> DisableAvxOption = new(ReadDisableAvx);
     private static readonly Lazy<bool> DisableModsOption = new(ReadDisableMods);
+    private static readonly Lazy<bool> AutoEvoOption = new(() => OS.GetCmdlineUserArgs().Contains("--auto-evo"));
 
     private static readonly Lazy<bool> LaunchedThroughLauncherHolder = new(ReadLaunchedThroughLauncher);
     private static readonly Lazy<bool> LaunchingLauncherIsHiddenHolder = new(ReadLaunchingLauncherIsHidden);
@@ -22,6 +23,8 @@ public static class LaunchOptions
     private static readonly Lazy<string> LaunchId = new(ReadOrGenerateLaunchId);
 
     public static bool VideosEnabled => !DisableVideosOption.Value;
+
+    public static bool AutoEvo => AutoEvoOption.Value;
 
     public static bool SkipCPUCheck => SkipCPUCheckOption.Value;
 
