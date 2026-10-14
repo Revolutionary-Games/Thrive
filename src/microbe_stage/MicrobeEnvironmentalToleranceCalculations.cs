@@ -320,104 +320,118 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
-        Action<string> resultCallback)
+        ToleranceWarningsPanel toleranceWarningsPanel, out bool areToleranceWarnings)
     {
-        if (problemNumbers.HealthModifier < 1 || problemNumbers.ProcessSpeedModifier < 1 ||
-            problemNumbers.OsmoregulationModifier > 1)
+        areToleranceWarnings = false;
+
+        if (problemNumbers.OsmoregulationModifier > 1)
         {
-            // Osmoregulation modifier works in reverse (i.e. higher value is worse)
-            resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
-                .FormatSafe($"+{(problemNumbers.OsmoregulationModifier - 1) * 100:0.#}",
-                    -Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1),
-                    -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)));
+            toleranceWarningsPanel.OsmoregulationCostContainer.Visible = true;
+            toleranceWarningsPanel.OsmoregulationCostValue.Text =
+                Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe($"{(problemNumbers.OsmoregulationModifier - 1) * 100:0.#}");
+        }
+        else
+        {
+            toleranceWarningsPanel.OsmoregulationCostContainer.Visible = false;
+        }
+
+        if (problemNumbers.ProcessSpeedModifier < 1)
+        {
+            toleranceWarningsPanel.BioprocessSpeedContainer.Visible = true;
+            toleranceWarningsPanel.BioprocessSpeedValue.Text =
+                Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe($"{-Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1)}");
+        }
+        else
+        {
+            toleranceWarningsPanel.BioprocessSpeedContainer.Visible = false;
+        }
+
+        if (problemNumbers.HealthModifier < 1)
+        {
+            toleranceWarningsPanel.HealthContainer.Visible = true;
+            toleranceWarningsPanel.HealthValue.Text =
+                Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe($"{-Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)}");
+        }
+        else
+        {
+            toleranceWarningsPanel.HealthContainer.Visible = false;
         }
 
         if (data.TemperatureScore < 1)
         {
+            toleranceWarningsPanel.TemperatureConditionContainer.Visible = true;
+            areToleranceWarnings = true;
+
             if (data.PerfectTemperatureAdjustment < 0)
             {
-                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
-                    .FormatSafe(Math.Round(-data.MinimumTemperatureAdjustment, 1)));
+                var text = Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
+                    .FormatSafe(Math.Round(-data.MinimumTemperatureAdjustment, 1));
+                toleranceWarningsPanel.TemperatureConditionLabel.Text = text;
             }
             else
             {
-                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
-                    .FormatSafe(Math.Round(data.MinimumTemperatureAdjustment, 1)));
+                var text = Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
+                    .FormatSafe(Math.Round(data.MinimumTemperatureAdjustment, 1));
+                toleranceWarningsPanel.TemperatureConditionLabel.Text = text;
             }
+        }
+        else
+        {
+            toleranceWarningsPanel.TemperatureConditionContainer.Visible = false;
         }
 
         if (data.PressureScore < 1)
         {
+            toleranceWarningsPanel.PressureConditionContainer.Visible = true;
+            areToleranceWarnings = true;
+
             if (data.PerfectPressureAdjustment < 0)
             {
-                // TODO: show the numbers in megapascals when makes sense
-                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
-                    .FormatSafe(Math.Round(-data.MinimumPressureAdjustment / 1000, 1)));
+                var text = Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
+                    .FormatSafe(Math.Round(-data.MinimumPressureAdjustment / 1000, 1));
+                toleranceWarningsPanel.PressureConditionLabel.Text = text;
             }
             else
             {
-                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
-                    .FormatSafe(Math.Round(data.MinimumPressureAdjustment / 1000, 1)));
+                var text = Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
+                    .FormatSafe(Math.Round(data.MinimumPressureAdjustment / 1000, 1));
+                toleranceWarningsPanel.PressureConditionLabel.Text = text;
             }
+        }
+        else
+        {
+            toleranceWarningsPanel.PressureConditionContainer.Visible = false;
         }
 
         if (data.OxygenScore < 1)
         {
-            resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_OXYGEN_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1)));
+            toleranceWarningsPanel.OxygenConditionContainer.Visible = true;
+            areToleranceWarnings = true;
+
+            var text = Localization.Translate("TOLERANCES_TOO_LOW_OXYGEN_PROTECTION")
+                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1));
+            toleranceWarningsPanel.OxygenConditionLabel.Text = text;
+        }
+        else
+        {
+            toleranceWarningsPanel.OxygenConditionContainer.Visible = false;
         }
 
         if (data.UVScore < 1)
         {
-            resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_UV_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
+            toleranceWarningsPanel.UVConditionContainer.Visible = true;
+            areToleranceWarnings = true;
+
+            var text = Localization.Translate("TOLERANCES_TOO_LOW_UV_PROTECTION")
+                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1));
+            toleranceWarningsPanel.UVConditionLabel.Text = text;
         }
-    }
-
-    public static void ManageToleranceProblemListGUI(ref int usedToleranceWarnings, List<Label> activeToleranceWarnings,
-        ToleranceResult tolerances, in ResolvedMicrobeTolerances problemNumbers, Container toleranceWarningContainer,
-        LabelSettings toleranceWarningsFont, int maxToleranceWarnings = 5)
-    {
-        usedToleranceWarnings = 0;
-
-        int tempWarnings = usedToleranceWarnings;
-
-        void AddToleranceWarning(string text)
+        else
         {
-            if (tempWarnings < activeToleranceWarnings.Count)
-            {
-                var warning = activeToleranceWarnings[tempWarnings];
-                warning.Text = text;
-            }
-            else if (tempWarnings < maxToleranceWarnings)
-            {
-                var warning = new Label
-                {
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                    CustomMinimumSize = new Vector2(150, 0),
-                    LabelSettings = toleranceWarningsFont,
-                };
-
-                warning.Text = text;
-                activeToleranceWarnings.Add(warning);
-                toleranceWarningContainer.AddChild(warning);
-            }
-
-            ++tempWarnings;
-        }
-
-        // This allocates a delegate, but it's probably not a significant amount of garbage
-        GenerateToleranceProblemList(tolerances, problemNumbers, AddToleranceWarning);
-
-        usedToleranceWarnings = tempWarnings;
-
-        // Remove excess text that is no longer used
-        while (usedToleranceWarnings < activeToleranceWarnings.Count)
-        {
-            var last = activeToleranceWarnings[^1];
-            last.QueueFree();
-            activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            toleranceWarningsPanel.UVConditionContainer.Visible = false;
         }
     }
 

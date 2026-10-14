@@ -14,9 +14,6 @@ public partial class CellBodyPlanEditorComponent :
 {
     public const ushort SERIALIZATION_VERSION = 12;
 
-    [Export]
-    public int MaxToleranceWarnings = 3;
-
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -92,7 +89,7 @@ public partial class CellBodyPlanEditorComponent :
     private PanelContainer toleranceTab = null!;
 
     [Export]
-    private Container toleranceWarningContainer = null!;
+    private ToleranceWarningsPanel toleranceWarningsPanel = null!;
 
     [Export]
     private PanelContainer layoutTab = null!;
@@ -173,9 +170,6 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private SpecialCellTypeUnsetPopup specialCellTypeUnsetPopup = null!;
-
-    [Export]
-    private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
     private OptionButton reproductionMethodDropdown = null!;

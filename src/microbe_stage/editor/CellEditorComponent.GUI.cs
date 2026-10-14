@@ -843,26 +843,15 @@ public partial class CellEditorComponent
             // inexplicably also a bonus percentage as that would be very confusing to see.
             var tolerances = CalculateRawTolerances(true);
 
-            MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
-                activeToleranceWarnings, tolerances,
-                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
-                toleranceWarningsFont, MaxToleranceWarnings);
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances),
+                toleranceWarningsPanel, out bool areToleranceWarnings);
 
-            if (usedToleranceWarnings > 0)
-            {
-                // Need to make sure the player is not locked out of the tab to address these
-                toleranceTabButton.Visible = true;
-            }
+            toleranceWarningsPanel.Visible = areToleranceWarnings;
         }
         else
         {
-            usedToleranceWarnings = 0;
-            while (usedToleranceWarnings < activeToleranceWarnings.Count)
-            {
-                var last = activeToleranceWarnings[^1];
-                last.QueueFree();
-                activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
-            }
+            toleranceWarningsPanel.Visible = false;
         }
     }
 

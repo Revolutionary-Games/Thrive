@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dfbi66n0pfqh7" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="4_o1pli"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://dad6elomccmtr" path="res://src/microbe_stage/editor/ToleranceWarningsPanel.tscn" id="6_wbwlm"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
 [ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="8_07qd0"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="8_mt8w8"]
@@ -36,6 +37,18 @@
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
 [ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbwlm"]
+bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -514,13 +527,11 @@ _data = {
 &"ShowTopPanel": SubResource("Animation_pcyan")
 }
 
-[node name="CellEditorComponent" type="Control" unique_id=1964999532 node_paths=PackedStringArray("structureTabButton", "appearanceTabButton", "behaviourTabButton", "growthOrderTabButton", "toleranceTabButton", "structureTab", "appearanceTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "partsSelectionContainer", "membraneTypeSelection", "totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "autoEvoPredictionPanel", "rigiditySlider", "membraneColorPicker", "negativeAtpPopup", "pendingEndosymbiosisPopup", "organismMembraneChangePopup", "endosymbiosisButton", "endosymbiosisPopup", "organelleMenu", "organelleUpgradeGUI", "showGrowthOrderCoordinates", "micheViewer", "organismStatisticsPanel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellEditorComponent" type="Control" unique_id=1964999532 node_paths=PackedStringArray("structureTabButton", "appearanceTabButton", "behaviourTabButton", "growthOrderTabButton", "toleranceTabButton", "structureTab", "appearanceTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningsPanel", "partsSelectionContainer", "membraneTypeSelection", "totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "autoEvoPredictionPanel", "rigiditySlider", "membraneColorPicker", "negativeAtpPopup", "pendingEndosymbiosisPopup", "organismMembraneChangePopup", "endosymbiosisButton", "endosymbiosisPopup", "organelleMenu", "organelleUpgradeGUI", "showGrowthOrderCoordinates", "micheViewer", "organismStatisticsPanel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.41425
-offset_bottom = -1.41425
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(1705, 266)
@@ -538,7 +549,7 @@ growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/Edi
 growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
 tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
-toleranceWarningContainer = NodePath("ToleranceWarnings")
+toleranceWarningsPanel = NodePath("MarginContainer/ToleranceWarningsPanel")
 partsSelectionContainer = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection")
 membraneTypeSelection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
 totalEnergyLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Total")
@@ -566,7 +577,6 @@ rightPanel = NodePath("RightPanel")
 rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
-toleranceWarningsFont = ExtResource("28_qclxk")
 hexEffectFont = ExtResource("4_o1pli")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
 islandPopup = NodePath("IslandError")
@@ -597,6 +607,21 @@ offset_bottom = 64.0
 
 [node name="LightConfigurationPanel" parent="TopPanel" unique_id=726771345 instance=ExtResource("3_yy73o")]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1894403909]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -281.0
+offset_top = 75.0
+offset_right = 345.0
+offset_bottom = 126.0
+grow_horizontal = 2
+
+[node name="ToleranceWarningsPanel" parent="MarginContainer" unique_id=749578005 instance=ExtResource("6_wbwlm")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wbwlm")
 
 [node name="LeftPanel" type="MarginContainer" parent="." unique_id=1908836377]
 custom_minimum_size = Vector2(350, 0)
@@ -1167,17 +1192,6 @@ offset_top = -53.0
 offset_right = 641.0
 grow_vertical = 0
 
-[node name="ToleranceWarnings" type="VBoxContainer" parent="." unique_id=1246429299]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -286.0
-offset_top = 78.0
-offset_right = 352.0
-offset_bottom = 250.0
-grow_horizontal = 2
-
 [node name="BottomRight" type="MarginContainer" parent="." unique_id=1982206719]
 layout_mode = 0
 anchor_left = 1.0
@@ -1300,6 +1314,7 @@ offset_bottom = 0.0
 
 [node name="EndosymbiosisPopup" parent="." unique_id=390097206 instance=ExtResource("38_e0n84")]
 layout_mode = 1
+IsMulticellular = false
 
 [node name="ProcessPanel" parent="." unique_id=201602767 instance=ExtResource("39")]
 custom_minimum_size = Vector2(400, 400)
