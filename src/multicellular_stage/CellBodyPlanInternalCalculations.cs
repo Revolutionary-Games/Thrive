@@ -200,7 +200,7 @@ public static class CellBodyPlanInternalCalculations
         // The actomyosin bonus should only be applied to base rotation speed, not organelles.
         // The axon bonus should be applied to organelles, including to actomyosin.
         var axonBonus = CalculateAxonRotationMultiplier(axonCount);
-        var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(actomyosinCount);
+        var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(actomyosinCount * axonBonus);
 
         for (int i = 0; i < count; ++i)
         {
