@@ -799,6 +799,24 @@ public class RunResults : IArchivable
         return migrationsToPatch;
     }
 
+    public List<SpeciesMigration> GetMigrationsOf(Species species)
+    {
+        var migrationsOfSpecies = new List<SpeciesMigration>();
+
+        foreach (var resultEntry in results)
+        {
+            if (resultEntry.Key != species)
+                continue;
+
+            foreach (var migration in resultEntry.Value.SpreadToPatches)
+            {
+                migrationsOfSpecies.Add(migration);
+            }
+        }
+
+        return migrationsOfSpecies;
+    }
+
     public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
     {
         return results[species].EnergyResults;
