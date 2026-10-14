@@ -275,8 +275,8 @@ public class RunResults : IArchivable
         var population = initialPopulationInPatch.Value;
 
         // If set as inheriting, the population of the parent species is added to the new species.
-        // Because of this, it needs to be assured that the population of the parent species has already been calculated
-        // in a previous step and is not otherwise modified in this step.
+        // Because of this, it needs to be ASSURED that the population of the parent species has already been calculated
+        // in a previous step and is NOT otherwise modified in this step.
         if (inheritingPopulation)
         {
             results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
@@ -799,22 +799,22 @@ public class RunResults : IArchivable
         return migrationsToPatch;
     }
 
-    public List<SpeciesMigration> GetMigrationsOf(Species species)
+    /// <summary>
+    ///   Copies all migrations from a parent species to a child species and deletes them from the parent species.
+    ///   This is used for stage-transition mutants that can't be applied to the parent species directly.
+    /// </summary>
+    public void TransferMigrationsBetween(Species childSpecies, Species parentSpecies)
     {
-        var migrationsOfSpecies = new List<SpeciesMigration>();
+        var speciesMigrations = results[parentSpecies].SpreadToPatches;
+        var migrationsCount = speciesMigrations.Count;
 
-        foreach (var resultEntry in results)
+        for (int i = 0; i < migrationsCount; i++)
         {
-            if (resultEntry.Key != species)
-                continue;
-
-            foreach (var migration in resultEntry.Value.SpreadToPatches)
-            {
-                migrationsOfSpecies.Add(migration);
-            }
+            var migration = speciesMigrations[i];
+            results[childSpecies].SpreadToPatches.Add(migration);
         }
 
-        return migrationsOfSpecies;
+        speciesMigrations.Clear();
     }
 
     public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
