@@ -82,6 +82,7 @@ public partial class CellBodyPlanEditorComponent
         _ = tutorial;
 
         gui.RightPanelScrollContainer = rightPanelScrollContainer;
+        gui.MacroscopicRequirementsButton = macroscopicConditionsViewButton;
     }
 
     protected override void OnTranslationsChanged()
@@ -780,16 +781,12 @@ public partial class CellBodyPlanEditorComponent
         {
             macroscopicConditionResultsBuilder.Append('\n');
 
+            macroscopicConditionResultsBuilder.Append(GUICommon.RequirementFulfillmentIconRichText(fulfilled));
+            macroscopicConditionResultsBuilder.Append(' ');
+            macroscopicConditionResultsBuilder.Append(description);
+
             if (!fulfilled)
-            {
                 canBecomeMacroscopic = false;
-                macroscopicConditionResultsBuilder.Append(description);
-            }
-            else
-            {
-                macroscopicConditionResultsBuilder.Append(Localization.Translate("PASSED_FULFILLED_CONDITION")
-                    .FormatSafe(description));
-            }
         }
 
         macroscopicConditionResultsBuilder.Append('\n');
@@ -807,5 +804,11 @@ public partial class CellBodyPlanEditorComponent
 
         macroscopicConditionsView.DialogText = macroscopicConditionResultsBuilder.ToString();
         macroscopicConditionsView.PopupCenteredShrink();
+
+        if (Editor.TutorialState.Enabled)
+        {
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularMacroscopicRequirementsOpened,
+                EventArgs.Empty, this);
+        }
     }
 }

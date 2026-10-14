@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-11 14:43+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE
+"\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1340,8 +1341,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1382
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:609
-#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
-#: ../src/thriveopedia/Thriveopedia.tscn:322
+#: ../src/microbe_stage/ProcessPanel.tscn:122
+#: ../src/modding/ModManager.tscn:698 ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:320
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:437
@@ -2389,7 +2390,8 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:565 ../src/microbe_stage/MicrobeHUD.cs:570
+#: ../src/microbe_stage/MicrobeHUD.cs:565
+#: ../src/microbe_stage/MicrobeHUD.cs:570
 msgid "DEVOURED"
 msgstr ""
 
@@ -7934,7 +7936,8 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:701 ../src/general/PauseMenu.cs:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:701
+#: ../src/general/PauseMenu.cs:484
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -12791,3 +12794,86 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:219
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:308
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:882
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:881
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:687
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:681
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:689
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:679
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:685
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:683
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:163
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:134
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:98
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:116
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:62
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+
+#: ../src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn:80
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+
+#: ../src/general/utils/PlayerNameUtils.cs:29
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#: ../src/general/utils/PlayerNameUtils.cs:43
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:1137
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3060
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3066
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:2573
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr ""
+
+#: ../src/general/utils/PlayerNameUtils.cs:35
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr ""

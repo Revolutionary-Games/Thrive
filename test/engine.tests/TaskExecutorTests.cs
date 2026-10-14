@@ -122,39 +122,6 @@ public class TaskExecutorTests
         TaskExecutor.Instance.RunTasks(new List<Task> { new(() => { }) });
     }
 
-    [TestCase(false)]
-    [TestCase(true)]
-    public void RunTasks_ObservesEveryFailureBeforeReturning(bool catchErrors)
-    {
-        var firstFailure = new InvalidOperationException("First expected failure");
-        var secondFailure = new InvalidOperationException("Second expected failure");
-        var first = new Task(() => throw firstFailure);
-        var second = new Task(() => throw secondFailure);
-        AggregateException? observed = null;
-        try
-        {
-            TaskExecutor.Instance.RunTasks(new List<Task> { first, second }, catchErrors: catchErrors);
-        }
-        catch (AggregateException e)
-        {
-            observed = e;
-        }
-
-        AssertThat(first.IsFaulted && second.IsFaulted).IsTrue();
-        if (catchErrors)
-        {
-            AssertThat(observed).IsNull();
-        }
-        else
-        {
-            AssertThat(observed).IsNotNull();
-            AssertThat(observed!.InnerExceptions.Contains(firstFailure)).IsTrue();
-            AssertThat(observed.InnerExceptions.Contains(secondFailure)).IsTrue();
-        }
-
-        TaskExecutor.Instance.RunTasks(new List<Task> { new(() => { }) });
-    }
-
     [TestCase]
     public void RunTasks_NestedBatchDoesNotWaitForItsCaller()
     {

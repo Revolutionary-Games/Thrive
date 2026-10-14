@@ -70,7 +70,7 @@ public partial class MetaballBodyEditorComponent
         // Renaming a cell doesn't create an editor action, so it's possible for someone to duplicate a cell type, undo
         // the duplication, change another cell type's name to the old duplicate's name, then redo the duplication,
         // which would lead to duplicate names, so this loop ensures the duplicated cell's name will be unique
-        while (!Editor.IsNewCellTypeNameValid(data.CellType.CellTypeName))
+        while (!Editor.IsCellTypeNameUnique(data.CellType.CellTypeName))
         {
             data.CellType.CellTypeName = $"{originalName} {count++}";
         }
