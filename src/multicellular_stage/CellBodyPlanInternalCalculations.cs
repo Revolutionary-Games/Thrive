@@ -376,7 +376,12 @@ public static class CellBodyPlanInternalCalculations
         foreach (var organelle in cell.Organelles)
         {
             if (organelle.Definition.HasAxonFeature)
+            {
                 ++axonCount;
+
+                // cells can only have one axon.
+                return axonCount;
+            }
         }
 
         return axonCount;
