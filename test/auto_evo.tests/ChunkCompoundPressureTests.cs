@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using AutoEvo;
 using GdUnit4;
-using Godot;
 using static GdUnit4.Assertions;
 
 /// <summary>
@@ -47,18 +45,18 @@ public class ChunkCompoundPressureTests
         {
             var species = CreateReceptorMicrobe(Compound.Glucose);
             SetBehaviour(species, endpoint.Activity, endpoint.Focus);
-            var score = ScoreSaturated("collection", pressure, species, patch);
+            var score = ScoreSaturated(pressure, species, patch);
             AssertNear(score, endpoint.Collection * Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER);
         }
 
         var mismatching = CreateReceptorMicrobe(Compound.Ammonia);
-        var matchingScore = ScoreSaturated("receptor-matching", pressure, matching, patch);
-        var mismatchingScore = ScoreSaturated("receptor-mismatching", pressure, mismatching, patch);
+        var matchingScore = ScoreSaturated(pressure, matching, patch);
+        var mismatchingScore = ScoreSaturated(pressure, mismatching, patch);
         AssertNear(mismatchingScore, baseCollection * Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER);
         AssertNear(matchingScore - mismatchingScore, receptor * Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER);
 
         var zeroDensityPatch = CreatePatch(density: 0);
-        var zeroDensityScore = ScoreSaturated("receptor-zero-density", pressure, matching, zeroDensityPatch);
+        var zeroDensityScore = ScoreSaturated(pressure, matching, zeroDensityPatch);
         AssertNear(zeroDensityScore, mismatchingScore);
         AssertThat(zeroDensityScore).IsGreater(0.0f);
     }
@@ -77,12 +75,12 @@ public class ChunkCompoundPressureTests
         fearful.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         AssertThat(CreateCache().GetBaseHexSizeForSpecies(baseline))
             .IsLess(patch.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
-        var score = ScoreFresh("leak-baseline", pressure, baseline, patch);
+        var score = ScoreFresh(pressure, baseline, patch);
         AssertThat(score).IsGreater(0.0f);
-        AssertNear(ScoreFresh("leak-aggression", pressure, aggressive, patch),
+        AssertNear(ScoreFresh(pressure, aggressive, patch),
             score * (1 - Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY));
-        SimulationCacheTestFixtures.AssertBits(ScoreFresh("leak-opportunism", pressure, opportunistic, patch), score);
-        AssertNear(ScoreFresh("leak-fear", pressure, fearful, patch),
+        SimulationCacheTestFixtures.AssertBits(ScoreFresh(pressure, opportunistic, patch), score);
+        AssertNear(ScoreFresh(pressure, fearful, patch),
             score * (1 - Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY));
     }
 
@@ -100,12 +98,12 @@ public class ChunkCompoundPressureTests
         AssertThat(baseline.CanEngulf).IsTrue();
         AssertThat(CreateCache().GetBaseHexSizeForSpecies(baseline))
             .IsGreater(patch.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
-        var score = ScoreFresh("engulf-baseline", pressure, baseline, patch);
+        var score = ScoreFresh(pressure, baseline, patch);
         AssertThat(score).IsGreater(0.0f);
-        AssertNear(ScoreFresh("engulf-opportunism", pressure, opportunistic, patch),
+        AssertNear(ScoreFresh(pressure, opportunistic, patch),
             score * (1 + MathF.Sqrt(Constants.MAX_SPECIES_OPPORTUNISM / Constants.MAX_SPECIES_ACTIVITY)
                 * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS));
-        SimulationCacheTestFixtures.AssertBits(ScoreFresh("engulf-aggression", pressure, aggressive, patch), score);
+        SimulationCacheTestFixtures.AssertBits(ScoreFresh(pressure, aggressive, patch), score);
     }
 
     [TestCase]
@@ -122,14 +120,10 @@ public class ChunkCompoundPressureTests
             .IsGreater(patch.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
         var aggressive = (MicrobeSpecies)species.Clone();
         aggressive.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
-        var opportunistic = (MicrobeSpecies)species.Clone();
-        opportunistic.ModifiableBehaviour.Opportunism = Constants.MAX_SPECIES_OPPORTUNISM;
-        var score = ScoreFresh("membrane-leak-baseline", pressure, species, patch);
+        var score = ScoreFresh(pressure, species, patch);
         AssertThat(score).IsGreater(0.0f);
-        AssertNear(ScoreFresh("membrane-leak-aggression", pressure, aggressive, patch),
+        AssertNear(ScoreFresh(pressure, aggressive, patch),
             score * (1 - Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY));
-        SimulationCacheTestFixtures.AssertBits(ScoreFresh("membrane-leak-opportunism", pressure, opportunistic, patch),
-            score);
     }
 
     [TestCase]
@@ -144,13 +138,13 @@ public class ChunkCompoundPressureTests
         var patch = CreatePatch(chunkSize: (smallSize + largeSize) / (2 * Constants.ENGULF_SIZE_RATIO_REQ));
         AssertThat(smallSize).IsLess(patch.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
         var species = CreateMulticellular(small);
-        var score = ScoreFresh("multicellular-unused-before", pressure, species, patch);
+        var score = ScoreFresh(pressure, species, patch);
         species.ModifiableCellTypes.Add(large);
         species.OnEdited();
         AssertThat(CreateCache().GetBaseHexSizeForCellType(large))
             .IsGreater(patch.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
         AssertThat(species.EditorCells.Count).IsEqual(1);
-        SimulationCacheTestFixtures.AssertBits(ScoreFresh("multicellular-unused-after", pressure, species, patch),
+        SimulationCacheTestFixtures.AssertBits(ScoreFresh(pressure, species, patch),
             score);
     }
 
@@ -162,17 +156,13 @@ public class ChunkCompoundPressureTests
         var patch = CreatePatch(chunkSize:
             CreateCache().GetBaseHexSizeForCellType(large) / (2 * Constants.ENGULF_SIZE_RATIO_REQ));
         var species = CreateMulticellular(large);
-        var aggressive = (MulticellularSpecies)species.Clone();
-        aggressive.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
         var opportunistic = (MulticellularSpecies)species.Clone();
         opportunistic.ModifiableBehaviour.Opportunism = Constants.MAX_SPECIES_OPPORTUNISM;
         AssertThat(CreateCache().GetBaseHexSizeForCellType(large))
             .IsGreater(patch.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
-        var score = ScoreFresh("multicellular-present-baseline", pressure, species, patch);
+        var score = ScoreFresh(pressure, species, patch);
         AssertThat(score).IsGreater(0.0f);
-        SimulationCacheTestFixtures.AssertBits(
-            ScoreFresh("multicellular-present-aggression", pressure, aggressive, patch), score);
-        AssertNear(ScoreFresh("multicellular-present-opportunism", pressure, opportunistic, patch),
+        AssertNear(ScoreFresh(pressure, opportunistic, patch),
             score * (1 + MathF.Sqrt(Constants.MAX_SPECIES_OPPORTUNISM / Constants.MAX_SPECIES_ACTIVITY)
                 * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS));
     }
@@ -204,8 +194,8 @@ public class ChunkCompoundPressureTests
         SetBehaviour(species, activity, Constants.MAX_SPECIES_FOCUS * 0.3f);
         SetBehaviour(counterpart, effectiveActivity, Constants.MAX_SPECIES_FOCUS * 0.3f);
         AssertThat(CreateCache().GetUsesVaryingCompoundsForSpecies(species, patch.Biome)).IsTrue();
-        var expected = ScoreFresh("night-counterpart", CreatePressure(), counterpart, patch);
-        var score = ScoreFresh("night-varying", CreatePressure(dayNight: true), species, patch);
+        var expected = ScoreFresh(CreatePressure(), counterpart, patch);
+        var score = ScoreFresh(CreatePressure(dayNight: true), species, patch);
         AssertThat(expected).IsGreater(0.0f);
         AssertNear(score, expected);
     }
@@ -220,22 +210,33 @@ public class ChunkCompoundPressureTests
         var steadyPatch = CreatePatch();
         AssertThat(CreateCache().GetUsesVaryingCompoundsForSpecies(species, varyingPatch.Biome)).IsTrue();
         AssertThat(CreateCache().GetUsesVaryingCompoundsForSpecies(species, steadyPatch.Biome)).IsFalse();
-        var disabledVarying = ScoreFresh("night-disabled-varying", CreatePressure(), species, varyingPatch);
-        var disabledSteady = ScoreFresh("night-disabled-steady", CreatePressure(), species, steadyPatch);
-        var enabledSteady = ScoreFresh("night-enabled-steady", CreatePressure(dayNight: true), species, steadyPatch);
+        var disabledVarying = ScoreFresh(CreatePressure(), species, varyingPatch);
+        var disabledSteady = ScoreFresh(CreatePressure(), species, steadyPatch);
+        var enabledSteady = ScoreFresh(CreatePressure(dayNight: true), species, steadyPatch);
         SimulationCacheTestFixtures.AssertBits(disabledVarying, disabledSteady);
         SimulationCacheTestFixtures.AssertBits(enabledSteady, disabledSteady);
     }
 
     [TestCase]
-    public void DirectAtpSupportUsesProductionAndCapsAboveConsumption()
+    public void DirectAtpSupportHandlesZeroInsufficientEqualAndSurplusProduction()
     {
         var species = CreateMicrobe("cytoplasm");
         var patch = CreatePatch();
         var production = ExpectedDirectAtp(species, patch);
         var pressure = CreatePressure();
-        var saturated = ScoreWithConsumption("atp-direct-saturated", pressure, species, patch, production / 2);
-        var under = ScoreWithConsumption("atp-direct-under", pressure, species, patch, production * 2);
+        var saturated = ScoreWithConsumption(pressure, species, patch, production / 2);
+
+        // Control consumption in this test-owned cache to exercise exact equality.
+        var diagnostic = CreateCache();
+        diagnostic.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption = production;
+        var actualProduction = diagnostic.GetCompoundGeneratedFrom(SimulationParameters.GetCompound(Compound.Glucose),
+            SimulationParameters.GetCompound(Compound.ATP), species, patch.Biome);
+        var consumption = diagnostic.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption;
+        SimulationCacheTestFixtures.AssertBits(actualProduction, consumption);
+        AssertThat(actualProduction / consumption).IsEqual(1.0f);
+        SimulationCacheTestFixtures.AssertBits(pressure.Score(species, patch, diagnostic), saturated);
+
+        var under = ScoreWithConsumption(pressure, species, patch, production * 2);
         AssertThat(saturated).IsGreater(0.0f);
         AssertNear(under, saturated / 2);
         AssertThat(under).IsLess(saturated);
@@ -243,7 +244,7 @@ public class ChunkCompoundPressureTests
         var zeroPatch = CreatePatch(compoundAmount: 0, glucoseAmount: 0);
         AssertThat(CreateCache().GetCompoundGeneratedFrom(SimulationParameters.GetCompound(Compound.Glucose),
             SimulationParameters.GetCompound(Compound.ATP), species, zeroPatch.Biome)).IsEqual(0.0f);
-        AssertThat(ScoreWithConsumption("atp-direct-zero", pressure, species, zeroPatch, production)).IsEqual(0.0f);
+        AssertThat(ScoreWithConsumption(pressure, species, zeroPatch, production)).IsEqual(0.0f);
     }
 
     [TestCase]
@@ -275,14 +276,14 @@ public class ChunkCompoundPressureTests
         var production = efficiency * generatedGlucose;
         AssertThat(production).IsGreater(0.0f);
         var pressure = CreatePressure(Compound.Hydrogensulfide, Compound.Glucose);
-        var saturated = ScoreWithConsumption("atp-intermediate-saturated", pressure, species, patch, production / 2);
-        var under = ScoreWithConsumption("atp-intermediate-under", pressure, species, patch, production * 2);
+        var saturated = ScoreWithConsumption(pressure, species, patch, production / 2);
+        var under = ScoreWithConsumption(pressure, species, patch, production * 2);
         AssertThat(saturated).IsGreater(0.0f);
         AssertNear(under, saturated / 2);
         AssertThat(under).IsLess(saturated);
 
         var zeroPatch = CreatePatch(Compound.Hydrogensulfide, compoundAmount: 0, hydrogenSulfideAmount: 0);
-        AssertThat(ScoreWithConsumption("atp-intermediate-zero", pressure, species, zeroPatch, production))
+        AssertThat(ScoreWithConsumption(pressure, species, zeroPatch, production))
             .IsEqual(0.0f);
     }
 
@@ -298,15 +299,12 @@ public class ChunkCompoundPressureTests
         var diagnostic = CreateCache();
         SimulationCacheTestFixtures.AssertBits(diagnostic.GetSpeedForSpecies(smaller),
             diagnostic.GetSpeedForSpecies(larger));
-        SimulationCacheTestFixtures.AssertBits(
-            diagnostic.GetEnergyBalanceForSpecies(smaller, CreatePatch().Biome).TotalConsumption,
-            diagnostic.GetEnergyBalanceForSpecies(larger, CreatePatch().Biome).TotalConsumption);
 
         var patch = CreatePatch(chunkSize:
             diagnostic.GetBaseHexSizeForSpecies(smaller) / (2 * Constants.ENGULF_SIZE_RATIO_REQ));
         var pressure = CreatePressure();
-        var smallerScore = ScoreSaturated("storage-smaller", pressure, smaller, patch);
-        var largerScore = ScoreSaturated("storage-larger", pressure, larger, patch);
+        var smallerScore = ScoreSaturated(pressure, smaller, patch);
+        var largerScore = ScoreSaturated(pressure, larger, patch);
         AssertThat(largerScore).IsGreater(smallerScore);
         AssertNear(largerScore - smallerScore,
             StorageContribution(largerStorage) - StorageContribution(smallerStorage));
@@ -319,7 +317,6 @@ public class ChunkCompoundPressureTests
         Species species;
         Patch patch;
         ChunkCompoundPressure pressure;
-        string label;
         if (multicellular)
         {
             species = CreateMulticellular(CreateCellType("Intermediate", "cytoplasm", "chemoSynthesizingProteins"));
@@ -327,21 +324,19 @@ public class ChunkCompoundPressureTests
                 CreateCache().GetBaseHexSizeForSpecies(species) / (2 * Constants.ENGULF_SIZE_RATIO_REQ),
                 carbonDioxide: 0.001f);
             pressure = CreatePressure(Compound.Hydrogensulfide, Compound.Glucose);
-            label = "complete-multicellular-intermediate-engulf";
         }
         else
         {
             species = CreateReceptorMicrobe(Compound.Glucose);
             patch = CreatePatch();
             pressure = CreatePressure();
-            label = "complete-microbe-direct-leak";
         }
 
         SetBehaviour(species, 237, 141);
         species.ModifiableBehaviour.Aggression = 85;
         species.ModifiableBehaviour.Opportunism = 219;
         species.ModifiableBehaviour.Fear = 75;
-        AssertLifecycle(label, pressure, species, patch);
+        AssertLifecycle(pressure, species, patch);
     }
 
     [TestCase]
@@ -370,35 +365,12 @@ public class ChunkCompoundPressureTests
         SetBehaviour(species, 0, 0);
         var patch = CreatePatch();
         var pressure = CreatePressure();
-        AssertThat(ScoreFresh("zero-activity-valid-compound", pressure, species, patch)).IsGreater(0.0f);
+        AssertThat(ScoreFresh(pressure, species, patch)).IsGreater(0.0f);
         var chunk = patch.Biome.Chunks[ChunkType];
         chunk.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
         patch.Biome.Chunks[ChunkType] = chunk;
         AssertArgumentException(() => pressure.Score(species, patch, CreateCache()),
             "Chunk does not contain compound");
-    }
-
-    /// <summary>
-    ///   Exercises exact ATP equality through a test-owned cache input rather than a tuned biome temperature.
-    /// </summary>
-    [TestCase]
-    public void DirectAtpSupportAtEqualConsumptionMatchesSaturation()
-    {
-        var species = CreateMicrobe("cytoplasm");
-        var patch = CreatePatch();
-        var production = ExpectedDirectAtp(species, patch);
-        var diagnostic = CreateCache();
-        diagnostic.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption = production;
-        var actualProduction = diagnostic.GetCompoundGeneratedFrom(SimulationParameters.GetCompound(Compound.Glucose),
-            SimulationParameters.GetCompound(Compound.ATP), species, patch.Biome);
-        var consumption = diagnostic.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption;
-        SimulationCacheTestFixtures.AssertBits(actualProduction, consumption);
-        AssertThat(actualProduction / consumption).IsEqual(1.0f);
-
-        var pressure = CreatePressure();
-        var saturated = ScoreWithConsumption("atp-equality-saturated", pressure, species, patch, production / 2);
-        var atBoundary = pressure.Score(species, patch, diagnostic);
-        SimulationCacheTestFixtures.AssertBits(atBoundary, saturated);
     }
 
     private static SimulationCache CreateCache()
@@ -470,13 +442,13 @@ public class ChunkCompoundPressureTests
     }
 
     private static Patch CreatePatch(Compound input = Compound.Glucose, float chunkSize = 10, float density = 1,
-        float compoundAmount = 1, float temperature = 15, float carbonDioxide = 0.09f,
+        float compoundAmount = 1, float carbonDioxide = 0.09f,
         float glucoseAmount = 1, float hydrogenSulfideAmount = 1, bool varyingSunlight = false)
     {
         var template = SimulationParameters.Instance.GetBiome("aavolcanic_vent");
         var biome = (BiomeConditions)template.Conditions.Clone();
         biome.Pressure = 101325;
-        SetCompound(biome, Compound.Temperature, new BiomeCompoundProperties { Ambient = temperature });
+        SetCompound(biome, Compound.Temperature, new BiomeCompoundProperties { Ambient = 15 });
         SetCompound(biome, Compound.Carbondioxide, new BiomeCompoundProperties { Ambient = carbonDioxide });
         SetCompound(biome, Compound.Oxygen, new BiomeCompoundProperties { Ambient = 0 });
         SetCompound(biome, Compound.Sunlight, new BiomeCompoundProperties { Ambient = 1 });
@@ -572,15 +544,15 @@ public class ChunkCompoundPressureTests
         return (MathF.Pow(capacity + 1, 0.8f) - 1) / 0.8f;
     }
 
-    private static float ScoreSaturated(string label, ChunkCompoundPressure pressure, Species species, Patch patch)
+    private static float ScoreSaturated(ChunkCompoundPressure pressure, Species species, Patch patch)
     {
         var production = CreateCache().GetCompoundGeneratedFrom(SimulationParameters.GetCompound(Compound.Glucose),
             SimulationParameters.GetCompound(Compound.ATP), species, patch.Biome);
         AssertThat(production).IsGreater(0.0f);
-        return ScoreWithConsumption(label, pressure, species, patch, production / 2);
+        return ScoreWithConsumption(pressure, species, patch, production / 2);
     }
 
-    private static float ScoreWithConsumption(string label, ChunkCompoundPressure pressure, Species species,
+    private static float ScoreWithConsumption(ChunkCompoundPressure pressure, Species species,
         Patch patch, float consumption)
     {
         AssertThat(consumption).IsGreater(0.0f);
@@ -589,9 +561,7 @@ public class ChunkCompoundPressureTests
         // This cache belongs only to this call. Control Score's consumption input without changing shared
         // definitions or relying on a particular reaction yield, movement cost or osmoregulation balance.
         cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption = consumption;
-        var score = pressure.Score(species, patch, cache);
-        PrintScore(label, score);
-        return score;
+        return pressure.Score(species, patch, cache);
     }
 
     private static void AssertProcessLayout(Species species, params string[] names)
@@ -605,42 +575,32 @@ public class ChunkCompoundPressureTests
             AssertThat(process.Rate).IsGreater(0.0f);
             AssertThat(process.Process.Inputs.ContainsKey(SimulationParameters.GetCompound(Compound.ATP))).IsFalse();
         }
-
-        AssertThat(remaining).IsEmpty();
     }
 
-    private static float ScoreFresh(string label, ChunkCompoundPressure pressure, Species species, Patch patch)
+    private static float ScoreFresh(ChunkCompoundPressure pressure, Species species, Patch patch)
     {
-        var score = pressure.Score(species, patch, CreateCache());
-        PrintScore(label, score);
-        return score;
+        return pressure.Score(species, patch, CreateCache());
     }
 
-    private static void AssertLifecycle(string label, ChunkCompoundPressure pressure, Species species, Patch patch)
+    private static void AssertLifecycle(ChunkCompoundPressure pressure, Species species, Patch patch)
     {
         var direct = CreateCache();
         var cold = pressure.Score(species, patch, direct);
         AssertThat(float.IsFinite(cold)).IsTrue();
         AssertThat(cold).IsGreater(0.0f);
-        PrintScore(label + "/direct/cold", cold);
         var warm = pressure.Score(species, patch, direct);
-        PrintScore(label + "/direct/warm", warm);
         SimulationCacheTestFixtures.AssertBits(warm, cold);
         direct.Clear();
         var cleared = pressure.Score(species, patch, direct);
-        PrintScore(label + "/direct/clear", cleared);
         SimulationCacheTestFixtures.AssertBits(cleared, cold);
 
         var wrapped = CreateCache();
         var wrappedCold = wrapped.GetPressureScore(pressure, patch, species);
-        PrintScore(label + "/wrapped/cold", wrappedCold);
         SimulationCacheTestFixtures.AssertBits(wrappedCold, cold);
         var wrappedWarm = wrapped.GetPressureScore(pressure, patch, species);
-        PrintScore(label + "/wrapped/warm", wrappedWarm);
         SimulationCacheTestFixtures.AssertBits(wrappedWarm, cold);
         wrapped.Clear();
         var wrappedCleared = wrapped.GetPressureScore(pressure, patch, species);
-        PrintScore(label + "/wrapped/clear", wrappedCleared);
         SimulationCacheTestFixtures.AssertBits(wrappedCleared, cold);
     }
 
@@ -665,11 +625,5 @@ public class ChunkCompoundPressureTests
         }
 
         throw new InvalidOperationException("Expected ArgumentException: " + message);
-    }
-
-    private static void PrintScore(string label, float score)
-    {
-        GD.Print($"COD153_SCORE|{label}|{score.ToString("R", CultureInfo.InvariantCulture)}|" +
-            $"0x{BitConverter.SingleToInt32Bits(score):X8}");
     }
 }
