@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 00:49+0200\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -824,6 +824,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Примечания к изменениям слишком длинные"
 
@@ -1027,16 +1031,16 @@ msgstr "Прибрежный"
 msgid "COLLISION_SHAPE"
 msgstr "Создавать сущности с коллизией"
 
-#, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Сила Поворота"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Сила Поворота"
-
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Эта вкладка позволяет установить приоритет, в коем будут расти клетки колонии, где первая клетка в очереди - корневая. Вы можете использовать это, чтобы отдать приоритет росту более важных клеток или обеспечить баланс между производством и потреблением в колонии."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Сила Поворота"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Сила Поворота"
 
 msgid "COLOUR"
 msgstr "Окраска"
@@ -1570,6 +1574,32 @@ msgstr "Создание..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Тип Токсина:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Создать Новый Тип Клетки"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Создать Новое Сохранение"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
 
 msgid "CREDITS"
 msgstr "Титры"
@@ -5377,6 +5407,21 @@ msgstr "Клонировать Игрока"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Файл сохранения имеет недействительную сцену состояния игры"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Необходимо получать урон от радиации, находясь вблизи от радиоактивного куска."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Название вида слишком длинное!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Относительно игрока"
@@ -10367,26 +10412,6 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_COLON"
-#~ msgstr "Тип Токсина:"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_FUR"
-#~ msgstr "Создать Новый Тип Клетки"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_PLAIN"
-#~ msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SCALES"
-#~ msgstr "Создать Новое Сохранение"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SKIN"
-#~ msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

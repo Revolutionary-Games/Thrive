@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 00:49+0200\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -834,6 +834,10 @@ msgstr "Pauzeer het spel"
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Veranderingsnotities zijn te lang"
 
@@ -1040,16 +1044,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Totale populatie:"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Totale populatie:"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Totale populatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -1615,6 +1619,32 @@ msgstr "Aan het maken..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Maak objecten vanuit het opslagbestand"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "HP:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Maak Een Nieuw Celtype"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Mijn SuperSaaie Mod"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Maak Een Nieuw Opgeslagen bestand"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Mijn SuperSaaie Mod"
 
 msgid "CREDITS"
 msgstr "Dank"
@@ -5800,6 +5830,21 @@ msgstr "Duplicaat speler"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Opgeslagen bestand heeft ongeldige \"game state scene\""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Een cel heeft een nucleus nodig om lysosomen te evolueren."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Soortnaam is te lang!"
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
@@ -10416,26 +10461,6 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_COLON"
-#~ msgstr "HP:"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_FUR"
-#~ msgstr "Maak Een Nieuw Celtype"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_PLAIN"
-#~ msgstr "Mijn SuperSaaie Mod"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SCALES"
-#~ msgstr "Maak Een Nieuw Opgeslagen bestand"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SKIN"
-#~ msgstr "Mijn SuperSaaie Mod"
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

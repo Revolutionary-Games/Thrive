@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 00:49+0200\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -824,6 +824,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "De gekozen bestandsnaam({0}) is al in gebruik. Overschrijven?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Verandernotities zijn te lang"
 
@@ -1018,16 +1022,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Plaats entiteiten met botsingsvorm"
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Rotatie:"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Rotatie:"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Rotatie:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Rotatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -1572,6 +1576,32 @@ msgstr "Creëeren..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objecten uit opslagbestand worden gemaakt"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Type:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Maak een nieuw celtype"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Je kunt nieuwe soorten cellen maken door bestaande cellen te dupliceren en ze een nieuwe naam te geven. Celtypes kunnen aangepast worden om ze te specialiseren voor verschillende functies. Wanneer je een celtype aanpast zullen alle geplaatste cellen van dat type geüpdated worden."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Maak Nieuw Opslagbestand"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Je kunt nieuwe soorten cellen maken door bestaande cellen te dupliceren en ze een nieuwe naam te geven. Celtypes kunnen aangepast worden om ze te specialiseren voor verschillende functies. Wanneer je een celtype aanpast zullen alle geplaatste cellen van dat type geüpdated worden."
 
 msgid "CREDITS"
 msgstr "Credits"
@@ -5641,6 +5671,21 @@ msgstr "Dupliceer Speler"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Opslagbestand heeft foutieve spelstaatscene"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Soortnaam is te lang!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Speler relatief"
@@ -10192,26 +10237,6 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_COLON"
-#~ msgstr "Type:"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_FUR"
-#~ msgstr "Maak een nieuw celtype"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_PLAIN"
-#~ msgstr "Je kunt nieuwe soorten cellen maken door bestaande cellen te dupliceren en ze een nieuwe naam te geven. Celtypes kunnen aangepast worden om ze te specialiseren voor verschillende functies. Wanneer je een celtype aanpast zullen alle geplaatste cellen van dat type geüpdated worden."
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SCALES"
-#~ msgstr "Maak Nieuw Opslagbestand"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SKIN"
-#~ msgstr "Je kunt nieuwe soorten cellen maken door bestaande cellen te dupliceren en ze een nieuwe naam te geven. Celtypes kunnen aangepast worden om ze te specialiseren voor verschillende functies. Wanneer je een celtype aanpast zullen alle geplaatste cellen van dat type geüpdated worden."
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

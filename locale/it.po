@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 00:49+0200\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-09-17 19:57+0000\n"
 "Last-Translator: fractalino <francescosollazzi37@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -828,6 +828,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Esiste già un file con lo stesso nome ({0}). Vuoi sovrascriverlo?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Le note sull'aggiornamento sono troppo lughe"
 
@@ -1038,16 +1042,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Genera entità con forme di collisione"
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Rotazione:"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Rotazione:"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Questo pannello consente di impostare l'ordine di crescita delle cellule della colonia. La prima cellula dell'ordine sarà la cellula radice (o gemma). Puoi usare questa funzione per dare priorità alla crescita delle cellule più importanti oppure per garantire un corretto equilibrio tra la produzione e il consumo della colonia."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Rotazione:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Rotazione:"
 
 msgid "COLOUR"
 msgstr "Colore"
@@ -1589,6 +1593,32 @@ msgstr "Creazione..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creazione oggetti da salvataggio"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Tipo:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Crea un nuovo tipo di cellula"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Puoi creare nuovi tipi di cellula duplicando e rinominando tipi esistenti. Ciascun tipo di cellula può essere modificato affinché si specializzi in un determinato ruolo. Quando modifichi un tipo di cellula, tutte le cellule di quel tipo già posizionate vengono aggiornate."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Crea Nuovo Salvataggio"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Puoi creare nuovi tipi di cellula duplicando e rinominando tipi esistenti. Ciascun tipo di cellula può essere modificato affinché si specializzi in un determinato ruolo. Quando modifichi un tipo di cellula, tutte le cellule di quel tipo già posizionate vengono aggiornate."
 
 msgid "CREDITS"
 msgstr "Ringraziamenti"
@@ -5801,6 +5831,21 @@ msgstr "Duplica giocatore"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Il giocatore si è estinto"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Il salvataggio contiene uno stato di gioco non valido"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. Convertono il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] molto più velocemente rispetto a quanto farebbe il citoplasma. Questo processo si chiama [b]respirazione aerobica[/b]. Tuttavia, richiedono [thrive:compound type=\"oxygen\"][/thrive:compound] per funzionare: livelli più bassi li rallentano. Siccome i metabolosomi sono sospesi direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Questo nome è troppo lungo!"
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
@@ -10408,26 +10453,6 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_COLON"
-#~ msgstr "Tipo:"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_FUR"
-#~ msgstr "Crea un nuovo tipo di cellula"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_PLAIN"
-#~ msgstr "Puoi creare nuovi tipi di cellula duplicando e rinominando tipi esistenti. Ciascun tipo di cellula può essere modificato affinché si specializzi in un determinato ruolo. Quando modifichi un tipo di cellula, tutte le cellule di quel tipo già posizionate vengono aggiornate."
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SCALES"
-#~ msgstr "Crea Nuovo Salvataggio"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SKIN"
-#~ msgstr "Puoi creare nuovi tipi di cellula duplicando e rinominando tipi esistenti. Ciascun tipo di cellula può essere modificato affinché si specializzi in un determinato ruolo. Quando modifichi un tipo di cellula, tutte le cellule di quel tipo già posizionate vengono aggiornate."
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

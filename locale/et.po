@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 00:49+0200\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -876,6 +876,10 @@ msgstr "Peata mäng"
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Valitud failinimi ({0}) on juba olemas. Kas kirjutada üle?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Muuda märkmeid on liiga pikk"
 
@@ -1084,16 +1088,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "elanikkond:"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "elanikkond:"
-
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "elanikkond:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "elanikkond:"
 
 msgid "COLOUR"
 msgstr "Värv"
@@ -1663,6 +1667,32 @@ msgstr "Loomine..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objektide loomine salvestamisest"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Tüüp:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Looge uus lahtritüüp"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Saate luua uusi lahtritüüpe, dubleerides olemasolevad ja andes neile uue nime. Lahtritüüpe saab muuta, et spetsialiseeruda erinevatele rollidele. Lahtritüübi muutmisel värskendatakse kõiki seda tüüpi paigutatud lahtreid."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Loo uus salvestus"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Saate luua uusi lahtritüüpe, dubleerides olemasolevad ja andes neile uue nime. Lahtritüüpe saab muuta, et spetsialiseeruda erinevatele rollidele. Lahtritüübi muutmisel värskendatakse kõiki seda tüüpi paigutatud lahtreid."
 
 msgid "CREDITS"
 msgstr "Krediidid"
@@ -5972,6 +6002,21 @@ msgstr "Dubleeri pleier"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Salvestamisel on kehtetu mänguseisundi stseen"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Liigi nimi..."
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
@@ -10718,26 +10763,6 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_COLON"
-#~ msgstr "Tüüp:"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_FUR"
-#~ msgstr "Looge uus lahtritüüp"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_PLAIN"
-#~ msgstr "Saate luua uusi lahtritüüpe, dubleerides olemasolevad ja andes neile uue nime. Lahtritüüpe saab muuta, et spetsialiseeruda erinevatele rollidele. Lahtritüübi muutmisel värskendatakse kõiki seda tüüpi paigutatud lahtreid."
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SCALES"
-#~ msgstr "Loo uus salvestus"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SKIN"
-#~ msgstr "Saate luua uusi lahtritüüpe, dubleerides olemasolevad ja andes neile uue nime. Lahtritüüpe saab muuta, et spetsialiseeruda erinevatele rollidele. Lahtritüübi muutmisel värskendatakse kõiki seda tüüpi paigutatud lahtreid."
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

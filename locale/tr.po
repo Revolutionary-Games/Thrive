@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 00:49+0200\n"
-"PO-Revision-Date: 2026-10-12 16:58+0000\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
+"PO-Revision-Date: 2026-10-13 19:09+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -820,6 +820,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
 
@@ -1021,16 +1025,14 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
-#, fuzzy
-msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Koloni Dönme Hızı"
-
-#, fuzzy
-msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Koloni Hızı"
-
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
+
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Koloni Dönme Hızı"
+
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Koloni Hızı"
 
 msgid "COLOUR"
 msgstr "Renk"
@@ -1564,6 +1566,27 @@ msgstr "Oluşturuluyor..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan nesneler oluşturuluyor"
+
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Deri Türü:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr "Tüyler"
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Kürk"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr "Biber"
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Düzgün"
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Pullar"
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Deri"
 
 msgid "CREDITS"
 msgstr "Jenerik"
@@ -2120,19 +2143,13 @@ msgstr ""
 "\n"
 "Özelleşmenizi arttırmak için zaten fazlasına sahip olduğunuz bir organeli yerleştirmeyi deneyin ya da ne tür etkiye sahip olduğunu görmek üzere özelleşmeyi [i]azaltmak[/i] için başka bir organel türünü yerleştirmeyi deneyin."
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
-"Artık ana editörün bir beden planı editörü olduğu [b]Çok Hücreli Editörü'ne[/b] hoş geldiniz.\n"
+"Hücre koloniniz daha da büyüdükçe, koloninizin hareket etmesi ve dönmesi daha yavaş hale gelebilir.\n"
 "\n"
-"Temelde, türünüzü düzenlemek hala mikrop evresine benzer:\n"
-"- Soldaki panelden bir parça (bu sefer hücre türleri) seçin\n"
-"- Ardından, ekranı ortasındaki altıgen ızgarada, bedeninize yerleştirin\n"
-"- Sağdaki panelde, bazı bilinen istatistikleri görürsünüz\n"
+"[u]Koloninizin[/u] hareketini ve dönme hızını arttırmak için beden planınızdaki birçok hücreye [b]aktomiyozin[/b] organelini eklemeyi göz önünde bulundurmalısınız.\n"
 "\n"
-"Buradaki önemli fark, artık hücre türlerinde değişiklik yaparak yerleştireceğiniz tüm parçaları sizin oluşturmanızın gerektiğidir.\n"
-"\n"
-"Devam etmek için beden planınızdan yeni bir hücre yerleştirmeyi deneyin."
+"Bunu yapmak için soldaki panelden düzenlemek üzere bir hücre türü seçin, ardından devam etmek için hücre editöründe bir [b]aktomiyozin[/b] organeli yerleştirin."
 
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
@@ -5333,6 +5350,21 @@ msgstr "Oyuncuyu Çoğalt"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Oyuncunun nesli tükendi"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Radyasyon hasarı almak için bir radyoaktif parçaya yakın olmak gerekir."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Tür adı çok uzun!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Oyuncuya bağlı"
@@ -10329,26 +10361,6 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_COLON"
-#~ msgstr "Toksin Türü:"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_FUR"
-#~ msgstr "Yeni Hücre Türü Oluştur"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_PLAIN"
-#~ msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsiniz. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla, değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SCALES"
-#~ msgstr "Yeni Kayıt Oluştur"
-
-#, fuzzy
-#~ msgid "CREATURE_SKIN_TYPE_SKIN"
-#~ msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsiniz. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla, değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
 
 #~ msgid "PASSED_FULFILLED_CONDITION"
 #~ msgstr "AŞILAN: {0}"
