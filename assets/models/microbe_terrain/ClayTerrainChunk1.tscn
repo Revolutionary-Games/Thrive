@@ -7,7 +7,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxws5"]
 resource_name = "clay"
-cull_mode = 2
 albedo_color = Color(0.6455554, 0.5105478, 0.39702916, 1)
 albedo_texture = ExtResource("2_pxws5")
 roughness = 0.75454545
@@ -20,5 +19,5 @@ ao_texture = ExtResource("3_i3qqk")
 
 [node name="ClayTerrainChunk1" unique_id=1240875365 instance=ExtResource("1_q6tlx")]
 
-[node name="clay1" parent="." index="0" unique_id=1329373328]
+[node name="clay1" parent="." index="0" unique_id=2106453540]
 surface_material_override/0 = SubResource("StandardMaterial3D_pxws5")

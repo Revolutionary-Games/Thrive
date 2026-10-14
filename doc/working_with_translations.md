@@ -256,3 +256,9 @@ Now that you have the .po file used for the new localization created, you can tr
 the game. Simply open the file with Poedit or a simple text editor and translate the text.
 Since we are working with keys, you'll want to open en.po on the side too and use the English 
 game text there as a reference.
+
+# Fixing Conflicts
+
+It can be a bit annoying to fix branches with localization file
+conflicts. There is a written procedure for how to do that in
+[quick_fix_translations](quick_fix_translations.md) file.

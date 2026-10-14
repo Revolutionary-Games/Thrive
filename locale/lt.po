@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 01:44+0300\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -826,6 +826,10 @@ msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sve
 msgid "CELL_TYPE_NAME"
 msgstr "Ląstelės Tipo Pavadinimas"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Failas nurodytu pavadinimu {0} jau yra. Perrašyti?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Pakeitimų pastabos yra per ilgos"
 
@@ -1025,16 +1029,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Sukurti subjektus su susidūrimo formomis"
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(greitis, kuriuo DI rūšys mutuoja)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "{0} suvartojimas"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "{0} suvartojimas"
 
 msgid "COLOUR"
 msgstr "Spalva"
@@ -1635,6 +1639,28 @@ msgstr "Kuriama..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Pavadinimas:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr ""
+
 msgid "CREDITS"
 msgstr ""
 
@@ -2132,6 +2158,10 @@ msgstr "Chemoreceptorius"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr "Chemoreceptorius"
 
 #, fuzzy
@@ -5388,6 +5418,19 @@ msgid "PLAYER_DUPLICATE"
 msgstr ""
 
 msgid "PLAYER_EXTINCT"
+msgstr ""
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
+
+msgid "PLAYER_NAME_TOO_LONG"
 msgstr ""
 
 msgid "PLAYER_RELATIVE_MOVEMENT"

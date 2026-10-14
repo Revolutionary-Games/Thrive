@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 01:44+0300\n"
-"PO-Revision-Date: 2026-10-09 13:09+0000\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: 2026-10-14 07:42+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -821,6 +821,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "目标文件名{0}已存在。确定要覆盖吗？"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更改说明太长了"
 
@@ -1022,14 +1026,16 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr "生成具有碰撞形状的实体"
 
-msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "该选项卡允许设定群落细胞的生长顺序，其中排序首位的细胞即为根细胞（或称芽体）。您可以利用此功能优先生长更关键的细胞，或确保群落的物质生产与消耗维持适当的平衡。"
-
-msgid "COLONY_ROTATION_INCREASE"
+#, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
 msgstr "细胞群落旋转力"
 
-msgid "COLONY_SPEED_INCREASE"
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
 msgstr "细胞群落速度"
+
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "该选项卡允许设定群落细胞的生长顺序，其中排序首位的细胞即为根细胞（或称芽体）。您可以利用此功能优先生长更关键的细胞，或确保群落的物质生产与消耗维持适当的平衡。"
 
 msgid "COLOUR"
 msgstr "颜色"
@@ -1563,6 +1569,28 @@ msgstr "创建中……"
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
+
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "外皮类型："
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr "羽毛"
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "毛发"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "您可以通过复制现有的细胞类型并给它们一个新的名字来创建新的细胞类型。细胞类型可以被修改以使其专门用于不同的目的。当修改一个细胞类型时，所有该类型的已放置的细胞都会被更新。"
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "鳞片"
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "皮肤"
 
 msgid "CREDITS"
 msgstr "制作人名单"
@@ -2118,6 +2146,14 @@ msgstr ""
 "您可以通过仅使用少数几种细胞器（甚至仅使用一种）来提升特化程度。\n"
 "\n"
 "尝试放置一个您当前拥有数量最多的细胞器来提升您的特化程度，或者放置其他类型的细胞器来[i]降低[/i]特化程度，看看会产生什么效果。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"随着你的细胞群落越来越大，它可能变得难以移动与转向。\n"
+"\n"
+"你应该考虑在躯体设计中为多个细胞添加[b]肌动球蛋白[/b]细胞器以增加你的[u]细胞群落[/u]的移动与转向速度。\n"
+"\n"
+"为此，请从左侧面板里选中你要编辑的细胞类型，然后在细胞编辑器选项卡中放置一个[b]肌动球蛋白[/b]细胞器以继续。"
 
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
@@ -3800,19 +3836,19 @@ msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr "迈向宏观阶段的要求"
 
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
-msgstr "细胞平均相邻加成至少达到{0}% / {1}%"
+msgstr "细胞平均相邻加成至少达到{1}%（目前有{0}%）"
 
 msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
-msgstr "细胞数量至少达到{0} / {1}"
+msgstr "细胞数量至少达到 {1}（目前有{0}个）"
 
 msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
-msgstr "躯体设计中至少用到{0} / {1}种细胞"
+msgstr "躯体设计中至少用到{1}种细胞（目前有{0}种）"
 
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
 msgstr "使用比普通出芽繁殖更高级的繁殖方式"
 
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
-msgstr "总体特化水平至少达到{0}% / {1}%"
+msgstr "总体特化水平至少达到{1}%（目前有{0}%）"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
@@ -5318,6 +5354,21 @@ msgstr "玩家分裂"
 
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已灭绝"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "存档具有无效的游戏状态场景"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "需要靠近放射性碎块并受到辐射伤害。"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "物种名过长！"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 01:44+0300\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -827,6 +827,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "目標檔案名稱（{0}）已存在。是否要覆蓋？"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更新註記過長"
 
@@ -1020,16 +1024,16 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr "生成具有碰撞形狀的實體"
 
+#, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "旋轉："
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "旋轉："
+
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "此分頁允許設定群落細胞的生長順序，順序中的首個細胞是根細胞（或芽細胞）。您可以使用此功能優先生長更關鍵的細胞，或確保群落的生產與消耗維持適當的平衡。"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "旋轉："
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "旋轉："
 
 msgid "COLOUR"
 msgstr "顏色"
@@ -1563,6 +1567,32 @@ msgstr "創建中…"
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "從存檔中創建物件"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "毒素類型："
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "創建新細胞類型"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "您可以透過複製現有細胞類型並為其指定新名稱來建立新的細胞類型。可以修改細胞類型以使其專門用於不同的職責。修改細胞類型時，所有該類型的已放置的細胞都會被更新。"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "創建新存檔"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "您可以透過複製現有細胞類型並為其指定新名稱來建立新的細胞類型。可以修改細胞類型以使其專門用於不同的職責。修改細胞類型時，所有該類型的已放置的細胞都會被更新。"
 
 msgid "CREDITS"
 msgstr "製作人員"
@@ -2112,6 +2142,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"為了繼續進步，您最終需要放置一個[b]細胞核[/b]。\n"
+"\n"
+"添加[b]細胞核[/b]將解鎖更高級的細胞器，例如[b]連接器[/b]，它將允許您與同一物種的其他細胞結合並成為[u]多細胞生物[/u]。\n"
+"\n"
+"嘗試放置一個[b]細胞核[/b]來結束本教學。\n"
+"\n"
+"如果您的細胞尚未準備好演化細胞核，您可以使用[b]撤銷按鈕[/b]以[u]還原[/u]細胞核。"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "為了繼續進步，您最終需要放置一個[b]細胞核[/b]。\n"
 "\n"
@@ -5399,6 +5440,21 @@ msgstr "玩家分裂"
 
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已滅絕"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "存檔具有無效的遊戲狀態場景"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "需要靠近放射性物質塊並受到輻射傷害。"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "物種名稱過長！"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相對於玩家"

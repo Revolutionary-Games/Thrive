@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-12 01:44+0300\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -821,6 +821,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Celletype navn"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Det valgte filnavn ({0}) eksistere allerede. Overskriv?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Ændringsnoter er for lange"
 
@@ -1021,14 +1025,16 @@ msgstr "Kystnær"
 msgid "COLLISION_SHAPE"
 msgstr "Vis physics debug former"
 
-msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "Denne fane tillader indstilling af rækkefølgen koloniens celler gror i, hvor den første celle i rækken er rod cellen. Du kan bruge det til at prioritere væksten af vigtige celler, eller sørge for at koloniens produktion og forbrug er balanceret."
-
-msgid "COLONY_ROTATION_INCREASE"
+#, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
 msgstr "Koloni rotation"
 
-msgid "COLONY_SPEED_INCREASE"
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
 msgstr "Koloni hastighed"
+
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Denne fane tillader indstilling af rækkefølgen koloniens celler gror i, hvor den første celle i rækken er rod cellen. Du kan bruge det til at prioritere væksten af vigtige celler, eller sørge for at koloniens produktion og forbrug er balanceret."
 
 msgid "COLOUR"
 msgstr "Farve"
@@ -1562,6 +1568,32 @@ msgstr "Skaber..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Skaber objekter fra lagring"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Toksintype:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Skab en ny celle type"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Du kan skabe nye celle typer ved at duplikere eksisterende celler og give dem et nyt navn. Celle typer can modificeres for at specialisere dem til forskellige roller. Når en celle type modificeres vil alle placerede celler af samme type blive opdateret."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Gem ny fil"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Du kan skabe nye celle typer ved at duplikere eksisterende celler og give dem et nyt navn. Celle typer can modificeres for at specialisere dem til forskellige roller. Når en celle type modificeres vil alle placerede celler af samme type blive opdateret."
 
 msgid "CREDITS"
 msgstr "Anerkendelser"
@@ -2109,6 +2141,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
 "\n"
@@ -5376,6 +5419,21 @@ msgstr "Dupliker spiller"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Spilleren er uddød"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Lagringen har en ugyldig spil state scene"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Skal modtage strålingsskade ved at være tæt på en radioaktiv klump."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Artens navn er for lang!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativ spilleren"
