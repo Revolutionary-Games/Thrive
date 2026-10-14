@@ -1032,10 +1032,31 @@ public partial class CellBodyPlanEditorComponent :
                 }
             }
 
+            if (!isUsed)
+            {
+                // Reproduction cell types are considered used even when they aren't placed as regular cells
+                // (as they cannot be placed)
+                switch (ReproductionMethod)
+                {
+                    case MulticellularReproductionMethod.Sporulation:
+                        isUsed = ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(SporeCellType), editedCellType);
+                        break;
+                    case MulticellularReproductionMethod.SexualIsogamy:
+                        isUsed = ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteACellType), editedCellType);
+                        break;
+                    case MulticellularReproductionMethod.SexualAnisogamy:
+                        isUsed =
+                            ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteACellType), editedCellType) ||
+                            ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteBCellType), editedCellType);
+                        break;
+                    default:
+                        isUsed = false;
+                        break;
+                }
+            }
+
             if (isUsed)
                 continue;
-
-            // TODO: check reproduction types
 
             unusedCellTypePopup.DisplayForCellType(editedCellType.CellTypeName);
             return false;

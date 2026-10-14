@@ -391,7 +391,7 @@ public partial class MetaballBodyEditorComponent :
             if (isUsed)
                 continue;
 
-            // TODO: check reproduction types
+            // TODO: check reproduction types (will they exist for macroscopic?)
 
             unusedCellTypePopup.DisplayForCellType(editedCellType.CellTypeName);
             return false;
