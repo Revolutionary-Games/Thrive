@@ -282,6 +282,9 @@ public class RunResults : IArchivable
             results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
                 out var existing);
             population += existing;
+
+            // Also transfer any migrations from the parent species to the new species.
+            TransferMigrationsBetween(species, parentSpecies);
         }
 
         results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
