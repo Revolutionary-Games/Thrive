@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -826,6 +826,10 @@ msgstr ""
 
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "目標檔案名稱（{0}）已存在。是否要覆蓋？"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更新註記過長"
@@ -5436,6 +5440,21 @@ msgstr "玩家分裂"
 
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已滅絕"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "存檔具有無效的遊戲狀態場景"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "需要靠近放射性物質塊並受到輻射傷害。"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "物種名稱過長！"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相對於玩家"

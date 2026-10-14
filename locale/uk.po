@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: \"Waks (Walava)\" <dobranskijmaksim81@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -824,6 +824,10 @@ msgstr ""
 
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Обране файлове ім'я ({0}) уже існує. Переписати?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Нотатки змін надто довгі"
@@ -5367,6 +5371,21 @@ msgstr "Дублікат гравця"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Гравець вимер"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Збереження містить недійсне місце дії в грі"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Необхідно отримувати пошкодження від радіації, знаходячись поблизу від радіоактивного фрагмента"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Назва виду за довга!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Відносно гравця"

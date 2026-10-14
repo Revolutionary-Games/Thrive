@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -818,6 +818,10 @@ msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az ért�
 
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "A kiválasztott fájl neve ({0}) már létezik. Felülírod?"
 
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -5870,6 +5874,20 @@ msgstr "A játékos megkettőzése"
 
 msgid "PLAYER_EXTINCT"
 msgstr "A játékos faja kihalt"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Faj neve túl hosszú!"
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"

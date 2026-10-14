@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -841,6 +841,10 @@ msgstr "Laita peli tauolle"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Valittu tiedostonimi ({0}) on jo olemassa. Kirjoitetaanko yli?"
 
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -5944,6 +5948,21 @@ msgstr "pelaaja kuoli"
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "pelaaja kuoli"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Tallennuksessa on virheellinen pelin tilan skene"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Lajin nimi..."
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen pelaajaan"

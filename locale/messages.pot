@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,9 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/base_stage/EditorBase.cs:973
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:568
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:576
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:729
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:737
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -1105,8 +1105,13 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:666
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:670
 msgid "CELL_TYPE_NAME"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:219
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:308
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:278 ../src/steam/SteamClient.cs:282
@@ -1121,7 +1126,7 @@ msgstr ""
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1464
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
@@ -2929,19 +2934,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3443
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3464
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3278
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3299
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3454
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3475
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3447
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3468
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3405,7 +3410,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3460
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3481
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3569,7 +3574,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3378
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3399
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -4553,7 +4558,7 @@ msgstr ""
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:252
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:278
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:129
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
@@ -4872,7 +4877,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2024
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5323,7 +5328,7 @@ msgstr ""
 msgid "MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1428
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1446
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
@@ -6697,7 +6702,7 @@ msgstr ""
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:340
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:348
 msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
@@ -6714,7 +6719,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3475
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3496
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6784,7 +6789,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2023
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2041
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6808,8 +6813,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3289
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3310
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3322
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:879
 msgid "N_A"
@@ -7392,7 +7397,7 @@ msgstr ""
 msgid "PIN_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2519
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2537
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
@@ -7445,6 +7450,25 @@ msgstr ""
 
 #: ../src/saving/SaveHelper.cs:670
 msgid "PLAYER_EXTINCT"
+msgstr ""
+
+#: ../src/general/utils/PlayerNameUtils.cs:29
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#: ../src/general/utils/PlayerNameUtils.cs:43
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:1137
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3060
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3066
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:2573
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr ""
+
+#: ../src/general/utils/PlayerNameUtils.cs:35
+msgid "PLAYER_NAME_TOO_LONG"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:2675
@@ -7519,7 +7543,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3308
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3329
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -8761,7 +8785,7 @@ msgstr ""
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:248
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:274
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 

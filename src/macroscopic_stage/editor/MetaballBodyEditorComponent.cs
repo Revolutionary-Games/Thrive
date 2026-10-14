@@ -1133,7 +1133,10 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnNewCellTypeNameChanged(string newText)
     {
-        if (!IsNewCellTypeNameValid(newText))
+        var errorMessage = Editor.GetNewCellTypeNameValidationError(newText);
+        duplicateCellTypeName.TooltipText = errorMessage ?? Localization.Translate("PLAYER_NAME_REQUIREMENTS");
+
+        if (errorMessage != null)
         {
             GUICommon.MarkInputAsInvalid(duplicateCellTypeName);
         }
@@ -1141,14 +1144,6 @@ public partial class MetaballBodyEditorComponent :
         {
             GUICommon.MarkInputAsValid(duplicateCellTypeName);
         }
-    }
-
-    private bool IsNewCellTypeNameValid(string text)
-    {
-        // Name is invalid if it is empty or a duplicate
-        // TODO: should this ensure the name doesn't have trailing whitespace?
-        return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.ModifiableCellTypes.Any(c =>
-            c.CellTypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private void OnNewCellTextAccepted(string text)
@@ -1164,9 +1159,12 @@ public partial class MetaballBodyEditorComponent :
     {
         var newTypeName = duplicateCellTypeName.Text;
 
-        if (!IsNewCellTypeNameValid(newTypeName))
+        var errorMessage = Editor.GetNewCellTypeNameValidationError(newTypeName);
+        if (errorMessage != null)
         {
+            duplicateCellTypeName.TooltipText = errorMessage;
             GD.Print("Bad name for new cell type");
+            ToolTipManager.Instance.ShowPopup(errorMessage, 2.5f);
             Editor.OnInvalidAction();
             return;
         }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -833,6 +833,10 @@ msgstr "Pauzeer het spel"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Veranderingsnotities zijn te lang"
@@ -5826,6 +5830,21 @@ msgstr "Duplicaat speler"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Opgeslagen bestand heeft ongeldige \"game state scene\""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Een cel heeft een nucleus nodig om lysosomen te evolueren."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Soortnaam is te lang!"
 
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"

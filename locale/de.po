@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 17:13+0300\n"
+"POT-Creation-Date: 2026-10-14 11:04+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -830,6 +830,10 @@ msgstr ""
 
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
+
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Änderungsnotizen sind zu lang"
@@ -5517,6 +5521,21 @@ msgstr "Spieler duplizieren"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Speicherstand hat eine ungültige Spielstatus-Szene"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Artenname ist zu lang!"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Spielerabhängig"
