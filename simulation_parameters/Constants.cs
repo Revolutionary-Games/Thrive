@@ -271,7 +271,7 @@ public static class Constants
     public const float ACTOMYOSIN_ENERGY_COST = 12.0f;
 
     /// <summary>
-    ///   ATP cost per actomyosin organelle while a colony is moving.
+    ///   ATP cost per axon organelle while a colony is moving.
     /// </summary>
     public const float AXON_ENERGY_COST = 12.0f;
 
