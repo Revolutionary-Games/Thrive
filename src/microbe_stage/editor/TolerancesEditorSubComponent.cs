@@ -57,6 +57,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider uvResistanceSlider = null!;
 
     [Export]
+    private Control uvResistanceSpacer = null!;
+
+    [Export]
     [ExportCategory("Displays")]
     private Label temperatureMinLabel = null!;
 
@@ -100,6 +103,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Label oxygenResistanceTotalLabel = null!;
 
     [Export]
+    private HBoxContainer oxygenResistanceOsmoregulationCostLabelContainer = null!;
+
+    [Export]
+    private Label oxygenResistanceOsmoregulationCostLabel = null!;
+
+    [Export]
     private ToleranceRangeDisplay oxygenResistanceRangeDisplay = null!;
 
     [Export]
@@ -110,6 +119,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private Label uvResistanceTotalLabel = null!;
+
+    [Export]
+    private HBoxContainer uvResistanceOsmoregulationCostLabelContainer = null!;
+
+    [Export]
+    private Label uvResistanceOsmoregulationCostLabel = null!;
 
     [Export]
     private ToleranceRangeDisplay uvResistanceRangeDisplay = null!;
@@ -244,6 +259,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             // The latest data should have already been loaded into CurrentTolerances
 
             SetOxygenSliderWidth();
+            SetUVSliderWidth();
             ApplyCurrentValuesToGUI();
         }
         else
@@ -253,6 +269,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             CurrentTolerances.CopyFrom(speciesTolerance);
 
             SetOxygenSliderWidth();
+            SetUVSliderWidth();
             ResetToCurrentSpeciesTolerances();
         }
 
@@ -481,6 +498,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         oxygenResistanceSpacer.SetStretchRatio(1 - sliderMaxValue);
     }
 
+    private void SetUVSliderWidth()
+    {
+        // Allow for bigger max oxygen tolerance range when loading older save
+        var uvMaxValue =
+            (float)(Math.Ceiling(CurrentTolerances.UVResistance / Constants.TOLERANCE_UV_STEP) *
+                Constants.TOLERANCE_UV_STEP);
+        var sliderMaxValue = Math.Max(Constants.TOLERANCE_UV_RANGE_MAX, uvMaxValue);
+
+        uvResistanceSlider.MaxValue = sliderMaxValue;
+        uvResistanceSlider.SetStretchRatio(sliderMaxValue);
+        uvResistanceSpacer.SetStretchRatio(1 - sliderMaxValue);
+    }
+
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
@@ -524,7 +554,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (uvResistanceModifierToolTip != null)
         {
-            uvResistanceModifierToolTip.DisplayedValue =
+            uvResistanceModifierToolTip.DisplayedValue = Constants.TOLERANCE_UV_DEFAULT_VALUE +
                 CurrentTolerances.UVResistance + organelleModifiers.UVResistance;
 
             Editor.GetCurrentToleranceSummaryByElement(ToleranceModifier.UV, tempToleranceModifiers);
@@ -930,6 +960,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         oxygenResistanceTotalLabel.Text =
             percentageFormat.FormatSafe(Math.Round(oxygenResistanceWithOrganelles * 100, 1));
 
+        oxygenResistanceOsmoregulationCostLabelContainer.Visible = CurrentTolerances.OxygenResistance > 0;
+        oxygenResistanceOsmoregulationCostLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(Math.Min(
+                    Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX, CurrentTolerances.OxygenResistance) * 100 *
+                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER, 1));
+
         // Epsilon is subtracted here to avoid -0 triggering this
         if (oxygenResistanceWithOrganelles < requiredOxygenResistance - MathUtils.EPSILON)
         {
@@ -969,12 +1005,20 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // UV Resistance
 
-        var uvResistanceWithOrganelles = Math.Max(CurrentTolerances.UVResistance + organelleModifiers.UVResistance, 0);
+        var uvResistanceWithOrganelles = Math.Max(Constants.TOLERANCE_UV_DEFAULT_VALUE +
+            CurrentTolerances.UVResistance +
+            organelleModifiers.UVResistance, 0);
 
         uvResistanceRangeDisplay.SetBoundPositionsManual(0, uvResistanceWithOrganelles);
         uvResistanceRangeDisplay.UpdateMarker(requiredUVResistance);
 
         uvResistanceTotalLabel.Text = percentageFormat.FormatSafe(Math.Round(uvResistanceWithOrganelles * 100, 1));
+
+        uvResistanceOsmoregulationCostLabelContainer.Visible = CurrentTolerances.UVResistance > 0;
+        uvResistanceOsmoregulationCostLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(
+                Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_COST_MAX, CurrentTolerances.UVResistance) * 100 *
+                Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER), 1);
 
         if (uvResistanceWithOrganelles < requiredUVResistance - MathUtils.EPSILON)
         {

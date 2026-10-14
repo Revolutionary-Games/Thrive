@@ -27,7 +27,9 @@ public struct ToleranceResult
 
     public double OxygenScore;
     public float PerfectOxygenAdjustment;
+    public float OxygenResistance;
 
     public double UVScore;
     public float PerfectUVAdjustment;
+    public float UVResistance;
 }

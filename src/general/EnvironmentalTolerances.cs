@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// </summary>
 public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmentalTolerances
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     [Flags]
     public enum ToleranceChangedStats
@@ -20,13 +20,13 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     /// <summary>
     ///   Temperature (in C) that this species likes to be in
     /// </summary>
-    public float PreferredTemperature { get; set; } = 15;
+    public float PreferredTemperature { get; set; }
 
     /// <summary>
     ///   How wide a temperature range this species can stay in effectively. The range of temperatures is
     ///   <c>PreferredTemperature - TemperatureTolerance</c> to <c>PreferredTemperature + TemperatureTolerance</c>
     /// </summary>
-    public float TemperatureTolerance { get; set; } = 21;
+    public float TemperatureTolerance { get; set; }
 
     /// <summary>
     ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
@@ -38,9 +38,9 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     ///     GUI will break when this data is fed in.
     ///   </para>
     /// </remarks>
-    public float PressureMinimum { get; set; } = 71325;
+    public float PressureMinimum { get; set; }
 
-    public float PressureTolerance { get; set; } = 2000000;
+    public float PressureTolerance { get; set; }
 
     public float UVResistance { get; set; }
     public float OxygenResistance { get; set; }
@@ -87,22 +87,22 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     {
         ToleranceChangedStats changes = 0;
 
-        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.01f ||
-            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.01f)
+        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.001f ||
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.001f)
         {
             changes |= ToleranceChangedStats.Temperature;
         }
 
-        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
-            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
+        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.001f ||
+            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.001f)
         {
             changes |= ToleranceChangedStats.Pressure;
         }
 
-        if (Math.Abs(UVResistance - other.UVResistance) > 0.01f)
+        if (Math.Abs(UVResistance - other.UVResistance) > 0.001f)
             changes |= ToleranceChangedStats.UVResistance;
 
-        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.01f)
+        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.001f)
             changes |= ToleranceChangedStats.OxygenResistance;
 
         return changes;
@@ -138,6 +138,11 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
 
         UVResistance = reader.ReadFloat();
         OxygenResistance = reader.ReadFloat();
+
+        if (version <= 2)
+        {
+            UVResistance = Math.Min(UVResistance, Constants.TOLERANCE_UV_RANGE_MAX);
+        }
     }
 
     public override bool Equals(object? obj)

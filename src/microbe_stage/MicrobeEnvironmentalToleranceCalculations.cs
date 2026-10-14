@@ -67,7 +67,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureMinimum = speciesTolerances.PressureMinimum,
             PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
+            UVResistance = speciesTolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE,
         };
 
         var noExtraEffects = resolvedTolerances;
@@ -76,7 +76,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, speciesTolerances, environment,
+            excludePositiveBuffs);
     }
 
     /// <summary>
@@ -93,14 +94,15 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureMinimum = speciesTolerances.PressureMinimum,
             PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
+            UVResistance = speciesTolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE,
         };
 
         var noExtraEffects = resolvedTolerances;
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, speciesTolerances, environment,
+            excludePositiveBuffs);
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
@@ -109,6 +111,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float totalTemperatureChange = 0;
         float totalOxygenChange = 0;
         float totalUvChange = 0;
+        float totalUvPenalty = 0;
         float totalPressureMinimumChange = 0;
         float totalPressureToleranceChange = 0;
 
@@ -124,34 +127,36 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 var uvChange = organelleDefinition.ToleranceModifierUV;
                 var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
 
-                // apply specialization bonus
-                if (temperatureChange > 0)
-                    temperatureChange *= totalSpecializationBonus;
-                if (oxygenChange > 0)
-                    oxygenChange *= totalSpecializationBonus;
-                if (uvChange > 0)
-                    uvChange *= totalSpecializationBonus;
-                if (pressureToleranceChange > 0)
-                    pressureToleranceChange *= totalSpecializationBonus;
-
                 // Buffer all changes so that float rounding doesn't cause us issues
                 totalTemperatureChange += temperatureChange;
                 totalOxygenChange += oxygenChange;
                 totalUvChange += uvChange;
                 totalPressureToleranceChange += pressureToleranceChange;
             }
+
+            totalUvPenalty += Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
         }
+
+        // apply specialization bonus
+        if (totalTemperatureChange > 0)
+            totalTemperatureChange *= totalSpecializationBonus;
+        if (totalOxygenChange > 0)
+            totalOxygenChange *= totalSpecializationBonus;
+        if (totalUvChange > 0)
+            totalUvChange *= totalSpecializationBonus;
+        if (totalPressureToleranceChange > 0)
+            totalPressureToleranceChange *= totalSpecializationBonus;
 
         // Then apply all at once
         tolerances.TemperatureTolerance += totalTemperatureChange;
         tolerances.OxygenResistance += totalOxygenChange;
-        tolerances.UVResistance += totalUvChange;
+        tolerances.UVResistance += totalUvChange - totalUvPenalty;
         tolerances.PressureMinimum -= totalPressureMinimumChange;
         tolerances.PressureTolerance += totalPressureToleranceChange;
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
-        ref ToleranceValues tolerances, float totalSpecializationBonus)
+        float totalSpecializationBonus, ref ToleranceValues tolerances)
     {
         // This is a separate overload as this uses an extra enumerator call (and putting in the indexer requirement
         // to the base-read-only cell layout would require quite expensive operations in facade types).
@@ -159,6 +164,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float totalTemperatureChange = 0;
         float totalOxygenChange = 0;
         float totalUvChange = 0;
+        float totalUvPenalty = 0;
         float totalPressureMinimumChange = 0;
         float totalPressureToleranceChange = 0;
 
@@ -173,28 +179,30 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 var uvChange = organelleDefinition.ToleranceModifierUV;
                 var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
 
-                // apply specialization bonus
-                if (temperatureChange > 0)
-                    temperatureChange *= totalSpecializationBonus;
-                if (oxygenChange > 0)
-                    oxygenChange *= totalSpecializationBonus;
-                if (uvChange > 0)
-                    uvChange *= totalSpecializationBonus;
-                if (pressureToleranceChange > 0)
-                    pressureToleranceChange *= totalSpecializationBonus;
-
                 // Buffer all changes so that float rounding doesn't cause us issues
                 totalTemperatureChange += temperatureChange;
                 totalOxygenChange += oxygenChange;
                 totalUvChange += uvChange;
                 totalPressureToleranceChange += pressureToleranceChange;
             }
+
+            totalUvPenalty += Constants.TOLERANCE_UV_HEX_DEBUFF * organelleDefinition.HexCount;
         }
+
+        // apply specialization bonus
+        if (totalTemperatureChange > 0)
+            totalTemperatureChange *= totalSpecializationBonus;
+        if (totalOxygenChange > 0)
+            totalOxygenChange *= totalSpecializationBonus;
+        if (totalUvChange > 0)
+            totalUvChange *= totalSpecializationBonus;
+        if (totalPressureToleranceChange > 0)
+            totalPressureToleranceChange *= totalSpecializationBonus;
 
         // Then apply all at once
         tolerances.TemperatureTolerance += totalTemperatureChange;
         tolerances.OxygenResistance += totalOxygenChange;
-        tolerances.UVResistance += totalUvChange;
+        tolerances.UVResistance += totalUvChange - totalUvPenalty;
         tolerances.PressureMinimum -= totalPressureMinimumChange;
         tolerances.PressureTolerance += totalPressureToleranceChange;
     }
@@ -204,10 +212,22 @@ public static class MicrobeEnvironmentalToleranceCalculations
     {
         result.Clear();
 
+        var cellSizeLabel = new SimpleReadableName(Localization.Translate("CELL_SIZE"));
+
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
-            var organelleDefinition = organelles[i].Definition;
+            var organelle = organelles[i];
+
+            if (modifier == ToleranceModifier.UV)
+            {
+                var cellSizeLabelValue = result.GetValueOrDefault(cellSizeLabel, 0);
+
+                result[cellSizeLabel] =
+                    cellSizeLabelValue - organelle.Definition.HexCount * Constants.TOLERANCE_UV_HEX_DEBUFF;
+            }
+
+            var organelleDefinition = organelle.Definition;
             if (!organelleDefinition.ToleranceEffects.TryGetValue(modifier, out var value))
                 continue;
 
@@ -235,6 +255,11 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             foreach (var organelleTemplate in cellType.Organelles)
             {
+                if (modifier == ToleranceModifier.UV)
+                {
+                    totalEffect -= organelleTemplate.Definition.HexCount * Constants.TOLERANCE_UV_HEX_DEBUFF;
+                }
+
                 var organelleDefinition = organelleTemplate.Definition;
 
                 if (!organelleDefinition.ToleranceEffects.TryGetValue(modifier, out var value))
@@ -277,7 +302,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureMinimum = speciesTolerances.PressureMinimum,
             PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
+            UVResistance = speciesTolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE,
         };
 
         var noExtraEffects = resolvedTolerances;
@@ -286,7 +311,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, speciesTolerances, environment,
+            excludePositiveBuffs);
     }
 
     public static void ApplyCellEffectsOnTolerances(IndividualHexLayout<CellTemplate> cells,
@@ -309,7 +335,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             var totalSpecializationBonus = type.CellTypeSpecializationBonus *
                 CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cellTemplate, cells);
 
-            ApplyOrganelleEffectsOnTolerances(type.Organelles, ref typeTolerances, totalSpecializationBonus);
+            ApplyOrganelleEffectsOnTolerances(type.Organelles, totalSpecializationBonus, ref typeTolerances);
         }
 
         // We apply the averaging here at the end to preserve more precision
@@ -428,6 +454,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.ProcessSpeedModifier = 1;
         result.HealthModifier = 1;
         result.OsmoregulationModifier = 1;
+        result.SliderOsmoregulationAdditionalModifier = 0;
 
         var temperatureScore = (float)data.TemperatureScore;
         if (temperatureScore < 1)
@@ -464,15 +491,28 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (oxygenScore < 1)
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_OXYGEN_HEALTH_MIN, oxygenScore);
-            result.OsmoregulationModifier *=
-                Math.Min(Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MAX, 2 - oxygenScore);
+            result.ProcessSpeedModifier *=
+                Math.Max(Constants.TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX, oxygenScore);
+        }
+
+        if (data.OxygenResistance > 0)
+        {
+            result.SliderOsmoregulationAdditionalModifier += Math.Min(
+                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX,
+                data.OxygenResistance * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER);
         }
 
         var uvScore = (float)data.UVScore;
         if (uvScore < 1)
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, uvScore);
-            result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_MAX, 2 - uvScore);
+            result.ProcessSpeedModifier *= Math.Max(Constants.TOLERANCE_UV_SPEED_MODIFIER_MAX, uvScore);
+        }
+
+        if (data.UVResistance > 0)
+        {
+            result.SliderOsmoregulationAdditionalModifier += Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_COST_MAX,
+                data.UVResistance * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER);
         }
 
 #if DEBUG
@@ -522,7 +562,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     private static ToleranceResult CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, IBiomeConditions environment, bool excludePositiveBuffs)
+        in ToleranceValues noExtraEffects, IReadOnlyEnvironmentalTolerances customTolerances,
+        IBiomeConditions environment,
+        bool excludePositiveBuffs)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -537,6 +579,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
+        result.OxygenResistance = customTolerances.OxygenResistance;
+        result.UVResistance = customTolerances.UVResistance;
 
         // Need to get minimum pressure a little bit below perfect pressure to make sure microbes can adjust perfectly
         result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PressureMinimum -
