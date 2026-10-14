@@ -143,6 +143,9 @@ public partial class CellBodyPlanEditorComponent :
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
+    private UnusedCellTypePopup unusedCellTypePopup = null!;
+
+    [Export]
     private CustomWindow duplicateCellTypeDialog = null!;
 
     [Export]
@@ -1010,6 +1013,31 @@ public partial class CellBodyPlanEditorComponent :
         if (UsesManualPlayerLayout && manualLayoutHasErrors)
         {
             ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR"), 4);
+            return false;
+        }
+
+        // Manual layout always reflects the small layout, so we can ignore it in this check:
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            var editedCellType = GetEditedCellDataIfEdited(cellType);
+            bool isUsed = false;
+
+            foreach (var cell in editedMicrobeCells.AsModifiable())
+            {
+                if (cell.Data != null && ReferenceEquals(GetEditedCellDataIfEdited(cell.Data.ModifiableCellType),
+                        editedCellType))
+                {
+                    isUsed = true;
+                    break;
+                }
+            }
+
+            if (isUsed)
+                continue;
+
+            // TODO: check reproduction types
+
+            unusedCellTypePopup.DisplayForCellType(editedCellType.CellTypeName);
             return false;
         }
 
