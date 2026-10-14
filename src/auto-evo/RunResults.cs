@@ -415,7 +415,7 @@ public class RunResults : IArchivable
         return true;
     }
 
-    public void ApplyResults(GameWorld world, bool skipMutations)
+    public void ApplyResults(GameWorld world, bool skipMutations, bool throwOnError = false)
     {
         foreach (var entry in results)
         {
@@ -454,7 +454,7 @@ public class RunResults : IArchivable
 
                         if (!patch.AddSpecies(entry.Key, populationEntry.Value))
                         {
-                            GD.PrintErr("RunResults has new species that already exists in patch");
+                            ReportApplyError("RunResults has new species that already exists in patch", throwOnError);
                         }
                     }
                 }
@@ -471,9 +471,9 @@ public class RunResults : IArchivable
                     if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value) &&
                         populationEntry.Value > 0)
                     {
-                        GD.PrintErr(
+                        ReportApplyError(
                             $"Failed to apply species ({entry.Key}) population ({populationEntry.Value}) to patch " +
-                            $"({patch.Name}) it should be in");
+                            $"({patch.Name}) it should be in", throwOnError);
                     }
                 }
             }
@@ -488,15 +488,16 @@ public class RunResults : IArchivable
 
                 if (!from.UpdateSpeciesSimulationPopulation(entry.Key, remainingPopulation))
                 {
-                    GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
+                    ReportApplyError("RunResults failed to update population for a species in a patch it moved from",
+                        throwOnError);
                 }
 
                 if (!to.UpdateSpeciesSimulationPopulation(entry.Key, newPopulation))
                 {
                     if (!to.AddSpecies(entry.Key, newPopulation))
                     {
-                        GD.PrintErr("RunResults failed to update population and also add species failed on " +
-                            "migration target patch");
+                        ReportApplyError("RunResults failed to update population and also add species failed on " +
+                            "migration target patch", throwOnError);
                     }
                 }
             }
@@ -518,18 +519,20 @@ public class RunResults : IArchivable
 
                         if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, 0))
                         {
-                            GD.PrintErr("RunResults failed to update population for a species that split");
+                            ReportApplyError("RunResults failed to update population for a species that split",
+                                throwOnError);
                         }
 
                         if (!patch.AddSpecies(entry.Value.SplitOff, population))
                         {
-                            GD.PrintErr("RunResults failed to add species to patch that split off");
+                            ReportApplyError("RunResults failed to add species to patch that split off", throwOnError);
                         }
                     }
                 }
                 else
                 {
-                    GD.PrintErr("List of split off patches is null, can't actually perform the split");
+                    ReportApplyError("List of split off patches is null, can't actually perform the split",
+                        throwOnError);
                 }
             }
         }
@@ -1509,6 +1512,17 @@ public class RunResults : IArchivable
         results[species] = result;
 
         return result;
+    }
+
+    /// <summary>
+    ///   GUI callers retain best-effort application; unattended simulations must stop on a partial application.
+    /// </summary>
+    private static void ReportApplyError(string message, bool throwOnError)
+    {
+        if (throwOnError)
+            throw new InvalidOperationException(message);
+
+        GD.PrintErr(message);
     }
 
     /// <summary>
