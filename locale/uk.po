@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
-"PO-Revision-Date: 2026-09-27 17:28+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"Last-Translator: \"Waks (Walava)\" <dobranskijmaksim81@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -520,6 +520,10 @@ msgstr "Придоння"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Стати макроскопічним ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітинності ({0}/{1})"
 
@@ -821,6 +825,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Обране файлове ім'я ({0}) уже існує. Переписати?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Нотатки змін надто довгі"
 
@@ -862,6 +870,10 @@ msgstr "Кнопки ввімкнення читів"
 
 msgid "CHEAT_MENU"
 msgstr "Меню читів"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Доступне лише починаючи з Багатоклітинної Стадії й далі."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
@@ -1029,14 +1041,6 @@ msgstr "Швидкість колонії"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Ця вкладка дозволяє налаштувати порядок, у якому ростуть клітини колонії, причому перша клітина в цьому порядку є кореневою (або бруньковою) клітиною. Ви можете використовувати це, щоб надавати пріоритет росту важливіших клітин або забезпечити належний баланс між виробництвом і споживанням колонії."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Обертання колонії"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Швидкість колонії"
 
 msgid "COLOUR"
 msgstr "Колір"
@@ -1567,6 +1571,32 @@ msgstr "Створення..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Створюємо об'єкти зі збереження"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Тип токсину:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Створити новий тип клітини"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Ви можете створювати новий тип клітини, дублюючи дані та надаючи нову назву. Типи клітин можна модифікувати для спеціалізації їх до різних ролей. Коли зміниться тип клітини, такі самі розміщені клітини теж будуть оновлені."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Створити нове збереження"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Ви можете створювати новий тип клітини, дублюючи дані та надаючи нову назву. Типи клітин можна модифікувати для спеціалізації їх до різних ролей. Коли зміниться тип клітини, такі самі розміщені клітини теж будуть оновлені."
 
 msgid "CREDITS"
 msgstr "Титри"
@@ -2121,7 +2151,73 @@ msgstr ""
 "\n"
 "Спробуйте розмістити органелу, якої у вас уже найбільше, щоб підвищити спеціалізацію, або інший тип, щоб [i]знизити[/i] спеціалізацію та побачити, який це матиме ефект."
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
+
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
+"\n"
+"Однак система розширюється й тепер включає бонуси за сусідство клітин. А показник спеціалізації тепер відображає [u]середню спеціалізацію[/u] всього плану будови тіла.\n"
+"\n"
+"Коли клітини одного типу розміщені поруч одна з одною, кожна з них отримує [b]додаткову[/b] спеціалізацію.\n"
+"\n"
+"Спробуйте розмістити клітину поруч із клітиною такого самого типу, щоб побачити зелені стрілки, які вказують на бонуси."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "У багатоклітинних організмів спеціалізація клітин усе ще діє та надає вже згадані бонуси.\n"
 "\n"
@@ -2209,6 +2305,7 @@ msgstr "Розпочати ендосимбіоз для цього виду (д
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Ендосимбіоз"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "{0}: {1} /секунд"
 
@@ -2217,12 +2314,6 @@ msgstr "{0}: -{1} АТФ"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} АТФ\n"
-"При поглинанні:\n"
-"{2}"
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Тиск споживання енергії"
@@ -3676,6 +3767,10 @@ msgstr ""
 "Швидше за все, це збереження є пошкодженим або його новіший формат не є зрозумілим для цієї версії Thrive.\n"
 "Все одно спробувати завантажити збереження?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Завантажити гру"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3738,6 +3833,43 @@ msgstr "Макроскопічний"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "На макроскопічному етапі мембрану більше не можна змінювати"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Макроскопічний Редактор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Макроскопічний Редактор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Макроскопічний Редактор"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Початкова кількість клітин"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Макроскопічний прототип"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "розмноження в біомі {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
+"\n"
+"Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Макроскопічний Редактор"
@@ -4426,7 +4558,12 @@ msgstr "Переміститися на будь-яку ділянку"
 msgid "MOVE_TO_LAND"
 msgstr "Перейти на сушу"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Перейдіть до стадії пізньої багатоклітинності (макроскопічної). Доступна при достатньому розмірі клітинної колонії."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Перейдіть до стадії пізньої багатоклітинності (макроскопічної). Доступна при достатньому розмірі клітинної колонії."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -4924,10 +5061,6 @@ msgstr "Аксон"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Аксони є нервовими тканинами, що використовуються нейронами для з'єднання й комунікації один з одним. Розміщення цієї органели на клітині перетворює її на мозкову тканину."
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Проштрихніть нею інші клітини."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Макроскопічна"
 
@@ -5241,6 +5374,21 @@ msgstr "Дублікат гравця"
 msgid "PLAYER_EXTINCT"
 msgstr "Гравець вимер"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Збереження містить недійсне місце дії в грі"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Необхідно отримувати пошкодження від радіації, знаходячись поблизу від радіоактивного фрагмента"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Назва виду за довга!"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Відносно гравця"
 
@@ -5275,6 +5423,19 @@ msgstr "програвати інтро з мікробом перед ново�
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Грати з поточними налаштуваннями"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "популяція:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
@@ -6252,6 +6413,10 @@ msgstr "Відвідайте"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузи"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Назва:"
 
 #, fuzzy
 msgid "START"
@@ -7691,6 +7856,9 @@ msgstr "Колесо вправо"
 
 msgid "WHEEL_UP"
 msgstr "Колесо вгору"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Наша Wiki"
@@ -10077,6 +10245,16 @@ msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "та"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} АТФ\n"
+#~ "При поглинанні:\n"
+#~ "{2}"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Створити новий тип клітини"
 
@@ -10638,15 +10816,6 @@ msgstr "Віддалитись"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Детальна статистика про поточну гру"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Макроскопічний прототип"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
-#~ "\n"
-#~ "Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
 
 #~ msgid "HOLD_FOR_CURSOR"
 #~ msgstr "Утримуйте TODO: введення для курсору"

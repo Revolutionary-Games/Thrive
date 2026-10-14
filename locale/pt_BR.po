@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
-"PO-Revision-Date: 2026-09-13 20:12+0000\n"
-"Last-Translator: Lucas Henrique Alves Almeida <lukkas.hnr@gmail.com>\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -520,6 +520,10 @@ msgstr "Batipelágico"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tornar-se Multicelular ({0}/{1})"
 
@@ -823,6 +827,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do Tipo de Célula"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "O nome do arquivo ({0}) já existe. Sobrescrever?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de mudança são muito longas"
 
@@ -854,6 +862,10 @@ msgstr "Cheats ativados"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de Trapaças"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Disponível apenas a partir do Estágio Multicelular."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder processos da célula"
@@ -1020,14 +1032,6 @@ msgstr "Rotação:"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Esta aba permite definir a ordem em que as células da colônia crescem, com a primeira célula na ordem sendo a célula raiz (ou broto). Você pode usar isso para priorizar o crescimento de células mais cruciais ou garantir que a produção e consumo da colônia estejam propriamente equilibrados."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Rotação:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Rotação:"
 
 msgid "COLOUR"
 msgstr "Coloração"
@@ -1565,6 +1569,32 @@ msgstr "Criando..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Criando objetos do jogo salvo"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Tipo de Toxina:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Criar novo tipo de célula"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Você pode criar novos tipos de célula duplicando os que já existem e os renomeando. Os tipos de célula podem ser alterados para especializá-los em diferentes funções. Ao alterá-los no editor, todas as células no organismo serão atualizadas."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Criar Novo Jogo"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Você pode criar novos tipos de célula duplicando os que já existem e os renomeando. Os tipos de célula podem ser alterados para especializá-los em diferentes funções. Ao alterá-los no editor, todas as células no organismo serão atualizadas."
 
 msgid "CREDITS"
 msgstr "Créditos"
@@ -2131,7 +2161,73 @@ msgstr ""
 "Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
 "\n"
@@ -2220,6 +2316,7 @@ msgstr "Começar a endossimbiose para esta espécie (disponível assim que o tip
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endossimbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /segundo"
 
@@ -2228,12 +2325,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Enquanto consome:\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3716,6 +3807,10 @@ msgstr ""
 "O salvamento pode estar corrupto ou é um formato mais novo que não é entendido por essa versão de Thrive.\n"
 "Deseja carregar o jogo salvo mesmo assim?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Carregar Jogo"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3782,6 +3877,43 @@ msgstr "Macroscópico"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Jato de Slime"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Editor Macroscópico"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Protótipo macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "se reproduzir no bioma {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
+"\n"
+"Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Editor Macroscópico"
@@ -4476,7 +4608,14 @@ msgstr "Mover para qualquer região"
 msgid "MOVE_TO_LAND"
 msgstr "Migrar para a terra"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Ir para o Estágio Macroscópico. Disponível ao ter uma colônia grande o suficiente.\n"
+"Isso requer que você adicione células o suficiente no editor, então cresça sua colônia até o tamanho mínimo."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Ir para o Estágio Macroscópico. Disponível ao ter uma colônia grande o suficiente.\n"
 "Isso requer que você adicione células o suficiente no editor, então cresça sua colônia até o tamanho mínimo."
@@ -4999,10 +5138,6 @@ msgstr "Axônio"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Perfure outras células com isto."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Macroscópica"
 
@@ -5324,6 +5459,21 @@ msgstr "Duplicar Jogador"
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador foi extinto"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Salvamento tem save game scene inválida"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Precisa receber dano por radiação estando próxima a um pedaço radioativo"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "O nome da espécie é grande demais!"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
 
@@ -5358,6 +5508,19 @@ msgstr "Reproduzir a introdução do Estágio Microbial em novo jogo"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jogar com essas configurações"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "população:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
@@ -6347,6 +6510,10 @@ msgstr "Ativar/Desativar correr. Correr faz com que as células se movam mais r�
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Título:"
 
 msgid "START"
 msgstr "Começar"
@@ -7750,6 +7917,9 @@ msgstr "Rolar para a direita"
 
 msgid "WHEEL_UP"
 msgstr "Rolar para cima"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -9748,6 +9918,16 @@ msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "e"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Enquanto consome:\n"
+#~ "{2}"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Criar novo tipo de célula"
 
@@ -10303,15 +10483,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estatísticas do jogo atual"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Protótipo macroscópico"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
-#~ "\n"
-#~ "Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Imune ao engolimento"

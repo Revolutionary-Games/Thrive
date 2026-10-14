@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2025-11-24 19:45+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -526,6 +526,10 @@ msgstr "Батипелагични"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стани макроскопскопичен ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Стани макроскопскопичен ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Стани повеќеклеточен ({0}/{1})"
 
@@ -820,6 +824,9 @@ msgstr "Префрлете се на фазата на будење. Доста�
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr ""
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
@@ -850,6 +857,10 @@ msgstr ""
 
 msgid "CHEAT_MENU"
 msgstr ""
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "3Д Едитор"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -1018,14 +1029,6 @@ msgstr ""
 "и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
 "Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
 "и имаат помала веројатност да користат токсини против предатори."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "3Д Едитор"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "3Д Едитор"
 
 msgid "COLOUR"
 msgstr ""
@@ -1532,6 +1535,27 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr ""
+
 msgid "CREDITS"
 msgstr ""
 
@@ -2006,7 +2030,31 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr "3Д Едитор"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr "3Д Едитор"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr "3Д Едитор"
 
 #, fuzzy
@@ -2097,9 +2145,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3561,6 +3606,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "3Д Едитор"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3622,6 +3671,40 @@ msgstr ""
 
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "3Д Едитор"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "3Д Едитор"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(брзина со која мутираат видовите на вештачка интелигенција)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
 msgstr "3Д Едитор"
 
 #, fuzzy
@@ -4346,8 +4429,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "Стани макроскопскопичен ({0}/{1})"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Стани макроскопскопичен ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4828,10 +4916,6 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "3Д Едитор"
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr ""
 
@@ -5150,6 +5234,19 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "3Д Едитор"
+
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr ""
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5179,6 +5276,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Уполови популација"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6147,6 +6257,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Додадете ново врзување на клучот"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -7322,6 +7435,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -9037,6 +9153,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "И"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

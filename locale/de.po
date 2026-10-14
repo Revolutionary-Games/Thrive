@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
-"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -523,6 +523,10 @@ msgstr "Bathypelagial"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Makroskopisch werden ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
@@ -827,6 +831,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Änderungsnotizen sind zu lang"
 
@@ -869,6 +877,10 @@ msgstr "Cheat-Tasten aktiviert"
 
 msgid "CHEAT_MENU"
 msgstr "Cheatmenü"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Verfügbar erst ab der Vielzeller-Phase."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozesse ein-/ausblenden"
@@ -1038,14 +1050,6 @@ msgstr "Drehung:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Drehung:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Drehung:"
 
 msgid "COLOUR"
 msgstr "Farbe"
@@ -1580,6 +1584,32 @@ msgstr "Erstelle..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objekte aus Speicherstand erstellen"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Typ:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Neuen Zellentyp erstellen"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann benennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Neuen Speicherstand anlegen"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann benennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
 
 msgid "CREDITS"
 msgstr "Abspann"
@@ -2149,7 +2179,73 @@ msgstr ""
 "Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
 "\n"
@@ -2239,6 +2335,7 @@ msgstr "Beginne die Endosymbiose für diese Spezies (verfügbar, wenn Zielorgane
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /Sekunde"
 
@@ -2247,12 +2344,6 @@ msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0}: +{1} ATP\n"
-"Beim Verbrauch von:\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3741,6 +3832,10 @@ msgstr ""
 "Diese Speicherung ist höchstwahrscheinlich korrupt oder hat ein neueres Format, das von dieser Version von Thrive nicht verstanden wird.\n"
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Spiel laden"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3806,6 +3901,46 @@ msgstr "Makroskopisch"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Schleimdüse"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Lade Mikrobeneditor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Lade Mikrobeneditor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Lade Mikrobeneditor"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Anfängliche Zellenmenge"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
+"Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
+"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "Reproduktion im {0} Biom"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
+"Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
+"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4512,7 +4647,14 @@ msgstr "In ein Gebiet wechseln"
 msgid "MOVE_TO_LAND"
 msgstr "Landgang"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr ""
+"Gehe zur nächsten Stufe des Spiels über (Makroskopisch). Verfügbar, sobald du eine ausreichend große Zellkolonie hast.\n"
+"Füge eine ausreichende Anzahl Zellen im Editor hinzu und lass deine Kolonie dann auf die erforderliche Größe wachsen."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
 "Gehe zur nächsten Stufe des Spiels über (Makroskopisch). Verfügbar, sobald du eine ausreichend große Zellkolonie hast.\n"
 "Füge eine ausreichende Anzahl Zellen im Editor hinzu und lass deine Kolonie dann auf die erforderliche Größe wachsen."
@@ -5042,10 +5184,6 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axone sind die Nervenfasern, die Neuronen zur Vernetzung und Kommunikation untereinander verwenden. Wenn diese Organellen platziert werden, ändert sich der Zelltyp auf Hirngewebe."
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Steche damit andere Zellen."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Makroskopisch"
 
@@ -5384,6 +5522,21 @@ msgstr "Spieler duplizieren"
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Speicherstand hat eine ungültige Spielstatus-Szene"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Artenname ist zu lang!"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Spielerabhängig"
 
@@ -5416,6 +5569,19 @@ msgstr "Mikroben-Intro bei neuem Spiel abspielen"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mit diesen Einstellungen spielen"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "Gesamtbevölkerung:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
@@ -6429,6 +6595,10 @@ msgstr "Sprint-Modus aktivieren. Im Sprint-Modus bewegen sich Zellen schneller, 
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause-Menü"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titel:"
 
 #, fuzzy
 msgid "START"
@@ -7879,6 +8049,9 @@ msgstr "Mausrad rechts"
 
 msgid "WHEEL_UP"
 msgstr "Mausrad hoch"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10041,6 +10214,16 @@ msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "und"
+
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0}: +{1} ATP\n"
+#~ "Beim Verbrauch von:\n"
+#~ "{2}"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Neuen Zellentyp erstellen"
 
@@ -10584,13 +10767,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suizid"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
-#~ "Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
-#~ "Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

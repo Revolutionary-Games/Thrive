@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
-"PO-Revision-Date: 2026-09-28 10:56+0000\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: 2026-10-12 07:31+0000\n"
 "Last-Translator: autodiag2 <autodiag@netcourrier.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -521,6 +521,10 @@ msgstr "Bathypélagique"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Devenir macroscopique ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Devenir macroscopique ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Devenir multicellulaire ({0}/{1})"
 
@@ -822,6 +826,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Écraser le fichier ?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Les notes de changement sont trop longues"
 
@@ -853,6 +861,10 @@ msgstr "Touches de triche activées"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de triche"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Seulement disponible à partir de la phase multicellulaire."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
@@ -1021,14 +1033,6 @@ msgstr "Rotation :"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Rotation :"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Rotation :"
 
 msgid "COLOUR"
 msgstr "Couleur"
@@ -1564,6 +1568,32 @@ msgstr "En train de créer..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Création des objets à partir de la sauvegarde"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Type de toxine :"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Créer un nouveau type de cellule"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Vous pouvez créer de nouveaux types de cellules en dupliquant et en changeant leur nom. Les types de cellules peuvent être modifiés pour les spécialiser afin de leur attribuer des rôles. Quand un type de cellule est modifié, toutes les cellules de ce type déjà placées sont mises à jour."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Créer une nouvelle sauvegarde"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Vous pouvez créer de nouveaux types de cellules en dupliquant et en changeant leur nom. Les types de cellules peuvent être modifiés pour les spécialiser afin de leur attribuer des rôles. Quand un type de cellule est modifié, toutes les cellules de ce type déjà placées sont mises à jour."
 
 msgid "CREDITS"
 msgstr "Crédits"
@@ -2142,7 +2172,7 @@ msgstr ""
 "Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
 
 #, fuzzy
-msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
 "\n"
@@ -2153,6 +2183,70 @@ msgstr ""
 "Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Pour continuer a progresser, [b]Macroscopique[/b], vos espèces ont besoin de respecter plusieurs critères. Vous pouvez presser le boutton critères dédidé pour voir ce qui manque.\n"
+"\n"
+"Une fois vos espèces validées pour l'étape macroscopique, vous pouvez avancer après avoir quitté l'éditeur et augmenté le nombre requis de cellules. Cela activera le boutton de changement d'étape dans l'étape actuelle.\n"
+"\n"
+"Il n’est pas nécessaire de viser à faire avancer les étapes immédiatement, mais voir les conditions peut aider dans la planification de vos éditions futures de cellules.\n"
+"\n"
+"[u]Pressez le boutton critères[/u] en bas du panneau de droite maitenant pour voir comment se porte vos espèces."
+
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Modifiez votre microbe pour la première fois"
 
@@ -2234,6 +2328,7 @@ msgstr "Commencer l'endosymbiose avec cette espèce (disponible après avoir sé
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
+#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0} : {1} /seconde"
 
@@ -2242,13 +2337,6 @@ msgstr "{0} : -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0} : +{1} ATP"
-
-#, fuzzy
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr ""
-"{0} : +{1} ATP\n"
-"En consommant :\n"
-"{2}"
 
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3785,6 +3873,10 @@ msgstr ""
 "Il semble que la sauvegarde soit corrompue ou d'un nouveau format non compris par cette version de Thrive.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Charger une partie"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3851,6 +3943,44 @@ msgstr "Macroscopique"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Prochainement."
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Chargement de l'Éditeur de microbe"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Chargement de l'Éditeur de microbe"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproduction dans le biome {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4588,6 +4718,10 @@ msgstr "Aller sur la terre ferme"
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
+
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Passer à la phase suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
@@ -5134,10 +5268,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Les axones sont les fibres nerveuses utilisés par les neurones pour communiquer entre eux. Placer cet organite transforme un type de cellule en tissu cérébral."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Peut être utilisé pour attaquer les autres cellules ou pour se défendre contre leurs toxines."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Multicellulaire"
 
@@ -5474,6 +5604,21 @@ msgstr "Joueur en double"
 msgid "PLAYER_EXTINCT"
 msgstr "Le joueur est éteint"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "La sauvegarde a un état scénique de jeu invalide"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Doit subir des dégâts par irradiation en se trouvant près d'un fragment radioactif."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Le nom de l’espèce est trop long !"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Dépend du joueur"
 
@@ -5506,6 +5651,19 @@ msgstr "Jouer l'introduction à chaque nouvelle partie"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jouer avec les paramètres actuels"
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "population :"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
+msgstr ""
 
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
@@ -6515,6 +6673,10 @@ msgstr "Visitez notre page Patreon"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
+
+#, fuzzy
+msgid "STANDARD_COLON_VALUE"
+msgstr "Titre :"
 
 msgid "START"
 msgstr "Démarrer"
@@ -7996,6 +8158,9 @@ msgstr "Roulette droite"
 
 msgid "WHEEL_UP"
 msgstr "Molette avant"
+
+msgid "WHILE_CONSUMING_COLON"
+msgstr ""
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10518,6 +10683,17 @@ msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "et"
+
+#, fuzzy
+#~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
+#~ msgstr ""
+#~ "{0} : +{1} ATP\n"
+#~ "En consommant :\n"
+#~ "{2}"
+
+#, fuzzy
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "Créer un nouveau type de cellule"
 
@@ -11098,12 +11274,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suicide"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
-#~ "Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
 #, fuzzy
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"

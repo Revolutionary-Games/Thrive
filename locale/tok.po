@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -519,6 +519,10 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -814,6 +818,9 @@ msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr ""
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
@@ -844,6 +851,10 @@ msgstr ""
 
 msgid "CHEAT_MENU"
 msgstr ""
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "ilo ante 3D"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -1023,14 +1034,6 @@ msgstr "PALI PI WAWA SIKE LI LILI!"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "PALI PI WAWA SIKE LI LILI!"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "PALI PI WAWA SIKE LI LILI!"
 
 msgid "COLOUR"
 msgstr ""
@@ -1544,6 +1547,28 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "jan pi pali sitelen:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr ""
+
 msgid "CREDITS"
 msgstr ""
 
@@ -2017,7 +2042,31 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr "pali pi kon ilo kepeken kon ala"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr "pali pi kon ilo kepeken kon ala"
 
 #, fuzzy
@@ -2123,9 +2172,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3596,6 +3642,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "kama ante pi sike ante"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3658,6 +3708,40 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "pali pi kon ilo kepeken kon ala"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4393,8 +4477,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4868,10 +4957,6 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "pali pi kon ilo kepeken kon ala"
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr ""
 
@@ -5195,6 +5280,19 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "ilo ante 3D"
+
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr ""
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5224,6 +5322,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6163,6 +6274,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "open e lipu pi ante lili"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 #, fuzzy
@@ -7351,6 +7465,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"

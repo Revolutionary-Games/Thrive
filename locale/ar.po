@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-30 14:15+0200\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -513,6 +513,10 @@ msgstr "بيئة المياه العميقة"
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "فترة الميكروبات"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -819,6 +823,9 @@ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا �
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr ""
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
@@ -849,6 +856,10 @@ msgstr ""
 
 msgid "CHEAT_MENU"
 msgstr ""
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "المتطلبات"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -1016,14 +1027,6 @@ msgstr "{0} الاستهلاك"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "{0} الاستهلاك"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "{0} الاستهلاك"
 
 msgid "COLOUR"
 msgstr "اللون"
@@ -1533,6 +1536,27 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr ""
+
 msgid "CREDITS"
 msgstr ""
 
@@ -2028,7 +2052,31 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #, fuzzy
@@ -2120,9 +2168,6 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
-
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
@@ -3591,6 +3636,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "عام"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3653,6 +3702,40 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "فترة الميكروبات"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound] إلانتاج يصل {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4363,8 +4446,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "فترة الكائنات متعددة الخلايا"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -4855,15 +4943,6 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr ""
-"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
-"\n"
-"يحل الليل عندما تظلم البيئة.\n"
-"التركيب الضوئي غير فعال خلال الليل.\n"
-"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "مجهري الحجم"
 
@@ -5175,6 +5254,19 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "المصمم ثلاثي الأبعاد"
+
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr ""
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5204,6 +5296,19 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE"
+msgstr ""
+
+msgid "PLUS_FROM_BASE_VALUE_INDENTED"
+msgstr ""
+
+#, fuzzy
+msgid "PLUS_FROM_SPECIALIZATION_VALUE"
+msgstr "الوصف:"
+
+msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -6165,6 +6270,9 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "STANDARD_COLON_VALUE"
 msgstr ""
 
 msgid "START"
@@ -7479,6 +7587,9 @@ msgid "WHEEL_RIGHT"
 msgstr ""
 
 msgid "WHEEL_UP"
+msgstr ""
+
+msgid "WHILE_CONSUMING_COLON"
 msgstr ""
 
 msgid "WIKI"
@@ -9455,6 +9566,10 @@ msgstr "تقريب الشاشة"
 
 msgid "ZOOM_OUT"
 msgstr "ابعاد الشاشة"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "و"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
