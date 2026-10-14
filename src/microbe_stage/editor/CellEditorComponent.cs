@@ -195,6 +195,8 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private StorageValueBreakdown? storageValueBreakdown;
+
     private List<TweakedProcess> tempAllProcesses = new();
     private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
@@ -478,7 +480,11 @@ public partial class CellEditorComponent :
         }
     }
 
-    public Func<string, bool>? ValidateNewCellTypeName { get; set; }
+    /// <summary>
+    ///   Function to validate a new cell type name. Returns a nullable string which is the error message if the name
+    ///   is invalid. If the return value is null, the name is valid.
+    /// </summary>
+    public Func<string, string?>? ValidateNewCellTypeName { get; set; }
 
     /// <summary>
     ///   True when there are pending endosymbiosis actions. Only works after the editor is fully initialized.
@@ -576,7 +582,7 @@ public partial class CellEditorComponent :
     {
         base.Init(owningEditor, fresh);
 
-        if (IsMulticellularEditor && ValidateNewCellTypeName == null)
+        if ((IsMulticellularEditor || IsMacroscopicEditor) && ValidateNewCellTypeName == null)
         {
             throw new InvalidOperationException("The new cell type name validation callback needs to be set");
         }
@@ -653,7 +659,7 @@ public partial class CellEditorComponent :
             VerifyEditedOrganellesDoNotReferToOriginalData();
         }
 
-        if (IsMulticellularEditor)
+        if (IsMulticellularEditor || IsMacroscopicEditor)
         {
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
             componentBottomLeftButtons.UseSpeciesNameValidation = false;
@@ -1089,14 +1095,28 @@ public partial class CellEditorComponent :
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
 
-        editedProperties.UpdateNameIfValid(newName);
+        if (IsMulticellularEditor || IsMacroscopicEditor)
+        {
+            if (ValidateNewCellTypeName!(newName) == null)
+            {
+                editedProperties.UpdateNameIfValid(newName);
+            }
+            else
+            {
+                GD.PrintErr("Invalid name on finishing cell editor, not applying name");
+            }
+        }
+        else
+        {
+            editedProperties.UpdateNameIfValid(newName);
+        }
 
         // Update membrane
         editedProperties.MembraneType = Membrane;
         editedProperties.Colour = Colour;
         editedProperties.MembraneRigidity = Rigidity;
 
-        if (!IsMulticellularEditor)
+        if (!IsMulticellularEditor && !IsMacroscopicEditor)
         {
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
@@ -1632,14 +1652,15 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
-    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity,
+        StorageValueBreakdown? breakdown = null)
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
-            totalSpecializationBonus, out nominalCapacity);
+            totalSpecializationBonus, out nominalCapacity, breakdown);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -2608,7 +2629,19 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
-        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+
+        if (storageValueBreakdown == null)
+        {
+            storageValueBreakdown = new StorageValueBreakdown();
+        }
+        else
+        {
+            storageValueBreakdown.Clear();
+        }
+
+        GetAdditionalCapacities(out _, storageValueBreakdown);
+        organismStatisticsPanel.UpdateStorage(storageValueBreakdown);
+
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         var (ammoniaCost, phosphatesCost) = CalculateOrganellesCosts();
@@ -3018,16 +3051,19 @@ public partial class CellEditorComponent :
     {
         newName = newText;
 
-        if (IsMulticellularEditor)
+        if (IsMulticellularEditor || IsMacroscopicEditor)
         {
             if (HasNewName())
             {
-                componentBottomLeftButtons.ReportValidityOfName(ValidateNewCellTypeName!(newText));
+                var errorMessage = ValidateNewCellTypeName!(newText);
+                componentBottomLeftButtons.ReportValidityOfName(errorMessage == null, errorMessage,
+                    Localization.Translate("PLAYER_NAME_REQUIREMENTS"));
             }
             else
             {
                 // The name hasn't changed and should remain valid
-                componentBottomLeftButtons.ReportValidityOfName(true);
+                componentBottomLeftButtons.ReportValidityOfName(true, null,
+                    Localization.Translate("PLAYER_NAME_REQUIREMENTS"));
             }
         }
     }

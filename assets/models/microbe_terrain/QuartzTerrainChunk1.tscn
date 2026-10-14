@@ -8,7 +8,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ew1e"]
 resource_name = "quartz"
-cull_mode = 2
 albedo_color = Color(0.92907894, 0.8961511, 0.83499074, 1)
 albedo_texture = ExtResource("2_7ygq6")
 metallic = 0.4
@@ -28,5 +27,5 @@ ao_texture = ExtResource("3_oyhx3")
 
 [node name="QuartzTerrainChunk1" unique_id=1032874693 instance=ExtResource("1_f8aly")]
 
-[node name="quartz1" parent="." index="0" unique_id=1677312041]
+[node name="quartz1" parent="." index="0" unique_id=619840731]
 surface_material_override/0 = SubResource("StandardMaterial3D_2ew1e")

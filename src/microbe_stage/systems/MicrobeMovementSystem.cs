@@ -341,9 +341,11 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
         }
 
-        // force from organelles is merged into main force from here on.
+        // force from organelles is merged into the main force from here on.
         force += organelleForce;
 
+        // The sprinting force multiplier is applied here so that it modifies the total force from all cells.
+        // (if a colony is involved)
         if (usesSprintingForce && control.Sprinting)
         {
             force *= Constants.SPRINTING_FORCE_MULTIPLIER;

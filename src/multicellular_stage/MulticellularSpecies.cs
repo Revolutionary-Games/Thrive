@@ -12,7 +12,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 9;
+    public const ushort SERIALIZATION_VERSION = 10;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -110,6 +110,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     ///   changing to that reproduction method.
     /// </summary>
     public int MassBuddingCellCount { get; set; } = 1;
+
+    /// <summary>
+    ///   Flag set after editing the species whether this is valid for macroscopic conversion. For now, just set
+    ///   by the editor (not auto-evo / OnEdited).
+    /// </summary>
+    public bool IsReadyForMacroscopic { get; set; }
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
@@ -270,6 +276,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.UsesManualPlayerLayout = reader.ReadBool();
         }
 
+        if (version >= 10)
+        {
+            instance.IsReadyForMacroscopic = reader.ReadBool();
+        }
+        else
+        {
+            // It's fine to leave this false as the player can simply just go to the editor and check the new
+            // conditions which most players are probably not accidentally fulfilling. So not recalculating this here
+            // is mostly a minor inconvenience for players loading older saves.
+            instance.IsReadyForMacroscopic = false;
+        }
+
         return instance;
     }
 
@@ -288,6 +306,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.WriteObjectOrNull(ModifiableGameteTypeB);
         writer.Write((int)PlayerGamete);
         writer.Write(UsesManualPlayerLayout);
+        writer.Write(IsReadyForMacroscopic);
     }
 
     public GameteType PickSpawnGameteType(Random random)
@@ -991,6 +1010,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var result = new MulticellularSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
+        result.IsReadyForMacroscopic = IsReadyForMacroscopic;
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
