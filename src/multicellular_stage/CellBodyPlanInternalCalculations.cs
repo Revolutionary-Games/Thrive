@@ -202,7 +202,8 @@ public static class CellBodyPlanInternalCalculations
             if (axonPower > 0)
                 ++axonCount;
 
-            effectiveActomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
+            effectiveActomyosinCount +=
+                CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
         }
 
         // The actomyosin bonus should only be applied to base rotation speed, not organelles.
@@ -404,7 +405,7 @@ public static class CellBodyPlanInternalCalculations
     {
         if (axonPower <= 0)
         {
-            return 1f;
+            return 1.0f;
         }
 
         return 1 + Constants.AXON_MOVEMENT_BUFF_PER * AxonDiminishingReturns(axonPower, axonCount);
@@ -414,7 +415,7 @@ public static class CellBodyPlanInternalCalculations
     {
         if (axonPower <= 0)
         {
-            return 1f;
+            return 1.0f;
         }
 
         return 1 + Constants.AXON_ROTATION_BUFF_PER * AxonDiminishingReturns(axonPower, axonCount);
@@ -426,7 +427,7 @@ public static class CellBodyPlanInternalCalculations
     /// </summary>
     public static float AxonDiminishingReturns(float axonPower, int axonCount)
     {
-        return axonPower * Mathf.Pow(axonCount, -0.5f);
+        return axonPower * MathF.Pow(axonCount, -0.5f);
     }
 
     /// <summary>

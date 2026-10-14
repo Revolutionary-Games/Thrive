@@ -470,8 +470,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         float effectiveActomyosinCount = 0;
         if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })
         {
-            effectiveActomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta)
-                * leaderTotalSpecializationBonus;
+            effectiveActomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds,
+                energyCostMultiplier, delta) * leaderTotalSpecializationBonus;
         }
 
         var axonPower = 0.0f;
@@ -520,8 +520,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             if (organelles.ActomyosinComponents is { Count: > 0 })
             {
-                effectiveActomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
-                    * memberTotalSpecializationBonus;
+                effectiveActomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier,
+                    delta) * memberTotalSpecializationBonus;
             }
 
             if (organelles.HasAxon)
