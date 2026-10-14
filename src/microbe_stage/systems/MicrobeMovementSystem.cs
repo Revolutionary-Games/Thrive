@@ -467,19 +467,19 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
-        float actomyosinCount = 0;
+        float effectiveActomyosinCount = 0;
         if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })
         {
-            actomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta)
+            effectiveActomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta)
                 * leaderTotalSpecializationBonus;
         }
 
-        float axonCount = 0.0f;
+        float effectiveAxonCount = 0.0f;
         if (leaderOrganelles.HasAxon)
         {
             if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
             {
-                axonCount = leaderTotalSpecializationBonus;
+                effectiveAxonCount = leaderTotalSpecializationBonus;
             }
         }
 
@@ -518,7 +518,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             if (organelles.ActomyosinComponents is { Count: > 0 })
             {
-                actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
+                effectiveActomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
                     * memberTotalSpecializationBonus;
             }
 
@@ -526,20 +526,20 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             {
                 if (TryActivateAxon(memberCompounds, energyCostMultiplier, delta))
                 {
-                    axonCount += memberTotalSpecializationBonus;
+                    effectiveAxonCount += memberTotalSpecializationBonus;
                 }
             }
         }
 
         // The coordination bonus from axons should apply to all propulsion granted by organelles
-        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(axonCount);
+        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(effectiveAxonCount);
         organelleForce *= axonMovementMultiplier;
 
         // Actomyosin buffs the base movement of cells (not from organelles)
-        if (actomyosinCount > 0)
+        if (effectiveActomyosinCount > 0)
         {
             // The bonus that Actomyosin applies to base movement is itself still affected by Axons
-            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount *
+            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(effectiveActomyosinCount *
                 axonMovementMultiplier);
         }
     }
