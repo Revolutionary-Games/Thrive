@@ -1036,15 +1036,9 @@ public partial class CellBodyPlanEditorComponent :
             {
                 // Reproduction cell types are considered used even when they aren't placed as regular cells
                 // (as they cannot be placed)
-                if (ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(SporeCellType), editedCellType))
-                {
-                    isUsed = true;
-                }
-                else if (ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteACellType), editedCellType))
-                {
-                    isUsed = true;
-                }
-                else if (ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteBCellType), editedCellType))
+                if (ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(SporeCellType), editedCellType) ||
+                    ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteACellType), editedCellType) ||
+                    ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteBCellType), editedCellType))
                 {
                     isUsed = true;
                 }
