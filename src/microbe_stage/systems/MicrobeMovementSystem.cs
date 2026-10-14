@@ -97,7 +97,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         var axonCost = Constants.AXON_ENERGY_COST * delta * energyCostMultiplier;
         if (compounds.TakeCompound(Compound.ATP, axonCost) >= 0.8f * axonCost)
         {
-            // Only "activate" actomyosin if there was ATP
+            // Only "activate" axon if there was ATP
             return true;
         }
 
