@@ -88,14 +88,16 @@ public partial class SocietyCreature : Node3D, IEntity
 
     public void ApplySpecies(Species species)
     {
-        if (species is not MacroscopicSpecies lateSpecies)
+        if (species is not MacroscopicSpecies macroscopicSpecies)
             throw new ArgumentException("Unsupported type of species");
 
-        Species = lateSpecies;
+        Species = macroscopicSpecies;
 
         // Setup graphics
-        // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromLayout(lateSpecies.ModifiableBodyLayout);
+        // TODO: handle macroscopicSpecies.Scale
+        metaballDisplayer.DisplayFromLayout(macroscopicSpecies.ModifiableBodyLayout);
+
+        metaballDisplayer.Texturize(macroscopicSpecies.ModifiableBodyLayout, macroscopicSpecies.SkinType);
     }
 
     public bool HasReachedGoal()

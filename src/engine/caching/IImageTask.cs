@@ -23,4 +23,9 @@ public interface IImageTask : ISavableCacheItem
     ///   Cache path this is to be saved at. Cannot be saved if null.
     /// </summary>
     public string? CachePath { get; set; }
+
+    /// <summary>
+    ///   The resolution to generate an image in. Doesn't do anything for cached images.
+    /// </summary>
+    public int DesiredResolution { get; }
 }
