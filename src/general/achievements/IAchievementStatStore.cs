@@ -37,6 +37,9 @@
     public const int STAT_REACHED_MULTICELLULAR = 13;
     public const string STAT_REACHED_MULTICELLULAR_NAME = "reached_multicellular";
 
+    public const int STAT_REACHED_MACROSCOPIC = 14;
+    public const string STAT_REACHED_MACROSCOPIC_NAME = "reached_macroscopic";
+
     public const string MICROBIAL_MASSACRE_ID = "MICROBIAL_MASSACRE";
     public const string THE_EDITOR_ID = "THE_EDITOR";
     public const string BETTER_TOGETHER_ID = "BETTER_TOGETHER";
@@ -49,6 +52,7 @@
     public const string THRIVING_ID = "THRIVING";
     public const string MICRO_BORG_ID = "MICRO_BORG";
     public const string BEYOND_THE_CELL_ID = "BEYOND_THE_CELL";
+    public const string BEYOND_THE_MICROBE_ID = "BEYOND_THE_MICROBE";
 
     public static bool IsValidStatistic(int statId)
     {
@@ -83,6 +87,8 @@
                 return STAT_ENDOSYMBIOSIS_COMPLETED_NAME;
             case STAT_REACHED_MULTICELLULAR:
                 return STAT_REACHED_MULTICELLULAR_NAME;
+            case STAT_REACHED_MACROSCOPIC:
+                return STAT_REACHED_MACROSCOPIC_NAME;
         }
 
         return null;

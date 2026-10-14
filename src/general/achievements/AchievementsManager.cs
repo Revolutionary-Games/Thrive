@@ -537,6 +537,22 @@ public partial class AchievementsManager : Node
         }
     }
 
+    internal void OnReturnToMacroscopicStageFromEditor()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_REACHED_MACROSCOPIC) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_REACHED_MACROSCOPIC, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.BEYOND_THE_MICROBE]);
+        }
+    }
+
     internal void OnReturnToMicrobeStageFromEditor()
     {
         if (preventAchievements)

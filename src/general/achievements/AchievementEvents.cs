@@ -38,6 +38,11 @@ public static class AchievementEvents
         AchievementsManager.Instance.OnReturnToMulticellularStageFromEditor();
     }
 
+    public static void ReportReturnToMacroscopicStageFromEditor()
+    {
+        AchievementsManager.Instance.OnReturnToMacroscopicStageFromEditor();
+    }
+
     public static void ReportReturnToMicrobeStageFromEditor()
     {
         AchievementsManager.Instance.OnReturnToMicrobeStageFromEditor();
