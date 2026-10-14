@@ -223,7 +223,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
             {
                 var cellSizeLabelValue = result.GetValueOrDefault(cellSizeLabel, 0);
 
-                result[cellSizeLabel] = cellSizeLabelValue - organelle.Definition.HexCount * 0.02f;
+                result[cellSizeLabel] =
+                    cellSizeLabelValue - organelle.Definition.HexCount * Constants.TOLERANCE_UV_HEX_DEBUFF;
             }
 
             var organelleDefinition = organelle.Definition;
@@ -256,7 +257,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             {
                 if (modifier == ToleranceModifier.UV)
                 {
-                    totalEffect -= organelleTemplate.Definition.HexCount * 0.02f;
+                    totalEffect -= organelleTemplate.Definition.HexCount * Constants.TOLERANCE_UV_HEX_DEBUFF;
                 }
 
                 var organelleDefinition = organelleTemplate.Definition;
