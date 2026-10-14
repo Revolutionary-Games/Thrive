@@ -443,7 +443,7 @@ public class RunResults : IArchivable
         return true;
     }
 
-    public void ApplyResults(GameWorld world, bool skipMutations)
+    public void ApplyResults(GameWorld world, bool skipMutations, bool throwOnError = false)
     {
         foreach (var entry in results)
         {
@@ -459,9 +459,9 @@ public class RunResults : IArchivable
                 entry.Key.Generation = entry.Value.MutatedProperties.Generation;
             }
 
-            ApplyBasePopulations(world, entry.Key, entry.Value);
-            ApplyMigrations(world, entry.Key, entry.Value);
-            ApplySpeciesSplit(world, entry.Key, entry.Value);
+            ApplyBasePopulations(world, entry.Key, entry.Value, throwOnError);
+            ApplyMigrations(world, entry.Key, entry.Value, throwOnError);
+            ApplySpeciesSplit(world, entry.Key, entry.Value, throwOnError);
         }
 
 #if DEBUG
@@ -1486,7 +1486,7 @@ public class RunResults : IArchivable
         return result;
     }
 
-    private static void ApplyMigrations(GameWorld world, Species species, SpeciesResult result)
+    private static void ApplyMigrations(GameWorld world, Species species, SpeciesResult result, bool throwOnError)
     {
         foreach (var spreadEntry in result.SpreadToPatches)
         {
@@ -1498,26 +1498,27 @@ public class RunResults : IArchivable
 
             if (!from.UpdateSpeciesSimulationPopulation(species, remainingPopulation))
             {
-                GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
+                ReportApplyError("RunResults failed to update population for a species in a patch it moved from",
+                    throwOnError);
             }
 
             if (!to.UpdateSpeciesSimulationPopulation(species, newPopulation) &&
                 !to.AddSpecies(species, newPopulation))
             {
-                GD.PrintErr("RunResults failed to update population and also add species failed on " +
-                    "migration target patch");
+                ReportApplyError("RunResults failed to update population and also add species failed on " +
+                    "migration target patch", throwOnError);
             }
         }
     }
 
-    private static void ApplySpeciesSplit(GameWorld world, Species species, SpeciesResult result)
+    private static void ApplySpeciesSplit(GameWorld world, Species species, SpeciesResult result, bool throwOnError)
     {
         if (result.SplitOff == null)
             return;
 
         if (result.SplitOffPatches == null)
         {
-            GD.PrintErr("List of split off patches is null, can't actually perform the split");
+            ReportApplyError("List of split off patches is null, can't actually perform the split", throwOnError);
             return;
         }
 
@@ -1534,17 +1535,28 @@ public class RunResults : IArchivable
 
             if (!patch.UpdateSpeciesSimulationPopulation(species, 0))
             {
-                GD.PrintErr("RunResults failed to update population for a species that split");
+                ReportApplyError("RunResults failed to update population for a species that split", throwOnError);
             }
 
             if (!patch.AddSpecies(result.SplitOff, population))
             {
-                GD.PrintErr("RunResults failed to add species to patch that split off");
+                ReportApplyError("RunResults failed to add species to patch that split off", throwOnError);
             }
         }
     }
 
-    private void ApplyBasePopulations(GameWorld world, Species species, SpeciesResult result)
+    /// <summary>
+    ///   GUI callers retain best-effort application; unattended simulations must stop on a partial application.
+    /// </summary>
+    private static void ReportApplyError(string message, bool throwOnError)
+    {
+        if (throwOnError)
+            throw new InvalidOperationException(message);
+
+        GD.PrintErr(message);
+    }
+
+    private void ApplyBasePopulations(GameWorld world, Species species, SpeciesResult result, bool throwOnError)
     {
         // New species need adding here unless they receive their population through a split
         bool addSpeciesToPatches = result.NewlyCreated != null &&
@@ -1558,7 +1570,7 @@ public class RunResults : IArchivable
 
                 if (!patch.AddSpecies(species, populationEntry.Value))
                 {
-                    GD.PrintErr("RunResults has new species that already exists in patch");
+                    ReportApplyError("RunResults has new species that already exists in patch", throwOnError);
                 }
             }
 
@@ -1574,8 +1586,8 @@ public class RunResults : IArchivable
             if (!patch.UpdateSpeciesSimulationPopulation(species, populationEntry.Value) &&
                 populationEntry.Value > 0)
             {
-                GD.PrintErr($"Failed to apply species ({species}) population ({populationEntry.Value}) to patch " +
-                    $"({patch.Name}) it should be in");
+                ReportApplyError($"Failed to apply species ({species}) population ({populationEntry.Value}) to patch " +
+                    $"({patch.Name}) it should be in", throwOnError);
             }
         }
     }
