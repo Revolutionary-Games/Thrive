@@ -811,7 +811,7 @@ public class RunResults : IArchivable
         var speciesMigrations = results[parentSpecies].SpreadToPatches;
         var migrationsCount = speciesMigrations.Count;
 
-        for (int i = 0; i < migrationsCount; i++)
+        for (int i = 0; i < migrationsCount; ++i)
         {
             var migration = speciesMigrations[i];
             results[childSpecies].SpreadToPatches.Add(migration);
