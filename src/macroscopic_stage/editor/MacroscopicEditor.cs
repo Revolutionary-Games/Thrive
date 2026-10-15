@@ -662,7 +662,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         if (affectedACell)
         {
             GD.Print("Undone / redone action affected tissue types");
-            cellEditorTab.OnFinishEditing();
+            cellEditorTab.OnFinishEditing(false);
 
             // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
             bodyPlanEditorTab.OnTissueTypeEdited(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit));
@@ -676,7 +676,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         var oldName = selectedCellTypeToEdit.CellTypeName;
 
-        cellEditorTab.OnFinishEditing();
+        cellEditorTab.OnFinishEditing(false);
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
