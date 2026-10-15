@@ -91,6 +91,19 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return 0;
     }
 
+    private static bool TryActivateAxon(CompoundBag compounds,
+        float energyCostMultiplier, float delta)
+    {
+        var axonCost = Constants.AXON_ENERGY_COST * delta * energyCostMultiplier;
+        if (compounds.TakeCompound(Compound.ATP, axonCost) >= 0.8f * axonCost)
+        {
+            // Only "activate" axon if there was ATP
+            return true;
+        }
+
+        return false;
+    }
+
     [Query(Parallel = true)]
     [None<MicrobeColonyMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -454,11 +467,22 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
-        float actomyosinCount = 0;
+        float effectiveActomyosinCount = 0;
         if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })
         {
-            actomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta)
-                * leaderTotalSpecializationBonus;
+            effectiveActomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds,
+                energyCostMultiplier, delta) * leaderTotalSpecializationBonus;
+        }
+
+        var axonPower = 0.0f;
+        var axonCount = 0;
+        if (leaderOrganelles.HasAxon)
+        {
+            if (TryActivateAxon(leaderCompounds, energyCostMultiplier, delta))
+            {
+                axonPower = leaderTotalSpecializationBonus;
+                ++axonCount;
+            }
         }
 
         // Colony members have their movement update before organelle update, so that the movement organelles
@@ -466,7 +490,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // The colony master should be already updated as the movement direction is either set by the
         // player input or microbe AI, neither of which will happen concurrently, so this should always get the
         // up-to-date value.
-
         foreach (var colonyMember in microbeColony.ColonyMembers)
         {
             // Colony leader processes the normal movement logic so it isn't taken into account here
@@ -497,15 +520,31 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             if (organelles.ActomyosinComponents is { Count: > 0 })
             {
-                actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
-                    * memberTotalSpecializationBonus;
+                effectiveActomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier,
+                    delta) * memberTotalSpecializationBonus;
+            }
+
+            if (organelles.HasAxon)
+            {
+                if (TryActivateAxon(memberCompounds, energyCostMultiplier, delta))
+                {
+                    axonPower += memberTotalSpecializationBonus;
+                    ++axonCount;
+                }
             }
         }
 
+        // The coordination bonus from axons should apply to all propulsion granted by organelles
+        var axonMovementMultiplier = CellBodyPlanInternalCalculations.CalculateAxonMovementMultiplier(axonPower,
+            axonCount);
+        organelleForce *= axonMovementMultiplier;
+
         // Actomyosin buffs the base movement of cells (not from organelles)
-        if (actomyosinCount > 0)
+        if (effectiveActomyosinCount > 0)
         {
-            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount);
+            // The bonus that Actomyosin applies to base movement is itself still affected by Axons
+            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(effectiveActomyosinCount *
+                axonMovementMultiplier);
         }
     }
 }

@@ -58,6 +58,8 @@ public static class CellBodyPlanInternalCalculations
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
+        var axonPower = 0.0f;
+        var axonCount = 0;
         var actomyosinCount = 0.0f;
 
         foreach (var hex in cells)
@@ -87,6 +89,12 @@ public static class CellBodyPlanInternalCalculations
                 if (organelle.Definition.HasActomyosinComponent)
                     ++cellActomyosinCount;
 
+                if (organelle.Definition.HasAxonFeature)
+                {
+                    axonPower += totalSpecializationBonus;
+                    ++axonCount;
+                }
+
                 if (!organelle.Definition.HasMovementComponent)
                     continue;
 
@@ -115,8 +123,14 @@ public static class CellBodyPlanInternalCalculations
             }
         }
 
+        // The coordination bonus from axons should apply to all propulsion granted by organelles
+        var axonMovementMultiplier = CalculateAxonMovementMultiplier(axonPower, axonCount);
+
         // Actomyosin buffs the base movement of cells (not from organelles)
-        speed *= CalculateActomyosinMovementMultiplier(actomyosinCount);
+        speed *= CalculateActomyosinMovementMultiplier(actomyosinCount * axonMovementMultiplier);
+
+        // This matches the bonus applied to colony members in MicrobeMovementSystem.
+        addedSpeed *= axonMovementMultiplier;
 
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
@@ -169,8 +183,11 @@ public static class CellBodyPlanInternalCalculations
     {
         float totalRotationSpeed = 0;
 
-        // We first calculate the actomyosin bonuses, because the individual cell calculations will be using it.
-        float actomyosinCount = 0;
+        // We first calculate the axon and actomyosin bonuses, because the individual cell calculations will be using
+        // them.
+        var axonPower = 0.0f;
+        var axonCount = 0;
+        float effectiveActomyosinCount = 0;
         int count = cells.Count;
 
         for (int i = 0; i < count; ++i)
@@ -181,11 +198,18 @@ public static class CellBodyPlanInternalCalculations
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
-            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
+            axonPower += GetAxonCount(colonyMemberData) * memberTotalSpecializationBonus;
+            if (axonPower > 0)
+                ++axonCount;
+
+            effectiveActomyosinCount +=
+                CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
         }
 
         // The actomyosin bonus should only be applied to base rotation speed, not organelles.
-        var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(actomyosinCount);
+        // The axon bonus should be applied to organelles, including to actomyosin.
+        var axonBonus = CalculateAxonRotationMultiplier(axonPower, axonCount);
+        var actomyosinMultiplier = CalculateActomyosinRotationMultiplier(effectiveActomyosinCount * axonBonus);
 
         for (int i = 0; i < count; ++i)
         {
@@ -201,7 +225,7 @@ public static class CellBodyPlanInternalCalculations
             totalRotationSpeed += AdjustedColonyMemberRotationFromPosition(
                 Hex.AxialToCartesian(colonyMember.Position) * 10,
                 MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
-                    memberTotalSpecializationBonus, actomyosinMultiplier));
+                    memberTotalSpecializationBonus * axonBonus, actomyosinMultiplier));
         }
 
         return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, cells.Count);
@@ -354,9 +378,56 @@ public static class CellBodyPlanInternalCalculations
         return 1 + (rawCountInCellType - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
     }
 
+    public static float GetAxonCount(CellTemplate cell)
+    {
+        var axonCount = 0;
+
+        foreach (var organelle in cell.Organelles)
+        {
+            if (organelle.Definition.HasAxonFeature)
+            {
+                ++axonCount;
+
+                // cells can only have one axon.
+                return axonCount;
+            }
+        }
+
+        return axonCount;
+    }
+
     public static float CalculateActomyosinMovementMultiplier(float effectiveActomyosinCount)
     {
         return 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * effectiveActomyosinCount;
+    }
+
+    public static float CalculateAxonMovementMultiplier(float axonPower, int axonCount)
+    {
+        if (axonPower <= 0)
+        {
+            return 1.0f;
+        }
+
+        return 1 + Constants.AXON_MOVEMENT_BUFF_PER * AxonDiminishingReturns(axonPower, axonCount);
+    }
+
+    public static float CalculateAxonRotationMultiplier(float axonPower, int axonCount)
+    {
+        if (axonPower <= 0)
+        {
+            return 1.0f;
+        }
+
+        return 1 + Constants.AXON_ROTATION_BUFF_PER * AxonDiminishingReturns(axonPower, axonCount);
+    }
+
+    /// <summary>
+    ///   Applies a multiplier causing diminishing returns on ason effectiveness based on the count of actual axons.
+    ///   This makes specialization of just a few cells more valuable.
+    /// </summary>
+    public static float AxonDiminishingReturns(float axonPower, int axonCount)
+    {
+        return axonPower * MathF.Pow(axonCount, -0.5f);
     }
 
     /// <summary>
