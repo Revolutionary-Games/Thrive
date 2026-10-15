@@ -576,6 +576,7 @@ public partial class CellBodyPlanEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
         SelectedGameteTypeForPlayer = GameteType.A;
+        Editor.MarkPredictionDirty();
     }
 
     private void OnPlayerSetGameteB(bool pressed)
@@ -588,6 +589,7 @@ public partial class CellBodyPlanEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
         SelectedGameteTypeForPlayer = GameteType.B;
+        Editor.MarkPredictionDirty();
     }
 
     private void UpdateMassBuddingCellCountSlider()
