@@ -336,9 +336,6 @@ public partial class MetaballBodyEditorComponent :
                 CellTypeVisualsOverride?.GetOriginalType(metaball.ModifiableCellType)));
         }
 
-        editedSpecies.RepositionCellTypesToOrigin();
-
-
         // Apply type edits *after* the metaball layout so that the old mapping was still valid and reversed, the apply
         // call clears the mapping
         if (CellTypeVisualsOverride != null)
@@ -347,6 +344,8 @@ public partial class MetaballBodyEditorComponent :
             GD.Print("Applying tissue type edits to real cell data");
             CellTypeVisualsOverride.ApplyChanges();
         }
+
+        editedSpecies.RepositionCellTypesToOrigin();
 
         Editor.EditedSpecies.SkinType = SkinType;
 
