@@ -460,7 +460,7 @@ public class ChunkCompoundPressureTests
             new BiomeCompoundProperties { Amount = hydrogenSulfideAmount, Density = 1 });
         biome.Chunks = new Dictionary<string, ChunkConfiguration>
         {
-            [ChunkType] = new ChunkConfiguration
+            [ChunkType] = new()
             {
                 Name = "ChunkScoreTest",
                 Meshes = [],
@@ -468,7 +468,7 @@ public class ChunkCompoundPressureTests
                 Density = density,
                 Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>
                 {
-                    [input] = new ChunkConfiguration.ChunkCompound { Amount = compoundAmount },
+                    [input] = new() { Amount = compoundAmount },
                 },
             },
         };
