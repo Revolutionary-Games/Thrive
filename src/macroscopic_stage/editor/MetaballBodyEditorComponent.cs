@@ -72,6 +72,9 @@ public partial class MetaballBodyEditorComponent :
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
+    private UnusedCellTypePopup unusedCellTypePopup = null!;
+
+    [Export]
     private CustomWindow duplicateCellTypeDialog = null!;
 
     [Export]
@@ -370,6 +373,29 @@ public partial class MetaballBodyEditorComponent :
         var editorUserOverrides = userOverrides.ToList();
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
+
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            var editedCellType = GetEditedCellDataIfEdited(cellType);
+            bool isUsed = false;
+
+            foreach (var metaball in editedMetaballs)
+            {
+                if (ReferenceEquals(metaball.ModifiableCellType, editedCellType))
+                {
+                    isUsed = true;
+                    break;
+                }
+            }
+
+            if (isUsed)
+                continue;
+
+            // TODO: check reproduction types (will they exist for macroscopic?)
+
+            unusedCellTypePopup.DisplayForCellType(editedCellType.CellTypeName);
+            return false;
+        }
 
         // TODO: hook this up once we have editing the creature scale in the editor
         var creatureScale = 1.0f;
