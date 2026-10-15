@@ -2569,7 +2569,10 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnNewCellTypeNameChanged(string newText)
     {
-        if (!Editor.IsNewCellTypeNameValid(newText))
+        var errorMessage = Editor.GetNewCellTypeNameValidationError(newText);
+        duplicateCellTypeName.TooltipText = errorMessage ?? Localization.Translate("PLAYER_NAME_REQUIREMENTS");
+
+        if (errorMessage != null)
         {
             GUICommon.MarkInputAsInvalid(duplicateCellTypeName);
         }
@@ -2592,9 +2595,12 @@ public partial class CellBodyPlanEditorComponent :
     {
         var newTypeName = duplicateCellTypeName.Text;
 
-        if (!Editor.IsNewCellTypeNameValid(newTypeName))
+        var errorMessage = Editor.GetNewCellTypeNameValidationError(newTypeName);
+        if (errorMessage != null)
         {
+            duplicateCellTypeName.TooltipText = errorMessage;
             GD.Print("Bad name for new cell type");
+            ToolTipManager.Instance.ShowPopup(errorMessage, 2.5f);
             Editor.OnInvalidAction();
             return;
         }

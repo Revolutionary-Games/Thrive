@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-08 17:21+0300\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
 "PO-Revision-Date: 2026-06-11 13:41+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
@@ -828,6 +828,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Tên Loại Tế Bào"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Tên Loại Tế Bào"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Ghi chú thay đổi quá dài"
 
@@ -1018,16 +1022,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Sản xuất ATP"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Sản xuất ATP"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(tốc độ mà loài AI đột biến)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Sản xuất ATP"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Sản xuất ATP"
 
 msgid "COLOUR"
 msgstr ""
@@ -1530,6 +1534,27 @@ msgid "CREATING_DOT_DOT_DOT"
 msgstr ""
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
 msgstr ""
 
 msgid "CREDITS"
@@ -2036,6 +2061,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
 msgstr ""
 "Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
 "\n"
@@ -4957,10 +4993,6 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#, fuzzy
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "và"
-
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -5121,6 +5153,19 @@ msgstr ""
 
 msgid "PLAYER_EXTINCT"
 msgstr ""
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Tên mới:"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
@@ -8885,6 +8930,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Thu nhỏ"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "và"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Cố định đạm hiếu khí"

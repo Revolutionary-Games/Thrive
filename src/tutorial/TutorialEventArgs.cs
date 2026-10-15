@@ -154,6 +154,19 @@ public class OrganellePlacedEventArgs : TutorialEventArgs
     public OrganelleDefinition Definition { get; }
 }
 
+/// <summary>
+///   Event arguments for the removal of an organelle from the cell editor
+/// </summary>
+public class OrganelleRemovedEventArgs : TutorialEventArgs
+{
+    public OrganelleRemovedEventArgs(OrganelleDefinition definition)
+    {
+        Definition = definition;
+    }
+
+    public OrganelleDefinition Definition { get; }
+}
+
 public class EditorActionEventArgs : TutorialEventArgs
 {
     public EditorActionEventArgs(EditorAction action)

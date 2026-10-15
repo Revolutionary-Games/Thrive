@@ -21,5 +21,5 @@ public interface IMetaballDisplayer<TMetaball>
 
     public bool Visible { get; set; }
 
-    public void DisplayFromLayout(IReadOnlyCollection<TMetaball> layout);
+    public void DisplayFromLayout(IReadOnlyList<TMetaball> layout);
 }

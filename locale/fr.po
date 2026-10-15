@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-08 17:21+0300\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
-"Last-Translator: syl <syl@gresille.org>\n"
+"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"PO-Revision-Date: 2026-10-12 07:31+0000\n"
+"Last-Translator: autodiag2 <autodiag@netcourrier.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -826,6 +826,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Écraser le fichier ?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Les notes de changement sont trop longues"
 
@@ -1019,16 +1023,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Créer les entités avec les formes de collision"
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Rotation :"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Rotation :"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Rotation :"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Rotation :"
 
 msgid "COLOUR"
 msgstr "Couleur"
@@ -1564,6 +1568,32 @@ msgstr "En train de créer..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Création des objets à partir de la sauvegarde"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Type de toxine :"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Créer un nouveau type de cellule"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Vous pouvez créer de nouveaux types de cellules en dupliquant et en changeant leur nom. Les types de cellules peuvent être modifiés pour les spécialiser afin de leur attribuer des rôles. Quand un type de cellule est modifié, toutes les cellules de ce type déjà placées sont mises à jour."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Créer une nouvelle sauvegarde"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Vous pouvez créer de nouveaux types de cellules en dupliquant et en changeant leur nom. Les types de cellules peuvent être modifiés pour les spécialiser afin de leur attribuer des rôles. Quand un type de cellule est modifié, toutes les cellules de ce type déjà placées sont mises à jour."
 
 msgid "CREDITS"
 msgstr "Crédits"
@@ -2142,6 +2172,17 @@ msgstr ""
 "Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr ""
 "Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
@@ -2196,18 +2237,16 @@ msgstr ""
 "\n"
 "Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
-"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"Pour continuer a progresser, [b]Macroscopique[/b], vos espèces ont besoin de respecter plusieurs critères. Vous pouvez presser le boutton critères dédidé pour voir ce qui manque.\n"
 "\n"
-"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"Une fois vos espèces validées pour l'étape macroscopique, vous pouvez avancer après avoir quitté l'éditeur et augmenté le nombre requis de cellules. Cela activera le boutton de changement d'étape dans l'étape actuelle.\n"
 "\n"
-"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"Il n’est pas nécessaire de viser à faire avancer les étapes immédiatement, mais voir les conditions peut aider dans la planification de vos éditions futures de cellules.\n"
 "\n"
-"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+"[u]Pressez le boutton critères[/u] en bas du panneau de droite maitenant pour voir comment se porte vos espèces."
 
-#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Modifiez votre microbe pour la première fois"
 
@@ -5387,10 +5426,6 @@ msgstr "Panoramique droit"
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramique vers le haut"
 
-#, fuzzy
-msgid "PASSED_FULFILLED_CONDITION"
-msgstr "et"
-
 msgid "PAST_DEVELOPERS"
 msgstr "Anciens développeurs"
 
@@ -5568,6 +5603,21 @@ msgstr "Joueur en double"
 
 msgid "PLAYER_EXTINCT"
 msgstr "Le joueur est éteint"
+
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "La sauvegarde a un état scénique de jeu invalide"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Doit subir des dégâts par irradiation en se trouvant près d'un fragment radioactif."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Le nom de l’espèce est trop long !"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Dépend du joueur"
@@ -10631,6 +10681,10 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "et"
 
 #, fuzzy
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
