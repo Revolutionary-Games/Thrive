@@ -15,7 +15,8 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="13_wsdas"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="14"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="14_e8ubw"]
-[ext_resource type="PackedScene" path="res://src/gui_common/LoadingSpinner.tscn" id="16_enpqv"]
+[ext_resource type="PackedScene" uid="uid://xt3sn0ixehuh" path="res://src/gui_common/LoadingSpinner.tscn" id="16_enpqv"]
+[ext_resource type="Script" uid="uid://b30r8hvita2p4" path="res://src/multicellular_stage/editor/UnusedCellTypePopup.cs" id="unused_cell_type_popup"]
 
 [sub_resource type="StyleBoxTexture" id="1"]
 texture = ExtResource("2")
@@ -331,7 +332,7 @@ _data = {
 &"show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "creatureSkinTypeChoiceButton", "creatureGenerationSpinner", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "unusedCellTypePopup", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "creatureSkinTypeChoiceButton", "creatureGenerationSpinner", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -357,6 +358,7 @@ modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/E
 deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
 duplicateTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
 cannotDeleteInUseTypeDialog = NodePath("CannotDeleteInUseType")
+unusedCellTypePopup = NodePath("UnusedCellTypePopup")
 duplicateCellTypeDialog = NodePath("NewTissueTypeSetup")
 duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
@@ -827,6 +829,13 @@ layout_mode = 0
 HideCancelButton = true
 DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
 WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
+
+[node name="UnusedCellTypePopup" parent="." unique_id=350431111 instance=ExtResource("7")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+script = ExtResource("unused_cell_type_popup")
+HideCancelButton = true
+WindowTitle = "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 
 [node name="CannotReduceBrainPowerStage" parent="." unique_id=1375022548 instance=ExtResource("7")]
 layout_mode = 0
