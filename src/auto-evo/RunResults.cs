@@ -259,16 +259,36 @@ public class RunResults : IArchivable
         }
     }
 
+    /// <summary>
+    ///   Registers a new species for the <see cref="RegisterNewSpecies"/> step. Absolutely should not be used in other
+    ///   steps, as it requires populations to already be calculated.
+    /// </summary>
     public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
-        NewSpeciesType addType, Species parentSpecies)
+        NewSpeciesType addType, Species parentSpecies, bool inheritingPopulation)
     {
         MakeSureResultExistsForSpecies(species);
+        MakeSureResultExistsForSpecies(parentSpecies);
 
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
 
+        var population = initialPopulationInPatch.Value;
+
+        // If set as inheriting, the population of the parent species is added to the new species.
+        // Because of this, it needs to be ASSURED that the population of the parent species has already been calculated
+        // in a previous step and is NOT otherwise modified in this step.
+        if (inheritingPopulation)
+        {
+            results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
+                out var existing);
+            population += existing;
+
+            // Also transfer any migrations from the parent species to the new species.
+            TransferMigrationsBetween(species, parentSpecies);
+        }
+
         results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
-            Math.Max(initialPopulationInPatch.Value, 0);
+            Math.Max(population, 0);
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
@@ -780,6 +800,23 @@ public class RunResults : IArchivable
         }
 
         return migrationsToPatch;
+    }
+
+    /// <summary>
+    ///   Copies all migrations from a parent species to a child species and deletes them from the parent species.
+    ///   This is used for stage-transition mutants that can't be applied to the parent species directly.
+    ///   Note: both species must have results already, or this will throw an exception.
+    /// </summary>
+    public void TransferMigrationsBetween(Species childSpecies, Species parentSpecies)
+    {
+        var speciesMigrations = results[parentSpecies].SpreadToPatches;
+
+        foreach (var migration in speciesMigrations)
+        {
+            results[childSpecies].SpreadToPatches.Add(migration);
+        }
+
+        speciesMigrations.Clear();
     }
 
     public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
