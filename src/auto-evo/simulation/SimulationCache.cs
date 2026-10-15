@@ -2241,8 +2241,12 @@ public class SimulationCache
             for (int i = 0; i < count; ++i)
             {
                 var organelle = organelles[i];
-                if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == preySpecies)
+                if (organelle.Definition.HasChemoreceptorComponent &&
+                    organelle.GetActiveTargetSpecies()?.ID == preySpecies.ID)
+                {
                     hasChemoreceptor = true;
+                }
+
                 if (organelle.Definition.HasSignalingFeature)
                     hasSignallingAgent = true;
                 if (organelles[i].Definition.IsOxygenMetabolism)
@@ -2307,7 +2311,7 @@ public class SimulationCache
                 foreach (var organelle in cellType.Organelles)
                 {
                     if (organelle.Definition.HasChemoreceptorComponent &&
-                        organelle.GetActiveTargetSpecies() == preySpecies)
+                        organelle.GetActiveTargetSpecies()?.ID == preySpecies.ID)
                     {
                         hasChemoreceptor = true;
                     }
