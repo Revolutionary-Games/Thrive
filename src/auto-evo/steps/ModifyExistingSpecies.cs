@@ -135,6 +135,16 @@ public class ModifyExistingSpecies : IRunStep
                     if (species is MicrobeSpecies or MulticellularSpecies)
                     {
                         GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
+
+                        // If the species is a MicrobeSpecies, check if it can become Multicellular,
+                        // and if so, generate Multicellular mutants.
+                        if (species is MicrobeSpecies microbeSpecies)
+                        {
+                            var multicellularBase = AttemptBecomingMulticellular(microbeSpecies);
+
+                            if (multicellularBase != null)
+                                GetMutationsForSpecies(multicellularBase, patch.SpeciesInPatch.Count, species);
+                        }
                     }
                 }
                 else
@@ -370,7 +380,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(Species species, int speciesInPatch)
+    private void GetMutationsForSpecies(Species species, int speciesInPatch, Species? trueParent = null)
     {
         // We avoid auto-evo taking forever by skipping any (probably player) species that has far too many cells
         if (species is MulticellularSpecies { GameplayCells.Count: > Constants.AUTO_EVO_CUTOFF_CELL_COUNT })
@@ -384,7 +394,7 @@ public class ModifyExistingSpecies : IRunStep
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
         inputSpecies.Add(new Mutant(species, totalMP));
 
-        GenerateMutations(species, miche!, 1, false, speciesInPatch);
+        GenerateMutations(species, miche!, 1, false, speciesInPatch, trueParent);
     }
 
     /// <summary>
@@ -421,7 +431,7 @@ public class ModifyExistingSpecies : IRunStep
     ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
     private void GenerateMutations(Species baseSpecies, Miche currentMiche, int depth, bool lastChild,
-        int speciesInPatch)
+        int speciesInPatch, Species? trueParent = null)
     {
         var baseSpeciesMutant = new Mutant(baseSpecies,
             Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier);
@@ -567,7 +577,15 @@ public class ModifyExistingSpecies : IRunStep
 
             foreach (var species in lastGeneratedMutations)
             {
-                mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+                // If there is a designated parent species different from the base species, use that.
+                if (trueParent != null)
+                {
+                    mutationsToTry.Add(new Mutation(trueParent, species, RunResults.NewSpeciesType.SplitDueToMutation));
+                }
+                else
+                {
+                    mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+                }
             }
 
             pressureStack.Pop();
@@ -588,13 +606,44 @@ public class ModifyExistingSpecies : IRunStep
                 foreach (var child in currentMiche.Children)
                 {
                     bool isLast = index == childCount - 1;
-                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch);
+                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch, trueParent);
                     ++index;
                 }
             }
 
             pressureStack.Pop();
         }
+    }
+
+    private MulticellularSpecies? AttemptBecomingMulticellular(MicrobeSpecies baseMicrobeSpecies)
+    {
+        // We don't generate new Multicellular species for the player species.
+        if (baseMicrobeSpecies.PlayerSpecies)
+            return null;
+
+        var organelles = baseMicrobeSpecies.Organelles;
+
+        // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
+        // (the in-gameplay requirement of having a colony of size 5 can be supposed to happen anytime)
+        // If more requirements are added for the player, that should extend to auto-evo as well.
+        var hasBindingFeature = false;
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            if (organelles[i].Definition.HasBindingFeature)
+            {
+                hasBindingFeature = true;
+                break;
+            }
+        }
+
+        if (!hasBindingFeature)
+            return null;
+
+        var newSpecies = baseMicrobeSpecies.GenerateMulticellularVersion(true, hexTemporaryMemory1,
+            hexTemporaryMemory2, hexTemporaryMemory3, true);
+        newSpecies.OnAttemptedInAutoEvo(true, false);
+        return newSpecies;
     }
 
     private record struct Mutation(Species ParentSpecies, Species MutatedSpecies, RunResults.NewSpeciesType AddType);

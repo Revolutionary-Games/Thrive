@@ -290,7 +290,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
-    public Species? GetActiveSpeciesData(uint speciesId)
+    public Species? GetActiveSpeciesData(uint speciesId, bool printErrors = true)
     {
         return GetSpeciesDataFromGeneration(generationDisplayed, speciesId);
     }
