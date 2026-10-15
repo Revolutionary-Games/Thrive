@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-10-14 15:52+0300\n"
-"PO-Revision-Date: 2026-10-14 07:42+0000\n"
+"PO-Revision-Date: 2026-10-14 12:30+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -114,7 +114,7 @@ msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "肌动球蛋白是细胞群落用来向一个方向运动或旋转的简单肌肉结构。它们依赖于细胞群落的伸缩来起作用，所以与各种细胞壁不兼容，并且在每个细胞只有一个，但群落里很多细胞都有的情况下最为高效。"
 
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "增加细胞群落的移动和旋转速度。"
+msgstr "增加细胞群落的基础移动和旋转速度。"
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "额外验证检测到了一个问题：{0}"
@@ -821,9 +821,8 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
-#, fuzzy
 msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
-msgstr "目标文件名{0}已存在。确定要覆盖吗？"
+msgstr "与已有细胞类型名重复"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更改说明太长了"
@@ -1026,13 +1025,11 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr "生成具有碰撞形状的实体"
 
-#, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "细胞群落旋转力"
+msgstr "细胞群落基础旋转力"
 
-#, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "细胞群落速度"
+msgstr "细胞群落基础速度"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "该选项卡允许设定群落细胞的生长顺序，其中排序首位的细胞即为根细胞（或称芽体）。您可以利用此功能优先生长更关键的细胞，或确保群落的物质生产与消耗维持适当的平衡。"
@@ -5356,19 +5353,16 @@ msgid "PLAYER_EXTINCT"
 msgstr "玩家已灭绝"
 
 msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
-msgstr ""
+msgstr "名字不能为空"
 
-#, fuzzy
 msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
-msgstr "存档具有无效的游戏状态场景"
+msgstr "名字中不能含有'/', ':', '%', '@', '.', 或 '\"'。"
 
-#, fuzzy
 msgid "PLAYER_NAME_REQUIREMENTS"
-msgstr "需要靠近放射性碎块并受到辐射伤害。"
+msgstr "名字最多可以有100个字符，且不能含有特殊字符('/:%@\".')"
 
-#, fuzzy
 msgid "PLAYER_NAME_TOO_LONG"
-msgstr "物种名过长！"
+msgstr "名字的字符数必须不超过{0}"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"
