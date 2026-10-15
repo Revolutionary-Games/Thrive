@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 16:31+0300\n"
-"PO-Revision-Date: 2026-10-13 19:09+0000\n"
+"POT-Creation-Date: 2026-10-14 15:52+0300\n"
+"PO-Revision-Date: 2026-10-14 20:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -114,7 +114,7 @@ msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "Aktomiyozinler, hücre kolonilerinin kendilerini bir yöne çekmek ya da döndürmek için kullanabileceği basit kas yapılarıdır. Bu yapıların işlevi koloninin esnekliğine dayandığından, duvar tipi hücre zarları için mevcut değildir. Bunun da bir sonucu olarak, her hücrede yalnızca bir tane bulunması ama kolonideki birçok hücrenin bu organeli taşıması durumunda, bu yapılar en etkili haldedir."
 
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Bir hücre kolonisinin hareket ve dönme hızını arttırır."
+msgstr "Hücre kolonisinin temel hareket ve dönme hızını arttırır."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ek doğrulamalar bir sorun tespit etti: {0}"
@@ -566,10 +566,6 @@ msgstr "Birlikte Daha İyi"
 msgid "BEYOND_THE_CELL"
 msgstr "Hücrenin Ötesinde"
 
-#, fuzzy
-msgid "BEYOND_THE_MICROBE"
-msgstr "Hücrenin Ötesinde"
-
 msgid "BIG_IRON_CHUNK"
 msgstr "Büyük Demir Parçası"
 
@@ -824,9 +820,8 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
-#, fuzzy
 msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
-msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
+msgstr "Bu isimde bir hücre türü mevcut"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
@@ -1029,13 +1024,11 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
-#, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Koloni Dönme Hızı"
+msgstr "Temel Koloni Dönme Hızı"
 
-#, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Koloni Hızı"
+msgstr "Temel Koloni İlerleme Hızı"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
@@ -5358,19 +5351,16 @@ msgid "PLAYER_EXTINCT"
 msgstr "Oyuncunun nesli tükendi"
 
 msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
-msgstr ""
+msgstr "İsim boş bırakılamaz"
 
-#, fuzzy
 msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
-msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
+msgstr "İsim '/', ':', '%', '@', '.' veya '\"' içeremez."
 
-#, fuzzy
 msgid "PLAYER_NAME_REQUIREMENTS"
-msgstr "Radyasyon hasarı almak için bir radyoaktif parçaya yakın olmak gerekir."
+msgstr "İsimler 100 karaktere kadar olabilir ve özel karakterler içeremez ('/:%@\".')"
 
-#, fuzzy
 msgid "PLAYER_NAME_TOO_LONG"
-msgstr "Tür adı çok uzun!"
+msgstr "İsimler {0} karakter veya daha az olmalıdır"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Oyuncuya bağlı"
@@ -5567,10 +5557,6 @@ msgstr "En az normal zorlukta, tek bir türle 15. kuşağa ulaş"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "En az normal zorlukta, tek bir türle {0}/{1}. nesle ulaş"
-
-#, fuzzy
-msgid "REACH_MACROSCOPIC_STAGE"
-msgstr "Makroskopik Evresi"
 
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Çok hücreli evresine ulaş"
@@ -7537,6 +7523,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Adsız"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Spor hücresi türü seçili değil"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Çeken Siller"

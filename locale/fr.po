@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 16:31+0300\n"
-"PO-Revision-Date: 2026-10-12 07:31+0000\n"
-"Last-Translator: autodiag2 <autodiag@netcourrier.com>\n"
+"POT-Creation-Date: 2026-10-14 15:52+0300\n"
+"PO-Revision-Date: 2026-10-15 06:53+0000\n"
+"Last-Translator: Liam Bilthauer <luna.koinodo@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -573,10 +573,6 @@ msgstr "Mieux ensemble"
 msgid "BEYOND_THE_CELL"
 msgstr "Au delà de la cellule"
 
-#, fuzzy
-msgid "BEYOND_THE_MICROBE"
-msgstr "Au delà de la cellule"
-
 msgid "BIG_IRON_CHUNK"
 msgstr "Gros fragment de fer"
 
@@ -761,8 +757,9 @@ msgstr "Cette membrane est dotée d'une paroi, ce qui lui confère une meilleure
 msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
 msgstr ""
 
+#, fuzzy
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
-msgstr ""
+msgstr "La rotation de cellules ne peut être effectuée qu'en vue de structure principal"
 
 msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
 msgstr ""
@@ -770,17 +767,21 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
+#, fuzzy
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "La disposition est invalide parce que des cellules sont trop éloignées. Rapprochez-les de leurs positions attendues (voir les flèches rouges)."
 
+#, fuzzy
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
-msgstr ""
+msgstr "La disposition est invalide car des cellules sont déconnectées"
 
+#, fuzzy
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
-msgstr ""
+msgstr "L'emplacement est invalide car l'ordre de croissance des cellules est inapproprié. Replacez-les ou modifiez l'ordre de croissance dans l'onglet Croissance."
 
+#, fuzzy
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
-msgstr ""
+msgstr "La disposition est incorrecte car il y a des cellules imbriquées."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
 msgstr "La disposition est invalide car il y a des cellules qui se chevauchent et que trop the adjacences sont perdues (voir les flèches rouges)."
@@ -800,8 +801,9 @@ msgstr ""
 "Vitesse de rotation de la cellule. Les cellules plus grosse tournent plus lentement mais des cils peuvent être ajoutés pour compenser.\n"
 "Le placement des organites impacte la rotation, les organites les plus loin du centre réduisant moins la vitesse de rotation."
 
+#, fuzzy
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
-msgstr ""
+msgstr "Veuillez patienter, calcule de la disposition du corps en cours..."
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1028,7 +1030,7 @@ msgstr "Créer les entités avec les formes de collision"
 
 #, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Rotation :"
+msgstr "Rotation :"
 
 #, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
@@ -1578,14 +1580,15 @@ msgid "CREATURE_SKIN_TYPE_COLON"
 msgstr "Type de toxine :"
 
 msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr ""
+msgstr "Plumes"
 
 #, fuzzy
 msgid "CREATURE_SKIN_TYPE_FUR"
 msgstr "Créer un nouveau type de cellule"
 
+#, fuzzy
 msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr ""
+msgstr "Poivre"
 
 #, fuzzy
 msgid "CREATURE_SKIN_TYPE_PLAIN"
@@ -2426,11 +2429,13 @@ msgstr "Erreur de récupération des actualités"
 msgid "ERROR_LOADING"
 msgstr "Erreur de chargement"
 
+#, fuzzy
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
-msgstr ""
+msgstr "Erreur : au moins deux cellules sont nécessaires pour une reproduction sexuée"
 
+#, fuzzy
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
-msgstr ""
+msgstr "Erreur : une masse bourgeonnante nécessite une taille de bourgeon d'au moins {0} cellules"
 
 msgid "ERROR_SAVING"
 msgstr "Erreur de sauvegarde"
@@ -3666,8 +3671,9 @@ msgstr "LAWK uniquement"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restreint les parties et les capacités à la vie telle que nous la connaissons)"
 
+#, fuzzy
 msgid "LAYOUT_TAB"
-msgstr ""
+msgstr "Disposition"
 
 msgid "LEAD_ARTIST"
 msgstr "Artiste principal"
@@ -3948,8 +3954,9 @@ msgstr "Macroscopique"
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Prochainement."
 
+#, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
-msgstr ""
+msgstr "Toutes les conditions macroscopiques sont remplies. Croit après avoir quitté l'éditeur et clique sur le bouton \"devenir macroscopique\" pour progresser."
 
 #, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_INTRO"
@@ -3963,8 +3970,9 @@ msgstr "Chargement de l'Éditeur de microbe"
 msgid "MACROSCOPIC_CONDITIONS_TITLE"
 msgstr "Chargement de l'Éditeur de microbe"
 
+#, fuzzy
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
-msgstr ""
+msgstr "Moyenne de bonus de proximité cellulaire à au moins {1}% (actuellement {0}%)"
 
 #, fuzzy
 msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
@@ -4015,8 +4023,9 @@ msgstr "Mars"
 msgid "MARINE_SNOW"
 msgstr "Neige marine"
 
+#, fuzzy
 msgid "MASS_BUDDING_CELL_COUNT"
-msgstr ""
+msgstr "Nombre de cellules initial"
 
 #, fuzzy
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
@@ -5609,7 +5618,7 @@ msgid "PLAYER_EXTINCT"
 msgstr "Le joueur est éteint"
 
 msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
-msgstr ""
+msgstr "Le nom ne peut pas être vide"
 
 #, fuzzy
 msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
@@ -5656,11 +5665,13 @@ msgstr "Jouer l'introduction à chaque nouvelle partie"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jouer avec les paramètres actuels"
 
+#, fuzzy
 msgid "PLUS_FROM_BASE_VALUE"
-msgstr ""
+msgstr "+{0} de base"
 
+#, fuzzy
 msgid "PLUS_FROM_BASE_VALUE_INDENTED"
-msgstr ""
+msgstr "  +{0} de base"
 
 #, fuzzy
 msgid "PLUS_FROM_SPECIALIZATION_VALUE"
@@ -5838,10 +5849,6 @@ msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Atteindre la génération {0}/{1} avec une seule espèce en difficulté normal ou plus"
 
 #, fuzzy
-msgid "REACH_MACROSCOPIC_STAGE"
-msgstr "Phase macroscopique"
-
-#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Phase multicellulaire"
 
@@ -5851,8 +5858,9 @@ msgstr "Lecture des données de sauvegarde"
 msgid "READY"
 msgstr "Prêt"
 
+#, fuzzy
 msgid "REAPPLY_AUTOMATIC_LAYOUT"
-msgstr ""
+msgstr "Réinitialiser le positionnement"
 
 #, fuzzy
 msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
@@ -6188,8 +6196,12 @@ msgstr "La sauvegarde a un état scénique de jeu invalide"
 msgid "SAVE_INVALID"
 msgstr "Invalide"
 
+#, fuzzy
 msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
 msgstr ""
+"Chargement de la sauvegarde échouée car le fichier est corrompu.\n"
+"Hachage attendu : {0}\n"
+"Hachage calculé : {1}"
 
 msgid "SAVE_IS_INVALID"
 msgstr "La sauvegarde est invalide"
@@ -7144,7 +7156,7 @@ msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Mouvement de base"
 
 msgid "THRUST_FORCE"
-msgstr ""
+msgstr "Propulsion"
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoïdes"
@@ -7918,6 +7930,13 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Sans titre"
 
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Créer un nouveau type de cellule"
+
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Cils de traction"
@@ -8167,8 +8186,9 @@ msgstr "Roulette droite"
 msgid "WHEEL_UP"
 msgstr "Molette avant"
 
+#, fuzzy
 msgid "WHILE_CONSUMING_COLON"
-msgstr ""
+msgstr "En digestion :"
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -10397,8 +10417,9 @@ msgstr ""
 "\n"
 "Lorsqu'il est réglé sur [b]intense[/b], [b]seulement[/b] les zones où le joueur est allé seront visibles. Les zones adjacentes seront visibles mais leur type et les informations sur les composés seront cachées"
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
-msgstr ""
+msgstr "La planète sur laquelle vos espèces vivent est un grand territoire avec différents environnements et biomes. Dans le [color=#3796e1][url=thriveopedia:microbe_stage]Niveau Microbe[/url][/color], c'est représenté par des [b]Patchs[/b] et des [b]Régions[/b] sur la [b]Carte des Patchs[/b]."
 
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr ""
