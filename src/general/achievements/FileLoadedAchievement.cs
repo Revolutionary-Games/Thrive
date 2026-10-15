@@ -335,6 +335,105 @@ public class FileLoadedAchievement : IAchievement
 
                 break;
             }
+
+            case 14:
+            {
+                if (InternalName == IAchievementStatStore.ULTIMATE_COLONY_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_ULTIMATE_COLONY)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 15:
+            {
+                if (InternalName == IAchievementStatStore.ULTIMATE_CELLULAR_FIREPOWER_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 16:
+            {
+                if (InternalName == IAchievementStatStore.YOU_ANIMAL_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_YOU_ANIMAL)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 17:
+            {
+                if (InternalName == IAchievementStatStore.SPECIALIZED_WEAPONS_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_SPECIALIZED_WEAPONS)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 18:
+            {
+                if (InternalName == IAchievementStatStore.SPECIALIZATION_SPECIALIST_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 19:
+            {
+                if (InternalName == IAchievementStatStore.JUST_A_FLESH_WOUND_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_JUST_A_FLESH_WOUND)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 20:
+            {
+                if (InternalName == IAchievementStatStore.IN_LOOK_OF_A_HOME_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 21:
+            {
+                if (InternalName == IAchievementStatStore.MICROSCOPIC_BIRDS_AND_BEES_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES)
+                {
+                    return;
+                }
+
+                break;
+            }
+
+            case 22:
+            {
+                if (InternalName == IAchievementStatStore.PERFECTLY_PACKED_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_PERFECTLY_PACKED)
+                {
+                    return;
+                }
+
+                break;
+            }
         }
 
         throw new Exception(

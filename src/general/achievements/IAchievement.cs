@@ -91,4 +91,13 @@ public static class AchievementIds
     public const int MICRO_BORG = 11;
     public const int BEYOND_THE_CELL = 12;
     public const int BEYOND_THE_MICROBE = 13;
+    public const int ULTIMATE_COLONY = 14;
+    public const int ULTIMATE_CELLULAR_FIREPOWER = 15;
+    public const int YOU_ANIMAL = 16;
+    public const int SPECIALIZED_WEAPONS = 17;
+    public const int SPECIALIZATION_SPECIALIST = 18;
+    public const int JUST_A_FLESH_WOUND = 19;
+    public const int IN_LOOK_OF_A_HOME = 20;
+    public const int MICROSCOPIC_BIRDS_AND_BEES = 21;
+    public const int PERFECTLY_PACKED = 22;
 }
