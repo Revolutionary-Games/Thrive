@@ -865,8 +865,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                 if (partialTemperatureBonusFont == null || originalTemperatureFont == null)
                     throw new Exception("label settings not set");
 
-                partialTemperatureBonusFont.FontColor = originalTemperatureFont.FontColor.Lerp(
-                    perfectValueFontTiny.FontColor, weight);
+                partialTemperatureBonusFont.FontColor =
+                    originalTemperatureFont.FontColor.Lerp(perfectValueFontTiny.FontColor, weight);
 
                 temperatureMinLabel.LabelSettings = partialTemperatureBonusFont;
                 temperatureMaxLabel.LabelSettings = partialTemperatureBonusFont;
