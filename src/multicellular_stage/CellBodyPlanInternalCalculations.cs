@@ -427,7 +427,7 @@ public static class CellBodyPlanInternalCalculations
     /// </summary>
     public static float AxonDiminishingReturns(float axonPower, int axonCount)
     {
-        return axonPower * MathF.Pow(axonCount, -0.5f);
+        return axonPower * MathF.Pow(axonCount, -Constants.AXON_DIMINISHING_RETURNS_SCALE);
     }
 
     /// <summary>

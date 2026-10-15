@@ -384,7 +384,7 @@ public static class Constants
     /// <summary>
     ///   Diminishing returns on having multiple axons in a colony. Higher numbers cause harsher scaling.
     /// </summary>
-    public const float AXON_DIMINISHING_RETURNS_SCALE = 0.5f;
+    public const float AXON_DIMINISHING_RETURNS_SCALE = 0.6f;
 
     // TODO: harsher wording in the tooltip
 
