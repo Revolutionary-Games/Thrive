@@ -363,10 +363,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
-                    out var cost1, out var cost2, out var cost3))
+                    out var flagellumCost, out var actomyosinCost, out var axonCost))
             {
-                result.AddConsumption(organelle.Definition.InternalName, (cost1 + cost2 + cost3) *
-                    energyCostMultiplier);
+                result.AddConsumption(organelle.Definition.InternalName, (flagellumCost + actomyosinCost +
+                    axonCost) * energyCostMultiplier);
             }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
