@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 02:25+0300\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
-"Last-Translator: Nicolás Duarte Mejía <nico08abril@hotmail.com>\n"
+"POT-Creation-Date: 2026-10-15 11:15+0300\n"
+"PO-Revision-Date: 2026-10-14 12:30+0000\n"
+"Last-Translator: diamondking987 <diamondking22223@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -113,6 +113,7 @@ msgstr ""
 msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "La actomyosinas son estructuras musculares simples que las colonias celulares pueden usar para arrastrarse o girar con mayor eficacia. No están disponibles para membranas de tipo pared, ya que dependen de la flexión de la colonia para funcionar. Como resultado, son más efectivas cuando hay solo una por célula, pero muchas células de la colonia tienen este orgánulo."
 
+#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr "Aumenta la velocidad de movimiento y la tasa de rotación de una colonia celular."
 
@@ -571,6 +572,10 @@ msgid "BETTER_TOGETHER"
 msgstr "Mejor juntos"
 
 msgid "BEYOND_THE_CELL"
+msgstr "Más allá de la célula"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "Más allá de la célula"
 
 msgid "BIG_IRON_CHUNK"
@@ -5892,6 +5897,10 @@ msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Alcanza la generación {0}/{1} con una única especie en dificultad normal o mayor"
 
 #, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Etapa Macroscópica"
+
+#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Etapa multicelular"
 
@@ -6131,10 +6140,6 @@ msgstr "Girar a la izquierda"
 
 msgid "ROTATE_RIGHT"
 msgstr "Girar a la derecha"
-
-#, fuzzy
-msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
-msgstr "Entra al editor y modifica tu especie"
 
 msgid "ROTATION_COLON"
 msgstr "Rotación:"
@@ -8046,6 +8051,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Sin título"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Crea un nuevo tipo de célula"
 
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL"
@@ -10362,14 +10374,6 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
-
-#, fuzzy
-#~ msgid "COLONY_ROTATION_INCREASE"
-#~ msgstr "Rotación:"
-
-#, fuzzy
-#~ msgid "COLONY_SPEED_INCREASE"
-#~ msgstr "Rotación:"
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"
