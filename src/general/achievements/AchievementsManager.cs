@@ -19,7 +19,7 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "BiFbOHf4F4zJ91WEKBJDfFj40WJ6RcuIWELLu/gBJnE=";
+    private const string ACHIEVEMENTS_INTEGRITY = "wFcrbPSoxHBcwf105ishtDF80qZmqYQKsihfNFmFYsI=";
 
     private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
     private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
