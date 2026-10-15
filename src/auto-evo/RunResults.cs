@@ -805,15 +805,14 @@ public class RunResults : IArchivable
     /// <summary>
     ///   Copies all migrations from a parent species to a child species and deletes them from the parent species.
     ///   This is used for stage-transition mutants that can't be applied to the parent species directly.
+    ///   Note: both species must have results already, or this will throw an exception.
     /// </summary>
     public void TransferMigrationsBetween(Species childSpecies, Species parentSpecies)
     {
         var speciesMigrations = results[parentSpecies].SpreadToPatches;
-        var migrationsCount = speciesMigrations.Count;
 
-        for (int i = 0; i < migrationsCount; ++i)
+        foreach (var migration in speciesMigrations)
         {
-            var migration = speciesMigrations[i];
             results[childSpecies].SpreadToPatches.Add(migration);
         }
 
