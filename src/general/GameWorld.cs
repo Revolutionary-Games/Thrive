@@ -507,11 +507,11 @@ public class GameWorld : IArchivable
     /// <summary>
     ///   Simulate long-term world time passing
     /// </summary>
-    public void OnTimePassed(double timePassed)
+    public void OnTimePassed(double timePassed, bool throwOnError = false)
     {
         TotalPassedTime = CalculateNextTimeStep(timePassed);
 
-        TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
+        TimedEffects.OnTimePassed(timePassed, TotalPassedTime, throwOnError);
     }
 
     public double CalculateNextTimeStep(double timePassed)
