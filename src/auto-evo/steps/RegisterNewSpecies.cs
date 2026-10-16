@@ -37,6 +37,7 @@ public class RegisterNewSpecies : IRunStep
         }
 
         var modifiedSpecies = results.GetPossibleSpeciesList();
+        var selectedParentMutations = new Dictionary<Species, Species>(ReferenceEqualityComparer.Instance);
 
         // Look through the extinct species and find their best modified variant to make it into that species' mutation
         foreach (var extinct in extinctSpecies)
@@ -69,6 +70,7 @@ public class RegisterNewSpecies : IRunStep
                         bestSpecies.Value.InitialPopulationInPatches);
 
                     handledSpecies.Add(bestSpecies.Value.Species);
+                    selectedParentMutations.Add(bestSpecies.Value.Species, extinct);
 
                     continue;
                 }
@@ -92,6 +94,23 @@ public class RegisterNewSpecies : IRunStep
             {
                 results.AddNewSpecies(species.Species, species.InitialPopulationInPatches, species.AddType,
                     species.ParentSpecies, false);
+            }
+        }
+
+        // Decide every candidate's destination before changing the occupants used for extinction detection.
+        // Only the selected same-stage candidate becomes its parent; other candidates keep their own identity.
+        if (selectedParentMutations.Count > 0)
+        {
+            var leaves = new List<Miche>();
+            foreach (var patch in world.Map.Patches)
+            {
+                leaves.Clear();
+                results.GetModifiableMicheForPatch(patch.Value).GetLeafNodes(leaves);
+                foreach (var leaf in leaves)
+                {
+                    if (leaf.Occupant != null && selectedParentMutations.TryGetValue(leaf.Occupant, out var parent))
+                        leaf.Occupant = parent;
+                }
             }
         }
 
