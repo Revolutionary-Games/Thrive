@@ -190,6 +190,21 @@ public class CompoundBag : ICompoundStorage, IEnumerable<KeyValuePair<Compound, 
 
     public float AddCompound(Compound compound, float amount)
     {
+        return AddCompound(compound, amount, false);
+    }
+
+    /// <summary>
+    ///   Adds some compound to this bag, optionally ignoring whether the compound is considered useful
+    /// </summary>
+    /// <param name="compound">The compound type to add</param>
+    /// <param name="amount">How much of the compound to add</param>
+    /// <param name="ignoreUsefulness">
+    ///   If true, then the compound is added up to the physical capacity even if it is not marked useful (see
+    ///   <see cref="GetCapacityForCompound(Compound,bool)"/>)
+    /// </param>
+    /// <returns>Returns the amount that was added, which can be less than the given amount.</returns>
+    public float AddCompound(Compound compound, float amount, bool ignoreUsefulness)
+    {
         if (amount <= 0.0f)
             return amount;
 
@@ -201,7 +216,7 @@ public class CompoundBag : ICompoundStorage, IEnumerable<KeyValuePair<Compound, 
 
         float existingAmount = GetCompoundAmount(compound);
 
-        float newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound));
+        float newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound, ignoreUsefulness));
 
         Compounds[compound] = newAmount;
 
