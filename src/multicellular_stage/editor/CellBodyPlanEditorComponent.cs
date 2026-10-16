@@ -160,6 +160,9 @@ public partial class CellBodyPlanEditorComponent :
     private PackedScene billboardScene = null!;
 
     [Export]
+    private EditorAutoEvoPredictionPanel autoEvoPredictionPanel = null!;
+
+    [Export]
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]

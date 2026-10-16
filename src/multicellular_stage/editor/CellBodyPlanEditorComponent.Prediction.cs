@@ -6,8 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
-    public EditorAutoEvoPredictionPanel PredictionPanel =>
-        GetNode<EditorAutoEvoPredictionPanel>("RightPanel/VBoxContainer/AutoEvoInfoPanel");
+    public EditorAutoEvoPredictionPanel PredictionPanel => autoEvoPredictionPanel;
 
     /// <summary>
     ///   Captures committed body and buffered type edits without applying any changes to the editor or world.

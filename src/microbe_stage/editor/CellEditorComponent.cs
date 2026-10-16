@@ -515,8 +515,6 @@ public partial class CellEditorComponent :
         base._Ready();
 
         autoEvoPredictionPanel.ConfigureHost(finishOrNextButton, true);
-        autoEvoPredictionPanel.Connect(EditorAutoEvoPredictionPanel.SignalName.DetailsOpened,
-            new Callable(this, nameof(OnAutoEvoPredictionDetailsOpened)));
 
         // This works only after this is attached to the scene tree
         // Hidden in the Godot editor to make selecting other things easier
