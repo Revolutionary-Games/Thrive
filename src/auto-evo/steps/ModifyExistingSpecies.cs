@@ -53,6 +53,9 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Mutation> mutationsToTry = new();
     private readonly HashSet<Species> handledMutations = new();
+    private readonly HashSet<Species> rejectedMutations = new(ReferenceEqualityComparer.Instance);
+
+    private readonly List<(Miche Leaf, Species? Occupant)> leafOccupantsBeforeMutations = new();
 
     private readonly List<Miche> nonEmptyLeafNodes = new();
     private readonly List<Miche> emptyLeafNodes = new();
@@ -203,6 +206,18 @@ public class ModifyExistingSpecies : IRunStep
 
             case Step.MutationTest:
             {
+                if (mutationsToTry.Count > 0)
+                {
+                    // A rejected candidate must restore the actual previous occupant, which may not be its parent.
+                    // Keep leaf references in a list because Occupant participates in Miche's hash code.
+                    var leaves = new List<Miche>();
+                    miche.GetLeafNodes(leaves);
+                    foreach (var leaf in leaves)
+                    {
+                        leafOccupantsBeforeMutations.Add((leaf, leaf.Occupant));
+                    }
+                }
+
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
@@ -292,6 +307,18 @@ public class ModifyExistingSpecies : IRunStep
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
                     }
+                    else
+                    {
+                        rejectedMutations.Add(mutation.MutatedSpecies);
+                    }
+                }
+
+                // Only restore leaves still occupied by rejected candidates. Successful candidates keep their leaves,
+                // and candidates hidden during this batch do not get another insertion attempt.
+                foreach (var (leaf, occupant) in leafOccupantsBeforeMutations)
+                {
+                    if (leaf.Occupant != null && rejectedMutations.Contains(leaf.Occupant))
+                        leaf.Occupant = occupant;
                 }
 
                 return true;
