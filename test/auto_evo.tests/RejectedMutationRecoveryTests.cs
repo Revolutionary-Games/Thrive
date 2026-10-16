@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AutoEvo;
 using GdUnit4;
-using Godot;
 using SharedBase.Archive;
 using static GdUnit4.Assertions;
 
@@ -13,6 +12,11 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class RejectedMutationRecoveryTests
 {
+    /// <summary>
+    ///   A candidate that displaced an existing resident but has too little population must restore that resident
+    ///   before population calculation. Following registration and result application guards against publishing
+    ///   the rejected candidate or losing the restored resident later in the run.
+    /// </summary>
     [TestCase]
     public void RejectedOccupantIsRestoredBeforePopulationAndRemainsAbsentAfterApply()
     {
@@ -59,8 +63,6 @@ public class RejectedMutationRecoveryTests
                 var estimated = MichePopulation.CalculatePopulationInPatch(candidate, leaf, patch, cache);
                 AssertThat(estimated > 0 && estimated <= Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION).IsTrue();
                 AssertThat(results.GetPossibleSpeciesList()).IsEmpty();
-                GD.Print($"Recovery prerequisite: candidate took prior leaf, estimate={estimated}, " +
-                    $"minimum={Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION}");
                 AssertThat(modify.RunStep(results)).IsTrue();
 
                 // The repair must be visible before formal population calculation.
@@ -89,6 +91,11 @@ public class RejectedMutationRecoveryTests
         AssertThat(patch.GetSpeciesSimulationPopulation(prior)).IsEqual(final.GetPopulationInPatch(prior, patch));
     }
 
+    /// <summary>
+    ///   Checks candidate estimates of zero and immediately below, at, and above the viability minimum.
+    ///   Only the above-minimum candidate may remain and be published, protecting the strict admission boundary
+    ///   and restoration of the prior occupant for each rejected case.
+    /// </summary>
     [TestCase(0)]
     [TestCase(-1)]
     [TestCase(1)]
@@ -127,6 +134,10 @@ public class RejectedMutationRecoveryTests
             AssertThat(results.GetPossibleSpeciesList()[0].InitialPopulationInPatches.Value).IsEqual(expected);
     }
 
+    /// <summary>
+    ///   An existing resident whose calculated population equals the viability minimum must survive the formal
+    ///   population step, preventing the stricter candidate-admission rule from being applied to residents.
+    /// </summary>
     [TestCase]
     public void FormalPopulationExactlyAtMinimumSurvives()
     {
@@ -147,6 +158,11 @@ public class RejectedMutationRecoveryTests
             .IsEqual(Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION);
     }
 
+    /// <summary>
+    ///   A mixed batch must restore rejected candidates' leaves to their exact prior occupants, including null,
+    ///   while retaining accepted candidates and independent objects with the same species ID.
+    ///   This protects selective recovery and the accepted candidate's publication record.
+    /// </summary>
     [TestCase]
     public void MixedLeavesRestoreExactPriorReferencesWithoutOverwritingAcceptedOrSameIdObjects()
     {
@@ -196,6 +212,10 @@ public class RejectedMutationRecoveryTests
         AssertThat(possible.InitialPopulationInPatches.Value).IsEqual(acceptedEstimate);
     }
 
+    /// <summary>
+    ///   A patch with no mutation candidates must finish without changing its resident or publishing a species,
+    ///   protecting the empty-batch path through insertion and recovery.
+    /// </summary>
     [TestCase]
     public void EmptyCandidateBatchPreservesTheTree()
     {
@@ -210,6 +230,12 @@ public class RejectedMutationRecoveryTests
         AssertThat(results.GetPossibleSpeciesList()).IsEmpty();
     }
 
+    /// <summary>
+    ///   When a rejected candidate displaced a viable hidden candidate, recovery must restore the original
+    ///   resident without retrying the hidden candidate or expanding an accepted candidate into that leaf.
+    ///   Separate insertion probes show both alternatives would change the tree, making the retained state
+    ///   and publication record evidence that recovery preserves the completed batch.
+    /// </summary>
     [TestCase]
     public void HiddenCandidateIsNotRetriedAndAcceptedCandidateDoesNotExpand()
     {
@@ -292,6 +318,11 @@ public class RejectedMutationRecoveryTests
         AssertThat(shared.Occupant).IsSame(fixture.Parent);
     }
 
+    /// <summary>
+    ///   Rejecting a candidate in one patch must preserve a candidate already accepted in another patch and its
+    ///   publication record. Formal population calculation and registration must retain that accepted split
+    ///   without publishing the rejected candidate or replacing their shared parent.
+    /// </summary>
     [TestCase]
     public void RejectionInOnePatchPreservesAnotherPatchCandidateAndGlobalSplitRegistration()
     {
