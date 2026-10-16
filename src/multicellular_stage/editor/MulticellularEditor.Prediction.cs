@@ -46,6 +46,7 @@ public partial class MulticellularEditor
             else
             {
                 bodyPlanEditorTab.PredictionPanel.ShowUnavailable();
+                cellEditorTab.PredictionPanel.ShowUnavailable();
             }
         }
 
@@ -59,14 +60,15 @@ public partial class MulticellularEditor
                 bodyPlanEditorTab.PredictionPanel.DisplayRun(predictionRun, predictionOriginal,
                     predictionRun.ModifiedProperties, cellEditorTab.PreviousPlayerGatheredEnergy,
                     predictionCurrentPatch!, CurrentGame.GameWorld.WorldSettings);
+                cellEditorTab.PredictionPanel.DisplayRun(predictionRun, predictionOriginal,
+                    predictionRun.ModifiedProperties, cellEditorTab.PreviousPlayerGatheredEnergy,
+                    predictionCurrentPatch!, CurrentGame.GameWorld.WorldSettings);
             }
 
             predictionRun = null;
         }
 
-        // Cell type edits remain buffered on the report and patch map tabs as well as the type editor tab.
-        // Wait until returning to the body plan tab synchronises them before capturing prediction inputs.
-        if (!predictionDirty || selectedEditorTab != EditorTab.CellEditor ||
+        if (!predictionDirty ||
             bodyPlanEditorTab.CanCancelMove || cellEditorTab.CanCancelMove ||
             predictionStartTimer < Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
         {
@@ -80,9 +82,16 @@ public partial class MulticellularEditor
         }
 
         predictionDirty = false;
-        if (!bodyPlanEditorTab.TryCreatePredictionSpecies(out var current))
+        var liveType = selectedCellTypeToEdit == null ?
+            null :
+            cellEditorTab.CreatePredictionCellType(selectedCellTypeToEdit);
+        var originalLiveType = selectedCellTypeToEdit == null ?
+            null :
+            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit);
+        if (!bodyPlanEditorTab.TryCreatePredictionSpecies(out var current, originalLiveType, liveType))
         {
             bodyPlanEditorTab.PredictionPanel.ShowUnavailable();
+            cellEditorTab.PredictionPanel.ShowUnavailable();
             return;
         }
 
@@ -97,6 +106,7 @@ public partial class MulticellularEditor
             predictionOriginal, current!, target, map);
         predictionStartTimer = 0;
         bodyPlanEditorTab.PredictionPanel.ShowWaiting();
+        cellEditorTab.PredictionPanel.ShowWaiting();
         predictionRun.Start();
     }
 

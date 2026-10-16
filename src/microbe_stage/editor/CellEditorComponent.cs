@@ -461,6 +461,11 @@ public partial class CellEditorComponent :
 
     public bool CanBeSpecialReference => true;
 
+    /// <summary>
+    ///   The shared prediction display. Multicellular scheduling belongs to the owning editor.
+    /// </summary>
+    public EditorAutoEvoPredictionPanel PredictionPanel => autoEvoPredictionPanel;
+
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => MicrobePreviewMode;
@@ -514,7 +519,7 @@ public partial class CellEditorComponent :
     {
         base._Ready();
 
-        autoEvoPredictionPanel.ConfigureHost(finishOrNextButton, true);
+        autoEvoPredictionPanel.ConfigureHost(finishOrNextButton, !IsMulticellularEditor);
         autoEvoPredictionPanel.Connect(EditorAutoEvoPredictionPanel.SignalName.DetailsOpened,
             new Callable(this, nameof(OnAutoEvoPredictionDetailsOpened)));
 
@@ -635,7 +640,7 @@ public partial class CellEditorComponent :
 
             componentBottomLeftButtons.SetNamePlaceholder(Localization.Translate("CELL_TYPE_NAME"));
 
-            autoEvoPredictionPanel.Visible = false;
+            autoEvoPredictionPanel.Visible = IsMulticellularEditor;
 
             // In multicellular the body plan editor handles this
             behaviourTabButton.Visible = false;
@@ -708,7 +713,8 @@ public partial class CellEditorComponent :
             debugOverlay.ReportEntities(roughCount);
         }
 
-        CheckRunningSuggestion(delta);
+        if (!IsMulticellularEditor)
+            CheckRunningSuggestion(delta);
 
         if (organelleDataDirty)
         {
@@ -1240,6 +1246,26 @@ public partial class CellEditorComponent :
             return;
 
         tutorialAnimationPlayer.Play("ShowAutoEvoPrediction");
+    }
+
+    /// <summary>
+    ///   Reads the current type buffer into a detached copy without applying edits or changing mutation points.
+    ///   The complete species snapshot performs final normalisation after all type references are assembled.
+    /// </summary>
+    public CellType CreatePredictionCellType(CellType source)
+    {
+        var result = source.Clone(false);
+        foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
+            result.ModifiableOrganelles.AddFast(organelle.Clone(), hexTemporaryMemory, hexTemporaryMemory2);
+
+        result.IsBacteria = !HasNucleus;
+        result.MembraneType = Membrane;
+        result.Colour = Colour;
+        result.MembraneRigidity = Rigidity;
+        if (ValidateNewCellTypeName!(newName) == null)
+            result.UpdateNameIfValid(newName);
+
+        return result;
     }
 
     /// <summary>
@@ -2170,7 +2196,7 @@ public partial class CellEditorComponent :
     /// </summary>
     private void StartAutoEvoPrediction()
     {
-        // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
+        // The multicellular editor schedules its whole-species prediction.
         if (IsMulticellularEditor)
         {
             // Don't be dirty to not constantly try to retry the run
