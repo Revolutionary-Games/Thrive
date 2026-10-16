@@ -6,12 +6,15 @@ using AutoEvo;
 /// </summary>
 public class EditorAutoEvoRun : AutoEvoRun
 {
+    private readonly PatchMap? predictionMap;
+
     public EditorAutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache, Species originalEditedSpecies,
-        Species modifiedProperties, Patch? editorTargetPatch) : base(world, globalCache)
+        Species modifiedProperties, Patch? editorTargetPatch, PatchMap? predictionMap = null) : base(world, globalCache)
     {
         OriginalEditedSpecies = originalEditedSpecies;
         ModifiedProperties = modifiedProperties;
         EditorTargetPatch = editorTargetPatch;
+        this.predictionMap = predictionMap;
     }
 
     public Species OriginalEditedSpecies { get; }
@@ -34,7 +37,7 @@ public class EditorAutoEvoRun : AutoEvoRun
     protected override void GatherInfo(Queue<IRunStep> steps)
     {
         // Custom run setup for editor's use
-        var map = Parameters.World.Map;
+        var map = predictionMap ?? Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
         var generateMicheCache = new SimulationCache(worldSettings);

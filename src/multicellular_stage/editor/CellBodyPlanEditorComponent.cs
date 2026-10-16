@@ -438,6 +438,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         base._Ready();
 
+        PredictionPanel.ConfigureHost(finishOrNextButton, false);
+
         growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
         cellTypeSelectionButtonScene =
@@ -2473,6 +2475,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnGrowthOrderChanged()
     {
+        Editor.MarkPredictionDirty();
         RefreshFullLayoutGrowthOrderIndices();
         RecalculateWrongGrowthOrderCells();
 

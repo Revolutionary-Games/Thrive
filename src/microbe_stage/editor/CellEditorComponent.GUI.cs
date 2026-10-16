@@ -83,8 +83,9 @@ public partial class CellEditorComponent
     {
         base.OnTranslationsChanged();
 
-        UpdateAutoEvoPredictionTranslations();
-        UpdateAutoEvoPredictionDetailsText();
+        // The multicellular cell buffer is initialised only after the player selects a type.
+        if (IsUninitializedAndIsMulticellular())
+            return;
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
@@ -611,7 +612,7 @@ public partial class CellEditorComponent
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        totalEnergyLabel.Value = float.NaN;
+        autoEvoPredictionPanel.ShowWaiting();
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 

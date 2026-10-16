@@ -208,10 +208,27 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override void _ExitTree()
     {
+        predictionStopped = true;
+        predictionRun?.Abort();
         base._ExitTree();
 
         CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
         CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
+    }
+
+    public override bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
+    {
+        if (predictionStopped)
+            return false;
+
+        var result = base.OnFinishEditing(overrides);
+        if (result)
+        {
+            predictionStopped = true;
+            predictionRun?.Abort();
+        }
+
+        return result;
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -231,7 +248,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         // usage by failing to change and then doing an edit and then succeeding
         StopMembraneSwitchIfQueued();
 
-        return base.EnqueueAction(action);
+        var result = base.EnqueueAction(action);
+        if (result)
+            MarkPredictionDirty();
+
+        return result;
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -244,6 +265,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
+        MarkPredictionDirty();
         bodyPlanEditorTab.OnCurrentPatchUpdated(patch);
 
         cellEditorTab.OnCurrentPatchUpdated(patch);
@@ -489,6 +511,12 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             reportTab.DisplayAutoEvoFailure(run.Status);
         }
 
+        if (run.Results != null)
+        {
+            cellEditorTab.PreviousPlayerGatheredEnergy = run.Results.GetPatchEnergyResults(EditedBaseSpecies)
+                .Sum(p => p.Value.TotalEnergyGathered);
+        }
+
         base.OnEditorReady();
 
         reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
@@ -511,6 +539,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.OnUndoPerformed();
 
         CheckDidActionAffectCellTypes(history.ActionToRedo());
+        MarkPredictionDirty();
     }
 
     protected override void OnRedoPerformed()
@@ -518,6 +547,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.OnRedoPerformed();
 
         CheckDidActionAffectCellTypes(history.ActionToUndo());
+        MarkPredictionDirty();
     }
 
     protected override void UpdatePatchDetails()
@@ -656,10 +686,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void OnEditorExitTransitionFinished()
     {
-        // Clear the edited cell type to avoid the cell editor applying the changes unnecessarily
-        selectedCellTypeToEdit = null;
+        predictionStopped = true;
+        predictionExitPending = true;
+        if (predictionRun?.Finished == false)
+        {
+            predictionRun.Abort();
+            return;
+        }
 
-        base.OnEditorExitTransitionFinished();
+        CompletePredictionExit();
     }
 
     protected override void OnAppliedEdits()
