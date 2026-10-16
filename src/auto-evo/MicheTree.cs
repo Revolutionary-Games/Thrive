@@ -159,6 +159,10 @@ public partial class MicheTree : Control
 
     public void Clear()
     {
+        rootMiche = null;
+        rootMicheNode = null;
+        dirty = false;
+        dragging = false;
         treeDepth = 0;
 
         MicheNodes.Clear();
@@ -167,6 +171,7 @@ public partial class MicheTree : Control
         dragOffset = Vector2.Zero;
 
         tree.QueueFreeChildren();
+        tree.QueueRedraw();
     }
 
     protected override void Dispose(bool disposing)
@@ -280,7 +285,7 @@ public partial class MicheTree : Control
     /// </param>
     private void GUIInput(InputEvent @event, bool horizontalOnly)
     {
-        if (@event is not InputEventMouse)
+        if (rootMicheNode == null || @event is not InputEventMouse)
             return;
 
         if (@event is InputEventMouseButton buttonEvent)

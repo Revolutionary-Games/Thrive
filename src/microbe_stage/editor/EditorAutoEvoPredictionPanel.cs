@@ -35,11 +35,15 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     private TextureButton detailsButton = null!;
 
     [Export]
+    private Button micheViewButton = null!;
+
+    [Export]
     private HBoxContainer suggestionsContainer = null!;
 #pragma warning restore CA2213
 
     private bool? autoEvoPredictionRunSuccessful;
     private bool unavailable;
+    private bool predictionResultsInvalidated;
     private long predictedPopulation;
     private string? bestPatchName;
     private float bestPatchEnergyGathered;
@@ -82,13 +86,35 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     {
         unavailable = false;
         totalEnergyLabel.Value = float.NaN;
+        UpdateAutoEvoPredictionTranslations();
     }
 
     public void ShowUnavailable()
     {
         unavailable = true;
+        predictionResultsInvalidated = true;
+        autoEvoPredictionRunSuccessful = null;
+        predictedPopulation = 0;
+        bestPatchName = null;
+        bestPatchEnergyGathered = 0;
+        bestPatchPopulation = 0;
+        worstPatchName = null;
+        worstPatchEnergyGathered = 0;
+        worstPatchPopulation = 0;
+        predictionDetailsText = null;
+        predictionMiches = null;
+        predictionPatch = null;
+        worldSettings = null;
+
+        detailsButton.Disabled = true;
+        micheViewButton.Disabled = true;
+        totalEnergyLabel.ResetInitialValue();
         totalEnergyLabel.Value = float.NaN;
+        totalEnergyLabel.TooltipText = string.Empty;
+
         UpdateAutoEvoPredictionTranslations();
+        UpdateAutoEvoPredictionDetailsText();
+        micheViewer.ShowUnavailable();
     }
 
     public void DisplayRun(AutoEvoRun run, Species playerSpeciesOriginal, Species playerSpeciesNew,
@@ -182,7 +208,7 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
         UpdateAutoEvoPredictionTranslations();
 
-        if (Visible)
+        if (Visible || autoEvoPredictionExplanationPopup.Visible)
         {
             UpdateAutoEvoPredictionDetailsText();
         }
@@ -190,6 +216,14 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         predictionPatch = patch;
         worldSettings = settings;
         predictionMiches = results.GetModifiableMicheForPatch(patch);
+
+        // Recover an open viewer without reopening one the player has closed, or changing normal waiting behaviour.
+        if (predictionResultsInvalidated)
+            micheViewer.UpdateMichesIfOpen(patch, predictionMiches, settings);
+
+        predictionResultsInvalidated = false;
+        detailsButton.Disabled = false;
+        micheViewButton.Disabled = false;
     }
 
     private void UpdateTranslatedResults()
@@ -212,7 +246,8 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         if (unavailable || autoEvoPredictionRunSuccessful == false)
         {
             totalEnergyLabel.Value = float.NaN;
-            autoEvoPredictionFailedLabel.Text = Localization.Translate(unavailable ? "NO_DATA_TO_SHOW" : "FAILED");
+            autoEvoPredictionFailedLabel.Text =
+                Localization.Translate(unavailable ? "NO_PREDICTION_FOR_CURRENT_DESIGN" : "FAILED");
             autoEvoPredictionFailedLabel.Show();
         }
         else
@@ -255,6 +290,9 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     private void OpenAutoEvoPredictionDetails()
     {
+        if (predictionResultsInvalidated)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         UpdateAutoEvoPredictionDetailsText();
@@ -318,13 +356,23 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     private void UpdateAutoEvoPredictionDetailsText()
     {
-        autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText != null ?
-            predictionDetailsText.ToString() :
-            Localization.Translate("NO_DATA_TO_SHOW");
+        if (predictionDetailsText != null)
+        {
+            autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText.ToString();
+        }
+        else
+        {
+            autoEvoPredictionExplanationLabel.ExtendedBbcode = Localization.Translate(predictionResultsInvalidated ?
+                "NO_PREDICTION_FOR_CURRENT_DESIGN" :
+                "NO_DATA_TO_SHOW");
+        }
     }
 
     private void OnMicheViewRequested()
     {
+        if (predictionResultsInvalidated)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         if (predictionMiches == null)
