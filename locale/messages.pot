@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-15 15:40+0300\n"
+"POT-Creation-Date: 2026-10-15 16:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -739,7 +739,7 @@ msgstr ""
 msgid "BEYOND_THE_CELL"
 msgstr ""
 
-#: ../simulation_parameters/common/achievements.json:119
+#: ../simulation_parameters/common/achievements.json:204
 msgid "BEYOND_THE_MICROBE"
 msgstr ""
 
@@ -1974,7 +1974,7 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2340
+#: ../src/microbe_stage/MicrobeStage.cs:2357
 msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
 msgstr ""
 
@@ -3037,7 +3037,7 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:745
+#: ../src/microbe_stage/MicrobeStage.cs:758
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1080
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
@@ -3058,7 +3058,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:3071
+#: ../src/microbe_stage/MicrobeStage.cs:3089
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -4602,6 +4602,18 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:176
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:178
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:183
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr ""
+
 #: ../src/saving/SaveHelper.cs:689
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -4646,6 +4658,14 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:566
 msgid "JUNE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:167
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:169
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
 msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:822
@@ -5195,7 +5215,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1796
+#: ../src/microbe_stage/MicrobeStage.cs:1813
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -5203,7 +5223,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1792
+#: ../src/microbe_stage/MicrobeStage.cs:1809
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5440,7 +5460,7 @@ msgstr ""
 msgid "MASTODON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2516
+#: ../src/microbe_stage/MicrobeStage.cs:2533
 msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
 msgstr ""
 
@@ -5882,6 +5902,14 @@ msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:3
 msgid "MICROBIAL_MASSACRE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:186
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:188
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:101
@@ -6785,7 +6813,7 @@ msgstr ""
 msgid "NO_SUGGESTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2471
+#: ../src/microbe_stage/MicrobeStage.cs:2488
 msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
 msgstr ""
 
@@ -7340,6 +7368,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:195
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:197
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr ""
+
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:151
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
@@ -7746,7 +7782,7 @@ msgstr ""
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
 
-#: ../simulation_parameters/common/achievements.json:121
+#: ../simulation_parameters/common/achievements.json:206
 msgid "REACH_MACROSCOPIC_STAGE"
 msgstr ""
 
@@ -8719,7 +8755,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2530
+#: ../src/microbe_stage/MicrobeStage.cs:2547
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8741,6 +8777,26 @@ msgstr ""
 
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:290
 msgid "SPECIALIZATION_COLON"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:157
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:159
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:164
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:148
+msgid "SPECIALIZED_WEAPONS"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:150
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellTypePickerPopup.tscn:16
@@ -9067,11 +9123,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:3069
+#: ../src/microbe_stage/MicrobeStage.cs:3087
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:3070
+#: ../src/microbe_stage/MicrobeStage.cs:3088
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -9461,8 +9517,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1020
-#: ../src/microbe_stage/MicrobeStage.cs:1024
+#: ../src/microbe_stage/MicrobeStage.cs:1035
+#: ../src/microbe_stage/MicrobeStage.cs:1039
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9941,6 +9997,30 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:117
 msgid "TYPE_COLON"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:129
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:131
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:136
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:119
+msgid "ULTIMATE_COLONY"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:121
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:126
+msgid "ULTIMATE_COLONY_PROGRESS"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:438
@@ -12854,6 +12934,14 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:737
 msgid "YOUTUBE_TOOLTIP"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:139
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:141
+msgid "YOU_ANIMAL_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:328
