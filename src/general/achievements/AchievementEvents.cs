@@ -8,7 +8,7 @@ public static class AchievementEvents
         AchievementsManager.Instance.OnUltimateColony(colonySize);
     }
 
-    public static void ReportUltimateCellularFirepower(int projectilesInVolley)
+    public static void ReportMulticellularToxinsPerUpdate(int projectilesInVolley)
     {
         AchievementsManager.Instance.OnUltimateCellularFirepower(projectilesInVolley);
     }

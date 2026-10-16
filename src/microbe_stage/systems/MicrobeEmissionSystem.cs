@@ -16,13 +16,15 @@ using World = Arch.Core.World;
 /// <remarks>
 ///   <para>
 ///     This technically writes to the <see cref="OrganelleContainer"/> but only to the Slime Jets' active property
-///     and nothing else so this shouldn't conflict with other things.
+///     and nothing else, so this shouldn't conflict with other things.
 ///   </para>
 /// </remarks>
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(AttachedToEntity))]
+[ReadsComponent(typeof(MulticellularSpeciesMember))]
+[ReadsComponent(typeof(PlayerMarker))]
 [WritesToComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(ProcessSystem))]
@@ -31,6 +33,8 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly CompoundCloudSystem clouds;
+
+    private int playerToxinsEmitted;
 
     public MicrobeEmissionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem, World world) :
         base(world)
@@ -69,6 +73,17 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 
         // No modification from default
         return 1;
+    }
+
+    public override void BeforeUpdate(in float delta)
+    {
+        playerToxinsEmitted = 0;
+    }
+
+    public override void AfterUpdate(in float delta)
+    {
+        if (playerToxinsEmitted > 0)
+            AchievementEvents.ReportMulticellularToxinsPerUpdate(playerToxinsEmitted);
     }
 
     /// <summary>
@@ -240,6 +255,16 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
                 SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
                 ++control.FiredToxinCount;
+
+                if (entity.Has<MulticellularSpeciesMember>())
+                {
+                    var leader = entity;
+                    if (entity.Has<AttachedToEntity>())
+                        leader = entity.Get<AttachedToEntity>().AttachedTo;
+
+                    if (leader.IsAliveAndHas<PlayerMarker>())
+                        ++playerToxinsEmitted;
+                }
 
                 if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
                 {
