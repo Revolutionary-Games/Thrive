@@ -239,6 +239,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CustomConfirmationDialog macroscopicConditionsView = null!;
+
+    [Export]
+    private CellLayoutBorderDisplay cellLayoutBorderDisplay = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";

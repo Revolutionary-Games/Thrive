@@ -362,6 +362,12 @@ public partial class CellBodyPlanEditorComponent
         fullLayoutHasAdjacencyDisconnects = false;
         manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
 
+        // TBD: clean this code up
+        if (MovingPlacedHex == null)
+        {
+            cellLayoutBorderDisplay.DisplayCellLayout(CurrentFullLayout.Select(a => a.Data!).ToList());
+        }
+
         // Maps each position to a cell that exists there
         var cellHexes = new Dictionary<Hex, HexWithData<CellTemplate>>();
 
@@ -843,6 +849,12 @@ public partial class CellBodyPlanEditorComponent
         GetMouseHex(out int q, out int r);
         var moving = MovingPlacedHex;
         var type = GetEditedCellDataIfEdited(moving.Data!.ModifiableCellType);
+
+        var place = MovingPlacedHex.Position;
+        GD.Print($"Display");
+        MovingPlacedHex.Data!.Position = new Hex(q, r);
+        cellLayoutBorderDisplay.DisplayCellLayout(CurrentFullLayout.Select(a => a.Data!).Append(MovingPlacedHex.Data!).ToList());
+        MovingPlacedHex.Data!.Position = place;
 
         isPlacementProbablyValid = IsFullLayoutMoveValid(new Hex(q, r), moving);
 
