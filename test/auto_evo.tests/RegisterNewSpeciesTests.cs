@@ -140,15 +140,16 @@ public class RegisterNewSpeciesTests
         results.AddTrackedEnergyConsumptionForSpecies(parent, firstPatch, 40, 2);
         if (winnerFirst)
         {
-            results.AddPossibleMutation(selected, new(secondPatch, 50), RunResults.NewSpeciesType.SplitDueToMutation,
-                parent);
+            results.AddPossibleMutation(selected, new KeyValuePair<Patch, long>(secondPatch, 50),
+                RunResults.NewSpeciesType.SplitDueToMutation, parent);
         }
 
-        results.AddPossibleMutation(split, new(firstPatch, 30), RunResults.NewSpeciesType.SplitDueToMutation, parent);
+        results.AddPossibleMutation(split, new KeyValuePair<Patch, long>(firstPatch, 30),
+            RunResults.NewSpeciesType.SplitDueToMutation, parent);
         if (!winnerFirst)
         {
-            results.AddPossibleMutation(selected, new(secondPatch, 50), RunResults.NewSpeciesType.SplitDueToMutation,
-                parent);
+            results.AddPossibleMutation(selected, new KeyValuePair<Patch, long>(secondPatch, 50),
+                RunResults.NewSpeciesType.SplitDueToMutation, parent);
         }
 
         AssertThat(new RegisterNewSpecies(world, [parent, unrelated]).RunStep(results)).IsTrue();
@@ -217,8 +218,8 @@ public class RegisterNewSpeciesTests
         results.AddNewMicheForPatch(patches[1], survivingLeaf);
         results.AddPopulationResultForSpecies(parent, patches[0], 0);
         results.AddPopulationResultForSpecies(parent, patches[1], 100);
-        results.AddPossibleMutation(candidate, new(patches[0], 50), RunResults.NewSpeciesType.SplitDueToMutation,
-            parent);
+        results.AddPossibleMutation(candidate, new KeyValuePair<Patch, long>(patches[0], 50),
+            RunResults.NewSpeciesType.SplitDueToMutation, parent);
 
         AssertThat(new RegisterNewSpecies(world, [parent]).RunStep(results)).IsTrue();
 
@@ -254,8 +255,10 @@ public class RegisterNewSpeciesTests
         var results = new RunResults();
         results.AddNewMicheForPatch(patch, root);
         results.AddPopulationResultForSpecies(parent, patch, 13);
-        results.AddPossibleMutation(sameStage, new(patch, 30), RunResults.NewSpeciesType.SplitDueToMutation, parent);
-        results.AddPossibleMutation(candidate, new(patch, 50), RunResults.NewSpeciesType.SplitDueToMutation, parent);
+        results.AddPossibleMutation(sameStage, new KeyValuePair<Patch, long>(patch, 30),
+            RunResults.NewSpeciesType.SplitDueToMutation, parent);
+        results.AddPossibleMutation(candidate, new KeyValuePair<Patch, long>(patch, 50),
+            RunResults.NewSpeciesType.SplitDueToMutation, parent);
 
         AssertThat(new RegisterNewSpecies(world, [parent]).RunStep(results)).IsTrue();
 
