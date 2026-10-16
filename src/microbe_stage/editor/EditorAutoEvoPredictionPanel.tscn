@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/EditorAutoEvoPredictionPanel.cs" id="prediction_script"]
 
-[node name="AutoEvoInfoPanel" type="PanelContainer" unique_id=1135255199 node_paths=PackedStringArray("totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "micheViewer", "detailsButton", "micheViewButton", "suggestionsContainer")]
+[node name="AutoEvoInfoPanel" type="PanelContainer" unique_id=1135255199 node_paths=PackedStringArray("totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "micheViewer", "detailsButton", "suggestionsContainer")]
 custom_minimum_size = Vector2(0, 236)
 layout_mode = 2
 mouse_filter = 1
@@ -27,7 +27,6 @@ autoEvoPredictionExplanationPopup = NodePath("PredictionExplanation")
 autoEvoPredictionExplanationLabel = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 micheViewer = NodePath("PopupMicheViewer")
 detailsButton = NodePath("PanelLayout/Header/HeaderRow/Details")
-micheViewButton = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton")
 suggestionsContainer = NodePath("PanelLayout/Body/ContentMargin/BodyContent/Suggestions")
 
 [node name="PanelLayout" type="VBoxContainer" parent="." unique_id=1180698004]

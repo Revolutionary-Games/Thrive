@@ -35,9 +35,6 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     private TextureButton detailsButton = null!;
 
     [Export]
-    private Button micheViewButton = null!;
-
-    [Export]
     private HBoxContainer suggestionsContainer = null!;
 #pragma warning restore CA2213
 
