@@ -409,6 +409,8 @@ public partial class MetaballBodyEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
+        editedSpecies.RepositionCellTypesToOrigin();
+
         Editor.EditedSpecies.SkinType = SkinType;
 
         var previousStage = editedSpecies.MacroscopicType;

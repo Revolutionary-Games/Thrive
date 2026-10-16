@@ -246,6 +246,11 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
             MacroscopicType = MacroscopicSpeciesType.Aware;
     }
 
+    public void RepositionCellTypesToOrigin()
+    {
+        CellType.SafelyRepositionCellsToOrigin(ModifiableCellTypes);
+    }
+
     public override object Clone()
     {
         var result = new MacroscopicSpecies(ID, Genus, Epithet);
