@@ -370,7 +370,7 @@ public class CompoundBag : ICompoundStorage, IEnumerable<KeyValuePair<Compound, 
     }
 
     /// <summary>
-    ///   Adds an extra initial compound that respects storage space (used for example for night compound buff)
+    ///   Adds an extra initial compound that respects storage space (used, for example, for night compound buff)
     /// </summary>
     /// <param name="compound">Compound type</param>
     /// <param name="amount">Amount</param>

@@ -118,7 +118,7 @@ task-related generated changes.
 Godot tests/runs require the Godot .NET executable on `PATH` as `godot-mono` or `godot`;
 the test runner prefers `godot-mono`.
 
-## Code review
+## Code Review Rules
 
-When reviewing a change or PR, read all of
-[`.github/copilot-instructions.md`](.github/copilot-instructions.md).
+For every change or pull request review, read and follow all of
+[`doc/review_rules.md`](doc/review_rules.md) before assessing the diff.

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-15 15:40+0300\n"
-"PO-Revision-Date: 2026-10-15 12:11+0000\n"
+"POT-Creation-Date: 2026-10-15 16:48+0300\n"
+"PO-Revision-Date: 2026-10-15 22:00+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -691,7 +691,7 @@ msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr "完美无缺，无以复加"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "无法移动金属球到其自己的树形子节点"
+msgstr "无法移动元球到其自己的树形子节点"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr "大脑能力过低以至于不足以继续停留在当前阶段。退回先前的阶段在目前的游戏中不被允许，请增加您的脑力以继续游戏。"
@@ -3278,6 +3278,17 @@ msgstr "地面"
 msgid "INVERTED"
 msgstr "控制反转"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 "您正在玩的是游戏中包含的后期原型。\n"
@@ -3311,6 +3322,15 @@ msgstr "七月"
 
 msgid "JUNE"
 msgstr "六月"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr ""
+"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
+"请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
 msgid "KEEP_MIGRATION"
 msgstr "保留更改并继续"
@@ -4270,6 +4290,14 @@ msgstr ""
 
 msgid "MICROBIAL_MASSACRE"
 msgstr "微生物大屠杀"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "宏观阶段"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
 msgid "MICRO_BORG"
 msgstr "微型博格"
@@ -5276,6 +5304,13 @@ msgstr "一个内共生进度已满"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "当适应范围调至最小值且物种适应当前环境时，将获得最大适应加成。如果您打算将物种集中于单一区域而非分散全图，此机制将带来显著优势。"
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "当适应范围调至最小值且物种适应当前环境时，将获得最大适应加成。如果您打算将物种集中于单一区域而非分散全图，此机制将带来显著优势。"
 
@@ -5564,9 +5599,8 @@ msgstr "至少普通难度下，单物种迭代到15代"
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "至少普通难度下，使用单个物种进化第 {0}/{1} 代"
 
-#, fuzzy
 msgid "REACH_MACROSCOPIC_STAGE"
-msgstr "宏观阶段"
+msgstr "到达宏观阶段"
 
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "进入多细胞阶段"
@@ -5788,9 +5822,8 @@ msgstr "向左转"
 msgid "ROTATE_RIGHT"
 msgstr "向右转"
 
-#, fuzzy
 msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
-msgstr "进入编辑器并修改您的物种"
+msgstr "使用这个工具以使一个元球通过绕着其父级元球旋转来移动。"
 
 msgid "ROTATION_COLON"
 msgstr "旋转："
@@ -6285,6 +6318,26 @@ msgstr "生成磷酸盐"
 
 msgid "SPECIALIZATION_COLON"
 msgstr "专业化："
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "专业化："
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "未能保存化石文件"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "专业化："
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "液泡将存储{0}个单位的选定化合物"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "液泡将存储{0}个单位的选定化合物"
 
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "选择从何种细胞开始繁殖周期"
@@ -7391,6 +7444,30 @@ msgstr "2x"
 
 msgid "TYPE_COLON"
 msgstr "类型："
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "多细胞编辑器"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "纤维素酶使细胞能够分解纤维素膜。每次添加都会增加其有效性。"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "多细胞编辑器"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "标题："
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体您的细胞也能产生一些这种酶，但通过选择这种类型，您将增加其有效性。"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "标题："
 
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "有未应用的变更"
@@ -10363,6 +10440,13 @@ msgstr "该页面的内容尚未在游戏中完全实现，并且有可能会变
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "细胞的黏稠内质。细胞质是由离子、蛋白质及其他物质溶于水形成的混合物，充盈于细胞内部。其功能之一是进行[b]糖酵解[/b]——即将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thrive:compound type=\"atp\"][/thrive:compound] 的过程。对于缺乏复杂细胞器而无法进行高级代谢的细胞而言，这是其获取能量的基本途径。该过程同时承担着细胞内分子储存及细胞体积增大的功能。"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
