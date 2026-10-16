@@ -142,9 +142,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     // These track one life, independently of the persistent achievement statistics.
     private bool playerSurvivedMajorBodyLoss;
-    private float playerSporeDistance;
-    private Vector3 previousSporePosition;
-    private bool trackingSporePosition;
+    private int playerMostLostCellsDuringLife;
+    private Vector3 originalSporePosition;
+    private bool originalSporePositionValid;
 
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
@@ -275,7 +275,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (version > 4)
         {
             instance.playerSurvivedMajorBodyLoss = reader.ReadBool();
-            instance.playerSporeDistance = reader.ReadFloat();
+            instance.playerMostLostCellsDuringLife = reader.ReadInt32();
+            instance.originalSporePosition = reader.ReadVector3();
+            instance.originalSporePositionValid = reader.ReadBool();
         }
 
         return instance;
@@ -322,7 +324,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         writer.Write(oldCameraPosBeforeMerge);
         writer.Write(playerSurvivedMajorBodyLoss);
-        writer.Write(playerSporeDistance);
+        writer.Write(playerMostLostCellsDuringLife);
+        writer.Write(originalSporePosition);
+        writer.Write(originalSporePositionValid);
     }
 
     /// <summary>
@@ -3088,6 +3092,54 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
     }
 
+    private void UpdateMulticellularAchievements(int colonySize)
+    {
+        if (MovingToEditor || !HasAlivePlayer ||
+            GameWorld.PlayerSpecies is not MulticellularSpecies multicellularSpecies ||
+            !Player.Has<MulticellularGrowth>())
+        {
+            ResetSporePosition();
+            return;
+        }
+
+        // This method didn't end up needing the current colony size, but it is kept in case we need it in the future
+        _ = colonySize;
+
+        ref var growth = ref Player.Get<MulticellularGrowth>();
+        int lostCells = growth.LostPartsOfBodyPlan?.Count ?? 0;
+
+        // The regrowth queue removes the cell currently being replaced before it has grown back.
+        if (growth.ResumeBodyPlanAfterReplacingLost != null)
+            ++lostCells;
+
+        playerMostLostCellsDuringLife = Math.Max(playerMostLostCellsDuringLife, lostCells);
+
+        // This is where just a flesh wound achievement configuration is
+        int playerConfiguredCellCount = multicellularSpecies.GameplayCells.Count;
+        var bodyLossThreshold = playerConfiguredCellCount / 3;
+        if (playerMostLostCellsDuringLife > 0 && playerMostLostCellsDuringLife >= bodyLossThreshold &&
+            playerConfiguredCellCount >= 10)
+        {
+            playerSurvivedMajorBodyLoss = true;
+        }
+
+        if (growth.IsASpore)
+        {
+            var position = Player.Get<WorldPosition>().Position;
+            if (!originalSporePositionValid)
+            {
+                originalSporePosition = position;
+                originalSporePositionValid = true;
+            }
+
+            AchievementEvents.ReportInLookOfAHome((int)position.DistanceTo(originalSporePosition));
+        }
+        else
+        {
+            ResetSporePosition();
+        }
+    }
+
     private void CheckMulticellularReproductionAchievements(bool sexualReproduction)
     {
         if (GameWorld.PlayerSpecies is not MulticellularSpecies species)
@@ -3113,8 +3165,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private void ResetMulticellularAchievementLife()
     {
         playerSurvivedMajorBodyLoss = false;
-        playerSporeDistance = 0;
-        trackingSporePosition = false;
+        playerMostLostCellsDuringLife = 0;
+        ResetSporePosition();
+    }
+
+    private void ResetSporePosition()
+    {
+        originalSporePosition = Vector3.Zero;
+        originalSporePositionValid = false;
     }
 
     private void TranslationsForFeaturesToReimplement()
