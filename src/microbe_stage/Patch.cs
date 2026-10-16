@@ -776,32 +776,6 @@ public class Patch : IArchivable
         return $"Patch \"{Name}\"";
     }
 
-    /// <summary>
-    ///   Copies only prediction containers and simulated populations. World environment and NPC designs remain shared.
-    /// </summary>
-    /// <param name="playerSpecies">The player species object in the source map</param>
-    /// <param name="predictionOriginal">The historical player clone used by the prediction</param>
-    internal Patch CreatePredictionCopy(Species playerSpecies, Species predictionOriginal)
-    {
-        var snapshot = new PatchSnapshot(Biome, Background)
-        {
-            TimePeriod = TimePeriod,
-        };
-
-        foreach (var population in SpeciesInPatch)
-        {
-            var species = ReferenceEquals(population.Key, playerSpecies) ? predictionOriginal : population.Key;
-            snapshot.SpeciesInPatch.Add(species, population.Value);
-        }
-
-        return new Patch(Name, ID, BiomeTemplate, BiomeType, snapshot, DynamicDataSeed)
-        {
-            Depth = (int[])Depth.Clone(),
-            Visibility = Visibility,
-            ScreenCoordinates = ScreenCoordinates,
-        };
-    }
-
     private float GetAmbientCompound(Compound compound, CompoundAmountType option)
     {
         return GetAmbientCompoundInSnapshot(currentSnapshot, compound, option);
