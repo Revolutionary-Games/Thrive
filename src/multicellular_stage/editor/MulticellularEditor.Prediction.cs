@@ -33,7 +33,10 @@ public partial class MulticellularEditor
         if (!predictionHistoryChecked)
         {
             predictionHistoryChecked = true;
-            if (CurrentGame.GameWorld.GenerationHistory.TryGetValue(EditedSpecies.Generation - 1, out var generation) &&
+
+            // Source species identities stay fixed until editor exit, so validate them before the first prediction.
+            if (!HasPredictionPlayerIdConflict(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies) &&
+                CurrentGame.GameWorld.GenerationHistory.TryGetValue(EditedSpecies.Generation - 1, out var generation) &&
                 generation.AllSpeciesData.TryGetValue(EditedSpecies.ID, out var record) &&
                 record.Species is MulticellularSpecies historical)
             {
@@ -85,7 +88,7 @@ public partial class MulticellularEditor
 
         var map = new PatchMap();
         foreach (var patch in CurrentGame.GameWorld.Map.Patches.Values)
-            map.AddPatch(patch.CreatePredictionCopy(predictionOriginal));
+            map.AddPatch(patch.CreatePredictionCopy(CurrentGame.GameWorld.PlayerSpecies, predictionOriginal));
 
         predictionCurrentPatch = map.GetPatch(CurrentPatch.ID);
         map.CurrentPatch = predictionCurrentPatch;
@@ -103,6 +106,23 @@ public partial class MulticellularEditor
     public void MarkPredictionDirty()
     {
         predictionDirty = true;
+    }
+
+    /// <summary>
+    ///   Checks for source map species that downstream prediction logic could confuse with the player by ID.
+    /// </summary>
+    internal static bool HasPredictionPlayerIdConflict(PatchMap map, Species playerSpecies)
+    {
+        foreach (var patch in map.Patches.Values)
+        {
+            foreach (var species in patch.SpeciesInPatch.Keys)
+            {
+                if (species.ID == playerSpecies.ID && !ReferenceEquals(species, playerSpecies))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     private void CompletePredictionExit()

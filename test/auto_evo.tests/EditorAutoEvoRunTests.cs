@@ -11,6 +11,10 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class EditorAutoEvoRunTests
 {
+    /// <summary>
+    ///   Verifies that a prediction uses its selected map for population, energy, and miche results without
+    ///   modifying the world map, protecting isolation when an alternative prediction map is supplied.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void PredictionUsesSelectedMapForPopulationEnergyAndMiche(bool usePredictionMap)
@@ -28,7 +32,7 @@ public class EditorAutoEvoRunTests
         {
             original = (Species)original.Clone();
             original.BecomePlayerSpecies();
-            predictionMap = CreatePredictionMap(world.Map, original);
+            predictionMap = CreatePredictionMap(world.Map, world.PlayerSpecies, original);
             target = predictionMap.Patches[target.ID];
         }
 
@@ -65,6 +69,10 @@ public class EditorAutoEvoRunTests
         }
     }
 
+    /// <summary>
+    ///   Verifies that the player population clamp uses the copied simulation population rather than later world
+    ///   changes or gameplay population, preserving the captured prediction inputs.
+    /// </summary>
     [TestCase]
     public void PopulationClampUsesIsolatedSimulationPopulation()
     {
@@ -80,7 +88,7 @@ public class EditorAutoEvoRunTests
         source.RecordSnapshot(false);
         var original = (Species)world.PlayerSpecies.Clone();
         original.BecomePlayerSpecies();
-        var map = CreatePredictionMap(world.Map, original);
+        var map = CreatePredictionMap(world.Map, world.PlayerSpecies, original);
         var copied = map.CurrentPatch!;
         AssertThat(source.UpdateSpeciesSimulationPopulation(world.PlayerSpecies, 789)).IsTrue();
 
@@ -93,7 +101,7 @@ public class EditorAutoEvoRunTests
         AssertThat(copied.VisibleName).IsEqual(source.VisibleName);
         foreach (var entry in source.SpeciesInPatch)
         {
-            if (entry.Key.ID != original.ID)
+            if (!ReferenceEquals(entry.Key, world.PlayerSpecies))
                 AssertThat(copied.SpeciesInPatch.ContainsKey(entry.Key)).IsTrue();
         }
 
@@ -113,6 +121,10 @@ public class EditorAutoEvoRunTests
         AssertThat(copied.GetSpeciesSimulationPopulation(original)).IsEqual(123L);
     }
 
+    /// <summary>
+    ///   Verifies that prediction copies preserve a shared NPC's chemoreceptor target and source populations,
+    ///   protecting the live world from changes while predicting with a historical player design.
+    /// </summary>
     [TestCase]
     public void PredictionPreservesSharedNpcChemoreceptorTarget()
     {
@@ -144,7 +156,7 @@ public class EditorAutoEvoRunTests
         var predatorPopulation = patch.GetSpeciesSimulationPopulation(predator);
         var historical = player.Clone(true, true);
         historical.BecomePlayerSpecies();
-        var map = CreatePredictionMap(world.Map, historical);
+        var map = CreatePredictionMap(world.Map, player, historical);
         var copiedPatch = map.CurrentPatch!;
         AssertThat(copiedPatch.SpeciesInPatch.ContainsKey(predator)).IsTrue();
         var predicted = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache,
@@ -162,6 +174,91 @@ public class EditorAutoEvoRunTests
         AssertThat(copiedPatch.GetSpeciesSimulationPopulation(predator)).IsEqual(predatorPopulation);
     }
 
+    /// <summary>
+    ///   Verifies that copying a patch preserves an independent NPC with the player's ID and replaces only the
+    ///   source player reference when present, avoiding duplicate keys or inventing a player in an NPC-only patch.
+    /// </summary>
+    [TestCase(false)]
+    [TestCase(true)]
+    public void PredictionCopyReplacesOnlySourcePlayer(bool includePlayer)
+    {
+        var player = new MicrobeSpecies(1, "Source", "Player");
+        var original = new MicrobeSpecies(player.ID, "Historical", "Player");
+        var otherSpecies = new MicrobeSpecies(player.ID, "Independent", "Species");
+        var source = CreateEmptyPatch(0);
+        AssertThat(source.AddSpecies(otherSpecies, 456)).IsTrue();
+        if (includePlayer)
+            AssertThat(source.AddSpecies(player, 123)).IsTrue();
+
+        var copied = source.CreatePredictionCopy(player, original);
+
+        AssertThat(copied.SpeciesInPatch.Count).IsEqual(source.SpeciesInPatch.Count);
+        AssertThat(copied.SpeciesInPatch.ContainsKey(otherSpecies)).IsTrue();
+        AssertThat(copied.GetSpeciesSimulationPopulation(otherSpecies)).IsEqual(456L);
+        AssertThat(copied.SpeciesInPatch.ContainsKey(player)).IsFalse();
+        AssertThat(copied.SpeciesInPatch.ContainsKey(original)).IsEqual(includePlayer);
+        AssertThat(copied.GetSpeciesSimulationPopulation(original)).IsEqual(includePlayer ? 123L : 0L);
+        AssertThat(source.SpeciesInPatch.ContainsKey(original)).IsFalse();
+        AssertThat(source.SpeciesInPatch.ContainsKey(player)).IsEqual(includePlayer);
+        AssertThat(source.GetSpeciesSimulationPopulation(player)).IsEqual(includePlayer ? 123L : 0L);
+        AssertThat(source.GetSpeciesSimulationPopulation(otherSpecies)).IsEqual(456L);
+    }
+
+    /// <summary>
+    ///   Verifies that an independent species with the player's ID is detected even in another patch or
+    ///   with zero population, identifying unsafe prediction inputs across the entire captured map.
+    /// </summary>
+    [TestCase(false, 0L)]
+    [TestCase(false, 456L)]
+    [TestCase(true, 0L)]
+    [TestCase(true, 456L)]
+    public void PredictionDetectsPlayerIdConflictAcrossMap(bool otherPatch, long population)
+    {
+        var player = new MicrobeSpecies(1, "Source", "Player");
+        var currentPatch = CreateEmptyPatch(0);
+        AssertThat(currentPatch.AddSpecies(player, 123)).IsTrue();
+        var map = new PatchMap();
+        map.AddPatch(currentPatch);
+        map.CurrentPatch = currentPatch;
+
+        var conflictingPatch = currentPatch;
+        if (otherPatch)
+        {
+            conflictingPatch = CreateEmptyPatch(1);
+            map.AddPatch(conflictingPatch);
+        }
+
+        AssertThat(MulticellularEditor.HasPredictionPlayerIdConflict(map, player)).IsFalse();
+        var otherSpecies = new MicrobeSpecies(player.ID, "Independent", "Species");
+        AssertThat(conflictingPatch.AddSpecies(otherSpecies, population)).IsTrue();
+
+        AssertThat(MulticellularEditor.HasPredictionPlayerIdConflict(map, player)).IsTrue();
+    }
+
+    /// <summary>
+    ///   Verifies that a shared player reference across patches and duplicate IDs confined to NPCs remain allowed,
+    ///   keeping the prediction safeguard limited to ambiguity involving the player.
+    /// </summary>
+    [TestCase]
+    public void PredictionAllowsSharedPlayerAndNpcIdConflicts()
+    {
+        var player = new MicrobeSpecies(1, "Source", "Player");
+        var firstPatch = CreateEmptyPatch(0);
+        var secondPatch = CreateEmptyPatch(1);
+        AssertThat(firstPatch.AddSpecies(player, 123)).IsTrue();
+        AssertThat(secondPatch.AddSpecies(player, 234)).IsTrue();
+        var map = new PatchMap();
+        map.AddPatch(firstPatch);
+        map.AddPatch(secondPatch);
+        map.CurrentPatch = firstPatch;
+
+        AssertThat(MulticellularEditor.HasPredictionPlayerIdConflict(map, player)).IsFalse();
+        AssertThat(firstPatch.AddSpecies(new MicrobeSpecies(2, "Independent", "First"), 345)).IsTrue();
+        AssertThat(firstPatch.AddSpecies(new MicrobeSpecies(2, "Independent", "Second"), 456)).IsTrue();
+
+        AssertThat(MulticellularEditor.HasPredictionPlayerIdConflict(map, player)).IsFalse();
+    }
+
     private static GameWorld CreateWorld()
     {
         return new GameWorld(new WorldGenerationSettings
@@ -171,11 +268,18 @@ public class EditorAutoEvoRunTests
         });
     }
 
-    private static PatchMap CreatePredictionMap(PatchMap source, Species original)
+    private static Patch CreateEmptyPatch(int id)
+    {
+        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent");
+        return new Patch(new LocalizedString("Prediction"), id, biome, BiomeType.Vents,
+            new PatchSnapshot(biome.Conditions, biome.Background), 3171);
+    }
+
+    private static PatchMap CreatePredictionMap(PatchMap source, Species player, Species original)
     {
         var result = new PatchMap();
         foreach (var patch in source.Patches.Values)
-            result.AddPatch(patch.CreatePredictionCopy(original));
+            result.AddPatch(patch.CreatePredictionCopy(player, original));
 
         result.CurrentPatch = result.Patches[source.CurrentPatch!.ID];
         return result;

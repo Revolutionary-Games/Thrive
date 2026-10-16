@@ -779,7 +779,9 @@ public class Patch : IArchivable
     /// <summary>
     ///   Copies only prediction containers and simulated populations. World environment and NPC designs remain shared.
     /// </summary>
-    internal Patch CreatePredictionCopy(Species originalPlayer)
+    /// <param name="playerSpecies">The player species object in the source map</param>
+    /// <param name="predictionOriginal">The historical player clone used by the prediction</param>
+    internal Patch CreatePredictionCopy(Species playerSpecies, Species predictionOriginal)
     {
         var snapshot = new PatchSnapshot(Biome, Background)
         {
@@ -788,7 +790,7 @@ public class Patch : IArchivable
 
         foreach (var population in SpeciesInPatch)
         {
-            var species = population.Key.ID == originalPlayer.ID ? originalPlayer : population.Key;
+            var species = ReferenceEquals(population.Key, playerSpecies) ? predictionOriginal : population.Key;
             snapshot.SpeciesInPatch.Add(species, population.Value);
         }
 
