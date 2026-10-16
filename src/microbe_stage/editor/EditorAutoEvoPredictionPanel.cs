@@ -41,6 +41,7 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     private HBoxContainer suggestionsContainer = null!;
 #pragma warning restore CA2213
 
+    private Color detailsButtonNormalColour;
     private bool? autoEvoPredictionRunSuccessful;
     private bool unavailable;
     private bool predictionResultsInvalidated;
@@ -63,6 +64,7 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     public override void _Ready()
     {
+        detailsButtonNormalColour = detailsButton.SelfModulate;
         UpdateAutoEvoPredictionTranslations();
     }
 
@@ -106,7 +108,12 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         predictionPatch = null;
         worldSettings = null;
 
+        // The open details window also needs an enabled exit if its miche entry is about to lose interaction.
+        if (micheViewButton.HasFocus())
+            autoEvoPredictionExplanationPopup.FocusCloseButton();
+
         detailsButton.Disabled = true;
+        detailsButton.SelfModulate = detailsButtonNormalColour * Colors.Gray;
         micheViewButton.Disabled = true;
         totalEnergyLabel.ResetInitialValue();
         totalEnergyLabel.Value = float.NaN;
@@ -223,6 +230,7 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
         predictionResultsInvalidated = false;
         detailsButton.Disabled = false;
+        detailsButton.SelfModulate = detailsButtonNormalColour;
         micheViewButton.Disabled = false;
     }
 

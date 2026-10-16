@@ -60,6 +60,11 @@ public partial class PopupMicheViewer : Control
     /// </summary>
     public void ShowUnavailable()
     {
+        // Preserve a keyboard exit only when replacing the focused content; leave background focus alone.
+        var focused = GetViewport().GuiGetFocusOwner();
+        if (focused != null && (focused == micheContent || micheContent.IsAncestorOf(focused)))
+            michePopup.FocusCloseButton();
+
         patchForMiches = null;
         miches.Clear();
         speciesDetails.PreviewSpecies = null;
