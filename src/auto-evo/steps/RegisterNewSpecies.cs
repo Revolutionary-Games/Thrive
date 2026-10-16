@@ -37,7 +37,7 @@ public class RegisterNewSpecies : IRunStep
         }
 
         var modifiedSpecies = results.GetPossibleSpeciesList();
-        var selectedParentMutations = new Dictionary<Species, Species>(ReferenceEqualityComparer.Instance);
+        Dictionary<Species, Species>? selectedParentMutations = null;
 
         // Look through the extinct species and find their best modified variant to make it into that species' mutation
         foreach (var extinct in extinctSpecies)
@@ -70,6 +70,7 @@ public class RegisterNewSpecies : IRunStep
                         bestSpecies.Value.InitialPopulationInPatches);
 
                     handledSpecies.Add(bestSpecies.Value.Species);
+                    selectedParentMutations ??= new Dictionary<Species, Species>(ReferenceEqualityComparer.Instance);
                     selectedParentMutations.Add(bestSpecies.Value.Species, extinct);
 
                     continue;
@@ -99,21 +100,30 @@ public class RegisterNewSpecies : IRunStep
 
         // Decide every candidate's destination before changing the occupants used for extinction detection.
         // Only the selected same-stage candidate becomes its parent; other candidates keep their own identity.
-        if (selectedParentMutations.Count > 0)
+        if (selectedParentMutations != null)
         {
-            var leaves = new List<Miche>();
             foreach (var patch in world.Map.Patches)
             {
-                leaves.Clear();
-                results.GetModifiableMicheForPatch(patch.Value).GetLeafNodes(leaves);
-                foreach (var leaf in leaves)
-                {
-                    if (leaf.Occupant != null && selectedParentMutations.TryGetValue(leaf.Occupant, out var parent))
-                        leaf.Occupant = parent;
-                }
+                ApplySelectedParentMutations(results.GetModifiableMicheForPatch(patch.Value), selectedParentMutations);
             }
         }
 
         return true;
+    }
+
+    private static void ApplySelectedParentMutations(Miche miche, Dictionary<Species, Species> selectedParentMutations)
+    {
+        if (miche.IsLeafNode())
+        {
+            if (miche.Occupant != null && selectedParentMutations.TryGetValue(miche.Occupant, out var parent))
+                miche.Occupant = parent;
+
+            return;
+        }
+
+        foreach (var child in miche.Children)
+        {
+            ApplySelectedParentMutations(child, selectedParentMutations);
+        }
     }
 }
