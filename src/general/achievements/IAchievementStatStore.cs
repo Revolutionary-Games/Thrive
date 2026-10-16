@@ -42,39 +42,30 @@
 
     public const int STAT_ULTIMATE_COLONY = 15;
     public const string STAT_ULTIMATE_COLONY_NAME = "ultimate_colony";
-    public const string ULTIMATE_COLONY_ID = "ULTIMATE_COLONY";
 
     public const int STAT_ULTIMATE_CELLULAR_FIREPOWER = 16;
     public const string STAT_ULTIMATE_CELLULAR_FIREPOWER_NAME = "ultimate_cellular_firepower";
-    public const string ULTIMATE_CELLULAR_FIREPOWER_ID = "ULTIMATE_CELLULAR_FIREPOWER";
 
     public const int STAT_YOU_ANIMAL = 17;
     public const string STAT_YOU_ANIMAL_NAME = "you_animal";
-    public const string YOU_ANIMAL_ID = "YOU_ANIMAL";
 
     public const int STAT_SPECIALIZED_WEAPONS = 18;
     public const string STAT_SPECIALIZED_WEAPONS_NAME = "specialized_weapons";
-    public const string SPECIALIZED_WEAPONS_ID = "SPECIALIZED_WEAPONS";
 
     public const int STAT_SPECIALIZATION_SPECIALIST = 19;
     public const string STAT_SPECIALIZATION_SPECIALIST_NAME = "specialization_specialist";
-    public const string SPECIALIZATION_SPECIALIST_ID = "SPECIALIZATION_SPECIALIST";
 
     public const int STAT_JUST_A_FLESH_WOUND = 20;
     public const string STAT_JUST_A_FLESH_WOUND_NAME = "just_a_flesh_wound";
-    public const string JUST_A_FLESH_WOUND_ID = "JUST_A_FLESH_WOUND";
 
     public const int STAT_IN_LOOK_OF_A_HOME = 21;
     public const string STAT_IN_LOOK_OF_A_HOME_NAME = "in_look_of_a_home";
-    public const string IN_LOOK_OF_A_HOME_ID = "IN_LOOK_OF_A_HOME";
 
     public const int STAT_MICROSCOPIC_BIRDS_AND_BEES = 22;
     public const string STAT_MICROSCOPIC_BIRDS_AND_BEES_NAME = "microscopic_birds_and_bees";
-    public const string MICROSCOPIC_BIRDS_AND_BEES_ID = "MICROSCOPIC_BIRDS_AND_BEES";
 
     public const int STAT_PERFECTLY_PACKED = 23;
     public const string STAT_PERFECTLY_PACKED_NAME = "perfectly_packed";
-    public const string PERFECTLY_PACKED_ID = "PERFECTLY_PACKED";
 
     public const string MICROBIAL_MASSACRE_ID = "MICROBIAL_MASSACRE";
     public const string THE_EDITOR_ID = "THE_EDITOR";
@@ -89,6 +80,15 @@
     public const string MICRO_BORG_ID = "MICRO_BORG";
     public const string BEYOND_THE_CELL_ID = "BEYOND_THE_CELL";
     public const string BEYOND_THE_MICROBE_ID = "BEYOND_THE_MICROBE";
+    public const string ULTIMATE_COLONY_ID = "ULTIMATE_COLONY";
+    public const string ULTIMATE_CELLULAR_FIREPOWER_ID = "ULTIMATE_CELLULAR_FIREPOWER";
+    public const string YOU_ANIMAL_ID = "YOU_ANIMAL";
+    public const string SPECIALIZED_WEAPONS_ID = "SPECIALIZED_WEAPONS";
+    public const string SPECIALIZATION_SPECIALIST_ID = "SPECIALIZATION_SPECIALIST";
+    public const string JUST_A_FLESH_WOUND_ID = "JUST_A_FLESH_WOUND";
+    public const string IN_LOOK_OF_A_HOME_ID = "IN_LOOK_OF_A_HOME";
+    public const string MICROSCOPIC_BIRDS_AND_BEES_ID = "MICROSCOPIC_BIRDS_AND_BEES";
+    public const string PERFECTLY_PACKED_ID = "PERFECTLY_PACKED";
 
     public static bool IsValidStatistic(int statId)
     {
