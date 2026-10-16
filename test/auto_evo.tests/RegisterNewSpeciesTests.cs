@@ -13,16 +13,18 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class RegisterNewSpeciesTests
 {
+    /// <summary>
+    ///   Runs a selected same-stage mutation through population calculation, registration and application, checking
+    ///   that the parent keeps its identity while receiving the candidate's population and phenotype. Preserves the
+    ///   previous population and recorded energy and cost so applying the mutation cannot overwrite historical results.
+    /// </summary>
     [TestCase]
     public void SelectedParentMutationKeepsItsResultIdentityThroughApply()
     {
         var world = CreateWorld();
         var settings = world.WorldSettings;
         var patch = world.Map.CurrentPatch!;
-        var parent = world.NewMicrobeSpecies("Test", "parent");
-        parent.ApplyMutation(world.PlayerSpecies);
-        parent.MembraneRigidity = 0;
-        parent.OnEdited();
+        var parent = CreateParent(world);
         patch.AddSpecies(parent, 100);
 
         var cache = new SimulationCache(settings);
@@ -90,6 +92,11 @@ public class RegisterNewSpeciesTests
         AssertThat(finalCost > tracked.IndividualCost).IsTrue();
     }
 
+    /// <summary>
+    ///   Checks both candidate orders so only the winning reference is rebound to its parent across nested and separate
+    ///   patch miches. This protects clones with matching IDs and names, other occupants and read-only snapshots
+    ///   from unintended rebinding, while preserving recorded energy and adding the winning population to the parent.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void OnlyFinalSelectedReferenceIsReboundAcrossAllPatches(bool winnerFirst)
@@ -192,6 +199,10 @@ public class RegisterNewSpeciesTests
         AssertThat(firstLeaf.Occupant).IsSame(world.Species[parent.ID]);
     }
 
+    /// <summary>
+    ///   Keeps a candidate as a separate split species with its own population when its parent still occupies a miche
+    ///   in another patch, preventing a local replacement from being mistaken for extinction of the parent.
+    /// </summary>
     [TestCase]
     public void ParentSurvivingInAnotherPatchKeepsCandidateAsNewSpecies()
     {
@@ -220,6 +231,11 @@ public class RegisterNewSpeciesTests
         AssertThat(results.GetPopulationInPatch(candidate, patches[0])).IsEqual(50L);
     }
 
+    /// <summary>
+    ///   Records the best candidate under its identity with the parent's remaining population when it changes stage,
+    ///   while keeping the weaker same-stage candidate separate. This prevents either candidate from being incorrectly
+    ///   rebound to the parent or applied as its mutation during registration.
+    /// </summary>
     [TestCase]
     public void BestCrossStageCandidateKeepsItsOwnIdentity()
     {
@@ -252,6 +268,11 @@ public class RegisterNewSpeciesTests
         AssertThat(results.GetPopulationInPatch(sameStage, patch)).IsEqual(30L);
     }
 
+    /// <summary>
+    ///   Removes a species from the world and patch when it loses its last miche without a replacement, while retaining
+    ///   its previous population in the results and its name in the summary. This keeps historical results from being
+    ///   discarded when extinction is applied to the live world.
+    /// </summary>
     [TestCase]
     public void ExtinctSpeciesRetainsItsHistoricalResultAfterApply()
     {
