@@ -2622,6 +2622,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnNewCellTextAccepted(string text)
     {
+        // Prevent Enter from triggering another confirmation after the text submission.
+        GetViewport().SetInputAsHandled();
+
         // Just to make sure the latest text is already available to us
         if (duplicateCellTypeName.Text != text)
             GD.PrintErr("Text not updated");
