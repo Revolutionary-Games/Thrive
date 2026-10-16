@@ -404,6 +404,140 @@ public partial class AchievementsManager : Node
 
     // Callbacks forwarded from AchievementEvents
 
+    internal void OnUltimateColony(int colonySize)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum = statsStore.GetIntStat(IAchievementStatStore.STAT_ULTIMATE_COLONY);
+            if (colonySize <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_ULTIMATE_COLONY, colonySize);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.ULTIMATE_COLONY]);
+        }
+    }
+
+    internal void OnUltimateCellularFirepower(int projectilesInVolley)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum =
+                statsStore.GetIntStat(IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER);
+            if (projectilesInVolley <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER, projectilesInVolley);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.ULTIMATE_CELLULAR_FIREPOWER]);
+        }
+    }
+
+    internal void OnYouAnimal()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_YOU_ANIMAL, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.YOU_ANIMAL]);
+        }
+    }
+
+    internal void OnSpecializedWeapons()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_SPECIALIZED_WEAPONS, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.SPECIALIZED_WEAPONS]);
+        }
+    }
+
+    internal void OnSpecializationSpecialist(int specializedCellTypeCount)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum =
+                statsStore.GetIntStat(IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST);
+            if (specializedCellTypeCount <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST, specializedCellTypeCount);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.SPECIALIZATION_SPECIALIST]);
+        }
+    }
+
+    internal void OnJustAFleshWound()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_JUST_A_FLESH_WOUND, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.JUST_A_FLESH_WOUND]);
+        }
+    }
+
+    internal void OnInLookOfAHome(int distanceTravelled)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum = statsStore.GetIntStat(IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME);
+            if (distanceTravelled <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME, distanceTravelled);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.IN_LOOK_OF_A_HOME]);
+        }
+    }
+
+    internal void OnMicroscopicBirdsAndBees()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.MICROSCOPIC_BIRDS_AND_BEES]);
+        }
+    }
+
+    internal void OnPerfectlyPacked()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_PERFECTLY_PACKED, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.PERFECTLY_PACKED]);
+        }
+    }
+
     internal void OnPlayerMicrobeKill()
     {
         if (preventAchievements)

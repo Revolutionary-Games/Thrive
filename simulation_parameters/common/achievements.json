@@ -122,7 +122,11 @@
     "HideIfNotAchieved": false,
     "UnlockedIcon": "res://assets/textures/gui/bevel/achievements/UnlockedMulticellularAchievement.png",
     "LinkedStatistic": 15,
-    "LinkedStatisticThreshold": 1
+    "LinkedStatisticThreshold": 21,
+    "ProgressDescription": "ULTIMATE_COLONY_PROGRESS",
+    "LinkedStatisticVisibleProgressThresholds": [
+      10
+    ]
   },
   "ULTIMATE_CELLULAR_FIREPOWER": {
     "Name": "ULTIMATE_CELLULAR_FIREPOWER",
@@ -131,7 +135,11 @@
     "HideIfNotAchieved": false,
     "UnlockedIcon": "res://assets/textures/gui/bevel/achievements/UnlockedMulticellularAchievement.png",
     "LinkedStatistic": 16,
-    "LinkedStatisticThreshold": 1
+    "LinkedStatisticThreshold": 10,
+    "ProgressDescription": "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS",
+    "LinkedStatisticVisibleProgressThresholds": [
+      6
+    ]
   },
   "YOU_ANIMAL": {
     "Name": "YOU_ANIMAL",
@@ -158,7 +166,11 @@
     "HideIfNotAchieved": false,
     "UnlockedIcon": "res://assets/textures/gui/bevel/achievements/UnlockedMulticellularAchievement.png",
     "LinkedStatistic": 19,
-    "LinkedStatisticThreshold": 1
+    "LinkedStatisticThreshold": 3,
+    "ProgressDescription": "SPECIALIZATION_SPECIALIST_PROGRESS",
+    "LinkedStatisticVisibleProgressThresholds": [
+      2
+    ]
   },
   "JUST_A_FLESH_WOUND": {
     "Name": "JUST_A_FLESH_WOUND",
@@ -176,7 +188,11 @@
     "HideIfNotAchieved": false,
     "UnlockedIcon": "res://assets/textures/gui/bevel/achievements/UnlockedMulticellularAchievement.png",
     "LinkedStatistic": 21,
-    "LinkedStatisticThreshold": 1
+    "LinkedStatisticThreshold": 1000,
+    "ProgressDescription": "IN_LOOK_OF_A_HOME_PROGRESS",
+    "LinkedStatisticVisibleProgressThresholds": [
+      500
+    ]
   },
   "MICROSCOPIC_BIRDS_AND_BEES": {
     "Name": "MICROSCOPIC_BIRDS_AND_BEES",

@@ -100,4 +100,8 @@ public static class AchievementIds
     public const int IN_LOOK_OF_A_HOME = 20;
     public const int MICROSCOPIC_BIRDS_AND_BEES = 21;
     public const int PERFECTLY_PACKED = 22;
+    public const int ULTIMATE_COLONY_THRESHOLD = 21;
+    public const int ULTIMATE_CELLULAR_FIREPOWER_THRESHOLD = 10;
+    public const int SPECIALIZATION_SPECIALIST_THRESHOLD = 3;
+    public const int IN_LOOK_OF_A_HOME_THRESHOLD = 1000;
 }
