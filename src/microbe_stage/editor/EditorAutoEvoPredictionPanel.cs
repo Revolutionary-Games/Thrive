@@ -41,10 +41,10 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     private HBoxContainer suggestionsContainer = null!;
 #pragma warning restore CA2213
 
+    private Func<PredictionInputState>? validatePredictionInput;
     private Color detailsButtonNormalColour;
     private bool? autoEvoPredictionRunSuccessful;
     private bool unavailable;
-    private bool predictionResultsInvalidated;
     private long predictedPopulation;
     private string? bestPatchName;
     private float bestPatchEnergyGathered;
@@ -62,6 +62,9 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     [Signal]
     public delegate void DetailsOpenedEventHandler();
 
+    [Signal]
+    public delegate void InvalidActionEventHandler();
+
     public override void _Ready()
     {
         detailsButtonNormalColour = detailsButton.SelfModulate;
@@ -77,8 +80,10 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         }
     }
 
-    public void ConfigureHost(Control finishButton, bool showSuggestions)
+    public void ConfigureHost(Control finishButton, bool showSuggestions,
+        Func<PredictionInputState>? validateInput = null)
     {
+        validatePredictionInput = validateInput;
         detailsButton.FocusNeighborBottom = detailsButton.GetPathTo(finishButton);
         detailsButton.FocusNext = detailsButton.GetPathTo(finishButton);
         suggestionsContainer.Visible = showSuggestions;
@@ -91,10 +96,12 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         UpdateAutoEvoPredictionTranslations();
     }
 
+    /// <summary>
+    ///   Marks the current design as invalid while keeping the last successful popup contents.
+    /// </summary>
     public void ShowUnavailable()
     {
         unavailable = true;
-        predictionResultsInvalidated = true;
         autoEvoPredictionRunSuccessful = null;
         predictedPopulation = 0;
         bestPatchName = null;
@@ -103,25 +110,13 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         worstPatchName = null;
         worstPatchEnergyGathered = 0;
         worstPatchPopulation = 0;
-        predictionDetailsText = null;
-        predictionMiches = null;
-        predictionPatch = null;
-        worldSettings = null;
 
-        // The open details window also needs an enabled exit if its miche entry is about to lose interaction.
-        if (micheViewButton.HasFocus())
-            autoEvoPredictionExplanationPopup.FocusCloseButton();
-
-        detailsButton.Disabled = true;
-        detailsButton.SelfModulate = detailsButtonNormalColour * Colors.Gray;
-        micheViewButton.Disabled = true;
         totalEnergyLabel.ResetInitialValue();
         totalEnergyLabel.Value = float.NaN;
         totalEnergyLabel.TooltipText = string.Empty;
 
         UpdateAutoEvoPredictionTranslations();
         UpdateAutoEvoPredictionDetailsText();
-        micheViewer.ShowUnavailable();
     }
 
     public void DisplayRun(AutoEvoRun run, Species playerSpeciesOriginal, Species playerSpeciesNew,
@@ -223,15 +218,6 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         predictionPatch = patch;
         worldSettings = settings;
         predictionMiches = results.GetModifiableMicheForPatch(patch);
-
-        // Recover an open viewer without reopening one the player has closed, or changing normal waiting behaviour.
-        if (predictionResultsInvalidated)
-            micheViewer.UpdateMichesIfOpen(patch, predictionMiches, settings);
-
-        predictionResultsInvalidated = false;
-        detailsButton.Disabled = false;
-        detailsButton.SelfModulate = detailsButtonNormalColour;
-        micheViewButton.Disabled = false;
     }
 
     private void UpdateTranslatedResults()
@@ -251,11 +237,16 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     private void UpdateAutoEvoPredictionTranslations()
     {
+        detailsButton.SelfModulate = unavailable ?
+            detailsButtonNormalColour * Colors.Gray :
+            detailsButtonNormalColour;
+
         if (unavailable || autoEvoPredictionRunSuccessful == false)
         {
             totalEnergyLabel.Value = float.NaN;
-            autoEvoPredictionFailedLabel.Text =
-                Localization.Translate(unavailable ? "NO_PREDICTION_FOR_CURRENT_DESIGN" : "FAILED");
+            autoEvoPredictionFailedLabel.Text = unavailable ?
+                Localization.Translate("AUTO_EVO_PREDICTION_INVALID_SPECIES") :
+                Localization.Translate("FAILED");
             autoEvoPredictionFailedLabel.Show();
         }
         else
@@ -290,9 +281,34 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         }
     }
 
+    /// <summary>
+    ///   Checks the live design as edits may not have reached the throttled prediction update yet.
+    /// </summary>
+    private bool CanOpenPredictionPopup()
+    {
+        var inputState = validatePredictionInput?.Invoke() ??
+            (unavailable ? PredictionInputState.Invalid : PredictionInputState.Valid);
+
+        if (inputState == PredictionInputState.NotReady)
+            return false;
+
+        if (inputState == PredictionInputState.Invalid)
+        {
+            ShowUnavailable();
+            EmitSignal(SignalName.InvalidAction);
+            return false;
+        }
+
+        // A corrected design can show the previous results while its next prediction is pending.
+        if (unavailable)
+            ShowWaiting();
+
+        return true;
+    }
+
     private void OpenAutoEvoPredictionDetails()
     {
-        if (predictionResultsInvalidated)
+        if (!CanOpenPredictionPopup())
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
@@ -358,21 +374,14 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     private void UpdateAutoEvoPredictionDetailsText()
     {
-        if (predictionDetailsText != null)
-        {
-            autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText.ToString();
-        }
-        else
-        {
-            autoEvoPredictionExplanationLabel.ExtendedBbcode = Localization.Translate(predictionResultsInvalidated ?
-                "NO_PREDICTION_FOR_CURRENT_DESIGN" :
-                "NO_DATA_TO_SHOW");
-        }
+        autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText != null ?
+            predictionDetailsText.ToString() :
+            Localization.Translate("NO_DATA_TO_SHOW");
     }
 
     private void OnMicheViewRequested()
     {
-        if (predictionResultsInvalidated)
+        if (!CanOpenPredictionPopup())
             return;
 
         GUICommon.Instance.PlayButtonPressSound();

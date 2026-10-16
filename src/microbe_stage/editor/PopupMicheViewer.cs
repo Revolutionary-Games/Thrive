@@ -18,12 +18,6 @@ public partial class PopupMicheViewer : Control
 
     [Export]
     private MicheDetailsPanel micheDetails = null!;
-
-    [Export]
-    private Control micheContent = null!;
-
-    [Export]
-    private Label unavailableLabel = null!;
 #pragma warning restore CA2213
 
     private Patch? patchForMiches;
@@ -38,8 +32,6 @@ public partial class PopupMicheViewer : Control
 
     public void ShowMiches(Patch patch, Miche michesToShow, WorldGenerationSettings worldSettings)
     {
-        unavailableLabel.Hide();
-        micheContent.Show();
         patchForMiches = patch;
 
         miches.SetMiche(michesToShow);
@@ -53,35 +45,6 @@ public partial class PopupMicheViewer : Control
 
         michePopup.WindowTitle = Localization.Translate("MICHES_FOR_PATCH").FormatSafe(patch.Name);
         michePopup.Show();
-    }
-
-    /// <summary>
-    ///   Removes outdated prediction data while preserving whether the player has the window open.
-    /// </summary>
-    public void ShowUnavailable()
-    {
-        // Restore missing focus or preserve it when replacing focused content; leave background focus alone.
-        var focused = GetViewport().GuiGetFocusOwner();
-        if (focused == null || (focused == micheContent || micheContent.IsAncestorOf(focused)))
-            michePopup.FocusCloseButton();
-
-        patchForMiches = null;
-        miches.Clear();
-        speciesDetails.PreviewSpecies = null;
-        micheDetails.ClearPreview();
-        micheDetails.WorldSettings = null;
-        micheContent.Hide();
-        unavailableLabel.Show();
-        michePopup.WindowTitle = "AUTO-EVO_PREDICTION";
-    }
-
-    /// <summary>
-    ///   Replaces the unavailable contents of an open window without reopening a closed window.
-    /// </summary>
-    public void UpdateMichesIfOpen(Patch patch, Miche michesToShow, WorldGenerationSettings worldSettings)
-    {
-        if (michePopup.Visible)
-            ShowMiches(patch, michesToShow, worldSettings);
     }
 
     private void MicheTreeNodeSelected(int micheHash)

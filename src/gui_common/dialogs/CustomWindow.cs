@@ -436,16 +436,6 @@ public partial class CustomWindow : TopLevelContainer
         return rect.HasPoint(point);
     }
 
-    /// <summary>
-    ///   Gives keyboard focus to the window's close button if it is available and visible.
-    ///   Callers replacing focused content can use this to preserve a usable exit without reopening the window.
-    /// </summary>
-    public void FocusCloseButton()
-    {
-        if (closeButton != null && closeButton.IsVisibleInTree())
-            closeButton.GrabFocus();
-    }
-
     protected override void OnOpen()
     {
         base.OnOpen();

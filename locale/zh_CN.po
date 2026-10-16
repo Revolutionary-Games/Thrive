@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-16 20:49+0800\n"
+"POT-Creation-Date: 2026-10-17 01:15+0800\n"
 "PO-Revision-Date: 2026-10-14 07:42+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -415,6 +415,10 @@ msgstr "此存档中缺少自动演化结果。这很可能表明在创建此存
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "自动演化结果缺失。当您载入了较旧的存档时，该情况可能发生。如果您并未载入一个较久的存档，请将其作为错误报告给我们，并附上游戏日志。"
+
+#, fuzzy
+msgid "AUTO_EVO_PREDICTION_INVALID_SPECIES"
+msgstr "自动演化系统 (Auto-Evo) 的预测"
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "自动演化结果："
@@ -4868,9 +4872,6 @@ msgstr "模组已禁用"
 
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "不参与细胞过程"
-
-msgid "NO_PREDICTION_FOR_CURRENT_DESIGN"
-msgstr "当前设计暂无预测"
 
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "未找到存档"
@@ -10371,6 +10372,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "NO_PREDICTION_FOR_CURRENT_DESIGN"
+#~ msgstr "当前设计暂无预测"
 
 #~ msgid "PASSED_FULFILLED_CONDITION"
 #~ msgstr "已通过：{0}"

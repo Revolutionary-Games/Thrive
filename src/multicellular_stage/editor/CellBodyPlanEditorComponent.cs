@@ -438,7 +438,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         base._Ready();
 
-        PredictionPanel.ConfigureHost(finishOrNextButton, false);
+        PredictionPanel.ConfigureHost(finishOrNextButton, false, GetPredictionInputState);
 
         growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 

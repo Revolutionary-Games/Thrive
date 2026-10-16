@@ -1328,6 +1328,7 @@ IsMulticellular = true
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/MacroscopicCheck" to="." method="OpenMacroscopicRequirementsDialog"]
+[connection signal="InvalidAction" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnInvalidAction"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]

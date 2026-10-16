@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="4_v5bmc"]
 [ext_resource type="PackedScene" uid="uid://cikd2ef2usr1y" path="res://src/gui_common/MicheDetailsPanel.tscn" id="5_6rljh"]
 
-[node name="PopupMicheViewer" type="Control" unique_id=1138885174 node_paths=PackedStringArray("michePopup", "miches", "speciesDetails", "micheDetails", "micheContent", "unavailableLabel")]
+[node name="PopupMicheViewer" type="Control" unique_id=1138885174 node_paths=PackedStringArray("michePopup", "miches", "speciesDetails", "micheDetails")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -20,8 +20,6 @@ michePopup = NodePath("Popup")
 miches = NodePath("Popup/HBoxContainer/MicheTree")
 speciesDetails = NodePath("Popup/HBoxContainer/VBoxContainer/SpeciesDetailsPanel")
 micheDetails = NodePath("Popup/HBoxContainer/VBoxContainer/MicheDetailsPanel")
-micheContent = NodePath("Popup/HBoxContainer")
-unavailableLabel = NodePath("Popup/Unavailable")
 
 [node name="Popup" parent="." unique_id=377908735 instance=ExtResource("2_gkx7s")]
 layout_mode = 1
@@ -68,14 +66,5 @@ layout_mode = 2
 [node name="SpeciesDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" unique_id=1209940727 instance=ExtResource("4_v5bmc")]
 visible = false
 layout_mode = 2
-
-[node name="Unavailable" type="Label" parent="Popup"]
-visible = false
-custom_minimum_size = Vector2(750, 500)
-layout_mode = 0
-text = "NO_PREDICTION_FOR_CURRENT_DESIGN"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
 
 [connection signal="MicheSelected" from="Popup/HBoxContainer/MicheTree" to="." method="MicheTreeNodeSelected"]
