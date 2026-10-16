@@ -62,7 +62,7 @@ public partial class PopupMicheViewer : Control
     {
         // Restore missing focus or preserve it when replacing focused content; leave background focus alone.
         var focused = GetViewport().GuiGetFocusOwner();
-        if (focused == null || focused == micheContent || micheContent.IsAncestorOf(focused))
+        if (focused == null || (focused == micheContent || micheContent.IsAncestorOf(focused)))
             michePopup.FocusCloseButton();
 
         patchForMiches = null;

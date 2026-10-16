@@ -5,7 +5,7 @@ using AutoEvo;
 using Godot;
 
 /// <summary>
-///   Shared presentation of editor Auto-Evo results. The editor owns and schedules the run.
+///   Shared presentation of editor Auto-Evo prediction results. The editor owns and schedules the run.
 /// </summary>
 public partial class EditorAutoEvoPredictionPanel : PanelContainer
 {
@@ -73,7 +73,7 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         if (what == NotificationTranslationChanged && IsNodeReady())
         {
             // Child indicators reset their formatted values during translation callbacks.
-            Callable.From(UpdateTranslatedResults).CallDeferred();
+            Invoke.Instance.QueueForObject(UpdateTranslatedResults, this);
         }
     }
 
@@ -290,12 +290,6 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         }
     }
 
-    private void DummyKeepTranslation()
-    {
-        // This keeps this translation string existing if we ever still want to use worst and best population numbers
-        Localization.Translate("POPULATION_IN_PATCH_SHORT");
-    }
-
     private void OpenAutoEvoPredictionDetails()
     {
         if (predictionResultsInvalidated)
@@ -392,5 +386,11 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         micheViewer.ShowMiches(predictionPatch!, predictionMiches, worldSettings!);
 
         autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void DummyKeepTranslation()
+    {
+        // This keeps this translation string existing if we ever still want to use worst and best population numbers
+        Localization.Translate("POPULATION_IN_PATCH_SHORT");
     }
 }
