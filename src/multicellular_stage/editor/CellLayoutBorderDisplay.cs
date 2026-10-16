@@ -25,17 +25,25 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         calculatedTransforms.Clear();
 
         var mesh = Multimesh;
-        mesh.InstanceCount = 1000; // TBD: Fix this
+        int instanceCount = 0;
 
         int i = 0;
         foreach (var cell in layout)
         {
             if (!calculatedTransforms.ContainsKey(cell.ModifiableCellType))
             {
+                // TBD: reuse lists
                 var transforms = CalculateBorderTransforms(cell.ModifiableCellType);
                 calculatedTransforms.Add(cell.ModifiableCellType, transforms);
+                instanceCount += transforms.Count;
+            }
+            else
+            {
+                instanceCount += calculatedTransforms[cell.ModifiableCellType].Count;
             }
         }
+
+        mesh.InstanceCount = instanceCount;
 
         foreach (var cell in layout)
         {
