@@ -143,7 +143,7 @@ focus_mode = 1
 mouse_force_pass_scroll_events = false
 theme_override_fonts/font = ExtResource("20_ffguv")
 placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
-max_length = 60
+max_length = 100
 caret_blink = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/HBoxContainer/SpeciesName" unique_id=74220758]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -538,6 +538,10 @@ msgstr "Bathypelagic"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Devino macroscopic ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Devino macroscopic ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Devino Multicelular ({0}/{1})"
 
@@ -585,6 +589,9 @@ msgid "BETTER_TOGETHER"
 msgstr ""
 
 msgid "BEYOND_THE_CELL"
+msgstr ""
+
+msgid "BEYOND_THE_MICROBE"
 msgstr ""
 
 msgid "BIG_IRON_CHUNK"
@@ -837,6 +844,9 @@ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul sufic
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr ""
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
@@ -868,6 +878,10 @@ msgstr ""
 
 msgid "CHEAT_MENU"
 msgstr ""
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Editor 3D"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -1024,16 +1038,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(viteza cu care speciile IA suferă mutații)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
 
 msgid "COLOUR"
 msgstr ""
@@ -1542,6 +1556,28 @@ msgid "CREATING_DOT_DOT_DOT"
 msgstr ""
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Artist:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
 msgstr ""
 
 msgid "CREDITS"
@@ -2070,7 +2106,133 @@ msgstr ""
 "Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Structuri Procariote\n"
 "\n"
@@ -3637,6 +3799,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Stagiul de trezire"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3700,6 +3866,57 @@ msgstr "Devino macroscopic ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Etapa Microbilor"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Devino macroscopic ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Devino macroscopic ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Devino macroscopic ({0}/{1})"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Devino macroscopic ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4378,8 +4595,13 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr ""
+msgstr "Devino macroscopic ({0}/{1})"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr "Devino macroscopic ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -5187,6 +5409,19 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Editor 3D"
+
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr ""
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5391,6 +5626,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Etapa Microbilor"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5618,6 +5857,10 @@ msgstr ""
 
 msgid "ROTATE_RIGHT"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Adaugă un key-bind nou"
 
 msgid "ROTATION_COLON"
 msgstr ""
@@ -7407,6 +7650,12 @@ msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
 msgid "UNTITLED"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL"
@@ -9498,6 +9747,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "și"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

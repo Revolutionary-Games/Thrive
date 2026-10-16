@@ -324,6 +324,17 @@ public class FileLoadedAchievement : IAchievement
 
                 break;
             }
+
+            case 13:
+            {
+                if (InternalName == IAchievementStatStore.BEYOND_THE_MICROBE_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_REACHED_MACROSCOPIC)
+                {
+                    return;
+                }
+
+                break;
+            }
         }
 
         throw new Exception(

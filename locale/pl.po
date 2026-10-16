@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-10-02 16:08+0000\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
+"PO-Revision-Date: 2026-10-14 12:30+0000\n"
 "Last-Translator: Wojciech Roter <roterwojciech421@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -113,6 +113,7 @@ msgstr "Aktomiozyna"
 msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "Aktomiozyna to proste struktury mięśni, których kolonie komórek używają do bardziej efektywnego kierowania lub obracania się. Nie są dostępne dla sztywnych typów membran, ponieważ do działania potrzebują elastyczności kolonii. W związku z tym są najbardziej efektywne, gdy w komórce znajduje się tylko jedna taka organella i posiada ją wiele komórek w kolonii."
 
+#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr "Zwiększa szybkość poruszania i obracania się kolonii komórek."
 
@@ -524,6 +525,10 @@ msgstr "Batypelagial"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Zostań organizmem wielokomórkowym ({0}/{1})"
 
@@ -570,6 +575,10 @@ msgid "BETTER_TOGETHER"
 msgstr "Najlepiej razem"
 
 msgid "BEYOND_THE_CELL"
+msgstr "Poza komórką"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "Poza komórką"
 
 msgid "BIG_IRON_CHUNK"
@@ -830,6 +839,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Wybrana nazwa pliku ({0}) już istnieje. Nadpisać?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Opis zmian jest zbyt długi"
 
@@ -861,6 +874,10 @@ msgstr "Klawisze oszustw włączone"
 
 msgid "CHEAT_MENU"
 msgstr "Menu oszustw"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Dostępne wyłącznie od fazy wielokomórkowej."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pokaż / ukryj procesy komórkowe"
@@ -1018,16 +1035,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Przywołaj byty z kształtami kolizji"
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Populacja:"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Populacja:"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Populacja:"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Populacja:"
 
 msgid "COLOUR"
 msgstr "Kolor"
@@ -1568,6 +1585,32 @@ msgstr "Tworzenie..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Tworzenie obiektów z pliku zapisu"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Typ:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Stwórz Nowy Typ Komórki"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone komórki tego typu zostaną zaktualizowane."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Stwórz Nowy Zapis"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone komórki tego typu zostaną zaktualizowane."
 
 msgid "CREDITS"
 msgstr "Twórcy"
@@ -2132,7 +2175,61 @@ msgstr ""
 "By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
 "\n"
@@ -3750,6 +3847,10 @@ msgstr ""
 "Ten zapis jest najpewniej zepsuty lub w nowszym formacie nierozumianym przez tą wersję Thrive.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Wczytaj grę"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3819,6 +3920,43 @@ msgstr "Makroskopijny"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Wczytywanie edytora mikrobów"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Wczytywanie edytora mikrobów"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Wczytywanie edytora mikrobów"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Wczytywanie edytora mikrobów"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Prototyp makroskopijności"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "rozmnażanie w biomie {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu Wielokomórkowca!\n"
+"\n"
+"Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4577,6 +4715,10 @@ msgstr "Przemieść Się na Ląd"
 
 #, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5457,6 +5599,21 @@ msgstr "Powiel Gracza"
 msgid "PLAYER_EXTINCT"
 msgstr "gracz wyginął"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Brak wymagań"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Nazwa gatunku jest za długa!"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Krewny gracza"
 
@@ -5657,6 +5814,10 @@ msgstr "Dotrzyj do 15 generacji wyłącznie jednym gatunkiem na conajmniej norma
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Osiągnij pokolenie {0}/{1} jednym gatunkiem na przynajmniej normalnym poziomie trudności"
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Etap Mikroba"
 
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Osiągnij etap wielokomórkowca"
@@ -5891,6 +6052,10 @@ msgstr "Obróć w lewo"
 
 msgid "ROTATE_RIGHT"
 msgstr "Obróć w prawo"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
 msgid "ROTATION_COLON"
 msgstr "Obrót:"
@@ -7717,6 +7882,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Bez tytułu"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Stwórz Nowy Typ Komórki"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Rzęski ciągnące"
@@ -10230,6 +10402,10 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "i"
+
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
 #~ "{0}: +{1} ATP\n"
@@ -10793,15 +10969,6 @@ msgstr "Oddal"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Wnikliwe statystyki odnośnie aktualnej rozgrywki"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Prototyp makroskopijności"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu Wielokomórkowca!\n"
-#~ "\n"
-#~ "Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Nie Możliwy Do Pochłonięcia"

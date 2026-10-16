@@ -10,6 +10,16 @@ public partial class MetaballBodyEditorComponent
 
     private int usedToleranceWarnings;
 
+    public void OnSkinTypeSelected(int newValue)
+    {
+        SkinType = (CreatureSkinType)newValue;
+    }
+
+    public void UpdateSkinTypeButton()
+    {
+        creatureSkinTypeChoiceButton.Selected = (int)SkinType;
+    }
+
     private void CalculateAndDisplayToleranceWarnings()
     {
         // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
@@ -30,5 +40,24 @@ public partial class MetaballBodyEditorComponent
     private void OnTolerancesEditorChangedData()
     {
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+    }
+
+    private void ChangeCurrentTransformTool(int to)
+    {
+        if (MovingPlacedMetaball != null)
+        {
+            return;
+        }
+
+        var newTool = (TransformTool)to;
+
+        if (newTool == SelectedTransformTool)
+        {
+            // Toggle the tool off
+            SelectedTransformTool = TransformTool.None;
+            return;
+        }
+
+        SelectedTransformTool = newTool;
     }
 }

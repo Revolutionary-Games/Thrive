@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
 "PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -512,6 +512,10 @@ msgid "BECOME_MACROSCOPIC"
 msgstr "Stať sa makroskopickým ({0}/{1})"
 
 #, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Stať sa makroskopickým ({0}/{1})"
+
+#, fuzzy
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stať sa viacbunkovým ({0}/{1})"
 
@@ -566,6 +570,9 @@ msgid "BETTER_TOGETHER"
 msgstr ""
 
 msgid "BEYOND_THE_CELL"
+msgstr ""
+
+msgid "BEYOND_THE_MICROBE"
 msgstr ""
 
 msgid "BIG_IRON_CHUNK"
@@ -822,6 +829,10 @@ msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť �
 msgid "CELL_TYPE_NAME"
 msgstr "Názov typu bunky"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "Názov typu bunky"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Poznámky k zmene sú príliš dlhé"
 
@@ -855,6 +866,10 @@ msgstr "Cheaty povolené"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Termosyntáza"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobraziť / skryť bunkové procesy"
@@ -1016,16 +1031,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Umiestniť entity s kolíznymi tvarmi"
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Rotácia:"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Rotácia:"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Rotácia:"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Rotácia:"
 
 msgid "COLOUR"
 msgstr "Farba"
@@ -1573,6 +1588,31 @@ msgstr "Vytváranie..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Typ:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Vytvoriť nový typ bunky"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Nové typy buniek môžeš vytvoriť duplikovaním existujúcich a pomenovaním ich. Typy buniek je možné upraviť tak, aby sa špecializovali na rôzne roly. Pri úprave typu bunky sa všetky umiestnené bunky toho istého typu aktualizujú."
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Nové typy buniek môžeš vytvoriť duplikovaním existujúcich a pomenovaním ich. Typy buniek je možné upraviť tak, aby sa špecializovali na rôzne roly. Pri úprave typu bunky sa všetky umiestnené bunky toho istého typu aktualizujú."
+
 msgid "CREDITS"
 msgstr "Poďakovanie"
 
@@ -2089,7 +2129,31 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
@@ -3774,6 +3838,10 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Načítať hru"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3842,6 +3910,40 @@ msgstr "Stať sa makroskopickým ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Vyžaduje jadro"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Načítavanie editora mikróbov"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Načítavanie editora mikróbov"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Načítavanie editora mikróbov"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Načítavanie editora mikróbov"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Vyžaduje jadro"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "Záporná bilancia ATP"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4561,6 +4663,10 @@ msgstr "Mod na nahranie:"
 
 #, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Stať sa makroskopickým ({0}/{1})"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Stať sa makroskopickým ({0}/{1})"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5422,6 +5528,20 @@ msgstr "Duplikovať hráča"
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Názov druhu..."
+
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
@@ -5640,6 +5760,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Fáza Mikróbov"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5883,6 +6007,10 @@ msgstr "Otočiť doľava"
 
 msgid "ROTATE_RIGHT"
 msgstr "Otočiť doprava"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Vstúpte do editora a upravte svoj druh"
 
 msgid "ROTATION_COLON"
 msgstr "Rotácia:"
@@ -7532,6 +7660,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Bez názvu"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Vytvoriť nový typ bunky"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -9685,6 +9820,10 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "Fyzické podmienky"
 
 #, fuzzy
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"

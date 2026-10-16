@@ -19,6 +19,7 @@ public class AchievementStatStore : IAchievementStatStore
     private int statMaxSpeciesGeneration;
     private int statEndosymbiosisCompleted;
     private int statReachedMulticellular;
+    private int statReachedMacroscopic;
 
     public int GetIntStat(int statId)
     {
@@ -48,6 +49,8 @@ public class AchievementStatStore : IAchievementStatStore
                 return statEndosymbiosisCompleted;
             case IAchievementStatStore.STAT_REACHED_MULTICELLULAR:
                 return statReachedMulticellular;
+            case IAchievementStatStore.STAT_REACHED_MACROSCOPIC:
+                return statReachedMacroscopic;
         }
 
         GD.PrintErr("Unknown stat ID requested: ", statId);
@@ -86,6 +89,7 @@ public class AchievementStatStore : IAchievementStatStore
             case IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS:
             case IAchievementStatStore.STAT_MAX_SPECIES_GENERATION:
             case IAchievementStatStore.STAT_REACHED_MULTICELLULAR:
+            case IAchievementStatStore.STAT_REACHED_MACROSCOPIC:
             {
                 GD.PrintErr("Cannot increment stat of type: ", statId);
                 return 0;
@@ -115,6 +119,9 @@ public class AchievementStatStore : IAchievementStatStore
             case IAchievementStatStore.STAT_REACHED_MULTICELLULAR:
                 statReachedMulticellular = Math.Clamp(value, 0, 1);
                 return true;
+            case IAchievementStatStore.STAT_REACHED_MACROSCOPIC:
+                statReachedMacroscopic = Math.Clamp(value, 0, 1);
+                return true;
         }
 
         GD.PrintErr("Unknown stat ID tried to be set (or stat that cannot be set directly): ", statId);
@@ -139,6 +146,7 @@ public class AchievementStatStore : IAchievementStatStore
         statMaxSpeciesGeneration = 0;
         statEndosymbiosisCompleted = 0;
         statReachedMulticellular = 0;
+        statReachedMacroscopic = 0;
     }
 
     public void Save(Dictionary<int, int> intValues)
@@ -155,6 +163,7 @@ public class AchievementStatStore : IAchievementStatStore
         intValues[IAchievementStatStore.STAT_MAX_SPECIES_GENERATION] = statMaxSpeciesGeneration;
         intValues[IAchievementStatStore.STAT_ENDOSYMBIOSIS_COMPLETED] = statEndosymbiosisCompleted;
         intValues[IAchievementStatStore.STAT_REACHED_MULTICELLULAR] = statReachedMulticellular;
+        intValues[IAchievementStatStore.STAT_REACHED_MACROSCOPIC] = statReachedMacroscopic;
     }
 
     public void Load(Dictionary<int, int> intValues)
@@ -194,5 +203,8 @@ public class AchievementStatStore : IAchievementStatStore
 
         if (intValues.TryGetValue(IAchievementStatStore.STAT_REACHED_MULTICELLULAR, out value))
             statReachedMulticellular = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_REACHED_MACROSCOPIC, out value))
+            statReachedMacroscopic = value;
     }
 }

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-29 09:51+0300\n"
-"PO-Revision-Date: 2026-10-05 11:49+0000\n"
-"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
+"PO-Revision-Date: 2026-10-15 12:11+0000\n"
+"Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "肌动球蛋白是细胞群落用来向一个方向运动或旋转的简单肌肉结构。它们依赖于细胞群落的伸缩来起作用，所以与各种细胞壁不兼容，并且在每个细胞只有一个，但群落里很多细胞都有的情况下最为高效。"
 
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "增加细胞群落的移动和旋转速度。"
+msgstr "增加细胞群落的基础移动和旋转速度。"
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "额外验证检测到了一个问题：{0}"
@@ -515,6 +515,9 @@ msgstr "半深海带"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "无法成为宏观生物"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
@@ -561,6 +564,10 @@ msgid "BETTER_TOGETHER"
 msgstr "人多力量大"
 
 msgid "BEYOND_THE_CELL"
+msgstr "超越细胞"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "超越细胞"
 
 msgid "BIG_IRON_CHUNK"
@@ -818,6 +825,9 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "与已有细胞类型名重复"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更改说明太长了"
 
@@ -859,6 +869,9 @@ msgstr "启用作弊键"
 
 msgid "CHEAT_MENU"
 msgstr "作弊菜单"
+
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "成为宏观生物的条件"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
@@ -1016,14 +1029,14 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr "生成具有碰撞形状的实体"
 
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "细胞群落基础旋转力"
+
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "细胞群落基础速度"
+
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "该选项卡允许设定群落细胞的生长顺序，其中排序首位的细胞即为根细胞（或称芽体）。您可以利用此功能优先生长更关键的细胞，或确保群落的物质生产与消耗维持适当的平衡。"
-
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "细胞群落旋转力"
-
-msgid "COLONY_SPEED_INCREASE"
-msgstr "细胞群落速度"
 
 msgid "COLOUR"
 msgstr "颜色"
@@ -1557,6 +1570,28 @@ msgstr "创建中……"
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
+
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "外皮类型："
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr "羽毛"
+
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "毛发"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "您可以通过复制现有的细胞类型并给它们一个新的名字来创建新的细胞类型。细胞类型可以被修改以使其专门用于不同的目的。当修改一个细胞类型时，所有该类型的已放置的细胞都会被更新。"
+
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "鳞片"
+
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "皮肤"
 
 msgid "CREDITS"
 msgstr "制作人名单"
@@ -2113,6 +2148,57 @@ msgstr ""
 "\n"
 "尝试放置一个您当前拥有数量最多的细胞器来提升您的特化程度，或者放置其他类型的细胞器来[i]降低[/i]特化程度，看看会产生什么效果。"
 
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"随着你的细胞群落越来越大，它可能变得难以移动与转向。\n"
+"\n"
+"你应该考虑在躯体设计中为多个细胞添加[b]肌动球蛋白[/b]细胞器以增加你的[u]细胞群落[/u]的移动与转向速度。\n"
+"\n"
+"为此，请从左侧面板里选中你要编辑的细胞类型，然后在细胞编辑器选项卡中放置一个[b]肌动球蛋白[/b]细胞器以继续。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"这里是布局设计选项卡，提供了对游戏中你的细胞群落完全生长后形状的高级视图。\n"
+"\n"
+"如果你是一名进阶玩家，你可以切换为手动布局模式并自定义细胞的位置，但你仍然需要遵循一些总体要求：细胞不能断连，生长顺序正确，以及细胞应与其在结构选项卡中的位置大致相近。\n"
+"\n"
+"如果发现自己难以修复手动布局，你可以随时重置或切换回自动布局。请注意使用手动布局时，很可能每次编辑某种细胞类型或添加了新的细胞后你都需要给布局做一些修缮。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"要想在躯体设计里添加新的细胞类型，请在左侧面板里选择一种已有的类型，并点击复制按钮。\n"
+"\n"
+"添加完成后，你就可以分开[u]编辑几种细胞类型[/u]：先选择其中一种，再点击编辑按钮或切换到“细胞”主选项卡。\n"
+"\n"
+"点击复制按钮会弹出一个窗口让你为新创建的细胞类型选择一个名字。注意不能与已有类型的名称重复。\n"
+"\n"
+"一旦你选好了名字，点击弹窗上的“确认”，新的类型即被创建。\n"
+"\n"
+"现在创建[b]一种新的细胞类型[/b]并[b]接着编辑这种新的细胞类型[/b]。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"这里非常像那个[u]熟悉的细胞编辑器[/u]，也就是微生物阶段编辑器里的主选项卡。\n"
+"\n"
+"一些功能已被移至躯体设计编辑器（现在的主选项卡），但是核心细胞类型编辑功能仍然在这里。\n"
+"\n"
+"你可以单独编辑你物种里的任何细胞类型，且任何改动将会被应用于该类型的所有细胞，包括已经放置好的和未来新放置的。\n"
+"\n"
+"尝试在这里放置一个细胞器，然后回到另一个选项卡查看这个细胞类型的更新。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"欢迎来到[b]多细胞编辑器[/b]，现在编辑器的主选项卡是个躯体设计编辑器。\n"
+"\n"
+"归根结底，如何编辑你的物种和微生物阶段时仍然差不多：\n"
+"- 你从左侧面板选中一个部件（现在是细胞类型）\n"
+"- 然后你在屏幕中央的六边形格子里把它们放置进身体\n"
+"- 在右边你还能看到一些熟悉的统计数据\n"
+"\n"
+"核心区别在于，你现在必须自己创建所有放置的部件：通过编辑细胞类型。\n"
+"\n"
+"试着在你的身体里放置一个新的细胞以继续。"
+
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "在多细胞阶段，细胞特化机制依然生效，并会提供原有的加成。\n"
@@ -2122,6 +2208,16 @@ msgstr ""
 "当同类型的细胞被放置在相邻位置时，它们都会获得[b]额外[/b]的特化加成。\n"
 "\n"
 "您可以尝试将一个细胞放置在同类型细胞的旁边，就能看到指示加成的绿色箭头。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"为了迈向下一阶段，[b]宏观阶段[/b]，你的物种必须满足几项要求。你可以按下对应的要求按钮来查看还缺些什么。\n"
+"\n"
+"一旦你的物种已经达成成为宏观生物的条件，你可以在离开编辑器并生长出所需数量的细胞后进入下一阶段。这将启用此阶段中迈向下一阶段的按钮。\n"
+"\n"
+"你不用一上来就急着冲向下一阶段，但了解要求可以帮助你规划未来对自己物种的编辑。\n"
+"\n"
+"现在，在右侧面板的底部[u]按下要求按钮[/u]以查看你的物种进展如何。"
 
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "首次编辑您的细胞"
@@ -3662,6 +3758,9 @@ msgstr ""
 "这个存档可能被损坏了，或者是来自于无法被这个版本的Thrive理解的新版本格式。\n"
 "您确定要强行载入这个存档吗？"
 
+msgid "LOAD_SAVE"
+msgstr "载入存档"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3724,6 +3823,33 @@ msgstr "宏观生物"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "宏观阶段，细胞膜无法再被更改"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr "你已满足所有成为宏观生物的条件。离开编辑器后成长一段时间即可点击“成为宏观生物”按钮迈向下一阶段。"
+
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "你的物种必须在编辑器内满足以下条件才有资格迈向下一阶段（即宏观阶段）。否则在游玩时进入下一阶段的按钮不会被激活。"
+
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "已满足成为宏观生物的要求"
+
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "迈向宏观阶段的要求"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr "细胞平均相邻加成至少达到{1}%（目前有{0}%）"
+
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "细胞数量至少达到 {1}（目前有{0}个）"
+
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "躯体设计中至少用到{1}种细胞（目前有{0}种）"
+
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "使用比普通出芽繁殖更高级的繁殖方式"
+
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr "总体特化水平至少达到{1}%（目前有{0}%）"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
@@ -4414,8 +4540,13 @@ msgstr "成为陆地生物"
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
-"进入后期多细胞阶段（宏观阶段）。在您有一个足够大的细胞群后即可解锁。\n"
-"这需要您在编辑器中添加足够多的细胞，然后让您的细胞群落发展到最低规模。"
+"进入宏观阶段。在您的细胞群落足够大后即可解锁。\n"
+"这需要您在编辑器中满足特定条件，然后让您的细胞群落发展到最低规模。"
+
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
+msgstr ""
+"进入宏观阶段。但您的物种有一些结构上的要求尚未达成！\n"
+"在编辑器中查看并达成这些要求，这样下一个游玩周期这个按钮就能被激活。"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "进入游戏的下一个阶段（多细胞）。在您有一个足够大的细胞群后就可以使用。"
@@ -5225,6 +5356,18 @@ msgstr "玩家分裂"
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已灭绝"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr "名字不能为空"
+
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "名字中不能含有'/', ':', '%', '@', '.', 或 '\"'。"
+
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "名字最多可以有100个字符，且不能含有特殊字符('/:%@\".')"
+
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "名字的字符数必须不超过{0}"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"
 
@@ -5420,6 +5563,10 @@ msgstr "至少普通难度下，单物种迭代到15代"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "至少普通难度下，使用单个物种进化第 {0}/{1} 代"
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "宏观阶段"
 
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "进入多细胞阶段"
@@ -5640,6 +5787,10 @@ msgstr "向左转"
 
 msgid "ROTATE_RIGHT"
 msgstr "向右转"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "进入编辑器并修改您的物种"
 
 msgid "ROTATION_COLON"
 msgstr "旋转："
@@ -7388,6 +7539,12 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "未命名"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr "细胞类型{0}并未被使用。在躯体设计里使用它或者删掉后才能离开编辑器。"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "未使用的细胞类型"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "捕食纤毛"
@@ -10224,6 +10381,9 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "已通过：{0}"
+
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
 #~ "{0}： +{1} ATP\n"
@@ -10767,15 +10927,6 @@ msgstr "缩小"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "关于当前游戏的统计数据"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "宏观原型"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "祝贺你达到了多细胞阶段的宏观部分的原型！\n"
-#~ "\n"
-#~ "由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "免疫胞吞"

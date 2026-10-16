@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -532,6 +532,10 @@ msgstr "Bathypelagisch"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Word Macroscopisch ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Word Macroscopisch ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Word Meercellig ({0}/{1})"
 
@@ -579,6 +583,10 @@ msgstr "Beter Samen"
 
 #, fuzzy
 msgid "BEYOND_THE_CELL"
+msgstr "Meer dan de cel"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "Meer dan de cel"
 
 msgid "BIG_IRON_CHUNK"
@@ -830,6 +838,10 @@ msgstr "Pauzeer het spel"
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Veranderingsnotities zijn te lang"
 
@@ -865,6 +877,10 @@ msgstr "Cheattoetsen ingeschakeld"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Voorwaarden"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg celprocessen"
@@ -1032,16 +1048,16 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Totale populatie:"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Totale populatie:"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Totale populatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -1607,6 +1623,32 @@ msgstr "Aan het maken..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Maak objecten vanuit het opslagbestand"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "HP:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Maak Een Nieuw Celtype"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Mijn SuperSaaie Mod"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Maak Een Nieuw Opgeslagen bestand"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Mijn SuperSaaie Mod"
 
 msgid "CREDITS"
 msgstr "Dank"
@@ -2204,7 +2246,67 @@ msgstr ""
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
 "Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
@@ -3954,6 +4056,10 @@ msgstr ""
 "Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer formaat dat niet wordt begrepen door deze versie van Thrive.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Spel Laden"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -4024,6 +4130,46 @@ msgstr "Word Macroscopisch ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Slijmspuwer"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Microbe editor laden"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
+"En er is geen save-upgrade om deze save te upgraden.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
+"En er is geen save-upgrade om deze save te upgraden.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4778,7 +4924,12 @@ msgstr "Ga naar een Willekeurig Gebied"
 msgid "MOVE_TO_LAND"
 msgstr "Ga naar Land"
 
+#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Ga over naar de late meercellige fase (macroscopisch). Beschikbaar wanneer jouw celkolonie groot genoeg is."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Ga over naar de late meercellige fase (macroscopisch). Beschikbaar wanneer jouw celkolonie groot genoeg is."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5684,6 +5835,21 @@ msgstr "Duplicaat speler"
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "Opgeslagen bestand heeft ongeldige \"game state scene\""
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Een cel heeft een nucleus nodig om lysosomen te evolueren."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Soortnaam is te lang!"
+
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Speler is uitgestorven"
@@ -5903,6 +6069,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Microbestadium"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -6155,6 +6325,10 @@ msgstr "Draaien naar links"
 
 msgid "ROTATE_RIGHT"
 msgstr "Draaien naar rechts"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
 
 #, fuzzy
 msgid "ROTATION_COLON"
@@ -8039,6 +8213,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Naamloos"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Maak Een Nieuw Celtype"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -10301,6 +10482,10 @@ msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "en"
+
+#, fuzzy
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr "{0}: +{1} ATP"
 
@@ -10791,13 +10976,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Zelfmoord"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
-#~ "En er is geen save-upgrade om deze save te upgraden.\n"
-#~ "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

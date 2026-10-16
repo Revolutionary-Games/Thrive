@@ -1108,6 +1108,21 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             return;
         }
 
+        var playerSpeciesGeneric = Player.Get<SpeciesMember>().Species;
+        var playerSpeciesOld = playerSpeciesGeneric as MulticellularSpecies;
+
+        if (playerSpeciesOld is null)
+        {
+            GD.PrintErr("Player species is not a multicellular species");
+            return;
+        }
+
+        if (!playerSpeciesOld.IsReadyForMacroscopic)
+        {
+            GD.PrintErr("Player species doesn't fulfill macroscopic requirements, cannot move to macroscopic");
+            return;
+        }
+
         GD.Print("Becoming macroscopic");
 
         // We don't really need to handle the player state or anything like that here as once we go to the late
@@ -1126,7 +1141,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             GD.Print("Aborted the existing auto-evo run before moving the player to the macroscopic stage");
         }
 
-        var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(Player.Get<SpeciesMember>().Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(playerSpeciesOld);
 
         // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
         // underwater in the awakening stage

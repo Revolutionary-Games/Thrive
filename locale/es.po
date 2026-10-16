@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
-"Last-Translator: Nicolás Duarte Mejía <nico08abril@hotmail.com>\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
+"PO-Revision-Date: 2026-10-14 12:30+0000\n"
+"Last-Translator: diamondking987 <diamondking22223@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -113,6 +113,7 @@ msgstr ""
 msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "La actomyosinas son estructuras musculares simples que las colonias celulares pueden usar para arrastrarse o girar con mayor eficacia. No están disponibles para membranas de tipo pared, ya que dependen de la flexión de la colonia para funcionar. Como resultado, son más efectivas cuando hay solo una por célula, pero muchas células de la colonia tienen este orgánulo."
 
+#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr "Aumenta la velocidad de movimiento y la tasa de rotación de una colonia celular."
 
@@ -521,6 +522,10 @@ msgstr "Batipelágico"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Conviértete en Macroscópico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Conviértete en Macroscópico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Conviértete en Multicelular ({0}/{1})"
 
@@ -567,6 +572,10 @@ msgid "BETTER_TOGETHER"
 msgstr "Mejor juntos"
 
 msgid "BEYOND_THE_CELL"
+msgstr "Más allá de la célula"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "Más allá de la célula"
 
 msgid "BIG_IRON_CHUNK"
@@ -826,6 +835,10 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Nombre del tipo de célula"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "El nombre de archivo ({0}) ya existe. ¿Deseas sobreescribir?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Las notas de cambios son demasiado largas"
 
@@ -857,6 +870,10 @@ msgstr "Cheats activados"
 
 msgid "CHEAT_MENU"
 msgstr "Menu de trucos"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "Solo disponible desde la Fase Multicelular en adelante."
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / Ocultar procesos celulares"
@@ -1022,16 +1039,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Crear entidades con cuadros de colisión"
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Rotación:"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Rotación:"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Rotación:"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Rotación:"
 
 msgid "COLOUR"
 msgstr "Color"
@@ -1570,6 +1587,32 @@ msgstr "Creando..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creando objetos de la partida guardada"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Tipo:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Crea un nuevo tipo de célula"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Puedes crear nuevos tipos de células duplicando un tipo existente con un nuevo nombre. Los tipos de célula pueden modificarse para especializarse en diferentes roles. Cuando modificas un tipo de célula, todas las células de ese tipo se verán afectadas."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Crear Nueva Partida"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Puedes crear nuevos tipos de células duplicando un tipo existente con un nuevo nombre. Los tipos de célula pueden modificarse para especializarse en diferentes roles. Cuando modificas un tipo de célula, todas las células de ese tipo se verán afectadas."
 
 msgid "CREDITS"
 msgstr "Créditos"
@@ -2139,7 +2182,61 @@ msgstr ""
 "Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
 "\n"
@@ -3747,6 +3844,10 @@ msgstr ""
 "Probablemente esté corrupta o sea de una versión futura de Thrive.\n"
 "¿Deseas intentar cargar la partida de todos modos?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Cargar partida"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3816,6 +3917,43 @@ msgstr "Macroscópico"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Jet de Slime"
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "Cargando Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "Cargando Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "Cargando Editor Macroscópico"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "Cargando Editor Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr "Prototipo Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproduciendo en el bioma {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Bien hecho, has llegado al prototipo macroscópico de la etapa multicelular!\n"
+"\n"
+"Debido a las limitaciones de los desarrollados, no es posible jugar esta etapa todavía. Sin embargo, puedes volver al editor y continuar la construcción de tu organismo."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4594,6 +4732,10 @@ msgstr "Moverse a tierra"
 
 #, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Avanza a la siguiente etapa del juego (multicelular). Disponible una vez que tengas una colonia de células lo suficientemente grande."
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Avanza a la siguiente etapa del juego (multicelular). Disponible una vez que tengas una colonia de células lo suficientemente grande."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5519,6 +5661,21 @@ msgstr "Jugador duplicado"
 msgid "PLAYER_EXTINCT"
 msgstr "El jugador se extinguió"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "La partida tiene un estado del juego inválido"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Los metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] de forma mucho más eficiente que el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente causarán la ralentización de su producción de [thrive:compound type=\"atp\"][/thrive:compound]. Como los metabolosomas están directamente suspendidos en el citoplasma, este fluido realiza la [b]glucólisis[/b]."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "El nombre la especie es demasiado largo!"
+
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "El jugador se extinguió"
@@ -5738,6 +5895,10 @@ msgstr "Alcanza la generación 15 con una única especie en dificultad normal o 
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Alcanza la generación {0}/{1} con una única especie en dificultad normal o mayor"
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Etapa Macroscópica"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5979,6 +6140,10 @@ msgstr "Girar a la izquierda"
 
 msgid "ROTATE_RIGHT"
 msgstr "Girar a la derecha"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Entra al editor y modifica tu especie"
 
 msgid "ROTATION_COLON"
 msgstr "Rotación:"
@@ -7890,6 +8055,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Sin título"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Crea un nuevo tipo de célula"
 
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL"
@@ -10207,6 +10379,10 @@ msgstr "Hacer zoom"
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
 
+#, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "y"
+
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr ""
 #~ "{0}: +{1} ATP\n"
@@ -10763,15 +10939,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estadísticas interesantes de la partida actual"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Prototipo Macroscópico"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Bien hecho, has llegado al prototipo macroscópico de la etapa multicelular!\n"
-#~ "\n"
-#~ "Debido a las limitaciones de los desarrollados, no es posible jugar esta etapa todavía. Sin embargo, puedes volver al editor y continuar la construcción de tu organismo."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

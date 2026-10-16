@@ -2,10 +2,29 @@
 
 ### Standards
 
-Use CONTRIBUTING.md, doc/style_guide.md, and applicable local repository guidance as the standards for changed code.
-Cite the specific rule when a finding relies on a documented requirement. Repository guidance takes precedence over
-general design heuristics. Treat code smells as judgement calls and explain a concrete consequence before reporting
-them. Leave mechanical formatting and lint findings to the existing checks.
+Use [CONTRIBUTING.md](../CONTRIBUTING.md), [doc/style_guide.md](style_guide.md), and applicable local repository
+guidance as the standards for changed code. Cite the specific rule when a finding relies on a documented requirement.
+Repository guidance takes precedence over general design heuristics. Treat code smells as judgement calls and explain
+a concrete consequence before reporting them.
+
+### Review focus
+
+Pay most attention to logic flow, identifier and comment typos, and code efficiency. Thrive is a game, so avoidable
+temporary allocations are especially important; prefer persistent, reused containers, particularly in update systems.
+
+- Single-field component reads do not need `ref`; for example, `var singleThing = entity.Get<Component>().AField;`
+  is allowed.
+- Flag `.tscn` changes that make an intentionally hidden node visible by changing or removing `visible = false`
+  without a clear reason.
+
+### Review scope
+
+Leave mechanical formatting and lint findings to the existing checks.
+
+- Review shader style against existing files in `shaders/`; shaders are not covered by the normal formatter.
+- Do not read or review non-English `.po` files. Review `locale/en.po` only for English grammar and typos.
+- Do not duplicate CI feedback for C# compilation or formatting, or translation completeness, unless it reveals a
+  substantive problem.
 
 ### Spec
 

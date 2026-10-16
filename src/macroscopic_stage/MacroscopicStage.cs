@@ -337,6 +337,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
         base.OnReturnFromEditor();
 
+        AchievementEvents.ReportReturnToMacroscopicStageFromEditor();
+
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MacroscopicStage);
 
         // TODO:

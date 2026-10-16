@@ -285,6 +285,12 @@ public static class Constants
     public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
 
     /// <summary>
+    ///   This is used to make mass estimates for Microbe(/CellBodyPlan)InternalCalculations (used for auto-evo)
+    ///   closer to the numbers for generated "shape masses" (used for the editors)
+    /// </summary>
+    public const float MASS_ESTIMATE_MULTIPLIER = 1.4f;
+
+    /// <summary>
     ///   This is used to slightly debuff colony movement
     /// </summary>
     public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
@@ -1797,7 +1803,11 @@ public static class Constants
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
-    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
+
+    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 15;
+    public const int CELL_TYPES_REQUIRED_FOR_MACROSCOPIC = 3;
+    public const float SPECIALIZATION_REQUIRED_FOR_MACROSCOPIC = 0.4f;
+    public const float AVERAGE_ADJACENCY_REQUIRED_FOR_MACROSCOPIC = 0.1f;
 
     public const float BRAIN_POWER_REQUIRED_FOR_AWARE = 0.5f;
     public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
@@ -2040,6 +2050,8 @@ public static class Constants
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
     public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.1f;
+
+    public const int PHOTO_STUDIO_DEFAULT_RESOLUTION = 600;
 
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;

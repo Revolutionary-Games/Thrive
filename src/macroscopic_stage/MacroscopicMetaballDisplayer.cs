@@ -12,6 +12,8 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
     private StandardMaterial3D? material;
     private Mesh metaballSphere = null!;
 
+    private HashSet<MacroscopicMetaball>? metaballsToHighlight;
+
 #pragma warning disable CA2213
     [Export]
     private MetaballHierarchyLines hierarchyLineScene = null!;
@@ -81,7 +83,7 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyList<MacroscopicMetaball> layout)
     {
         var mesh = Multimesh;
 
@@ -116,6 +118,12 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
 
             mesh.SetInstanceColor(i, colour);
 
+            if (metaballsToHighlight != null && metaballsToHighlight.Contains(metaball))
+            {
+                // Using addition to make sure that pitch black metaballs get a lighter colour too
+                mesh.SetInstanceColor(i, colour * 2.0f + Colors.White);
+            }
+
             // mesh.SetInstanceCustomData();
 
             // Keep track of the farthest points for AABB building
@@ -137,6 +145,21 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
             hierarchyLineScene.UpdateLines(layout);
 
         CustomAabb = new Aabb(-extends, extends * 2);
+    }
+
+    /// <summary>
+    ///   Use this method before <see cref="DisplayFromLayout"/> to make it display given metaballs with a lighter
+    ///   colour
+    /// </summary>
+    public void SetMetaballsToHighlight(List<MacroscopicMetaball> metaballs)
+    {
+        metaballsToHighlight?.Clear();
+        metaballsToHighlight ??= new HashSet<MacroscopicMetaball>();
+
+        for (int i = 0; i < metaballs.Count; ++i)
+        {
+            metaballsToHighlight.Add(metaballs[i]);
+        }
     }
 
     protected override void Dispose(bool disposing)

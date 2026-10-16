@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-23 16:02+0300\n"
+"POT-Creation-Date: 2026-10-15 15:40+0300\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -536,6 +536,10 @@ msgstr "Zona Batipelágica"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
 
+#, fuzzy
+msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tornar-se Multicelular ({0}/{1})"
 
@@ -582,6 +586,9 @@ msgid "BETTER_TOGETHER"
 msgstr ""
 
 msgid "BEYOND_THE_CELL"
+msgstr ""
+
+msgid "BEYOND_THE_MICROBE"
 msgstr ""
 
 msgid "BIG_IRON_CHUNK"
@@ -835,6 +842,10 @@ msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positi
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do tipo de célula"
 
+#, fuzzy
+msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
+msgstr "O nome do arquivo escolhido ({0}) já existe. Desejas substituir?"
+
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de alteração são demasiado longas"
 
@@ -870,6 +881,10 @@ msgstr "Chaves de Cheats ativadas"
 
 msgid "CHEAT_MENU"
 msgstr "Cheat Menu"
+
+#, fuzzy
+msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
+msgstr "A ser anunciado"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar processos de célula"
@@ -1030,16 +1045,16 @@ msgid "COLLISION_SHAPE"
 msgstr "Mostrar formas de depuração da física"
 
 #, fuzzy
+msgid "COLONY_BASE_ROTATION_INCREASE"
+msgstr "Rotação:"
+
+#, fuzzy
+msgid "COLONY_BASE_SPEED_INCREASE"
+msgstr "Rotação:"
+
+#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
-
-#, fuzzy
-msgid "COLONY_ROTATION_INCREASE"
-msgstr "Rotação:"
-
-#, fuzzy
-msgid "COLONY_SPEED_INCREASE"
-msgstr "Rotação:"
 
 msgid "COLOUR"
 msgstr "Cor"
@@ -1614,6 +1629,32 @@ msgstr "A criar..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "A criar objetos a partir do jogo guardado"
 
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_COLON"
+msgstr "Tipo:"
+
+msgid "CREATURE_SKIN_TYPE_FEATHERS"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_FUR"
+msgstr "Criar um novo tipo de célula"
+
+msgid "CREATURE_SKIN_TYPE_PEPPER"
+msgstr ""
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_PLAIN"
+msgstr "Podes criar novos tipo de células duplicando as existentes e dando-lhes um novo nome. Tipos de células podem ser modificados para especializa-los em diferentes funções. Ao modificares um tipo de célula, todas as células colocadas do mesmo tipo serão alteradas."
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SCALES"
+msgstr "Guardar novo jogo"
+
+#, fuzzy
+msgid "CREATURE_SKIN_TYPE_SKIN"
+msgstr "Podes criar novos tipo de células duplicando as existentes e dando-lhes um novo nome. Tipos de células podem ser modificados para especializa-los em diferentes funções. Ao modificares um tipo de célula, todas as células colocadas do mesmo tipo serão alteradas."
+
 msgid "CREDITS"
 msgstr "Créditos"
 
@@ -2165,7 +2206,61 @@ msgstr ""
 "Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_ACTOMYOSIN"
+msgstr ""
+"Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua [b]célula[/b], que é composta por uma única unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
+msgstr ""
+"Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua [b]célula[/b], que é composta por uma única unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
+msgstr ""
+"Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua [b]célula[/b], que é composta por uma única unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_CELL_EDITOR"
+msgstr ""
+"Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua [b]célula[/b], que é composta por uma única unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_INTRO"
+msgstr ""
+"Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua [b]célula[/b], que é composta por uma única unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua [b]célula[/b], que é composta por uma única unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Podes rodar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 msgstr ""
 "Este é o editor de células onde podes evoluir a tua espécie gastando [b]pontos de mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não te preocupes em poupar!\n"
 "\n"
@@ -3810,6 +3905,10 @@ msgstr ""
 "Este jogo guardado provavelmente está corrompido ou num formato mais recente que não é compreendido por esta versão do Thrive.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
+#, fuzzy
+msgid "LOAD_SAVE"
+msgstr "Carregar Jogo"
+
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3878,6 +3977,46 @@ msgstr "Tornar-se Macroscópico ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Sem efeitos."
+
+msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_INTRO"
+msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
+msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITIONS_TITLE"
+msgstr "A carregar o Editor de Micróbio"
+
+msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
+msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
+msgstr ""
+"Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
+"Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
+msgstr "reproduzindo no bioma {0}"
+
+#, fuzzy
+msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
+msgstr ""
+"Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
+"Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4651,6 +4790,10 @@ msgstr "Mod a Carregar:"
 
 #, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Suicídio"
+
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr "Suicídio"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -5542,6 +5685,21 @@ msgstr "Duplicar Jogador"
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador está extinto"
 
+msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
+msgstr ""
+
+#, fuzzy
+msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
+msgstr "O jogo guardado tem um estado de jogo inválido"
+
+#, fuzzy
+msgid "PLAYER_NAME_REQUIREMENTS"
+msgstr "Uma célula requer um núcleo para desenvolver lisossomas."
+
+#, fuzzy
+msgid "PLAYER_NAME_TOO_LONG"
+msgstr "Nome da espécie é demasiado longo!"
+
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
 
@@ -5757,6 +5915,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Fase Microbial"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5992,6 +6154,10 @@ msgstr "Rodar para a esquerda"
 
 msgid "ROTATE_RIGHT"
 msgstr "Rodar para a direita"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Entrar no editor e modificar a tua espécie"
 
 msgid "ROTATION_COLON"
 msgstr "Rotação:"
@@ -7837,6 +8003,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Sem título"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Criar um novo tipo de célula"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -10054,6 +10227,10 @@ msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
 #, fuzzy
+#~ msgid "PASSED_FULFILLED_CONDITION"
+#~ msgstr "e"
+
+#, fuzzy
 #~ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 #~ msgstr "{0}: +{1} ATP"
 
@@ -10554,13 +10731,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Suicídio"
-
-#, fuzzy
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
-#~ "Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
-#~ "Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
