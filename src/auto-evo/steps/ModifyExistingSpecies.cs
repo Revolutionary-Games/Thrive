@@ -210,12 +210,7 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // A rejected candidate must restore the actual previous occupant, which may not be its parent.
                     // Keep leaf references in a list because Occupant participates in Miche's hash code.
-                    var leaves = new List<Miche>();
-                    miche.GetLeafNodes(leaves);
-                    foreach (var leaf in leaves)
-                    {
-                        leafOccupantsBeforeMutations.Add((leaf, leaf.Occupant));
-                    }
+                    CaptureLeafOccupants(miche, leafOccupantsBeforeMutations);
                 }
 
                 // Add these mutant species into a new miche to test them
@@ -330,6 +325,20 @@ public class ModifyExistingSpecies : IRunStep
 
         // More steps to run
         return false;
+    }
+
+    private static void CaptureLeafOccupants(Miche node, List<(Miche Leaf, Species? Occupant)> snapshot)
+    {
+        if (node.IsLeafNode())
+        {
+            snapshot.Add((node, node.Occupant));
+            return;
+        }
+
+        foreach (var child in node.Children)
+        {
+            CaptureLeafOccupants(child, snapshot);
+        }
     }
 
     private static void PruneMutations(List<Mutant> addResultsTo, Species baseSpecies,

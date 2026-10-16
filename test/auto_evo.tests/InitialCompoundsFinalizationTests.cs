@@ -15,6 +15,12 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class InitialCompoundsFinalizationTests
 {
+    /// <summary>
+    ///   Candidates hidden by competition or rejected for zero population must have fresh compounds when
+    ///   insertion is attempted and retain those values through independent archive round trips afterwards.
+    ///   Small bacteria, specialised storage, and multicellular budding cases protect initialisation even when
+    ///   a candidate never receives the full refresh reserved for accepted mutations.
+    /// </summary>
     [TestCase(false, false, false)]
     [TestCase(false, false, true)]
     [TestCase(true, false, false)]
@@ -67,11 +73,6 @@ public class InitialCompoundsFinalizationTests
         AssertThat(miche.Occupant).IsNull();
         AssertThat(results.GetPossibleSpeciesList().Count).IsEqual(0);
 
-        using var data = new MemoryStream();
-        var manager = new ThriveArchiveManager();
-        var writer = new SArchiveMemoryWriter(data, manager);
-        manager.OnStartNewWrite(writer);
-        writer.WriteObject(results);
         foreach (var candidate in pressure.AttemptedCandidates)
         {
             // Independent candidate archives preserve initialization coverage without keeping rejected occupants
@@ -85,33 +86,40 @@ public class InitialCompoundsFinalizationTests
             }
 
             AssertCompounds(expectedGlucose, candidate.InitialCompounds);
-            writer.WriteObject(candidate);
         }
 
-        manager.OnFinishWrite(writer);
-        data.Position = 0;
-        var reader = new SArchiveMemoryReader(data, manager);
-        manager.OnStartNewRead(reader);
-        var loaded = reader.ReadObjectOrNull<RunResults>();
-        AssertThat(loaded).IsNotNull();
-        var loadedTrees = loaded!.InspectPatchMicheData();
-        AssertThat(loadedTrees.Count).IsEqual(1);
-        foreach (var loadedTree in loadedTrees.Values)
-        {
-            AssertThat(loadedTree.Occupant).IsNull();
-        }
+        RoundTripArchive(writer =>
+            {
+                writer.WriteObject(results);
+                foreach (var candidate in pressure.AttemptedCandidates)
+                    writer.WriteObject(candidate);
+            },
+            reader =>
+            {
+                var loaded = reader.ReadObjectOrNull<RunResults>();
+                AssertThat(loaded).IsNotNull();
+                var loadedTrees = loaded!.InspectPatchMicheData();
+                AssertThat(loadedTrees.Count).IsEqual(1);
+                foreach (var loadedTree in loadedTrees.Values)
+                {
+                    AssertThat(loadedTree.Occupant).IsNull();
+                }
 
-        foreach (var candidate in pressure.AttemptedCandidates)
-        {
-            var loadedCandidate = reader.ReadObjectOrNull<Species>();
-            AssertThat(loadedCandidate).IsNotNull();
-            AssertThat(loadedCandidate).IsNotSame(candidate);
-            AssertCompounds(expectedGlucose, loadedCandidate!.InitialCompounds);
-        }
-
-        manager.OnFinishRead(reader);
+                foreach (var candidate in pressure.AttemptedCandidates)
+                {
+                    var loadedCandidate = reader.ReadObjectOrNull<Species>();
+                    AssertThat(loadedCandidate).IsNotNull();
+                    AssertThat(loadedCandidate).IsNotSame(candidate);
+                    AssertCompounds(expectedGlucose, loadedCandidate!.InitialCompounds);
+                }
+            });
     }
 
+    /// <summary>
+    ///   After compound initialisation is deferred, a full edit refresh must restore the candidate's supplies
+    ///   while leaving its parent unchanged. Cases cover small bacteria, specialised storage, and both
+    ///   multicellular budding modes so each fixture reaches its expected initial-compound calculation.
+    /// </summary>
     [TestCase(false, false, false)]
     [TestCase(false, false, true)]
     [TestCase(true, false, false)]
@@ -131,6 +139,11 @@ public class InitialCompoundsFinalizationTests
         AssertCompounds(expectedGlucose, parent.InitialCompounds);
     }
 
+    /// <summary>
+    ///   A deferred attempt must clear inherited supplies, and a default attempt must rebuild them without
+    ///   changing the parent. Both species types exercise both cache-refresh settings to protect compound
+    ///   initialisation independently of whether a new cache identity is requested.
+    /// </summary>
     [TestCase(false, false)]
     [TestCase(false, true)]
     [TestCase(true, false)]
@@ -153,16 +166,20 @@ public class InitialCompoundsFinalizationTests
         AssertCompounds(expectedGlucose, parent.InitialCompounds);
     }
 
+    /// <summary>
+    ///   Applying a finalised mutation must replace stale parent supplies with the candidate's initial compounds
+    ///   without changing the candidate. Test-controlled supplies isolate copying from balance calculations
+    ///   for both species types.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void ApplyingFinalizedMutationCopiesCompounds(bool multicellular)
     {
-        var expectedGlucose = ExpectedGlucose(multicellular, false, false, 1);
+        var expectedGlucose = 2.5f;
         var parent = CreateSpecies(multicellular, false, false);
         var candidate = (Species)parent.Clone();
-        candidate.OnAttemptedInAutoEvo(true, false);
-        candidate.UpdateInitialCompounds();
-        AssertCompounds(expectedGlucose, candidate.InitialCompounds);
+        candidate.InitialCompounds.Clear();
+        candidate.InitialCompounds.Add(Compound.Glucose, expectedGlucose);
         parent.InitialCompounds.Clear();
         parent.InitialCompounds.Add(Compound.Ammonia, -100);
 
@@ -172,26 +189,42 @@ public class InitialCompoundsFinalizationTests
         AssertCompounds(expectedGlucose, candidate.InitialCompounds);
     }
 
+    /// <summary>
+    ///   An archive round trip must preserve an explicitly empty compound dictionary for either species type,
+    ///   so loading cannot conceal missing initialisation by silently supplying default compounds.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void SavingSpeciesWithEmptyCompoundsPreservesEmptyCompounds(bool multicellular)
     {
         var candidate = CreateSpecies(multicellular, false, false);
         candidate.InitialCompounds.Clear();
+        RoundTripArchive(writer => writer.WriteObject(candidate),
+            reader =>
+            {
+                var loaded = reader.ReadObjectOrNull<Species>();
+                AssertThat(loaded).IsNotNull();
+                AssertThat(loaded!.InitialCompounds.Count).IsEqual(0);
+            });
+    }
+
+    /// <summary>
+    ///   Keeps all supplied objects in one archive so their shared references survive the round trip.
+    /// </summary>
+    private static void RoundTripArchive(Action<ISArchiveWriter> writeObjects, Action<ISArchiveReader> readObjects)
+    {
         using var data = new MemoryStream();
         var manager = new ThriveArchiveManager();
-        var writer = new SArchiveMemoryWriter(data, manager);
+        using var writer = new SArchiveMemoryWriter(data, manager, false);
         manager.OnStartNewWrite(writer);
-        writer.WriteObject(candidate);
+        writeObjects(writer);
         manager.OnFinishWrite(writer);
-        data.Position = 0;
-        var reader = new SArchiveMemoryReader(data, manager);
-        manager.OnStartNewRead(reader);
-        var loaded = reader.ReadObjectOrNull<Species>();
-        manager.OnFinishRead(reader);
 
-        AssertThat(loaded).IsNotNull();
-        AssertThat(loaded!.InitialCompounds.Count).IsEqual(0);
+        data.Position = 0;
+        using var reader = new SArchiveMemoryReader(data, manager, false);
+        manager.OnStartNewRead(reader);
+        readObjects(reader);
+        manager.OnFinishRead(reader);
     }
 
     private static Species CreateSpecies(bool multicellular, bool massBudding,
