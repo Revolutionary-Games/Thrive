@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
 {
     /// <summary>
-    ///   Contains the transforms of border objects (plane primitives) corresponding to each cell type
+    ///   Contains the transforms of border objects (plane primitives) corresponding to cell types
     /// </summary>
     private Dictionary<CellType, List<Transform3D>> calculatedTransforms = new();
 
@@ -30,7 +30,7 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         Multimesh.InstanceCount = 0;
     }
 
-    public void DisplayCellLayoutBorders(IReadOnlyList<HexWithData<CellTemplate>> layout)
+    public void ResetCellTypeCache()
     {
         foreach (var pair in calculatedTransforms)
         {
@@ -39,7 +39,10 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         }
 
         calculatedTransforms.Clear();
+    }
 
+    public void DisplayCellLayoutBorders(IReadOnlyList<HexWithData<CellTemplate>> layout)
+    {
         var mesh = Multimesh;
         int instanceCount = 0;
 
@@ -85,8 +88,13 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
     /// </summary>
     public void DisplaySingleCellBorder(HexWithData<CellTemplate> cell, Hex position)
     {
-        // TBD: cache ts
-        var transforms = CalculateBorderObjectTransforms(cell.Data!.ModifiableCellType);
+        var cellType = cell.Data!.ModifiableCellType;
+
+        if (!calculatedTransforms.TryGetValue(cellType, out var transforms))
+        {
+            transforms = CalculateBorderObjectTransforms(cellType);
+            calculatedTransforms.Add(cellType, transforms);
+        }
 
         var mesh = Multimesh;
         mesh.InstanceCount = transforms.Count;
@@ -109,6 +117,7 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         if (workMemory.Count > 0)
         {
             list = workMemory.Pop();
+            list.Clear();
         }
         else
         {

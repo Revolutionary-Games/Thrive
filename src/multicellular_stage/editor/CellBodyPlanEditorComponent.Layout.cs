@@ -929,12 +929,15 @@ public partial class CellBodyPlanEditorComponent
         layoutPreviewActive = false;
         MouseHoverPositions = null;
         manualLayoutHasErrors = false;
-        cellLayoutBorderDisplay.HideBorders();
-        hoveringCellBorderDisplay.HideBorders();
         UpdateAlreadyPlacedVisuals();
         RecalculateWrongGrowthOrderCells();
         UpdateGrowthOrderNumbers();
         UpdateArrow();
+
+        cellLayoutBorderDisplay.HideBorders();
+        cellLayoutBorderDisplay.ResetCellTypeCache();
+        hoveringCellBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.ResetCellTypeCache();
     }
 
     private void OnReapplyAutomaticLayoutPressed()
