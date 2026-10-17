@@ -13,6 +13,7 @@ public enum EmbeddedThriveIcon
     MovementIcon,
     MP,
     Pressure,
+    CellSpecializationIcon,
 }
 
 public static class EmbeddedThriveIconExtensions
