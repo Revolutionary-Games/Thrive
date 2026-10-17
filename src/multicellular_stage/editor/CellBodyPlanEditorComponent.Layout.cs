@@ -362,11 +362,8 @@ public partial class CellBodyPlanEditorComponent
         fullLayoutHasAdjacencyDisconnects = false;
         manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
 
-        // TBD: clean this code up
-        if (MovingPlacedHex == null)
-        {
-            cellLayoutBorderDisplay.DisplayCellLayout(CurrentFullLayout.Select(a => a.Data!).ToList());
-        }
+        cellLayoutBorderDisplay.DisplayCellLayoutBorders(CurrentFullLayout);
+        hoveringCellBorderDisplay.HideBorders();
 
         // Maps each position to a cell that exists there
         var cellHexes = new Dictionary<Hex, HexWithData<CellTemplate>>();
@@ -850,12 +847,6 @@ public partial class CellBodyPlanEditorComponent
         var moving = MovingPlacedHex;
         var type = GetEditedCellDataIfEdited(moving.Data!.ModifiableCellType);
 
-        var place = MovingPlacedHex.Position;
-        GD.Print($"Display");
-        MovingPlacedHex.Data!.Position = new Hex(q, r);
-        cellLayoutBorderDisplay.DisplayCellLayout(CurrentFullLayout.Select(a => a.Data!).Append(MovingPlacedHex.Data!).ToList());
-        MovingPlacedHex.Data!.Position = place;
-
         isPlacementProbablyValid = IsFullLayoutMoveValid(new Hex(q, r), moving);
 
         // These are rendered in local coordinates
@@ -867,6 +858,8 @@ public partial class CellBodyPlanEditorComponent
         ShowCellTypeInModelHolder(model, type, Hex.AxialToCartesian(new Hex(q, r)) + microbeModelOffset,
             moving.Orientation);
         model.Visible = true;
+
+        hoveringCellBorderDisplay.DisplaySingleCellBorder(MovingPlacedHex, new Hex(q, r));
     }
 
     private void ApplyManualMove(Hex position)
@@ -936,6 +929,8 @@ public partial class CellBodyPlanEditorComponent
         layoutPreviewActive = false;
         MouseHoverPositions = null;
         manualLayoutHasErrors = false;
+        cellLayoutBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.HideBorders();
         UpdateAlreadyPlacedVisuals();
         RecalculateWrongGrowthOrderCells();
         UpdateGrowthOrderNumbers();

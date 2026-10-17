@@ -26,6 +26,10 @@ size = Vector2(0.865, 0.2)
 transform_format = 1
 mesh = SubResource("PlaneMesh_1yjux")
 
+[sub_resource type="MultiMesh" id="MultiMesh_c1px2"]
+transform_format = 1
+mesh = SubResource("PlaneMesh_1yjux")
+
 [node name="MulticellularEditor" type="Node" unique_id=1184763186 node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("1_kpf0e")
 reportTab = NodePath("EarlyMulticellularEditorGUI/Report")
@@ -43,6 +47,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 multimesh = SubResource("MultiMesh_1yjux")
 script = ExtResource("3_c1px2")
 
+[node name="HoveringCellBorders" type="MultiMeshInstance3D" parent="EditorWorld" unique_id=1905610229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+multimesh = SubResource("MultiMesh_c1px2")
+script = ExtResource("3_c1px2")
+
 [node name="EarlyMulticellularEditorGUI" type="Control" parent="." unique_id=128875781]
 layout_mode = 3
 anchors_preset = 15
@@ -52,10 +61,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_th7yq")
 
-[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" unique_id=1300078480 node_paths=PackedStringArray("cellLayoutBorderDisplay", "cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" unique_id=1300078480 node_paths=PackedStringArray("cellLayoutBorderDisplay", "hoveringCellBorderDisplay", "cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
 visible = false
 layout_mode = 1
 cellLayoutBorderDisplay = NodePath("../../EditorWorld/BorderMultiMesh")
+hoveringCellBorderDisplay = NodePath("../../EditorWorld/HoveringCellBorders")
 cameraFollow = NodePath("../../EditorWorld/CameraLookAt")
 camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")

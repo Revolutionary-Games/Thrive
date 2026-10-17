@@ -242,6 +242,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CellLayoutBorderDisplay cellLayoutBorderDisplay = null!;
+
+    [Export]
+    private CellLayoutBorderDisplay hoveringCellBorderDisplay = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";

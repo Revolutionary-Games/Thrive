@@ -7,7 +7,12 @@ using System.Collections.Generic;
 /// </summary>
 public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
 {
+    /// <summary>
+    ///   Contains the transforms of border objects (plane primitives) corresponding to each cell type
+    /// </summary>
     private Dictionary<CellType, List<Transform3D>> calculatedTransforms = new();
+
+    private Stack<List<Transform3D>> workMemory = new();
 
     private Dictionary<Hex.HexSide, Basis> basisRotatedToHexSide =
         new()
@@ -20,8 +25,19 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
             { Hex.HexSide.TopLeft, Basis.Identity.Rotated(Vector3.Up, MathF.PI * 5 / 3) },
         };
 
-    public void DisplayCellLayout(IReadOnlyList<CellTemplate> layout)
+    public void HideBorders()
     {
+        Multimesh.InstanceCount = 0;
+    }
+
+    public void DisplayCellLayoutBorders(IReadOnlyList<HexWithData<CellTemplate>> layout)
+    {
+        foreach (var pair in calculatedTransforms)
+        {
+            pair.Value.Clear();
+            workMemory.Push(pair.Value);
+        }
+
         calculatedTransforms.Clear();
 
         var mesh = Multimesh;
@@ -30,16 +46,17 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         int i = 0;
         foreach (var cell in layout)
         {
-            if (!calculatedTransforms.ContainsKey(cell.ModifiableCellType))
+            var cellType = cell.Data!.ModifiableCellType;
+
+            if (!calculatedTransforms.ContainsKey(cellType))
             {
-                // TBD: reuse lists
-                var transforms = CalculateBorderTransforms(cell.ModifiableCellType);
-                calculatedTransforms.Add(cell.ModifiableCellType, transforms);
+                var transforms = CalculateBorderObjectTransforms(cellType);
+                calculatedTransforms.Add(cellType, transforms);
                 instanceCount += transforms.Count;
             }
             else
             {
-                instanceCount += calculatedTransforms[cell.ModifiableCellType].Count;
+                instanceCount += calculatedTransforms[cellType].Count;
             }
         }
 
@@ -47,11 +64,14 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
 
         foreach (var cell in layout)
         {
-            var transforms = calculatedTransforms[cell.ModifiableCellType];
+            var cellType = cell.Data!.ModifiableCellType;
+
+            var transforms = calculatedTransforms[cellType];
 
             foreach (var transform in transforms)
             {
-                var cellTransform = new Transform3D(basisRotatedToHexSide[(Hex.HexSide)(cell.Orientation + 1)], Hex.AxialToCartesian(cell.Position));
+                var cellTransform = new Transform3D(basisRotatedToHexSide[OrientationToHexSide(cell.Orientation)],
+                    Hex.AxialToCartesian(cell.Position));
 
                 mesh.SetInstanceTransform(i, cellTransform * transform);
                 ++i;
@@ -59,9 +79,41 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         }
     }
 
-    private List<Transform3D> CalculateBorderTransforms(CellType cell)
+    /// <summary>
+    ///   Display a single cell's borders. Removes all other borders. Use this on a separate object to display a
+    ///   hovering cell.
+    /// </summary>
+    public void DisplaySingleCellBorder(HexWithData<CellTemplate> cell, Hex position)
     {
-        var list = new List<Transform3D>();
+        // TBD: cache ts
+        var transforms = CalculateBorderObjectTransforms(cell.Data!.ModifiableCellType);
+
+        var mesh = Multimesh;
+        mesh.InstanceCount = transforms.Count;
+
+        int i = 0;
+        foreach (var transform in transforms)
+        {
+            var cellTransform = new Transform3D(basisRotatedToHexSide[OrientationToHexSide(cell.Orientation)],
+                Hex.AxialToCartesian(position));
+
+            mesh.SetInstanceTransform(i, cellTransform * transform);
+            ++i;
+        }
+    }
+
+    private List<Transform3D> CalculateBorderObjectTransforms(CellType cell)
+    {
+        List<Transform3D> list;
+
+        if (workMemory.Count > 0)
+        {
+            list = workMemory.Pop();
+        }
+        else
+        {
+            list = new List<Transform3D>();
+        }
 
         var hexes = new HashSet<Hex>();
 
@@ -88,5 +140,10 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         }
 
         return list;
+    }
+
+    private Hex.HexSide OrientationToHexSide(int orientation)
+    {
+        return (Hex.HexSide)((-orientation).PositiveModulo(6) + 1);
     }
 }
