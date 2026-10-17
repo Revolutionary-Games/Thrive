@@ -14,6 +14,8 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
 
     private Stack<List<Transform3D>> workMemory = new();
 
+    private HashSet<Hex> borderDetectionWorkMemory = new();
+
     private Dictionary<Hex.HexSide, Basis> basisRotatedToHexSide =
         new()
         {
@@ -124,26 +126,27 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
             list = new List<Transform3D>();
         }
 
-        var hexes = new HashSet<Hex>();
+        borderDetectionWorkMemory.Clear();
 
         foreach (var organelle in cell.ModifiableOrganelles)
         {
             foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
             {
                 var position = organelleHex + organelle.Position;
-                hexes.Add(position);
+                borderDetectionWorkMemory.Add(position);
             }
         }
 
-        foreach (var hex in hexes)
+        foreach (var hex in borderDetectionWorkMemory)
         {
             foreach (var pair in Hex.HexNeighbourOffset)
             {
-                if (!hexes.Contains(hex + pair.Value))
+                if (!borderDetectionWorkMemory.Contains(hex + pair.Value))
                 {
                     var dir3D = Hex.AxialToCartesian(pair.Value);
 
-                    list.Add(new Transform3D(basisRotatedToHexSide[pair.Key], Hex.AxialToCartesian(hex) + dir3D * 0.5f));
+                    list.Add(
+                        new Transform3D(basisRotatedToHexSide[pair.Key], Hex.AxialToCartesian(hex) + dir3D * 0.5f));
                 }
             }
         }
