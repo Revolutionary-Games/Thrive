@@ -77,6 +77,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private readonly QueryDescription chunksQuery = new QueryDescription().WithAll<WorldPosition, CompoundStorage>()
         .WithNone<SpeciesMember, AttachedToEntity>();
 
+    /// <summary>
+    ///   Query for terrain chunks
+    /// </summary>
+    private readonly QueryDescription terrainChunksQuery = new QueryDescription()
+        .WithAll<WorldPosition, MicrobeTerrainChunk>();
+
     private readonly List<uint> speciesCachesToDrop = new();
 
     private readonly Dictionary<uint, List<(Entity Entity, Vector3 Position, float EngulfSize)>> microbesBySpecies =
@@ -86,6 +92,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         chunkDataCache = new();
 
     private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
+        radioactiveChunkDataCache = new();
+
+    private readonly List<(Entity Entity, Vector3 Position)>
         terrainChunkDataCache = new();
 
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
@@ -96,6 +105,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool microbeCacheBuilt;
     private bool chunkCacheBuilt;
+
+    private double terrainCacheRebuildTimer = 1000;
 
     private Vector3? potentiallyKnownPlayerPosition;
 
@@ -158,6 +169,14 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             CleanMicrobeCache();
             CleanChunkCache();
             CleanSpeciesUsingVaryingCompound();
+
+            terrainCacheRebuildTimer += delta;
+            if (terrainCacheRebuildTimer > 10)
+            {
+                terrainChunkDataCache.Clear();
+                BuildTerrainChunksCache();
+                terrainCacheRebuildTimer = 0;
+            }
         }
 
         if (gameWorld == null)
@@ -739,6 +758,19 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
         }
+
+        // Avoid terrain (limiting how often it runs for performance reasons)
+        if (random.Next(0, 10) == 0)
+        {
+            foreach (var terrainChunk in terrainChunkDataCache)
+            {
+                if (position.Position.DistanceSquaredTo(terrainChunk.Position)
+                    < Constants.AI_AVOID_TERRAIN_DISTANCE_SQUARED)
+                {
+                    ai.MoveWithRandomTurn(1.0f, 1.0f, position.Position, ref control, speciesActivity, random);
+                }
+            }
+        }
     }
 
     private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
@@ -876,7 +908,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         BuildChunksCache();
 
-        foreach (var chunk in terrainChunkDataCache)
+        foreach (var chunk in radioactiveChunkDataCache)
         {
             if (!chunk.Compounds.Compounds.Keys.Contains(Compound.Radiation))
             {
@@ -1734,6 +1766,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private void CleanChunkCache()
     {
         chunkDataCache.Clear();
+        radioactiveChunkDataCache.Clear();
         chunkCacheBuilt = false;
     }
 
@@ -1788,7 +1821,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     /// <summary>
-    ///   Builds a full cache of all non-engulfed chunks that aren't dissolving currently
+    ///   Builds a full cache of all non-engulfed chunks that aren't dissolving currently (minus terrain chunks)
     /// </summary>
     private void BuildChunksCache()
     {
@@ -1800,10 +1833,23 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (chunkCacheBuilt)
                 return;
 
-            var query = new ChunkCollectingQuery(chunkDataCache, terrainChunkDataCache);
-            World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref query);
+            var chunkQuery = new ChunkCollectingQuery(chunkDataCache, radioactiveChunkDataCache);
+            World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref chunkQuery);
 
             chunkCacheBuilt = true;
+        }
+    }
+
+    /// <summary>
+    ///   Builds a full cache of all terrain chunks
+    /// </summary>
+    private void BuildTerrainChunksCache()
+    {
+        // To allow multithreaded AI access safely
+        lock (terrainChunkDataCache)
+        {
+            var terrainQuery = new TerrainCollectingQuery(terrainChunkDataCache);
+            World.InlineEntityQuery<TerrainCollectingQuery, WorldPosition>(terrainChunksQuery, ref terrainQuery);
         }
     }
 
@@ -1848,7 +1894,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private readonly struct ChunkCollectingQuery(
         List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)> chunkTarget,
-        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget)
+        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> radioactiveTarget)
         : IForEachWithEntity<CompoundStorage, WorldPosition>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1873,9 +1919,23 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 chunkTarget.Add((entity, position.Position, engulfable.AdjustedEngulfSize,
                     compounds.Compounds));
             }
-            else
+
+            if (entity.Has<RadiationSource>())
             {
-                terrainTarget.Add((entity, position.Position, compounds.Compounds));
+                radioactiveTarget.Add((entity, position.Position, compounds.Compounds));
+            }
+        }
+    }
+
+    private readonly struct TerrainCollectingQuery(List<(Entity Entity, Vector3 Position)> terrainTarget)
+        : IForEachWithEntity<WorldPosition>
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref WorldPosition position)
+        {
+            if (entity.Has<MicrobeTerrainChunk>())
+            {
+                terrainTarget.Add((entity, position.Position));
             }
         }
     }
