@@ -7858,7 +7858,7 @@ msgstr "8 (16)"
 
 msgid "WIKI_ACTOMYOSIN_EFFECTS"
 msgstr ""
-"Each cell with [b]Actomyosin[/b] increases the speed of the colony by 25%, as well as improving turning speed by 25%. While moving, each actomyosin consumes [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Each cell with [b]Actomyosin[/b] increases the base speed of the colony by 25%, as well as improving the base turning speed by 25%. While moving, each actomyosin consumes [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
 "Increases maximum Pressure Tolerance by 1 kPa."
 
@@ -8579,6 +8579,9 @@ msgstr ""
 
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "File:MelanosomeIcon.jpg"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Each [b]Flagellum[/b] provides directional thrust in the direction opposite its orientation. They also provide partial thrust in directions near the exact opposite direction (to be precise, those for which the component of that exact opposite vector is positive). Whenever a [b]Flagellum[/b] is active, it consumes [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -9883,7 +9886,11 @@ msgstr ""
 "Flee from me. Non-player cells of the player's species move away from the player cell.\n"
 "Become aggressive. Non-player cells of the player's species become significantly more likely to attack and chase other cells around them.[/ul]\n"
 "\n"
-"At the time of writing, non-player cells with [b]Signaling Agents[/b] don't use them."
+"Non-player cells with [b]Signaling Agents[/b] use them under the following conditions:\n"
+"\n"
+"[ul]If the cell is being attacked by a predator, it sends:<ul><li>\"Follow me\" if it's confident enough to launch toxin at the predator.</li><li>\"Flee from me\" if it's fleeing from the predator.</li></ul>\n"
+"If the cell is going to be aggressive and has pili or toxin, it sends:<ul><li>\"Become aggressive\" if there's enough members of the same species near it. The amount needed depends on the species aggression level where fewer are needed the more aggressive it is.</li><li>\"Follow me\" if there aren't enough members of the same species near it.</li></ul>\n"
+"If none of the above conditions are met, no command is sent.[/ul]"
 
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "Allows sending simple commands to other members of a cell's species via chemical signals in the water."
