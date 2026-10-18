@@ -87,12 +87,16 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     }
 
     /// <summary>
-    ///   Clones organelles in their original order into an empty layout, excluding the given original reference.
+    ///   Clones organelles in their original order into an empty layout, optionally excluding an original reference.
     ///   Later organelles overlapping earlier copies are skipped.
-    ///   The caller clears <paramref name="occupied"/> before copying.
+    ///   <paramref name="occupied"/> is cleared before copying.
     /// </summary>
-    private static void CloneLayoutExcludingOrganelle(IReadOnlyList<OrganelleTemplate> sourceOrganelles,
-        OrganelleLayout<OrganelleTemplate> destination, OrganelleTemplate excludedOrganelle, HashSet<Hex> occupied)
+    /// <param name="sourceOrganelles">The original organelles to copy in order.</param>
+    /// <param name="destination">The empty layout to receive the cloned organelles.</param>
+    /// <param name="excludedOrganelle">The original reference to omit, or null to copy without an exclusion.</param>
+    /// <param name="occupied">Working storage for the hexes occupied by the copied organelles.</param>
+    private static void CloneLayout(IReadOnlyList<OrganelleTemplate> sourceOrganelles,
+        OrganelleLayout<OrganelleTemplate> destination, OrganelleTemplate? excludedOrganelle, HashSet<Hex> occupied)
     {
         occupied.Clear();
 
@@ -152,7 +156,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             var occupied = workMemory.WorkingMemory3;
             occupied.Clear();
 
-            CloneLayoutExcludingOrganelle(baseOrganelles, newSpecies.Organelles, organelle, occupied);
+            CloneLayout(baseOrganelles, newSpecies.Organelles, organelle, occupied);
 
             AttachIslandHexes(newSpecies.Organelles, workMemory);
 
@@ -216,14 +220,14 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     var parentCellTypeOrganelles =
                         baseSpecies.ModifiableCellTypes[j].ModifiableOrganelles;
 
-                    CloneLayoutExcludingOrganelle(parentCellTypeOrganelles.Organelles,
-                        clonedCellType.ModifiableOrganelles, organelle, occupied);
+                    CloneLayout(parentCellTypeOrganelles.Organelles,
+                        clonedCellType.ModifiableOrganelles, null, occupied);
                 }
 
                 // Clone the organelles for the targeted cell type, excluding the targeted organelle
                 occupied.Clear();
 
-                CloneLayoutExcludingOrganelle(baseOrganelles, newCellTypeOrganelles, organelle, occupied);
+                CloneLayout(baseOrganelles, newCellTypeOrganelles, organelle, occupied);
 
                 AttachIslandHexes(newCellTypeOrganelles, workMemory);
 

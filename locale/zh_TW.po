@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-17 01:15+0800\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -572,6 +572,10 @@ msgid "BETTER_TOGETHER"
 msgstr "人多力量大"
 
 msgid "BEYOND_THE_CELL"
+msgstr "超越細胞"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "超越細胞"
 
 msgid "BIG_IRON_CHUNK"
@@ -3313,6 +3317,17 @@ msgstr "地面"
 msgid "INVERTED"
 msgstr "反轉"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 "您正在玩的是遊戲中包含的後期階段原型。\n"
@@ -3346,6 +3361,15 @@ msgstr "七月"
 
 msgid "JUNE"
 msgstr "六月"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr ""
+"Steam 客戶端程式庫初始化失敗。Steam 功能將無法使用。\n"
+"請確保您正在執行 Steam 並使用正確的帳戶登入。如果此錯誤沒有消失，請透過 Steam 執行遊戲。"
 
 msgid "KEEP_MIGRATION"
 msgstr "保留遷移"
@@ -4327,6 +4351,14 @@ msgstr ""
 
 msgid "MICROBIAL_MASSACRE"
 msgstr "微生物大屠殺"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "宏觀生物階段"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "這種細胞膜具有堅固的二氧化矽壁。它可以很好地抵抗整體傷害，且對物理傷害的抵抗力非常強。並花費較少的能量維持外形。然而，它會大大減慢細胞的速度，細胞吸收資源的速度也會降低。"
 
 msgid "MICRO_BORG"
 msgstr "博格細胞"
@@ -5364,6 +5396,13 @@ msgstr "等待內共生過程完成"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "當適應範圍縮小到最小值並且您的物種喜歡當前條件時，將會增加完美適應的獎勵。如果您打算只在一個區域遊玩而非分散發展，這將帶來優勢。"
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "當適應範圍縮小到最小值並且您的物種喜歡當前條件時，將會增加完美適應的獎勵。如果您打算只在一個區域遊玩而非分散發展，這將帶來優勢。"
 
@@ -5661,6 +5700,10 @@ msgstr "在普通難度以上使用單一物種演化到 15 代"
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "在普通難度以上使用單一物種演化到 {0}/{1} 代"
 
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "宏觀生物階段"
+
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "進入多細胞階段"
 
@@ -5887,6 +5930,10 @@ msgstr "向左旋轉"
 
 msgid "ROTATE_RIGHT"
 msgstr "向右旋轉"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "進入編輯器並修改您的物種"
 
 msgid "ROTATION_COLON"
 msgstr "旋轉："
@@ -6389,6 +6436,26 @@ msgstr "生成磷酸鹽"
 
 msgid "SPECIALIZATION_COLON"
 msgstr "特化："
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "特化："
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "化石檔案無法寫入"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "特化："
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "液泡將儲存 {0} 單位的所選化合物"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "液泡將儲存 {0} 單位的所選化合物"
 
 #, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
@@ -7504,6 +7571,30 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "類型："
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "多細胞編輯器"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "纖維素酶使細胞能夠分解纖維素膜。每次添加都會增加其有效性。"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "多細胞編輯器"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "標題："
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "脂肪酶使細胞能夠分解大多數類型的膜。您的細胞能在沒有溶酶體的情況下產生一些這種酶，但透過選擇這種類型，您將提高其效率。"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "標題："
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "有未套用的更改"
 
@@ -7651,6 +7742,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "無標題"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "創建新細胞類型"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "捕食纖毛"
@@ -8627,6 +8725,10 @@ msgstr ""
 
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "無升級。"
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "[b]黑色素體[/b]是進行[b]放射合成[/b]的[color=#3796e1][url=thriveopedia:OrganellesRoot]細胞器[/url][/color]，透過黑色素吸收輻射能量。"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每個[b]鞭毛[/b]提供與其方向相反的方向的定向推力。它們也在接近完全相反的方向上提供部分推力（準確地說，是那些與完全相反的向量的分量（內積）為正的方向）。每當[b]鞭毛[/b]處於活動狀態時，它就會消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
@@ -10435,6 +10537,13 @@ msgstr "此頁面的內容尚未完全在遊戲中實現，並且可能會發生
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "造訪我們的 YouTube 頻道"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "細胞的黏稠內臟。細胞質是溶解在水中的離子、蛋白質與其他物質的基本混合物，充滿細胞內部。它的其中一个功能是[b]糖解[/b]，將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。對於缺少細胞器而不能進行更高級代謝活動的細胞而言就是它們能量的來源。它也用於在細胞中儲存分子並增加細胞的大小。"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

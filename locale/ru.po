@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-17 01:15+0800\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -571,6 +571,10 @@ msgid "BETTER_TOGETHER"
 msgstr "Лучше Быть Вместе"
 
 msgid "BEYOND_THE_CELL"
+msgstr "За Пределами Клетки"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "За Пределами Клетки"
 
 msgid "BIG_IRON_CHUNK"
@@ -3313,6 +3317,17 @@ msgstr "Поверхность"
 msgid "INVERTED"
 msgstr "Инвертировать"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Вы играете в прототип последующей стадии, включённой в игру.\n"
@@ -3346,6 +3361,15 @@ msgstr "Июль"
 
 msgid "JUNE"
 msgstr "Июнь"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr ""
+"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
+"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
 
 msgid "KEEP_MIGRATION"
 msgstr "Продолжить Миграцию"
@@ -4317,6 +4341,14 @@ msgstr ""
 
 msgid "MICROBIAL_MASSACRE"
 msgstr "Микробоцид"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Стадия Макроскопического Организма"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
 
 msgid "MICRO_BORG"
 msgstr "Микро-Борг"
@@ -5332,6 +5364,13 @@ msgstr "Ожидание Процесса Завершения Эндосимб�
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "Когда пределы погрешности уменьшены до минимальных значений, и вашим видам нравятся нынешние условия, добавится бонус идеальной адаптации. Он даст преимущество, если вы планируете играть только в одном биоме, а не расширяться."
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "Когда пределы погрешности уменьшены до минимальных значений, и вашим видам нравятся нынешние условия, добавится бонус идеальной адаптации. Он даст преимущество, если вы планируете играть только в одном биоме, а не расширяться."
 
@@ -5624,6 +5663,10 @@ msgstr "Достигните 15-го поколения с помощью одн
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Достигните поколения {0}/{1} с одним видом по крайней мере на нормальной сложности"
 
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Стадия Макроскопического Организма"
+
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Достичь многоклеточной стадии"
 
@@ -5847,6 +5890,10 @@ msgstr "Повернуть влево"
 
 msgid "ROTATE_RIGHT"
 msgstr "Повернуть вправо"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Войдите в редактор для модификации видов"
 
 msgid "ROTATION_COLON"
 msgstr "Поворот:"
@@ -6348,6 +6395,26 @@ msgstr "Создать фосфат"
 
 msgid "SPECIALIZATION_COLON"
 msgstr "Специализация:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Специализация:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Файл окаменелости не может быть записан"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Специализация:"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Эта вакуоль будет хранить {0} единиц выбранного соединения"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Эта вакуоль будет хранить {0} единиц выбранного соединения"
 
 #, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
@@ -7453,6 +7520,30 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Тип:"
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Многоклеточный редактор"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Целлюлаза позволяет клетке разрушать целлюлозную мембрану. С количеством повышается эффективность."
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Многоклеточный редактор"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Имя:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите эффективность."
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Имя:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Есть непримененные изменения"
 
@@ -7600,6 +7691,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Без Имени"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Тип споровых клеток"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Вытягивание ресничек"
@@ -8577,6 +8675,10 @@ msgstr ""
 
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "Нет улучшений."
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "[b]Melanosomes[/b] — [color=#3796e1][url=thriveopedia:OrganellesRoot]органеллы[/url][/color], которые выполняют [b]Радиосинтез[/b], который улавливает энергию излучения, поглощая её с помощью меланина."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Каждый [b]Жгутик[/b] обеспечивает направленную тягу в направлении, противоположном его ориентации. Они также создают частичную тягу в направлениях, близких к прямо противоположному (если быть точным, в тех направлениях, для которых составляющая этого прямо противоположного вектора положительна). Всякий раз, когда [b]Жгутик[/b] активен, он поглощает [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -10399,6 +10501,13 @@ msgstr "Содержимое этой страницы еще не полнос�
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Зайти на наш Ютуб Канал"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

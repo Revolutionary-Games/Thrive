@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-17 01:15+0800\n"
-"PO-Revision-Date: 2026-10-13 19:09+0000\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"PO-Revision-Date: 2026-10-16 23:54+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -114,7 +114,7 @@ msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr "Aktomiyozinler, hücre kolonilerinin kendilerini bir yöne çekmek ya da döndürmek için kullanabileceği basit kas yapılarıdır. Bu yapıların işlevi koloninin esnekliğine dayandığından, duvar tipi hücre zarları için mevcut değildir. Bunun da bir sonucu olarak, her hücrede yalnızca bir tane bulunması ama kolonideki birçok hücrenin bu organeli taşıması durumunda, bu yapılar en etkili haldedir."
 
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Bir hücre kolonisinin hareket ve dönme hızını arttırır."
+msgstr "Hücre kolonisinin temel hareket ve dönme hızını arttırır."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ek doğrulamalar bir sorun tespit etti: {0}"
@@ -570,6 +570,9 @@ msgstr "Birlikte Daha İyi"
 msgid "BEYOND_THE_CELL"
 msgstr "Hücrenin Ötesinde"
 
+msgid "BEYOND_THE_MICROBE"
+msgstr "Mikrobiğin Ötesinde"
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Büyük Demir Parçası"
 
@@ -824,9 +827,8 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
-#, fuzzy
 msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
-msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
+msgstr "Bu isimde bir hücre türü mevcut"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
@@ -1029,13 +1031,11 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
-#, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Koloni Dönme Hızı"
+msgstr "Temel Koloni Dönme Hızı"
 
-#, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Koloni Hızı"
+msgstr "Temel Koloni İlerleme Hızı"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
@@ -2622,7 +2622,7 @@ msgid "FIRE_TOXIN"
 msgstr "Toksin ateşle"
 
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "Vurulan hücrelerde hasara yol açan toksin mermisi ateş et"
+msgstr "Hücreleri vurmak için hasar veren toksin mermileri ateşle"
 
 msgid "FLAGELLUM"
 msgstr "Kamçı"
@@ -3279,6 +3279,15 @@ msgstr "Yer"
 msgid "INVERTED"
 msgstr "Ters"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr "Bir Ev Arayışında"
+
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Tek bir yaşam sırasında, bir spor olarak 1000 birim mesafe kat et"
+
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Bir spor olarak kat edilen mesafe:{0}/{1} u"
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Oyuna dahil edilen sonraki evrelerin prototiplerini oynamaktasınız.\n"
@@ -3312,6 +3321,12 @@ msgstr "Temmuz"
 
 msgid "JUNE"
 msgstr "Haziran"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr "Sadece bir Sıyrık"
+
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "En az 10 hücreden oluşan toplam beden planının en az %30'luk kısmını kaybet, ardından editöre kadar hayatta kal"
 
 msgid "KEEP_MIGRATION"
 msgstr "Göçü Sürdür"
@@ -4271,6 +4286,12 @@ msgstr ""
 
 msgid "MICROBIAL_MASSACRE"
 msgstr "Mikrobik Katliam"
+
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Mikroskopik Kuşlar ve Arılar"
+
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Çok hücreli evresinde başarılı bir şekilde eşeyli üre"
 
 msgid "MICRO_BORG"
 msgstr "Mikro-Borg"
@@ -5277,6 +5298,12 @@ msgstr "Endosimbiyoz İşleminin Tamamlanması Bekleniyor"
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
+msgid "PERFECTLY_PACKED"
+msgstr "Kusursuzca Doldurulmuş"
+
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "Çok hücreli editöründen en az 10 hücreli bir beden planıyla ayrıl ve beden planının tam düzeninde hiçbir boşluk veya delik bırakma"
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "Tolerans aralıkları en düşük değerlere indirildiğinde ve türünüz mevcut koşulları beğendiğinde, mükemmel uyum bonusu eklenir. Bu bonus, yayılmak yerine yalnızca tek bir arazide oynamayı planlayanlar için bir avantaj sağlar."
 
@@ -5358,19 +5385,16 @@ msgid "PLAYER_EXTINCT"
 msgstr "Oyuncunun nesli tükendi"
 
 msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
-msgstr ""
+msgstr "İsim boş bırakılamaz"
 
-#, fuzzy
 msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
-msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
+msgstr "İsim '/', ':', '%', '@', '.' veya '\"' içeremez."
 
-#, fuzzy
 msgid "PLAYER_NAME_REQUIREMENTS"
-msgstr "Radyasyon hasarı almak için bir radyoaktif parçaya yakın olmak gerekir."
+msgstr "İsimler 100 karaktere kadar olabilir ve özel karakterler içeremez ('/:%@\".')"
 
-#, fuzzy
 msgid "PLAYER_NAME_TOO_LONG"
-msgstr "Tür adı çok uzun!"
+msgstr "İsimler {0} karakter veya daha az olmalıdır"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Oyuncuya bağlı"
@@ -5567,6 +5591,9 @@ msgstr "En az normal zorlukta, tek bir türle 15. kuşağa ulaş"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "En az normal zorlukta, tek bir türle {0}/{1}. nesle ulaş"
+
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Makroskopik evresine ulaş"
 
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Çok hücreli evresine ulaş"
@@ -5787,6 +5814,9 @@ msgstr "Sola döndür"
 
 msgid "ROTATE_RIGHT"
 msgstr "Sağa döndür"
+
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Bir damla formu taşımak için o formu ana damla formunun etrafında döndürerek bu aracı kullanın."
 
 msgid "ROTATION_COLON"
 msgstr "Dönme:"
@@ -6281,6 +6311,21 @@ msgstr "Fosfat oluştur"
 
 msgid "SPECIALIZATION_COLON"
 msgstr "Özelleşme:"
+
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Özelleşme Uzmanı"
+
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Çok hücrelilerde, %50'den fazla özelleşmesi ve her birinde farklı bir ortak organel olan en az 3 hücre türüne sahip ol"
+
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "En az %50 özelleşmeye sahip, farklı bir şekilde özelleşmiş hücre türleri: {0}/{1}"
+
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Özelleşmiş Silahlar"
+
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Diğer her hücre türü en fazla 1 adet içerirken, çok hücreli editöründen en az 5 pilus veya toksin organel içeren bir hücre türüyle ayrıl"
 
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Kopyasını oluşturmak için bir hücre türü seçin"
@@ -7386,6 +7431,24 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Tür:"
 
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "En Üst Hücresel Etkin Güç"
+
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Çok hücreli bir organizma olarak tek seferde en az 10 toksin mermisi ateşle"
+
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Bir atıştaki toksin mermisi: {0}/{1}"
+
+msgid "ULTIMATE_COLONY"
+msgstr "En Büyük Koloni"
+
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "21 canlı hücreden oluşan bir çok hücreli kolonisi büyüt"
+
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "En büyük hücre kolonisi: {0}/{1} hücre"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Uygulanmamış değişiklikler var"
 
@@ -7533,6 +7596,12 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Adsız"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr "\"{0}\" hücre türü hiç kullanılmadı. Hücreyi, beden planınızda yerleştirin ya da editörden çıkmadan önce silin."
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Kullanılmayan Hücre Türü"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Çeken Siller"
@@ -8511,6 +8580,10 @@ msgstr ""
 
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "Yükseltme yok."
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "[b]Melanozomlar[/b], [b]Radyosentez[/b] yapan [color=#3796e1][url=thriveopedia:OrganellesRoot]organellerdir[/url][/color]. Bu işlem, radyasyondaki enerjiyi melaninleri kullanıp emerek alır."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Her [b]Kamçı[/b], bulunduğu yönün tersine doğru yönlü itiş sağlar. Bu organel ayrıca yönün tam tersine yakın doğrultulara doğru kısmi olarak itiş sağlar (daha kesin olmak gerekirse, vektörün tam tersi bileşeni pozitif olan doğrultular). Bir [b]Kamçı[/b] etkin olduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir."
@@ -10350,6 +10423,12 @@ msgstr "Bu sayfanın içeriği oyuna henüz tamamen eklenmemiştir ve bu içeri�
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "YouTube kanalımızı ziyaret edin"
+
+msgid "YOU_ANIMAL"
+msgstr "Seni Hayvan!"
+
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Her hücresi yalnızca glukozdan ATP alan ve hiçbir organeli glukoz üretmeyen bir çok hücreli türü olarak en az 10 hücre ile çoğal"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
