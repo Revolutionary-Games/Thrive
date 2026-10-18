@@ -3,10 +3,8 @@
 /// </summary>
 public partial class MulticellularEditor
 {
-    private MulticellularSpecies? predictionOriginal;
     private EditorAutoEvoRun? predictionRun;
     private Patch? predictionCurrentPatch;
-    private bool predictionHistoryChecked;
     private bool predictionDirty = true;
     private bool predictionStopped;
     private bool predictionExitPending;
@@ -30,34 +28,14 @@ public partial class MulticellularEditor
         if (predictionStopped || !EditorReady)
             return;
 
-        if (!predictionHistoryChecked)
-        {
-            predictionHistoryChecked = true;
-            if (CurrentGame.GameWorld.GenerationHistory.TryGetValue(EditedSpecies.Generation - 1, out var generation) &&
-                generation.AllSpeciesData.TryGetValue(EditedSpecies.ID, out var record) &&
-                record.Species is MulticellularSpecies historical)
-            {
-                predictionOriginal = historical.Clone(true, true);
-                predictionOriginal.BecomePlayerSpecies();
-            }
-            else
-            {
-                bodyPlanEditorTab.PredictionPanel.ShowUnavailable();
-                cellEditorTab.PredictionPanel.ShowUnavailable();
-            }
-        }
-
-        if (predictionOriginal == null)
-            return;
-
         if (predictionRun?.Finished == true)
         {
             if (!predictionDirty)
             {
-                bodyPlanEditorTab.PredictionPanel.DisplayRun(predictionRun, predictionOriginal,
+                bodyPlanEditorTab.PredictionPanel.DisplayRun(predictionRun, predictionRun.OriginalEditedSpecies,
                     predictionRun.ModifiedProperties, cellEditorTab.PreviousPlayerGatheredEnergy,
                     predictionCurrentPatch!, CurrentGame.GameWorld.WorldSettings);
-                cellEditorTab.PredictionPanel.DisplayRun(predictionRun, predictionOriginal,
+                cellEditorTab.PredictionPanel.DisplayRun(predictionRun, predictionRun.OriginalEditedSpecies,
                     predictionRun.ModifiedProperties, cellEditorTab.PreviousPlayerGatheredEnergy,
                     predictionCurrentPatch!, CurrentGame.GameWorld.WorldSettings);
             }
@@ -92,15 +70,9 @@ public partial class MulticellularEditor
             return;
         }
 
-        var map = new PatchMap();
-        foreach (var patch in CurrentGame.GameWorld.Map.Patches.Values)
-            map.AddPatch(patch.CreatePredictionCopy(predictionOriginal));
-
-        predictionCurrentPatch = map.GetPatch(CurrentPatch.ID);
-        map.CurrentPatch = predictionCurrentPatch;
-        var target = TargetPatch == null ? null : map.GetPatch(TargetPatch.ID);
+        predictionCurrentPatch = CurrentPatch;
         predictionRun = new EditorAutoEvoRun(CurrentGame.GameWorld, CurrentGame.GameWorld.AutoEvoGlobalCache,
-            predictionOriginal, current!, target, map);
+            EditedBaseSpecies, current!, TargetPatch);
         predictionStartTimer = 0;
         bodyPlanEditorTab.PredictionPanel.ShowWaiting();
         cellEditorTab.PredictionPanel.ShowWaiting();
@@ -108,7 +80,7 @@ public partial class MulticellularEditor
     }
 
     /// <summary>
-    ///   Marks a committed simulation input change. Snapshot creation waits until a later process frame.
+    ///   Marks a committed simulation input change. Prediction species creation waits until a later process frame.
     /// </summary>
     public void MarkPredictionDirty()
     {

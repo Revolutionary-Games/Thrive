@@ -6,8 +6,84 @@ using System.Collections.Generic;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
-    public EditorAutoEvoPredictionPanel PredictionPanel =>
-        GetNode<EditorAutoEvoPredictionPanel>("RightPanel/VBoxContainer/AutoEvoInfoPanel");
+    public EditorAutoEvoPredictionPanel PredictionPanel => autoEvoPredictionPanel;
+
+    /// <summary>
+    ///   Checks the same live inputs used to create a prediction without cloning the species.
+    ///   Moving cells or inputs that have not been prepared are not invalid species designs.
+    /// </summary>
+    public PredictionInputState GetPredictionInputState()
+    {
+        if (CanCancelMove || CellTypeVisualsOverride == null)
+            return PredictionInputState.NotReady;
+
+        if (editedMicrobeCells.Count < 1)
+            return PredictionInputState.Invalid;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
+            return PredictionInputState.Invalid;
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+            or MulticellularReproductionMethod.SexualIsogamy)
+        {
+            if (GameteACellType == null || editedMicrobeCells.Count < 2)
+                return PredictionInputState.Invalid;
+
+            if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy &&
+                (GameteBCellType == null || SelectedGameteTypeForPlayer == GameteType.All))
+            {
+                return PredictionInputState.Invalid;
+            }
+        }
+
+        var types = new HashSet<CellType>(Editor.EditedSpecies.ModifiableCellTypes,
+            ReferenceEqualityComparer.Instance);
+
+        foreach (var original in types)
+        {
+            if (CellTypeVisualsOverride.GetCellType(original).Organelles.Count < 1)
+                return PredictionInputState.Invalid;
+        }
+
+        CellType? MapType(CellType? current)
+        {
+            if (current == null)
+                return null;
+
+            var original = CellTypeVisualsOverride.GetOriginalType(current);
+            return types.Contains(original) ? original : null;
+        }
+
+        var sporeType = MapType(SporeCellType);
+        if ((SporeCellType != null && sporeType == null) ||
+            (GameteACellType != null && MapType(GameteACellType) == null) ||
+            (GameteBCellType != null && MapType(GameteBCellType) == null))
+        {
+            return PredictionInputState.Invalid;
+        }
+
+        foreach (var cell in editedMicrobeCells)
+        {
+            if (cell.Data == null)
+                return PredictionInputState.Invalid;
+
+            var type = MapType(cell.Data.ModifiableCellType);
+            if (type == null || ReferenceEquals(type, sporeType))
+                return PredictionInputState.Invalid;
+        }
+
+        var budCount = GetPredictionMassBuddingCellCount();
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+            budCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
+        {
+            return PredictionInputState.Invalid;
+        }
+
+        if (budCount < 1 || budCount > editedMicrobeCells.Count)
+            return PredictionInputState.Invalid;
+
+        return PredictionInputState.Valid;
+    }
 
     /// <summary>
     ///   Captures committed body and buffered type edits without applying any changes to the editor or world.
@@ -18,24 +94,8 @@ public partial class CellBodyPlanEditorComponent
         CellType? liveType = null)
     {
         result = null;
-        if (CanCancelMove || editedMicrobeCells.Count < 1 || CellTypeVisualsOverride == null)
+        if (GetPredictionInputState() != PredictionInputState.Valid)
             return false;
-
-        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
-            return false;
-
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
-            or MulticellularReproductionMethod.SexualIsogamy)
-        {
-            if (GameteACellType == null || editedMicrobeCells.Count < 2)
-                return false;
-
-            if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy &&
-                (GameteBCellType == null || SelectedGameteTypeForPlayer == GameteType.All))
-            {
-                return false;
-            }
-        }
 
         var source = Editor.EditedSpecies;
         var species = new MulticellularSpecies(source.ID, source.Genus, source.Epithet);
@@ -46,7 +106,7 @@ public partial class CellBodyPlanEditorComponent
         {
             var current = ReferenceEquals(original, originalLiveType) ?
                 liveType! :
-                CellTypeVisualsOverride.GetCellType(original);
+                CellTypeVisualsOverride!.GetCellType(original);
             if (current.Organelles.Count < 1)
                 return false;
 
@@ -60,18 +120,12 @@ public partial class CellBodyPlanEditorComponent
             if (original == null)
                 return null;
 
-            return types.GetValueOrDefault(CellTypeVisualsOverride.GetOriginalType(original));
+            return types[CellTypeVisualsOverride!.GetOriginalType(original)];
         }
 
         species.ModifiableSporeCellType = MapType(SporeCellType);
         species.ModifiableGameteTypeA = MapType(GameteACellType);
         species.ModifiableGameteTypeB = MapType(GameteBCellType);
-        if ((SporeCellType != null && species.ModifiableSporeCellType == null) ||
-            (GameteACellType != null && species.ModifiableGameteTypeA == null) ||
-            (GameteBCellType != null && species.ModifiableGameteTypeB == null))
-        {
-            return false;
-        }
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
@@ -80,13 +134,7 @@ public partial class CellBodyPlanEditorComponent
         bool first = true;
         foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), c => c.Data!))
         {
-            if (cell.Data == null)
-                return false;
-
-            var type = MapType(cell.Data.ModifiableCellType);
-            if (type == null || ReferenceEquals(type, species.ModifiableSporeCellType))
-                return false;
-
+            var type = MapType(cell.Data!.ModifiableCellType)!;
             if (first)
             {
                 leader = cell.Position;
@@ -100,17 +148,7 @@ public partial class CellBodyPlanEditorComponent
         }
 
         species.ReproductionMethod = ReproductionMethod;
-        species.MassBuddingCellCount = source.MassBuddingCellCount;
-        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
-        {
-            species.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
-                CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
-            if (species.MassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
-                return false;
-        }
-
-        if (species.MassBuddingCellCount < 1 || species.MassBuddingCellCount > editedMicrobeCells.Count)
-            return false;
+        species.MassBuddingCellCount = GetPredictionMassBuddingCellCount();
 
         species.PlayerGamete = ReproductionMethod switch
         {
@@ -132,5 +170,16 @@ public partial class CellBodyPlanEditorComponent
         species.OnEdited();
         result = species;
         return true;
+    }
+
+    private int GetPredictionMassBuddingCellCount()
+    {
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            return Math.Min(DesiredMassBuddingCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+        }
+
+        return Editor.EditedSpecies.MassBuddingCellCount;
     }
 }

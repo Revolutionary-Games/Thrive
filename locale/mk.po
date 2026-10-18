@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
 "PO-Revision-Date: 2025-11-24 19:45+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -426,6 +426,10 @@ msgstr "Глобални ресултати"
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
+#, fuzzy
+msgid "AUTO_EVO_PREDICTION_INVALID_SPECIES"
+msgstr "Абтоматско-Ево предвидубање"
+
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати на Автоматско-Ево"
 
@@ -576,6 +580,10 @@ msgid "BETTER_TOGETHER"
 msgstr "Подобро Заедно"
 
 msgid "BEYOND_THE_CELL"
+msgstr "Понапредно од клетката"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "Понапредно од клетката"
 
 msgid "BIG_IRON_CHUNK"
@@ -3136,6 +3144,17 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Вакуола што содржи места на реакција каде што луциферазата се консумира за ослободување на видлива светлина. Се претпоставува дека биолуминисценцијата првично еволуирала како механизам за заштита од [thrive:compound type=\"oxygen\"][/thrive:compound]. Кога се случил Големиот настан на оксигенација, микробите навикнати на анаеробни услови се соочиле со многу нови проблеми поради многу високата реактивност на кислородот што предизвикала многу штета. Овие вакуоли може да се додадат за да се зголеми отпорноста на кислород и да се добијат убави светла. Во иднина биолуминисценцијата може да биде средство за комуникација."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Вакуола што содржи места на реакција каде што луциферазата се консумира за ослободување на видлива светлина. Се претпоставува дека биолуминисценцијата првично еволуирала како механизам за заштита од [thrive:compound type=\"oxygen\"][/thrive:compound]. Кога се случил Големиот настан на оксигенација, микробите навикнати на анаеробни услови се соочиле со многу нови проблеми поради многу високата реактивност на кислородот што предизвикала многу штета. Овие вакуоли може да се додадат за да се зголеми отпорноста на кислород и да се добијат убави светла. Во иднина биолуминисценцијата може да биде средство за комуникација."
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -3165,6 +3184,13 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
 
 msgid "KEEP_MIGRATION"
 msgstr ""
@@ -4163,6 +4189,14 @@ msgstr ""
 msgid "MICROBIAL_MASSACRE"
 msgstr ""
 
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Притиснете [thrive:input]g_toggle_binding[/thrive:input] за да го вклучите режимот на врзување. Кога сте во режим на врзување, можете да прикачите други клетки од вашиот вид на вашата колонија со нивно допирање. За да напуштите колонија, притиснете [thrive:input]g_unbind_all[/thrive:input]. Не можете да влезете во уредувачот додека сте поврзани со други клетки."
+
 msgid "MICRO_BORG"
 msgstr ""
 
@@ -5144,6 +5178,13 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "3Д Едитор"
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
 
@@ -5450,6 +5491,10 @@ msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
 
 #, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "3Д Едитор"
+
+#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "3Д Едитор"
 
@@ -5676,6 +5721,10 @@ msgstr ""
 
 msgid "ROTATE_RIGHT"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Додадете ново врзување на клучот"
 
 msgid "ROTATION_COLON"
 msgstr ""
@@ -6175,6 +6224,26 @@ msgstr ""
 #, fuzzy
 msgid "SPECIALIZATION_COLON"
 msgstr "Уполови популација"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Уполови популација"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Уполови популација"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Уполови популација"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Уполови популација"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
 
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
@@ -7057,6 +7126,29 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr ""
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Артисти:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Артисти:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
@@ -7201,6 +7293,12 @@ msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
 msgid "UNTITLED"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL"
@@ -7877,6 +7975,10 @@ msgstr "3Д Едитор"
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "3Д Моциа"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
@@ -9135,6 +9237,13 @@ msgstr ""
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

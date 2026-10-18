@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
 "PO-Revision-Date: 2026-10-02 07:58+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -424,6 +424,10 @@ msgstr "Auto-Evo-Ergebnisse fehlen. Wenn du einen älteren Speicherstand geladen
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-Evo-Ergebnisse fehlen. Wenn du einen älteren Speicherstand geladen hast, ist das nicht ungewöhnlich - wenn es sich nicht um einen älteren Spielstand handelt, benachrichtige uns bitte und schick uns dein Spiele-Log-File."
 
+#, fuzzy
+msgid "AUTO_EVO_PREDICTION_INVALID_SPECIES"
+msgstr "Auto-Evo-Vorhersage"
+
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo Ergebnisse:"
 
@@ -573,6 +577,10 @@ msgid "BETTER_TOGETHER"
 msgstr "Gemeinsam sind wir stark"
 
 msgid "BEYOND_THE_CELL"
+msgstr "Mehr als nur Zelle"
+
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
 msgstr "Mehr als nur Zelle"
 
 msgid "BIG_IRON_CHUNK"
@@ -3351,6 +3359,17 @@ msgstr "Boden"
 msgid "INVERTED"
 msgstr "Invertiert"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
@@ -3383,6 +3402,15 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr ""
+"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
+"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
 msgid "KEEP_MIGRATION"
 msgstr "Aerobe Atmung"
@@ -4375,6 +4403,14 @@ msgstr ""
 #, fuzzy
 msgid "MICROBIAL_MASSACRE"
 msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Makroskopisches Stadium"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Diese Membran hat eine starke Wand aus Siliziumdioxid. Sie widersteht gut gegen allgemeine Beschädigungen und ist sehr widerstandsfähig gegen physische Schäden. Sie benötigt auch weniger Energie, um ihre Form zu erhalten. Allerdings verlangsamt sie die Zelle um einen großen Faktor und die Zelle absorbiert Ressourcen mit einer reduzierten Geschwindigkeit."
 
 #, fuzzy
 msgid "MICRO_BORG"
@@ -5434,6 +5470,17 @@ msgstr "Abschluss des Endosymbiose-Prozesses ausstehend"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr ""
+"Aktiviert die Blinkeffekte auf GUIs (z.B. blinken von Editor-Schaltflächen).\n"
+"\n"
+"Wenn Sie einen Fehler feststellen, bei dem Teile von Editor-Schaltflächen verschwinden,\n"
+"kannst du versuchen, dies zu deaktivieren, um zu sehen, ob das Problem verschwunden ist."
+
 #, fuzzy
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
@@ -5747,6 +5794,10 @@ msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Erreiche Generation {0}/{1} einer Spezies wenigstens mit normalem Schwierigkeitsgrad"
 
 #, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Makroskopisches Stadium"
+
+#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Mehrzelliges Stadium"
 
@@ -5984,6 +6035,10 @@ msgstr "Nach rechts rotieren"
 
 msgid "ROTATE_RIGHT"
 msgstr "Nach links rotieren"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Betritt den Editor und bearbeite deine Spezies"
 
 msgid "ROTATION_COLON"
 msgstr "Drehung:"
@@ -6503,6 +6558,26 @@ msgstr "Phosphat erzeugen"
 #, fuzzy
 msgid "SPECIALIZATION_COLON"
 msgstr "Gesamtbevölkerung:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Gesamtbevölkerung:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Die Fossil-Datei konnte nicht geschrieben werden"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Gesamtbevölkerung:"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Die Vakuole speichert {0} Einheiten der gewählten Substanz"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Die Vakuole speichert {0} Einheiten der gewählten Substanz"
 
 #, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
@@ -7661,6 +7736,30 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Typ:"
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Mehrzelliger Editor"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Cellulase ermöglicht es der Zelle Cellulose Membranen zu zersetzen. Dies erhöht die Effektivität des Prozesses."
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Mehrzelliger Editor"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Titel:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "Lipase ermöglicht es der Zelle die meisten Membranen zu zersetzen. Etwas davon wird auch ohne Lysosom von deiner Zelle produziert, aber es hier auszuwählen erhöht die Effizienz des Prozesses."
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Titel:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Es sind nicht übernommene Änderungen vorhanden"
 
@@ -7810,6 +7909,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Unbenannt"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Neuen Zellentyp erstellen"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Strudelzilien"
@@ -8648,6 +8754,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindliche Pigmente in Membransäcken gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die Energie der Wärmeunterschiede in der Umgebung zu nutzen, um in einem Prozess namens Thermosynthese aus Wasser und gasförmigem Kohlendioxid Glukose zu produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Temperatur ab."
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Jedes [b]Flagellum[/b] erzeugt einen gerichteten Schub in die entgegengesetzte Richtung seiner Ausrichtung. Es liefert auch einen teilweisen Schub in Richtungen, die der genauen entgegengesetzten Richtung nahe kommen (genauer gesagt in den Richtungen, bei denen die Komponente des exakten entgegengesetzten Vektors positiv ist). Wann immer ein [b]Flagellum[/b] aktiv ist, verbraucht es [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -10195,6 +10305,13 @@ msgstr "Der Inhalt dieser Seite wurde noch nicht vollständig ins Spiel implemen
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Besuche unseren YouTube Kanal"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

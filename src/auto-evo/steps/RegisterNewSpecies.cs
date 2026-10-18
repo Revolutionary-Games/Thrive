@@ -62,10 +62,26 @@ public class RegisterNewSpecies : IRunStep
 
             if (bestSpecies != null)
             {
-                results.AddMutationResultForSpecies(extinct, bestSpecies.Value.Species,
-                    bestSpecies.Value.InitialPopulationInPatches);
+                // If the mutant species is in the same Stage as the parent, it can be applied as a mutation
+                if (bestSpecies.Value.Species.GetType() == extinct.GetType())
+                {
+                    results.AddMutationResultForSpecies(extinct, bestSpecies.Value.Species,
+                        bestSpecies.Value.InitialPopulationInPatches);
 
-                handledSpecies.Add(bestSpecies.Value.Species);
+                    handledSpecies.Add(bestSpecies.Value.Species);
+
+                    continue;
+                }
+
+                // If the mutant transitions to a new Stage, it cannot be applied to the parent species as a mutation.
+                // If it is the best mutant, it will still inherit the parent's population, but the parent species
+                // will simply go extinct.
+                if (handledSpecies.Add(bestSpecies.Value.Species))
+                {
+                    results.AddNewSpecies(bestSpecies.Value.Species,
+                        bestSpecies.Value.InitialPopulationInPatches, bestSpecies.Value.AddType,
+                        extinct, true);
+                }
             }
         }
 
@@ -75,7 +91,7 @@ public class RegisterNewSpecies : IRunStep
             if (handledSpecies.Add(species.Species))
             {
                 results.AddNewSpecies(species.Species, species.InitialPopulationInPatches, species.AddType,
-                    species.ParentSpecies);
+                    species.ParentSpecies, false);
             }
         }
 

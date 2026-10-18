@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 11:49+0300\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -431,6 +431,10 @@ msgstr "Rezultate Auto-evo:"
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
+#, fuzzy
+msgid "AUTO_EVO_PREDICTION_INVALID_SPECIES"
+msgstr "Predicție Auto-Evo"
+
 msgid "AUTO_EVO_RESULTS"
 msgstr "Rezultate Auto-evo:"
 
@@ -589,6 +593,9 @@ msgid "BETTER_TOGETHER"
 msgstr ""
 
 msgid "BEYOND_THE_CELL"
+msgstr ""
+
+msgid "BEYOND_THE_MICROBE"
 msgstr ""
 
 msgid "BIG_IRON_CHUNK"
@@ -3326,6 +3333,17 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -3355,6 +3373,13 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
 
 msgid "KEEP_MIGRATION"
 msgstr ""
@@ -4319,6 +4344,14 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #, fuzzy
 msgid "MICROBIAL_MASSACRE"
 msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
 
 #, fuzzy
 msgid "MICRO_BORG"
@@ -5322,6 +5355,15 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr ""
+"Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
+"Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
+
 #, fuzzy
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
@@ -5625,6 +5667,10 @@ msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
 
 #, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Etapa Multicelulară"
 
@@ -5850,6 +5896,10 @@ msgstr ""
 
 msgid "ROTATE_RIGHT"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Adaugă un key-bind nou"
 
 msgid "ROTATION_COLON"
 msgstr ""
@@ -6336,6 +6386,28 @@ msgstr ""
 #, fuzzy
 msgid "SPECIALIZATION_COLON"
 msgstr "Înjumătățește Populația"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Înjumătățește Populația"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Înjumătățește Populația"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Înjumătățește Populația"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Înjumătățește Populația"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr ""
+"Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
+"Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
 
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
@@ -7495,6 +7567,32 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Artist:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr ""
+"Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
+"Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Artist:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
@@ -7639,6 +7737,12 @@ msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
 msgid "UNTITLED"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL"
@@ -8354,6 +8458,10 @@ msgstr "Etapa Microbilor"
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
 msgstr "Etapa Microbilor"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -9712,6 +9820,13 @@ msgstr ""
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

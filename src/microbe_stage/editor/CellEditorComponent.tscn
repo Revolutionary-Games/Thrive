@@ -1187,6 +1187,8 @@ libraries/ = SubResource("AnimationLibrary_o1pli")
 [connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
+[connection signal="DetailsOpened" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnAutoEvoPredictionDetailsOpened"]
+[connection signal="InvalidAction" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnInvalidAction"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]

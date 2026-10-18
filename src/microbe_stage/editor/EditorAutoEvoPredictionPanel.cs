@@ -5,7 +5,7 @@ using AutoEvo;
 using Godot;
 
 /// <summary>
-///   Shared presentation of editor Auto-Evo results. The editor owns and schedules the run.
+///   Shared presentation of editor Auto-Evo prediction results. The editor owns and schedules the run.
 /// </summary>
 public partial class EditorAutoEvoPredictionPanel : PanelContainer
 {
@@ -38,6 +38,8 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     private HBoxContainer suggestionsContainer = null!;
 #pragma warning restore CA2213
 
+    private Func<PredictionInputState>? validatePredictionInput;
+    private Color detailsButtonNormalColour;
     private bool? autoEvoPredictionRunSuccessful;
     private bool unavailable;
     private long predictedPopulation;
@@ -57,8 +59,12 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     [Signal]
     public delegate void DetailsOpenedEventHandler();
 
+    [Signal]
+    public delegate void InvalidActionEventHandler();
+
     public override void _Ready()
     {
+        detailsButtonNormalColour = detailsButton.SelfModulate;
         UpdateAutoEvoPredictionTranslations();
     }
 
@@ -67,12 +73,14 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         if (what == NotificationTranslationChanged && IsNodeReady())
         {
             // Child indicators reset their formatted values during translation callbacks.
-            Callable.From(UpdateTranslatedResults).CallDeferred();
+            Invoke.Instance.QueueForObject(UpdateTranslatedResults, this);
         }
     }
 
-    public void ConfigureHost(Control finishButton, bool showSuggestions)
+    public void ConfigureHost(Control finishButton, bool showSuggestions,
+        Func<PredictionInputState>? validateInput = null)
     {
+        validatePredictionInput = validateInput;
         detailsButton.FocusNeighborBottom = detailsButton.GetPathTo(finishButton);
         detailsButton.FocusNext = detailsButton.GetPathTo(finishButton);
         suggestionsContainer.Visible = showSuggestions;
@@ -82,13 +90,30 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     {
         unavailable = false;
         totalEnergyLabel.Value = float.NaN;
+        UpdateAutoEvoPredictionTranslations();
     }
 
+    /// <summary>
+    ///   Marks the current design as invalid while keeping the last successful popup contents.
+    /// </summary>
     public void ShowUnavailable()
     {
         unavailable = true;
+        autoEvoPredictionRunSuccessful = null;
+        predictedPopulation = 0;
+        bestPatchName = null;
+        bestPatchEnergyGathered = 0;
+        bestPatchPopulation = 0;
+        worstPatchName = null;
+        worstPatchEnergyGathered = 0;
+        worstPatchPopulation = 0;
+
+        totalEnergyLabel.ResetInitialValue();
         totalEnergyLabel.Value = float.NaN;
+        totalEnergyLabel.TooltipText = string.Empty;
+
         UpdateAutoEvoPredictionTranslations();
+        UpdateAutoEvoPredictionDetailsText();
     }
 
     public void DisplayRun(AutoEvoRun run, Species playerSpeciesOriginal, Species playerSpeciesNew,
@@ -182,7 +207,7 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
         UpdateAutoEvoPredictionTranslations();
 
-        if (Visible)
+        if (Visible || autoEvoPredictionExplanationPopup.Visible)
         {
             UpdateAutoEvoPredictionDetailsText();
         }
@@ -209,10 +234,16 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     private void UpdateAutoEvoPredictionTranslations()
     {
+        detailsButton.SelfModulate = unavailable ?
+            detailsButtonNormalColour * Colors.Gray :
+            detailsButtonNormalColour;
+
         if (unavailable || autoEvoPredictionRunSuccessful == false)
         {
             totalEnergyLabel.Value = float.NaN;
-            autoEvoPredictionFailedLabel.Text = Localization.Translate(unavailable ? "NO_DATA_TO_SHOW" : "FAILED");
+            autoEvoPredictionFailedLabel.Text = unavailable ?
+                Localization.Translate("AUTO_EVO_PREDICTION_INVALID_SPECIES") :
+                Localization.Translate("FAILED");
             autoEvoPredictionFailedLabel.Show();
         }
         else
@@ -247,14 +278,36 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         }
     }
 
-    private void DummyKeepTranslation()
+    /// <summary>
+    ///   Checks the live design as edits may not have reached the throttled prediction update yet.
+    /// </summary>
+    private bool CanOpenPredictionPopup()
     {
-        // This keeps this translation string existing if we ever still want to use worst and best population numbers
-        Localization.Translate("POPULATION_IN_PATCH_SHORT");
+        var inputState = validatePredictionInput?.Invoke() ??
+            (unavailable ? PredictionInputState.Invalid : PredictionInputState.Valid);
+
+        if (inputState == PredictionInputState.NotReady)
+            return false;
+
+        if (inputState == PredictionInputState.Invalid)
+        {
+            ShowUnavailable();
+            EmitSignal(SignalName.InvalidAction);
+            return false;
+        }
+
+        // A corrected design can show the previous results while its next prediction is pending.
+        if (unavailable)
+            ShowWaiting();
+
+        return true;
     }
 
     private void OpenAutoEvoPredictionDetails()
     {
+        if (!CanOpenPredictionPopup())
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         UpdateAutoEvoPredictionDetailsText();
@@ -325,6 +378,9 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
 
     private void OnMicheViewRequested()
     {
+        if (!CanOpenPredictionPopup())
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         if (predictionMiches == null)
@@ -336,5 +392,11 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
         micheViewer.ShowMiches(predictionPatch!, predictionMiches, worldSettings!);
 
         autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void DummyKeepTranslation()
+    {
+        // This keeps this translation string existing if we ever still want to use worst and best population numbers
+        Localization.Translate("POPULATION_IN_PATCH_SHORT");
     }
 }

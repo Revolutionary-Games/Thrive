@@ -5,15 +5,18 @@ using GdUnit4;
 using static GdUnit4.Assertions;
 
 /// <summary>
-///   Exercises editor predictions against the world map and isolated prediction populations.
+///   Exercises editor predictions against the world map without applying the results to the world.
 /// </summary>
 [TestSuite]
 [RequireGodotRuntime]
 public class EditorAutoEvoRunTests
 {
-    [TestCase(false)]
-    [TestCase(true)]
-    public void PredictionUsesSelectedMapForPopulationEnergyAndMiche(bool usePredictionMap)
+    /// <summary>
+    ///   Verifies that a prediction populates an uninhabited target in the results while leaving its input
+    ///   population unchanged. Population, energy, and miche results use the world map's patch references.
+    /// </summary>
+    [TestCase]
+    public void PredictionUsesWorldMapForPopulationEnergyAndMiche()
     {
         var world = CreateWorld();
         var source = world.Map.CurrentPatch!;
@@ -23,26 +26,16 @@ public class EditorAutoEvoRunTests
         world.Map.AddPatch(target);
         AssertThat(target.GetSpeciesSimulationPopulation(original)).IsEqual(0L);
 
-        PatchMap? predictionMap = null;
-        if (usePredictionMap)
-        {
-            original = (Species)original.Clone();
-            original.BecomePlayerSpecies();
-            predictionMap = CreatePredictionMap(world.Map, original);
-            target = predictionMap.Patches[target.ID];
-        }
-
         var modified = (Species)original.Clone();
         modified.BecomePlayerSpecies();
-        var run = new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, original, modified, target, predictionMap)
+        var run = new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, original, modified, target)
         {
             ApplyPlayerPopulationChangeClamp = false,
         };
         var results = Complete(run);
-        var selectedMap = predictionMap ?? world.Map;
 
-        AssertThat(results.InspectPatchMicheData().Count).IsEqual(selectedMap.Patches.Count);
-        foreach (var patch in selectedMap.Patches.Values)
+        AssertThat(results.InspectPatchMicheData().Count).IsEqual(world.Map.Patches.Count);
+        foreach (var patch in world.Map.Patches.Values)
         {
             AssertThat(results.InspectPatchMicheData().ContainsKey(patch)).IsTrue();
             AssertThat(results.GetPopulationInPatchIfExists(modified, patch, out _)).IsTrue();
@@ -52,22 +45,19 @@ public class EditorAutoEvoRunTests
         AssertThat(results.GetPopulationInPatch(modified, target)).IsGreater(0L);
         AssertThat(results.GetPatchEnergyResults(modified)[target].TotalEnergyGathered).IsGreater(0.0f);
         AssertThat(target.GetSpeciesSimulationPopulation(original)).IsEqual(0L);
-        AssertThat(world.Map.Patches[target.ID].GetSpeciesSimulationPopulation(world.PlayerSpecies)).IsEqual(0L);
-
-        if (usePredictionMap)
-        {
-            foreach (var patch in world.Map.Patches.Values)
-            {
-                AssertThat(results.InspectPatchMicheData().ContainsKey(patch)).IsFalse();
-                AssertThat(results.GetPopulationInPatchIfExists(modified, patch, out _)).IsFalse();
-                AssertThat(results.GetPatchEnergyResults(modified).ContainsKey(patch)).IsFalse();
-            }
-        }
+        AssertThat(target.SpeciesInPatch.ContainsKey(original)).IsFalse();
+        AssertThat(target.SpeciesInPatch.ContainsKey(modified)).IsFalse();
     }
 
+    /// <summary>
+    ///   Verifies that zero player Auto-Evo strength adjusts a surviving prediction back to the world's
+    ///   simulation population rather than its distinct gameplay population. This detects a missing clamp
+    ///   or an incorrect population source and checks that prediction leaves its inputs unchanged.
+    /// </summary>
     [TestCase]
-    public void PopulationClampUsesIsolatedSimulationPopulation()
+    public void PopulationClampUsesWorldSimulationPopulation()
     {
+        const long simulationPopulation = 123;
         var world = CreateWorld();
         world.WorldSettings.Difficulty = new CustomDifficulty
         {
@@ -75,44 +65,39 @@ public class EditorAutoEvoRunTests
             PlayerAutoEvoStrength = 0,
         };
         var source = world.Map.CurrentPatch!;
-        AssertThat(source.UpdateSpeciesSimulationPopulation(world.PlayerSpecies, 123)).IsTrue();
-        AssertThat(source.UpdateSpeciesGameplayPopulation(world.PlayerSpecies, 456)).IsTrue();
-        source.RecordSnapshot(false);
-        var original = (Species)world.PlayerSpecies.Clone();
-        original.BecomePlayerSpecies();
-        var map = CreatePredictionMap(world.Map, original);
-        var copied = map.CurrentPatch!;
-        AssertThat(source.UpdateSpeciesSimulationPopulation(world.PlayerSpecies, 789)).IsTrue();
+        var original = world.PlayerSpecies;
 
-        AssertThat(copied.Biome).IsSame(source.Biome);
-        AssertThat(copied.SpeciesInPatch.ContainsKey(world.PlayerSpecies)).IsFalse();
-        AssertThat(copied.GetSpeciesGameplayPopulation(original)).IsEqual(123L);
-        AssertThat(copied.Adjacent.Count).IsEqual(0);
-        AssertThat(copied.History.Count).IsEqual(0);
-        AssertThat(copied.ID).IsEqual(source.ID);
-        AssertThat(copied.VisibleName).IsEqual(source.VisibleName);
-        foreach (var entry in source.SpeciesInPatch)
-        {
-            if (entry.Key.ID != original.ID)
-                AssertThat(copied.SpeciesInPatch.ContainsKey(entry.Key)).IsTrue();
-        }
+        // Distinct populations expose accidental reads from gameplay state.
+        AssertThat(source.UpdateSpeciesSimulationPopulation(original, simulationPopulation)).IsTrue();
+        AssertThat(source.UpdateSpeciesGameplayPopulation(original, 456)).IsTrue();
 
         var modified = (Species)original.Clone();
         modified.BecomePlayerSpecies();
-        var unclamped = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, original, modified, copied, map)
+        var unclamped = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, original, modified, source)
         {
             ApplyPlayerPopulationChangeClamp = false,
         });
-        AssertThat(unclamped.GetPopulationInPatch(modified, copied)).IsGreater(0L);
+        var unclampedPopulation = unclamped.GetPopulationInPatch(modified, source);
 
-        // Zero player Auto-Evo strength preserves the copied simulation population exactly.
-        var clamped = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, original, modified, copied, map));
-        AssertThat(clamped.GetPopulationInPatch(modified, copied)).IsEqual(123L);
-        AssertThat(source.GetSpeciesSimulationPopulation(world.PlayerSpecies)).IsEqual(789L);
-        AssertThat(source.GetSpeciesGameplayPopulation(world.PlayerSpecies)).IsEqual(456L);
-        AssertThat(copied.GetSpeciesSimulationPopulation(original)).IsEqual(123L);
+        // Extinction bypasses the clamp; an unchanged prediction would also hide a missing clamp.
+        AssertThat(unclampedPopulation).OverrideFailureMessage(
+            "The live fixture must sustain this design to exercise the population clamp").IsGreater(0L);
+        AssertThat(unclampedPopulation).OverrideFailureMessage(
+                "The live prediction already equals the simulation population; choose another population")
+            .IsNotEqual(simulationPopulation);
+
+        // Zero player Auto-Evo strength preserves the world simulation population exactly.
+        var clamped = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, original, modified, source));
+        AssertThat(clamped.GetPopulationInPatch(modified, source)).IsEqual(simulationPopulation);
+        AssertThat(source.GetSpeciesSimulationPopulation(original)).IsEqual(simulationPopulation);
+        AssertThat(source.GetSpeciesGameplayPopulation(original)).IsEqual(456L);
+        AssertThat(source.SpeciesInPatch.ContainsKey(modified)).IsFalse();
     }
 
+    /// <summary>
+    ///   Verifies that predicting a modified player design preserves an NPC's chemoreceptor target and the
+    ///   world map's species and populations. Prediction must not apply replacements to the live world.
+    /// </summary>
     [TestCase]
     public void PredictionPreservesSharedNpcChemoreceptorTarget()
     {
@@ -142,24 +127,22 @@ public class EditorAutoEvoRunTests
         AssertThat(patch.AddSpecies(predator, 100)).IsTrue();
         var playerPopulation = patch.GetSpeciesSimulationPopulation(player);
         var predatorPopulation = patch.GetSpeciesSimulationPopulation(predator);
-        var historical = player.Clone(true, true);
-        historical.BecomePlayerSpecies();
-        var map = CreatePredictionMap(world.Map, historical);
-        var copiedPatch = map.CurrentPatch!;
-        AssertThat(copiedPatch.SpeciesInPatch.ContainsKey(predator)).IsTrue();
-        var predicted = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache,
-            historical, historical, copiedPatch, map));
+        var speciesCount = patch.SpeciesInPatch.Count;
+        var modified = player.Clone(true, true);
+        modified.BecomePlayerSpecies();
 
-        AssertThat(copiedPatch.SpeciesInPatch.ContainsKey(player)).IsFalse();
-        AssertThat(copiedPatch.SpeciesInPatch.ContainsKey(historical)).IsTrue();
-        AssertThat(predicted.InspectPatchMicheData().ContainsKey(copiedPatch)).IsTrue();
-        AssertThat(predicted.GetPopulationInPatchIfExists(historical, copiedPatch, out _)).IsTrue();
-        AssertThat(predicted.GetPopulationInPatchIfExists(predator, copiedPatch, out _)).IsTrue();
+        var predicted = Complete(new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, player, modified, patch));
+
+        AssertThat(predicted.InspectPatchMicheData().ContainsKey(patch)).IsTrue();
+        AssertThat(predicted.GetPopulationInPatchIfExists(modified, patch, out _)).IsTrue();
+        AssertThat(predicted.GetPopulationInPatchIfExists(predator, patch, out _)).IsTrue();
         AssertThat(((ChemoreceptorUpgrades)receptor.Upgrades!.CustomUpgradeData!).TargetSpecies).IsSame(player);
+        AssertThat(patch.SpeciesInPatch.Count).IsEqual(speciesCount);
+        AssertThat(patch.SpeciesInPatch.ContainsKey(player)).IsTrue();
+        AssertThat(patch.SpeciesInPatch.ContainsKey(predator)).IsTrue();
+        AssertThat(patch.SpeciesInPatch.ContainsKey(modified)).IsFalse();
         AssertThat(patch.GetSpeciesSimulationPopulation(player)).IsEqual(playerPopulation);
         AssertThat(patch.GetSpeciesSimulationPopulation(predator)).IsEqual(predatorPopulation);
-        AssertThat(copiedPatch.GetSpeciesSimulationPopulation(historical)).IsEqual(playerPopulation);
-        AssertThat(copiedPatch.GetSpeciesSimulationPopulation(predator)).IsEqual(predatorPopulation);
     }
 
     private static GameWorld CreateWorld()
@@ -169,16 +152,6 @@ public class EditorAutoEvoRunTests
             Seed = 3171,
             WorldSize = WorldGenerationSettings.WorldSizeEnum.Small,
         });
-    }
-
-    private static PatchMap CreatePredictionMap(PatchMap source, Species original)
-    {
-        var result = new PatchMap();
-        foreach (var patch in source.Patches.Values)
-            result.AddPatch(patch.CreatePredictionCopy(original));
-
-        result.CurrentPatch = result.Patches[source.CurrentPatch!.ID];
-        return result;
     }
 
     private static RunResults Complete(EditorAutoEvoRun run)
