@@ -23,10 +23,12 @@ material = SubResource("StandardMaterial3D_1yjux")
 size = Vector2(0.865, 0.2)
 
 [sub_resource type="MultiMesh" id="MultiMesh_1yjux"]
+resource_local_to_scene = true
 transform_format = 1
 mesh = SubResource("PlaneMesh_1yjux")
 
 [sub_resource type="MultiMesh" id="MultiMesh_c1px2"]
+resource_local_to_scene = true
 transform_format = 1
 mesh = SubResource("PlaneMesh_1yjux")
 
