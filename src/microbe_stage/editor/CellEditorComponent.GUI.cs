@@ -83,8 +83,7 @@ public partial class CellEditorComponent
     {
         base.OnTranslationsChanged();
 
-        UpdateAutoEvoPredictionTranslations();
-        UpdateAutoEvoPredictionDetailsText();
+        autoEvoPredictionPanel.OnTranslationsChanged();
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
@@ -611,7 +610,7 @@ public partial class CellEditorComponent
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        totalEnergyLabel.Value = float.NaN;
+        autoEvoPredictionPanel.ShowWaiting();
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 
