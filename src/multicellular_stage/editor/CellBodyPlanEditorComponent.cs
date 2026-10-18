@@ -994,6 +994,14 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnFinishEditing();
     }
 
+    public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
+    {
+        base.SetEditorWorldTabSpecificObjectVisibility(shown);
+
+        cellLayoutBorderDisplay.Visible = shown;
+        hoveringCellBorderDisplay.Visible = shown;
+    }
+
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
