@@ -397,6 +397,18 @@ public static class MulticellularLayoutHelpers
         }
     }
 
+    /// <summary>
+    ///   Calculates the origin shift that would happen to the cell with the given organelles upon exiting the editor.
+    /// </summary>
+    public static Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
+    {
+        // Origin shift here. This is done because only after exiting the editor are things layout shifted, which means
+        // that we need to pre-emptively apply a layout shift here so that the final results match what is shown here.
+        var center = MicrobeInternalCalculations.CalculateCenterOfMass(localOrganelles);
+
+        return Hex.CartesianToAxial(center);
+    }
+
     private static bool FindPositionMultiplierWithNoOverlaps(ref int positionMultiplier, bool firstRun,
         CellLayout<CellTemplate> targetGameplayLayout, IndividualHexLayout<CellTemplate> targetEditorLayout,
         HexLayout<HexWithData<CellTemplate>> modifiableSource, List<Hex> hexTemporaryMemory,

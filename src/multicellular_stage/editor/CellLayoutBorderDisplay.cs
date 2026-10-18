@@ -27,24 +27,22 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
             { Hex.HexSide.TopLeft, Basis.Identity.Rotated(Vector3.Up, MathF.PI * 5 / 3) },
         };
 
+    private bool performedOriginShiftLastTime;
+
     public void HideBorders()
     {
         Multimesh.InstanceCount = 0;
     }
 
-    public void ResetCellTypeCache()
+    public void DisplayCellLayoutBorders(IReadOnlyList<HexWithData<CellTemplate>> layout, bool performOriginShift,
+        Func<CellType, CellType>? getUpdatedCellType = null)
     {
-        foreach (var pair in calculatedTransforms)
+        if (performedOriginShiftLastTime != performOriginShift)
         {
-            pair.Value.Clear();
-            workMemory.Push(pair.Value);
+            ClearCellTypeCache();
         }
+        performedOriginShiftLastTime = performOriginShift;
 
-        calculatedTransforms.Clear();
-    }
-
-    public void DisplayCellLayoutBorders(IReadOnlyList<HexWithData<CellTemplate>> layout)
-    {
         var mesh = Multimesh;
         int instanceCount = 0;
 
@@ -53,9 +51,12 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         {
             var cellType = cell.Data!.ModifiableCellType;
 
+            if (getUpdatedCellType != null)
+                cellType = getUpdatedCellType(cellType);
+
             if (!calculatedTransforms.ContainsKey(cellType))
             {
-                var transforms = CalculateBorderObjectTransforms(cellType);
+                var transforms = CalculateBorderObjectTransforms(cellType, performOriginShift);
                 calculatedTransforms.Add(cellType, transforms);
                 instanceCount += transforms.Count;
             }
@@ -70,6 +71,9 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         foreach (var cell in layout)
         {
             var cellType = cell.Data!.ModifiableCellType;
+
+            if (getUpdatedCellType != null)
+                cellType = getUpdatedCellType(cellType);
 
             var transforms = calculatedTransforms[cellType];
 
@@ -88,13 +92,17 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
     ///   Display a single cell's borders. Removes all other borders. Use this on a separate object to display a
     ///   hovering cell.
     /// </summary>
-    public void DisplaySingleCellBorder(HexWithData<CellTemplate> cell, Hex position)
+    public void DisplayHoveringCellBorder(HexWithData<CellTemplate> cell, Hex positionOverride, bool performOriginShift,
+        Func<CellType, CellType>? getUpdatedCellType = null)
     {
         var cellType = cell.Data!.ModifiableCellType;
 
+        if (getUpdatedCellType != null)
+            cellType = getUpdatedCellType(cellType);
+
         if (!calculatedTransforms.TryGetValue(cellType, out var transforms))
         {
-            transforms = CalculateBorderObjectTransforms(cellType);
+            transforms = CalculateBorderObjectTransforms(cellType, performOriginShift);
             calculatedTransforms.Add(cellType, transforms);
         }
 
@@ -105,15 +113,21 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         foreach (var transform in transforms)
         {
             var cellTransform = new Transform3D(basisRotatedToHexSide[OrientationToHexSide(cell.Orientation)],
-                Hex.AxialToCartesian(position));
+                Hex.AxialToCartesian(positionOverride));
 
             mesh.SetInstanceTransform(i, cellTransform * transform);
             ++i;
         }
     }
 
-    private List<Transform3D> CalculateBorderObjectTransforms(CellType cell)
+    private List<Transform3D> CalculateBorderObjectTransforms(CellType cell, bool performOriginShift)
     {
+        if (performedOriginShiftLastTime != performOriginShift)
+        {
+            ClearCellTypeCache();
+        }
+        performedOriginShiftLastTime = performOriginShift;
+
         List<Transform3D> list;
 
         if (workMemory.Count > 0)
@@ -128,25 +142,29 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
 
         borderDetectionWorkMemory.Clear();
 
+        Hex originShift = performOriginShift ?
+            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(cell.ModifiableOrganelles) : new Hex(0, 0);
+
         foreach (var organelle in cell.ModifiableOrganelles)
         {
             foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
             {
-                var position = organelleHex + organelle.Position;
+                var position = organelleHex + organelle.Position - originShift;
                 borderDetectionWorkMemory.Add(position);
             }
         }
 
         foreach (var hex in borderDetectionWorkMemory)
         {
+            var cartesianHexPos = Hex.AxialToCartesian(hex);
+
             foreach (var pair in Hex.HexNeighbourOffset)
             {
                 if (!borderDetectionWorkMemory.Contains(hex + pair.Value))
                 {
                     var dir3D = Hex.AxialToCartesian(pair.Value);
 
-                    list.Add(
-                        new Transform3D(basisRotatedToHexSide[pair.Key], Hex.AxialToCartesian(hex) + dir3D * 0.5f));
+                    list.Add(new Transform3D(basisRotatedToHexSide[pair.Key], cartesianHexPos + dir3D * 0.5f));
                 }
             }
         }
@@ -157,5 +175,16 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
     private Hex.HexSide OrientationToHexSide(int orientation)
     {
         return (Hex.HexSide)((-orientation).PositiveModulo(6) + 1);
+    }
+
+    private void ClearCellTypeCache()
+    {
+        foreach (var pair in calculatedTransforms)
+        {
+            pair.Value.Clear();
+            workMemory.Push(pair.Value);
+        }
+
+        calculatedTransforms.Clear();
     }
 }
