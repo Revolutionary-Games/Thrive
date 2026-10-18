@@ -1,6 +1,6 @@
-﻿using Godot;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Uses plane primitives to display cell borders in the multicellular layout editor.
@@ -41,6 +41,7 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         {
             ClearCellTypeCache();
         }
+
         performedOriginShiftLastTime = performOriginShift;
 
         var mesh = Multimesh;
@@ -96,6 +97,7 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         {
             ClearCellTypeCache();
         }
+
         performedOriginShiftLastTime = performOriginShift;
 
         var cellType = cell.Data!.ModifiableCellType;
@@ -125,12 +127,6 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
 
     private List<Transform3D> CalculateBorderObjectTransforms(CellType cell, bool performOriginShift)
     {
-        if (performedOriginShiftLastTime != performOriginShift)
-        {
-            ClearCellTypeCache();
-        }
-        performedOriginShiftLastTime = performOriginShift;
-
         List<Transform3D> list;
 
         if (workMemory.Count > 0)

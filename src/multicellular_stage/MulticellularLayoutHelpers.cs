@@ -402,8 +402,6 @@ public static class MulticellularLayoutHelpers
     /// </summary>
     public static Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
     {
-        // Origin shift here. This is done because only after exiting the editor are things layout shifted, which means
-        // that we need to pre-emptively apply a layout shift here so that the final results match what is shown here.
         var center = MicrobeInternalCalculations.CalculateCenterOfMass(localOrganelles);
 
         return Hex.CartesianToAxial(center);
