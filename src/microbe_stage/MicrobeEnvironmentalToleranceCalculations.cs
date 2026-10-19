@@ -327,7 +327,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (problemNumbers.OsmoregulationModifier > 1)
         {
             toleranceWarningsPanel.OsmoregulationCostContainer.Visible = true;
-            toleranceWarningsPanel.OsmoregulationCostValue.Text =
+            toleranceWarningsPanel.OsmoregulationCostValue.Text = "+" +
                 Localization.Translate("PERCENTAGE_VALUE")
                     .FormatSafe($"{(problemNumbers.OsmoregulationModifier - 1) * 100:0.#}");
         }
@@ -339,7 +339,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (problemNumbers.ProcessSpeedModifier < 1)
         {
             toleranceWarningsPanel.BioprocessSpeedContainer.Visible = true;
-            toleranceWarningsPanel.BioprocessSpeedValue.Text =
+            toleranceWarningsPanel.BioprocessSpeedValue.Text = "-" +
                 Localization.Translate("PERCENTAGE_VALUE")
                     .FormatSafe($"{-Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1)}");
         }
@@ -351,7 +351,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (problemNumbers.HealthModifier < 1)
         {
             toleranceWarningsPanel.HealthContainer.Visible = true;
-            toleranceWarningsPanel.HealthValue.Text =
+            toleranceWarningsPanel.HealthValue.Text = "-" +
                 Localization.Translate("PERCENTAGE_VALUE")
                     .FormatSafe($"{-Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)}");
         }

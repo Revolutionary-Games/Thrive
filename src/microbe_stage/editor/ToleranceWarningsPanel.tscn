@@ -67,7 +67,6 @@ custom_minimum_size = Vector2(0, 24)
 custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
-tooltip_text = "OSMOREGULATION_COST"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost" unique_id=963240785]
 layout_mode = 2
@@ -90,7 +89,6 @@ custom_minimum_size = Vector2(0, 24)
 custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
-tooltip_text = "PROCESS_SPEED_MODIFIER"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed" unique_id=1997930819]
 layout_mode = 2
@@ -113,7 +111,6 @@ custom_minimum_size = Vector2(0, 24)
 custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
-tooltip_text = "HEALTH"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/Health" unique_id=1199055294]
 layout_mode = 2
@@ -138,7 +135,6 @@ size_flags_stretch_ratio = 3.0
 
 [node name="Temperature" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=427368320]
 custom_minimum_size = Vector2(0, 24)
-custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
 
@@ -157,7 +153,6 @@ autowrap_mode = 2
 
 [node name="Pressure" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=1459831214]
 custom_minimum_size = Vector2(0, 24)
-custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
 
@@ -176,7 +171,6 @@ autowrap_mode = 2
 
 [node name="Oxygen" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=1070997017]
 custom_minimum_size = Vector2(0, 24)
-custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
 
@@ -195,7 +189,6 @@ autowrap_mode = 2
 
 [node name="UV" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=847803461]
 custom_minimum_size = Vector2(0, 24)
-custom_maximum_size = Vector2(-1, 24)
 propagate_maximum_size = false
 layout_mode = 2
 

@@ -47,5 +47,5 @@ public partial class ToleranceWarningsPanel : PanelContainer
 
     [Export]
     public HBoxContainer UVConditionContainer = null!;
-#pragma warning enable CA2213
+#pragma warning restore CA2213
 }

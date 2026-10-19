@@ -472,13 +472,15 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=246108099]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 161.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -281.0
+offset_top = 75.0
+offset_right = 345.0
+offset_bottom = 230.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 380
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 313
+mouse_filter = 2
 
 [node name="ToleranceWarningsPanel" parent="MarginContainer" unique_id=749578005 instance=ExtResource("6_cmivo")]
 layout_mode = 2

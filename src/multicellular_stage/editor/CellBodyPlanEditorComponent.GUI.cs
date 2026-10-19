@@ -334,6 +334,12 @@ public partial class CellBodyPlanEditorComponent
             out bool areToleranceWarnings);
 
         toleranceWarningsPanel.Visible = areToleranceWarnings;
+
+        if (areToleranceWarnings)
+        {
+            // Need to make sure the player is not locked out of the tab to address these
+            tolerancesTabButton.Visible = true;
+        }
     }
 
     private void OnTolerancesEditorChangedData()
