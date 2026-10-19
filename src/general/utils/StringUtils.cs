@@ -146,8 +146,12 @@ public static class StringUtils
             var lineEnd = newlineIndex < 0 ? text.Length : newlineIndex;
             var contentEnd = lineEnd;
 
-            if (newlineIndex >= 0 && contentEnd > lineStart && text[contentEnd - 1] == '\r')
-                --contentEnd;
+            if (newlineIndex >= 0)
+            {
+                // Whitespace before an existing line break must not create another line break
+                while (contentEnd > lineStart && char.IsWhiteSpace(text[contentEnd - 1]))
+                    --contentEnd;
+            }
 
             var remainingStart = lineStart;
 
@@ -187,8 +191,11 @@ public static class StringUtils
             var lineEnd = newlineIndex < 0 ? text.Length : newlineIndex;
             var contentEnd = lineEnd;
 
-            if (newlineIndex >= 0 && contentEnd > lineStart && text[contentEnd - 1] == '\r')
-                --contentEnd;
+            if (newlineIndex >= 0)
+            {
+                while (contentEnd > lineStart && char.IsWhiteSpace(text[contentEnd - 1]))
+                    --contentEnd;
+            }
 
             var remainingStart = lineStart;
 

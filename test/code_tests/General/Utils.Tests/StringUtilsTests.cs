@@ -62,6 +62,13 @@ public class StringUtilsTests
     }
 
     [Fact]
+    public static void StringUtils_WrapTextToApproximateWidthDoesNotWrapTrailingWhitespaceBeforeNewline()
+    {
+        Assert.Equal("123456789 \nabc", "123456789 \nabc".WrapTextToApproximateWidth(10));
+        Assert.Equal("123456789  \nabc", "123456789  \nabc".WrapTextToApproximateWidth(10));
+    }
+
+    [Fact]
     public static void StringUtils_WrapTextToApproximateWidthPreservesWindowsLineEndings()
     {
         Assert.Equal("alpha beta\ngamma\r\nsecond\nline", "alpha beta gamma\r\nsecond line"
