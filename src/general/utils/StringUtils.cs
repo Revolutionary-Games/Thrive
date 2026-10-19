@@ -830,11 +830,17 @@ public static class StringUtils
         if (whitespaceBefore < 0 && whitespaceAfter < 0)
             return false;
 
-        var splitAt = whitespaceBefore < 0 ?
-            whitespaceAfter :
-            whitespaceAfter < 0 || target - whitespaceBefore <= whitespaceAfter - target ?
+        int splitAt;
+        if (whitespaceBefore < 0)
+        {
+            splitAt = whitespaceAfter;
+        }
+        else
+        {
+            splitAt = whitespaceAfter < 0 || target - whitespaceBefore <= whitespaceAfter - target ?
                 whitespaceBefore :
                 whitespaceAfter;
+        }
 
         cutLineEnd = splitAt;
 
