@@ -670,6 +670,11 @@ public partial class CellBodyPlanEditorComponent :
         else if (layoutPreviewActive && UsesManualPlayerLayout)
         {
             DisplayManualLayoutAdjacencyErrors();
+
+            if (MovingPlacedHex != null && !Editor.ShowHover)
+            {
+                hoveringCellBorderDisplay.HideBorders();
+            }
         }
         else if (forceUpdateCellGraphics)
         {
