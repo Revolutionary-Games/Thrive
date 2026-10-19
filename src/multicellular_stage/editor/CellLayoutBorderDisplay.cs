@@ -32,6 +32,10 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
     public void HideBorders()
     {
         Multimesh.InstanceCount = 0;
+
+        // This isn't absolutely necessary, but not clearing the cache here would allow borderTransformCache to grow
+        // indefinitely
+        ClearCellTypeCache();
     }
 
     public void DisplayCellLayoutBorders(IReadOnlyList<HexWithData<CellTemplate>> layout, bool performOriginShift,
@@ -39,6 +43,7 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
     {
         if (performedOriginShiftLastTime != performOriginShift)
         {
+            // CellType's hash doesn't include layout's option to use origin shift, so the cache needs to be cleared
             ClearCellTypeCache();
         }
 
@@ -95,6 +100,7 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
     {
         if (performedOriginShiftLastTime != performOriginShift)
         {
+            // CellType's hash doesn't include layout's option to use origin shift, so the cache needs to be cleared
             ClearCellTypeCache();
         }
 
