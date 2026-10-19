@@ -148,7 +148,8 @@ public partial class CellLayoutBorderDisplay : MultiMeshInstance3D
         borderDetectionWorkMemory.Clear();
 
         Hex originShift = performOriginShift ?
-            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(cell.ModifiableOrganelles) : new Hex(0, 0);
+            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(cell.ModifiableOrganelles) :
+            new Hex(0, 0);
 
         foreach (var organelle in cell.ModifiableOrganelles)
         {

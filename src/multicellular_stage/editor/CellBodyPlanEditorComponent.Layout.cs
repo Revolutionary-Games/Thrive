@@ -566,7 +566,8 @@ public partial class CellBodyPlanEditorComponent
         // need the shift because it is applied when the species leaves the editor.
         // So we only conditionally apply the origin shift.
         Hex originShift = performOriginShift ?
-            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(type.ModifiableOrganelles) : new Hex(0, 0);
+            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(type.ModifiableOrganelles) :
+            new Hex(0, 0);
 
         positions.Clear();
 
