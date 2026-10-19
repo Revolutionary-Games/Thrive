@@ -47,14 +47,10 @@ public class CellTypeFacadeHelper
 
             if (cellTypeActionData.Delete)
             {
-                // We don't need to remove from the added cell types if the cell type has never been seen before, so
-                // this is purely a deletion of an original type
-                if (activeCellTypes.ContainsKey(cellTypeActionData.CellType))
-                {
-                    var cellTypeToRemove = GetOrCreateCellType(cellTypeActionData.CellType);
-                    if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
-                        throw new InvalidOperationException("Cell type not found for delete");
-                }
+                // Cell enumeration can create an active facade even when it was never added to the cell type list
+                var removedCount = RemoveAddedCellType(cellTypeActionData.CellType);
+                if (removedCount > 1)
+                    throw new InvalidOperationException("Cell type was added multiple times before delete");
             }
             else
             {
@@ -77,14 +73,9 @@ public class CellTypeFacadeHelper
                         removedCellTypes.Add(specialCellTypeChangeActionData.OldCellType);
                     }
 
-                    if (activeCellTypes.ContainsKey(specialCellTypeChangeActionData.OldCellType))
-                    {
-                        var cellTypeToRemove = GetOrCreateCellType(specialCellTypeChangeActionData.OldCellType);
-                        if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
-                        {
-                            GD.PrintErr("Spore cell type not found for delete");
-                        }
-                    }
+                    var removedCount = RemoveAddedCellType(specialCellTypeChangeActionData.OldCellType);
+                    if (removedCount > 1)
+                        GD.PrintErr("Cell type was added multiple times before delete");
                 }
 
                 if (specialCellTypeChangeActionData.NewCellType != null)
@@ -157,6 +148,14 @@ public class CellTypeFacadeHelper
 
         activeCellTypes.Add(typeDefinition, existingType);
         return existingType;
+    }
+
+    private int RemoveAddedCellType(IReadOnlyCellTypeDefinition cellType)
+    {
+        if (!activeCellTypes.TryGetValue(cellType, out var cellTypeToRemove))
+            return 0;
+
+        return addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove));
     }
 
     public sealed class CellTypeEnumerator : IEnumerator<IReadOnlyCellTypeDefinition>
