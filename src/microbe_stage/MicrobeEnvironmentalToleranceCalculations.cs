@@ -341,7 +341,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             toleranceWarningsPanel.BioprocessSpeedContainer.Visible = true;
             toleranceWarningsPanel.BioprocessSpeedValue.Text = "-" +
                 Localization.Translate("PERCENTAGE_VALUE")
-                    .FormatSafe($"{-Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1)}");
+                    .FormatSafe($"{Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1)}");
         }
         else
         {
@@ -353,7 +353,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             toleranceWarningsPanel.HealthContainer.Visible = true;
             toleranceWarningsPanel.HealthValue.Text = "-" +
                 Localization.Translate("PERCENTAGE_VALUE")
-                    .FormatSafe($"{-Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)}");
+                    .FormatSafe($"{Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)}");
         }
         else
         {
