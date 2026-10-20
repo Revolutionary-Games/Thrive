@@ -101,25 +101,13 @@ public partial class CellEditorComponent :
     private CollapsibleList membraneTypeSelection = null!;
 
     [Export]
-    private CellStatsIndicator totalEnergyLabel = null!;
-
-    [Export]
-    private Label autoEvoPredictionFailedLabel = null!;
-
-    [Export]
-    private Label bestPatchLabel = null!;
-
-    [Export]
-    private Label worstPatchLabel = null!;
-
-    [Export]
     private Control organelleSuggestionLoadingIndicator = null!;
 
     [Export]
     private Label organelleSuggestionLabel = null!;
 
     [Export]
-    private Control autoEvoPredictionPanel = null!;
+    private EditorAutoEvoPredictionPanel autoEvoPredictionPanel = null!;
 
     [Export]
     private Slider rigiditySlider = null!;
@@ -152,16 +140,7 @@ public partial class CellEditorComponent :
     private CheckBox showGrowthOrderCoordinates = null!;
 
     [Export]
-    private PopupMicheViewer micheViewer = null!;
-
-    [Export]
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
-
-    [Export]
-    private CustomWindow autoEvoPredictionExplanationPopup = null!;
-
-    [Export]
-    private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
     [Export]
     private Control rightPanel = null!;
@@ -200,19 +179,6 @@ public partial class CellEditorComponent :
     private List<TweakedProcess> tempAllProcesses = new();
     private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
-    private string? bestPatchName;
-
-    // This and worstPatchPopulation used to be displayed but are now kept for potential future use
-    private long bestPatchPopulation;
-
-    private float bestPatchEnergyGathered;
-
-    private string? worstPatchName;
-
-    private long worstPatchPopulation;
-
-    private float worstPatchEnergyGathered;
-
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> allPartSelectionElements = new();
@@ -223,14 +189,10 @@ public partial class CellEditorComponent :
 
     private bool autoEvoPredictionDirty = true;
     private double autoEvoPredictionStartTimer = 5;
-    private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
-    private LocalizedStringBuilder? predictionDetailsText;
     private BehaviourDictionary? overwriteBehaviourForCalculations;
 
     private string? pendingWholeOrganismMembraneChangeTo;
-
-    private Miche? predictionMiches;
 
     private OrganelleSuggestionCalculation? inProgressSuggestion;
     private bool suggestionDirty;
@@ -551,6 +513,9 @@ public partial class CellEditorComponent :
     public override void _Ready()
     {
         base._Ready();
+
+        autoEvoPredictionPanel.ConfigureHost(this, finishOrNextButton,
+            () => (Editor.CurrentPatch, Editor.CurrentGame.GameWorld.WorldSettings));
 
         // This works only after this is attached to the scene tree
         // Hidden in the Godot editor to make selecting other things easier
@@ -3284,216 +3249,15 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void UpdateAutoEvoPredictionTranslations()
+    private void OnAutoEvoPredictionDetailsOpened()
     {
-        if (autoEvoPredictionRunSuccessful == false)
-        {
-            totalEnergyLabel.Value = float.NaN;
-            autoEvoPredictionFailedLabel.Show();
-        }
-        else
-        {
-            autoEvoPredictionFailedLabel.Hide();
-        }
-
-        var energyFormat = Localization.Translate("ENERGY_IN_PATCH_SHORT");
-
-        if (!string.IsNullOrEmpty(bestPatchName))
-        {
-            var formatted = StringUtils.ThreeDigitFormat(bestPatchEnergyGathered);
-
-            bestPatchLabel.Text =
-                energyFormat.FormatSafe(Localization.Translate(bestPatchName), formatted);
-        }
-        else
-        {
-            bestPatchLabel.Text = Localization.Translate("N_A");
-        }
-
-        if (!string.IsNullOrEmpty(worstPatchName))
-        {
-            var formatted = StringUtils.ThreeDigitFormat(worstPatchEnergyGathered);
-
-            worstPatchLabel.Text =
-                energyFormat.FormatSafe(Localization.Translate(worstPatchName), formatted);
-        }
-        else
-        {
-            worstPatchLabel.Text = Localization.Translate("N_A");
-        }
-    }
-
-    private void DummyKeepTranslation()
-    {
-        // This keeps this translation string existing if we ever still want to use worst and best population numbers
-        Localization.Translate("POPULATION_IN_PATCH_SHORT");
-    }
-
-    private void OpenAutoEvoPredictionDetails()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        UpdateAutoEvoPredictionDetailsText();
-
-        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
-
         TutorialState?.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
-    }
-
-    private void CloseAutoEvoPrediction()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        autoEvoPredictionExplanationPopup.Hide();
     }
 
     private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
     {
-        if (!run.AutoEvoRun.WasSuccessful)
-        {
-            GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
-            autoEvoPredictionRunSuccessful = false;
-            UpdateAutoEvoPredictionTranslations();
-            return;
-        }
-
-        var results = run.AutoEvoRun.Results ??
-            throw new Exception("Auto evo prediction has no results even though it succeeded");
-
-        // Total population
-        var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
-
-        autoEvoPredictionRunSuccessful = true;
-
-        // Gather energy details
-        float totalEnergy = 0;
-        Patch? bestPatch = null;
-        float bestPatchEnergy = 0;
-        Patch? worstPatch = null;
-        float worstPatchEnergy = 0;
-
-        foreach (var entry in results.GetPatchEnergyResults(run.PlayerSpeciesNew))
-        {
-            // Best
-            if (bestPatch == null || bestPatchEnergy < entry.Value.TotalEnergyGathered)
-            {
-                bestPatchEnergy = entry.Value.TotalEnergyGathered;
-                bestPatch = entry.Key;
-            }
-
-            if (worstPatch == null || worstPatchEnergy > entry.Value.TotalEnergyGathered)
-            {
-                worstPatchEnergy = entry.Value.TotalEnergyGathered;
-                worstPatch = entry.Key;
-            }
-
-            totalEnergy += entry.Value.TotalEnergyGathered;
-        }
-
-        // Set the initial value to compare against the original species
-        totalEnergyLabel.ResetInitialValue();
-
-        if (PreviousPlayerGatheredEnergy != null)
-        {
-            totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
-            totalEnergyLabel.TooltipText =
-                new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
-        }
-        else
-        {
-            GD.PrintErr("Previously gathered energy is unknown, can't compare them (this will happen with " +
-                "older saves)");
-        }
-
-        var formatted = StringUtils.ThreeDigitFormat(totalEnergy);
-
-        totalEnergyLabel.SetMultipartValue($"{formatted} ({newPopulation} {Constants.MICROBE_POPULATION_SUFFIX})",
-            totalEnergy);
-
-        // Set the best and worst patch displays
-        worstPatchName = worstPatch?.Name.ToString();
-        worstPatchEnergyGathered = worstPatchEnergy;
-
-        if (worstPatch != null)
-        {
-            // For some reason in rare cases the population numbers cannot be found, using FirstOrDefault should ensure
-            // here that missing population numbers get assigned 0
-            worstPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew)
-                .FirstOrDefault(p => p.Key == worstPatch).Value;
-        }
-
-        bestPatchName = bestPatch?.Name.ToString();
-        bestPatchEnergyGathered = bestPatchEnergy;
-
-        if (bestPatch != null)
-        {
-            bestPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew)
-                .FirstOrDefault(p => p.Key == bestPatch).Value;
-        }
-
-        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
-            run.PlayerSpeciesOriginal.FormattedNameBbCode);
-
-        UpdateAutoEvoPredictionTranslations();
-
-        if (autoEvoPredictionPanel.Visible)
-        {
-            UpdateAutoEvoPredictionDetailsText();
-        }
-
-        predictionMiches = results.GetModifiableMicheForPatch(Editor.CurrentPatch);
-    }
-
-    private void CreateAutoEvoPredictionDetailsText(
-        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
-    {
-        predictionDetailsText = new LocalizedStringBuilder(300);
-
-        double Round(float value)
-        {
-            if (value > 0.0005f)
-                return Math.Round(value, 3);
-
-            // Small values can get tiny (and still be different from getting 0 energy due to fitness), so
-            // this is here for that reason
-            return Math.Round(value, 8);
-        }
-
-        // This loop shows all the patches the player species is in. Could perhaps just show the current one
-        foreach (var energyResult in energyResults)
-        {
-            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
-                energyResult.Key.Name, playerSpeciesName));
-            predictionDetailsText.Append('\n');
-
-            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
-                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
-                $"{energyResult.Value.UnadjustedPopulation} {Constants.MICROBE_POPULATION_SUFFIX}"));
-
-            predictionDetailsText.Append('\n');
-            predictionDetailsText.Append('\n');
-
-            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
-            predictionDetailsText.Append('\n');
-
-            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
-            {
-                var data = nicheInfo.Value;
-                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
-                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
-                    Round(data.TotalAvailableEnergy),
-                    Round(data.TotalFitness)));
-                predictionDetailsText.Append('\n');
-            }
-
-            predictionDetailsText.Append('\n');
-        }
-    }
-
-    private void UpdateAutoEvoPredictionDetailsText()
-    {
-        autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText != null ?
-            predictionDetailsText.ToString() :
-            Localization.Translate("NO_DATA_TO_SHOW");
+        autoEvoPredictionPanel.DisplayRun(run.AutoEvoRun, run.PlayerSpeciesOriginal, run.PlayerSpeciesNew,
+            PreviousPlayerGatheredEnergy, Editor.CurrentPatch);
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)
@@ -3508,21 +3272,6 @@ public partial class CellEditorComponent :
 
         var organelle = GetOrganelleDefinition(ActiveActionName);
         componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
-    }
-
-    private void OnMicheViewRequested()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (predictionMiches == null)
-        {
-            GD.PrintErr("Missing miches data, can't show the popup");
-            return;
-        }
-
-        micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
-
-        autoEvoPredictionExplanationPopup.Hide();
     }
 
     private bool IsUninitializedAndIsMulticellular()
