@@ -83,7 +83,9 @@ public partial class CellEditorComponent
     {
         base.OnTranslationsChanged();
 
-        autoEvoPredictionPanel.OnTranslationsChanged();
+        // The multicellular cell buffer is initialised only after the player selects a type.
+        if (IsUninitializedAndIsMulticellular())
+            return;
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();

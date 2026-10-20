@@ -533,8 +533,8 @@ toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/Editi
 toleranceWarningContainer = NodePath("ToleranceWarnings")
 partsSelectionContainer = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection")
 membraneTypeSelection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
-organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
-organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
+organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/PanelLayout/Body/ContentMargin/BodyContent/Suggestions/SuggestionContent/SuggestionLoading")
+organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/PanelLayout/Body/ContentMargin/BodyContent/Suggestions/SuggestionContent/SuggestionValue")
 autoEvoPredictionPanel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
 rigiditySlider = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 membraneColorPicker = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
@@ -991,7 +991,7 @@ processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
 
-[node name="AutoEvoInfoPanel" parent="RightPanel/VBoxContainer" unique_id=1135255199 instance=ExtResource("prediction_panel")]
+[node name="AutoEvoInfoPanel" parent="RightPanel/VBoxContainer" instance=ExtResource("prediction_panel")]
 layout_mode = 2
 
 [node name="EditorComponentBottomLeftButtons" parent="." unique_id=2131992479 instance=ExtResource("3")]
@@ -1187,6 +1187,8 @@ libraries/ = SubResource("AnimationLibrary_o1pli")
 [connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
+[connection signal="DetailsOpened" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnAutoEvoPredictionDetailsOpened"]
+[connection signal="InvalidAction" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnInvalidAction"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
@@ -1209,4 +1211,3 @@ libraries/ = SubResource("AnimationLibrary_o1pli")
 
 [editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
 [editable path="CompleteEndosymbiosisWarning"]
-[connection signal="DetailsOpened" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnAutoEvoPredictionDetailsOpened"]

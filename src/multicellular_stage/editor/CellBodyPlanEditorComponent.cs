@@ -163,6 +163,9 @@ public partial class CellBodyPlanEditorComponent :
     private PackedScene billboardScene = null!;
 
     [Export]
+    private EditorAutoEvoPredictionPanel autoEvoPredictionPanel = null!;
+
+    [Export]
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
@@ -437,6 +440,8 @@ public partial class CellBodyPlanEditorComponent :
     public override void _Ready()
     {
         base._Ready();
+
+        PredictionPanel.ConfigureHost(finishOrNextButton, false, GetPredictionInputState);
 
         growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
@@ -2473,6 +2478,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnGrowthOrderChanged()
     {
+        Editor.MarkPredictionDirty();
         RefreshFullLayoutGrowthOrderIndices();
         RecalculateWrongGrowthOrderCells();
 

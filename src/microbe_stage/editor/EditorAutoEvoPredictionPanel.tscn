@@ -12,37 +12,38 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="28_qclxk"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
-[ext_resource type="Script" uid="uid://bd26ek4qharap" path="res://src/microbe_stage/editor/EditorAutoEvoPredictionPanel.cs" id="prediction_script"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/EditorAutoEvoPredictionPanel.cs" id="prediction_script"]
 
-[node name="AutoEvoInfoPanel" type="PanelContainer" unique_id=1135255199 node_paths=PackedStringArray("totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "micheViewer", "detailsButton")]
+[node name="AutoEvoInfoPanel" type="PanelContainer" unique_id=1135255199 node_paths=PackedStringArray("totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "micheViewer", "detailsButton", "suggestionsContainer")]
 custom_minimum_size = Vector2(0, 236)
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("prediction_script")
-totalEnergyLabel = NodePath("VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Total")
-autoEvoPredictionFailedLabel = NodePath("VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Failed")
-bestPatchLabel = NodePath("VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best/Value")
-worstPatchLabel = NodePath("VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst/Value")
+totalEnergyLabel = NodePath("PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Total")
+autoEvoPredictionFailedLabel = NodePath("PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Failed")
+bestPatchLabel = NodePath("PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Best/Value")
+worstPatchLabel = NodePath("PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Worst/Value")
 autoEvoPredictionExplanationPopup = NodePath("PredictionExplanation")
 autoEvoPredictionExplanationLabel = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 micheViewer = NodePath("PopupMicheViewer")
-detailsButton = NodePath("VBoxContainer/Header/HBoxContainer/Details")
+detailsButton = NodePath("PanelLayout/Header/HeaderRow/Details")
+suggestionsContainer = NodePath("PanelLayout/Body/ContentMargin/BodyContent/Suggestions")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1180698004]
+[node name="PanelLayout" type="VBoxContainer" parent="." unique_id=1180698004]
 layout_mode = 2
 tooltip_text = "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 theme_override_constants/separation = 0
 
-[node name="Header" type="MarginContainer" parent="VBoxContainer" unique_id=1376802781]
+[node name="Header" type="MarginContainer" parent="PanelLayout" unique_id=1376802781]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header" unique_id=535168112]
+[node name="HeaderRow" type="HBoxContainer" parent="PanelLayout/Header" unique_id=535168112]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="VBoxContainer/Header/HBoxContainer" unique_id=1345751165]
+[node name="Title" type="Label" parent="PanelLayout/Header/HeaderRow" unique_id=1345751165]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,7 +52,7 @@ text = "AUTO-EVO_PREDICTION"
 label_settings = ExtResource("14_fllwv")
 autowrap_mode = 3
 
-[node name="Details" type="TextureButton" parent="VBoxContainer/Header/HBoxContainer" unique_id=1677382004]
+[node name="Details" type="TextureButton" parent="PanelLayout/Header/HeaderRow" unique_id=1677382004]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -63,11 +64,11 @@ texture_hover = ExtResource("13")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Body" type="ScrollContainer" parent="VBoxContainer" unique_id=1797186215]
+[node name="Body" type="ScrollContainer" parent="PanelLayout" unique_id=1797186215]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body" unique_id=1411103705]
+[node name="ContentMargin" type="MarginContainer" parent="PanelLayout/Body" unique_id=1411103705]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -76,38 +77,39 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer" unique_id=1190554232]
+[node name="BodyContent" type="VBoxContainer" parent="PanelLayout/Body/ContentMargin" unique_id=1190554232]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" unique_id=1621817648]
+[node name="PredictionValues" type="VBoxContainer" parent="PanelLayout/Body/ContentMargin/BodyContent" unique_id=1621817648]
 layout_mode = 2
 
-[node name="Failed" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1735745431]
+[node name="Failed" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues" unique_id=1735745431]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.301961, 0.301961, 1)
 text = "FAILED"
 label_settings = ExtResource("24_ekuel")
+autowrap_mode = 3
 
-[node name="Total" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1186088473 instance=ExtResource("12")]
+[node name="Total" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues" unique_id=1186088473 instance=ExtResource("12")]
 layout_mode = 2
 tooltip_text = "GATHERED_ENERGY_TOOLTIP"
 InvalidIcon = ExtResource("20")
 Description = "TOTAL_GATHERED_ENERGY_COLON"
 
-[node name="Best" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1672844405]
+[node name="Best" type="VBoxContainer" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues" unique_id=1672844405]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best" unique_id=1948196603]
+[node name="Label" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Best" unique_id=1948196603]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "BEST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
 
-[node name="Value" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best" unique_id=2055328703]
+[node name="Value" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Best" unique_id=2055328703]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -117,17 +119,17 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Worst" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1397940363]
+[node name="Worst" type="VBoxContainer" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues" unique_id=1397940363]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst" unique_id=423991928]
+[node name="Label" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Worst" unique_id=423991928]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "WORST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
 
-[node name="Value" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst" unique_id=311022494]
+[node name="Value" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/PredictionValues/Worst" unique_id=311022494]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -137,20 +139,20 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Spacer" type="Control" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" unique_id=901598773]
+[node name="Spacer" type="Control" parent="PanelLayout/Body/ContentMargin/BodyContent" unique_id=901598773]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" unique_id=1718240059]
+[node name="Suggestions" type="HBoxContainer" parent="PanelLayout/Body/ContentMargin/BodyContent" unique_id=1718240059]
 layout_mode = 2
 tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
 alignment = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1564863677]
+[node name="SuggestionContent" type="HFlowContainer" parent="PanelLayout/Body/ContentMargin/BodyContent/Suggestions" unique_id=1564863677]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SuggestionLabel" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer" unique_id=191197487]
+[node name="SuggestionLabel" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/Suggestions/SuggestionContent" unique_id=191197487]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -160,7 +162,7 @@ text = "ORGANELLE_SUGGESTION_COLON"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 2
 
-[node name="SugestionLoading" type="TextureRect" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer" unique_id=1757787310]
+[node name="SuggestionLoading" type="TextureRect" parent="PanelLayout/Body/ContentMargin/BodyContent/Suggestions/SuggestionContent" unique_id=1757787310]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_vertical = 0
@@ -169,7 +171,7 @@ texture = ExtResource("20")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SuggestionValue" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer" unique_id=2035069802]
+[node name="SuggestionValue" type="Label" parent="PanelLayout/Body/ContentMargin/BodyContent/Suggestions/SuggestionContent" unique_id=2035069802]
 visible = false
 layout_mode = 2
 tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
@@ -237,6 +239,6 @@ text = "CLOSE"
 [node name="PopupMicheViewer" parent="." unique_id=657349085 instance=ExtResource("44_bxafd")]
 layout_mode = 1
 
-[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
-[connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
+[connection signal="pressed" from="PanelLayout/Header/HeaderRow/Details" to="." method="OpenAutoEvoPredictionDetails"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
+[connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]

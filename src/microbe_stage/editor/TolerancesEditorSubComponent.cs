@@ -406,6 +406,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         base.OnTranslationsChanged();
 
+        // The hidden cell-level tolerance editor is not used or initialised in multicellular mode.
+        if (!IsComponentInitialized)
+            return;
+
         UpdateCurrentValueDisplays();
         UpdateMPCostInToolTips();
         UpdateToolTipStats();

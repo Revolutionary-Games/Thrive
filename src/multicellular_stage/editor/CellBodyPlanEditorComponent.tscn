@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dylo35brdi0js"]
 
+[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/EditorAutoEvoPredictionPanel.tscn" id="prediction_panel"]
+
 [ext_resource type="Script" uid="uid://ctqyvjb6wvagi" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://ipvxtakaph16" path="res://src/multicellular_stage/editor/CellPopupMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_nj0t6"]
@@ -345,7 +347,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "unusedCellTypePopup", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "macroscopicConditionsViewButton", "macroscopicConditionsView", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "automaticLayoutButton", "reapplyAutomaticLayoutButton", "layoutExplanationLabel", "layoutShiftNoteLabel", "layoutCalculationSpinner", "layoutErrorLabel", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "unusedCellTypePopup", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "autoEvoPredictionPanel", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "specialCellTypeUnsetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "gameteACellTypeMakerButton", "gameteBCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "macroscopicConditionsViewButton", "macroscopicConditionsView", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -389,6 +391,7 @@ unusedCellTypePopup = NodePath("UnusedCellTypePopup")
 duplicateCellTypeDialog = NodePath("NewCellTypeSetup")
 duplicateCellTypeName = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 cellPopupMenu = NodePath("CellPopupMenu")
+autoEvoPredictionPanel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
@@ -1050,6 +1053,9 @@ processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfiguration")
 
+[node name="AutoEvoInfoPanel" parent="RightPanel/VBoxContainer" instance=ExtResource("prediction_panel")]
+layout_mode = 2
+
 [node name="MacroscopicCheck" type="Button" parent="RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1147404361, 743924629) index="23" unique_id=958512207]
 layout_mode = 2
 text = "CHECK_MACROSCOPIC_REQUIREMENTS"
@@ -1331,6 +1337,7 @@ IsMulticellular = true
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/MacroscopicCheck" to="." method="OpenMacroscopicRequirementsDialog"]
+[connection signal="InvalidAction" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnInvalidAction"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]

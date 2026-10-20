@@ -514,8 +514,7 @@ public partial class CellEditorComponent :
     {
         base._Ready();
 
-        autoEvoPredictionPanel.ConfigureHost(this, finishOrNextButton,
-            () => (Editor.CurrentPatch, Editor.CurrentGame.GameWorld.WorldSettings));
+        autoEvoPredictionPanel.ConfigureHost(finishOrNextButton, true);
 
         // This works only after this is attached to the scene tree
         // Hidden in the Godot editor to make selecting other things easier
@@ -3257,7 +3256,7 @@ public partial class CellEditorComponent :
     private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
     {
         autoEvoPredictionPanel.DisplayRun(run.AutoEvoRun, run.PlayerSpeciesOriginal, run.PlayerSpeciesNew,
-            PreviousPlayerGatheredEnergy, Editor.CurrentPatch);
+            PreviousPlayerGatheredEnergy, Editor.CurrentPatch, Editor.CurrentGame.GameWorld.WorldSettings);
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)
