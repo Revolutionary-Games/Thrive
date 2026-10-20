@@ -19,7 +19,7 @@ using Xoshiro.PRNG32;
 [RuntimeCost(1)]
 public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private readonly IWorldSimulation worldSimulation;
 
@@ -39,6 +39,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
     private Vector3 nextPlayerPosition;
 
     private float playerProtectionRadius = 20;
+
+    private float densityModifier = 1.0f;
 
     private int maxSpawnAttempts = 10;
     private int differentClusterTypeAttempts = 3;
@@ -102,6 +104,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         instance.playerPosition = reader.ReadVector3();
         instance.terrainConfiguration = reader.ReadObjectOrNull<TerrainConfiguration>();
         instance.nextGroupId = reader.ReadUInt32();
+        instance.densityModifier = version > 1 ? reader.ReadFloat() : 1.0f;
 
         return instance;
     }
@@ -114,6 +117,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         writer.Write(playerPosition);
         writer.WriteObjectOrNull(terrainConfiguration);
         writer.Write(nextGroupId);
+        writer.Write(densityModifier);
 
         // It's probably fine to not save the spawn / despawn queues as they should be pretty short-lived
     }
@@ -128,6 +132,11 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
     {
         baseSeed = long.RotateLeft(currentPatch.DynamicDataSeed, 5);
         terrainConfiguration = currentPatch.BiomeTemplate.Terrain;
+    }
+
+    public void SetDensityModifier(float newDensityModifier)
+    {
+        densityModifier = newDensityModifier;
     }
 
     /// <summary>
@@ -323,6 +332,21 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         despawnQueue.Clear();
     }
 
+    private static int CalculateTerrainCount(TerrainConfiguration configuration, float densityModifier,
+        XoShiRo128starstar random)
+    {
+        var unmodifiedCount = random.Next(configuration.MinClusters, configuration.MaxClusters + 1);
+        var modifiedCount = unmodifiedCount * densityModifier;
+        var result = (int)modifiedCount;
+
+        // Randomly round fractional counts so the expected number of clusters matches the density modifier.
+        var fractionalCount = modifiedCount - result;
+        if (fractionalCount > 0 && random.NextSingle() < fractionalCount)
+            ++result;
+
+        return result;
+    }
+
     private void DespawnGridArea(List<SpawnedTerrainCluster> clusters)
     {
         // Try to despawn normally first and then re-fetch data if missing any members
@@ -400,7 +424,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         var random = new XoShiRo128starstar(baseSeed ^ (long)cell.X.GetHashCode() ^ (long)cell.Y.GetHashCode() << 32);
 
         // TODO: could probably have an entity-limit based correction applied here?
-        int clusters = random.Next(terrainConfiguration.MinClusters, terrainConfiguration.MaxClusters + 1);
+        int clusters = CalculateTerrainCount(terrainConfiguration, densityModifier, random);
         var wantedClusters = clusters;
 
         var recorder = worldSimulation.StartRecordingEntityCommands();
