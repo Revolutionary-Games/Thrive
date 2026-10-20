@@ -1008,6 +1008,10 @@ public partial class CellBodyPlanEditorComponent
             manualFullLayout.Add(manualCell);
             SetManualLayoutSource(manualCell, source);
         }
+
+        // Cell additions can happen while the manual layout preview is hidden. Rebuild the order mapping here so
+        // newly added cells have their own growth-order indices when the preview is shown again.
+        RebuildManualLayoutGrowthOrderSources();
     }
 
     private sealed class LayoutCalculationResult
