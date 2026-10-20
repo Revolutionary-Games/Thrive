@@ -87,9 +87,11 @@ public partial class CellBodyPlanEditorComponent
 
     /// <summary>
     ///   Captures committed body and buffered type edits without applying any changes to the editor or world.
+    ///   The optional live type is already detached and becomes owned by this snapshot.
     ///   A temporarily incomplete reproduction design can be retried after the next committed edit.
     /// </summary>
-    public bool TryCreatePredictionSpecies(out MulticellularSpecies? result)
+    public bool TryCreatePredictionSpecies(out MulticellularSpecies? result, CellType? originalLiveType = null,
+        CellType? liveType = null)
     {
         result = null;
         if (GetPredictionInputState() != PredictionInputState.Valid)
@@ -102,7 +104,13 @@ public partial class CellBodyPlanEditorComponent
 
         foreach (var original in source.ModifiableCellTypes)
         {
-            var copy = CellTypeVisualsOverride!.GetCellType(original).Clone(true);
+            var current = ReferenceEquals(original, originalLiveType) ?
+                liveType! :
+                CellTypeVisualsOverride!.GetCellType(original);
+            if (current.Organelles.Count < 1)
+                return false;
+
+            var copy = ReferenceEquals(original, originalLiveType) ? current : current.Clone(true);
             types.Add(original, copy);
             species.ModifiableCellTypes.Add(copy);
         }
