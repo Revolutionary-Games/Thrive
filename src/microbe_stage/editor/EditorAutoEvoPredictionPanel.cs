@@ -60,18 +60,10 @@ public partial class EditorAutoEvoPredictionPanel : PanelContainer
     /// <summary>
     ///   Sets host navigation and obtains the current Miche context when the viewer is requested.
     /// </summary>
-    public void ConfigureHost(Control popupParent, Control finishButton,
+    public void ConfigureHost(Control finishButton,
         Func<(Patch Patch, WorldGenerationSettings Settings)> micheContext)
     {
         getMicheContext = micheContext;
-
-        // The non-modal Miche viewer must follow the host visibility, independently of this panel.
-        // Defer reparenting until the host has finished entering the scene tree.
-        Invoke.Instance.QueueForObject(() =>
-        {
-            if (micheViewer.GetParent() != popupParent)
-                micheViewer.ReParent(popupParent);
-        }, this);
 
         detailsButton.FocusNeighborBottom = detailsButton.GetPathTo(finishButton);
         detailsButton.FocusNext = detailsButton.GetPathTo(finishButton);

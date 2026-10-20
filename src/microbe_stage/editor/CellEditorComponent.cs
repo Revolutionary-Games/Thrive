@@ -514,7 +514,7 @@ public partial class CellEditorComponent :
     {
         base._Ready();
 
-        autoEvoPredictionPanel.ConfigureHost(this, finishOrNextButton,
+        autoEvoPredictionPanel.ConfigureHost(finishOrNextButton,
             () => (Editor.CurrentPatch, Editor.CurrentGame.GameWorld.WorldSettings));
 
         // This works only after this is attached to the scene tree
