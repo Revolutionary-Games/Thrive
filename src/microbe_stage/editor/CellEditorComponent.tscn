@@ -417,7 +417,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(470, 10)]
+"values": [Vector2(422, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_wbwlm"]
@@ -496,7 +496,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 0.517632),
 "update": 0,
-"values": [Vector2(470, -60), Vector2(470, 10)]
+"values": [Vector2(422, -60), Vector2(422, 10)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o1pli"]
@@ -513,7 +513,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(1705, 266)
 theme = ExtResource("6")
 script = ExtResource("4")
 structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
@@ -569,13 +568,15 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TopPanel" type="MarginContainer" parent="." unique_id=1081683577]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -170.0
+offset_left = -218.0
 offset_top = 10.0
-offset_right = 280.0
+offset_right = 278.00012
 offset_bottom = 64.0
+grow_horizontal = 2
 
 [node name="LightConfigurationPanel" parent="TopPanel" unique_id=726771345 instance=ExtResource("3_yy73o")]
 layout_mode = 2
@@ -600,9 +601,9 @@ mouse_filter = 2
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 0
 anchor_bottom = 1.0
-offset_top = 41.0
+offset_top = 40.0
 offset_right = 350.0
-offset_bottom = -49.0
+offset_bottom = -50.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
