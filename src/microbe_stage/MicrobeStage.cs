@@ -1216,6 +1216,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
 
         UpdatePatchSettings();
+        UpdateTerrainDensityModifier();
 
         base.OnReturnFromEditor();
 
@@ -1682,6 +1683,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Init the simulation and finish setting up the systems (for example, cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
+        UpdateTerrainDensityModifier();
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendObjectsToTutorials(TutorialState);
@@ -2243,10 +2245,19 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // in somewhere like the entity reference converter about making this possible)
         Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
 
+        // Maybe unnecessary, but we want to make really sure that the terrain density is set correctly
+        UpdateTerrainDensityModifier();
+
         if (!HasPlayer)
         {
             GD.Print("Loaded game doesn't have a currently alive player");
         }
+    }
+
+    private void UpdateTerrainDensityModifier()
+    {
+        var densityModifier = GameWorld.PlayerSpecies is MulticellularSpecies ? 0.5f : 1.0f;
+        WorldSimulation.MicrobeTerrainSystem.SetDensityModifier(densityModifier);
     }
 
     /// <summary>
