@@ -98,8 +98,8 @@ public class RegisterNewSpecies : IRunStep
             }
         }
 
-        // Decide every candidate's destination before changing the occupants used for extinction detection.
-        // Only the selected same-stage candidate becomes its parent; other candidates keep their own identity.
+        // For any occupant species that ends up being applied as a mutation to its parent species,
+        // transfer its "occupant slot" to that parent species.
         if (selectedParentMutations != null)
         {
             foreach (var patch in world.Map.Patches)
