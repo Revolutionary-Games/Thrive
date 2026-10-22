@@ -932,6 +932,15 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnReapplyAutomaticLayoutPressed()
     {
+        // Can't allow this when an action is in-progress as that breaks the GUI
+        if (CanCancelAction)
+        {
+            OnActionBlockedWhileAnotherIsInProgress();
+
+            GD.Print("Disallowing layout reset due to in-progress action");
+            return;
+        }
+
         manualFullLayout.Clear();
         manualLayoutMissingAdjacencyPairs.Clear();
         manualLayoutSources.Clear();
