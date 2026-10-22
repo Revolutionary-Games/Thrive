@@ -208,7 +208,7 @@ public class ModifyExistingSpecies : IRunStep
             {
                 if (mutationsToTry.Count > 0)
                 {
-                    // A rejected candidate must restore the actual previous occupant, which may not be its parent.
+                    // As new mutations may later be rejected, we need to store the previous occupants to restore.
                     // Keep leaf references in a list because Occupant participates in Miche's hash code.
                     CaptureLeafOccupants(miche, leafOccupantsBeforeMutations);
                 }
