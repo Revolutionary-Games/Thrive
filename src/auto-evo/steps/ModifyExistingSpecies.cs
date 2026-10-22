@@ -208,7 +208,7 @@ public class ModifyExistingSpecies : IRunStep
             {
                 if (mutationsToTry.Count > 0)
                 {
-                    // A rejected candidate must restore the actual previous occupant, which may not be its parent.
+                    // As new mutations may later be rejected, we need to store the previous occupants to restore.
                     // Keep leaf references in a list because Occupant participates in Miche's hash code.
                     CaptureLeafOccupants(miche, leafOccupantsBeforeMutations);
                 }
@@ -308,12 +308,11 @@ public class ModifyExistingSpecies : IRunStep
                     }
                 }
 
-                // Only restore leaves still occupied by rejected candidates. Successful candidates keep their leaves,
-                // and candidates hidden during this batch do not get another insertion attempt.
-                foreach (var (leaf, occupant) in leafOccupantsBeforeMutations)
+                // For any leaf node occupied by a mutant that was rejected, restore the previous occupant.
+                foreach (var (leaf, previousOccupant) in leafOccupantsBeforeMutations)
                 {
                     if (leaf.Occupant != null && rejectedMutations.Contains(leaf.Occupant))
-                        leaf.Occupant = occupant;
+                        leaf.Occupant = previousOccupant;
                 }
 
                 return true;

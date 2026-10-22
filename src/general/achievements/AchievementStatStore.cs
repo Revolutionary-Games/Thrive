@@ -20,6 +20,15 @@ public class AchievementStatStore : IAchievementStatStore
     private int statEndosymbiosisCompleted;
     private int statReachedMulticellular;
     private int statReachedMacroscopic;
+    private int statUltimateColony;
+    private int statUltimateCellularFirepower;
+    private int statYouAnimal;
+    private int statSpecializedWeapons;
+    private int statSpecializationSpecialist;
+    private int statJustAFleshWound;
+    private int statInLookOfAHome;
+    private int statMicroscopicBirdsAndBees;
+    private int statPerfectlyPacked;
 
     public int GetIntStat(int statId)
     {
@@ -51,6 +60,24 @@ public class AchievementStatStore : IAchievementStatStore
                 return statReachedMulticellular;
             case IAchievementStatStore.STAT_REACHED_MACROSCOPIC:
                 return statReachedMacroscopic;
+            case IAchievementStatStore.STAT_ULTIMATE_COLONY:
+                return statUltimateColony;
+            case IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER:
+                return statUltimateCellularFirepower;
+            case IAchievementStatStore.STAT_YOU_ANIMAL:
+                return statYouAnimal;
+            case IAchievementStatStore.STAT_SPECIALIZED_WEAPONS:
+                return statSpecializedWeapons;
+            case IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST:
+                return statSpecializationSpecialist;
+            case IAchievementStatStore.STAT_JUST_A_FLESH_WOUND:
+                return statJustAFleshWound;
+            case IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME:
+                return statInLookOfAHome;
+            case IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES:
+                return statMicroscopicBirdsAndBees;
+            case IAchievementStatStore.STAT_PERFECTLY_PACKED:
+                return statPerfectlyPacked;
         }
 
         GD.PrintErr("Unknown stat ID requested: ", statId);
@@ -90,6 +117,15 @@ public class AchievementStatStore : IAchievementStatStore
             case IAchievementStatStore.STAT_MAX_SPECIES_GENERATION:
             case IAchievementStatStore.STAT_REACHED_MULTICELLULAR:
             case IAchievementStatStore.STAT_REACHED_MACROSCOPIC:
+            case IAchievementStatStore.STAT_ULTIMATE_COLONY:
+            case IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER:
+            case IAchievementStatStore.STAT_YOU_ANIMAL:
+            case IAchievementStatStore.STAT_SPECIALIZED_WEAPONS:
+            case IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST:
+            case IAchievementStatStore.STAT_JUST_A_FLESH_WOUND:
+            case IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME:
+            case IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES:
+            case IAchievementStatStore.STAT_PERFECTLY_PACKED:
             {
                 GD.PrintErr("Cannot increment stat of type: ", statId);
                 return 0;
@@ -122,6 +158,33 @@ public class AchievementStatStore : IAchievementStatStore
             case IAchievementStatStore.STAT_REACHED_MACROSCOPIC:
                 statReachedMacroscopic = Math.Clamp(value, 0, 1);
                 return true;
+            case IAchievementStatStore.STAT_ULTIMATE_COLONY:
+                statUltimateColony = Math.Clamp(value, 0, int.MaxValue);
+                return true;
+            case IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER:
+                statUltimateCellularFirepower = Math.Clamp(value, 0, int.MaxValue);
+                return true;
+            case IAchievementStatStore.STAT_YOU_ANIMAL:
+                statYouAnimal = Math.Clamp(value, 0, 1);
+                return true;
+            case IAchievementStatStore.STAT_SPECIALIZED_WEAPONS:
+                statSpecializedWeapons = Math.Clamp(value, 0, 1);
+                return true;
+            case IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST:
+                statSpecializationSpecialist = Math.Clamp(value, 0, int.MaxValue);
+                return true;
+            case IAchievementStatStore.STAT_JUST_A_FLESH_WOUND:
+                statJustAFleshWound = Math.Clamp(value, 0, 1);
+                return true;
+            case IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME:
+                statInLookOfAHome = Math.Clamp(value, 0, int.MaxValue);
+                return true;
+            case IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES:
+                statMicroscopicBirdsAndBees = Math.Clamp(value, 0, 1);
+                return true;
+            case IAchievementStatStore.STAT_PERFECTLY_PACKED:
+                statPerfectlyPacked = Math.Clamp(value, 0, 1);
+                return true;
         }
 
         GD.PrintErr("Unknown stat ID tried to be set (or stat that cannot be set directly): ", statId);
@@ -134,6 +197,7 @@ public class AchievementStatStore : IAchievementStatStore
     public void Reset()
     {
         GD.Print("Resetting tracked stats");
+
         statMicrobeKills = 0;
         statEditorUsages = 0;
         statCellColoniesFormed = 0;
@@ -147,6 +211,15 @@ public class AchievementStatStore : IAchievementStatStore
         statEndosymbiosisCompleted = 0;
         statReachedMulticellular = 0;
         statReachedMacroscopic = 0;
+        statUltimateColony = 0;
+        statUltimateCellularFirepower = 0;
+        statYouAnimal = 0;
+        statSpecializedWeapons = 0;
+        statSpecializationSpecialist = 0;
+        statJustAFleshWound = 0;
+        statInLookOfAHome = 0;
+        statMicroscopicBirdsAndBees = 0;
+        statPerfectlyPacked = 0;
     }
 
     public void Save(Dictionary<int, int> intValues)
@@ -164,6 +237,15 @@ public class AchievementStatStore : IAchievementStatStore
         intValues[IAchievementStatStore.STAT_ENDOSYMBIOSIS_COMPLETED] = statEndosymbiosisCompleted;
         intValues[IAchievementStatStore.STAT_REACHED_MULTICELLULAR] = statReachedMulticellular;
         intValues[IAchievementStatStore.STAT_REACHED_MACROSCOPIC] = statReachedMacroscopic;
+        intValues[IAchievementStatStore.STAT_ULTIMATE_COLONY] = statUltimateColony;
+        intValues[IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER] = statUltimateCellularFirepower;
+        intValues[IAchievementStatStore.STAT_YOU_ANIMAL] = statYouAnimal;
+        intValues[IAchievementStatStore.STAT_SPECIALIZED_WEAPONS] = statSpecializedWeapons;
+        intValues[IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST] = statSpecializationSpecialist;
+        intValues[IAchievementStatStore.STAT_JUST_A_FLESH_WOUND] = statJustAFleshWound;
+        intValues[IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME] = statInLookOfAHome;
+        intValues[IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES] = statMicroscopicBirdsAndBees;
+        intValues[IAchievementStatStore.STAT_PERFECTLY_PACKED] = statPerfectlyPacked;
     }
 
     public void Load(Dictionary<int, int> intValues)
@@ -206,5 +288,32 @@ public class AchievementStatStore : IAchievementStatStore
 
         if (intValues.TryGetValue(IAchievementStatStore.STAT_REACHED_MACROSCOPIC, out value))
             statReachedMacroscopic = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_ULTIMATE_COLONY, out value))
+            statUltimateColony = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER, out value))
+            statUltimateCellularFirepower = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_YOU_ANIMAL, out value))
+            statYouAnimal = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_SPECIALIZED_WEAPONS, out value))
+            statSpecializedWeapons = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST, out value))
+            statSpecializationSpecialist = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_JUST_A_FLESH_WOUND, out value))
+            statJustAFleshWound = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME, out value))
+            statInLookOfAHome = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES, out value))
+            statMicroscopicBirdsAndBees = value;
+
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_PERFECTLY_PACKED, out value))
+            statPerfectlyPacked = value;
     }
 }

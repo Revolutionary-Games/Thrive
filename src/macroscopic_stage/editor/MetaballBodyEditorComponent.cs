@@ -409,6 +409,8 @@ public partial class MetaballBodyEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
+        editedSpecies.RepositionCellTypesToOrigin();
+
         Editor.EditedSpecies.SkinType = SkinType;
 
         var previousStage = editedSpecies.MacroscopicType;
@@ -1369,6 +1371,9 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnNewCellTextAccepted(string text)
     {
+        // Prevent Enter from triggering another confirmation after the text submission.
+        GetViewport().SetInputAsHandled();
+
         // Just to make sure the latest text is already available to us
         if (duplicateCellTypeName.Text != text)
             GD.PrintErr("Text not updated");

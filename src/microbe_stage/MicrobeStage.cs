@@ -15,7 +15,7 @@ using SharedBase.Archive;
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable, IEditorMovableStage
 {
-    public const int SERIALIZATION_VERSION = 4;
+    public const int SERIALIZATION_VERSION = 5;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
@@ -139,6 +139,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private float matePositionLineActiveSeconds;
     private Vector3 matePosition = Vector3.Zero;
     private bool matePositionFound;
+
+    // These track one life, independently of the persistent achievement statistics.
+    private bool playerSurvivedMajorBodyLoss;
+    private int playerMostLostCellsDuringLife;
+    private Vector3 originalSporePosition;
+    private bool originalSporePositionValid;
 
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
@@ -266,6 +272,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             instance.oldCameraPosBeforeMerge = instance.Camera.Position;
         }
 
+        if (version > 4)
+        {
+            instance.playerSurvivedMajorBodyLoss = reader.ReadBool();
+            instance.playerMostLostCellsDuringLife = reader.ReadInt32();
+            instance.originalSporePosition = reader.ReadVector3();
+            instance.originalSporePositionValid = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -309,6 +323,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.Write(matePosition);
 
         writer.Write(oldCameraPosBeforeMerge);
+        writer.Write(playerSurvivedMajorBodyLoss);
+        writer.Write(playerMostLostCellsDuringLife);
+        writer.Write(originalSporePosition);
+        writer.Write(originalSporePositionValid);
     }
 
     /// <summary>
@@ -496,8 +514,13 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 newColonySize = 0;
             }
 
+            UpdateMulticellularAchievements(newColonySize);
+
             if (lastSeenPlayerColonySize != newColonySize)
             {
+                if (GameWorld.PlayerSpecies is MulticellularSpecies && newColonySize > 0)
+                    AchievementEvents.ReportMulticellularColonySize(newColonySize);
+
                 if (UpdateZoomLevels(Player.Has<MulticellularSpeciesMember>()))
                 {
                     // New size is taken into account now
@@ -927,6 +950,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         if (Player.Has<MulticellularSpeciesMember>())
         {
+            CheckMulticellularReproductionAchievements(playerGrewFromGamete);
+
             // Player is a multicellular species, go to multicellular editor
 
             // Also need to update endosymbiosis info from all colony members
@@ -1556,6 +1581,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (playerIsMulticellular)
         {
             AchievementEvents.ReportReturnToMulticellularStageFromEditor();
+            MulticellularAchievementConditions.CheckEditorBodyPlan((MulticellularSpecies)playerSpecies);
         }
         else
         {
@@ -1567,6 +1593,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             AchievementEvents.ReportHighestPlayerGeneration(playerSpecies.Generation);
         }
+
+        ResetMulticellularAchievementLife();
     }
 
     public override void OnSuicide()
@@ -2589,6 +2617,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     /// </summary>
     private void OnPlayerDied(Entity player)
     {
+        ResetMulticellularAchievementLife();
         HandlePlayerDeath();
 
         if (gametesMerging)
@@ -3061,6 +3090,89 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                     glucoseUsage);
             }
         }
+    }
+
+    private void UpdateMulticellularAchievements(int colonySize)
+    {
+        if (MovingToEditor || !HasAlivePlayer ||
+            GameWorld.PlayerSpecies is not MulticellularSpecies multicellularSpecies ||
+            !Player.Has<MulticellularGrowth>())
+        {
+            ResetSporePosition();
+            return;
+        }
+
+        // This method didn't end up needing the current colony size, but it is kept in case we need it in the future
+        _ = colonySize;
+
+        ref var growth = ref Player.Get<MulticellularGrowth>();
+        int lostCells = growth.LostPartsOfBodyPlan?.Count ?? 0;
+
+        // The regrowth queue removes the cell currently being replaced before it has grown back.
+        if (growth.ResumeBodyPlanAfterReplacingLost != null)
+            ++lostCells;
+
+        playerMostLostCellsDuringLife = Math.Max(playerMostLostCellsDuringLife, lostCells);
+
+        // This is where just a flesh wound achievement configuration is
+        int playerConfiguredCellCount = multicellularSpecies.GameplayCells.Count;
+        var bodyLossThreshold = playerConfiguredCellCount / 3;
+        if (playerMostLostCellsDuringLife > 0 && playerMostLostCellsDuringLife >= bodyLossThreshold &&
+            playerConfiguredCellCount >= 10)
+        {
+            playerSurvivedMajorBodyLoss = true;
+        }
+
+        if (growth.IsASpore)
+        {
+            var position = Player.Get<WorldPosition>().Position;
+            if (!originalSporePositionValid)
+            {
+                originalSporePosition = position;
+                originalSporePositionValid = true;
+            }
+
+            AchievementEvents.ReportInLookOfAHome((int)position.DistanceTo(originalSporePosition));
+        }
+        else
+        {
+            ResetSporePosition();
+        }
+    }
+
+    private void CheckMulticellularReproductionAchievements(bool sexualReproduction)
+    {
+        if (GameWorld.PlayerSpecies is not MulticellularSpecies species)
+            return;
+
+        if (sexualReproduction)
+            AchievementEvents.ReportMicroscopicBirdsAndBees();
+
+        if (species.ModifiableGameplayCells.Count >= 10 &&
+            MulticellularAchievementConditions.UsesOnlyGlucoseForEnergy(species))
+        {
+            AchievementEvents.ReportYouAnimal();
+        }
+
+        if (playerSurvivedMajorBodyLoss && Player.Has<MulticellularGrowth>())
+        {
+            ref var growth = ref Player.Get<MulticellularGrowth>();
+            if (growth.IsFullyGrownMulticellular && (growth.LostPartsOfBodyPlan?.Count ?? 0) == 0)
+                AchievementEvents.ReportJustAFleshWound();
+        }
+    }
+
+    private void ResetMulticellularAchievementLife()
+    {
+        playerSurvivedMajorBodyLoss = false;
+        playerMostLostCellsDuringLife = 0;
+        ResetSporePosition();
+    }
+
+    private void ResetSporePosition()
+    {
+        originalSporePosition = Vector3.Zero;
+        originalSporePositionValid = false;
     }
 
     private void TranslationsForFeaturesToReimplement()
