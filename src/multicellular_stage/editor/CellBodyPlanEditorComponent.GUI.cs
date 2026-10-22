@@ -724,6 +724,16 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
     {
+        if (CanCancelAction)
+        {
+            OnActionBlockedWhileAnotherIsInProgress();
+
+            // Force button state back for the rejected action
+            GD.Print("Switching layout mode rejected due to active action in the editor");
+            UpdateLayoutTabContent();
+            return;
+        }
+
         bool targetValue = !usesAutomatic;
 
         if (UsesManualPlayerLayout == targetValue)
