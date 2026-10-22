@@ -121,6 +121,106 @@ public static class StringUtils
     }
 
     /// <summary>
+    ///   Wraps text at whitespace close to the specified line width.
+    /// </summary>
+    /// <param name="text">Text to wrap</param>
+    /// <param name="width">Approximate maximum number of characters per line</param>
+    /// <returns>The text with line breaks added at nearby whitespace</returns>
+    public static string WrapTextToApproximateWidth(this string text, int width = 80)
+    {
+        if (width < 1)
+            throw new ArgumentOutOfRangeException(nameof(width), "Width must be at least one");
+
+        if (string.IsNullOrEmpty(text))
+            return text;
+
+        // For efficiency, we first count if we need to cut
+        var cutCount = 0;
+        var firstCutLineEnd = 0;
+        var firstCutSkipTo = 0;
+        var lineStart = 0;
+
+        while (lineStart <= text.Length)
+        {
+            var newlineIndex = text.IndexOf('\n', lineStart);
+            var lineEnd = newlineIndex < 0 ? text.Length : newlineIndex;
+            var contentEnd = lineEnd;
+
+            if (newlineIndex >= 0)
+            {
+                // Whitespace before an existing line break must not create another line break
+                while (contentEnd > lineStart && char.IsWhiteSpace(text[contentEnd - 1]))
+                    --contentEnd;
+            }
+
+            var remainingStart = lineStart;
+
+            while (TryFindTextWrap(text, remainingStart, contentEnd, width, out var cutLineEnd,
+                       out var cutSkipTo))
+            {
+                if (cutCount == 0)
+                {
+                    firstCutLineEnd = cutLineEnd;
+                    firstCutSkipTo = cutSkipTo;
+                }
+
+                ++cutCount;
+                remainingStart = cutSkipTo;
+            }
+
+            if (newlineIndex < 0)
+                break;
+
+            lineStart = newlineIndex + 1;
+        }
+
+        if (cutCount == 0)
+            return text;
+
+        // And only perform cutting if we need to
+        if (cutCount == 1)
+            return string.Concat(text.AsSpan(0, firstCutLineEnd), "\n", text.AsSpan(firstCutSkipTo));
+
+        // And finally, only use the string builder if we are making many cuts
+        var result = new StringBuilder(text.Length);
+        lineStart = 0;
+
+        while (lineStart <= text.Length)
+        {
+            var newlineIndex = text.IndexOf('\n', lineStart);
+            var lineEnd = newlineIndex < 0 ? text.Length : newlineIndex;
+            var contentEnd = lineEnd;
+
+            if (newlineIndex >= 0)
+            {
+                while (contentEnd > lineStart && char.IsWhiteSpace(text[contentEnd - 1]))
+                    --contentEnd;
+            }
+
+            var remainingStart = lineStart;
+
+            while (TryFindTextWrap(text, remainingStart, contentEnd, width, out var cutLineEnd,
+                       out var cutSkipTo))
+            {
+                result.Append(text.AsSpan(remainingStart, cutLineEnd - remainingStart));
+                result.Append('\n');
+
+                remainingStart = cutSkipTo;
+            }
+
+            result.Append(text.AsSpan(remainingStart, lineEnd - remainingStart));
+
+            if (newlineIndex < 0)
+                break;
+
+            result.Append('\n');
+            lineStart = newlineIndex + 1;
+        }
+
+        return result.ToString();
+    }
+
+    /// <summary>
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>
@@ -700,5 +800,65 @@ public static class StringUtils
         }
 
         return currentRow[first.Length];
+    }
+
+    private static bool TryFindTextWrap(string text, int lineStart, int lineEnd, int width, out int cutLineEnd,
+        out int cutSkipTo)
+    {
+        cutLineEnd = 0;
+        cutSkipTo = 0;
+
+        if (lineEnd - lineStart <= width)
+            return false;
+
+        var target = lineStart + width;
+        var whitespaceBefore = -1;
+
+        for (var i = target; i >= lineStart; --i)
+        {
+            if (char.IsWhiteSpace(text[i]))
+            {
+                whitespaceBefore = i;
+                break;
+            }
+        }
+
+        var whitespaceAfter = -1;
+
+        for (var i = target; i < lineEnd; ++i)
+        {
+            if (char.IsWhiteSpace(text[i]))
+            {
+                whitespaceAfter = i;
+                break;
+            }
+        }
+
+        if (whitespaceBefore < 0 && whitespaceAfter < 0)
+            return false;
+
+        int splitAt;
+        if (whitespaceBefore < 0)
+        {
+            splitAt = whitespaceAfter;
+        }
+        else
+        {
+            splitAt = whitespaceAfter < 0 || target - whitespaceBefore <= whitespaceAfter - target ?
+                whitespaceBefore :
+                whitespaceAfter;
+        }
+
+        cutLineEnd = splitAt;
+
+        while (cutLineEnd > lineStart && char.IsWhiteSpace(text[cutLineEnd - 1]))
+            --cutLineEnd;
+
+        cutSkipTo = splitAt;
+
+        while (cutSkipTo < lineEnd && char.IsWhiteSpace(text[cutSkipTo]))
+            ++cutSkipTo;
+
+        return true;
     }
 }

@@ -85,6 +85,12 @@ public partial class CellBodyPlanEditorComponent
         gui.MacroscopicRequirementsButton = macroscopicConditionsViewButton;
     }
 
+    public override void NotifyFreebuild(bool freeBuilding)
+    {
+        base.NotifyFreebuild(freeBuilding);
+        macroscopicConditionsViewButton.Visible = !freeBuilding;
+    }
+
     protected override void OnTranslationsChanged()
     {
         base.OnTranslationsChanged();
