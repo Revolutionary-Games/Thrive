@@ -308,8 +308,7 @@ public class ModifyExistingSpecies : IRunStep
                     }
                 }
 
-                // Only restore leaves still occupied by rejected candidates. Successful candidates keep their leaves,
-                // and candidates hidden during this batch do not get another insertion attempt.
+                // For any leaf node occupied by a mutant that was rejected, restore the previous occupant.
                 foreach (var (leaf, occupant) in leafOccupantsBeforeMutations)
                 {
                     if (leaf.Occupant != null && rejectedMutations.Contains(leaf.Occupant))
