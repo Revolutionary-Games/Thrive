@@ -37,6 +37,7 @@ public class RegisterNewSpecies : IRunStep
         }
 
         var modifiedSpecies = results.GetPossibleSpeciesList();
+        Dictionary<Species, Species>? selectedParentMutations = null;
 
         // Look through the extinct species and find their best modified variant to make it into that species' mutation
         foreach (var extinct in extinctSpecies)
@@ -69,6 +70,8 @@ public class RegisterNewSpecies : IRunStep
                         bestSpecies.Value.InitialPopulationInPatches);
 
                     handledSpecies.Add(bestSpecies.Value.Species);
+                    selectedParentMutations ??= new Dictionary<Species, Species>(ReferenceEqualityComparer.Instance);
+                    selectedParentMutations.Add(bestSpecies.Value.Species, extinct);
 
                     continue;
                 }
@@ -95,6 +98,32 @@ public class RegisterNewSpecies : IRunStep
             }
         }
 
+        // For any occupant species that ends up being applied as a mutation to its parent species,
+        // transfer its "occupant slot" to that parent species.
+        if (selectedParentMutations != null)
+        {
+            foreach (var patch in world.Map.Patches)
+            {
+                ApplySelectedParentMutations(results.GetModifiableMicheForPatch(patch.Value), selectedParentMutations);
+            }
+        }
+
         return true;
+    }
+
+    private static void ApplySelectedParentMutations(Miche miche, Dictionary<Species, Species> selectedParentMutations)
+    {
+        if (miche.IsLeafNode())
+        {
+            if (miche.Occupant != null && selectedParentMutations.TryGetValue(miche.Occupant, out var parent))
+                miche.Occupant = parent;
+
+            return;
+        }
+
+        foreach (var child in miche.Children)
+        {
+            ApplySelectedParentMutations(child, selectedParentMutations);
+        }
     }
 }
