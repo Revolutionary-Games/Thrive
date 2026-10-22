@@ -309,10 +309,10 @@ public class ModifyExistingSpecies : IRunStep
                 }
 
                 // For any leaf node occupied by a mutant that was rejected, restore the previous occupant.
-                foreach (var (leaf, occupant) in leafOccupantsBeforeMutations)
+                foreach (var (leaf, previousOccupant) in leafOccupantsBeforeMutations)
                 {
                     if (leaf.Occupant != null && rejectedMutations.Contains(leaf.Occupant))
-                        leaf.Occupant = occupant;
+                        leaf.Occupant = previousOccupant;
                 }
 
                 return true;
