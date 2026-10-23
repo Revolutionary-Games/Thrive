@@ -1564,3 +1564,129 @@
     - Updated code checking tools
     - Updated test SDK
     - Updated translations
+
+
+1.7.0:
+  IntroductionText: |
+    Here is the next release on the road to completing the multicellular stage. This time we have mostly features that enhance the existing gameplay experience rather than introducing major new things. Auto-evo has been improved in many ways, including allowing AI species to become multicellular, we have a set of tutorials and achievements now for the multicellular stage so that it'll feel more complete, and as the last major thing there is now a viewer and editor for the full cell layout which has been a common complaint that it is unexpected in many cases what the end result is. On top of those we have a lot of gameplay tweaks, bug fixes and reworks of various systems.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.7.0
+  PatchNotes:
+    - Added a viewer and editor for the full multicellular colony layout to give players insight into why their colony is shaped the way it is and optionally to change it (while keeping the overall structure)
+    - Added a set of 9 achievements for the multicellular stage
+    - Added a set of new multicellular stage tutorials to the editor
+    - Added more complex conditions for advancing to the macroscopic stage
+    - Exiting the editor with unused cell types is now disallowed
+    - Added an option to reset the world state each time upon exiting the editor
+    - Reworked how movement speed and buffs are calculated especially for cell colonies
+    - Reworked the actomyosin to no longer impact flagella or cilia movement, instead it now acts on the base movement only
+    - Buffed slime jet force by 10%
+    - Limited dropped cell chunks down to 6 (from 20) and total chunk count as well to reduce frame drops caused by cell deaths
+    - Adjusted physics timestepping to be lower quality when the game performance is low. And added enabling a physics time slow down when performance is extremely low.
+    - Added a 10-second timeout for the fancy cell placement algorithm to reduce the time a black screen could be shown upon trying to exit the editor
+    - Non-player species can now become multicellular by themselves
+    - Implemented the special cell type selection GUI for the gamete types (as it was only implemented for sporulation in the previous release)
+    - Increased the max zoom out distance when controlling a large multicellular colony
+    - Reduced terrain density by 50% in the multicellular stage
+    - A fresh auto-evo run is started when becoming multicellular to ensure auto-evo gets a chance to make initial multicellular species
+    - Improved the mate spawning option to be more reliable and added HUD notices to tell the player what is going on
+    - Improved the gamete shooting command to force ejection and fixed some compatibility checks
+    - Increased gamete sensor radius by 50%
+    - Improved the camera animation upon gametes merging
+    - Added the specialization bonus to storage and ATP tooltips
+    - Increased max digestion efficiency from 0.6 to 1.0
+    - Reworked how bonus glucose is calculated on cell death / engulfment
+    - Significantly reduced auto-evo runtime by skipping duplicate organelle deletion checks
+    - Added caching of mutation scores during auto-evo sorting to slightly improve performance
+    - Added tooltips to the achievements view to always show their unlock conditions
+    - Fixed germinating a spore not always starting from an initial growth state which could rarely cause very strange issues
+    - Fixed delay-spawned colony members being able to be despawned before they got attached
+    - Fixed gamete spawn rotation and spawn position in a colony
+    - Fixed some colony engulfing checks and fixed reattaching to engulfers to stop cells just becoming broken
+    - Fixed a problem where a colony member was potentially still trying to generate a membrane when the leader was removed
+    - Fixed some errors caused by trying to use membrane data before it was ready
+    - Fixed a bug with multicellular fallback cell placement algorithm being able to create gaps
+    - Fixed distributed colony damage causing each entity to play a sound which made things like damage sounds much louder than intended
+    - Fixed process speed and specialization bonus to be independent of the order they are applied in. This has a slight impact on the entire bioprocess system.
+    - Fixed cell duplication not giving any compounds to the daughter cell if the dividing cell had not ran processes and calculated useful compounds list
+    - Fixed changing organelles in multicellular not refreshing tolerance warnings
+    - Fixed mass budding causing an action history entry for other reproduction modes when starting the editor with just a single cell
+    - Fixed placing stuff in the editor after a history resetting action like the new cell button in freebuild
+    - Fixed initial composition being only released on cell death if the cell stored any amount of that compound
+    - Fixed actomyosin reproduction cost not matching its hex count
+    - Fixed a bug with the editor button becoming immediately available if the player died while going to the editor
+    - Fixed the editor warning about needing at least 2 cells for sexual reproduction not actually displaying
+    - Fixed a theoretical case where the cell placement algorithm could get stuck in an infinite loop
+    - Fixed the delete hotkey not working in the cell body plan editor
+    - Fixed clicking on evolutionary tree nodes when there are missing generations in the historical data
+    - Fixed the game being able to pause during the loading screen
+    - Fixed parent species references getting stale in auto-evo when applying results
+    - Fixed incorrect math for slime jet score in auto-evo
+    - Fixed the auto-evo logic for prey channel inhibitor
+    - Fixed a pulling cilia calculation problem in auto-evo
+    - Fixed a slight disconnect between auto-evo and gameplay in engulf size math
+    - Fixed channel inhibitor calculation being the opposite than it should have been in auto-evo
+    - Fixed auto-evo incorrectly checking required enzyme for the smallest cell in multicellular prey
+    - Changed cell facade missing from active list to not be an error any more
+    - Fixed entering an editor scene with a console command not remembering that that is a cheated state if a save is made afterwards
+    - Fixed a missing period in the microbe editor tutorial text
+    - The game now forces an unpause upon selecting a new patch on patch extinction, this should fix a softlock
+    - Added validation against special names in cell type names and a few other constraints that ensure the game shouldn't break no matter is entered as a name by the player
+    - Fixed debug entity labels causing errors on mass removal
+    - Added creature skin textures for the macroscopic prototype
+    - Added a metaball rotation tool to the macroscopic editor
+    - Changed the visuals of the society stage buildings and added separate visuals for the factory
+    - Made some macroscopic / aware stage menus close when going to the editor to prevent the scene switch from destroying them permanently
+    - Added an achievement for reaching the macroscopic stage
+    - Fixed cell type layout shifts causing errors when undoing actions in the macroscopic editor. This is the same fix as multicellular editor received a while ago.
+    - Applied missing specialization in auto-evo calculations
+    - Refactored and cleaned up some auto-evo code to be more manageable
+    - Fixed a minor code clarity problem in auto-evo prey speed calculation
+    - Removed unnecessary HP offset in auto-evo
+    - Replaced LINQ in nominal capacity counting for a slight efficiency improvement for auto-evo
+    - Optimized random mutation selection in auto-evo a little bit
+    - Optimized random X taking algorithm in auto-evo
+    - Optimized remove organelle placement check in auto-evo
+    - Optimized auto-evo population calculation step a bit by reusing cache memory
+    - Optimized auto-evo initial compounds calculation by it only happening on succeeding candidate species
+    - Cleaned up patch preparation, scoring, and accumulation code in auto-evo
+    - Unified auto-evo code doing layout cloning
+    - Added a correctness change to auto-evo organelle removal in cell cell types that shouldn't have an effect on real game functionality
+    - Added a temporary auto-evo optimization regarding checking storage capacity. The checks now skip special storage but in the future we hope to take that into account properly.
+    - Added a regression test for species data cache in auto-evo
+    - Refactored chunk compound scoring in auto-evo and added tests to ensure the behaviour of the code is the same as before
+    - Fixed auto-evo calculating toxin score from an unused cell type
+    - Fixed auto-evo state variables not being fully accurate whether a run was in progress or not
+    - Improved auto-evo code in miche population writing
+    - Improved safety of the code handling starting of auto-evo run and publishing the background operation results
+    - Added average run time to auto-evo exploring tool
+    - Added loading of existing worlds from saves to the auto-evo exploring tool
+    - Added a debug check to ensure there's no gaps in the multicellular gameplay layout
+    - Extracted the editor auto-evo prediction panel as a separate component
+    - Added cloud renderer prototype code phase 2
+    - Added OpenGL compatibility to the prototype cloud renderer code
+    - Modified the included free view camera debug tool to use our custom input system and keybindings
+    - Added a modular shader builder for later usage
+    - Added catching of background task errors when the main thread waits for them
+    - Improved safety in our task executor system in case some task items failed
+    - Optimized a hex operation in debug builds
+    - Fixed some terrain chunks using the wrong cull mode and thus drawing more geometry than intended
+    - Updated code review settings to ignore other languages than English
+    - Added some more caveats to our style guide related to British English
+    - Updated outdated info in our style guide on method order
+    - Updated style guide in relation to precomputed values and some other things
+    - Updated git settings to specify a few file types to always use LF file endings. This should help with some persistent files changed problems on Windows.
+    - The Thrive development scripts now recognize "godot-mono" as the primary name of the Godot executable but still accept plain godot as a fallback
+    - Created a procedure document on how to most easily fix translation conflicts
+    - Adjusted code review tool locale file paths
+    - Increased Godot-using unit test connect timeout to try to make them more reliable in CI
+    - Fixed a problem in organelle removal tests
+    - Added new automated brace style checks
+    - Updated code analysis tools
+    - Updated code checking tools
+    - Updated unit test libraries
+    - Updated code submodules
+    - Updated AngleSharp from 1.7.2 to 1.8.5
+    - Updated System.IO.Hashing from 10.0.11 to 10.0.13
+    - Updated other dependencies including Sugiyama to 0.15.1
+    - Updated translations
+    - Updated translations
