@@ -27,10 +27,9 @@ public class TextureThumbnailResource : ITextureResource
         this.thumbnailWidth = thumbnailWidth;
     }
 
-    // TODO: background loading once Godot supports it
-    public bool RequiresSyncLoad => true;
+    public bool RequiresSyncLoad => false;
     public bool UsesPostProcessing => false;
-    public bool RequiresSyncPostProcess => true;
+    public bool RequiresSyncPostProcess => false;
 
     public bool CancelRequested { get; set; }
 
