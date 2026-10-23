@@ -1630,7 +1630,7 @@
     - Fixed entering an editor scene with a console command not remembering that that is a cheated state if a save is made afterwards
     - Fixed a missing period in the microbe editor tutorial text
     - The game now forces an unpause upon selecting a new patch on patch extinction, this should fix a softlock
-    - Added validation against special names in cell type names and a few other constraints that ensure the game shouldn't break no matter is entered as a name by the player
+    - Added validation against special names in cell type names and a few other constraints that ensure the game shouldn't break no matter what is entered as a name by the player
     - Fixed debug entity labels causing errors on mass removal
     - Added creature skin textures for the macroscopic prototype
     - Added a metaball rotation tool to the macroscopic editor
