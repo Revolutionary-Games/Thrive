@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-10-17 11:11+0300\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
-"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
+"PO-Revision-Date: 2026-10-22 21:42+0000\n"
+"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -52,13 +52,16 @@ msgstr "Принять"
 msgid "ACHIEVEMENTS"
 msgstr "Достижения"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Достижения {0} / {1}"
+msgstr "Загрузка Данных о Достижениях Провалена"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
+msgstr ""
+"Файл данных достижений может быть испорчен.\n"
+"Данные можно сбросить, потеряв весь прогресс достижений, удалив\n"
+"{0}\n"
+"Хотите продолжить играть без достижений?\n"
+"При нажатии на \"Отмену\" игра закроется."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Достижения {0} / {1}"
@@ -105,15 +108,13 @@ msgstr ""
 "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
 
 msgid "ACTOMYOSIN"
-msgstr ""
+msgstr "Актомиозин"
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "Описание отсутствует"
+msgstr "Актомиозины — это простые мышечные структуры, которые клеточные колонии могут использовать для более эффективного перемещения в определённом направлении или вращения. Они не встречаются в мембранах клеточных стенок, так как для их функционирования требуется деформация колонии. Поэтому они наиболее эффективны, когда в каждой клетке есть только один такой орган, но в колонии их много."
 
-#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Увеличивает базовую скорость передвижения и скорость вращения колонии клеток."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Дополнительные проверки обнаружили проблему: {0}"
@@ -200,13 +201,11 @@ msgstr ""
 msgid "ALTERNATVE_TIMESCALE"
 msgstr "Альтернативная временная шкала"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr "Окружающая среда"
+msgstr "Всегда сбрасывать состояние окружения мира при выходе из редактора"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr "При"
+msgstr "(когда доступна, облака, местность, микробы, организм игрока и его хранилище, остальные живые вещи, и так далее. всегда удаляются и окружающая среда регенерируется когда вы покидаете редактор, а не только при переходе на другой участок или в другое место)"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -407,13 +406,11 @@ msgstr "Используйте Исследователь Авто-Эво"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения Авто-Эво"
 
-#, fuzzy
 msgid "AUTO_EVO_FAILED_CHECK_LOGS"
-msgstr "Не удалось запустить Авто-Эво"
+msgstr "Не удалось запустить Авто-Эво (файл игрового лога содержит больше информации)"
 
-#, fuzzy
 msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
-msgstr "Отсутствуют результаты Авто-Эво. Это нормально, если вы, например, загрузили старое сохранение. Но если это произошло на новом сохранении, то, пожалуйста, сообщите об ошибке, прикрепив файл с журналом действий (Log file)."
+msgstr "Результаты Авто-Эво отсутствуют в сохранении. Это скорее всего показывает, что Авто-Эво провалилось до создания сохранения. Пожалуйста, создайте багрепорт о неудаче Авто-Эво. Пожалуйста, обеспечьте предыдущие игровые логи или сохранение перед возникновением ошибки (при условии, что ошибка снова возникнет с некоторой долей вероятности после предыдущего сохранения), как часть отчёта. К сожалению, предоставление уже поврежденного файла сохранения не является полезным для сообщения об ошибке."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Отсутствуют результаты Авто-Эво. Это нормально, если вы, например, загрузили старое сохранение. Но если это произошло на новом сохранении, то, пожалуйста, сообщите об ошибке, прикрепив файл с журналом действий (Log file)."
@@ -517,9 +514,8 @@ msgstr "Батипелагический"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
-#, fuzzy
 msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
-msgstr "Стать макроскопическим ({0}/{1})"
+msgstr "Невозможно Стать Макроскопическим"
 
 msgid "BECOME_MULTICELLULAR"
 msgstr "Стать многоклеточным ({0}/{1})"
@@ -569,9 +565,8 @@ msgstr "Лучше Быть Вместе"
 msgid "BEYOND_THE_CELL"
 msgstr "За Пределами Клетки"
 
-#, fuzzy
 msgid "BEYOND_THE_MICROBE"
-msgstr "За Пределами Клетки"
+msgstr "За Пределами Микроба"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Большой кусок железа"
@@ -754,40 +749,40 @@ msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
 msgid "CELL_BODY_AUTOMATIC_LAYOUT_CANNOT_MOVE_CELL"
-msgstr ""
+msgstr "Переключитесь на ручную раскладку, чтобы можно было перемещать клетки"
 
 msgid "CELL_BODY_LAYOUT_ROTATION_MAIN_VIEW_ONLY"
-msgstr ""
+msgstr "Вращать клеткиможно только в режиме просмотра основной структуры"
 
 msgid "CELL_BODY_LAYOUT_SHIFT_NOTE"
-msgstr ""
+msgstr "Примечание: в автоматическом режиме сдвиги макета не отображаются в предварительном просмотре, поэтому из-за сдвига при выходе из редактора макет может не полностью совпадать с исходным. В ручном режиме сдвиги макета ячеек отображаются в предварительном просмотре, что может привести к различиям между ручным и автоматическим режимами."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
-msgstr ""
+msgstr "Ручная настройка клеток недопустима. Пожалуйста, проверьте вкладку «Редактор» и исправьте настройки или отключите ручную настройку"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "Макет некорректен, так как клетки потеряли слишком много смежных связей. Переместите их ближе к исходным позициям (см. красные стрелки)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
-msgstr ""
+msgstr "Макет недействителен, так как содержит несвязанные клетки"
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
-msgstr ""
+msgstr "Макет недействителен, так как в нем есть клетки с неправильным порядком роста. Переместите эти клетки или измените порядок роста на вкладке «Порядок роста»."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
-msgstr ""
+msgstr "Макет недопустим, так как клетки перекрываются."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
-msgstr ""
+msgstr "Макет некорректен, так как клетки перекрываются и слишком много смещений не соответствует ожидаемым (см. красные стрелки)."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
-msgstr ""
+msgstr "Макет недействителен, так как клетки перекрывают друг друга и не связаны между собой."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INFO"
-msgstr ""
+msgstr "На этой вкладке вы можете просмотреть полный макет, который используется для вашей клеточной колонии во время игры, и изменить его при ручном управлении."
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
-msgstr ""
+msgstr "Нажмите на клетку, чтобы начать ее перемещение. Переместите клетки в нужное положение. Все клетки должны оставаться соединенными и находиться рядом с тем местом, где они должны быть в структуре. При редактировании органелл могут возникать перекрытия, которые также необходимо устранить, прежде чем ручная компоновка станет корректной. При выходе из режима ручной компоновки все внесенные изменения будут отменены."
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -798,7 +793,7 @@ msgstr ""
 "или располагайте ячейки одного типа рядом друг с другом."
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
-msgstr ""
+msgstr "Пожалуйста, подождите, рассчитывается раскладка тела"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -828,9 +823,8 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
-#, fuzzy
 msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
-msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
+msgstr "Тип клетки с таким именем уже существует"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Примечания к изменениям слишком длинные"
@@ -874,9 +868,8 @@ msgstr "Чит-коды включены"
 msgid "CHEAT_MENU"
 msgstr "Чит-меню"
 
-#, fuzzy
 msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
-msgstr "Доступно лишь после [color=#3796e1][url=thriveopedia:macroscopic_stage]Макроскопической Стадии[/url][/color]."
+msgstr "Макроскопические Требования"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показать/скрыть процессы клетки"
@@ -989,9 +982,8 @@ msgstr "Очистить Кэш"
 msgid "CLICK_TO_SELECT"
 msgstr "Выбрать"
 
-#, fuzzy
 msgid "CLICK_TO_SET_CELL_TYPE"
-msgstr "Выбрать"
+msgstr "Нажмите, чтобы установить тип клетки"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "Нестабильность климата"
@@ -1035,9 +1027,8 @@ msgstr "Прибрежный"
 msgid "COLLISION_SHAPE"
 msgstr "Создавать сущности с коллизией"
 
-#, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Сила Поворота"
+msgstr "Поворот Базовой Колонии"
 
 #, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
@@ -1478,7 +1469,7 @@ msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr "Неизвестная Ось"
 
 msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
-msgstr ""
+msgstr "Партнер не появился из-за оставшегося времени восстановления: {0} секунд"
 
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
@@ -1579,31 +1570,27 @@ msgstr "Создание..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "Тип Токсина:"
+msgstr "Тип кожи:"
 
 msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr ""
+msgstr "Перья"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "Создать Новый Тип Клетки"
+msgstr "Мех"
 
 msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr ""
+msgstr "Перец"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
+msgstr "Униформа"
 
 #, fuzzy
 msgid "CREATURE_SKIN_TYPE_SCALES"
 msgstr "Создать Новое Сохранение"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
+msgstr "Кожа"
 
 msgid "CREDITS"
 msgstr "Титры"
@@ -1748,17 +1735,14 @@ msgstr "Уменьшить размер объекта"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
 
-#, fuzzy
 msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
-msgstr "Тип споровых клеток"
+msgstr "Гамета Б"
 
-#, fuzzy
 msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
-msgstr "Тип споровых клеток"
+msgstr "Гамета"
 
-#, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
-msgstr "Тип споровых клеток"
+msgstr "Спора"
 
 msgid "DELETE"
 msgstr "Удалить"
@@ -2103,9 +2087,8 @@ msgstr "Редакторы и Мутации"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Войдите в редактор для модификации видов"
 
-#, fuzzy
 msgid "EDITOR_SPECIES_DATA_ERROR"
-msgstr "Показывает, что данный вид мутировал во время этого цикла Авто-Эво"
+msgstr "Ошибка Редактора Данных Видов"
 
 #, fuzzy
 msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
@@ -2316,9 +2299,8 @@ msgstr "Начать эндосимбиоз с этим видом (Доступ
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Эндосимбиоз"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "- {0}: {1} /second"
+msgstr "{0}: {1} /сек"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
@@ -2408,10 +2390,10 @@ msgid "ERROR_LOADING"
 msgstr "Ошибка Загрузки"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
-msgstr ""
+msgstr "Ошибка: для полового размножения необходимо как минимум две клетки"
 
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
-msgstr ""
+msgstr "Ошибка: для массового почкования требуется начальный размер почки не менее {0} клеток"
 
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
@@ -2787,53 +2769,38 @@ msgstr "Просмотр Галереи"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Основы Игрового Процесса"
 
-#, fuzzy
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "Стволовая клетка"
+msgstr "Гамета {0} ({1})"
 
-#, fuzzy
 msgid "GAMETE_CELL_TYPE"
-msgstr "Создать Новый Тип Клетки"
+msgstr "Тип клеток гамет"
 
-#, fuzzy
 msgid "GAMETE_CELL_TYPE_A"
-msgstr "Название вида клеток"
+msgstr "Гамета типа А"
 
-#, fuzzy
 msgid "GAMETE_CELL_TYPE_B"
-msgstr "Создать Новый Тип Клетки"
+msgstr "Гамета типа Б"
 
-#, fuzzy
 msgid "GAMETE_PRODUCED"
-msgstr "Воспроизведено"
+msgstr "произведенная гамета"
 
-#, fuzzy
 msgid "GAMETE_TYPE_A"
-msgstr "Название вида клеток"
+msgstr "А"
 
-#, fuzzy
 msgid "GAMETE_TYPE_ALL"
-msgstr "Название вида клеток"
+msgstr "Все"
 
-#, fuzzy
 msgid "GAMETE_TYPE_B"
-msgstr "Создать Новый Тип Клетки"
+msgstr "Б"
 
-#, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
-msgstr ""
-"Эта секция показывает весь баланс АТФ (энергии) в клетке.\n"
-"Для того, чтобы выжить, баланс АТФ должен быть положительным. Малоподвижные клетки для сохранения энергии могут полностью исключить передвижение как таковое.\n"
-"Вы можете использовать раскрывающийся список ниже для проверки производства АТФ при отсутствии необходимых соединений.\n"
-"Например, некоторые клетки могут поддерживать положительный баланс АТФ только если у них в наличии есть множество соединений.\n"
-"Играть за этот тип клеток намного сложнее, поскольку для выживания им нужно иметь в хранилище все эти соединения разом."
+msgstr "Выберите тип гамет, которые будет производить клеточная колония игрока"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Команда Игрового Дизайна"
 
-#, fuzzy
 msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
-msgstr "Заметьте: вы можете изменить настройки производительности в любое время в [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]меню настроек[/url][/color] для улучшения производительности"
+msgstr "Предупреждение: снижение точности или скорости физического моделирования из-за низкой производительности"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "Игровые Системы"
@@ -3314,15 +3281,13 @@ msgid "INVERTED"
 msgstr "Инвертировать"
 
 msgid "IN_LOOK_OF_A_HOME"
-msgstr ""
+msgstr "В Поисках Дома"
 
-#, fuzzy
 msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
-msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+msgstr "Пройти не менее 1000 единиц расстояния за одну жизнь в виде споры"
 
-#, fuzzy
 msgid "IN_LOOK_OF_A_HOME_PROGRESS"
-msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+msgstr "Пройденное расстояние в качестве споры: {0}/{1}"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -3359,13 +3324,10 @@ msgid "JUNE"
 msgstr "Июнь"
 
 msgid "JUST_A_FLESH_WOUND"
-msgstr ""
+msgstr "Всего лишь поверхностная рана"
 
-#, fuzzy
 msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
-msgstr ""
-"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
-"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
+msgstr "Потеряйте по крайней мере 30% от общего плана вашего тела, состоящего как минимум из 10 клеток, а затем доживите до редактора"
 
 msgid "KEEP_MIGRATION"
 msgstr "Продолжить Миграцию"
@@ -3604,7 +3566,7 @@ msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ограничивает органеллы и способности только теми, которые встречаются в природе (Жизнь, Какой Мы её Знаем))"
 
 msgid "LAYOUT_TAB"
-msgstr ""
+msgstr "Макет"
 
 msgid "LEAD_ARTIST"
 msgstr "Ведущий Художник"
@@ -3813,9 +3775,8 @@ msgstr ""
 "Это сохранение скорее всего повреждено или нового формата, который не понимается текущей версией Thrive.\n"
 "Всё равно попробовать загрузить сохранение?"
 
-#, fuzzy
 msgid "LOAD_SAVE"
-msgstr "Загрузить игру"
+msgstr "Загрузить Сохранение"
 
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Л"
@@ -3881,41 +3842,31 @@ msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr "Смена Мембраны более невозможна в Макроскопической Стадии"
 
 msgid "MACROSCOPIC_CONDITIONS_ALL_SUCCEEDED"
-msgstr ""
+msgstr "Все макроскопические условия выполнены. После выхода из редактора нажмите кнопку «Стать макроскопическим», чтобы продолжить."
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_INTRO"
-msgstr "Макроскопический Редактор"
+msgstr "Прежде чем вид будет допущен к переходу на следующий этап (макроскопический этап), в редакторе должны быть выполнены следующие условия. В противном случае кнопка перехода на следующий этап не будет активна во время игры."
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
-msgstr "Макроскопический Редактор"
+msgstr "Макроскопические Требования Выполнены"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_TITLE"
-msgstr "Макроскопический Редактор"
+msgstr "Требования к Макроскопической Стадии"
 
 msgid "MACROSCOPIC_CONDITION_AVERAGE_ADJACENCY"
-msgstr ""
+msgstr "Средний бонус за смежность ячеек не менее {1}% (сейчас {0}%)"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITION_CELL_COUNT"
-msgstr "Начальный подсчет клеток"
+msgstr "Количество ячеек не менее {1} (сейчас {0})"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
-msgstr "Макроскопический прототип"
+msgstr "Типы клеток, используемые в организме, по крайней мере {1} (сейчас {0})"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
-msgstr "размножение в биоме {0}"
+msgstr "Использование более продвинутого метода размножения, чем обычное почкование"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
-msgstr ""
-"Поздравляем, вы дошли до прототипа макроскопической секции многоклеточной стадии!\n"
-"\n"
-"Из-за ограничений разработки, мы не смогли добавить трёхмерный макроскопический геймплей в этом релизе. Но вы можете вернуться в редактор, чтобы продолжить изменять свой организм."
+msgstr "Общая специализация не менее {1}% (сейчас {0}%)"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Макроскопический Редактор"
@@ -3947,9 +3898,8 @@ msgstr "Морской снег"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "Начальный подсчет клеток"
 
-#, fuzzy
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
-msgstr "Производит потомство, которое начинается с множества клеток."
+msgstr "Чтобы использовать эту опцию, размер бутона должен быть не менее {0} клеток. Возможно, вам потребуется добавить больше клеток в план вашего тела, чтобы можно было выбрать бутон достаточно большого размера."
 
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Производит потомство, которое начинается с множества клеток."
@@ -3961,7 +3911,7 @@ msgid "MASTODON_TOOLTIP"
 msgstr "Зайдите в наш аккаунт в Mastodon"
 
 msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
-msgstr ""
+msgstr "В мире появился напарник, которого призвал игрок"
 
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Максимальный размер кэша на диске (Объекты будут автоматически удалены если кэш станет слишком большим)"
@@ -4342,9 +4292,8 @@ msgstr "Микробоцид"
 msgid "MICROSCOPIC_BIRDS_AND_BEES"
 msgstr "Стадия Макроскопического Организма"
 
-#, fuzzy
 msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
-msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
+msgstr "Успешно размножается половым путем на многоклеточной стадии"
 
 msgid "MICRO_BORG"
 msgstr "Микро-Борг"
@@ -4613,17 +4562,15 @@ msgstr "Двигаться к любому биому"
 msgid "MOVE_TO_LAND"
 msgstr "Переместиться на сушу"
 
-#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 "Перейти к многоклеточной стадии. Доступно после сбора достаточно большой колонии клеток.\n"
-"Это требует от тебя добавить достаточно клеток в редакторе, затем вырастить свою колонию до минимального размера."
+"Это требует добавить достаточно клеток в редакторе, затем вырастить свою колонию до минимального размера."
 
-#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP_MISSING_REQUIREMENTS"
 msgstr ""
-"Перейти к многоклеточной стадии. Доступно после сбора достаточно большой колонии клеток.\n"
-"Это требует от тебя добавить достаточно клеток в редакторе, затем вырастить свою колонию до минимального размера."
+"Переход на макроскопический этап. Вам не хватает некоторых требований к структуре видов! \n"
+"Проверьте в редакторе, какие требования не выполнены, и выполните их, чтобы активировать эту кнопку в следующем игровом цикле."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Перейти к следующему этапу игры (ранней многоклеточности). Доступно после сбора достаточно большой колонии."
@@ -4905,9 +4852,8 @@ msgstr "Поврежден из-за избытка излучения"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Редактор теперь доступен"
 
-#, fuzzy
 msgid "NOTICE_READY_TO_SHOOT_GAMETE"
-msgstr "Редактор теперь доступен"
+msgstr "Гамета готова к выстрелу. Попадите ею в другую совместимую гамету, чтобы перейти в редактор."
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Не адаптирован к текущим условиям. Поменяйте предпочитаемые условия или диапазон терпимости, чтобы убрать ослабления."
@@ -4933,13 +4879,11 @@ msgstr "Никаких событий не зафиксировано"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Не найдена дирректория окаменелостей"
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET"
-msgstr "Название вида клеток"
+msgstr "Организм, использующий половое размножение, должен иметь набор типов гамет."
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
-msgstr "Тип споровых клеток"
+msgstr "Тип клетки гаметы не установлен"
 
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "В текущей игре больше нельзя получать достижения"
@@ -4962,19 +4906,17 @@ msgstr "Папка скриншотов не найдена"
 msgid "NO_SELECTED_MOD"
 msgstr "Ни одного мода не выбрано"
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET"
-msgstr "Тип споровых клеток"
+msgstr "Организм, размножающийся спорами, должен иметь набор споровых клеток."
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "Тип споровых клеток"
+msgstr "Тип споровой клетки не установлен"
 
 msgid "NO_SUGGESTION"
 msgstr "Ничего"
 
 msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
-msgstr ""
+msgstr "Не найдено незаблокированной позиции для самки, она все равно создается, но может зависнуть"
 
 msgid "NUCLEUS"
 msgstr "Ядро"
@@ -5107,9 +5049,8 @@ msgstr "Настройки"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
-#, fuzzy
 msgid "OPTION_USED_FOR_PLAYER"
-msgstr "На паузе."
+msgstr "Тип гаметы игрока"
 
 msgid "ORGANELLES"
 msgstr "Органеллы"
@@ -5361,11 +5302,10 @@ msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
 msgid "PERFECTLY_PACKED"
-msgstr ""
+msgstr "Идеально Упаковано"
 
-#, fuzzy
 msgid "PERFECTLY_PACKED_DESCRIPTION"
-msgstr "Когда пределы погрешности уменьшены до минимальных значений, и вашим видам нравятся нынешние условия, добавится бонус идеальной адаптации. Он даст преимущество, если вы планируете играть только в одном биоме, а не расширяться."
+msgstr "Оставьте в многоклеточном редакторе модель тела, состоящую как минимум из 10 клеток, без пробелов и пустот"
 
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "Когда пределы погрешности уменьшены до минимальных значений, и вашим видам нравятся нынешние условия, добавится бонус идеальной адаптации. Он даст преимущество, если вы планируете играть только в одном биоме, а не расширяться."
@@ -5448,19 +5388,16 @@ msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
 
 msgid "PLAYER_NAME_CANNOT_BE_EMPTY"
-msgstr ""
+msgstr "Имя не может быть пустым"
 
-#, fuzzy
 msgid "PLAYER_NAME_HAS_INVALID_NODE_CHARACTERS"
-msgstr "Файл сохранения имеет недействительную сцену состояния игры"
+msgstr "Имена не могут содержать '/', ':', '%', '@', '.' или '\"'."
 
-#, fuzzy
 msgid "PLAYER_NAME_REQUIREMENTS"
-msgstr "Необходимо получать урон от радиации, находясь вблизи от радиоактивного куска."
+msgstr "Имена могут содержать до 100 символов и не должны включать специальные символы ('/:%@\".')"
 
-#, fuzzy
 msgid "PLAYER_NAME_TOO_LONG"
-msgstr "Название вида слишком длинное!"
+msgstr "Имена должны содержать не более {0} символов"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Относительно игрока"
@@ -5480,7 +5417,7 @@ msgstr ""
 "Игрока"
 
 msgid "PLAYSTATION_3"
-msgstr "PlayStation 3"
+msgstr "PlаyStation 3"
 
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
@@ -5503,12 +5440,11 @@ msgstr ""
 msgid "PLUS_FROM_BASE_VALUE_INDENTED"
 msgstr ""
 
-#, fuzzy
 msgid "PLUS_FROM_SPECIALIZATION_VALUE"
-msgstr "Специализация:"
+msgstr "+{0} от Специализации"
 
 msgid "PLUS_FROM_SPECIALIZATION_VALUE_INDENTED"
-msgstr ""
+msgstr "  +{0} от Специализации"
 
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
@@ -5673,7 +5609,7 @@ msgid "READY"
 msgstr "Готово"
 
 msgid "REAPPLY_AUTOMATIC_LAYOUT"
-msgstr ""
+msgstr "Сбросить Макет"
 
 #, fuzzy
 msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
@@ -6000,6 +5936,9 @@ msgstr "Недействительно"
 
 msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
 msgstr ""
+"Не удалось загрузить сохранение, так как файл поврежден.\n"
+"Ожидаемый хэш: {0}\n"
+"Рассчитанный хэш: {1}"
 
 msgid "SAVE_IS_INVALID"
 msgstr "Сохранение сломано"
@@ -6171,21 +6110,18 @@ msgstr "Это значение начнёт работать при старт�
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
 msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
-msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
+msgstr "Использование полового размножения дает скидку {0}% на все затраты MP. Этот бонус действует со следующего поколения."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
-msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
+msgstr "Все затраты на использование MP снижены на {0}% за счет использования полового размножения."
 
 #, fuzzy
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
-msgstr "Пассивно получать прогресс репродукции"
+msgstr "Перейти к анизогамии ({0} МП)"
 
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
@@ -6400,17 +6336,14 @@ msgstr "Специализация:"
 msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
 msgstr "Файл окаменелости не может быть записан"
 
-#, fuzzy
 msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
-msgstr "Специализация:"
+msgstr "Различные специализированные типы клеток, степень специализации которых составляет не менее 50%: {0}/{1}"
 
-#, fuzzy
 msgid "SPECIALIZED_WEAPONS"
-msgstr "Эта вакуоль будет хранить {0} единиц выбранного соединения"
+msgstr "Специализированное Вооружение"
 
-#, fuzzy
 msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
-msgstr "Эта вакуоль будет хранить {0} единиц выбранного соединения"
+msgstr "Оставьте в многоклеточном редакторе тип клеток, содержащий не менее 5 пилей или токсиновых органелл, в то время как в каждом другом типе клеток их не более 1"
 
 #, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
@@ -6498,9 +6431,8 @@ msgstr "Переключает режим спринтинга. Во время 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
 
-#, fuzzy
 msgid "STANDARD_COLON_VALUE"
-msgstr "Имя:"
+msgstr "Стандарт: {0}"
 
 msgid "START"
 msgstr "Начать"
@@ -6916,9 +6848,10 @@ msgstr "Ни один вид еще не закреплен, поэтому зд
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Закрепленные Виды"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
-msgstr "{0}"
+msgstr ""
+"создание\n"
+"животное"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
@@ -7350,6 +7283,7 @@ msgstr ""
 "\n"
 "Нажмите кнопку Отменить, чтобы продолжить."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "При выборе частей \"тела\", [u]обратите внимание на всплывающие подсказки[/u], чтобы понять что они делают. Органеллы могут принести [u]больше вреда чем пользы если вы невнимательных к их функционированию[/u].\n"
@@ -7524,9 +7458,8 @@ msgstr "Многоклеточный редактор"
 msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
 msgstr "Целлюлаза позволяет клетке разрушать целлюлозную мембрану. С количеством повышается эффективность."
 
-#, fuzzy
 msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
-msgstr "Многоклеточный редактор"
+msgstr "Токсичных снарядов в одном залпе: {0}/{1}"
 
 #, fuzzy
 msgid "ULTIMATE_COLONY"
@@ -7536,9 +7469,8 @@ msgstr "Имя:"
 msgid "ULTIMATE_COLONY_DESCRIPTION"
 msgstr "Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите эффективность."
 
-#, fuzzy
 msgid "ULTIMATE_COLONY_PROGRESS"
-msgstr "Имя:"
+msgstr "Имя:Крупнейшая клеточная колония: {0}/{1} клеток"
 
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Есть непримененные изменения"
@@ -7689,7 +7621,7 @@ msgid "UNTITLED"
 msgstr "Без Имени"
 
 msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
-msgstr ""
+msgstr "Тип клетки\"{0}\" вообще не используется. Разместите его в плане тела или удалите перед выходом из редактора."
 
 #, fuzzy
 msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
@@ -7926,7 +7858,7 @@ msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
 
 msgid "WHILE_CONSUMING_COLON"
-msgstr ""
+msgstr "Во время употребления:"
 
 msgid "WIKI"
 msgstr "наша Wiki"
@@ -9965,6 +9897,7 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Нет улучшений."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
 "Если клетка игрока имеет [b]Сигнальные Агенты[/b], игрок может нажать горячую клавишу (по умолчанию [b]V[/b]), чтобы открыть панель сигнализации и отдать команду всем членам вида. Каждая команда сохраняется до тех пор, пока не будет выбрана новая команда. Возможны следующие варианты:\n"
@@ -10499,7 +10432,7 @@ msgid "YOUTUBE_TOOLTIP"
 msgstr "Зайти на наш Ютуб Канал"
 
 msgid "YOU_ANIMAL"
-msgstr ""
+msgstr "Вы - Животное!"
 
 #, fuzzy
 msgid "YOU_ANIMAL_DESCRIPTION"
