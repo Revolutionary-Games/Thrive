@@ -25,6 +25,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(PlayerMarker))]
+[ReadsComponent(typeof(Health))]
 [WritesToComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(ProcessSystem))]
@@ -113,8 +114,11 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
     private void Update([Data] in float delta, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref WorldPosition position, ref SoundEffectPlayer soundEffectPlayer,
         ref CompoundStorage compoundStorage, ref Engulfable engulfable, ref SpecializationFactor specializationFactor,
-        in Entity entity)
+        ref Health health, in Entity entity)
     {
+        if (health.Dead)
+            return;
+
         DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
 
