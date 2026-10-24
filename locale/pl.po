@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-10-17 11:11+0300\n"
-"PO-Revision-Date: 2026-10-21 07:39+0000\n"
-"Last-Translator: Nie <tym@wrozynski.com>\n"
+"PO-Revision-Date: 2026-10-24 21:55+0000\n"
+"Last-Translator: Sławomir Pitek <slawomir.k.pitek@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -709,7 +709,7 @@ msgid "CAPSLOCK"
 msgstr "Caps Lock"
 
 msgid "CARBON_DIOXIDE"
-msgstr "Dwutlenek Węgla"
+msgstr "Dwutlenek Węgla (CO₂)"
 
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "Mnóstwo"
@@ -2226,9 +2226,8 @@ msgstr "Wyrzuć wchłonięte obiekty"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Zwraca wszystkie obce ciała, które wchłonąłeś"
 
-#, fuzzy
 msgid "EMITTERS_COUNT"
-msgstr "Ilość mikrobów:"
+msgstr "Emitery:"
 
 msgid "ENABLED_MODS"
 msgstr "Włączone Mody"
@@ -2316,9 +2315,8 @@ msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
 
-#, fuzzy
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr "Energia w {0} dla {1}"
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
@@ -2387,7 +2385,7 @@ msgid "ERROR_LOADING"
 msgstr "Błąd wczytywania"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
-msgstr ""
+msgstr "Błąd: do rozmnażania płciowego potrzeba przynajmniej dwóch komórek"
 
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
@@ -2477,9 +2475,8 @@ msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Podczas wczytywania danych zapisu nastąpił wyjątek"
 
-#, fuzzy
 msgid "EXCLUSIVE_FULLSCREEN"
-msgstr "Przełącz pełny ekran"
+msgstr "Wyłącznie w trybie pełnego ekranu"
 
 msgid "EXISTING_BUILDINGS"
 msgstr "Budynki"
@@ -2487,9 +2484,8 @@ msgstr "Budynki"
 msgid "EXIT"
 msgstr "Wyjdź"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Przejdź do następnej zakładki edytora"
+msgstr "Opuść Edytor"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Wyjdź do Launchera"
@@ -2782,21 +2778,17 @@ msgstr "Nazwa Rodzaju Komórki"
 msgid "GAMETE_CELL_TYPE_B"
 msgstr "Stwórz Nowy Typ Komórki"
 
-#, fuzzy
 msgid "GAMETE_PRODUCED"
-msgstr "rozmnożyły się"
+msgstr "gameta utworzona"
 
-#, fuzzy
 msgid "GAMETE_TYPE_A"
-msgstr "Nazwa Rodzaju Komórki"
+msgstr "A"
 
-#, fuzzy
 msgid "GAMETE_TYPE_ALL"
-msgstr "Nazwa Rodzaju Komórki"
+msgstr "Wszystkie"
 
-#, fuzzy
 msgid "GAMETE_TYPE_B"
-msgstr "Stwórz Nowy Typ Komórki"
+msgstr "B"
 
 #, fuzzy
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
@@ -2875,9 +2867,8 @@ msgstr "Spokojna"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(wpływa na częstość i intensywność zdarzeń takich jak uderzenia meteorytów czy wybuchy wulkanów)"
 
-#, fuzzy
 msgid "GERMINATE_SPORE"
-msgstr "Odwiedź naszego Patreona"
+msgstr "Spowoduj kiełkowanie zarodnika"
 
 #, fuzzy
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
@@ -2911,9 +2902,8 @@ msgstr "Rozpoczęła się globalna epoka lodowcowa na wszystkich strefach powier
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "Całkowita populacja:"
+msgstr "Globalna populacja:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się z {2} do {1}"
@@ -3029,9 +3019,8 @@ msgstr "Przytrzymaj [thrive:input]g_free_cursor[/thrive:input] dla kursora"
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Przytrzymaj by pominąć"
 
-#, fuzzy
 msgid "HOME"
-msgstr "Dom"
+msgstr "Home"
 
 msgid "HORIZONTAL_COLON"
 msgstr "Poziom:"
@@ -3144,9 +3133,8 @@ msgstr "Edytory"
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzymy"
 
-#, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
-msgstr "Enzymy"
+msgstr "Typ Rozgrywki"
 
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Nazwa Wewnętrzna"
@@ -3157,7 +3145,6 @@ msgstr "Masa"
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "Następny Etap"
 
-#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Koszt Osmoregulacji"
 
@@ -3173,9 +3160,8 @@ msgstr "Wymaga Jądra"
 msgid "INFO_BOX_SIZE"
 msgstr "Wielkość (Heksy)"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "Wielkość (Heksy)"
+msgstr "Wielkość"
 
 msgid "INFO_BOX_STAGE"
 msgstr "Etap"
@@ -3335,9 +3321,8 @@ msgstr "Żelazo (Fe²⁺)"
 msgid "IRON_LEVELS"
 msgstr "Poziom żelaza"
 
-#, fuzzy
 msgid "IRON_OXIDATION"
-msgstr "Wsparcie"
+msgstr "Utlenianie Żelaza"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Odwiedź naszą stronę Itch.io"
@@ -3366,16 +3351,14 @@ msgstr ""
 "Inicjalizacja biblioteki klienckiej Steam nie powiodła się. Funkcje Steam będą niedostępne.\n"
 "Upewnij się że Steam jest uruchomiony oraz jesteś zalogowany na odpowiednim koncie. Uruchom grę przez bibliotekę Steam jeśli problem będzie dalej się pojawiał."
 
-#, fuzzy
 msgid "KEEP_MIGRATION"
-msgstr "Oddychanie Tlenowe"
+msgstr "Zachowaj Migrację"
 
 msgid "KEY_BACK"
 msgstr "Wróć"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Wróć"
+msgstr "Backtab"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -3406,9 +3389,8 @@ msgstr "Ulubione"
 msgid "KEY_FORWARD"
 msgstr "Poruszanie do przodu"
 
-#, fuzzy
 msgid "KEY_GLOBE"
-msgstr "Dom"
+msgstr "Klawisz Globe"
 
 msgid "KEY_HELP"
 msgstr "Pomoc"
@@ -3610,7 +3592,7 @@ msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ogranicza części i umiejętności tylko do Życia Tak Jak je Znamy)"
 
 msgid "LAYOUT_TAB"
-msgstr ""
+msgstr "Układ"
 
 msgid "LEAD_ARTIST"
 msgstr "Główny Artysta"
@@ -3741,9 +3723,8 @@ msgstr "Bardzo mały"
 msgid "LINE_COLOUR"
 msgstr "Kolor Lini:"
 
-#, fuzzy
 msgid "LINKS_TITLE"
-msgstr "Brak tytułu"
+msgstr "Linki"
 
 msgid "LIPASE"
 msgstr "Lipaza"
@@ -3763,9 +3744,8 @@ msgstr "Wczytywanie..."
 msgid "LOADING_GAME"
 msgstr "Wczytywanie Gry"
 
-#, fuzzy
 msgid "LOADING_GRAPHICS_SHADERS"
-msgstr "Wczytywanie Gry"
+msgstr "Wczytywanie Shaderów"
 
 #, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
@@ -3785,9 +3765,8 @@ msgstr "Wczytywanie Edytora Wielokomórkowca"
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr "Wczytywanie Edytora Wielokomórkowca"
 
-#, fuzzy
 msgid "LOADING_STAGE"
-msgstr "Wczytywanie Gry"
+msgstr "Wczytywanie Etapu"
 
 #, fuzzy
 msgid "LOADING_STAGE_ASSETS"
@@ -3826,9 +3805,8 @@ msgstr ""
 "Ten zapis jest najpewniej zepsuty lub w nowszym formacie nierozumianym przez tą wersję Thrive.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
-#, fuzzy
 msgid "LOAD_SAVE"
-msgstr "Wczytaj grę"
+msgstr "Wczytaj Zapis"
 
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
@@ -3837,13 +3815,11 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Włącz cykl dnia i nocy"
 
-#, fuzzy
 msgid "LOOK_LEFT"
-msgstr "Strzałka w lewo"
+msgstr "Spójrz w Lewo"
 
-#, fuzzy
 msgid "LOOK_RIGHT"
-msgstr "Strzałka w prawo"
+msgstr "Spójrz w Prawo"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
 msgstr ""
@@ -3876,9 +3852,8 @@ msgstr "Powoduje, że rozmycie tła używa niższą rozdzielczość, co zwiększ
 msgid "LUCIFERASE"
 msgstr "Lucyferaza"
 
-#, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
-msgstr "Synteza śluzu"
+msgstr "Synteza Lucyferazy"
 
 msgid "LYSOSOME"
 msgstr "Lizosom"
@@ -3889,9 +3864,8 @@ msgstr "Lizosom jest organellą obłonioną, która zawiera hydrolityczne enzymy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
 
-#, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
-msgstr "Synteza śluzu"
+msgstr "Synteza Makrolidów"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopijny"
@@ -3906,9 +3880,8 @@ msgstr ""
 msgid "MACROSCOPIC_CONDITIONS_INTRO"
 msgstr "Wczytywanie edytora mikrobów"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_READY_TITLE"
-msgstr "Wczytywanie edytora mikrobów"
+msgstr "Wymagania Etapu Makroskopijnego Spełnione"
 
 #, fuzzy
 msgid "MACROSCOPIC_CONDITIONS_TITLE"
@@ -3925,9 +3898,8 @@ msgstr "Wczytywanie edytora mikrobów"
 msgid "MACROSCOPIC_CONDITION_CELL_TYPE_COUNT"
 msgstr "Prototyp makroskopijności"
 
-#, fuzzy
 msgid "MACROSCOPIC_CONDITION_REPRODUCTION_METHOD"
-msgstr "rozmnażanie w biomie {0}"
+msgstr "Używając bardziej zaawansowanej metody rozmnażania niż zwykłe pączkowanie"
 
 #, fuzzy
 msgid "MACROSCOPIC_CONDITION_SPECIALIZATION"
@@ -3936,13 +3908,11 @@ msgstr ""
 "\n"
 "Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
 
-#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
-msgstr "Wczytywanie edytora mikrobów"
+msgstr "Edytor Makroskopijny"
 
-#, fuzzy
 msgid "MACROSCOPIC_STAGE"
-msgstr "Etap Mikroba"
+msgstr "Etap Makroskopijności"
 
 #, fuzzy
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
@@ -3973,9 +3943,8 @@ msgstr ""
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
 msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
 
-#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "(Tworzy potomka zaczynającego z wieloma komórkami)"
 
 msgid "MASTER_VOLUME"
 msgstr "Głośność ogólna"
@@ -4158,9 +4127,8 @@ msgstr "Brak Ciśnienia Roboczego"
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr "Presja efektów drapieżnictwa"
 
-#, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Drapieżnictwo {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
@@ -4176,16 +4144,14 @@ msgstr "Drapieżnictwo {0}"
 msgid "MICHE_TREE"
 msgstr "Drzewo miszy"
 
-#, fuzzy
 msgid "MICROBE"
-msgstr "Etap Mikroba"
+msgstr "Mikrob"
 
 msgid "MICROBES_COUNT"
 msgstr "Ilość mikrobów:"
 
-#, fuzzy
 msgid "MICROBE_BENCHMARK"
-msgstr "Edytor Mikroba"
+msgstr "Testowanie Wzorcowe Etapu Mikroba"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Kąt kamery mikrobów"
@@ -4400,9 +4366,8 @@ msgstr ""
 "\n"
 "Z wystarczającą ilością zasobów, organelle zaczną się dzielić i rozdwajać. Kiedy wszystkie organelle się podzielą, twoja komórka może się rozdwoić i przejść do edytora."
 
-#, fuzzy
 msgid "MICROBIAL_MASSACRE"
-msgstr "Etap Mikroba"
+msgstr "Masakra Mikrobowa"
 
 #, fuzzy
 msgid "MICROSCOPIC_BIRDS_AND_BEES"
@@ -4412,9 +4377,8 @@ msgstr "Etap Mikroba"
 msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
 msgstr "Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym obrażeniom i jest szczególnie odporna na uszkodzenia fizyczne. Wymaga też mniej energii do utrzymania kształtu. Jednak spowalnia mocno komórkę i zmniejsza tempo wchłaniania zasobów."
 
-#, fuzzy
 msgid "MICRO_BORG"
-msgstr "Etap Mikroba"
+msgstr "Mikro-Borg"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Środkowy przycisk myszy"
@@ -4477,9 +4441,8 @@ msgstr "Różne"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Różnorodny etap 3D"
 
-#, fuzzy
 msgid "MISC_FUN"
-msgstr "Inne"
+msgstr "Inne Rozmaite Głupotki"
 
 msgid "MISSING_DESCRIPTION"
 msgstr "Brak opisu"
@@ -4743,13 +4706,11 @@ msgstr "{0} MP"
 msgid "MUCILAGE"
 msgstr "Śluz"
 
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Synteza śluzu"
+msgstr "Synteza Śluzu"
 
-#, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
-msgstr "Odwiedź naszego Patreona"
+msgstr "Stwórz obronną powłokę"
 
 msgid "MULTICELLULAR"
 msgstr "Wielokomórkowe"
@@ -4781,9 +4742,8 @@ msgstr "Edytor Wielokomórkowca"
 msgid "MULTICELLULAR_LOADING_TIP_5"
 msgstr "Edytor Wielokomórkowca"
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_6"
-msgstr "Edytor Wielokomórkowca"
+msgstr "Możesz kontrolować kolejność rozwoju komórek w twoim planie ciała, aby zoptymalizować swoje wczesne życie. Różne typy rozmnażania również wpływają na wczesne życie twojego organizmu."
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_7"
@@ -4793,21 +4753,16 @@ msgstr "Edytor Wielokomórkowca"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
 
-#, fuzzy
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Etap[/b]\n"
-"  Mikrob\n"
-"[b]Typ Błony[/b]\n"
+"  Wielokomórkowy\n"
+"[b]Liczba Komórek[/b]\n"
 "  {0}\n"
-"[b]Sztywność Błony[/b]\n"
+"[b]Typy Komórek[/b]\n"
 "  {1}\n"
-"[b]Prędkość Bazowa[/b]\n"
-"  {2}\n"
-"[b]Bazowa Prędkość Rotacji[/b]\n"
-"  {3}\n"
-"[b]Wielkość Bazowa (w heksach)[/b]\n"
-"  {4}"
+"[b]Typ Rozmnażania[/b]\n"
+"  {2}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etap Wielokomórkowca"
@@ -4887,9 +4842,8 @@ msgstr ""
 msgid "NEW"
 msgstr "Nowe"
 
-#, fuzzy
 msgid "NEWER"
-msgstr "Przeglądarka"
+msgstr "Nowsze"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4935,9 +4889,8 @@ msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"n
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"]Azotu[/thrive:compound]."
 
-#, fuzzy
 msgid "NITROGEN_FIXATION"
-msgstr "Tlenowe Wiązanie Azotu"
+msgstr "Wiązanie Azotu"
 
 msgid "NITROPLAST"
 msgstr "Plastyd Wiążący Azot"
@@ -4995,9 +4948,8 @@ msgstr "Spadek prędkości bazowej z powodu zatrucia"
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
 msgstr "Uszkodzony siarkowodorem nie mając odpowiednich białek chemosyntetyzujących"
 
-#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
-msgstr "Nie dość {0} by scraftować przedmiot"
+msgstr "Niewystarczająca ilość śluzu, aby aktywować powłokę śluzową"
 
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "Obrażenia spowodowane promieniowaniem"
@@ -5034,9 +4986,8 @@ msgstr "Nie zanotowano wydarzeń"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nie znaleziono folderu z plikami skamieniałości"
 
-#, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET"
-msgstr "Nazwa Rodzaju Komórki"
+msgstr "Organizm rozmnażający się płciowo musi mieć ustawiony typ komórki gamety."
 
 #, fuzzy
 msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
@@ -5064,9 +5015,8 @@ msgstr "Nie znaleziono katalogu zrzutów ekranu"
 msgid "NO_SELECTED_MOD"
 msgstr "Nie wybrano Modów"
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET"
-msgstr "Stwórz Nowy Typ Komórki"
+msgstr "Organizm rozmnażający się przez zarodnikowanie musi mieć ustawiony typ komórki zarodnika."
 
 #, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
@@ -5095,9 +5045,8 @@ msgstr "Umożliwia ewolucję bardziej skomplikowanych organelli obłonionych, zm
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
-#, fuzzy
 msgid "NUTRIENT_COST_TOOLTIP"
-msgstr "Odwiedź naszego Patreona"
+msgstr "To pokazuje, ile związków twoja komórka potrzebuje, aby się podzielić. Wyższe wartości oznaczają, że rozmnażanie wymaga więcej czasu i wysiłku."
 
 msgid "N_A"
 msgstr "Nie Dotyczy"
@@ -5124,9 +5073,8 @@ msgstr "Samobójstwo"
 msgid "OK"
 msgstr "OK"
 
-#, fuzzy
 msgid "OLDER"
-msgstr "Otwórz Folder"
+msgstr "Starsze"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5157,9 +5105,8 @@ msgstr ""
 "Czy chcesz zacząć grę z wybranym gatunkiem?\n"
 "Stracisz dotychczasowy niezapisany postęp."
 
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "Otwórz URL Informacji"
+msgstr "Narzędzia Boga"
 
 msgid "OPEN_HELP_SCREEN"
 msgstr "Otwórz ekran pomocy"
@@ -5240,11 +5187,9 @@ msgstr "Akson"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Dźgaj tym inne komórki."
 
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
-msgstr "Wielokomórkowe"
+msgstr "Makroskopijne"
 
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Wielokomórkowe"
 
@@ -5290,9 +5235,8 @@ msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je po
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
-#, fuzzy
 msgid "ORGANISM_STATISTICS_MICROBE"
-msgstr "Statystyki Organizmu"
+msgstr "Statystyki Komórki"
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr "lub"
@@ -5340,9 +5284,8 @@ msgstr "Tlen (O₂)"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Synteza OxyToxy"
 
-#, fuzzy
 msgid "OXYGEN_RESISTANCE"
-msgstr "Odporność Na Toksyny"
+msgstr "Odporność Na Tlen"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
@@ -5375,9 +5318,8 @@ msgstr "Tył"
 msgid "PAGE_FORWARD"
 msgstr "Przód"
 
-#, fuzzy
 msgid "PAGE_PINNED"
-msgstr "Tytuł Strony"
+msgstr "Przypięta"
 
 msgid "PAGE_TITLE"
 msgstr "Tytuł Strony"
@@ -5403,9 +5345,8 @@ msgstr "Dawni Developerzy"
 msgid "PATCHES_NUMBER"
 msgstr "Liczba obszarów:"
 
-#, fuzzy
 msgid "PATCH_COLON"
-msgstr "Najlepiej radzi sobie w:"
+msgstr "Obszar:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -5487,7 +5428,7 @@ msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
 msgid "PERFECTLY_PACKED"
-msgstr ""
+msgstr "Idealnie Ułożone"
 
 #, fuzzy
 msgid "PERFECTLY_PACKED_DESCRIPTION"
@@ -5562,9 +5503,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "Losowe ziarno planety"
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr "Statystyki"
+msgstr "Statystyki Planety"
 
 msgid "PLAYER"
 msgstr "Gracz"
@@ -5635,10 +5575,10 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Graj Z Obecnym Ustawieniem"
 
 msgid "PLUS_FROM_BASE_VALUE"
-msgstr ""
+msgstr "+{0} Wartości Podstawowej"
 
 msgid "PLUS_FROM_BASE_VALUE_INDENTED"
-msgstr ""
+msgstr "  +{0} Wartości Podstawowej"
 
 #, fuzzy
 msgid "PLUS_FROM_SPECIALIZATION_VALUE"
@@ -5713,9 +5653,8 @@ msgstr "poprzedni:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Przetwarzanie wczytanych obiektów"
 
-#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr "@"
+msgstr "Przy:"
 
 msgid "PROCESS_INACTIVE"
 msgstr "NIEAKTYWNY"
@@ -5745,9 +5684,8 @@ msgstr "Białka"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requesty / Programowanie"
 
-#, fuzzy
 msgid "QUADRILLION_ABBREVIATION"
-msgstr "{0} MD"
+msgstr "{0} BLD"
 
 msgid "QUICK_LOAD"
 msgstr "Szybkie wczytanie"
@@ -5815,7 +5753,7 @@ msgid "READY"
 msgstr "Gotowy"
 
 msgid "REAPPLY_AUTOMATIC_LAYOUT"
-msgstr ""
+msgstr "Zresetuj Układ"
 
 #, fuzzy
 msgid "REAPPLY_AUTOMATIC_LAYOUT_TOOLTIP"
@@ -5839,9 +5777,8 @@ msgstr "Powtórz ostatnią czynność"
 msgid "REFRESH"
 msgstr "Odśwież"
 
-#, fuzzy
 msgid "REGENERATE_BUTTON"
-msgstr "Akson"
+msgstr "Wygeneruj Świat na Nowo"
 
 msgid "REGIONS_NUMBER"
 msgstr "Liczba regionów:"
@@ -5855,9 +5792,8 @@ msgstr "Raport"
 msgid "REPORT_BUG"
 msgstr "Zgłoś Buga"
 
-#, fuzzy
 msgid "REPRODUCE"
-msgstr "rozmnożyły się"
+msgstr "Rozmnóż się"
 
 msgid "REPRODUCED"
 msgstr "rozmnożyły się"
@@ -5866,7 +5802,7 @@ msgid "REPRODUCTION"
 msgstr "Rozmnażanie"
 
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Aseksualne"
+msgstr "Bezpłciowe"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pączkowanie"
@@ -5874,9 +5810,8 @@ msgstr "Pączkowanie"
 msgid "REPRODUCTION_COMPOUNDS_MODE"
 msgstr "Związki przy opuszczeniu edytora:"
 
-#, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "(co zrobić ze związkami dotychczas przechowywanymi przez gracza przy powrocie do etapu z edytora)"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
@@ -5886,28 +5821,23 @@ msgstr ""
 "Zatrzymanie wszystkich jest samolubną opcją zostawienia związków jak są.\n"
 "Zawsze dopełnij wypełnia"
 
-#, fuzzy
 msgid "REPRODUCTION_MASS_BUDDING"
-msgstr "Pączkowanie"
+msgstr "Pączkowanie Masowe"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Metoda Rozmnażania:"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL"
-msgstr "Aseksualne"
+msgstr "Płciowe"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
-msgstr "Aseksualne"
+msgstr "Anizogamia Płciowa"
 
-#, fuzzy
 msgid "REPRODUCTION_SEXUAL_ISOGAMY"
-msgstr "Aseksualne"
+msgstr "Izogamia Płciowa"
 
-#, fuzzy
 msgid "REPRODUCTION_SPORE"
-msgstr "Rozmnażanie"
+msgstr "Zarodnikowanie"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "Wymaga Jądra"
@@ -5918,9 +5848,8 @@ msgstr "Badania"
 msgid "RESET"
 msgstr "Reset"
 
-#, fuzzy
 msgid "RESET_ACHIEVEMENTS"
-msgstr "żeby zwiększyć ruch"
+msgstr "Zresetuj Osiągnięcia"
 
 msgid "RESET_DEADZONES"
 msgstr "Resetuj Strefy Martwe"
@@ -6318,25 +6247,20 @@ msgstr "Osiadłość"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Ta wartość stosuje się tylko do gier rozpoczętych po zmianie tej opcji"
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "Przy anizogamii płciowej, istnieje możliwość posiadania różnych typów gamet. Na przykład, możliwe jest, żeby posiadać jedną, bardzo ruchliwą gametę oraz drugą, znacznie większą. Gamety mogą łączyć się jedynie z gametami innego typu."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "Wykorzystywanie rozmnażania płciowego daje {0}% przeceny na wszystkie koszty w PM. Ten bonus wchodzi w życie począwszy od następnego pokolenia."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "Wykorzystywanie rozmnażania płciowego obniża wszystkie koszty w PM o {0}%."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "Tworzy komórki gamet zamiast bezpośredniego potomstwa. Gamety muszą połączyć się z kompatybilnymi gametami z innej kolonii komórek, aby dać początek faktycznemu potomstwu. Czynnik komunikacyjny może być wykorzystany w celu wysłania sygnałów do innych komórek."
 
-#, fuzzy
 msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
-msgstr "Biernie uzyskuj postęp reprodukcji"
+msgstr "Ulepsz do Anizogamii ({0} PM)"
 
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
@@ -6359,15 +6283,11 @@ msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, kt
 msgid "SHOW_HELP"
 msgstr "Pokaż pomoc"
 
-#, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
-msgstr ""
-"Koordynaty pozycji: {0} \n"
-"Obserwowanie koordynatów: {1}"
+msgstr "Pokaż koordynaty"
 
-#, fuzzy
 msgid "SHOW_MAP"
-msgstr "Pokaż pomoc"
+msgstr "Pokaż Mapę"
 
 #, fuzzy
 msgid "SHOW_MATE_POSITION"
@@ -6402,9 +6322,8 @@ msgstr "Włącza/wyłącza ostrzeżenia o niezapisanym postępie, gdy gracz pró
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Pokaż aktualności Thrive (pobiera dane z internetu)"
 
-#, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
-msgstr "Odwiedź naszego Patreona"
+msgstr "Wystrzel siderofory"
 
 msgid "SIGNALING_AGENT"
 msgstr "Czynnik Komunikacyjny"
@@ -6421,13 +6340,11 @@ msgstr "Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Zareaguj Agresją"
 
-#, fuzzy
 msgid "SIGNAL_COMMAND_CALL_MATE"
-msgstr "Zbliż się do mnie"
+msgstr "Zawołaj Partnera"
 
-#, fuzzy
 msgid "SIGNAL_COMMAND_FIRE_GAMETES"
-msgstr "Uciekaj"
+msgstr "Zażądaj Wypuszczenia Gamet"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Uciekaj"
@@ -6450,13 +6367,13 @@ msgstr "Krzemionkowa"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym obrażeniom i jest szczególnie odporna na uszkodzenia fizyczne. Wymaga też mniej energii do utrzymania kształtu. Jednak spowalnia mocno komórkę i zmniejsza tempo wchłaniania zasobów."
 
-#, fuzzy
 msgid "SIMULATION_CONFIG"
-msgstr "Koszt Osmoregulacji"
+msgstr "Symulacja"
 
-#, fuzzy
 msgid "SIMULATION_FACTOR"
-msgstr "Koszt Osmoregulacji"
+msgstr ""
+"Symulacja\n"
+"Faktor"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6498,9 +6415,8 @@ msgstr "Mały Kawałek Żelaza"
 msgid "SNOWFLAKE"
 msgstr "Płatek śniegu"
 
-#, fuzzy
 msgid "SOCIETY_STAGE"
-msgstr "Etap Mikroba"
+msgstr "Etap Społeczeństwa"
 
 msgid "SOUND"
 msgstr "Dźwięk"
@@ -6554,13 +6470,11 @@ msgstr "(prędkość z którą gatunki SI mutują)"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Stwórz fosforany"
 
-#, fuzzy
 msgid "SPECIALIZATION_COLON"
-msgstr "populacja:"
+msgstr "Specjalizacja:"
 
-#, fuzzy
 msgid "SPECIALIZATION_SPECIALIST"
-msgstr "populacja:"
+msgstr "Specjalista od Specjalizacji"
 
 #, fuzzy
 msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
@@ -6570,9 +6484,8 @@ msgstr "Plik skamieniałości nie mógł być zapisany"
 msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
 msgstr "populacja:"
 
-#, fuzzy
 msgid "SPECIALIZED_WEAPONS"
-msgstr "Wakuola będzie przechowywać {0} jednostek wybranego zasobu"
+msgstr "Wyspecjalizowanie Bronie"
 
 #, fuzzy
 msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
@@ -6654,9 +6567,8 @@ msgstr "Szybkość:"
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
 
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr "Wytwarza liczne, opcjonalnie wyspecjalizowane potomstwo, zdolne do poszukiwania lepszych warunków przed zamienieniem się w komórkę źródłową kolonii."
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozpowszechnił się do obszarów:"
@@ -6671,13 +6583,11 @@ msgstr "Odwiedź naszego Patreona"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pauzy"
 
-#, fuzzy
 msgid "STANDARD_COLON_VALUE"
-msgstr "Tytuł:"
+msgstr "Standardowa: {0}"
 
-#, fuzzy
 msgid "START"
-msgstr "Zaczynanie"
+msgstr "Start"
 
 msgid "STARTING"
 msgstr "Zaczynanie"
@@ -6688,9 +6598,8 @@ msgstr "Rozpocznij Kalibrację"
 msgid "START_GAME"
 msgstr "Zacznij Rozgrywkę"
 
-#, fuzzy
 msgid "START_RESEARCH"
-msgstr "Wymagany Restart"
+msgstr "Rozpocznij Badania"
 
 msgid "STATISTICS"
 msgstr "Statystyki"
@@ -6791,9 +6700,8 @@ msgstr ""
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "Widoczność paska obciążenia"
 
-#, fuzzy
 msgid "STRATEGY_STAGES"
-msgstr "Etap Mikroba"
+msgstr "Etapy Strategii"
 
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Rygorystyczna konkurencja nisz (różnice w sprawności są przesadzone)"
@@ -6807,9 +6715,8 @@ msgstr "Struktura"
 msgid "STRUCTURE_ASCENSION_GATE"
 msgstr "Brama Ascendentalna"
 
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Struktura"
+msgstr "Rój Dysona"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Dostarczono wymagane materiały do budowy"
@@ -6899,16 +6806,14 @@ msgstr "Tagi zawierają tylko znaki białe"
 msgid "TAKE_SCREENSHOT"
 msgstr "Zrzut ekranu"
 
-#, fuzzy
 msgid "TARGET_TYPE_COLON"
-msgstr "Typ:"
+msgstr "Typ Docelowy:"
 
 msgid "TASTE_THE_SUN"
 msgstr "Posmakuj Słońca"
 
-#, fuzzy
 msgid "TASTY_RADIATION"
-msgstr "Oddychanie Tlenowe"
+msgstr "Promieniowanie Smaczne"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Ascendencja"
@@ -7016,15 +6921,13 @@ msgstr "Termosynteza"
 msgid "THE_DISTURBANCE"
 msgstr "Disturbaniec"
 
-#, fuzzy
 msgid "THE_EDITOR"
-msgstr "Przejdź do następnej zakładki edytora"
+msgstr "Edytor"
 
 #, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mapa Obszarów"
 
-#, fuzzy
 msgid "THE_WORLD_TITLE"
 msgstr "Świat"
 
@@ -7067,9 +6970,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Dom"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
-msgstr "Muzeum"
+msgstr ""
+"skamieniałe\n"
+"skamieliny"
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Muzeum"
@@ -7081,9 +6985,8 @@ msgstr "Obecny Świat"
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Wymarły Gatunek {0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "Mapa Obszarów"
+msgstr "świat"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa Obszarów"
@@ -7106,31 +7009,30 @@ msgstr "Muzeum"
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
 msgstr "Ta strona jest pusta, gdyż żaden gatunek nie został jeszcze przypięty. Kliknij gatunek w innej części gry, aby przejść do jego strony i go przypiąć. Po przypięciu pojawi się on tutaj."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr "Muzeum"
+msgstr "Przypięte Gatunki"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
-msgstr "{0}"
+msgstr ""
+"stworzenie\n"
+"zwierzę"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
-msgstr "Obecny Świat"
+msgstr ""
+"stworzenie\n"
+"zwierzę"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
-msgstr "Obecny Świat"
+msgstr "Gatunki"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licencje \"Thrive\""
 
-#, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
-msgstr "Bazowa prędkość"
+msgstr "Prosperowanko"
 
 msgid "THRUST_FORCE"
-msgstr ""
+msgstr "Ciąg"
 
 msgid "THYLAKOIDS"
 msgstr "Tylakoidy"
@@ -7235,16 +7137,14 @@ msgstr "Przełącz tryb łączenia. Dotykaj innych komórek by stworzyć koloni�
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Pokaż/ukryj HUD"
 
-#, fuzzy
 msgid "TOGGLE_INVENTORY"
-msgstr "Przełączenie wiązania"
+msgstr "Przełącz Ekwipunek"
 
 msgid "TOGGLE_METRICS"
 msgstr "Przełącz wyświetlacz Metryki"
 
-#, fuzzy
 msgid "TOGGLE_MUCOCYST_DEFENCE"
-msgstr "Przełącz pełny ekran"
+msgstr "Przełącz powłokę śluzową"
 
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Włącz drzewko nawigacji"
@@ -7309,9 +7209,8 @@ msgstr "Narzędzia"
 msgid "TOOL_HAND_AXE"
 msgstr "Toporek"
 
-#, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
-msgstr "Status:"
+msgstr "Zebrana Energia:"
 
 msgid "TOTAL_SAVES"
 msgstr "Łączna liczba zapisów:"
@@ -7396,9 +7295,8 @@ msgstr "Tłumacze"
 msgid "TRANSPARENCY"
 msgstr "Przejrzystość"
 
-#, fuzzy
 msgid "TRILLION_ABBREVIATION"
-msgstr "{0} MD"
+msgstr "{0} BLN"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Spróbuj zapisać gatunki jako skamieniałości!"
@@ -7644,10 +7542,10 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Jesteś pełen [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] oraz [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound]. Jednakże, jako iż jesteś w niewielokomórkowej kolonii, nie zachodzi u ciebie postęp rozmnażania.\n"
+"Jesteś pełen [thrive:compound type=\"ammonia\"]Amoniaku (NH₃)[/thrive:compound] oraz [thrive:compound type=\"phosphates\"]Fosforanów (PO₄³⁻)[/thrive:compound]. Jednakże, jako iż nie jesteś w wielokomórkowej kolonii, nie zachodzi u ciebie postęp rozmnażania.\n"
 "\n"
-"Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz przejścia do wielokomórkowości.\n"
-"Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
+"Musisz opuścić kolonię by móc dostać się do edytora, o ile nie planujesz przejścia do wielokomórkowości.\n"
+"Opuść kolonię by kontynuować swój wzrost, naciskając [thrive:input]g_unbind_all[/thrive:input]."
 
 msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
@@ -7733,9 +7631,8 @@ msgstr "Celulaza umożliwia komórce trawienie celulozowych błon. Każde dodani
 msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
 msgstr "Edytor Wielokomórkowca"
 
-#, fuzzy
 msgid "ULTIMATE_COLONY"
-msgstr "Tytuł:"
+msgstr "Kolonia Ostateczna"
 
 #, fuzzy
 msgid "ULTIMATE_COLONY_DESCRIPTION"
@@ -7775,13 +7672,11 @@ msgstr "Podwodna Jaskinia"
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Podwodna Jaskinia"
 
-#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
-msgstr "Niepołączone Organelle"
+msgstr "Nieodkryte"
 
-#, fuzzy
 msgid "UNDISCOVERED_PATCH"
-msgstr "Znajdź Aktualny Obszar"
+msgstr "Nieodkryty Obszar"
 
 msgid "UNDO"
 msgstr "Cofnij"
@@ -7839,9 +7734,8 @@ msgstr "Nieznane ID warsztatu dla tego Moda"
 msgid "UNLIMIT_GROWTH_SPEED"
 msgstr "Nielimitowana szybkość wzrostu"
 
-#, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
-msgstr "Dodaj organellę"
+msgstr "NOWOŚĆ"
 
 msgid "UNLOCK_ALL_ORGANELLES"
 msgstr "Odblokuj wszystkie organelle"
@@ -7928,13 +7822,11 @@ msgstr "Pilus iniekcyjny"
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Przekształca pilus w iniektosom, zadający obrażenia toksyną podczas przebijania innych komórek"
 
-#, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST"
-msgstr "{0} MP"
+msgstr "Mukocysta"
 
-#, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
-msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
+msgstr "Przekształca gruczoł śluzowy w mukocystę, która tworzy ochronną otoczkę śluzu wokół komórki. Jej uruchomienie daje komórce tymczasową odporność na wszystkie źródła obrażeń."
 
 msgid "UPLOAD"
 msgstr "Udostępnij"
@@ -7985,9 +7877,8 @@ msgstr "Ustaw ręcznie liczbę wątków w tle"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
 
-#, fuzzy
 msgid "USE_SPECIES_AUTOMATIC_LAYOUT"
-msgstr "zmutował"
+msgstr "Układ Automatyczny"
 
 #, fuzzy
 msgid "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
@@ -7996,9 +7887,8 @@ msgstr "Jeśli twój mikrob nie potrafi przetrwać w tym środowisku, możesz wr
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Użyj wirtualnej wielkości okna"
 
-#, fuzzy
 msgid "UV_PROTECTION"
-msgstr "Przewidywania Auto-Ewolucji"
+msgstr "Odporność na Ultrafiolet"
 
 #, fuzzy
 msgid "UV_TOLERANCE_TOOLTIP"
@@ -8027,9 +7917,8 @@ msgstr "Zwiększa pojemność twojej komórki."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Wakuola będzie przechowywać {0} jednostek wybranego zasobu"
 
-#, fuzzy
 msgid "VALUE_MODIFIER"
-msgstr "Zmiana zdrowia"
+msgstr "Modyfikator"
 
 msgid "VALUE_OFFSET"
 msgstr "Przesunięcie"
@@ -8040,13 +7929,11 @@ msgstr "Suma"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#, fuzzy
 msgid "VALUE_WITH_UNIT_PLUS"
-msgstr "{0} {1}"
+msgstr "+{0} {1}"
 
-#, fuzzy
 msgid "VALUE_WITH_UNIT_PLUS_MINUS"
-msgstr "{0} {1}"
+msgstr "±{0} {1}"
 
 #, fuzzy
 msgid "VENTS_ARE_HOME"
@@ -8078,13 +7965,11 @@ msgstr "Zwiększa prędkość obrotu większych komórek."
 msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Zwiększa prędkość obrotu większych komórek."
 
-#, fuzzy
 msgid "VIEW_ONLINE"
-msgstr "Wyłącz wszystko"
+msgstr "Zobacz w Internecie"
 
-#, fuzzy
 msgid "VIEW_PATCH_MICHES"
-msgstr "Przeczytaj Notki Aktualizacji"
+msgstr "Przejrzyj Wielonisze"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Przeczytaj Notki Aktualizacji"
@@ -8156,7 +8041,7 @@ msgid "WHEEL_UP"
 msgstr "Koło w górę"
 
 msgid "WHILE_CONSUMING_COLON"
-msgstr ""
+msgstr "Konsumując:"
 
 msgid "WIKI"
 msgstr "Wiki"
@@ -8192,11 +8077,9 @@ msgstr ""
 msgid "WIKI_ACTOMYOSIN_INTRO"
 msgstr "W skrócie: Jest to końcowa faza rozgrywki, gdzie możesz do woli przemieszczać się po galaktyce jako metafizyczny byt, obserwując i przekształcając co zechcesz. To była długa podróż, więc na to zasługujesz."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
 msgstr "Brak modyfikacji."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_PROCESSES"
 msgstr "Brak procesów."
 
@@ -8212,7 +8095,6 @@ msgstr "Wkrótce"
 msgid "WIKI_ACTOMYOSIN_STRATEGY"
 msgstr "Dodawanie [b]aksonów[/b] jest niezbędne do osiągnięcia przyszłych etapów. Zalecamy dodanie jednego [b]aksonu[/b] do kilku typów komórek w organizmie wielokomórkowym, ale dodawanie więcej niż jednego jest zbędne. Obecnie kolejne [b]aksony[/b] nie dają żadnej dodatkowej korzyści."
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_UPGRADES"
 msgstr "Brak ulepszeń."
 
@@ -8378,9 +8260,8 @@ msgstr "Brak efektów. Będą dostępne wkrótce."
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Świeci. Jeszcze nie jest zaimplementowana w Thrive."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "Brak modyfikacji. Będą dostępne wkrótce."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
@@ -8404,9 +8285,8 @@ msgstr ""
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Niedostępne w grze. Ale będzie dostępne wkrótce."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Brak ulepszeń. Będą dostępne wkrótce."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "Edytor Układu Ciała, Edytor Komórki"
@@ -8842,9 +8722,8 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Brak ulepszeń."
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT"
-msgstr "Wiki Deweloperskie"
+msgstr "Rozwój Gry"
 
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
 msgstr "Szczegóły rozwoju"
@@ -8911,9 +8790,8 @@ msgstr ""
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "Brak ulepszeń."
 
-#, fuzzy
 msgid "WIKI_FILEMELANOSOMEICONJPG"
-msgstr "[b]Melanosomy[/b] to [color=#3796e1][url=thriveopedia:OrganellesRoot]organella[/url][/color], które przeprowadzają [b]radiosyntezę[/b], proces przechwytywania energii z promieniowania poprzez absorbowanie go za pomocą melaniny."
+msgstr "File:MelanosomeIcon.jpg"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -8954,20 +8832,17 @@ msgstr "Podstawowe elementy rozgrywki"
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr "Lista związków"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUND_CLOUDS"
-msgstr "Nieskończone Związki"
+msgstr "Chmury związków"
 
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "Grafiki koncepcyjne"
 
-#, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
-msgstr "Obecni Developerzy"
+msgstr "Obecny Rozwój"
 
-#, fuzzy
 msgid "WIKI_HEADING_DEVELOPMENT"
-msgstr "Główni Deweloperzy"
+msgstr "Rozwój Gry"
 
 msgid "WIKI_HEADING_EDITOR"
 msgstr "Edytor"
@@ -8978,9 +8853,8 @@ msgstr "Efekty"
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
 msgstr "Gazy atmosferyczne"
 
-#, fuzzy
 msgid "WIKI_HEADING_FEATURES"
-msgstr "Brak ulepszeń."
+msgstr "Funkcjonalności"
 
 msgid "WIKI_HEADING_FOG_OF_WAR"
 msgstr "Mgła wojny"
@@ -9000,7 +8874,6 @@ msgstr "Pokolenia i edytor sesji"
 msgid "WIKI_HEADING_MICROBE_PARTS"
 msgstr "Elementy mikroba"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Etap Mikroba"
 
@@ -9030,7 +8903,7 @@ msgid "WIKI_HEADING_PROCESSES"
 msgstr "Procesy"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr "Rozmnażanie się w fazie mikrobu"
+msgstr "Rozmnażanie się w Etapie Mikroba"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Wymagania"
@@ -9065,12 +8938,8 @@ msgstr "Ulepszenia"
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
 msgstr "Organelle"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
-msgstr ""
-"Żelowe wnętrze komórki. [b]Cytoplazma[/b] to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki.\n"
-"\n"
-"Jedną z czynności, której dokonuje, jest [b]Glikoliza Cytoplazmowa[/b], przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr "Pomoc i Porady"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
@@ -9392,16 +9261,8 @@ msgstr ""
 "\n"
 "Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_BUTTON"
-msgstr ""
-"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
-"\n"
-"Życia.\n"
-"\n"
-"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
-"\n"
-"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+msgstr "Etap Mikroba"
 
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr ""
@@ -9553,9 +9414,8 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Brak ulepszeń."
 
-#, fuzzy
 msgid "WIKI_MUCOCYST"
-msgstr "Mechaniki"
+msgstr "Mukocysta"
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
@@ -9628,6 +9488,9 @@ msgstr "Brak efektów."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
+"Przeprowadza [b]Wiązanie Azotu[/b] w ramach produkcji [thrive:compound type=\"ammonia\"]Amoniaku (NH₃)[/thrive:compound] z gazowego [thrive:compound type=\"nitrogen\"]Azotu (N₂)[/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound], wytwarzając jeden z komponentów wzrostu dla rozmnażania komórkowego. Mniej skuteczna od eukariotycznego [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplastu[/url][/color][/b]. \n"
+" \n"
+"Również przeprowadza nieco [b]Glikolizy[/b], wytwarzając [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy (C₆H₁₂O₆)[/thrive:compound]."
 
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "Brak modyfikacji."
@@ -9748,20 +9611,17 @@ msgstr "Brak ulepszeń."
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Synteza OxyToxy"
 
-#, fuzzy
 msgid "WIKI_PAGE_ACTOMYOSIN"
-msgstr "Ascendencja"
+msgstr "Aktomiozyna"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Ascendencja"
 
-#, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
-msgstr "Faza przebudzenia"
+msgstr "Etap Przebudzenia"
 
-#, fuzzy
 msgid "WIKI_PAGE_AWARE_STAGE"
-msgstr "Faza Świadomości"
+msgstr "Etap Świadomości"
 
 msgid "WIKI_PAGE_AXON"
 msgstr "Akson"
@@ -9796,17 +9656,15 @@ msgstr "Dewelopment systemu związków chemicznych"
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplazma"
 
-#, fuzzy
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
-msgstr "Organelle"
+msgstr "Rozwój"
 
 #, fuzzy
 msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
 msgstr "Mitochondrium"
 
-#, fuzzy
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitochondrium"
+msgstr "Warunki Środowiskowe"
 
 msgid "WIKI_PAGE_FERROPLAST"
 msgstr "Ferroplast"
@@ -9824,16 +9682,14 @@ msgstr "Hydrogenaza"
 msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Hydrogenosom"
 
-#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
-msgstr "Czynnik Wiążący"
+msgstr "Etap Przemysłowy"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizosom"
 
-#, fuzzy
 msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
-msgstr "Azotaza"
+msgstr "Etap Makroskopijności"
 
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Mechaniki"
@@ -9844,18 +9700,15 @@ msgstr "Melanosom"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomy"
 
-#, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
-msgstr "Azotaza"
+msgstr "Etap Mikroba"
 
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrium"
 
-#, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
-msgstr "Etap Wielokomórkowca"
+msgstr "Etap Wielokomórkowy"
 
-#, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miofibryle"
 
@@ -9871,9 +9724,8 @@ msgstr "Jądro Komórkowe"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "Organelle"
 
-#, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
-msgstr "Oxytoksysoma"
+msgstr "Oksytoksysom"
 
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Pilus perforacyjny"
@@ -9887,7 +9739,6 @@ msgstr "Rustycyjanina"
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Czynnik Komunikacyjny"
 
-#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Gruczoł Śluzowy"
 
@@ -9900,11 +9751,9 @@ msgstr "Etap Kosmiczny"
 msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr "Fazy"
 
-#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplast"
 
-#, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Termosyntaza"
 
@@ -9912,18 +9761,14 @@ msgstr "Termosyntaza"
 msgid "WIKI_PAGE_THE_PATCH_MAP"
 msgstr "Termoplast"
 
-#, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Tylakoidy"
 
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr "Wakuola Toksynowa"
 
-#, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
-msgstr ""
-"Toksyczna\n"
-"Wakuola"
+msgstr "Wakuola"
 
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
@@ -9959,9 +9804,8 @@ msgstr ""
 "\n"
 "Za [b]25[/b] punktów mutacji zmodyfikuj umieszczone [b]pilusy perforacyjne[/b], aby przekształcić je w [b]pilusy iniekcyjne[/b]. Kiedy trafią one komórki wroga, zadają dodatkowe obrażenia od toksyn. Typy membran, które redukują obrażenia od toksyn, redukują również obrażenia [b]pili iniekcyjnych[/b]."
 
-#, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr "Oddychanie Tlenowe"
+msgstr "Oddychanie Białkowe"
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Rzęski ciągnące"
@@ -9970,7 +9814,7 @@ msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Rozmnażanie"
 
 msgid "WIKI_REPRODUCTION_INTRO"
-msgstr "Żeby progresować w Thrive, musisz ewoluować swój gatunek w [b]edytorach[/b] i zapobiec wyginięciu. Do tego potrzebujesz się [b]rozmnażać[/b]."
+msgstr "Żeby postępować w Thrive, musisz ewoluować swój gatunek w [b]edytorach[/b] i zapobiec wyginięciu. To wymaga [b]rozmnażania[/b]."
 
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
@@ -10066,9 +9910,11 @@ msgstr "Bakterie oraz inne mikroby mogą produkować strumienie polisacharydoweg
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr "Brak ulepszeń."
+msgstr ""
+"[b]Mukocysta[/b] \n"
+" \n"
+"Za [b]40[/b] punktów mutacji można zmodyfikować uprzednio umieszczone [b]Gruczoły Śluzowe[/b], aby przekształcić je w [b]Mukocysty[/b]. Ich uruchomienie stwarza ochronną otoczkę śluzu wokół komórki, nadając jej tymczasową odporność na wszystkie źródła obrażeń."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
@@ -10376,9 +10222,8 @@ msgstr ""
 "Pasywny przyrost postępu reprodukcji: {8}\n"
 "Ograniczenie użycia związków do wzrostu: {9}"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
-msgstr "żeby zwiększyć ruch"
+msgstr "Pokrywa oceaniczna"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
@@ -10418,9 +10263,8 @@ msgstr "Mały"
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE"
-msgstr "Temperatura"
+msgstr "Temperatura Świata"
 
 msgid "WORLD_TEMPERATURE_COLD"
 msgstr "Zimny"
@@ -10472,7 +10316,7 @@ msgid "YOUTUBE_TOOLTIP"
 msgstr "Odwiedź nasz kanał Youtube"
 
 msgid "YOU_ANIMAL"
-msgstr ""
+msgstr "Ty Zwierzu!"
 
 #, fuzzy
 msgid "YOU_ANIMAL_DESCRIPTION"
