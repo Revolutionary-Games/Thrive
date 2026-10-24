@@ -134,26 +134,8 @@ public static class CommonMutationFunctions
         Direction direction, MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2,
         HashSet<Hex> workMemory3, Random random)
     {
-        OrganelleTemplate? position;
-
-        switch (strategy)
-        {
-            case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory3,
-                    random);
-                break;
-            case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
-        }
+        var position = GetOrganellePosition(strategy, organelle, newSpecies.Organelles, direction,
+            workMemory1, workMemory3, random);
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -174,26 +156,8 @@ public static class CommonMutationFunctions
         Direction direction, CellType cellType, List<Hex> workMemory1, List<Hex> workMemory2,
         HashSet<Hex> workMemory3, Random random)
     {
-        OrganelleTemplate? position;
-
-        switch (strategy)
-        {
-            case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, cellType.ModifiableOrganelles, direction, workMemory1,
-                    workMemory3, random);
-                break;
-            case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
-        }
+        var position = GetOrganellePosition(strategy, organelle, cellType.ModifiableOrganelles, direction,
+            workMemory1, workMemory3, random);
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -481,6 +445,21 @@ public static class CommonMutationFunctions
 
         newCells.AddFast(newCell, workMemory1, workMemory2);
         return true;
+    }
+
+    private static OrganelleTemplate? GetOrganellePosition(OrganelleAddStrategy strategy,
+        OrganelleDefinition organelle, OrganelleLayout<OrganelleTemplate> existingOrganelles,
+        Direction direction, List<Hex> workMemory1, HashSet<Hex> workMemory2, Random random)
+    {
+        return strategy switch
+        {
+            OrganelleAddStrategy.Realistic => GetRealisticPosition(organelle, existingOrganelles, direction,
+                workMemory1, workMemory2, random),
+            OrganelleAddStrategy.Spiral => GetSpiralPosition(organelle, existingOrganelles, workMemory1, workMemory2),
+            OrganelleAddStrategy.Front => GetFrontPosition(organelle, existingOrganelles, workMemory1, workMemory2),
+            OrganelleAddStrategy.Back => GetBackPosition(organelle, existingOrganelles, workMemory1, workMemory2),
+            _ => throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null),
+        };
     }
 
     private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
