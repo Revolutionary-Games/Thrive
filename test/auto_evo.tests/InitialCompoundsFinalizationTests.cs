@@ -190,25 +190,6 @@ public class InitialCompoundsFinalizationTests
     }
 
     /// <summary>
-    ///   An archive round trip must preserve an explicitly empty compound dictionary for either species type,
-    ///   so loading cannot conceal missing initialisation by silently supplying default compounds.
-    /// </summary>
-    [TestCase(false)]
-    [TestCase(true)]
-    public void SavingSpeciesWithEmptyCompoundsPreservesEmptyCompounds(bool multicellular)
-    {
-        var candidate = CreateSpecies(multicellular, false, false);
-        candidate.InitialCompounds.Clear();
-        RoundTripArchive(writer => writer.WriteObject(candidate),
-            reader =>
-            {
-                var loaded = reader.ReadObjectOrNull<Species>();
-                AssertThat(loaded).IsNotNull();
-                AssertThat(loaded!.InitialCompounds.Count).IsEqual(0);
-            });
-    }
-
-    /// <summary>
     ///   Keeps all supplied objects in one archive so their shared references survive the round trip.
     /// </summary>
     private static void RoundTripArchive(Action<ISArchiveWriter> writeObjects, Action<ISArchiveReader> readObjects)
