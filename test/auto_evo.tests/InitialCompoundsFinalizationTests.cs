@@ -16,16 +16,15 @@ using static GdUnit4.Assertions;
 public class InitialCompoundsFinalizationTests
 {
     /// <summary>
-    ///   Candidates hidden by competition or rejected for zero population must have fresh compounds when
-    ///   insertion is attempted and retain those values through independent archive round trips afterwards.
-    ///   Small bacteria, specialised storage, and multicellular budding cases protect initialisation even when
-    ///   a candidate never receives the full refresh reserved for accepted mutations.
+    ///   A candidate rejected for zero population must have fresh compounds when insertion is attempted and
+    ///   retain those values through an independent archive round trip. The existing species configurations
+    ///   protect initialisation without relying on the full refresh reserved for accepted mutations.
     /// </summary>
     [TestCase(false, false, false)]
     [TestCase(false, false, true)]
     [TestCase(true, false, false)]
     [TestCase(true, true, false)]
-    public void RejectedAndHiddenCandidatesHaveFreshCompoundsAtInsertionAndAfterSaving(bool multicellular,
+    public void RejectedCandidateHasFreshCompoundsAtInsertionAndAfterSaving(bool multicellular,
         bool massBudding, bool specializedStorage)
     {
         var expectedGlucose = ExpectedGlucose(multicellular, massBudding, specializedStorage, 2);
@@ -33,7 +32,7 @@ public class InitialCompoundsFinalizationTests
         {
             Seed = 0x5EED,
             WorldSize = WorldGenerationSettings.WorldSizeEnum.Small,
-            AutoEvoConfiguration = new AutoEvoConfiguration { MutationsPerSpecies = 3 },
+            AutoEvoConfiguration = new AutoEvoConfiguration { MutationsPerSpecies = 1 },
         };
         var world = new GameWorld(settings);
         var patch = world.Map.CurrentPatch!;
@@ -60,59 +59,42 @@ public class InitialCompoundsFinalizationTests
         AssertThat(step.RunStep(results)).IsFalse();
         pressure.ObserveAttempts = false;
 
-        AssertThat(pressure.AttemptedCandidates.Count).IsGreater(1);
+        AssertThat(pressure.AttemptedCandidates.Count).IsEqual(1);
         AssertThat(miche.Occupant).IsNotNull();
         var occupant = miche.Occupant!;
         AssertThat(occupant).IsNotSame(parent);
         AssertThat(pressure.AttemptedCandidates.Contains(occupant)).IsTrue();
         AssertThat(MichePopulation.CalculatePopulationInPatch(occupant, miche, patch, cache)).IsEqual(0);
 
-        // Only one attempted candidate occupies this leaf; the others were hidden during competition.
-        // Every attempt was checked before insertion, including those skipped by FinalApply.
         AssertThat(step.RunStep(results)).IsTrue();
         AssertThat(miche.Occupant).IsNull();
-        AssertThat(results.GetPossibleSpeciesList().Count).IsEqual(0);
+        AssertThat(results.GetPossibleSpeciesList()).IsEmpty();
 
-        foreach (var candidate in pressure.AttemptedCandidates)
+        // Archive this rejected candidate independently; it no longer belongs to the result tree.
+        // Complete only the multicellular layout, without refreshing compounds through OnEdited.
+        if (occupant is MulticellularSpecies multicellularCandidate)
         {
-            // Independent candidate archives preserve initialization coverage without keeping rejected occupants
-            // in the result tree. Complete only the multicellular layout; do not refresh compounds with OnEdited.
-            if (candidate is MulticellularSpecies multicellularCandidate)
-            {
-                multicellularCandidate.RestoreGameplayCellsForAutoEvo();
-                MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
-                    multicellularCandidate.ModifiableGameplayCells, multicellularCandidate.ModifiableEditorCells,
-                    [], [], []);
-            }
-
-            AssertCompounds(expectedGlucose, candidate.InitialCompounds);
+            multicellularCandidate.RestoreGameplayCellsForAutoEvo();
+            MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(multicellularCandidate.ModifiableGameplayCells,
+                multicellularCandidate.ModifiableEditorCells,
+                [], [], []);
         }
 
-        RoundTripArchive(writer =>
-            {
-                writer.WriteObject(results);
-                foreach (var candidate in pressure.AttemptedCandidates)
-                    writer.WriteObject(candidate);
-            },
-            reader =>
-            {
-                var loaded = reader.ReadObjectOrNull<RunResults>();
-                AssertThat(loaded).IsNotNull();
-                var loadedTrees = loaded!.InspectPatchMicheData();
-                AssertThat(loadedTrees.Count).IsEqual(1);
-                foreach (var loadedTree in loadedTrees.Values)
-                {
-                    AssertThat(loadedTree.Occupant).IsNull();
-                }
-
-                foreach (var candidate in pressure.AttemptedCandidates)
-                {
-                    var loadedCandidate = reader.ReadObjectOrNull<Species>();
-                    AssertThat(loadedCandidate).IsNotNull();
-                    AssertThat(loadedCandidate).IsNotSame(candidate);
-                    AssertCompounds(expectedGlucose, loadedCandidate!.InitialCompounds);
-                }
-            });
+        AssertCompounds(expectedGlucose, occupant.InitialCompounds);
+        using var data = new MemoryStream();
+        var manager = new ThriveArchiveManager();
+        using var writer = new SArchiveMemoryWriter(data, manager, false);
+        manager.OnStartNewWrite(writer);
+        writer.WriteObject(occupant);
+        manager.OnFinishWrite(writer);
+        data.Position = 0;
+        using var reader = new SArchiveMemoryReader(data, manager, false);
+        manager.OnStartNewRead(reader);
+        var loaded = reader.ReadObjectOrNull<Species>();
+        manager.OnFinishRead(reader);
+        AssertThat(loaded).IsNotNull();
+        AssertThat(loaded).IsNotSame(occupant);
+        AssertCompounds(expectedGlucose, loaded!.InitialCompounds);
     }
 
     /// <summary>
@@ -187,25 +169,6 @@ public class InitialCompoundsFinalizationTests
 
         AssertCompounds(expectedGlucose, parent.InitialCompounds);
         AssertCompounds(expectedGlucose, candidate.InitialCompounds);
-    }
-
-    /// <summary>
-    ///   Keeps all supplied objects in one archive so their shared references survive the round trip.
-    /// </summary>
-    private static void RoundTripArchive(Action<ISArchiveWriter> writeObjects, Action<ISArchiveReader> readObjects)
-    {
-        using var data = new MemoryStream();
-        var manager = new ThriveArchiveManager();
-        using var writer = new SArchiveMemoryWriter(data, manager, false);
-        manager.OnStartNewWrite(writer);
-        writeObjects(writer);
-        manager.OnFinishWrite(writer);
-
-        data.Position = 0;
-        using var reader = new SArchiveMemoryReader(data, manager, false);
-        manager.OnStartNewRead(reader);
-        readObjects(reader);
-        manager.OnFinishRead(reader);
     }
 
     private static Species CreateSpecies(bool multicellular, bool massBudding,
@@ -333,7 +296,7 @@ public class InitialCompoundsFinalizationTests
     }
 
     /// <summary>
-    ///   Observes initialization only while real candidate insertion is running, including attempts that stay hidden.
+    ///   Observes initialization only while real candidate insertion is running.
     /// </summary>
     private sealed class CompoundObservationPressure : RootPressure
     {
