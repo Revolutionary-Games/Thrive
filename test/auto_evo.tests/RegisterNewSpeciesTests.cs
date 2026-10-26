@@ -17,6 +17,7 @@ public class RegisterNewSpeciesTests
     ///   Runs a selected same-stage mutation through population calculation, registration and application, checking
     ///   that the parent keeps its identity while receiving the candidate's population and phenotype. Preserves the
     ///   previous population and recorded energy and cost so applying the mutation cannot overwrite historical results.
+    ///   The accepted successor advances one generation only when applied, including in the recorded species snapshot.
     /// </summary>
     [TestCase]
     public void SelectedParentMutationKeepsItsResultIdentityThroughApply()
@@ -25,6 +26,7 @@ public class RegisterNewSpeciesTests
         var settings = world.WorldSettings;
         var patch = world.Map.CurrentPatch!;
         var parent = CreateParent(world);
+        parent.Generation = 7;
         patch.AddSpecies(parent, 100);
 
         var cache = new SimulationCache(settings);
@@ -41,6 +43,7 @@ public class RegisterNewSpeciesTests
                 candidate = leaf.Occupant;
                 AssertThat(candidate).IsNotNull().IsNotSame(parent);
                 AssertThat(candidate!.ID).IsEqual(parent.ID);
+                AssertThat(candidate.Generation).IsEqual(7);
                 AssertThat(results.GetPossibleSpeciesList().Count).IsEqual(1);
                 var accepted = results.GetPossibleSpeciesList()[0];
                 AssertThat(accepted.Species).IsSame(candidate);
@@ -69,6 +72,8 @@ public class RegisterNewSpeciesTests
         AssertThat(parent.MembraneRigidity).IsEqual(0.0f);
         AssertThat(leaf.Occupant).IsSame(parent);
         AssertThat(final.GetReadOnlyMicheForPatch(patch).Occupant).IsSame(parent);
+        AssertThat(parent.Generation).IsEqual(7);
+        AssertThat(candidate!.Generation).IsEqual(8);
 
         run.CalculateAndApplyFinalExternalEffectSizes();
         final.RegisterNewSpeciesForSummary(world);
@@ -78,6 +83,8 @@ public class RegisterNewSpeciesTests
         run.ApplyAllResults(true);
 
         AssertThat(leaf.Occupant).IsSame(parent);
+        AssertThat(parent.Generation).IsEqual(8);
+        AssertThat(final.GetSpeciesRecords()[parent.ID].Species!.Generation).IsEqual(8);
         AssertThat(world.Species[parent.ID]).IsSame(parent);
         AssertThat(patch.GetSpeciesSimulationPopulation(parent)).IsEqual(candidatePopulation);
         AssertThat(parent.MembraneRigidity).IsEqual(((MicrobeSpecies)candidate!).MembraneRigidity);
@@ -96,6 +103,7 @@ public class RegisterNewSpeciesTests
     ///   Checks both candidate orders so only the winning reference is rebound to its parent across nested and separate
     ///   patch miches. This protects clones with matching IDs and names, other occupants and read-only snapshots
     ///   from unintended rebinding, while preserving recorded energy and adding the winning population to the parent.
+    ///   Both accepted successors receive the next generation without advancing their shared parent at registration.
     /// </summary>
     [TestCase(false)]
     [TestCase(true)]
@@ -106,6 +114,7 @@ public class RegisterNewSpeciesTests
         var firstPatch = patches[0];
         var secondPatch = patches[1];
         var parent = CreateParent(world);
+        parent.Generation = 7;
         var selected = (MicrobeSpecies)parent.Clone();
         selected.MembraneRigidity = 0.25f;
         var split = (MicrobeSpecies)parent.Clone();
@@ -173,6 +182,9 @@ public class RegisterNewSpeciesTests
         AssertThat(results.GetPopulationInPatch(parent, firstPatch)).IsEqual(11L);
         AssertThat(results.GetPopulationInPatch(parent, secondPatch)).IsEqual(67L);
         AssertThat(results.GetPossibleSpeciesList().Count).IsEqual(2);
+        AssertThat(parent.Generation).IsEqual(7);
+        AssertThat(selected.Generation).IsEqual(8);
+        AssertThat(split.Generation).IsEqual(8);
 
         var tracked = results.GetPatchEnergyResults(parent)[firstPatch];
         AssertThat(tracked.TotalEnergyGathered).IsEqual(40.0f);
@@ -203,6 +215,7 @@ public class RegisterNewSpeciesTests
     /// <summary>
     ///   Keeps a candidate as a separate split species with its own population when its parent still occupies a miche
     ///   in another patch, preventing a local replacement from being mistaken for extinction of the parent.
+    ///   Only the split advances a generation, preserving the unchanged parent's generation.
     /// </summary>
     [TestCase]
     public void ParentSurvivingInAnotherPatchKeepsCandidateAsNewSpecies()
@@ -210,6 +223,7 @@ public class RegisterNewSpeciesTests
         var world = CreateWorld(2);
         var patches = new List<Patch>(world.Map.Patches.Values);
         var parent = CreateParent(world);
+        parent.Generation = 7;
         var candidate = (MicrobeSpecies)parent.Clone();
         var candidateLeaf = new Miche(new MutationPressure(1000)) { Occupant = candidate };
         var survivingLeaf = new Miche(new MutationPressure(1000)) { Occupant = parent };
@@ -230,12 +244,15 @@ public class RegisterNewSpeciesTests
         AssertThat(results.GetSpeciesResultForInternalUse(candidate).SplitFrom).IsSame(parent);
         AssertThat(results.GetPopulationInPatch(parent, patches[1])).IsEqual(100L);
         AssertThat(results.GetPopulationInPatch(candidate, patches[0])).IsEqual(50L);
+        AssertThat(parent.Generation).IsEqual(7);
+        AssertThat(candidate.Generation).IsEqual(8);
     }
 
     /// <summary>
     ///   Records the best candidate under its identity with the parent's remaining population when it changes stage,
     ///   while keeping the weaker same-stage candidate separate. This prevents either candidate from being incorrectly
     ///   rebound to the parent or applied as its mutation during registration.
+    ///   Crossing a stage boundary still advances just one generation from the original parent, like the other split.
     /// </summary>
     [TestCase]
     public void BestCrossStageCandidateKeepsItsOwnIdentity()
@@ -243,6 +260,7 @@ public class RegisterNewSpeciesTests
         var world = CreateWorld();
         var patch = world.Map.CurrentPatch!;
         var parent = CreateParent(world);
+        parent.Generation = 7;
         parent.IsBacteria = false;
         var candidate = parent.GenerateMulticellularVersion(false, [], [], [], true);
         candidate.OnEdited();
@@ -269,6 +287,61 @@ public class RegisterNewSpeciesTests
         AssertThat(results.SpeciesHasResults(sameStage)).IsTrue();
         AssertThat(results.GetPopulationInPatch(candidate, patch)).IsEqual(63L);
         AssertThat(results.GetPopulationInPatch(sameStage, patch)).IsEqual(30L);
+        AssertThat(parent.Generation).IsEqual(7);
+        AssertThat(candidate.Generation).IsEqual(8);
+        AssertThat(sameStage.Generation).IsEqual(8);
+    }
+
+    /// <summary>
+    ///   Registers a split across several patches and verifies that its generation advances once for the species,
+    ///   not once per patch. A normal clone remains at the parent's generation until it becomes an accepted result.
+    /// </summary>
+    [TestCase]
+    public void SplitAcrossPatchesAdvancesOneGeneration()
+    {
+        var world = CreateWorld(2);
+        var patches = new List<Patch>(world.Map.Patches.Values);
+        var parent = CreateParent(world);
+        parent.Generation = 7;
+        var split = (Species)parent.Clone();
+        AssertThat(split.Generation).IsEqual(7);
+        var results = new RunResults();
+        results.AddNewSpecies(split,
+            [new KeyValuePair<Patch, long>(patches[0], 30), new KeyValuePair<Patch, long>(patches[1], 50)],
+            RunResults.NewSpeciesType.FillNiche, parent);
+
+        AssertThat(split.Generation).IsEqual(8);
+        AssertThat(parent.Generation).IsEqual(7);
+    }
+
+    /// <summary>
+    ///   Applies population results with or without a mutation, keeping an unchanged species at its old generation.
+    ///   Skipping mutations also keeps the parent's generation unchanged despite having an accepted successor.
+    /// </summary>
+    [TestCase(false, 8)]
+    [TestCase(true, 7)]
+    public void OnlyAppliedMutationsAdvanceExistingSpecies(bool skipMutations, int expectedGeneration)
+    {
+        var world = CreateWorld();
+        var patch = world.Map.CurrentPatch!;
+        var parent = CreateParent(world);
+        parent.Generation = 7;
+        var unchanged = CreateParent(world);
+        unchanged.Generation = 11;
+        patch.AddSpecies(parent, 100);
+        patch.AddSpecies(unchanged, 100);
+        var candidate = (Species)parent.Clone();
+        var results = new RunResults();
+        results.AddPopulationResultForSpecies(parent, patch, 120);
+        results.AddPopulationResultForSpecies(unchanged, patch, 80);
+        results.AddMutationResultForSpecies(parent, candidate, new KeyValuePair<Patch, long>(patch, 0));
+        results.AddMutationResultForSpecies(unchanged, null, new KeyValuePair<Patch, long>(patch, 0));
+
+        results.ApplyResults(world, skipMutations);
+
+        AssertThat(parent.Generation).IsEqual(expectedGeneration);
+        AssertThat(unchanged.Generation).IsEqual(11);
+        AssertThat(candidate.Generation).IsEqual(8);
     }
 
     /// <summary>

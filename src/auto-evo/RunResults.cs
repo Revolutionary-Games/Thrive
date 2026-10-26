@@ -140,6 +140,10 @@ public class RunResults : IArchivable
 
         results[species].MutatedProperties = mutated;
 
+        // Fix the successor's generation before any mutations are applied to its parent.
+        // Other species splitting from the same parent this run must receive the same generation.
+        mutated?.Generation = species.Generation + 1;
+
         results[species].NewPopulationInPatches.TryGetValue(populationBoostInPatches.Key, out var existing);
         results[species].NewPopulationInPatches[populationBoostInPatches.Key] =
             existing + populationBoostInPatches.Value;
@@ -253,6 +257,8 @@ public class RunResults : IArchivable
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
 
+        species.Generation = parentSpecies.Generation + 1;
+
         foreach (var patchPopulation in initialPopulationInPatches)
         {
             results[species].NewPopulationInPatches[patchPopulation.Key] = Math.Max(patchPopulation.Value, 0);
@@ -271,6 +277,8 @@ public class RunResults : IArchivable
 
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
+
+        species.Generation = parentSpecies.Generation + 1;
 
         var population = initialPopulationInPatch.Value;
 
@@ -448,6 +456,7 @@ public class RunResults : IArchivable
             if (!skipMutations && entry.Value.MutatedProperties != null)
             {
                 entry.Key.ApplyMutation(entry.Value.MutatedProperties);
+                entry.Key.Generation = entry.Value.MutatedProperties.Generation;
             }
 
             bool registeredAlready = false;
