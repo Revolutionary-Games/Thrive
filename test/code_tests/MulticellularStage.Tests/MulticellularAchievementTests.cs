@@ -72,6 +72,57 @@ public class MulticellularAchievementTests
         Assert.True(MulticellularAchievementConditions.HasNoDeepCrevices(layout));
     }
 
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    public void PackedLayoutAllowsBroadConcavityBetweenProtrusions(int rotation)
+    {
+        var organelle = new OrganelleDefinition { Name = "Dummy", Hexes = [new Hex(0, 0)] };
+        var organelles = new OrganelleLayout<OrganelleTemplate>();
+        var temporary1 = new List<Hex>();
+        var temporary2 = new List<Hex>();
+        organelles.AddFast(new OrganelleTemplate(organelle, new Hex(0, 0), 0), temporary1, temporary2);
+        var type = new CellType(organelles, new MembraneType { Name = "Dummy" });
+        var layout = new CellLayout<CellTemplate>();
+        var footprint = new HashSet<Hex>();
+
+        // Two long protrusions with a broad opening between them, rather than a narrow crevice
+        for (int r = 0; r <= 6; ++r)
+        {
+            footprint.Add(new Hex(0, r));
+            footprint.Add(new Hex(6, r));
+        }
+
+        for (int q = 1; q < 6; ++q)
+            footprint.Add(new Hex(q, 0));
+
+        foreach (var hex in footprint)
+        {
+            var position = Hex.RotateAxialNTimes(hex, rotation) + new Hex(-12, 7);
+            layout.AddFast(new CellTemplate(type, position, 0), temporary1, temporary2);
+        }
+
+        Assert.True(MulticellularAchievementConditions.HasNoEnclosedGaps(layout));
+        Assert.True(MulticellularAchievementConditions.HasNoDeepCrevices(layout));
+
+        // A narrow entrance must not hide a larger empty chamber from the packing check
+        for (int q = 1; q < 6; ++q)
+        {
+            if (q == 3)
+                continue;
+
+            var position = Hex.RotateAxialNTimes(new Hex(q, 4), rotation) + new Hex(-12, 7);
+            layout.AddFast(new CellTemplate(type, position, 0), temporary1, temporary2);
+        }
+
+        Assert.True(MulticellularAchievementConditions.HasNoEnclosedGaps(layout));
+        Assert.False(MulticellularAchievementConditions.HasNoDeepCrevices(layout));
+    }
+
     [Fact]
     public void MulticellularStatsPersistAndOlderStoresDefaultToZero()
     {
