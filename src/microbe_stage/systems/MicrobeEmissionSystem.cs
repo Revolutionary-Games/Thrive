@@ -128,15 +128,17 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         {
             if (control.QueuedToxinToEmit != Compound.Invalid)
             {
-                EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                    control.QueuedToxinToEmit, compounds, engulfed, false, specializationFactor.TotalSpecializationBonus);
+                EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+                    ref position, control.QueuedToxinToEmit, compounds, engulfed, false,
+                    specializationFactor.TotalSpecializationBonus);
                 control.QueuedToxinToEmit = Compound.Invalid;
             }
 
             if (control.QueuedSiderophoreToEmit)
             {
-                EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                    Compound.Invalid, null, engulfed, true, specializationFactor.TotalSpecializationBonus);
+                EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+                    ref position, Compound.Invalid, null, engulfed, true,
+                    specializationFactor.TotalSpecializationBonus);
                 control.QueuedSiderophoreToEmit = false;
             }
         }
