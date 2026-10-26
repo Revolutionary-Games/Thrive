@@ -52,11 +52,14 @@ public class WorldAndPlayerDataSource : IUnlockStateDataSource
     public readonly Patch CurrentPatch;
     public readonly GameWorld World;
     public readonly IPlayerDataSource PlayerDataSource;
+    public readonly Stage CurrentStage;
 
-    public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, IPlayerDataSource playerDataSource)
+    public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, IPlayerDataSource playerDataSource,
+        Stage currentStage)
     {
         World = world;
         CurrentPatch = currentPatch;
         PlayerDataSource = playerDataSource;
+        CurrentStage = currentStage;
     }
 }
