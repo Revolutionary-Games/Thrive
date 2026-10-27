@@ -151,24 +151,33 @@ public class Scalis : IMeshGeneratingFunction
         if (points.Length == 1)
             return points[0].Colour;
 
-        float bestDist = float.MaxValue;
-        Color bestColour = Colors.Black;
+        Color colourSum = Colors.Black;
+
+        float contributionSum = 0.0f;
 
         foreach (var point in points)
         {
             if (point.Parent == null)
                 continue;
 
-            var dist = point.Position.DistanceSquaredTo(pos);
+            float dist = pos.DistanceSquaredTo(point.Position);
 
-            if (dist < bestDist)
-            {
-                bestDist = dist;
-                bestColour = point.Colour;
-            }
+            float contribution = 1.0f - dist / MathF.Pow(point.Size, 2.0f);
+            contribution = MathF.Max(contribution, 0.0f);
+
+            contribution += 0.01f / dist;
+
+            contributionSum += contribution;
+
+            colourSum += point.Colour * contribution;
         }
 
-        return bestColour;
+        colourSum /= contributionSum;
+
+        // Make the resulting colour always opaque
+        colourSum.A = 1.0f;
+
+        return colourSum;
     }
 
     private float NormalizationFactor(int i, float sigma)
