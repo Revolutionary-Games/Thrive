@@ -1464,7 +1464,8 @@ public class RunResults : IArchivable
                 GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
             }
 
-            if (!to.UpdateSpeciesSimulationPopulation(species, newPopulation) && !to.AddSpecies(species, newPopulation))
+            if (!to.UpdateSpeciesSimulationPopulation(species, newPopulation) &&
+                !to.AddSpecies(species, newPopulation))
             {
                 GD.PrintErr("RunResults failed to update population and also add species failed on " +
                     "migration target patch");
@@ -1508,41 +1509,31 @@ public class RunResults : IArchivable
 
     private void ApplyBasePopulations(GameWorld world, Species species, SpeciesResult result)
     {
-        bool addSpeciesToPatches = false;
-
-        // Process newly created species first to not cause errors when trying to register populations
-        if (result.NewlyCreated != null)
-        {
-            // If we split off from a species that didn't take a population hit, we need to register ourselves
-
-            if (result.SplitFrom == null || results[result.SplitFrom].SplitOff != species)
-            {
-                addSpeciesToPatches = true;
-            }
-
-            if (addSpeciesToPatches)
-            {
-                foreach (var populationEntry in result.NewPopulationInPatches)
-                {
-                    var patch = world.Map.GetPatch(populationEntry.Key.ID);
-
-                    if (!patch.AddSpecies(species, populationEntry.Value))
-                    {
-                        GD.PrintErr("RunResults has new species that already exists in patch");
-                    }
-                }
-            }
-        }
+        // New species need adding here unless they receive their population through a split
+        bool addSpeciesToPatches = result.NewlyCreated != null &&
+            (result.SplitFrom == null || results[result.SplitFrom].SplitOff != species);
 
         if (addSpeciesToPatches)
+        {
+            foreach (var populationEntry in result.NewPopulationInPatches)
+            {
+                var patch = world.Map.GetPatch(populationEntry.Key.ID);
+
+                if (!patch.AddSpecies(species, populationEntry.Value))
+                {
+                    GD.PrintErr("RunResults has new species that already exists in patch");
+                }
+            }
+
             return;
+        }
 
         foreach (var populationEntry in result.NewPopulationInPatches)
         {
             var patch = world.Map.GetPatch(populationEntry.Key.ID);
 
-            // We ignore the return value as population results are added for all existing patches for all
-            // species (if the species is not in the patch, the population is 0 in the results)
+            // Missing species entries are expected for zero-population results;
+            // only failures for positive populations are reported
             if (!patch.UpdateSpeciesSimulationPopulation(species, populationEntry.Value) &&
                 populationEntry.Value > 0)
             {
