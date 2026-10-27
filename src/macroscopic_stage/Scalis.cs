@@ -162,10 +162,9 @@ public class Scalis : IMeshGeneratingFunction
 
             float dist = pos.DistanceSquaredTo(point.Position);
 
-            float contribution = 1.0f - dist / MathF.Pow(point.Size, 2.0f);
-            contribution = MathF.Max(contribution, 0.0f);
-
-            contribution += 0.01f / dist;
+            // https://en.wikipedia.org/wiki/Cauchy_distribution
+            float upsilon = point.Size * 0.01f;
+            float contribution = 1.0f / (MathF.PI * upsilon * (1.0f + (dist / (upsilon * upsilon))));
 
             contributionSum += contribution;
 
