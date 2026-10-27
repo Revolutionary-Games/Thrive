@@ -556,12 +556,29 @@ public class RunResults : IArchivable
 
 #if DEBUG
 
-        // New species have their final IDs now, so all species in the results must have unique IDs
+        // New species have their final IDs now. Include miche occupants that may be missing from the results,
+        // keeping distinct objects with matching IDs so that invalid mutation candidates cannot escape validation.
+        var allSpecies = new HashSet<Species>(results.Keys, ReferenceEqualityComparer.Instance);
+        lock (micheByPatch)
+        {
+            foreach (var miche in micheByPatch.Values)
+            {
+                miche.GetOccupants(allSpecies);
+            }
+        }
+
         var speciesIDs = new HashSet<uint>();
-        foreach (var species in results.Keys)
+        foreach (var species in allSpecies)
         {
             if (!speciesIDs.Add(species.ID))
                 throw new InvalidOperationException($"Duplicate species ID in auto-evo results: {species.ID}");
+
+            if (!world.TryGetSpecies(species.ID, out var registeredSpecies) ||
+                !ReferenceEquals(species, registeredSpecies))
+            {
+                throw new InvalidOperationException(
+                    $"Auto-evo species is not registered with its identity in this world: {species.ID}");
+            }
         }
 #endif
 
