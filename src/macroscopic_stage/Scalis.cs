@@ -133,7 +133,7 @@ public class Scalis : IMeshGeneratingFunction
                 (a, b) = (b, a);
             }
 
-            // Since "i" is always 3, we can cut down on some calculations and make static coeff array
+            // Since "i" is always 3, we can cut down on some calculations and make a static coeff array
             // var coeff = BinomialExpansion(i - 1);
 
             for (int k = 0; k < Coefficients.Length; ++k)
@@ -151,33 +151,24 @@ public class Scalis : IMeshGeneratingFunction
         if (points.Length == 1)
             return points[0].Colour;
 
-        Color colourSum = Colors.Black;
-
-        float contributionSum = 0.0f;
+        float bestDist = float.MaxValue;
+        Color bestColour = Colors.Black;
 
         foreach (var point in points)
         {
             if (point.Parent == null)
                 continue;
 
-            float abDistanceSquared = point.Position.DistanceSquaredTo(point.Parent.Position);
+            var dist = point.Position.DistanceSquaredTo(pos);
 
-            Vector3 linePos = ClosestPoint(pos, point.Position, point.Parent.Position);
-
-            float contribution = 1.0f / linePos.DistanceSquaredTo(pos);
-
-            contributionSum += contribution;
-
-            colourSum += point.Colour.Lerp(point.Parent.Colour, point.Position.DistanceSquaredTo(linePos)
-                / abDistanceSquared) * contribution;
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                bestColour = point.Colour;
+            }
         }
 
-        colourSum /= contributionSum;
-
-        // Make result colour always opaque
-        colourSum.A = 1.0f;
-
-        return colourSum;
+        return bestColour;
     }
 
     private float NormalizationFactor(int i, float sigma)
