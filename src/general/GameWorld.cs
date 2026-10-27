@@ -1139,7 +1139,7 @@ public class GameWorld : IArchivable
         worldSpecies.Add(old.ID, newSpecies);
 
         if (newSpecies.ID != old.ID)
-            GD.Print("Species ID changed from {0} to {1} when replacing it", newSpecies.ID, old.ID);
+            GD.Print($"Species ID changed from {old.ID} to {newSpecies.ID} when replacing it");
 
         Map.ReplaceSpecies(old, newSpecies);
 
