@@ -542,6 +542,14 @@ public class RandomOrganelleRemovalTests
             CellTypeName = $"Type{species.CellTypes.Count}",
         };
         FillOrganelles(cellType.ModifiableOrganelles, definitions);
+
+        // Represent every cell type in the editor body plan used by species cloning.
+        var editorCells = species.CellTypes.Count == 0 ?
+            new IndividualHexLayout<CellTemplate>() :
+            species.ModifiableEditorCells;
+        var position = new Hex(species.CellTypes.Count, 0);
+        editorCells.Add(new HexWithData<CellTemplate>(new CellTemplate(cellType, position, 0), position, 0));
+        species.ModifiableEditorCells = editorCells;
         species.ModifiableCellTypes.Add(cellType);
     }
 
