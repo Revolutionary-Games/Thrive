@@ -1464,13 +1464,10 @@ public class RunResults : IArchivable
                 GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
             }
 
-            if (!to.UpdateSpeciesSimulationPopulation(species, newPopulation))
+            if (!to.UpdateSpeciesSimulationPopulation(species, newPopulation) && !to.AddSpecies(species, newPopulation))
             {
-                if (!to.AddSpecies(species, newPopulation))
-                {
-                    GD.PrintErr("RunResults failed to update population and also add species failed on " +
-                        "migration target patch");
-                }
+                GD.PrintErr("RunResults failed to update population and also add species failed on " +
+                    "migration target patch");
             }
         }
     }
