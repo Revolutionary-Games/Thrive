@@ -380,6 +380,56 @@ public class RegisterNewSpeciesTests
         AssertThat(results.MakeSummary().ToString().Contains(parent.FormattedName)).IsTrue();
     }
 
+#if DEBUG
+
+    /// <summary>
+    ///   Rejects unregistered miche occupants even when they have no result and their ID does not collide with a
+    ///   result key. Matching IDs must resolve to the same object registered in the world.
+    /// </summary>
+    [TestCase(true, true)]
+    [TestCase(true, false)]
+    [TestCase(false, false)]
+    public void ApplyRejectsUnregisteredMicheOccupant(bool matchingID, bool parentHasResults)
+    {
+        var world = CreateWorld();
+        var patch = world.Map.CurrentPatch!;
+        var parent = CreateParent(world);
+        patch.AddSpecies(parent, 100);
+        var occupant = matchingID ? (Species)parent.Clone() : new MicrobeSpecies(uint.MaxValue, "Test", "unregistered");
+        var results = new RunResults();
+        results.AddNewMicheForPatch(patch, new Miche(new MutationPressure(1000)) { Occupant = occupant });
+        if (parentHasResults)
+            results.AddPopulationResultForSpecies(parent, patch, 100);
+
+        AssertThat(results.SpeciesHasResults(occupant)).IsFalse();
+        AssertThrown(() => results.ApplyResults(world, false)).IsInstanceOf<InvalidOperationException>();
+    }
+
+    /// <summary>
+    ///   Allows a registered species to occupy multiple patch miches and also have results without treating repeated
+    ///   references as duplicate IDs. Registered occupants do not need their own result keys.
+    /// </summary>
+    [TestCase]
+    public void ApplyAllowsRepeatedRegisteredMicheOccupants()
+    {
+        var world = CreateWorld(2);
+        var parent = CreateParent(world);
+        var results = new RunResults();
+        foreach (var patch in world.Map.Patches.Values)
+        {
+            patch.AddSpecies(parent, 100);
+            var root = new Miche(new MutationPressure(1000));
+            root.AddChild(new Miche(root.Pressure) { Occupant = parent });
+            root.AddChild(new Miche(root.Pressure) { Occupant = world.PlayerSpecies });
+            results.AddNewMicheForPatch(patch, root);
+            results.AddPopulationResultForSpecies(parent, patch, 100);
+        }
+
+        results.ApplyResults(world, false);
+        AssertThat(results.SpeciesHasResults(world.PlayerSpecies)).IsFalse();
+    }
+#endif
+
     private static MicrobeSpecies CreateParent(GameWorld world)
     {
         var parent = world.NewMicrobeSpecies("Test", "parent");

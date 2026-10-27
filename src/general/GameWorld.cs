@@ -539,6 +539,18 @@ public class GameWorld : IArchivable
             throw new ArgumentException("Species is already in this world");
 
         species.OnBecomePartOfWorld(GetNextSpeciesID());
+
+#if DEBUG
+        foreach (var existingSpecies in worldSpecies.Values)
+        {
+            if (existingSpecies.ID == species.ID)
+            {
+                throw new InvalidOperationException(
+                    "Trying to add auto-evo species to world failed due to duplicate ID");
+            }
+        }
+#endif
+
         worldSpecies[species.ID] = species;
     }
 
@@ -1101,6 +1113,20 @@ public class GameWorld : IArchivable
                 "World ran out of species ID numbers and restarting sequence is not implemented");
         }
 
+        // Safety check against this code originating duplicate IDs
+        if (worldSpecies.ContainsKey(speciesId))
+            throw new InvalidOperationException($"New species ID is already registered in this world: {speciesId}");
+
+#if DEBUG
+
+        // Check the objects as well as dictionary keys in case a registered species' ID has changed
+        foreach (var species in worldSpecies.Values)
+        {
+            if (species.ID == speciesId)
+                throw new InvalidOperationException($"New species ID is already used in this world: {speciesId}");
+        }
+#endif
+
         return speciesId;
     }
 
@@ -1111,6 +1137,9 @@ public class GameWorld : IArchivable
 
         RemoveSpecies(old);
         worldSpecies.Add(old.ID, newSpecies);
+
+        if (newSpecies.ID != old.ID)
+            GD.Print($"Species ID changed from {old.ID} to {newSpecies.ID} when replacing it");
 
         Map.ReplaceSpecies(old, newSpecies);
 
