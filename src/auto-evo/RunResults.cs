@@ -554,6 +554,17 @@ public class RunResults : IArchivable
             }
         }
 
+#if DEBUG
+
+        // New species have their final IDs now, so all species in the results must have unique IDs
+        var speciesIDs = new HashSet<uint>();
+        foreach (var species in results.Keys)
+        {
+            if (!speciesIDs.Add(species.ID))
+                throw new InvalidOperationException($"Duplicate species ID in auto-evo results: {species.ID}");
+        }
+#endif
+
         world.Map.DiscardGameplayPopulations();
     }
 
