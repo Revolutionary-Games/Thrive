@@ -157,26 +157,41 @@ public class Scalis : IMeshGeneratingFunction
 
         foreach (var point in points)
         {
-            if (point.Parent == null)
-                continue;
-
             float dist = pos.DistanceSquaredTo(point.Position);
 
-            // https://en.wikipedia.org/wiki/Cauchy_distribution
-            float upsilon = point.Size * 0.01f;
-            float contribution = 1.0f / (MathF.PI * upsilon * (1.0f + (dist / (upsilon * upsilon))));
+            float contribution = 1.0f - dist / MathF.Pow(point.Size, 2.0f);
+            contribution = MathF.Max(contribution, 0.0f);
 
             contributionSum += contribution;
 
             colourSum += point.Colour * contribution;
         }
 
-        colourSum /= contributionSum;
+        if (contributionSum > MathUtils.EPSILON)
+        {
+            colourSum /= contributionSum;
 
-        // Make the resulting colour always opaque
-        colourSum.A = 1.0f;
+            // Make the resulting colour always opaque
+            colourSum.A = 1.0f;
 
-        return colourSum;
+            return colourSum;
+        }
+
+        float bestDist = float.MaxValue;
+        Color bestColour = Colors.Black;
+
+        foreach (var point in points)
+        {
+            float dist = pos.DistanceSquaredTo(point.Position);
+
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                bestColour = point.Colour;
+            }
+        }
+
+        return bestColour;
     }
 
     private float NormalizationFactor(int i, float sigma)
