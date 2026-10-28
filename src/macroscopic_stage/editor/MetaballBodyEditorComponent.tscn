@@ -835,17 +835,6 @@ expand_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge" unique_id=32013440]
 libraries/ = SubResource("AnimationLibrary_vbjf3")
 
-[node name="ToleranceWarnings" type="VBoxContainer" parent="." unique_id=858270649]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -286.0
-offset_top = 78.0
-offset_right = 352.0
-offset_bottom = 250.0
-grow_horizontal = 2
-
 [node name="MetaballSizeControls" type="MarginContainer" parent="." unique_id=321398276]
 layout_mode = 1
 anchors_preset = 3
