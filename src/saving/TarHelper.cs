@@ -78,7 +78,10 @@ public static class TarHelper
     ///   Decodes an optional PNG, returning null for missing or invalid image data.
     ///   The caller owns a successfully decoded image.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    ///   The decoded image, which the caller must dispose of, or null if the buffer is null, empty,
+    ///   or cannot be decoded into a non-empty PNG image.
+    /// </returns>
     public static Image? ImageFromBuffer(byte[]? buffer)
     {
         if (buffer == null)
