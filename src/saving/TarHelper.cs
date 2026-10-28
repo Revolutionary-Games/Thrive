@@ -74,15 +74,51 @@ public static class TarHelper
         return buffer;
     }
 
-    public static Image ImageFromBuffer(byte[] buffer)
+    /// <summary>
+    ///   Decodes an optional PNG, returning null for missing or invalid image data.
+    ///   The caller owns a successfully decoded image.
+    /// </summary>
+    /// <returns></returns>
+    public static Image? ImageFromBuffer(byte[]? buffer)
     {
-        var result = new Image();
+        if (buffer == null)
+            return null;
 
-        if (buffer.Length > 0)
+        if (buffer.Length == 0)
         {
-            result.LoadPngFromBuffer(buffer);
+            GD.PrintErr("Failed to decode PNG: image data is empty");
+            return null;
         }
 
-        return result;
+        var image = new Image();
+        try
+        {
+            Error error;
+            bool empty;
+            try
+            {
+                error = image.LoadPngFromBuffer(buffer);
+                empty = image.IsEmpty();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Failed to decode PNG: ", e);
+                return null;
+            }
+
+            if (error != Error.Ok || empty)
+            {
+                GD.PrintErr($"Failed to decode PNG: {error}, empty image: {empty}");
+                return null;
+            }
+
+            var result = image;
+            image = null;
+            return result;
+        }
+        finally
+        {
+            image?.Dispose();
+        }
     }
 }
