@@ -161,11 +161,16 @@ public partial class AchievementsManager : Node
     {
         base._Ready();
 
-        // Determine backend to use
-        if (SteamHandler.Instance.IsLoaded || SteamHandler.Instance.WasLoadAttempted)
+        // Use local storage if Steam initialization failed, as Steam achievements are unavailable in that case
+        if (SteamHandler.Instance.IsLoaded)
         {
             GD.Print("Using Steam as achievements storage");
             statsStore = new SteamStatStore(SteamHandler.Instance.GetSteamClientForAchievements());
+        }
+        else if (SteamHandler.Instance.WasLoadAttempted)
+        {
+            GD.PrintErr("Steam was attempted to load, but failed, so we cannot store achievements there, " +
+                "this is likely undesired!");
         }
 
         if (!SceneManager.Instance.QuittingRequested())
