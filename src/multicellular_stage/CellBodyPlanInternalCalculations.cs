@@ -422,7 +422,7 @@ public static class CellBodyPlanInternalCalculations
     }
 
     /// <summary>
-    ///   Applies a multiplier causing diminishing returns on ason effectiveness based on the count of actual axons.
+    ///   Applies a multiplier causing diminishing returns on axon effectiveness based on the count of actual axons.
     ///   This makes specialization of just a few cells more valuable.
     /// </summary>
     public static float AxonDiminishingReturns(float axonPower, int axonCount)
