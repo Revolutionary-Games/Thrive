@@ -129,6 +129,49 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         return result;
     }
 
+    /// <summary>
+    ///   Centers (<see cref="RepositionToOrigin"/>) each cell in the list; outputs debug errors if something goes
+    ///   wrong.
+    /// </summary>
+    public static void SafelyRepositionCellsToOrigin(IReadOnlyList<CellType> cells)
+    {
+        bool neededTwoShifts = false;
+
+        foreach (var cellType in cells)
+        {
+            if (cellType.RepositionToOrigin())
+            {
+                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
+                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
+                // in case some type needs it.
+                if (cellType.RepositionToOrigin())
+                {
+                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
+                    neededTwoShifts = true;
+                }
+            }
+        }
+
+        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
+        foreach (var cellType in cells)
+        {
+            if (cellType.RepositionToOrigin())
+            {
+                GD.PrintErr("Cell type shouldn't get a second move to origin");
+                LogInterceptor.ForwardCaughtError(new Exception(
+                        "Detected a cell layout that infinitely shifts around the origin, this will break " +
+                        "multicellular cell positioning!"),
+                    "Please include a save or screenshot of your species' cell types with the report");
+                break;
+            }
+        }
+
+        if (neededTwoShifts)
+        {
+            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
+        }
+    }
+
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObject(ModifiableOrganelles);

@@ -83,6 +83,12 @@ public partial class CellBodyPlanEditorComponent
         gui.MacroscopicRequirementsButton = macroscopicConditionsViewButton;
     }
 
+    public override void NotifyFreebuild(bool freeBuilding)
+    {
+        base.NotifyFreebuild(freeBuilding);
+        macroscopicConditionsViewButton.Visible = !freeBuilding;
+    }
+
     protected override void OnTranslationsChanged()
     {
         base.OnTranslationsChanged();
@@ -718,6 +724,16 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
     {
+        if (CanCancelAction)
+        {
+            OnActionBlockedWhileAnotherIsInProgress();
+
+            // Force button state back for the rejected action
+            GD.Print("Switching layout mode rejected due to active action in the editor");
+            UpdateLayoutTabContent();
+            return;
+        }
+
         bool targetValue = !usesAutomatic;
 
         if (UsesManualPlayerLayout == targetValue)

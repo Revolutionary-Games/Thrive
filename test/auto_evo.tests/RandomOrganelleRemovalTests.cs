@@ -260,8 +260,6 @@ public class RandomOrganelleRemovalTests
         {
             AddCellType(colony, Array.Empty<OrganelleDefinition>());
             var otherLayout = GetLayout(colony, 1);
-            otherLayout.Add(target);
-            otherLayout.Add(new OrganelleTemplate(mitochondrion, new Hex(2, -1), 1));
             otherSource = otherLayout.Organelles.ToArray();
         }
 
@@ -269,29 +267,115 @@ public class RandomOrganelleRemovalTests
         var mutants = new RemoveOrganelle(o => ReferenceEquals(o, mitochondrion))
             .MutationsOf(original, 1000, false, new XoShiRo256starstar(71), biome);
         AssertThat(mutants).IsNotNull();
-        AssertThat(mutants!.Count).IsEqual(multicellular ? 2 : 1);
+        AssertThat(mutants!.Count).IsEqual(1);
         var expected = originalOrganelles.Where(o => !ReferenceEquals(o, target) && !ReferenceEquals(o, overlap))
             .ToArray();
-        var otherRetainedPositions = new HashSet<Hex>();
         foreach (var mutant in mutants)
         {
             AssertLayoutClones(GetLayout(mutant.Species).Organelles, expected);
-            if (otherSource == null)
-                continue;
-
-            var otherLayout = GetLayout(mutant.Species, 1).Organelles;
-            var retained = otherLayout.Single(o => ReferenceEquals(o.Definition, mitochondrion));
-            AssertThat(otherRetainedPositions.Add(retained.Position)).IsTrue();
-            var removed = retained.Position == target.Position ? otherSource[^1] : target;
-            AssertLayoutClones(otherLayout, otherSource.Where(o => !ReferenceEquals(o, removed)).ToArray());
+            if (otherSource != null)
+                AssertLayoutClones(GetLayout(mutant.Species, 1).Organelles, otherSource);
         }
 
         AssertLayoutClones(source.Organelles, originalSnapshot);
         if (otherSource != null)
-        {
-            AssertThat(otherRetainedPositions.SetEquals([target.Position, otherSource[^1].Position])).IsTrue();
             AssertLayoutClones(GetLayout(original, 1).Organelles, otherSnapshot!);
+    }
+
+    [TestCase]
+    public void NonTargetedOverlapsKeepEarlierOrganelle()
+    {
+        var toxin = SimulationParameters.Instance.GetOrganelleType("oxytoxy");
+        var original = (MulticellularSpecies)CreateSpecies(true, new[] { toxin });
+        var source = GetLayout(original);
+        var target = source.Organelles.Single(o => ReferenceEquals(o.Definition, toxin));
+        AddCellType(original, Array.Empty<OrganelleDefinition>());
+        var otherLayout = GetLayout(original, 1);
+        var first = otherLayout[0];
+        var overlap = otherLayout[1];
+        var later = new OrganelleTemplate(cytoplasm, new Hex(0, 1), 3);
+        otherLayout.Add(later);
+
+        // Different orientations make retaining the wrong overlapping item observable.
+        overlap.Position = first.Position;
+        overlap.Orientation = 1;
+        var originalOrganelles = source.Organelles.ToArray();
+        var originalSnapshot = originalOrganelles.Select(o => o.Clone()).ToArray();
+        var otherSnapshot = otherLayout.Organelles.Select(o => o.Clone()).ToArray();
+        var mutants = new RemoveOrganelle(o => ReferenceEquals(o, toxin))
+            .MutationsOf(original, 1000, false, new XoShiRo256starstar(71), biome);
+        AssertThat(mutants).IsNotNull();
+        AssertThat(mutants!.Count).IsEqual(1);
+        AssertLayoutClones(GetLayout(mutants[0].Species).Organelles,
+            originalOrganelles.Where(o => !ReferenceEquals(o, target)).ToArray());
+        AssertLayoutClones(GetLayout(mutants[0].Species, 1).Organelles, [first, later]);
+        AssertLayoutClones(source.Organelles, originalSnapshot);
+        AssertLayoutClones(otherLayout.Organelles, otherSnapshot);
+    }
+
+    [TestCase]
+    public void SharedOrganelleReferenceIsRemovedOnlyFromTargetedCellType()
+    {
+        var toxin = SimulationParameters.Instance.GetOrganelleType("oxytoxy");
+        AssertThat(toxin.GetRotatedHexes(2).SequenceEqual(new[] { new Hex(0, 0) })).IsTrue();
+        var original = (MulticellularSpecies)CreateSpecies(true, Array.Empty<OrganelleDefinition>());
+        AddCellType(original, Array.Empty<OrganelleDefinition>());
+        var shared = new OrganelleTemplate(toxin, new Hex(0, 1), 2)
+        {
+            ModifiableUpgrades = CreateToxinUpgrades(0.25f),
+            IsEndosymbiont = true,
+        };
+        var layouts = new[] { GetLayout(original), GetLayout(original, 1) };
+        foreach (var layout in layouts)
+        {
+            layout.Add(shared);
+            AssertThat(layout.ComputeHexCache().Count).IsEqual(layout.HexCount);
+            AssertThat(layout.GetIslandHexes(new List<Hex>(), new HashSet<Hex>(), new List<Hex>(), new Queue<Hex>()))
+                .IsEqual(0);
         }
+
+        AssertThat(layouts[0][2]).IsSame(layouts[1][2]);
+        var sourceOrganelles = layouts.Select(o => o.Organelles.ToArray()).ToArray();
+        var snapshots = sourceOrganelles.Select(o => o.Select(p => p.Clone()).ToArray()).ToArray();
+        var mutants = new RemoveOrganelle(o => ReferenceEquals(o, toxin))
+            .MutationsOf(original, 1000, false, new XoShiRo256starstar(71), biome);
+        AssertThat(mutants).IsNotNull();
+        AssertThat(mutants!.Count).IsEqual(2);
+        var targetedTypes = new HashSet<int>();
+        var retainedCopies = new List<OrganelleTemplate>();
+        foreach (var mutant in mutants)
+        {
+            AssertThat(mutant.Species).IsNotSame(original);
+            var counts = new[] { GetLayout(mutant.Species).Count, GetLayout(mutant.Species, 1).Count };
+            AssertThat(counts.Count(c => c == 2)).IsEqual(1);
+            AssertThat(counts.Count(c => c == 3)).IsEqual(1);
+            var targetedType = Array.IndexOf(counts, 2);
+            AssertThat(targetedTypes.Add(targetedType)).IsTrue();
+            for (int i = 0; i < layouts.Length; ++i)
+            {
+                var layout = GetLayout(mutant.Species, i);
+                AssertThat(layout).IsNotSame(layouts[i]);
+                var expected = i == targetedType ?
+                    sourceOrganelles[i].Where(o => !ReferenceEquals(o, shared)).ToArray() :
+                    sourceOrganelles[i];
+                AssertLayoutClones(layout.Organelles, expected);
+            }
+
+            retainedCopies.Add(GetLayout(mutant.Species, 1 - targetedType).Organelles
+                .Single(o => ReferenceEquals(o.Definition, toxin)));
+        }
+
+        AssertThat(targetedTypes.SetEquals([0, 1])).IsTrue();
+        AssertLayoutClones([retainedCopies[0]], [retainedCopies[1]]);
+        var firstCopy = retainedCopies[0];
+        firstCopy.Position = new Hex(20, 20);
+        firstCopy.Orientation = 5;
+        firstCopy.IsEndosymbiont = false;
+        firstCopy.ModifiableUpgrades!.ModifiableUnlockedFeatures.Clear();
+        ((ToxinUpgrades)firstCopy.ModifiableUpgrades.CustomUpgradeData!).Toxicity = -0.5f;
+        for (int i = 0; i < layouts.Length; ++i)
+            AssertLayoutClones(layouts[i].Organelles, snapshots[i]);
+        AssertLayoutClones([retainedCopies[1]], [shared]);
     }
 
     [TestCase(false)]
@@ -458,6 +542,14 @@ public class RandomOrganelleRemovalTests
             CellTypeName = $"Type{species.CellTypes.Count}",
         };
         FillOrganelles(cellType.ModifiableOrganelles, definitions);
+
+        // Represent every cell type in the editor body plan used by species cloning.
+        var editorCells = species.CellTypes.Count == 0 ?
+            new IndividualHexLayout<CellTemplate>() :
+            species.ModifiableEditorCells;
+        var position = new Hex(species.CellTypes.Count, 0);
+        editorCells.Add(new HexWithData<CellTemplate>(new CellTemplate(cellType, position, 0), position, 0));
+        species.ModifiableEditorCells = editorCells;
         species.ModifiableCellTypes.Add(cellType);
     }
 

@@ -133,7 +133,7 @@ public class Scalis : IMeshGeneratingFunction
                 (a, b) = (b, a);
             }
 
-            // Since "i" is always 3, we can cut down on some calculations and make static coeff array
+            // Since "i" is always 3, we can cut down on some calculations and make a static coeff array
             // var coeff = BinomialExpansion(i - 1);
 
             for (int k = 0; k < Coefficients.Length; ++k)
@@ -157,27 +157,41 @@ public class Scalis : IMeshGeneratingFunction
 
         foreach (var point in points)
         {
-            if (point.Parent == null)
-                continue;
+            float dist = pos.DistanceSquaredTo(point.Position);
 
-            float abDistanceSquared = point.Position.DistanceSquaredTo(point.Parent.Position);
-
-            Vector3 linePos = ClosestPoint(pos, point.Position, point.Parent.Position);
-
-            float contribution = 1.0f / linePos.DistanceSquaredTo(pos);
+            float contribution = 1.0f - dist / MathF.Pow(point.Size, 2.0f);
+            contribution = MathF.Max(contribution, 0.0f);
 
             contributionSum += contribution;
 
-            colourSum += point.Colour.Lerp(point.Parent.Colour, point.Position.DistanceSquaredTo(linePos)
-                / abDistanceSquared) * contribution;
+            colourSum += point.Colour * contribution;
         }
 
-        colourSum /= contributionSum;
+        if (contributionSum > MathUtils.EPSILON)
+        {
+            colourSum /= contributionSum;
 
-        // Make result colour always opaque
-        colourSum.A = 1.0f;
+            // Make the resulting colour always opaque
+            colourSum.A = 1.0f;
 
-        return colourSum;
+            return colourSum;
+        }
+
+        float bestDist = float.MaxValue;
+        Color bestColour = Colors.Black;
+
+        foreach (var point in points)
+        {
+            float dist = pos.DistanceSquaredTo(point.Position);
+
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                bestColour = point.Colour;
+            }
+        }
+
+        return bestColour;
     }
 
     private float NormalizationFactor(int i, float sigma)
