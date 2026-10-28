@@ -87,7 +87,7 @@ internal sealed class StageResourcePreloader
 
         // Make sure all resources are loaded
         // As some can still be processing by this point
-        if (stageResources.Any(r => !r.Loaded))
+        if (stageResources.Exists(r => !r.Loaded))
         {
             // TODO: does this need unstuck logic if some resource is not getting loaded?
             // For example, due to something unloading a resource after we loaded it and it is no longer in the load
