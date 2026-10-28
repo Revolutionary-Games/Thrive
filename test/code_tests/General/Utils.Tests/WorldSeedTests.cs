@@ -4,7 +4,10 @@ using Xunit;
 
 public class WorldSeedTests
 {
-    // Independent xxHash64 vectors for the 24-byte task encoding, including full-width IDs and generations.
+    /// <summary>
+    ///   Verifies task seed derivation against independent xxHash64 vectors for the 24-byte identity encoding,
+    ///   protecting domain and generation separation and preservation of the full world seed and owner ID.
+    /// </summary>
     [Theory]
     [InlineData(0L, WorldSeed.Domain.AutoEvoModifySpecies, 0, 0L, 4500431172382057997L)]
     [InlineData(0L, WorldSeed.Domain.AutoEvoMigrateSpecies, 0, 0L, -7495222163240469744L)]

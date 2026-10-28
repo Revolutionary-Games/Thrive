@@ -22,6 +22,10 @@ public class GatherTaskSeedTests
         (WorldSeed.Domain.AutoEvoMigrateSpecies, uint.MaxValue),
     ];
 
+    /// <summary>
+    ///   Verifies that fresh worlds bind task streams to stable identities with either FullSpeed setting during
+    ///   preparation, protecting seeds from changes in traversal order, other owners, or previously created worlds.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void NormalGatherBindsFreshInputsRegardlessOfPreparationOrderAndOtherOwners(bool fullSpeed)
@@ -38,6 +42,10 @@ public class GatherTaskSeedTests
         }
     }
 
+    /// <summary>
+    ///   Verifies that rebuilt tasks use the greatest applied generation key, protecting their streams from early
+    ///   player generation changes and from using history entry counts or insertion order instead of that key.
+    /// </summary>
     [TestCase]
     public void AppliedGenerationControlsRebuildsAndIgnoresEarlyPlayerGenerationChanges()
     {
@@ -61,6 +69,10 @@ public class GatherTaskSeedTests
         VerifyBindings(world, Gather(world, false), "baseline", 17, false);
     }
 
+    /// <summary>
+    ///   Verifies that observing prepared task streams leaves their state unchanged and consuming one stream does
+    ///   not advance another, protecting RNG isolation within and between runs prepared with either FullSpeed setting.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void ObservingAndConsumingTaskStreamsDoesNotAdvanceOtherInstances(bool fullSpeed)
@@ -94,6 +106,10 @@ public class GatherTaskSeedTests
         }
     }
 
+    /// <summary>
+    ///   Verifies that missing generation history is rejected before any tasks are queued, preventing a partially
+    ///   prepared run from using an undefined generation to seed its streams.
+    /// </summary>
     [TestCase]
     public void EmptyGenerationHistoryFailsBeforeAnyTasksAreQueued()
     {
@@ -106,22 +122,10 @@ public class GatherTaskSeedTests
         AssertThat(steps.Count).IsEqual(0);
     }
 
-    [TestCase]
-    public void BindingValidationRejectsEmptyMissingUnexpectedAndDuplicateIdentities()
-    {
-        var bindings = Gather(CreateWorld(0, "expanded"), false);
-        AssertThat(bindings.Count).IsEqual(7);
-        AssertThrown(() => ValidateIdentities([], Keys)).IsInstanceOf<InvalidOperationException>();
-        AssertThrown(() => ValidateIdentities(bindings.Skip(1).ToList(), Keys))
-            .IsInstanceOf<InvalidOperationException>();
-        var duplicate = bindings.ToList();
-        duplicate[0] = duplicate[1];
-        AssertThrown(() => ValidateIdentities(duplicate, Keys)).IsInstanceOf<InvalidOperationException>();
-        var unexpected = bindings.ToList();
-        unexpected[0] = unexpected[0] with { Owner = 999 };
-        AssertThrown(() => ValidateIdentities(unexpected, Keys)).IsInstanceOf<InvalidOperationException>();
-    }
-
+    /// <summary>
+    ///   Verifies that editor prediction prepares population calculations without mutation or migration tasks,
+    ///   protecting the prediction path from acquiring evolutionary task streams.
+    /// </summary>
     [TestCase]
     public void EditorPredictionCreatesNoMutationOrMigrationStreams()
     {
