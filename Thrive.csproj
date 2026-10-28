@@ -10,7 +10,7 @@
     <Nullable>enable</Nullable>
     <Company>Revolutionary Games Studio</Company>
     <Version>1.7.0.0</Version>
-    <InformationalVersion>-rc1</InformationalVersion>
+    <!--<InformationalVersion>-rc1</InformationalVersion>-->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <!-- Ignore the subproject source files -->
@@ -40,8 +40,8 @@
   </ItemGroup>
   <!-- Test resources -->
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
-    <PackageReference Include="gdUnit4.api" Version="5.1.0-rc5" />
-    <PackageReference Include="gdUnit4.test.adapter" Version="3.1.1" />
+    <PackageReference Include="gdUnit4.api" Version="5.1.0-rc6" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="3.2.0" />
     <!-- Re-enable this this once newer compiler versions are deployed everywhere
     <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
       <PrivateAssets>none</PrivateAssets>
@@ -50,16 +50,16 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="1.8.5" />
+    <PackageReference Include="AngleSharp" Version="1.8.6" />
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Sugiyama" Version="0.15.1" />
-    <PackageReference Include="System.IO.Hashing" Version="10.0.13" />
+    <PackageReference Include="System.IO.Hashing" Version="10.0.14" />
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
     <PackageReference Include="YamlDotNet" Version="18.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.402" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.403" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />

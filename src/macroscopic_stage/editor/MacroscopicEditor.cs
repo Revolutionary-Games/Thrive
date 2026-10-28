@@ -116,7 +116,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     public override MainGameState GameState => MainGameState.MacroscopicEditor;
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
-        new(CurrentGame.GameWorld, CurrentPatch, new MacroscopicUnlocksData());
+        new(CurrentGame.GameWorld, CurrentPatch, new MacroscopicUnlocksData(), Stage.MacroscopicStage);
 
     protected override string MusicCategory => "MacroscopicEditor";
 

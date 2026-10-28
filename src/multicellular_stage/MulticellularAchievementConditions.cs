@@ -147,7 +147,9 @@ public static class MulticellularAchievementConditions
     }
 
     /// <summary>
-    ///   Checks that no open indentation inside the body plan's convex hull is at least two hexes deep.
+    ///   Rolls a hex with its six neighbours around the exterior of the body plan. Broad concavities and
+    ///   protrusions and one extra hex of shallow notches are allowed. Empty hexes beyond this outline are
+    ///   gaps or deep, narrow crevices.
     /// </summary>
     public static bool HasNoDeepCrevices(CellLayout<CellTemplate> layout)
     {
@@ -155,127 +157,66 @@ public static class MulticellularAchievementConditions
         if (occupied.Count == 0)
             return false;
 
-        var convexHull = ComputeConvexHull(occupied);
-        if (convexHull.Count < 3)
-            return true;
-
+        // A probe centre must stay at least one empty hex away from the occupied footprint
+        var blocked = new HashSet<Hex>(occupied);
         int minQ = int.MaxValue;
         int maxQ = int.MinValue;
         int minR = int.MaxValue;
         int maxR = int.MinValue;
-        foreach (var hex in convexHull)
-        {
-            minQ = Math.Min(minQ, hex.Q);
-            maxQ = Math.Max(maxQ, hex.Q);
-            minR = Math.Min(minR, hex.R);
-            maxR = Math.Max(maxR, hex.R);
-        }
-
-        var insideHull = new HashSet<Hex>();
-        var emptyInsideHull = new HashSet<Hex>();
-        for (int q = minQ; q <= maxQ; ++q)
-        {
-            for (int r = minR; r <= maxR; ++r)
-            {
-                var candidate = new Hex(q, r);
-                if (!IsInsideConvexHull(candidate, convexHull))
-                    continue;
-
-                insideHull.Add(candidate);
-                if (!occupied.Contains(candidate))
-                    emptyInsideHull.Add(candidate);
-            }
-        }
-
-        var pending = new Queue<(Hex Position, int Depth)>();
-        var visited = new HashSet<Hex>();
-        foreach (var emptyHex in emptyInsideHull)
+        foreach (var hex in occupied)
         {
             foreach (var offset in Hex.HexNeighbourOffset.Values)
             {
-                if (insideHull.Contains(emptyHex + offset))
-                    continue;
-
-                visited.Add(emptyHex);
-                pending.Enqueue((emptyHex, 1));
-                break;
+                blocked.Add(hex + offset);
             }
+
+            // Leave room for the probe centre to travel all the way around the colony
+            minQ = Math.Min(minQ, hex.Q - 2);
+            maxQ = Math.Max(maxQ, hex.Q + 2);
+            minR = Math.Min(minR, hex.R - 2);
+            maxR = Math.Max(maxR, hex.R + 2);
         }
 
+        // After calculating the bounds, initialize the reachable set and run a search algorithm
+        var visited = new HashSet<Hex>();
+        var reachable = new HashSet<Hex>();
+        var pending = new Queue<Hex>();
+
+        var start = new Hex(minQ, minR);
+        visited.Add(start);
+        pending.Enqueue(start);
         while (pending.TryDequeue(out var current))
         {
-            if (current.Depth >= 2)
-                return false;
-
+            reachable.Add(current);
             foreach (var offset in Hex.HexNeighbourOffset.Values)
             {
-                var next = current.Position + offset;
-                if (emptyInsideHull.Contains(next) && visited.Add(next))
-                    pending.Enqueue((next, current.Depth + 1));
+                var next = current + offset;
+
+                // Allow a shallow notch beyond the probe edge, following empty hexes so this cannot
+                // reach through a thin wall into a deep crevice on its other side
+                if (!occupied.Contains(next))
+                {
+                    reachable.Add(next);
+                    foreach (var edgeOffset in Hex.HexNeighbourOffset.Values)
+                    {
+                        reachable.Add(next + edgeOffset);
+                    }
+                }
+
+                if (next.Q < minQ || next.Q > maxQ || next.R < minR || next.R > maxR ||
+                    blocked.Contains(next) || !visited.Add(next))
+                {
+                    continue;
+                }
+
+                pending.Enqueue(next);
             }
         }
 
-        return true;
-    }
-
-    private static List<Hex> ComputeConvexHull(HashSet<Hex> hexes)
-    {
-        var sortedHexes = new List<Hex>(hexes);
-        sortedHexes.Sort(CompareHexes);
-
-        if (sortedHexes.Count <= 2)
-            return sortedHexes;
-
-        var lowerHull = new List<Hex>();
-        foreach (var hex in sortedHexes)
+        // Then finally check the results
+        foreach (var hex in blocked)
         {
-            while (lowerHull.Count >= 2 &&
-                   CrossProduct(lowerHull[^2], lowerHull[^1], hex) <= 0)
-            {
-                lowerHull.RemoveAt(lowerHull.Count - 1);
-            }
-
-            lowerHull.Add(hex);
-        }
-
-        var upperHull = new List<Hex>();
-        for (int i = sortedHexes.Count - 1; i >= 0; --i)
-        {
-            var hex = sortedHexes[i];
-            while (upperHull.Count >= 2 &&
-                   CrossProduct(upperHull[^2], upperHull[^1], hex) <= 0)
-            {
-                upperHull.RemoveAt(upperHull.Count - 1);
-            }
-
-            upperHull.Add(hex);
-        }
-
-        lowerHull.RemoveAt(lowerHull.Count - 1);
-        upperHull.RemoveAt(upperHull.Count - 1);
-        lowerHull.AddRange(upperHull);
-        return lowerHull;
-    }
-
-    private static int CompareHexes(Hex left, Hex right)
-    {
-        int qComparison = left.Q.CompareTo(right.Q);
-        return qComparison != 0 ? qComparison : left.R.CompareTo(right.R);
-    }
-
-    private static long CrossProduct(Hex first, Hex second, Hex third)
-    {
-        return ((long)second.Q - first.Q) * ((long)third.R - second.R) -
-            ((long)second.R - first.R) * ((long)third.Q - second.Q);
-    }
-
-    private static bool IsInsideConvexHull(Hex candidate, List<Hex> convexHull)
-    {
-        for (int i = 0; i < convexHull.Count; ++i)
-        {
-            var first = convexHull[i];
-            var second = convexHull[(i + 1) % convexHull.Count];
-            if (CrossProduct(first, second, candidate) < 0)
+            if (!occupied.Contains(hex) && !reachable.Contains(hex))
                 return false;
         }
 
