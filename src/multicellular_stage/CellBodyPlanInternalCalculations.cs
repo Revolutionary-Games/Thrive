@@ -198,8 +198,9 @@ public static class CellBodyPlanInternalCalculations
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
-            axonPower += GetAxonCount(colonyMemberData) * memberTotalSpecializationBonus;
-            if (axonPower > 0)
+            var cellAxonCount = GetAxonCount(colonyMemberData);
+            axonPower += cellAxonCount * memberTotalSpecializationBonus;
+            if (cellAxonCount > 0)
                 ++axonCount;
 
             effectiveActomyosinCount +=
