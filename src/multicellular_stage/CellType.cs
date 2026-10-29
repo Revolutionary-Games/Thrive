@@ -148,6 +148,8 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
                 {
                     GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
                     neededTwoShifts = true;
+
+                    // NOTE: if this two-shift approach is changed, then also CalculateLayoutOriginShift needs changes
                 }
             }
         }
@@ -170,6 +172,29 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         {
             GD.Print("Some cell types required two shifts to get organelles centered around the origin");
         }
+    }
+
+    /// <summary>
+    ///   Predicts the total organelle translation performed by <see cref="SafelyRepositionCellsToOrigin"/>
+    ///   without modifying the cell type.
+    /// </summary>
+    public static Hex CalculateLayoutOriginShift(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles)
+    {
+        var totalShift = new Hex(0, 0);
+
+        // SafelyRepositionCellsToOrigin can apply two centering shifts and one final safety-check shift.
+        // Recalculate from shifted hex positions each time: Cartesian truncation means that a single shift
+        // does not always centre the layout completely.
+        for (int i = 0; i < 3; ++i)
+        {
+            var shift = Hex.CartesianToAxial(MicrobeInternalCalculations.CalculateCenterOfMass(organelles, totalShift));
+            if (shift == new Hex(0, 0))
+                break;
+
+            totalShift += shift;
+        }
+
+        return totalShift;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
