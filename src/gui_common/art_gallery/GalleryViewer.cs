@@ -258,23 +258,8 @@ public partial class GalleryViewer : CustomWindow
 
                 loadingResource.OnComplete = _ =>
                 {
-                    if (!IsInstanceValid(item))
-                    {
-                        GD.PrintErr("Cannot update gallery thumbnail: card is no longer valid");
+                    if (!IsInstanceValid(item) || item.IsQueuedForDeletion())
                         return;
-                    }
-
-                    if (item.IsQueuedForDeletion())
-                    {
-                        GD.PrintErr("Cannot update gallery thumbnail: card is queued for deletion");
-                        return;
-                    }
-
-                    if (!item.IsInsideTree())
-                    {
-                        GD.PrintErr("Cannot update gallery thumbnail: card is not inside the scene tree");
-                        return;
-                    }
 
                     item.Thumbnail = loadingResource.LoadedTexture;
                 };
