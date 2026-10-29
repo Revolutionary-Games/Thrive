@@ -456,6 +456,10 @@ public partial class CellBodyPlanEditorComponent
             placedModels.RemoveAt(placedModels.Count - 1);
         }
 
+        cellLayoutBorderDisplay.DisplayCellLayoutBorders(cellPositions.Keys.ToList(), UsesManualPlayerLayout,
+            GetEditedCellDataIfEdited);
+        hoveringCellBorderDisplay.HideBorders();
+
         RecalculateFullLayoutGrowthOrderErrors();
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
@@ -561,7 +565,9 @@ public partial class CellBodyPlanEditorComponent
         // the origin shift there would therefore validate a different layout than the one generated. Manual layouts
         // need the shift because it is applied when the species leaves the editor.
         // So we only conditionally apply the origin shift.
-        Hex originShift = performOriginShift ? CalculateExpectedLayoutShift(type.ModifiableOrganelles) : new Hex(0, 0);
+        Hex originShift = performOriginShift ?
+            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(type.ModifiableOrganelles) :
+            new Hex(0, 0);
 
         positions.Clear();
 
@@ -597,7 +603,7 @@ public partial class CellBodyPlanEditorComponent
 
         // We have to run reposition to origin equivalent logic here! as otherwise the layout might not be valid
         // after applying edits
-        Hex originShift = CalculateExpectedLayoutShift(type.ModifiableOrganelles);
+        Hex originShift = MulticellularLayoutHelpers.CalculateExpectedLayoutShift(type.ModifiableOrganelles);
 
         // Then apply the origin shift
         for (int i = 0; i < positions.Count; ++i)
@@ -606,15 +612,6 @@ public partial class CellBodyPlanEditorComponent
         }
 
         return positions;
-    }
-
-    private Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
-    {
-        // Origin shift here. This is done because only after exiting the editor are things layout shifted, which means
-        // that we need to pre-emptively apply a layout shift here so that the final results match what is shown here.
-        var center = MicrobeInternalCalculations.CalculateCenterOfMass(localOrganelles);
-
-        return Hex.CartesianToAxial(center);
     }
 
     /// <summary>
@@ -855,6 +852,9 @@ public partial class CellBodyPlanEditorComponent
         ShowCellTypeInModelHolder(model, type, Hex.AxialToCartesian(new Hex(q, r)) + microbeModelOffset,
             moving.Orientation);
         model.Visible = true;
+
+        hoveringCellBorderDisplay.DisplayHoveringCellBorder(MovingPlacedHex, new Hex(q, r), UsesManualPlayerLayout,
+            GetEditedCellDataIfEdited);
     }
 
     private void ApplyManualMove(Hex position)
@@ -928,6 +928,9 @@ public partial class CellBodyPlanEditorComponent
         RecalculateWrongGrowthOrderCells();
         UpdateGrowthOrderNumbers();
         UpdateArrow();
+
+        cellLayoutBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.HideBorders();
     }
 
     private void OnReapplyAutomaticLayoutPressed()
