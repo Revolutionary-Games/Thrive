@@ -96,7 +96,7 @@ public static class CommonMutationFunctions
                 break;
 
             mutated = mutation.Species as MicrobeSpecies ?? throw new InvalidOperationException();
-            mp -= mutation.MP;
+            mp = mutation.MP;
 
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
