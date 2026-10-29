@@ -171,7 +171,8 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
                 reportedError = true;
 
 #if DEBUG
-                Debugger.Break();
+                if (Debugger.IsAttached)
+                    Debugger.Break();
 #endif
 
                 LogInterceptor.ForwardCaughtError(new Exception(
