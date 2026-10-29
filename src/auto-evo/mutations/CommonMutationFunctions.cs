@@ -205,7 +205,6 @@ public static class CommonMutationFunctions
         HashSet<Hex>? mainHexes = null;
 
         // Use as much work memory as we can get from what we are given
-        // TODO: this would need one more hashset to not allocate memory
         var islandHexes = workMemory.WorkingMemory1;
 
         organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
@@ -214,8 +213,8 @@ public static class CommonMutationFunctions
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            // Unfortunately, it seems that just barely the cache is not enough for this to not allocate memory
-            mainHexes ??= new HashSet<Hex>();
+            // Reuse the occupied hex cache after the island search has finished
+            mainHexes ??= workMemory.WorkingMemory3;
             organelles.ComputeHexCache(mainHexes, workMemory.WorkingMemory2);
 
             // Compute the shortest hex distance
