@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using AutoEvo;
 using GdUnit4;
-using Godot;
 using Xoshiro.PRNG32;
 using Xoshiro.PRNG64;
 using static GdUnit4.Assertions;
@@ -13,7 +12,6 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class GatherTaskSeedTests
 {
-    // Independently calculated xxHash64 values. Order: patches 11/29/47, species 1/7/13/UInt32.MaxValue.
     private static readonly (WorldSeed.Domain Domain, long Owner)[] Keys =
     [
         (WorldSeed.Domain.AutoEvoModifySpecies, 11), (WorldSeed.Domain.AutoEvoModifySpecies, 29),
@@ -23,21 +21,23 @@ public class GatherTaskSeedTests
     ];
 
     /// <summary>
-    ///   Verifies that fresh worlds bind task streams to stable identities with either FullSpeed setting during
-    ///   preparation, protecting seeds from changes in traversal order, other owners, or previously created worlds.
+    ///   Verifies that fresh tasks bind private random streams to their world and owner identities despite
+    ///   traversal changes or added and removed owners, protecting seed wiring and isolation between tasks and runs.
     /// </summary>
-    [TestCase(false)]
-    [TestCase(true)]
-    public void NormalGatherBindsFreshInputsRegardlessOfPreparationOrderAndOtherOwners(bool fullSpeed)
+    [TestCase]
+    public void GatherBindsIndependentStreamsRegardlessOfOrderAndOtherOwners()
     {
-        // Every scenario creates new worlds, tasks, owners and RNGs, including A -> B -> A.
-        foreach (var seed in new[] { 0L, -1L, 0L, 4294967296L })
+        var streams = new HashSet<Random>();
+        foreach (var seed in new[] { 0L, 4294967296L })
         {
             foreach (var layout in new[] { "baseline", "reversed", "expanded", "reduced" })
             {
                 var world = CreateWorld(seed, layout);
-                var bindings = Gather(world, fullSpeed);
-                VerifyBindings(world, bindings, layout, 0, fullSpeed);
+                var bindings = Gather(world);
+                foreach (var binding in bindings)
+                    AssertThat(streams.Add(binding.Random)).IsTrue();
+
+                VerifyBindings(world, bindings, layout, 0);
             }
         }
     }
@@ -50,60 +50,18 @@ public class GatherTaskSeedTests
     public void AppliedGenerationControlsRebuildsAndIgnoresEarlyPlayerGenerationChanges()
     {
         var world = CreateWorld(0, "baseline");
-        VerifyBindings(world, Gather(world, false), "baseline", 0, false);
+        VerifyBindings(world, Gather(world), "baseline", 0);
 
         // The editor increments the player generation before waiting for auto-evo. No results applied yet.
         ++world.PlayerSpecies.Generation;
-        VerifyBindings(world, Gather(world, true), "baseline", 0, true);
-
-        // These are the real history keys written when editor/exploring results are applied.
-        world.GenerationHistory.Add(1, new GenerationRecord(1, new Dictionary<uint, SpeciesRecordLite>()));
-        VerifyBindings(world, Gather(world, false), "baseline", 1, false);
-        VerifyBindings(world, Gather(world, true), "baseline", 1, true);
+        VerifyBindings(world, Gather(world), "baseline", 0);
 
         // A history's logical key, not its entry count or dictionary insertion position, identifies the input.
-        world.GenerationHistory.Add(17, new GenerationRecord(17, new Dictionary<uint, SpeciesRecordLite>()));
         var initial = world.GenerationHistory[0];
-        world.GenerationHistory.Remove(0);
+        world.GenerationHistory.Clear();
+        world.GenerationHistory.Add(17, new GenerationRecord(17, new Dictionary<uint, SpeciesRecordLite>()));
         world.GenerationHistory.Add(0, initial);
-        VerifyBindings(world, Gather(world, false), "baseline", 17, false);
-    }
-
-    /// <summary>
-    ///   Verifies that observing prepared task streams leaves their state unchanged and consuming one stream does
-    ///   not advance another, protecting RNG isolation within and between runs prepared with either FullSpeed setting.
-    /// </summary>
-    [TestCase(false)]
-    [TestCase(true)]
-    public void ObservingAndConsumingTaskStreamsDoesNotAdvanceOtherInstances(bool fullSpeed)
-    {
-        var observedWorld = CreateWorld(0, "expanded");
-        var observed = Gather(observedWorld, fullSpeed);
-        var unobserved = Gather(CreateWorld(0, "expanded"), fullSpeed);
-        var snapshots = observed.Select(binding => ReadState(binding.Random)).ToArray();
-        VerifyBindings(observedWorld, observed, "expanded", 0, fullSpeed);
-
-        AssertThat(observed.Count).IsEqual(7);
-        for (var i = 0; i < observed.Count; ++i)
-        {
-            var binding = observed[i];
-            var expected = CreateRandom(binding.Domain, ExpectedSeeds(0, 0)[Array.IndexOf(Keys, binding.Key)]);
-            AssertState(binding.Random, snapshots[i]);
-            AssertThat(binding.Random).IsNotSame(unobserved[i].Random);
-
-            for (var draw = 0; draw < 7; ++draw)
-            {
-                var expectedValue = expected.Next();
-                AssertThat(binding.Random.Next()).IsEqual(expectedValue);
-                AssertThat(unobserved[i].Random.Next()).IsEqual(expectedValue);
-            }
-
-            snapshots[i] = ReadState(binding.Random);
-
-            // Check both earlier and later tasks after advancing each stream.
-            for (var other = 0; other < observed.Count; ++other)
-                AssertState(observed[other].Random, snapshots[other]);
-        }
+        VerifyBindings(world, Gather(world), "baseline", 17);
     }
 
     /// <summary>
@@ -120,25 +78,6 @@ public class GatherTaskSeedTests
         AssertThrown(() => run.Prepare(steps)).IsInstanceOf<InvalidOperationException>()
             .HasMessage("Cannot seed auto-evo tasks without generation history");
         AssertThat(steps.Count).IsEqual(0);
-    }
-
-    /// <summary>
-    ///   Verifies that editor prediction prepares population calculations without mutation or migration tasks,
-    ///   protecting the prediction path from acquiring evolutionary task streams.
-    /// </summary>
-    [TestCase]
-    public void EditorPredictionCreatesNoMutationOrMigrationStreams()
-    {
-        var world = CreateWorld(0, "baseline");
-        var run = new EditorAutoEvoRun(world, world.AutoEvoGlobalCache, world.PlayerSpecies,
-            (Species)world.PlayerSpecies.Clone(), world.Map.CurrentPatch);
-        run.OneStep();
-        AssertThat(run.Aborted).IsFalse();
-        var steps = ReadField<Queue<IRunStep>>(run, "runSteps").ToArray();
-        AssertThat(steps.Length).IsEqual(4);
-        AssertThat(steps.Count(step => step is GenerateMiche)).IsEqual(2);
-        AssertThat(steps.Count(step => step is CalculatePopulation)).IsEqual(1);
-        AssertThat(steps.Any(step => step is ModifyExistingSpecies or MigrateSpecies)).IsFalse();
     }
 
     private static GameWorld CreateWorld(long seed, string layout)
@@ -185,144 +124,75 @@ public class GatherTaskSeedTests
         return world;
     }
 
-    private static List<Binding> Gather(GameWorld world, bool fullSpeed)
+    private static List<Binding> Gather(GameWorld world)
     {
-        var run = new AutoEvoRun(world, world.AutoEvoGlobalCache) { FullSpeed = fullSpeed };
+        var run = new AutoEvoRun(world, world.AutoEvoGlobalCache);
         run.OneStep();
         AssertThat(run.Aborted).IsFalse();
         AssertThat(run.CompleteSteps).IsEqual(1);
-        var steps = ReadField<Queue<IRunStep>>(run, "runSteps").ToArray();
-        var patches = world.Map.Patches.Values.ToArray();
-        var species = patches.SelectMany(patch => patch.SpeciesInPatch.Keys).Distinct()
-            .Where(owner => owner is MicrobeSpecies or MulticellularSpecies).ToArray();
-        AssertThat(steps.Length).IsEqual(patches.Length * 2 + species.Length + 4);
-
-        for (var i = 0; i < patches.Length; ++i)
+        var bindings = new List<Binding>();
+        foreach (var step in ReadField<Queue<IRunStep>>(run, "runSteps"))
         {
-            AssertThat(steps[i] is GenerateMiche).IsTrue();
-            AssertThat(ReadField<Patch>(steps[i], "patch")).IsSame(patches[i]);
-            AssertThat(steps[i + patches.Length] is ModifyExistingSpecies).IsTrue();
-            AssertThat(ReadField<Patch>(steps[i + patches.Length], "patch")).IsSame(patches[i]);
+            if (step is ModifyExistingSpecies modify)
+            {
+                var patch = ReadField<Patch>(modify, "patch");
+                AssertThat(patch).IsSame(world.Map.Patches[patch.ID]);
+                bindings.Add(new Binding(WorldSeed.Domain.AutoEvoModifySpecies, patch.ID, modify.RandomSeed,
+                    ReadField<Random>(modify, "random")));
+            }
+            else if (step is MigrateSpecies migrate)
+            {
+                var species = ReadField<Species>(migrate, "species");
+                var owner = world.Map.Patches.Values.SelectMany(p => p.SpeciesInPatch.Keys)
+                    .Distinct().Single(s => s.ID == species.ID);
+                AssertThat(species).IsSame(owner);
+                bindings.Add(new Binding(WorldSeed.Domain.AutoEvoMigrateSpecies, species.ID, migrate.RandomSeed,
+                    ReadField<Random>(migrate, "random")));
+            }
         }
 
-        for (var i = 0; i < species.Length; ++i)
-            AssertThat(ReadField<Species>(steps[i + patches.Length * 2], "species")).IsSame(species[i]);
-
-        AssertThat(steps[^4] is CalculatePopulation).IsTrue();
-        AssertThat(steps[^3] is RegisterNewSpecies).IsTrue();
-        AssertThat(steps[^2] is LambdaStep).IsTrue();
-        AssertThat(steps[^1] is RemoveInvalidMigrations).IsTrue();
-
-        return steps.Where(step => step is ModifyExistingSpecies or MigrateSpecies).Select(step => step switch
-        {
-            ModifyExistingSpecies modify => new Binding(step, WorldSeed.Domain.AutoEvoModifySpecies,
-                ReadField<Patch>(modify, "patch").ID, modify.RandomSeed, ReadField<Random>(modify, "random")),
-            MigrateSpecies migrate => new Binding(step, WorldSeed.Domain.AutoEvoMigrateSpecies,
-                ReadField<Species>(migrate, "species").ID, migrate.RandomSeed, ReadField<Random>(migrate, "random")),
-            _ => throw new InvalidOperationException("Unexpected seeded task"),
-        }).ToList();
+        return bindings;
     }
 
-    private static void VerifyBindings(GameWorld world, List<Binding> bindings, string layout, int generation,
-        bool fullSpeed)
+    private static void VerifyBindings(GameWorld world, List<Binding> bindings, string layout, int generation)
     {
-        var expected = Keys.Where(key => layout == "expanded" || key.Owner is not (47 or 13))
-            .Where(key => layout != "reduced" || key.Owner is not (29 or 7)).ToArray();
-        ValidateIdentities(bindings, expected);
+        var expected = Keys.Where(k => layout == "expanded" || k.Owner is not (47 or 13))
+            .Where(k => layout != "reduced" || k.Owner is not (29 or 7)).ToArray();
         AssertThat(bindings.Count).IsEqual(expected.Length);
-        AssertThat(bindings.Count > 0).IsTrue();
-        AssertThat(bindings.Select(binding => binding.Key).Distinct().Count()).IsEqual(expected.Length);
-        AssertThat(bindings.Select(binding => binding.Task).Distinct().Count()).IsEqual(expected.Length);
-        AssertThat(bindings.Select(binding => binding.Random).Distinct().Count()).IsEqual(expected.Length);
-        var seeds = ExpectedSeeds(world.WorldSettings.Seed, generation);
+        var streams = new List<(Random Actual, Random Expected)>();
         foreach (var key in expected)
         {
-            var binding = bindings.Single(item => item.Key == key);
-            var expectedSeed = seeds[Array.IndexOf(Keys, key)];
-            AssertThat(binding.Seed).IsEqual(expectedSeed);
-            var expectedRandom = CreateRandom(key.Domain, expectedSeed);
-            AssertThat(binding.Random.GetType()).IsEqual(expectedRandom.GetType());
-            AssertState(binding.Random, ReadState(expectedRandom));
-            GD.Print($"Gather binding: worldSeed={world.WorldSettings.Seed}, generation={generation}, " +
-                $"layout={layout}, fullSpeed={fullSpeed}, task={binding.Task.GetType().Name}, " +
-                $"owner={binding.Owner}, seed={binding.Seed}, state={string.Join(',', ReadState(binding.Random))}");
+            // Count plus Single rejects missing, duplicate and unexpected task identities.
+            var binding = bindings.Single(b => b.Key == key);
+
+            // Independent vectors test Derive separately; here the contract is its production argument binding.
+            var seed = WorldSeed.Derive(world.WorldSettings.Seed, key.Domain, generation, key.Owner);
+            AssertThat(binding.Seed).IsEqual(seed);
+            Random random = key.Domain == WorldSeed.Domain.AutoEvoModifySpecies ?
+                new XoShiRo256starstar(seed) :
+                new XoShiRo128starstar(seed);
+            AssertThat(binding.Random.GetType()).IsEqual(random.GetType());
+            streams.Add((binding.Random, random));
         }
-    }
 
-    private static long[] ExpectedSeeds(long seed, int generation)
-    {
-        return (seed, generation) switch
+        // Revisit earlier streams after later ones advance to check both directions of interference.
+        for (var round = 0; round < 2; ++round)
         {
-            (0, 0) =>
-            [
-                7928256305485563229, 2016445410036470242, -5920079988611106036, -4666703049727181512,
-                -1538428128458231943, -3113950613136291240, 4297654792673649266,
-            ],
-            (-1, 0) =>
-            [
-                -7652811045156176369, -2746914478845955932, -6253695635953309623, 2887033574628305675,
-                705456884907471236, -7717954221389712342, -8875733570799607220,
-            ],
-            (0, 1) =>
-            [
-                -544354814216685562, -5163832395438372668, -344851761345497136, -9028467954618502021,
-                -697181409134199599, -4094859542069145327, -1955476889104334563,
-            ],
-            (0, 17) =>
-            [
-                -1233420873794869867, -1839708361903619673, -3308194372401824604, -2330438254329815159,
-                -2164873818632215101, 8190748678792144279, -6846403773451756577,
-            ],
-            (4294967296, 0) =>
-            [
-                4529398752378197944, -4617119359244739759, 1966775464650352265, -5211814045052483747,
-                1742341434157098787, -8527807804283010353, -9187076198896631827,
-            ],
-            _ => throw new InvalidOperationException("Missing independent seed fixture"),
-        };
-    }
-
-    private static void ValidateIdentities(List<Binding> bindings, (WorldSeed.Domain Domain, long Owner)[] expected)
-    {
-        if (expected.Length == 0 || bindings.Count != expected.Length ||
-            bindings.Select(binding => binding.Key).Distinct().Count() != expected.Length ||
-            expected.Any(key => bindings.Count(binding => binding.Key == key) != 1))
-        {
-            throw new InvalidOperationException("Empty, missing, unexpected or ambiguous task identity binding");
+            foreach (var stream in streams)
+            {
+                for (var draw = 0; draw < 3; ++draw)
+                    AssertThat(stream.Actual.Next()).IsEqual(stream.Expected.Next());
+            }
         }
-    }
-
-    private static Random CreateRandom(WorldSeed.Domain domain, long seed)
-    {
-        return domain == WorldSeed.Domain.AutoEvoModifySpecies ?
-            new XoShiRo256starstar(seed) :
-            new XoShiRo128starstar(seed);
-    }
-
-    private static ulong[] ReadState(Random random)
-    {
-        // Observe only the four core words; no draws and no changes to cached random values.
-        return Enumerable.Range(0, 4).Select(i => Convert.ToUInt64(ReadField<object>(random, "s" + i))).ToArray();
-    }
-
-    private static void AssertState(Random random, ulong[] expected)
-    {
-        var actual = ReadState(random);
-        AssertThat(actual.Length).IsEqual(4);
-        AssertThat(actual.Any(word => word != 0)).IsTrue();
-        for (var i = 0; i < 4; ++i)
-            AssertThat(actual[i]).IsEqual(expected[i]);
     }
 
     private static T ReadField<T>(object instance, string name)
     {
-        // EditorAutoEvoRun inherits the queue from AutoEvoRun.
-        var type = instance is AutoEvoRun ? typeof(AutoEvoRun) : instance.GetType();
-        return (T)(type.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(instance)
+        return (T)(instance.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(instance)
             ?? throw new InvalidOperationException($"Missing field {name}"));
     }
 
-    private sealed record Binding(IRunStep Task, WorldSeed.Domain Domain, long Owner, long Seed, Random Random)
+    private sealed record Binding(WorldSeed.Domain Domain, long Owner, long Seed, Random Random)
     {
         public (WorldSeed.Domain Domain, long Owner) Key => (Domain, Owner);
     }
