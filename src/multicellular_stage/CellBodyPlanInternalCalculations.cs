@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Components;
 using Godot;
 
@@ -39,7 +40,7 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        // Just in case there is a colony with only one cell:
+        // Just in case there is a "colony" given with only one cell (for example, from the Multicellular Editor):
         if (cells.Count == 1)
         {
             var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
@@ -182,6 +183,16 @@ public static class CellBodyPlanInternalCalculations
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
         float totalRotationSpeed = 0;
+
+        // Just in case there is a "colony" given with only one cell (for example, from the Multicellular Editor):
+        if (cells.Count == 1)
+        {
+            var leader = cells[0].Data!;
+            var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus;
+
+            return MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
+                leaderTotalSpecializationBonus);
+        }
 
         // We first calculate the axon and actomyosin bonuses, because the individual cell calculations will be using
         // them.
