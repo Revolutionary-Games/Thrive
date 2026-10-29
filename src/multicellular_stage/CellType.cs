@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 using SharedBase.Archive;
 
@@ -154,17 +155,29 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
             }
         }
 
-        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
+        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors).
+        // Finish this pass for every type so that the final positions match CalculateLayoutOriginShift.
+        bool reportedError = false;
         foreach (var cellType in cells)
         {
             if (cellType.RepositionToOrigin())
             {
-                GD.PrintErr("Cell type shouldn't get a second move to origin");
+                GD.PrintErr($"Cell type still needed a third move to origin: {cellType.CellTypeName}");
+
+                // Log each affected type but only show the error popup and break once per positioning operation.
+                if (reportedError)
+                    continue;
+
+                reportedError = true;
+
+#if DEBUG
+                Debugger.Break();
+#endif
+
                 LogInterceptor.ForwardCaughtError(new Exception(
                         "Detected a cell layout that infinitely shifts around the origin, this will break " +
                         "multicellular cell positioning!"),
                     "Please include a save or screenshot of your species' cell types with the report");
-                break;
             }
         }
 
