@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 using Nito.Collections;
@@ -31,17 +29,7 @@ public partial class ResourceManager : Node
     private readonly Deque<IResource> processingResources = new();
     private readonly Stopwatch timeTracker = new();
 
-    private readonly HashSet<string> temporaryResourceIds = new();
-    private readonly HashSet<string> alreadyLoadedResources = new();
-    private readonly List<IResource> stageResources = new();
-
-    // TODO: do we need to keep visual resources / scenes loaded while the scene is active or is Godot's default memory
-    // handling good enough?
-
-    private MainGameState gameStateThatIsLoading;
-    private bool gameStateLoaded = true;
-    private int totalStageResourcesLoaded;
-    private int totalStageResourcesToLoad = -1;
+    private readonly StageResourcePreloader stageResourcePreloader;
 
     private IResource? preparingBackgroundResource;
     private IResource? processingBackgroundResource;
@@ -54,14 +42,15 @@ public partial class ResourceManager : Node
     {
         instance = this;
         ProcessMode = ProcessModeEnum.Always;
+        stageResourcePreloader = new StageResourcePreloader(QueueLoad, () => queuedResources.Count > 0);
     }
 
     public static ResourceManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public Texture2D LoadingIcon { get; private set; } = null!;
 
-    public int StageLoadCurrentProgress => totalStageResourcesLoaded;
-    public int StageLoadTotalItems => totalStageResourcesToLoad;
+    public int StageLoadCurrentProgress => stageResourcePreloader.CurrentProgress;
+    public int StageLoadTotalItems => stageResourcePreloader.TotalItems;
 
     public override void _Ready()
     {
@@ -92,15 +81,7 @@ public partial class ResourceManager : Node
 
         timeTracker.Restart();
 
-        if (processingBackgroundResource?.Loaded == true)
-        {
-            processingBackgroundResource.OnComplete?.Invoke(processingBackgroundResource);
-            processingBackgroundResource = null;
-        }
-
-        if (preparingBackgroundResource?.LoadingPrepared == true)
-            preparingBackgroundResource = null;
-
+        ObserveBackgroundCompletions();
         HandleLoadQueue(originalBudget);
 
         savedForLaterProcessingTime = Math.Clamp((float)(originalBudget - timeTracker.Elapsed).TotalSeconds,
@@ -122,87 +103,12 @@ public partial class ResourceManager : Node
 
     public void OnStageLoadStart(MainGameState gameState)
     {
-        if (!gameStateLoaded)
-            GD.PrintErr("Abandoning previous game state load and starting new one");
-
-        gameStateLoaded = false;
-        totalStageResourcesLoaded = 0;
-        totalStageResourcesToLoad = -1;
-
-        // Some stages are equivalent in terms of required resources
-        switch (gameState)
-        {
-            case MainGameState.MicrobeEditor:
-            case MainGameState.MulticellularEditor:
-                gameStateThatIsLoading = MainGameState.MicrobeStage;
-                break;
-            case MainGameState.MacroscopicEditor:
-                gameStateThatIsLoading = MainGameState.MacroscopicStage;
-                break;
-            case MainGameState.AscensionCeremony:
-                gameStateThatIsLoading = MainGameState.SpaceStage;
-                break;
-            default:
-                gameStateThatIsLoading = gameState;
-                break;
-        }
+        stageResourcePreloader.Begin(gameState);
     }
 
     public bool ProgressStageLoad()
     {
-        if (gameStateLoaded)
-            return true;
-
-        if (totalStageResourcesToLoad == -1)
-        {
-            if (StartStageResourceLoad())
-            {
-                // This returns only true on error
-                gameStateLoaded = true;
-                return true;
-            }
-
-            return false;
-        }
-
-        // Wait until the pending loads are empty
-        if (queuedResources.Count > 0)
-        {
-            totalStageResourcesLoaded = stageResources.Count(r => r.Loaded);
-            return false;
-        }
-
-        // Make sure all resources are loaded
-        // As some can still be processing by this point
-        if (stageResources.Any(r => !r.Loaded))
-        {
-            // TODO: does this need unstuck logic if some resource is not getting loaded?
-            // For example, due to something unloading a resource after we loaded it and it is no longer in the load
-            // queue due to that so the state will never change to loaded
-            return false;
-        }
-
-        // Done loading
-        totalStageResourcesLoaded = totalStageResourcesToLoad;
-        gameStateLoaded = true;
-
-#if DEBUG
-        var resources = SimulationParameters.Instance.GetStageResources(gameStateThatIsLoading);
-
-        foreach (var resource in resources.RequiredScenes)
-        {
-            if (!resource.Loaded || resource.LoadedScene == null)
-            {
-                GD.PrintErr(
-                    $"Somehow preloaded scene is not loaded for stage ({gameStateThatIsLoading}): {resource.Path}");
-
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-            }
-        }
-#endif
-
-        return true;
+        return stageResourcePreloader.Progress();
     }
 
     protected override void Dispose(bool disposing)
@@ -263,11 +169,43 @@ public partial class ResourceManager : Node
 #pragma warning restore CS0162
     }
 
+    private void ObserveBackgroundCompletions()
+    {
+        if (processingBackgroundResource?.Loaded == true)
+        {
+            processingBackgroundResource.OnComplete?.Invoke(processingBackgroundResource);
+            processingBackgroundResource = null;
+        }
+
+        if (preparingBackgroundResource?.LoadingPrepared == true)
+            preparingBackgroundResource = null;
+    }
+
+    private void StartBackgroundPreparation(IResource resource)
+    {
+        TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }), false);
+
+        preparingBackgroundResource = resource;
+    }
+
+    private void StartBackgroundLoad(IResource resource)
+    {
+        if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            throw new NotImplementedException(
+                "Missing handling for requiring sync post process but supporting async load");
+        }
+
+        TaskExecutor.Instance.AddTask(new Task(() => { PerformFullLoad(resource); }), false);
+
+        processingBackgroundResource = resource;
+    }
+
     private void HandleLoadQueue(TimeSpan originalBudget)
     {
         bool hasThingsInQueue = processingResources.Count > 0;
 
-        // Ensures at least something gets loaded
+        // Queueing and preparation also count as progress when deciding whether another load fits this frame
         bool progressedLoading = false;
 
         while (true)
@@ -301,9 +239,7 @@ public partial class ResourceManager : Node
                         // Need to prepare for loading this
                         if (preparingBackgroundResource == null)
                         {
-                            TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }), false);
-
-                            preparingBackgroundResource = resource;
+                            StartBackgroundPreparation(resource);
                             progressedLoading = true;
                         }
 
@@ -317,15 +253,7 @@ public partial class ResourceManager : Node
 
                         if (processingBackgroundResource == null)
                         {
-                            if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
-                            {
-                                throw new NotImplementedException(
-                                    "Missing handling for requiring sync post process but supporting async load");
-                            }
-
-                            TaskExecutor.Instance.AddTask(new Task(() => { PerformFullLoad(resource); }), false);
-
-                            processingBackgroundResource = resource;
+                            StartBackgroundLoad(resource);
                             processingResources.RemoveAt(i);
                             --count;
                             didSomething = true;
@@ -374,111 +302,5 @@ public partial class ResourceManager : Node
                 break;
             }
         }
-    }
-
-    private bool StartStageResourceLoad()
-    {
-        StageResourcesList resources;
-        try
-        {
-            resources = SimulationParameters.Instance.GetStageResources(gameStateThatIsLoading);
-        }
-        catch (Exception e)
-        {
-#if DEBUG
-            Debugger.Break();
-#endif
-
-            GD.PrintErr("Error while trying to get stage resources: ", e);
-            GD.PrintErr("WILL NOT PRELOAD RESOURCES; THIS WILL CAUSE LAG SPIKES!");
-            return true;
-        }
-
-        alreadyLoadedResources.Clear();
-
-        if (stageResources.Count > 0)
-        {
-            // Unload resources that won't be needed in the new game state
-
-            // First need to detect the identifiers of stuff that are kept
-            foreach (var item in resources.RequiredVisualResources)
-            {
-                temporaryResourceIds.Add(item.Identifier);
-            }
-
-            foreach (var item in resources.RequiredScenes)
-            {
-                temporaryResourceIds.Add(item.Identifier);
-            }
-
-            // Then perform the unloading. This allocates one small lambda so that should not be bad at all
-            var unloaded = stageResources.RemoveAll(resource =>
-            {
-                if (!temporaryResourceIds.Contains(resource.Identifier))
-                {
-                    resource.UnLoad();
-                    return true;
-                }
-
-                alreadyLoadedResources.Add(resource.Identifier);
-                return false;
-            });
-
-            temporaryResourceIds.Clear();
-
-            if (unloaded > 0)
-                GD.Print($"Unloaded {unloaded} stage resources");
-        }
-
-        int reused = 0;
-
-        // The next frame after unloading, start loading new stuff
-        // Only add resources that are not loaded already to save on resource loads when swapping between similar
-        // stages
-        foreach (var requiredVisualResource in resources.RequiredVisualResources)
-        {
-            if (!alreadyLoadedResources.Contains(requiredVisualResource.Identifier))
-            {
-                stageResources.Add(requiredVisualResource);
-            }
-            else
-            {
-                ++reused;
-            }
-        }
-
-        foreach (var requiredScene in resources.RequiredScenes)
-        {
-            if (!alreadyLoadedResources.Contains(requiredScene.Identifier))
-            {
-                stageResources.Add(requiredScene);
-            }
-            else
-            {
-                ++reused;
-            }
-        }
-
-        // Queue all loads at once.
-        // This is hopefully fine as this simplifies the throttling logic, and there shouldn't be that many resources
-        // at any stage, so the time taken to add to the list should be minimal.
-        foreach (var resource in stageResources)
-        {
-            // All resources are queued just in case something ends up flipping a flag to false, and we'd otherwise
-            // miss a resource that needed to be loaded and got stuck indefinitely
-
-            // if (!resource.Loaded)
-            QueueLoad(resource);
-        }
-
-        totalStageResourcesToLoad = stageResources.Count;
-        GD.Print($"Starting preload of {totalStageResourcesToLoad} stage resources");
-
-        if (reused > 0)
-        {
-            GD.Print($"Reused {reused} already loaded resources");
-        }
-
-        return false;
     }
 }
