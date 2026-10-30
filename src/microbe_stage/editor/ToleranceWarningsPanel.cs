@@ -124,15 +124,17 @@ public partial class ToleranceWarningsPanel : PanelContainer
             if (data.PerfectPressureAdjustment < 0)
             {
                 var text = Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
-                        .FormatSafe(Math.Round(-data.MinimumPressureAdjustment / 1000, 1))
-                    + Localization.Translate("PRESSURE_UNIT_KPA");
+                    .FormatSafe(Localization.Translate("VALUE_WITH_UNIT")
+                        .FormatSafe(Math.Round(-data.MinimumPressureAdjustment / 1000, 1),
+                            Localization.Translate("PRESSURE_UNIT_KPA")));
                 PressureConditionLabel.Text = text;
             }
             else
             {
                 var text = Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
-                        .FormatSafe(Math.Round(data.MinimumPressureAdjustment / 1000, 1))
-                    + Localization.Translate("PRESSURE_UNIT_KPA");
+                    .FormatSafe(Localization.Translate("VALUE_WITH_UNIT")
+                        .FormatSafe(Math.Round(data.MinimumPressureAdjustment / 1000, 1),
+                            Localization.Translate("PRESSURE_UNIT_KPA")));
                 PressureConditionLabel.Text = text;
             }
         }
