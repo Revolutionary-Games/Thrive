@@ -1729,7 +1729,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             {
                 // The true here is that this is AI-controlled
                 (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
-                    Species, location, true, (null, 0), sex, out entity, MulticellularSpawnState.Offspring);
+                    Species, location, true, (null, 0), sex, out entity, MulticellularSpawnState.ChanceForFullColony);
             }
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity, recorder);
