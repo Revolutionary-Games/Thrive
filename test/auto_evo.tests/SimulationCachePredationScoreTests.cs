@@ -8,6 +8,57 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class SimulationCachePredationScoreTests
 {
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ChemoreceptorRecognisesTargetSpeciesCopy(bool multicellular)
+    {
+        var prey = CreateMicrobe(40, "ChemoreceptorPrey", "cellulose", "cytoplasm");
+        var preyCopy = (MicrobeSpecies)prey.Clone();
+        var predator = CreateChemoreceptorPredator(41, prey, multicellular);
+        var untargetedPredator = CreateChemoreceptorPredator(42, null, multicellular);
+
+        AssertThat(ReferenceEquals(prey, preyCopy)).IsFalse();
+        AssertThat(preyCopy.ID).IsEqual(prey.ID);
+        var targetedScore = CalculatePredationScore(predator, prey);
+        var untargetedScore = CalculatePredationScore(untargetedPredator, prey);
+
+        // The loaded organelle configuration must provide an observable targeted hunting benefit.
+        AssertThat(targetedScore).IsGreater(untargetedScore);
+        AssertThat(CalculatePredationScore(predator, preyCopy)).IsEqual(targetedScore);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ChemoreceptorIgnoresOtherAndMissingTargets(bool multicellular)
+    {
+        // ID zero must not accidentally match a missing target.
+        var prey = CreateMicrobe(0, "UntargetedPrey", "cellulose", "cytoplasm");
+        var otherSpecies = CreateMicrobe(43, "OtherTarget", "cellulose", "cytoplasm");
+        var targetedPredator = CreateChemoreceptorPredator(44, prey, multicellular);
+        var wrongTargetPredator = CreateChemoreceptorPredator(45, otherSpecies, multicellular);
+        var untargetedPredator = CreateChemoreceptorPredator(46, null, multicellular);
+
+        AssertThat(otherSpecies.ID).IsNotEqual(prey.ID);
+        var targetedScore = CalculatePredationScore(targetedPredator, prey);
+        var untargetedScore = CalculatePredationScore(untargetedPredator, prey);
+        AssertThat(targetedScore).IsGreater(untargetedScore);
+        AssertThat(CalculatePredationScore(wrongTargetPredator, prey)).IsEqual(untargetedScore);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void TargetUpgradeWithoutChemoreceptorDoesNotImprovePredation(bool multicellular)
+    {
+        var prey = CreateMicrobe(47, "NoReceptorPrey", "cellulose", "cytoplasm");
+        var predator = CreateChemoreceptorPredator(48, prey, multicellular, false);
+        var control = CreateChemoreceptorPredator(49, null, multicellular, false);
+
+        // Inactive upgrade data on an organelle without a receptor must not enable sensing.
+        var controlScore = CalculatePredationScore(control, prey);
+        AssertThat(controlScore).IsGreater(0.0f);
+        AssertThat(CalculatePredationScore(predator, prey)).IsEqual(controlScore);
+    }
+
     [TestCase]
     public void PredatorWithoutPredationAbilityScoresZero()
     {
@@ -297,6 +348,30 @@ public class SimulationCachePredationScoreTests
         var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
 
         AssertThat(inhibitionBenefitWithSprint > inhibitionBenefitWithoutSprint).IsTrue();
+    }
+
+    private static Species CreateChemoreceptorPredator(uint id, Species? target, bool multicellular,
+        bool hasChemoreceptor = true)
+    {
+        var predator = CreateMicrobe(id, "ChemoreceptorPredator", "cellulose", "cytoplasm");
+        predator.Organelles.Add(CreateOrganelle("oxytoxy", new Hex(0, -2)));
+        var receptor = CreateOrganelle(hasChemoreceptor ? "chemoreceptor" : "cytoplasm", new Hex(0, 2));
+        receptor.ModifiableUpgrades = new OrganelleUpgrades
+        {
+            CustomUpgradeData = new ChemoreceptorUpgrades(Compound.Invalid, target, 100, 1, default),
+        };
+        predator.Organelles.Add(receptor);
+        predator.ModifiableBehaviour.Activity = Constants.MAX_SPECIES_ACTIVITY;
+        predator.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
+        predator.OnEdited();
+        if (!multicellular)
+            return predator;
+
+        var cellType = new CellType(predator, new(), new());
+        var colony = CreateMulticellular(id, "ChemoreceptorColony", (cellType, new Hex(0, 0)));
+        colony.ModifiableBehaviour.Activity = Constants.MAX_SPECIES_ACTIVITY;
+        colony.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
+        return colony;
     }
 
     private static MicrobeSpecies CreateMembraneTestPredator(uint id, string? enzyme = null)
