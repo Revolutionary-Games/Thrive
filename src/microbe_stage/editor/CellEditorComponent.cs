@@ -1506,6 +1506,11 @@ public partial class CellEditorComponent :
         if (cost > Editor.MutationPoints && Editor.MutationPoints > 0)
         {
             int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
+
+            // Rounded costs can require removing more steps than were requested. Stop at the original rigidity
+            // to avoid oscillating across it as the slider emits further value changes.
+            stepsToCutOff = Math.Min(stepsToCutOff, Math.Abs(desiredRigidity - previousRigidity));
+
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
                 Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
