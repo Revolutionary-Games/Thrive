@@ -40,11 +40,11 @@ public partial class SceneManager : Node
 
         if (instance == null)
         {
-            callingNode.GetTree().Quit();
+            callingNode.GetTree().Quit(LaunchOptions.AutoEvo ? 1 : 0);
         }
         else
         {
-            instance.GetTree().Quit();
+            instance.GetTree().Quit(LaunchOptions.AutoEvo ? 1 : 0);
         }
 
         alreadyQuit = true;
