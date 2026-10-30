@@ -343,9 +343,7 @@ public partial class EditorCamera3D : Camera3D
 
         Position = rotatedPosition;
 
-        // "Up" being always up here makes the visuals a bit weird looking when going fully around
-        // TODO: could add a mode that clamps the XRotation to ]-0.5 * FULL_CIRCLE, 0.5 * FULL_CIRCLE[
-        LookAt(RotateAroundPoint, up);
+        Quaternion = Quaternion.FromEuler(new Vector3(XRotation, YRotation, 0.0f));
 
         var newTransform = new Transform3D(Transform.Basis, rotatedPosition + panOffset);
 

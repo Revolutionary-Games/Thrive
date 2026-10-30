@@ -719,8 +719,9 @@ public class ModifyExistingSpecies : IRunStep
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
 
-        // Only reused within one sort. Reference identity avoids conflating distinct mutant records.
-        private readonly Dictionary<Mutant, float> strengths = new(ReferenceEqualityComparer.Instance);
+        // Only reused within one sort. Strength depends on the species, not the candidate's remaining MP.
+        // Reference identity keeps different species instances with the same ID separate.
+        private readonly Dictionary<Species, float> strengths = new(ReferenceEqualityComparer.Instance);
         private readonly List<float> baseScores = new();
 
         // Use the concrete Stack type to avoid allocating an enumerator in GetStrength.
@@ -739,15 +740,8 @@ public class ModifyExistingSpecies : IRunStep
             baseScores.Clear();
         }
 
-        public int Compare(Mutant? x, Mutant? y)
+        public int Compare(Mutant x, Mutant y)
         {
-            if (ReferenceEquals(x, y))
-                return 0;
-            if (y is null)
-                return -1;
-            if (x is null)
-                return 1;
-
             var strengthX = GetStrength(x);
             var strengthY = GetStrength(y);
 
@@ -768,7 +762,7 @@ public class ModifyExistingSpecies : IRunStep
 
         private float GetStrength(Mutant mutant)
         {
-            if (strengths.TryGetValue(mutant, out var strength))
+            if (strengths.TryGetValue(mutant.Species, out var strength))
                 return strength;
 
             strength = 0.0f;
@@ -783,7 +777,7 @@ public class ModifyExistingSpecies : IRunStep
                 ++index;
             }
 
-            strengths.Add(mutant, strength);
+            strengths.Add(mutant.Species, strength);
             return strength;
         }
     }

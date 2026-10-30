@@ -548,14 +548,6 @@ public partial class CellBodyPlanEditorComponent
         // We do a manual fetch of the organelle positions here so that we have the latest data if the type is
         // edited
         var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
-        foreach (var organelle in type.ModifiableOrganelles)
-        {
-            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
-            {
-                var position = organelleHex + organelle.Position;
-                positions.Add(position);
-            }
-        }
 
         // The automatic layout is generated from the cell types' current, unshifted organelle positions. Applying
         // the origin shift there would therefore validate a different layout than the one generated. Manual layouts
@@ -570,7 +562,7 @@ public partial class CellBodyPlanEditorComponent
         {
             foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
             {
-                // And now we can calculate global final positions
+                // Here we calculate the global final positions
                 var globalPosition = cell.Position +
                     Hex.RotateAxialNTimes(organelleHex + organelle.Position - originShift, cell.Orientation);
 
@@ -612,9 +604,7 @@ public partial class CellBodyPlanEditorComponent
     {
         // Origin shift here. This is done because only after exiting the editor are things layout shifted, which means
         // that we need to pre-emptively apply a layout shift here so that the final results match what is shown here.
-        var center = MicrobeInternalCalculations.CalculateCenterOfMass(localOrganelles);
-
-        return Hex.CartesianToAxial(center);
+        return CellType.CalculateLayoutOriginShift(localOrganelles);
     }
 
     /// <summary>

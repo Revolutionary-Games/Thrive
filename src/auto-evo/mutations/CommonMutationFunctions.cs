@@ -89,14 +89,14 @@ public static class CommonMutationFunctions
 
         while (mp > 0)
         {
-            var mutation = mutationStrategy.MutationsOf(mutated, mp, true, random, forPatch.Biome)
-                .RandomOrDefault(random);
+            var mutations = mutationStrategy.MutationsOf(mutated, mp, true, random, forPatch.Biome);
 
-            if (mutation == null)
+            if (mutations == null || mutations.Count == 0)
                 break;
 
+            var mutation = mutations.Random(random);
             mutated = mutation.Species as MicrobeSpecies ?? throw new InvalidOperationException();
-            mp -= mutation.MP;
+            mp = mutation.MP;
 
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
@@ -202,20 +202,19 @@ public static class CommonMutationFunctions
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)
     {
-        HashSet<Hex>? mainHexes = null;
-
         // Use as much work memory as we can get from what we are given
-        // TODO: this would need one more hashset to not allocate memory
         var islandHexes = workMemory.WorkingMemory1;
 
         organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
             workMemory.WorkingMemory4);
 
+        // Reuse the occupied hex cache after the island search has finished. This is safe as this data doesn't need
+        // to be valid across island hex calculations.
+        HashSet<Hex> mainHexes = workMemory.WorkingMemory3;
+
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            // Unfortunately, it seems that just barely the cache is not enough for this to not allocate memory
-            mainHexes ??= new HashSet<Hex>();
             organelles.ComputeHexCache(mainHexes, workMemory.WorkingMemory2);
 
             // Compute the shortest hex distance
@@ -629,15 +628,11 @@ public static class CommonMutationFunctions
         var newHexPosition = oldHex - Hex.HexNeighbourOffset[side];
         var orientation = cellTemplate.Orientation;
 
+        if (!existingCells.CanPlace(newHexPosition))
+            return null;
+
         var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
-        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
-
-        if (existingCells.CanPlace(result.Position))
-        {
-            return result;
-        }
-
-        return null;
+        return new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
     }
 
     private static HexWithData<CellTemplate>? GetCenterlineFrontPosition(CellType newCellType,
@@ -726,7 +721,5 @@ public static class CommonMutationFunctions
         return TraversalOrder8;
     }
 
-    // TODO: this would be really nice to convert into a struct record as the mutation strategies generate a lot of
-    // these, which in turn makes a lot of small objects just to hold the species reference and one double.
-    public record Mutant(Species Species, double MP);
+    public readonly record struct Mutant(Species Species, double MP);
 }

@@ -256,7 +256,13 @@ public partial class GalleryViewer : CustomWindow
                 var loadingResource =
                     new TextureThumbnailResource(asset.ResourcePath, Constants.GALLERY_THUMBNAIL_MAX_WIDTH);
 
-                loadingResource.OnComplete = _ => { item.Thumbnail = loadingResource.LoadedTexture; };
+                loadingResource.OnComplete = _ =>
+                {
+                    if (!IsInstanceValid(item) || item.IsQueuedForDeletion())
+                        return;
+
+                    item.Thumbnail = loadingResource.LoadedTexture;
+                };
 
                 resourceManager.QueueLoad(loadingResource);
                 break;
