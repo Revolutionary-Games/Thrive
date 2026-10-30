@@ -139,6 +139,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private LabelSettings? originalTemperatureFont;
     private LabelSettings? originalPressureFont;
 
+    private LabelSettings? partialTemperatureBonusFont;
+    private LabelSettings? partialPressureBonusFont;
+
     private LabelSettings? originalModifierFont;
 
     private EnvironmentalToleranceToolTip? temperatureToolTip;
@@ -192,6 +195,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
         originalModifierFont = temperatureModifierLabel.LabelSettings;
+
+        // Create duplicate settings that we can safely modify for partial bonuses.
+        partialTemperatureBonusFont = originalTemperatureFont.Duplicate() as LabelSettings;
+        partialPressureBonusFont = originalPressureFont.Duplicate() as LabelSettings;
 
         temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
@@ -354,7 +361,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                     Editor.EditedCellOrganelles, specialization,
                     Editor.CurrentPatch.Biome);
 
-            if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+            if (optimalTest.OverallScore is < 1 or > 2 + MathUtils.EPSILON)
             {
                 GD.PrintErr("Optimal tolerance calculation failed, score: " + optimalTest.OverallScore);
 
@@ -837,13 +844,34 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             temperatureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_MAXIMUM_TEMPERATURE_RANGE)
         {
-            // Perfectly adapted
-            temperatureMinLabel.LabelSettings = perfectValueFontTiny;
-            temperatureMaxLabel.LabelSettings = perfectValueFontTiny;
+            if (CurrentTolerances.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+            {
+                // Perfectly adapted
+                temperatureMinLabel.LabelSettings = perfectValueFontTiny;
+                temperatureMaxLabel.LabelSettings = perfectValueFontTiny;
+                temperatureRangeDisplay.SetColorsAndRedraw(optimalDisplayGoodColor);
+            }
+            else
+            {
+                // Somewhere between perfect adaptation and maximum flexibility
+                // Use how big the bonus is to decide how strongly the colors should shift.
+                var weight = Mathf.InverseLerp(Constants.TOLERANCE_MAXIMUM_TEMPERATURE_RANGE,
+                    Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE, CurrentTolerances.TemperatureTolerance);
 
-            temperatureRangeDisplay.SetColorsAndRedraw(optimalDisplayGoodColor);
+                var temperatureDisplayColor = temperatureRangeDisplay.MainColor.Lerp(optimalDisplayGoodColor, weight);
+
+                if (partialTemperatureBonusFont == null || originalTemperatureFont == null)
+                    throw new Exception("label settings not set");
+
+                partialTemperatureBonusFont.FontColor =
+                    originalTemperatureFont.FontColor.Lerp(perfectValueFontTiny.FontColor, weight);
+
+                temperatureMinLabel.LabelSettings = partialTemperatureBonusFont;
+                temperatureMaxLabel.LabelSettings = partialTemperatureBonusFont;
+                temperatureRangeDisplay.SetColorsAndRedraw(temperatureDisplayColor);
+            }
         }
         else
         {
@@ -905,15 +933,37 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMinLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (CurrentTolerances.PressureTolerance < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        else if (CurrentTolerances.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
         {
             // Perfectly adapted
             pressureMinLabel.LabelSettings = perfectValueFontTiny;
             pressureMaxLabel.LabelSettings = perfectValueFontTiny;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayGoodColor);
         }
+        else if (CurrentTolerances.PressureTolerance < Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE)
+        {
+            // Somewhere between perfect adaptation and maximum flexibility
+            // Use how big the bonus is to decide how strongly the colors should shift.
+            var weight = Mathf.InverseLerp(Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE,
+                Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE, CurrentTolerances.PressureTolerance);
+
+            GD.Print(weight);
+
+            var pressureDisplayColor = pressureRangeDisplay.MainColor.Lerp(optimalDisplayGoodColor, weight);
+
+            if (partialPressureBonusFont == null || originalPressureFont == null)
+                throw new Exception("label settings not set");
+
+            partialPressureBonusFont.FontColor =
+                originalPressureFont.FontColor.Lerp(perfectValueFontTiny.FontColor, weight);
+
+            pressureMinLabel.LabelSettings = partialPressureBonusFont;
+            pressureMaxLabel.LabelSettings = partialPressureBonusFont;
+            pressureRangeDisplay.SetColorsAndRedraw(pressureDisplayColor);
+        }
         else
         {
+            // Within the tolerance range, but at maximum flexibility so you get no bonus.
             pressureMinLabel.LabelSettings = originalPressureFont;
             pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw();
