@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 13:59+0100\n"
-"PO-Revision-Date: 2026-10-21 07:51+0000\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -5595,10 +5595,6 @@ msgstr "您的物種所偏好的壓力以及適應範圍。當處於範圍之外
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "您的物種所偏好的壓力以及適應範圍。當處於範圍之外的條件時，您的物種將受到許多負面影響。使用滑桿更改偏好壓力與適應範圍。"
 
-#, fuzzy
-msgid "PRESSURE_UNIT_KPA"
-msgstr "壓力"
-
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下按鍵…"
 
@@ -5610,10 +5606,6 @@ msgstr "預覽圖像檔案過大"
 
 msgid "PREVIOUS_COLON"
 msgstr "之前："
-
-#, fuzzy
-msgid "PROCESSES_SPEED_MODIFIER"
-msgstr "生物代謝速度"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "處理載入的物件中"
@@ -6631,6 +6623,7 @@ msgstr "發生了未知的 Steam 錯誤"
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam 初始化失敗"
 
+#, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam 客戶端程式庫初始化失敗。Steam 功能將無法使用。\n"
@@ -6829,10 +6822,6 @@ msgid "TEMPERATURE_TOLERANCE_RANGE"
 msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
-
-#, fuzzy
-msgid "TEMPERATURE_UNIT_CELSIUS"
 msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
 
 msgid "TESTING_TEAM"
@@ -7131,6 +7120,9 @@ msgstr "偏好溫度過低（不足 {0}）"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "紫外線（UV）保護過低，需要提高 {0}%"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -10568,9 +10560,6 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
-
-#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-#~ msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

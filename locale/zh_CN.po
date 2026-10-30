@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 13:59+0100\n"
-"PO-Revision-Date: 2026-10-23 04:23+0000\n"
-"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"PO-Revision-Date: 2026-10-29 12:56+0000\n"
+"Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -5491,10 +5491,6 @@ msgstr "压力耐受性"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "您的物种能适应的压力值。两个滑块可以分别设置最小值与最大值。当环境压力超出设定范围时，将对您的物种产生诸多负面影响。取消勾选滑块下方复选框即可调整压力范围大小。"
 
-#, fuzzy
-msgid "PRESSURE_UNIT_KPA"
-msgstr "压力"
-
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下您要设置的按钮…"
 
@@ -5506,10 +5502,6 @@ msgstr "预览图像文件太大"
 
 msgid "PREVIOUS_COLON"
 msgstr "之前："
-
-#, fuzzy
-msgid "PROCESSES_SPEED_MODIFIER"
-msgstr "生物代谢速度"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "处理载入的物体中"
@@ -6500,7 +6492,7 @@ msgstr "Steam 初始化失败"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
-"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
+"Steam 客户端库初始化失败，Steam 功能将不可用，包括成就系统。\n"
 "请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
 msgid "STEAM_TOOLTIP"
@@ -6696,10 +6688,6 @@ msgstr "温度适应范围"
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "您的物种理想的温度。当环境温度超出理想温度的适应范围时，将产生不利影响，导致生存难度增加。请根据您想游玩的地区来调整适应参数滑块。"
-
-#, fuzzy
-msgid "TEMPERATURE_UNIT_CELSIUS"
-msgstr "温度"
 
 msgid "TESTING_TEAM"
 msgstr "测试团队"
@@ -6995,6 +6983,9 @@ msgstr "偏好温度过低（不足 {0}）"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "紫外线(UV) 防护过低，需要提高 {0}%"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr "不适应当前环境条件。渗透调节成本 {0}%，代谢速度 {1}%，生命值 {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -10459,9 +10450,6 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
-#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-#~ msgstr "不适应当前环境条件。渗透调节成本 {0}%，代谢速度 {1}%，生命值 {2}%"
-
 #~ msgid "PASSED_FULFILLED_CONDITION"
 #~ msgstr "已通过：{0}"
 
@@ -10528,6 +10516,10 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"
 #~ msgstr "压力"
+
+#, fuzzy
+#~ msgid "TEMPERATURE_VALUE"
+#~ msgstr "温度"
 
 #~ msgid "SPEED"
 #~ msgstr "速度"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 13:59+0100\n"
-"PO-Revision-Date: 2026-10-23 07:54+0000\n"
+"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"PO-Revision-Date: 2026-10-30 10:30+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -5490,10 +5490,6 @@ msgstr "Basınç Direnci"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Türünüzün tercih ettiği basınç ve onun etrafındaki hassasiyet aralığıdır. Bu aralığın dışında kalan koşullarda, türünüzün üzerinde birçok olumsuz etki olur. Kaydırma butonları ile, tercih edilen basıncı ve hassasiyeti değiştirin."
 
-#, fuzzy
-msgid "PRESSURE_UNIT_KPA"
-msgstr "Bsnç."
-
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Bir tuşa basın..."
 
@@ -5505,10 +5501,6 @@ msgstr "Resim önizlemesi çok büyük"
 
 msgid "PREVIOUS_COLON"
 msgstr "önceki:"
-
-#, fuzzy
-msgid "PROCESSES_SPEED_MODIFIER"
-msgstr "Biyoişlem Hızı"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Yüklenen nesneler işleniyor"
@@ -6499,7 +6491,7 @@ msgstr "Steam'i Başlatma İşlemi Başarısız"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
-"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
+"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Başarımlar da dahil, Steam özellikleri mevcut olmayacak.\n"
 "Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata düzelmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
 
 msgid "STEAM_TOOLTIP"
@@ -6695,10 +6687,6 @@ msgstr "Sıcaklık Direnci Aralığı"
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Türünüz tarafından tercih edilen sıcaklıktır. İdeal sıcaklığın etrafındaki hassasiyet aralığının dışında kalan koşullarda, hayatta kalmayı zorlaştıran olumsuz etkiler meydana gelir. Kaydırma butonlarını kullanarak oynamayı planladığınız arazilere uyum sağlayın."
-
-#, fuzzy
-msgid "TEMPERATURE_UNIT_CELSIUS"
-msgstr "Sıcaklık"
 
 msgid "TESTING_TEAM"
 msgstr "Deneme Ekibi"
@@ -6992,6 +6980,9 @@ msgstr "{0} değeri, tercih edilen sıcaklık değerinden çok düşük"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV koruması çok düşük, %{0} değerinden yüksek olmalı"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -10455,9 +10446,6 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
-#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-#~ msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
-
 #~ msgid "PASSED_FULFILLED_CONDITION"
 #~ msgstr "AŞILAN: {0}"
 
@@ -10524,6 +10512,10 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"
 #~ msgstr "Basınç"
+
+#, fuzzy
+#~ msgid "TEMPERATURE_VALUE"
+#~ msgstr "Sıcaklık"
 
 #~ msgid "SPEED"
 #~ msgstr "Hız"
