@@ -99,15 +99,17 @@ public partial class ToleranceWarningsPanel : PanelContainer
             if (data.PerfectTemperatureAdjustment < 0)
             {
                 var text = Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
-                        .FormatSafe(Math.Round(-data.MinimumTemperatureAdjustment, 1))
-                    + Localization.Translate("TEMPERATURE_UNIT_CELSIUS");
+                    .FormatSafe(Localization.Translate("VALUE_WITH_UNIT")
+                        .FormatSafe(Math.Round(-data.MinimumTemperatureAdjustment, 1),
+                            Localization.Translate("TEMPERATURE_UNIT_CELSIUS")));
                 TemperatureConditionLabel.Text = text;
             }
             else
             {
                 var text = Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
-                        .FormatSafe(Math.Round(data.MinimumTemperatureAdjustment, 1))
-                    + Localization.Translate("TEMPERATURE_UNIT_CELSIUS");
+                    .FormatSafe(Localization.Translate("VALUE_WITH_UNIT")
+                        .FormatSafe(Math.Round(data.MinimumTemperatureAdjustment, 1),
+                            Localization.Translate("TEMPERATURE_UNIT_CELSIUS")));
                 TemperatureConditionLabel.Text = text;
             }
         }
