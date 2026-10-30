@@ -842,9 +842,9 @@ public partial class CellEditorComponent
             // inexplicably also a bonus percentage as that would be very confusing to see.
             var tolerances = CalculateRawTolerances(true);
 
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
+            toleranceWarningsPanel.GenerateToleranceProblemList(tolerances,
                 MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances),
-                toleranceWarningsPanel, out bool areToleranceWarnings);
+                out bool areToleranceWarnings);
 
             toleranceWarningsPanel.Visible = areToleranceWarnings;
 

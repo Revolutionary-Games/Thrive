@@ -19,8 +19,8 @@ public partial class MetaballBodyEditorComponent
         // inexplicably also a bonus percentage as that would be very confusing to see.
         var tolerances = CalculateRawTolerances(true);
 
-        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
-            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningsPanel,
+        toleranceWarningsPanel.GenerateToleranceProblemList(tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances),
             out bool areToleranceWarnings);
 
         toleranceWarningsPanel.Visible = areToleranceWarnings;

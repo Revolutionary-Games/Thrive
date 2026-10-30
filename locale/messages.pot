@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 16:48+0100\n"
+"POT-Creation-Date: 2026-10-30 13:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7349,6 +7349,9 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:576
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:62
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:74
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:86
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:110
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:172
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:259
@@ -7356,9 +7359,6 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:331
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:343
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:355
 #: ../src/microbe_stage/MicrobeHUD.cs:577
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:142
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:145
@@ -7646,6 +7646,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:864
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:128
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:135
+msgid "PRESSURE_UNIT_KPA"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:612
@@ -9305,6 +9310,11 @@ msgstr ""
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:103
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:110
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr ""
+
 #: ../src/gui_common/CreditsScroll.cs:544
 msgid "TESTING_TEAM"
 msgstr ""
@@ -9642,27 +9652,27 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:393
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:126
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:370
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:101
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:414
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:149
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:399
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:133
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:376
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:108
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:428
+#: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:163
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
