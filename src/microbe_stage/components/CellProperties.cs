@@ -107,6 +107,21 @@ public static class CellPropertiesHelpers
 
     public delegate void ModifyDividedCellCallback(ref Entity entity, CommandBuffer commandBuffer);
 
+    /// <summary>
+    ///   Updates the base colour without changing cell structure or interrupting an active flash.
+    /// </summary>
+    public static void ApplyBaseColour(this ref CellProperties properties, ref ColourAnimation animation, Color colour)
+    {
+        properties.Colour = colour;
+        animation.DefaultColour = Membrane.MembraneTintFromSpeciesColour(colour);
+
+        if (animation.Animating)
+            return;
+
+        animation.AnimationTargetColour = animation.DefaultColour;
+        animation.ColourApplied = false;
+    }
+
     public static CellProperties ReadFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > CellProperties.SERIALIZATION_VERSION or <= 0)

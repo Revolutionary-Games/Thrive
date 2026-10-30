@@ -65,6 +65,22 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         this.fluidCurrentsSystem = fluidCurrentsSystem;
     }
 
+    /// <summary>
+    ///   Recolours existing organelle materials on the main thread without rebuilding visuals or physics.
+    /// </summary>
+    public static void ApplyOrganelleColour(ref EntityMaterial material, Color colour)
+    {
+        if (material.Materials == null)
+            return;
+
+        var organelleColour = CalculateOrganelleColour(colour);
+        using var tintParameter = new StringName("tint");
+
+        // Microbe materials start with the membrane, which is handled by ColourAnimation.
+        for (int i = 1; i < material.Materials.Length; ++i)
+            material.Materials[i].SetShaderParameter(tintParameter, organelleColour);
+    }
+
     public bool HasPendingOperations()
     {
         return pendingMembraneGenerations;
@@ -100,6 +116,12 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     {
         Dispose(true);
         base.Dispose();
+    }
+
+    private static Color CalculateOrganelleColour(Color colour)
+    {
+        return PlacedOrganelle.CalculateHSVForOrganelle(colour) * Constants.ORGANELLE_TINT_STRENGTH +
+            Colors.White * (1.0f - Constants.ORGANELLE_TINT_STRENGTH);
     }
 
     [Query]
@@ -462,9 +484,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     {
         organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
-        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour)
-            * Constants.ORGANELLE_TINT_STRENGTH
-            + Colors.White * (1.0f - Constants.ORGANELLE_TINT_STRENGTH);
+        var organelleColour = CalculateOrganelleColour(cellProperties.Colour);
 
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {

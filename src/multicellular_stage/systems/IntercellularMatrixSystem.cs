@@ -31,6 +31,18 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
     {
     }
 
+    /// <summary>
+    ///   Recolours an existing connection on the main thread. Missing visuals will use the updated cache when created.
+    /// </summary>
+    public static void ApplyConnectionColour(ref IntercellularMatrix matrix, Color colour)
+    {
+        if (matrix.GeneratedConnection == null)
+            return;
+
+        var material = ((GeometryInstance3D)matrix.GeneratedConnection).MaterialOverride;
+        ((ShaderMaterial)material).SetShaderParameter(TintParameter, colour);
+    }
+
     private static void AddIntercellularConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix,
         ref MicrobeColony colony, ref SpatialInstance spatialInstance, ref CellProperties cellProperties,
         ref AttachedToEntity ourAttachedPosition)
@@ -256,8 +268,7 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
             return;
         }
 
-        var material = ((GeometryInstance3D)intercellularMatrix.GeneratedConnection).MaterialOverride;
-        ((ShaderMaterial)material).SetShaderParameter(TintParameter, entity.Get<CellProperties>().Colour);
+        ApplyConnectionColour(ref intercellularMatrix, entity.Get<CellProperties>().Colour);
     }
 
     [Query]
