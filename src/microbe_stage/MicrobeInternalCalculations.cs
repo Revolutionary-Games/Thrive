@@ -82,7 +82,7 @@ public static class MicrobeInternalCalculations
         return delta.Normalized();
     }
 
-    public static Vector3 CalculateCenterOfMass<T>(IReadOnlyList<T> organelles)
+    public static Vector3 CalculateCenterOfMass<T>(IReadOnlyList<T> organelles, Hex positionOffset = default)
         where T : IReadOnlyPositionedOrganelle
     {
         // TODO: this used to weigh the center position based on the organelle masses, this is no longer possible
@@ -95,11 +95,27 @@ public static class MicrobeInternalCalculations
 
         // TODO: shouldn't this take multihex organelles into account?
         var listLength = organelles.Count;
-        for (int i = 0; i < listLength; ++i)
+
+        // We have two variant loops to make the much more common case of no offset faster by avoiding subtracting
+        // zero from a bunch of positions.
+        if (positionOffset == default)
         {
-            // totalMass += organelle.Definition.Mass;
-            ++count;
-            weightedSum += Hex.AxialToCartesian(organelles[i].Position) /* * organelle.Definition.Mass*/;
+            for (int i = 0; i < listLength; ++i)
+            {
+                // totalMass += organelle.Definition.Mass;
+                ++count;
+                weightedSum += Hex.AxialToCartesian(organelles[i].Position) /* * organelle.Definition.Mass*/;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < listLength; ++i)
+            {
+                // totalMass += organelle.Definition.Mass;
+                ++count;
+                weightedSum += Hex.AxialToCartesian(organelles[i].Position - positionOffset)
+                    /* * organelle.Definition.Mass*/;
+            }
         }
 
         if (count == 0)
