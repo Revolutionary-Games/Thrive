@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-10-17 11:11+0300\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-10-25 08:27+0000\n"
+"Last-Translator: Berghieva Cosmin <cosmin.berghieva@gmail.com>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 2026.9.1\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -40,36 +40,37 @@ msgstr "Renunță"
 msgid "ABORTED_DOT"
 msgstr "Abandonat."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "Etapa Microbilor"
+msgstr "Etapa Microbilor:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagică"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "Acceptă"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Mișcare de bază"
+msgstr "Realizări"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Mișcare de bază"
+msgstr "Eșec în încărcarea datelor realizărilor"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+msgstr ""
+"Fișierul cu datele realizărilor ar putea fi corupt.\n"
+"Datele pot fi resetate, ceea ce va duce la pierderea întregului progres al realizărilor, prin ștergerea:\n"
+"{0}\n"
+"Doriți să continuați să vă jucați fără realizări?\n"
+"Apăsând \"Anulare\" veți ieși din joc."
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Realizări{0}/{1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Completat"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Blocat"
 
 msgid "ACTION_AWAKEN"
 msgstr "Trezește ({0:F1} / {1:F1})"
@@ -103,21 +104,17 @@ msgstr "Thread-uri curente:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii activi se vor mișca și rostogoli când nu se întămplă nimic interesant.\n"
 "Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
 
 msgid "ACTOMYOSIN"
-msgstr ""
+msgstr "Actomiozină"
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr ""
-"Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
-"Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
+msgstr "Actomiozinele sunt structuri musculare simple pe care coloniile de celule le pot folosi pentru a se deplasa mai eficient într-o direcție sau pentru a se roti. Acestea nu sunt prezente în membranele de tip perete, deoarece funcționarea lor se bazează pe flexul pe care îl are colonia. Prin urmare, sunt mult mai eficiente când este doar una prezentă per celulă, iar multe celule dintr-o colonie posedă acest organit."
 
-#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+msgstr "Crește viteza de deplasare de bază și viteza de rotație a coloniei de celule."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validările adiționale au detectat o problemă: {0}"
@@ -131,9 +128,8 @@ msgstr "Avansat"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Deschide meniul setărilor avansate"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
-msgstr "Fixarea azotului anaerob"
+msgstr "Respirație anaerobă"
 
 msgid "AGENTS"
 msgstr "Agenți"
@@ -163,33 +159,33 @@ msgstr "(viteza cu care speciile IA suferă mutații)"
 msgid "ALL"
 msgstr "Toate"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Permiteți speciilor să nu sufere mutații (dacă nu se găsește nicio mutație bună)"
+msgstr "Permite trecerea la specii înrudite în cazul extincției"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "(viteza cu care speciile IA suferă mutații)"
+msgstr "(permite continuarea jocului cu o altă specie pe cale de dispariție, în loc să se încheie jocul)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistici generice ale tuturor lumilor"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b] Generații:[/b]\n"
-"  {0}\n"
+"  {0}\n"
 "[b] Total specii:[/b]\n"
-"  {1} medie; Abaterea standard {2}\n"
+"  Medie {1}; Abaterea standard {2}\n"
+"[b] Total specii secundare:[/b]\n"
+"  Medie {3}; Abaterea standard {4}\n"
 "[b] Specii încă în viață:[/b]\n"
-"  {3} medie; Abaterea standard {4}\n"
+"  Medie {5}; Abaterea standard {6}\n"
 "[b] Număr de specii per patch:[/b]\n"
-"  {5} medie; Abaterea standard {6}\n"
+"  Medie {7}; Abaterea standard {8}\n"
 "[b] Populația totală per patch:[/b]\n"
-"  {7} medie; Abaterea standard {8}\n"
+"  Medie {9}; Abaterea standard {10}\n"
 "[b] Dimensiunea medie hexagonală a speciilor de microbi:[/b]\n"
-"  {9} medie; Abaterea standard {10}\n"
-"[b] Date organite generice:[/b]"
+"  Medie {11}; Abaterea standard {12}\n"
+"\n"
+"[b] Date generice ale organitelor:[/b]"
 
 msgid "ALREADY_ASCENDED"
 msgstr "Sunteți deja ascensionați"
@@ -197,26 +193,23 @@ msgstr "Sunteți deja ascensionați"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
-msgstr "Deschide meniul setărilor avansate"
+msgstr ""
+"Modifică viteza alternativă a simulării.\n"
+"Această viteză poate fi activată prin apăsarea butonului de pe HUD care corespunde acestei valori.\n"
+"Valorile mai mari pot necesita un procesor foarte rapid pentru a rula."
 
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ""
+msgstr "Scară temporală alternativă"
 
 msgid "ALWAYS_RESET_ENVIRONMENT"
-msgstr ""
+msgstr "Întotdeauna se resetează mediul lumii atunci când părăsiți editorul"
 
-#, fuzzy
 msgid "ALWAYS_RESET_ENVIRONMENT_EXPLANATION"
-msgstr ""
-"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
-"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
-"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
-"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+msgstr "(atunci când această opțiune este activată, norii, terenul, microbii, organismul jucătorului și spațiul său de depozitare, alte ființe vii, etc. sunt întotdeauna eliminate și mediul este refăcut când părăsești editorul, nu doar atunci când te deplasezi într-o altă zonă sau locație)"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "Întotdeauna vizibil"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Volumul ambianței"
@@ -224,13 +217,11 @@ msgstr "Volumul ambianței"
 msgid "AMMONIA"
 msgstr "Amoniac"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Amoniac"
+msgstr "Costul amoniacului:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Amoniac"
+msgstr "Nivelul amoniacului"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantitatea de salvări automate de păstrat:"
@@ -242,22 +233,22 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "și"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Filtrarea anisotropică:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
 msgid "ANTI_ALIASING_FXAA"
-msgstr ""
+msgstr "FXAA"
 
 msgid "ANTI_ALIASING_MODE"
-msgstr ""
+msgstr "Modul anti-aliasing:"
 
 msgid "ANTI_ALIASING_MSAA"
-msgstr ""
+msgstr "MSAA"
 
 msgid "ANTI_ALIASING_TAA"
-msgstr ""
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Apariție"
@@ -297,22 +288,20 @@ msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 "A-ți evoluat și ați terminat jocul. Felicitări pentru că ați ajuns la sfârșitul jocului!\n"
 "\n"
-"Puteți continua să jucați în Stagiul Spațial cu God-Toolurile deblocate pentru a vă juca în sandbox.\n"
+"Puteți continua să jucați în Stagiul Spațial cu God-Toolurile deblocate pentru a vă distra în sandbox.\n"
 "\n"
 "De asemenea, este posibil să coborâți și să vă întoarceți la Etapa Microb în această salvare și să jucați din nou prin toate etapele cu avantaje suplimentare.\n"
 "\n"
 "Total timpi evoluați în această salvare: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Felicitări!"
+msgstr "Etapa Ascensiunii"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr "Clasa de asamblare mod este necesară atunci când este specificată asamblarea"
+msgstr "Clasa de asamblare Mod este necesară atunci când este specificată asamblarea"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "Asamblarea modului este necesară atunci când armonia automată este activată"
+msgstr "Asamblarea este necesară atunci când se specifică o clasă mod"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Presupune că procesorul are hyperthreading activat"
@@ -326,7 +315,7 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaze atmosferice"
 
 msgid "ATP"
-msgstr "ATF"
+msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Balanța ATP"
