@@ -1,0 +1,219 @@
+[gd_scene format=3 uid="uid://dad6elomccmtr"]
+
+[ext_resource type="Script" uid="uid://dbmnsgl7k6qrf" path="res://src/microbe_stage/editor/ToleranceWarningsPanel.cs" id="1_c2s6w"]
+[ext_resource type="Texture2D" uid="uid://w33dve6al45k" path="res://assets/textures/gui/bevel/osmoregulationIcon.png" id="1_qvx44"]
+[ext_resource type="Texture2D" uid="uid://cyrha88k4ioqh" path="res://assets/textures/gui/bevel/ProcessProcessing.png" id="2_c2s6w"]
+[ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="2_henxx"]
+[ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="3_henxx"]
+[ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="4_8kfst"]
+[ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="4_smg5i"]
+[ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="5_smg5i"]
+[ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="6_opylk"]
+[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="7_iyjd5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kfst"]
+bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ToleranceWarningsPanel" type="PanelContainer" unique_id=749578005 node_paths=PackedStringArray("OsmoregulationCostValue", "BioprocessSpeedValue", "HealthValue", "OsmoregulationCostContainer", "BioprocessSpeedContainer", "HealthContainer", "TemperatureConditionLabel", "PressureConditionLabel", "OxygenConditionLabel", "UVConditionLabel", "TemperatureConditionContainer", "PressureConditionContainer", "OxygenConditionContainer", "UVConditionContainer")]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 212.0
+offset_bottom = 145.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8kfst")
+script = ExtResource("1_c2s6w")
+OsmoregulationCostValue = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost/OsmoregulationCostValue")
+BioprocessSpeedValue = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed/BioprocessSpeedValue")
+HealthValue = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/Health/HealthValue")
+OsmoregulationCostContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost")
+BioprocessSpeedContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed")
+HealthContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/Health")
+TemperatureConditionLabel = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Temperature/TemperatureConditionLabel")
+PressureConditionLabel = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Pressure/PressureConditionLabel")
+OxygenConditionLabel = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Oxygen/OxygenConditionLabel")
+UVConditionLabel = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/UV/UVConditionLabel")
+TemperatureConditionContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Temperature")
+PressureConditionContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Pressure")
+OxygenConditionContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Oxygen")
+UVConditionContainer = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/UV")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1305727708]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ToleranceWarnings" type="VBoxContainer" parent="MarginContainer" unique_id=151629549]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ToleranceWarning" type="Label" parent="MarginContainer/ToleranceWarnings" unique_id=297406865]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+text = "NOT_ADAPTED_TO_CURRENT_PATCH"
+label_settings = ExtResource("2_henxx")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings" unique_id=901203449]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Debuffs" type="VBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer" unique_id=577907070]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="OsmoregulationCost" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs" unique_id=152605514]
+custom_minimum_size = Vector2(0, 24)
+custom_maximum_size = Vector2(-1, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost" unique_id=963240785]
+layout_mode = 2
+texture = ExtResource("1_qvx44")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost" unique_id=406784780]
+layout_mode = 2
+text = "OSMOREGULATION_COST"
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+
+[node name="OsmoregulationCostValue" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost" unique_id=1556625052]
+layout_mode = 2
+label_settings = ExtResource("4_smg5i")
+vertical_alignment = 1
+
+[node name="BioprocessesSpeed" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs" unique_id=432744776]
+custom_minimum_size = Vector2(0, 24)
+custom_maximum_size = Vector2(-1, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed" unique_id=1997930819]
+layout_mode = 2
+texture = ExtResource("2_c2s6w")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed" unique_id=2018477596]
+layout_mode = 2
+text = "PROCESSES_SPEED_MODIFIER"
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+
+[node name="BioprocessSpeedValue" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed" unique_id=276171094]
+layout_mode = 2
+label_settings = ExtResource("4_smg5i")
+vertical_alignment = 1
+
+[node name="Health" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs" unique_id=930921822]
+custom_minimum_size = Vector2(0, 24)
+custom_maximum_size = Vector2(-1, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/Health" unique_id=1199055294]
+layout_mode = 2
+texture = ExtResource("3_henxx")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/Health" unique_id=342833463]
+layout_mode = 2
+text = "HEALTH"
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+
+[node name="HealthValue" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/Health" unique_id=606976016]
+layout_mode = 2
+label_settings = ExtResource("4_smg5i")
+vertical_alignment = 1
+
+[node name="Conditions" type="VBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer" unique_id=125414981]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Temperature" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=427368320]
+custom_minimum_size = Vector2(0, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Temperature" unique_id=811532411]
+layout_mode = 2
+texture = ExtResource("4_8kfst")
+expand_mode = 2
+
+[node name="TemperatureConditionLabel" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Temperature" unique_id=392836885]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Pressure" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=1459831214]
+custom_minimum_size = Vector2(0, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Pressure" unique_id=1477244063]
+layout_mode = 2
+texture = ExtResource("5_smg5i")
+expand_mode = 2
+
+[node name="PressureConditionLabel" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Pressure" unique_id=1038698425]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Oxygen" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=1070997017]
+custom_minimum_size = Vector2(0, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Oxygen" unique_id=509748304]
+layout_mode = 2
+texture = ExtResource("6_opylk")
+expand_mode = 2
+
+[node name="OxygenConditionLabel" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/Oxygen" unique_id=842265066]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="UV" type="HBoxContainer" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions" unique_id=847803461]
+custom_minimum_size = Vector2(0, 24)
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/UV" unique_id=1253730718]
+layout_mode = 2
+texture = ExtResource("7_iyjd5")
+expand_mode = 2
+
+[node name="UVConditionLabel" type="Label" parent="MarginContainer/ToleranceWarnings/HBoxContainer/Conditions/UV" unique_id=1672283261]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("2_henxx")
+vertical_alignment = 1
+autowrap_mode = 2

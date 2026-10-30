@@ -25,9 +25,6 @@ public partial class CellEditorComponent :
     [Export]
     public bool IsMacroscopicEditor;
 
-    [Export]
-    public int MaxToleranceWarnings = 3;
-
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
     /// </summary>
@@ -92,7 +89,7 @@ public partial class CellEditorComponent :
     private PanelContainer toleranceTab = null!;
 
     [Export]
-    private Container toleranceWarningContainer = null!;
+    private ToleranceWarningsPanel toleranceWarningsPanel = null!;
 
     [Export]
     private VBoxContainer partsSelectionContainer = null!;
@@ -161,9 +158,6 @@ public partial class CellEditorComponent :
 
     [Export]
     private AnimationPlayer tutorialAnimationPlayer = null!;
-
-    [Export]
-    private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;

@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
-using Godot;
-
-/// <summary>
+﻿/// <summary>
 ///   GUI-specific parts of this class
 /// </summary>
 public partial class MetaballBodyEditorComponent
 {
-    private readonly List<Label> activeToleranceWarnings = new();
-
-    private int usedToleranceWarnings;
-
     public void OnSkinTypeSelected(int newValue)
     {
         SkinType = (CreatureSkinType)newValue;
@@ -26,13 +19,15 @@ public partial class MetaballBodyEditorComponent
         // inexplicably also a bonus percentage as that would be very confusing to see.
         var tolerances = CalculateRawTolerances(true);
 
-        MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
-            activeToleranceWarnings, tolerances,
-            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
-            toleranceWarningsFont, MaxToleranceWarnings);
+        toleranceWarningsPanel.GenerateToleranceProblemList(tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances),
+            out bool areToleranceWarnings);
 
-        if (usedToleranceWarnings > 0)
+        toleranceWarningsPanel.Visible = areToleranceWarnings;
+
+        if (areToleranceWarnings)
         {
+            // Need to make sure the player is not locked out of the tab to address these
             tolerancesTabButton.Visible = true;
         }
     }
