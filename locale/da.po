@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"POT-Creation-Date: 2026-10-30 15:45+0200\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -5575,6 +5575,10 @@ msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier m
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier med hver deres slider. Når forholdene er uden for det spænd vil det have en negativ effekt på din art. Ændre spændet ved at fjerne markeringen i afkrydsningsfeltet under slideren."
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Tryk"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Tryk på en tast..."
 
@@ -5586,6 +5590,10 @@ msgstr "Forhåndsvisningsbilledets fil er for stor"
 
 msgid "PREVIOUS_COLON"
 msgstr "forrige:"
+
+#, fuzzy
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Bioprocess hastighed"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Behandler indlæste objekter"
@@ -6802,6 +6810,10 @@ msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilite
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
+
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
@@ -7098,9 +7110,6 @@ msgstr "Foretrukken temperatur er {0} for lavt"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV-beskyttelse er for lav, skal være {0} højere"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Ikke tilpasset det nuværende miljø. Osmoreguleringsomkostning {0}%, bioproceshastighed {1}%, helbred {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -9636,6 +9645,9 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+#~ msgstr "Ikke tilpasset det nuværende miljø. Osmoreguleringsomkostning {0}%, bioproceshastighed {1}%, helbred {2}%"
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"POT-Creation-Date: 2026-10-30 15:45+0200\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -5538,6 +5538,10 @@ msgstr "Tolerancja na Ciśnienie"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Preferencję ciśnienia dla Twojego gatunku. Ustawiane oddzielnie jako minimalne i maksymalne. Kiedy warunki wykraczają poza ten przedział, dotkną Cię negatywne efekty. Zmień zakres przez odznaczenie checkboxów poniższej sliderów."
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Ciśn."
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Naciśnij klawisz..."
 
@@ -5549,6 +5553,10 @@ msgstr "Podgląd jest za duży"
 
 msgid "PREVIOUS_COLON"
 msgstr "poprzedni:"
+
+#, fuzzy
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Prędkość Bioprocesów"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Przetwarzanie wczytanych obiektów"
@@ -6742,6 +6750,10 @@ msgstr "Zakres Tolerancji Temperatury"
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Temperatura preferowana przez twój gatunek. W warunkach poza zakresem tolerancji wokół temperatury idealnej pojawią się negatywne efekty utrudniające przetrwanie. Dostosuj suwaki do obszarów, w których planujesz grać."
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "Temperatura preferowana przez twój gatunek. W warunkach poza zakresem tolerancji wokół temperatury idealnej pojawią się negatywne efekty utrudniające przetrwanie. Dostosuj suwaki do obszarów, w których planujesz grać."
+
 msgid "TESTING_TEAM"
 msgstr "Testerzy"
 
@@ -7040,9 +7052,6 @@ msgstr "Preferowana temperatura jest zbyt niska o {0}"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "Ochrona przed ultrafioletem zbyt niska, musi wynosić {0}% lub więcej"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Brak przystosowania do obecnych warunków środowiskowych. Koszt osmoregulacji: {0}%, szybkość bioprocesów: {1}%, zdrowie: {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -10125,6 +10134,9 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+#~ msgstr "Brak przystosowania do obecnych warunków środowiskowych. Koszt osmoregulacji: {0}%, szybkość bioprocesów: {1}%, zdrowie: {2}%"
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"

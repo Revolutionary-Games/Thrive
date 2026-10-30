@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-17 11:11+0300\n"
+"POT-Creation-Date: 2026-10-30 15:45+0200\n"
 "PO-Revision-Date: 2026-10-23 04:23+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -5792,6 +5792,10 @@ msgstr "Návrat do hlavního menu"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Návrat do hlavního menu"
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Tlak"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stiskněte klávesu..."
 
@@ -5803,6 +5807,10 @@ msgstr "Soubor náhledu obrázku je příliš velký"
 
 msgid "PREVIOUS_COLON"
 msgstr "předchozí:"
+
+#, fuzzy
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Proces buňky"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Zpracování načtených objektů"
@@ -7083,6 +7091,10 @@ msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespa
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
+
 msgid "TESTING_TEAM"
 msgstr "Tým testerů"
 
@@ -7375,9 +7387,6 @@ msgstr "Tolerovaná teplota je příliš nízká o {0}"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "Rezistence vůči UV záření je příliš nízká, musí být o {0}% vyšší"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Nepřizpůsoben k současným podmínkám. Cena osmoregulace {0}%, rychlost bioprocesů {1}%, množství životů {2}%"
 
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
@@ -10209,6 +10218,9 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+#~ msgstr "Nepřizpůsoben k současným podmínkám. Cena osmoregulace {0}%, rychlost bioprocesů {1}%, množství životů {2}%"
 
 #, fuzzy
 #~ msgid "PASSED_FULFILLED_CONDITION"
