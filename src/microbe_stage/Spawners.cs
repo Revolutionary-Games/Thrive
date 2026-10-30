@@ -1707,7 +1707,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             CommandBuffer recorder;
             float weight;
 
-            if (random.NextSingle() < 0.5f && multicellularSpecies != null
+            if (random.NextSingle() < Constants.GAMETE_SPAWN_CHANCE && multicellularSpecies != null
                 && (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy
                     || multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy))
             {
