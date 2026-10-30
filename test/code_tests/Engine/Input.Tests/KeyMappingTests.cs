@@ -5,6 +5,11 @@ using Xunit;
 
 public class KeyMappingTests
 {
+    private const string XboxControllerDiagramPath =
+        "res://assets/textures/gui/xelu_prompts/Xbox Series X/XboxSeriesX_Diagram_Simple.png";
+    private const string PlayStationControllerDiagramPath =
+        "res://assets/textures/gui/xelu_prompts/PS5/PS5_Diagram_Simple.png";
+
     [Fact]
     public static void KeyMapping_CodeEnumConversionWorks()
     {
@@ -29,6 +34,29 @@ public class KeyMappingTests
 
         Assert.Equal(((JoyButton)155, 128),
             SpecifiedInputKey.UnpackCodeAndDevice(SpecifiedInputKey.PackCodeWithDevice(155, 128)));
+    }
+
+    [Theory]
+    [InlineData(ControllerType.Xbox360, XboxControllerDiagramPath)]
+    [InlineData(ControllerType.XboxOne, XboxControllerDiagramPath)]
+    [InlineData(ControllerType.XboxSeriesX, XboxControllerDiagramPath)]
+    [InlineData(ControllerType.PlayStation3, PlayStationControllerDiagramPath)]
+    [InlineData(ControllerType.PlayStation4, PlayStationControllerDiagramPath)]
+    [InlineData(ControllerType.PlayStation5, PlayStationControllerDiagramPath)]
+    public static void KeyMapping_ControllerDiagramMatchesControllerFamily(ControllerType controllerType,
+        string expectedPath)
+    {
+        var previousControllerType = KeyPromptHelper.ActiveControllerType;
+
+        try
+        {
+            KeyPromptHelper.ActiveControllerType = controllerType;
+            Assert.Equal(expectedPath, KeyPromptHelper.GetPathForControllerDiagram());
+        }
+        finally
+        {
+            KeyPromptHelper.ActiveControllerType = previousControllerType;
+        }
     }
 
     [Fact]
