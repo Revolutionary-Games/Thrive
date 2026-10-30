@@ -23,18 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://xt3sn0ixehuh" path="res://src/gui_common/LoadingSpinner.tscn" id="16_enpqv"]
 [ext_resource type="Script" uid="uid://b30r8hvita2p4" path="res://src/multicellular_stage/editor/UnusedCellTypePopup.cs" id="unused_cell_type_popup"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8mic"]
-bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxTexture" id="1"]
 texture = ExtResource("2")
 region_rect = Rect2(0, 0, 429, 1)
@@ -406,7 +394,6 @@ mouse_filter = 2
 [node name="ToleranceWarningsPanel" parent="MarginContainer" unique_id=749578005 instance=ExtResource("4_s8mic")]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s8mic")
 
 [node name="LeftPanel" type="MarginContainer" parent="." unique_id=683719246]
 custom_minimum_size = Vector2(400, 0)

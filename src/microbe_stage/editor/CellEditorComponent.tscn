@@ -29,18 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/EditorAutoEvoPredictionPanel.tscn" id="prediction_panel"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbwlm"]
-bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
 content_margin_top = 5.0
@@ -607,7 +595,6 @@ mouse_filter = 2
 [node name="ToleranceWarningsPanel" parent="MarginContainer" unique_id=749578005 instance=ExtResource("6_wbwlm")]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_wbwlm")
 
 [node name="LeftPanel" type="MarginContainer" parent="." unique_id=1908836377]
 custom_minimum_size = Vector2(350, 0)
@@ -1018,7 +1005,6 @@ processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
 
 [node name="AutoEvoInfoPanel" parent="RightPanel/VBoxContainer" unique_id=1135255199 instance=ExtResource("prediction_panel")]
-layout_mode = 2
 
 [node name="EditorComponentBottomLeftButtons" parent="." unique_id=2131992479 instance=ExtResource("3")]
 layout_mode = 1
@@ -1148,6 +1134,7 @@ offset_bottom = 0.0
 
 [node name="EndosymbiosisPopup" parent="." unique_id=390097206 instance=ExtResource("38_e0n84")]
 layout_mode = 1
+IsMulticellular = false
 
 [node name="ProcessPanel" parent="." unique_id=201602767 instance=ExtResource("39")]
 custom_minimum_size = Vector2(400, 400)
@@ -1202,6 +1189,7 @@ libraries/ = SubResource("AnimationLibrary_o1pli")
 [connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
+[connection signal="DetailsOpened" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnAutoEvoPredictionDetailsOpened"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
@@ -1224,4 +1212,3 @@ libraries/ = SubResource("AnimationLibrary_o1pli")
 
 [editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
 [editable path="CompleteEndosymbiosisWarning"]
-[connection signal="DetailsOpened" from="RightPanel/VBoxContainer/AutoEvoInfoPanel" to="." method="OnAutoEvoPredictionDetailsOpened"]

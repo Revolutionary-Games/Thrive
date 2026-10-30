@@ -11,12 +11,25 @@
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="6_opylk"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="7_iyjd5"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kfst"]
+bg_color = Color(0, 0.12833332, 0.14, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="ToleranceWarningsPanel" type="PanelContainer" unique_id=749578005 node_paths=PackedStringArray("OsmoregulationCostValue", "BioprocessSpeedValue", "HealthValue", "OsmoregulationCostContainer", "BioprocessSpeedContainer", "HealthContainer", "TemperatureConditionLabel", "PressureConditionLabel", "OxygenConditionLabel", "UVConditionLabel", "TemperatureConditionContainer", "PressureConditionContainer", "OxygenConditionContainer", "UVConditionContainer")]
 custom_minimum_size = Vector2(200, 50)
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 212.0
 offset_bottom = 145.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8kfst")
 script = ExtResource("1_c2s6w")
 OsmoregulationCostValue = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/OsmoregulationCost/OsmoregulationCostValue")
 BioprocessSpeedValue = NodePath("MarginContainer/ToleranceWarnings/HBoxContainer/Debuffs/BioprocessesSpeed/BioprocessSpeedValue")
