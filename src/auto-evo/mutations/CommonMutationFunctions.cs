@@ -629,15 +629,11 @@ public static class CommonMutationFunctions
         var newHexPosition = oldHex - Hex.HexNeighbourOffset[side];
         var orientation = cellTemplate.Orientation;
 
+        if (!existingCells.CanPlace(newHexPosition))
+            return null;
+
         var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
-        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
-
-        if (existingCells.CanPlace(result.Position))
-        {
-            return result;
-        }
-
-        return null;
+        return new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
     }
 
     private static HexWithData<CellTemplate>? GetCenterlineFrontPosition(CellType newCellType,
