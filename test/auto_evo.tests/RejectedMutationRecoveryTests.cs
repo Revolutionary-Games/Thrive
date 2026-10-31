@@ -229,7 +229,8 @@ public class RejectedMutationRecoveryTests
 
     private static ModifyExistingSpecies PrepareInsertion(Fixture fixture, RunResults results, int seed = 7233)
     {
-        var modify = new ModifyExistingSpecies(fixture.Patch, fixture.Cache, fixture.Settings, new Random(seed));
+        var modify = new ModifyExistingSpecies(fixture.Patch, fixture.Cache, fixture.Settings,
+            new Random(seed).NextInt64());
 
         // One generation step per patch species, then the end-of-enumeration and filter steps.
         for (int i = 0; i < fixture.Patch.SpeciesInPatch.Count + 2; ++i)

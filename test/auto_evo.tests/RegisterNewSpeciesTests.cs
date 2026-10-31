@@ -37,7 +37,7 @@ public class RegisterNewSpeciesTests
         float recordedCost = 0;
         var run = new ControlledRun(world,
             new ActionStep(results => results.AddNewMicheForPatch(patch, leaf)),
-            new ModifyExistingSpecies(patch, cache, settings, new XoShiRo256starstar(7233)),
+            new ModifyExistingSpecies(patch, cache, settings, new XoShiRo256starstar(7233).NextInt64()),
             new ActionStep(results =>
             {
                 candidate = leaf.Occupant;
