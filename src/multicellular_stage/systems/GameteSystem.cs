@@ -234,6 +234,8 @@ public partial class GameteSystem : BaseSystem<World, float>
 
     private bool IsSelfFertilization(Entity thisEmittedBy, Entity otherEmittedBy)
     {
+        // In a save after an EmittedBy entity dies, it becomes Null, which means that self-fertilization can be
+        // possible in this case
         return thisEmittedBy == otherEmittedBy && thisEmittedBy != Entity.Null;
     }
 
