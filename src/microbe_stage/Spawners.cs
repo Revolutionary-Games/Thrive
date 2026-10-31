@@ -1174,7 +1174,7 @@ public static class SpawnHelpers
             MovementDirection = Vector3.Forward,
         });
 
-        // And spawn with the rotation already set so the cell doesn't turn on spawning; unless the initial velocity is
+        // And spawn with the rotation already set so the cell doesn't turn on spawning. Unless the initial velocity is
         // zero, in which case the gamete was likely created by a spawner
         Quaternion rotation = Quaternion.Identity;
         if (initialVelocity != Vector3.Zero)
@@ -1722,8 +1722,10 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
                     gameteCellType = multicellularSpecies.ModifiableGameteTypeA!;
                 }
 
+                var initialVelocity = new Quaternion(Vector3.Up, random.Next(0.0f, MathF.PI * 2.0f)) * Vector3.Forward;
+
                 (recorder, weight) = SpawnHelpers.SpawnGameteWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
-                    Species, location, Vector3.Zero, sex, gameteCellType, true, out entity, Entity.Null);
+                    Species, location, initialVelocity, sex, gameteCellType, true, out entity, Entity.Null);
             }
             else
             {
