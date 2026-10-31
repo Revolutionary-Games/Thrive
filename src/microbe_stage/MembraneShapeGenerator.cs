@@ -2,6 +2,7 @@
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -31,7 +32,7 @@ public class MembraneShapeGenerator
     ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
     ///   from here to <see cref="MembranePointData"/> for actual usage (and checks like containing points)
     /// </summary>
-    private readonly List<Vector2> vertices2D = new();
+    private List<Vector2> vertices2D = new();
 
     /// <summary>
     ///   Pool of scratch objects, sized to the largest neighbour count seen so far.
@@ -166,19 +167,24 @@ public class MembraneShapeGenerator
     ///   waviness as it is normally done in single cellular membrane
     /// </summary>
     public MembranePointData GenerateMulticellularMembrane(long thisCellKey,
-        ConcurrentDictionary<long, NeighbourData> neighboursData, long leaderCellId)
+        ConcurrentDictionary<long, NeighbourData> neighboursData, CellData cellData, long leaderCellId)
     {
         currentColonyCellKey = thisCellKey;
         var currentCellData = neighboursData[currentColonyCellKey];
         var originalPointData = currentCellData.OriginalPointData;
 
-        SetCellVertices(currentCellData);
-        GenerateMulticellularMembrane(currentCellData, neighboursData);
+        // SetCellVertices(currentCellData);
+        // GenerateMulticellularMembrane(currentCellData, neighboursData);
+
+        vertices2D = cellData.Vertices2D;
 
         // Apply the same waviness pass used for single-cell membranes
         float circumference = 0.0f;
         for (int i = 0, end = vertices2D.Count; i < end; ++i)
+        {
+            // vertices2D[i] = cellData.Vertices2D[i];
             circumference += (vertices2D[(i + 1) % end] - vertices2D[i]).Length();
+        }
 
         MakeMembraneWavier(originalPointData.Type, circumference);
 
@@ -357,7 +363,7 @@ public class MembraneShapeGenerator
         }
     }
 
-    private static Vector2 RotatePoint(Vector2 point, float angle)
+    public static Vector2 RotatePoint(Vector2 point, float angle)
     {
         (float sin, float cos) = MathF.SinCos(angle);
         return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
@@ -578,7 +584,7 @@ public class MembraneShapeGenerator
         return true;
     }
 
-    private static float GetOrientationAngle(int orientation)
+    public static float GetOrientationAngle(int orientation)
     {
         return orientation * MathF.PI * 0.3333333f;
     }
@@ -803,85 +809,87 @@ public class MembraneShapeGenerator
     ///   chosen, then 2 tangent lines are created for each cell. After that, vertices between those lines are cast
     ///   onto them and afterwards smoothed out. If there are any overlaps with neighbours, the operation is canceled.
     /// </summary>
-    private void GenerateMulticellularMembrane(NeighbourData cellData,
-        ConcurrentDictionary<long, NeighbourData> neighboursData)
-    {
-        var cellPosition = cellData.MulticellularMembraneGenerationCellData.Position;
-        var cellOrientation = cellData.MulticellularMembraneGenerationCellData.Orientation;
-        var cellAngle = GetOrientationAngle(cellOrientation);
-        var cellAverageVertex = cellData.OriginalAverageVertex;
-
-        GetCloseNeighbours(neighboursData, cellPosition);
-        RotateAndShiftCloseNeighbours(neighboursData, cellAngle, cellPosition);
-
-        foreach (var neighbourKey in closeNeighboursKeys)
-        {
-            var neighbourData = neighboursData[neighbourKey];
-
-            if (cellData.ProcessedNeighbours.Contains(neighbourKey))
-            {
-                continue;
-            }
-
-            neighbourData.ProcessedNeighbours.Add(currentColonyCellKey);
-            neighbourColonyCellKey = neighbourKey;
-
-            var neighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[neighbourKey]];
-            var editableNeighbourVertices = neighbourCell.ShiftedVertices;
-
-            var neighbourAverageVertex = neighbourData.LocalAverageVertex;
-
-            var middlePoint = GetMiddlePoint(editableNeighbourVertices, cellAverageVertex, neighbourAverageVertex,
-                out var closestCellVertexIndex, out var closestNeighbourVertexIndex);
-
-            if (vertices2D[closestCellVertexIndex]
-                    .DistanceSquaredTo(editableNeighbourVertices[closestNeighbourVertexIndex]) >
-                Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES)
-            {
-                continue;
-            }
-
-            // This might happen if cells are close to each other
-            var isMiddlePointInsideMembrane = IsInsideConvexPolygon(vertices2D, middlePoint) ||
-                IsInsideConvexPolygon(editableNeighbourVertices, middlePoint);
-
-            if (isMiddlePointInsideMembrane)
-                continue;
-
-            var pointsWereCastOntoTangentLines = CastVerticesOntoTheTangentLines(editableNeighbourVertices, middlePoint,
-                cellAverageVertex, neighbourAverageVertex, closestCellVertexIndex, closestNeighbourVertexIndex);
-
-            if (!pointsWereCastOntoTangentLines)
-            {
-                continue;
-            }
-
-            neighbourData.ModifiedVertices ??= new List<Vector2>(editableNeighbourVertices.Count);
-            neighbourData.ModifiedVertices.Clear();
-
-            // Revert the preprocessing transform (subtract local offset, counter-rotate) and store.
-            var storedLocalOffset = neighbourCell.Shift;
-            var storedRelativeAngle = neighbourCell.Rotation;
-
-            for (int i = 0; i < editableNeighbourVertices.Count; ++i)
-            {
-                var vertex = editableNeighbourVertices[i];
-                vertex -= storedLocalOffset;
-                vertex = RotatePoint(vertex, -storedRelativeAngle);
-                neighbourData.ModifiedVertices.Add(vertex);
-            }
-        }
-
-        // Store also current cells modified vertices so that when other neighbours are processed they can
-        // see those changes and avoid overlaps
-        cellData.ModifiedVertices ??= new List<Vector2>(vertices2D.Count);
-        cellData.ModifiedVertices.Clear();
-
-        for (int i = 0; i < vertices2D.Count; ++i)
-        {
-            cellData.ModifiedVertices.Add(vertices2D[i]);
-        }
-    }
+    // private void GenerateMulticellularMembrane(NeighbourData cellData,
+    //     ConcurrentDictionary<long, NeighbourData> neighboursData, CellData modifiedCellData)
+    // {
+    //     var cellPosition = cellData.MulticellularMembraneGenerationCellData.Position;
+    //     var cellOrientation = cellData.MulticellularMembraneGenerationCellData.Orientation;
+    //     var cellAngle = GetOrientationAngle(cellOrientation);
+    //     var cellAverageVertex = cellData.OriginalAverageVertex;
+    //
+    //     GetCloseNeighbours(neighboursData, cellPosition);
+    //     RotateAndShiftCloseNeighbours(neighboursData, cellAngle, cellPosition);
+    //
+    //     foreach (var neighbourKey in closeNeighboursKeys)
+    //     {
+    //         continue;
+    //
+    //         var neighbourData = neighboursData[neighbourKey];
+    //
+    //         if (cellData.ProcessedNeighbours.Contains(neighbourKey))
+    //         {
+    //             continue;
+    //         }
+    //
+    //         neighbourData.ProcessedNeighbours.Add(currentColonyCellKey);
+    //         neighbourColonyCellKey = neighbourKey;
+    //
+    //         var neighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[neighbourKey]];
+    //         var editableNeighbourVertices = neighbourCell.ShiftedVertices;
+    //
+    //         var neighbourAverageVertex = neighbourData.LocalAverageVertex;
+    //
+    //         var middlePoint = GetMiddlePoint(editableNeighbourVertices, cellAverageVertex, neighbourAverageVertex,
+    //             out var closestCellVertexIndex, out var closestNeighbourVertexIndex);
+    //
+    //         if (vertices2D[closestCellVertexIndex]
+    //                 .DistanceSquaredTo(editableNeighbourVertices[closestNeighbourVertexIndex]) >
+    //             Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES)
+    //         {
+    //             continue;
+    //         }
+    //
+    //         // This might happen if cells are close to each other
+    //         var isMiddlePointInsideMembrane = IsInsideConvexPolygon(vertices2D, middlePoint) ||
+    //             IsInsideConvexPolygon(editableNeighbourVertices, middlePoint);
+    //
+    //         if (isMiddlePointInsideMembrane)
+    //             continue;
+    //
+    //         var pointsWereCastOntoTangentLines = CastVerticesOntoTheTangentLines(editableNeighbourVertices, middlePoint,
+    //             cellAverageVertex, neighbourAverageVertex, closestCellVertexIndex, closestNeighbourVertexIndex);
+    //
+    //         if (!pointsWereCastOntoTangentLines)
+    //         {
+    //             continue;
+    //         }
+    //
+    //         neighbourData.ModifiedVertices ??= new List<Vector2>(editableNeighbourVertices.Count);
+    //         neighbourData.ModifiedVertices.Clear();
+    //
+    //         // Revert the preprocessing transform (subtract local offset, counter-rotate) and store.
+    //         var storedLocalOffset = neighbourCell.Shift;
+    //         var storedRelativeAngle = neighbourCell.Rotation;
+    //
+    //         for (int i = 0; i < editableNeighbourVertices.Count; ++i)
+    //         {
+    //             var vertex = editableNeighbourVertices[i];
+    //             vertex -= storedLocalOffset;
+    //             vertex = RotatePoint(vertex, -storedRelativeAngle);
+    //             neighbourData.ModifiedVertices.Add(vertex);
+    //         }
+    //     }
+    //
+    //     // Store also current cells modified vertices so that when other neighbours are processed they can
+    //     // see those changes and avoid overlaps
+    //     cellData.ModifiedVertices ??= new List<Vector2>(vertices2D.Count);
+    //     cellData.ModifiedVertices.Clear();
+    //
+    //     for (int i = 0; i < vertices2D.Count; ++i)
+    //     {
+    //         cellData.ModifiedVertices.Add(vertices2D[i]);
+    //     }
+    // }
 
     /// <summary>
     ///   Preprocess all neighbours in closeNeighboursKeys by rotating and shifting their original vertices
@@ -1167,5 +1175,502 @@ public class MembraneShapeGenerator
 
         public Vector2 Shift;
         public float Rotation;
+    }
+}
+
+/// <summary>
+///   Wspólne tolerancje geometryczne (w jednostkach świata, NIE zależne od długości wektorów).
+///   Jeśli Twoje jednostki są dużo mniejsze/większe, zmień tylko tutaj.
+///   Dla współrzędnych rzędu 1000 float ma precyzję ~1e-4, więc tolerancja musi być wyraźnie powyżej.
+/// </summary>
+public static class GeometryTolerance
+{
+    /// <summary>Tolerancja odległości: duplikaty punktów, strona prostej, styczność itd.</summary>
+    public const float Distance = 0.01f;
+
+    /// <summary>Tolerancja na równoległość (bezwymiarowa, sinus kąta) i zerową długość wektora.</summary>
+    public const float Parallel = 1e-6f;
+}
+
+public static class CellBoundaryBuilder
+{
+    private const float Tolerance = GeometryTolerance.Distance;
+
+    public static void BuildBoundaryPaths(CellData cell)
+    {
+        cell.BoundaryPaths.Clear();
+
+        List<Vector2> polygon = cell.Vertices2D.ToList();
+
+        if (polygon.Count < 3)
+            throw new InvalidOperationException("Membrana musi mieć co najmniej 3 wierzchołki.");
+
+        // Normalizujemy kolejność wierzchołków tak, aby wnętrze
+        // wielokąta znajdowało się po prawej stronie jego krawędzi.
+        if (SignedArea(polygon) > 0)
+            polygon.Reverse();
+
+        // Zbieramy punkty wejściowe.
+        List<Vector2> points = new();
+
+        points.AddRange(cell.IntersectionsData.Values.Select(x => x.Position));
+        points.AddRange(cell.LinesData.Values.Select(x => x.MiddlePoint));
+
+        points = RemoveDuplicatePoints(points);
+
+        if (points.Count == 0)
+            return;
+
+        Vector2 center = GetPolygonCenter(polygon);
+
+        // Sortowanie zgodnie z ruchem wskazówek zegara.
+        points = points
+            .OrderByDescending(p => MathF.Atan2(p.Y - center.Y,
+                p.X - center.X))
+            .ToList();
+
+        // Jeden punkt: dwie styczne.
+        if (points.Count == 1)
+        {
+            AddSinglePointPath(points[0], polygon, cell.BoundaryPaths);
+            return;
+        }
+
+        // Od 2 punktów wzwyż używamy jednej ogólnej ścieżki.
+        // Dla 2 punktów testuje ona OBA kierunki (0->1 oraz 1->0), więc wynik
+        // nie zależy już od tego, po której stronie cięcia atan2 (±pi) leżą punkty.
+        var validEdges = new bool[points.Count];
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            int next = (i + 1) % points.Count;
+
+            validEdges[i] = CanConnect(points[i],
+                points[next],
+                polygon);
+        }
+
+        // Zdegenerowany przypadek: 2 punkty i oba kierunki poprawne
+        // (wszystkie wierzchołki membrany współliniowe z odcinkiem).
+        // Nie robimy z tego "zamkniętej" pętli p0 -> p1 -> p0.
+        if (points.Count == 2 && validEdges[0] && validEdges[1])
+        {
+            AddOpenPath(points, polygon, cell.BoundaryPaths);
+            return;
+        }
+
+        // Wszystkie punkty tworzą zamknięty obwód.
+        if (validEdges.All(x => x))
+        {
+            BoundaryPathData closedPath = new();
+
+            closedPath.Points.AddRange(points);
+            closedPath.Points.Add(points[0]);
+
+            cell.BoundaryPaths.Add(closedPath);
+            return;
+        }
+
+        // Znajdujemy niepoprawną krawędź, od której zaczniemy
+        // przechodzenie po punktach.
+        int firstInvalidEdge = validEdges.FindIndex(x => !x);
+        int startIndex = (firstInvalidEdge + 1) % points.Count;
+
+        List<Vector2> currentPath = new();
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            int currentIndex = (startIndex + i) % points.Count;
+
+            currentPath.Add(points[currentIndex]);
+
+            // Ostatni punkt zamyka przejście przez całą listę.
+            // Krawędź z niego do punktu startowego jest niepoprawna.
+            if (i == points.Count - 1)
+            {
+                AddOpenPath(currentPath, polygon, cell.BoundaryPaths);
+                break;
+            }
+
+            if (!validEdges[currentIndex])
+            {
+                AddOpenPath(currentPath, polygon, cell.BoundaryPaths);
+                currentPath = new List<Vector2>();
+            }
+        }
+    }
+
+    public static void CastMembranePoints(CellData cell)
+    {
+        for (int i = 0; i < cell.Vertices2D.Count; i++)
+        {
+            Vector2 membranePoint = cell.Vertices2D[i];
+
+            if (!TryCastMembranePoint(membranePoint,
+                    cell.AverageVertex,
+                    cell.BoundaryPaths,
+                    out Vector2 hitPoint))
+            {
+                continue;
+            }
+
+            cell.Vertices2D[i] = hitPoint;
+        }
+    }
+
+    private static bool TryCastMembranePoint(Vector2 membranePoint,
+        Vector2 averagePoint,
+        List<BoundaryPathData> boundaryPaths,
+        out Vector2 hitPoint)
+    {
+        hitPoint = Vector2.Zero;
+
+        Vector2 toPoint = membranePoint - averagePoint;
+        float toPointLength = toPoint.Length();
+
+        if (toPointLength < Tolerance)
+            return false;
+
+        Vector2 direction = toPoint / toPointLength;
+
+        float closestDistance = float.MaxValue;
+        bool found = false;
+
+        foreach (BoundaryPathData path in boundaryPaths)
+        {
+            for (int i = 0; i < path.Points.Count - 1; i++)
+            {
+                Vector2 a = path.Points[i];
+                Vector2 b = path.Points[i + 1];
+
+                if (!TryRaySegmentIntersection(membranePoint,
+                        direction,
+                        a,
+                        b,
+                        out Vector2 intersection))
+                {
+                    continue;
+                }
+
+                // direction jest jednostkowy, więc to jest odległość w jednostkach świata.
+                float distance = (intersection - membranePoint).Dot(direction);
+
+                if (distance < -Tolerance || distance >= closestDistance)
+                    continue;
+
+                closestDistance = distance;
+                hitPoint = intersection;
+                found = true;
+            }
+        }
+
+        return found;
+    }
+
+    /// <summary>
+    ///   rayDirection MUSI być jednostkowy.
+    /// </summary>
+    private static bool TryRaySegmentIntersection(Vector2 rayOrigin,
+        Vector2 rayDirection,
+        Vector2 segmentStart,
+        Vector2 segmentEnd,
+        out Vector2 intersection)
+    {
+        intersection = Vector2.Zero;
+
+        Vector2 segmentDirection = segmentEnd - segmentStart;
+        float segmentLength = segmentDirection.Length();
+
+        if (segmentLength < Tolerance)
+            return false;
+
+        Vector2 offset = segmentStart - rayOrigin;
+
+        // |denominator| = |segmentDirection| * sin(kąta), więc porównujemy
+        // z długością odcinka -> test równoległości nie zależy od skali.
+        float denominator = rayDirection.Cross(segmentDirection);
+
+        if (MathF.Abs(denominator) < GeometryTolerance.Parallel * segmentLength)
+            return false;
+
+        // t jest w jednostkach świata (rayDirection jednostkowy),
+        // u jest bezwymiarowe (0..1 wzdłuż odcinka).
+        float t = offset.Cross(segmentDirection) / denominator;
+        float u = offset.Cross(rayDirection) / denominator;
+
+        float uTolerance = Tolerance / segmentLength;
+
+        if (t < -Tolerance || u < -uTolerance || u > 1f + uTolerance)
+            return false;
+
+        intersection = rayOrigin + rayDirection * t;
+        return true;
+    }
+
+    private static void AddSinglePointPath(Vector2 point,
+        List<Vector2> polygon,
+        List<BoundaryPathData> boundaryPaths)
+    {
+        Vector2 incomingTangent = GetIncomingTangent(point, polygon);
+        Vector2 outgoingTangent = GetOutgoingTangent(point, polygon);
+
+        boundaryPaths.Add(new BoundaryPathData
+        {
+            Points = { incomingTangent, point, outgoingTangent }
+        });
+    }
+
+    private static void AddOpenPath(List<Vector2> points,
+        List<Vector2> polygon,
+        List<BoundaryPathData> result)
+    {
+        if (points.Count == 0)
+            return;
+
+        Vector2 incomingTangent = GetIncomingTangent(points[0], polygon);
+        Vector2 outgoingTangent = GetOutgoingTangent(points[^1], polygon);
+
+        BoundaryPathData path = new();
+
+        path.Points.Add(incomingTangent);
+        path.Points.AddRange(points);
+        path.Points.Add(outgoingTangent);
+
+        result.Add(path);
+    }
+
+    // Sprawdza, czy odcinek jest poprawny:
+    // 1. Nie przecina wnętrza membrany.
+    // 2. Cała membrana znajduje się po prawej stronie odcinka.
+    private static bool CanConnect(Vector2 a,
+        Vector2 b,
+        List<Vector2> polygon)
+    {
+        if (SegmentEntersPolygonInterior(a, b, polygon))
+            return false;
+
+        return IsPolygonOnRightSide(a, b, polygon);
+    }
+
+    private static bool IsPolygonOnRightSide(Vector2 a,
+        Vector2 b,
+        List<Vector2> polygon)
+    {
+        foreach (Vector2 vertex in polygon)
+        {
+            // Odległość ze znakiem (dodatnia = po lewej), w jednostkach świata.
+            if (SideOf(a, b, vertex) > Tolerance)
+                return false;
+        }
+
+        return true;
+    }
+
+    // Sprawdza przecięcie odcinka z wnętrzem wypukłego wielokąta
+    // przez przycinanie parametryczne odcinka (Cyrus-Beck).
+    // Wszystkie warunki są liczone w jednostkach odległości (znormalizowane długością krawędzi).
+    private static bool SegmentEntersPolygonInterior(Vector2 a,
+        Vector2 b,
+        List<Vector2> polygon)
+    {
+        Vector2 direction = b - a;
+        float segmentLength = direction.Length();
+
+        if (segmentLength < Tolerance)
+            return false;
+
+        float tMin = 0f;
+        float tMax = 1f;
+
+        // Wnętrze musi leżeć ściśle (głębiej niż Tolerance) po prawej stronie każdej krawędzi.
+        const float limit = -Tolerance;
+
+        for (int i = 0; i < polygon.Count; i++)
+        {
+            Vector2 edgeStart = polygon[i];
+            Vector2 edgeEnd = polygon[(i + 1) % polygon.Count];
+            Vector2 edge = edgeEnd - edgeStart;
+
+            float edgeLength = edge.Length();
+
+            // Zdublowany wierzchołek - krawędź nie niesie informacji.
+            if (edgeLength < GeometryTolerance.Parallel)
+                continue;
+
+            // f0: odległość początku odcinka od prostej krawędzi (dodatnia = po lewej).
+            // fd: zmiana tej odległości na całej długości odcinka (t: 0 -> 1).
+            float f0 = Cross(edge, a - edgeStart) / edgeLength;
+            float fd = Cross(edge, direction) / edgeLength;
+
+            if (MathF.Abs(fd) < GeometryTolerance.Parallel)
+            {
+                if (f0 > limit)
+                    return false;
+
+                continue;
+            }
+
+            float t = (limit - f0) / fd;
+
+            if (fd > 0)
+                tMax = MathF.Min(tMax, t);
+            else
+                tMin = MathF.Max(tMin, t);
+
+            if (tMin >= tMax)
+                return false;
+        }
+
+        // Długość części odcinka wewnątrz wielokąta, w jednostkach świata (nie w jednostkach t).
+        return (tMax - tMin) * segmentLength > Tolerance;
+    }
+
+    // Styczna wejściowa:
+    // kierunek stycznej to T -> P.
+    // Membrana musi być po prawej stronie tego kierunku.
+    private static Vector2 GetIncomingTangent(Vector2 point,
+        List<Vector2> polygon)
+    {
+        return FindTangent(point, polygon, incoming: true);
+    }
+
+    // Styczna wyjściowa:
+    // kierunek stycznej to P -> T.
+    // Membrana musi być po prawej stronie tego kierunku.
+    private static Vector2 GetOutgoingTangent(Vector2 point,
+        List<Vector2> polygon)
+    {
+        return FindTangent(point, polygon, incoming: false);
+    }
+
+    private static Vector2 FindTangent(Vector2 point,
+        List<Vector2> polygon,
+        bool incoming)
+    {
+        if (IsPointInsideOrOnPolygon(point, polygon))
+        {
+            throw new InvalidOperationException($"Punkt {point} leży wewnątrz membrany lub na jej obrysie. " +
+                "Nie można wyznaczyć zewnętrznej stycznej.");
+        }
+
+        Vector2? bestCandidate = null;
+        float bestDistance = float.MaxValue;
+
+        foreach (Vector2 tangentPoint in polygon)
+        {
+            bool isValid = true;
+
+            foreach (Vector2 vertex in polygon)
+            {
+                // incoming: prosta T -> P, outgoing: prosta P -> T.
+                float side = incoming ?
+                    SideOf(tangentPoint, point, vertex) :
+                    SideOf(point, tangentPoint, vertex);
+
+                if (side > Tolerance)
+                {
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (!isValid)
+                continue;
+
+            float distance = point.DistanceSquaredTo(tangentPoint);
+
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                bestCandidate = tangentPoint;
+            }
+        }
+
+        if (bestCandidate == null)
+        {
+            throw new InvalidOperationException($"Nie udało się znaleźć stycznej dla punktu {point}.");
+        }
+
+        return bestCandidate.Value;
+    }
+
+    private static bool IsPointInsideOrOnPolygon(Vector2 point,
+        List<Vector2> polygon)
+    {
+        for (int i = 0; i < polygon.Count; i++)
+        {
+            Vector2 a = polygon[i];
+            Vector2 b = polygon[(i + 1) % polygon.Count];
+
+            if (SideOf(a, b, point) > Tolerance)
+                return false;
+        }
+
+        return true;
+    }
+
+    private static List<Vector2> RemoveDuplicatePoints(List<Vector2> points)
+    {
+        List<Vector2> result = new();
+
+        // Ta sama tolerancja co w GetIntersections, żeby punkty oddalone o ~0.001
+        // nie przechodziły jako różne i nie psuły kolejności po kącie.
+        const float toleranceSquared = Tolerance * Tolerance;
+
+        foreach (Vector2 point in points)
+        {
+            bool exists = result.Any(existing =>
+                existing.DistanceSquaredTo(point) <= toleranceSquared);
+
+            if (!exists)
+                result.Add(point);
+        }
+
+        return result;
+    }
+
+    private static Vector2 GetPolygonCenter(List<Vector2> polygon)
+    {
+        Vector2 center = Vector2.Zero;
+
+        foreach (Vector2 vertex in polygon)
+            center += vertex;
+
+        return center / polygon.Count;
+    }
+
+    private static float SignedArea(List<Vector2> polygon)
+    {
+        float area = 0f;
+
+        for (int i = 0; i < polygon.Count; i++)
+        {
+            Vector2 a = polygon[i];
+            Vector2 b = polygon[(i + 1) % polygon.Count];
+
+            area += Cross(a, b);
+        }
+
+        return area * 0.5f;
+    }
+
+    /// <summary>
+    ///   Odległość ze znakiem punktu p od prostej a -> b (dodatnia = po lewej stronie kierunku a -> b).
+    ///   W przeciwieństwie do surowego Cross nie zależy od długości odcinka a-b.
+    /// </summary>
+    private static float SideOf(Vector2 a, Vector2 b, Vector2 p)
+    {
+        Vector2 direction = b - a;
+        float length = direction.Length();
+
+        if (length < GeometryTolerance.Parallel)
+            return 0f;
+
+        return Cross(direction, p - a) / length;
+    }
+
+    private static float Cross(Vector2 a, Vector2 b)
+    {
+        return a.X * b.Y - a.Y * b.X;
     }
 }

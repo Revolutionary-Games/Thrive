@@ -239,6 +239,98 @@ public sealed class NeighbourData
     }
 }
 
+public sealed class CellData
+{
+    public long CellKey;
+    public List<Vector2> Vertices2D = null!;
+    public Dictionary<long, LineData> LinesData = new();
+    public Dictionary<long, IntersetionData> IntersectionsData = new();
+    public List<BoundaryPathData> BoundaryPaths = new();
+    public MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
+    public Vector2 AverageVertex;
+
+    public CellData(long cellKey, List<Vector2> vertices2D,
+        MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData)
+    {
+        CellKey = cellKey;
+        Vertices2D = vertices2D;
+        MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
+        AverageVertex = MembranePointData.GetAverageVertex(Vertices2D.ToArray(), Vertices2D.Count);
+    }
+}
+
+public sealed class BoundaryPathData
+{
+    public List<Vector2> Points = new();
+
+    public bool IsClosed => Points.Count > 2 &&
+        Points[0].DistanceSquaredTo(Points[^1]) <= 0.0000001f;
+}
+
+public sealed class LineData
+{
+    public long LineKey;
+    public long CellKey;
+    public long OtherCellKey;
+
+    public Vector2 MiddlePoint;
+    public Vector2 Line;
+    public Vector2 Normal;
+
+    public long LeftIntersectionId;
+    public long RightIntersectionId;
+
+    public LineData(Vector2 middlePoint, Vector2 normal, long cellKey, long otherCellKey)
+    {
+        MiddlePoint = middlePoint;
+        Normal = normal;
+        Line = new Vector2(normal.Y, -normal.X);
+        CellKey = cellKey;
+        OtherCellKey = otherCellKey;
+
+        const long prime1 = 1099511628211L;
+        var lineKey = prime1;
+
+        unchecked
+        {
+            lineKey = (lineKey * prime1) ^ BitConverter.SingleToInt32Bits(middlePoint.X);
+            lineKey = (lineKey * prime1) ^ BitConverter.SingleToInt32Bits(middlePoint.Y);
+        }
+
+        LineKey = lineKey;
+    }
+}
+
+public sealed class IntersetionData
+{
+    public long IntersectionId;
+    public long CellKey;
+    public long OtherCellKey;
+    public long lineKey1;
+    public long lineKey2;
+    public Vector2 Position;
+
+    public IntersetionData(Vector2 position, long cellKey, long otherCellKey, long lineKey1, long lineKey2)
+    {
+        Position = position;
+        CellKey = cellKey;
+        OtherCellKey = otherCellKey;
+        this.lineKey1 = lineKey1;
+        this.lineKey2 = lineKey2;
+
+        const long prime1 = 1099511628211L;
+        var intersectionId = prime1;
+
+        unchecked
+        {
+            intersectionId = (intersectionId * prime1) ^ BitConverter.SingleToInt32Bits(position.X);
+            intersectionId = (intersectionId * prime1) ^ BitConverter.SingleToInt32Bits(position.Y);
+        }
+
+        IntersectionId = intersectionId;
+    }
+}
+
 /// <summary>
 ///   Cache entry that holds the base collision shape of a microbe (the physics shape of the membrane)
 /// </summary>
