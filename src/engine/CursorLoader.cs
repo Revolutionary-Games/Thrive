@@ -25,4 +25,17 @@ public partial class CursorLoader : Node
         noDropCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hand.png");
         Input.SetCustomMouseCursor(noDropCursor, Input.CursorShape.Forbidden, new Vector2(24, 24));
     }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (Engine.IsEditorHint())
+            return;
+
+        Input.SetCustomMouseCursor(null);
+        Input.SetCustomMouseCursor(null, Input.CursorShape.PointingHand);
+        Input.SetCustomMouseCursor(null, Input.CursorShape.CanDrop);
+        Input.SetCustomMouseCursor(null, Input.CursorShape.Forbidden);
+    }
 }
