@@ -141,14 +141,7 @@ public static class CommonMutationFunctions
         if (position == null)
             return false;
 
-        newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
-
-        // If the new species is eukaryotic, mark this as such.
-        if (ReferenceEquals(organelle, Nucleus))
-        {
-            newSpecies.IsBacteria = false;
-        }
-
+        AddOrganelleToSpecies(organelle, position, newSpecies, workMemory1, workMemory2);
         return true;
     }
 
@@ -425,6 +418,38 @@ public static class CommonMutationFunctions
         }
     }
 
+    /// <summary>
+    ///   Adds an organelle using realistic placement, optionally reusing a detached template owned by this candidate.
+    ///   The reusable template must have the requested definition reference; its upgrades and endosymbiont flag remain.
+    ///   It is only modified after a successful search, and ownership then passes to the species layout.
+    /// </summary>
+    internal static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
+        OrganelleTemplate? reusableTemplate, List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3,
+        Random random)
+    {
+        if (!TryGetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory3, random,
+                out var position, out var orientation))
+        {
+            return false;
+        }
+
+        var template = reusableTemplate ?? new OrganelleTemplate(organelle, position, orientation);
+        template.Position = position;
+        template.Orientation = orientation;
+        AddOrganelleToSpecies(organelle, template, newSpecies, workMemory1, workMemory2);
+        return true;
+    }
+
+    private static void AddOrganelleToSpecies(OrganelleDefinition organelle, OrganelleTemplate template,
+        MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        newSpecies.Organelles.AddFast(template, workMemory1, workMemory2);
+
+        // If the new species is eukaryotic, mark this as such.
+        if (ReferenceEquals(organelle, Nucleus))
+            newSpecies.IsBacteria = false;
+    }
+
     private static bool TryAddNewCell(ref double mp, CellType newCellType, int mpCost, List<Hex> workMemory1,
         List<Hex> workMemory2, CellTemplate baseCell, Hex.HexSide hexSide, IReadOnlyHexWithData<CellTemplate> baseHex,
         IndividualHexLayout<CellTemplate> newCells)
@@ -465,8 +490,20 @@ public static class CommonMutationFunctions
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
         HashSet<Hex> workMemory2, Random random)
     {
+        if (TryGetRealisticPosition(organelle, existingOrganelles, direction, workMemory1, workMemory2, random,
+                out var position, out var orientation))
+        {
+            return new OrganelleTemplate(organelle, position, orientation);
+        }
+
+        return null;
+    }
+
+    private static bool TryGetRealisticPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
+        HashSet<Hex> workMemory2, Random random, out Hex position, out int orientation)
+    {
         bool isSingleHex = organelle.Hexes.Count < 2;
-        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
         // Create a cache of the already used positions to have much more efficient placement checking
         existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
@@ -489,48 +526,40 @@ public static class CommonMutationFunctions
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                foreach (int side in SideTraversalOrder(hex, direction, random))
+                foreach (var side in SideTraversalOrder(hex, direction, random))
                 {
                     // pick a hex direction, with a slight bias towards forwards
                     for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
-                        var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
+                        var hexOffset = Hex.HexNeighbourOffset[side];
                         hexOffset *= radius;
                         var currentPosition = pos + hexOffset;
 
-                        if (organelle.HasMovementComponent)
+                        // Face movement to move forward
+                        if (organelle.HasMovementComponent && existingOrganelles.IsOrganellePositionFree(organelle,
+                                currentPosition.Q, currentPosition.R, 3, workMemory2, out _))
                         {
-                            // Face movement to move forward
-
-                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
-                                    currentPosition.R, 3, workMemory2, out _))
-                            {
-                                result.Position = currentPosition;
-                                result.Orientation = 3;
-                                return result;
-                            }
+                            position = currentPosition;
+                            orientation = 3;
+                            return true;
                         }
 
                         // Check every possible rotation value.
                         for (int rotation = 0; rotation <= 5; ++rotation)
                         {
-                            result.Orientation = rotation;
-
                             if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
                                     currentPosition.R, rotation, workMemory2, out var primaryHexWasFree))
                             {
-                                result.Position = currentPosition;
-                                result.Orientation = rotation;
-                                return result;
+                                position = currentPosition;
+                                orientation = rotation;
+                                return true;
                             }
 
+                            // If the primary hex was occupied, no rotation value can ever cause that hex to be
+                            // unoccupied, so we can fail early here to save a lot of computations
                             if (rotation == 0 && !primaryHexWasFree)
-                            {
-                                // If the primary hex was occupied, no rotation value can ever cause that hex to be
-                                // unoccupied, so we can fail early here to save a lot of computations
                                 break;
-                            }
 
                             // Single hex organelles don't change what they occupy if rotated
                             if (isSingleHex)
@@ -541,7 +570,9 @@ public static class CommonMutationFunctions
             }
         }
 
-        return null;
+        position = default;
+        orientation = 0;
+        return false;
     }
 
     private static OrganelleTemplate? GetSpiralPosition(OrganelleDefinition organelle,
