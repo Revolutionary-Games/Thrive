@@ -1708,7 +1708,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             float weight;
 
             if (random.NextSingle() < Constants.GAMETE_SPAWN_CHANCE && multicellularSpecies?.ReproductionMethod
-                is MulticellularReproductionMethod.SexualAnisogamy or MulticellularReproductionMethod.SexualIsogamy)
+                    is MulticellularReproductionMethod.SexualAnisogamy or MulticellularReproductionMethod.SexualIsogamy)
             {
                 CellType gameteCellType;
 
