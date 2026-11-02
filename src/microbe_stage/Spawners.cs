@@ -1132,25 +1132,29 @@ public static class SpawnHelpers
         IMicrobeSpawnEnvironment spawnEnvironment, MulticellularSpecies species, Vector3 location,
         Vector3 initialVelocity, GameteType gamete, bool aiGamete, out Entity entity, Entity shootingEntity)
     {
-        CellType gameteType;
+        CellType? gameteType;
+        int cellBodyPlanIndex = -1;
 
         if (gamete == GameteType.B)
         {
-            gameteType = species.ModifiableGameteTypeB!;
+            gameteType = species.ModifiableGameteTypeB;
         }
         else
         {
-            gameteType = species.ModifiableGameteTypeA!;
+            gameteType = species.ModifiableGameteTypeA;
         }
 
         if (gameteType == null)
         {
-            GD.PrintErr("Species is missing configured gamete type that should have been spawned");
+            GD.PrintErr("Species is missing configured gamete type that should have been spawned."
+                + " Defaulting to spawning the first cell in the body plan");
+
+            cellBodyPlanIndex = 0;
         }
 
         // We use the gamete type and -1 as the index to spawn this cell in a bit special state
         var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            true, (gameteType, -1), gamete, out entity, MulticellularSpawnState.Offspring);
+            true, (gameteType, cellBodyPlanIndex), gamete, out entity, MulticellularSpawnState.Offspring);
 
         // Override some things to make the cell work like a gamete
 
