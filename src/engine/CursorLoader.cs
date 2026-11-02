@@ -33,6 +33,7 @@ public partial class CursorLoader : Node
         if (Engine.IsEditorHint())
             return;
 
+        // Release cursor resources. Needed due to: https://github.com/godotengine/godot/issues/98806
         Input.SetCustomMouseCursor(null);
         Input.SetCustomMouseCursor(null, Input.CursorShape.PointingHand);
         Input.SetCustomMouseCursor(null, Input.CursorShape.CanDrop);
