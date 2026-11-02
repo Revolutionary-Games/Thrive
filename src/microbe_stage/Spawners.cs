@@ -1115,11 +1115,11 @@ public static class SpawnHelpers
     }
 
     public static void SpawnGamete(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        ISpawnSystem spawnerToRegisterWith, Species species, Vector3 location, Vector3 initialVelocity,
-        GameteType gamete, CellType gameteType, bool aiGamete, Entity shootingEntity)
+        ISpawnSystem spawnerToRegisterWith, MulticellularSpecies species, Vector3 location, Vector3 initialVelocity,
+        GameteType gamete, bool aiGamete, Entity shootingEntity)
     {
         var (recorder, weight) = SpawnGameteWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            initialVelocity, gamete, gameteType, aiGamete, out var entity, shootingEntity);
+            initialVelocity, gamete, aiGamete, out var entity, shootingEntity);
 
         // Make it despawn like normal
         spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,
@@ -1129,9 +1129,25 @@ public static class SpawnHelpers
     }
 
     public static (CommandBuffer Recorder, float Weight) SpawnGameteWithoutFinalizing(IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, Species species, Vector3 location, Vector3 initialVelocity,
-        GameteType gamete, CellType gameteType, bool aiGamete, out Entity entity, Entity shootingEntity)
+        IMicrobeSpawnEnvironment spawnEnvironment, MulticellularSpecies species, Vector3 location,
+        Vector3 initialVelocity, GameteType gamete, bool aiGamete, out Entity entity, Entity shootingEntity)
     {
+        CellType gameteType;
+
+        if (gamete == GameteType.B)
+        {
+            gameteType = species.ModifiableGameteTypeB!;
+        }
+        else
+        {
+            gameteType = species.ModifiableGameteTypeA!;
+        }
+
+        if (gameteType == null)
+        {
+            GD.PrintErr("Species is missing configured gamete type that should have been spawned");
+        }
+
         // We use the gamete type and -1 as the index to spawn this cell in a bit special state
         var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
             true, (gameteType, -1), gamete, out entity, MulticellularSpawnState.Offspring);
@@ -1706,29 +1722,21 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             sex = GameteType.All;
         }
 
-        var firstSpawn = new SingleItemSpawnQueue((out entity) =>
+        bool gameteSpawn = random.NextSingle() < Constants.GAMETE_SPAWN_CHANCE
+            && multicellularSpecies?.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                or MulticellularReproductionMethod.SexualIsogamy;
+
+        SingleItemSpawnQueue.Factory spawnMethod = (out entity) =>
         {
             CommandBuffer recorder;
             float weight;
 
-            if (random.NextSingle() < Constants.GAMETE_SPAWN_CHANCE && multicellularSpecies?.ReproductionMethod
-                    is MulticellularReproductionMethod.SexualAnisogamy or MulticellularReproductionMethod.SexualIsogamy)
+            if (gameteSpawn)
             {
-                CellType gameteCellType;
-
-                if (sex == GameteType.B)
-                {
-                    gameteCellType = multicellularSpecies.ModifiableGameteTypeB!;
-                }
-                else
-                {
-                    gameteCellType = multicellularSpecies.ModifiableGameteTypeA!;
-                }
-
                 var initialVelocity = new Quaternion(Vector3.Up, random.Next(0.0f, MathF.PI * 2.0f)) * Vector3.Forward;
 
                 (recorder, weight) = SpawnHelpers.SpawnGameteWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
-                    Species, location, initialVelocity, sex, gameteCellType, true, out entity, Entity.Null);
+                    multicellularSpecies!, location, initialVelocity, sex, true, out entity, Entity.Null);
             }
             else
             {
@@ -1740,7 +1748,21 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity, recorder);
 
             return (recorder, weight);
-        }, location, SpawnQueue.IsTooCloseToPlayer, this);
+        };
+
+        SingleItemSpawnQueue.ConfigureAfterSpawn? postSpawnConfiguartion = null;
+
+        if (gameteSpawn)
+        {
+            postSpawnConfiguartion = (recorder, entity, playerPos) =>
+            {
+                recorder.Set(entity,
+                    new WorldPosition(location, Basis.LookingAt(playerPos - location).GetRotationQuaternion()));
+            };
+        }
+
+        var firstSpawn = new SingleItemSpawnQueue(spawnMethod, location, SpawnQueue.IsTooCloseToPlayer, this,
+            postSpawnConfiguartion);
 
         if (!bacteria)
         {
