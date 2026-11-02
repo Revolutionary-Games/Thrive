@@ -1181,6 +1181,10 @@ public static class SpawnHelpers
         {
             rotation = Basis.LookingAt(initialVelocity, Vector3.Up).GetRotationQuaternion();
         }
+        else
+        {
+            GD.PrintErr("Initial velocity of a gamete should not be zero (as direction won't be set)");
+        }
 
         recorder.Set(entity, new WorldPosition(location, rotation));
 
