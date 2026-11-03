@@ -3,7 +3,7 @@ using System.Buffers.Binary;
 using System.IO.Hashing;
 
 /// <summary>
-///   Derives private random sources from the selected world seed, without shared state or external entropy.
+///   Derives private random sources from a root seed, without shared state or external entropy.
 /// </summary>
 public static class WorldSeed
 {
@@ -39,17 +39,16 @@ public static class WorldSeed
     }
 
     /// <summary>
-    ///   Derives an Auto-Evo task seed from exactly 24 little-endian bytes: signed 64-bit world seed, unsigned
-    ///   32-bit domain, signed 32-bit last applied generation, then signed 64-bit owner ID. Patch IDs and species
-    ///   IDs are widened without losing bits. Uses the same xxHash64 and result interpretation as the root overload.
+    ///   Derives a task seed from exactly 20 little-endian bytes: signed 64-bit root seed, unsigned 32-bit domain,
+    ///   then signed 64-bit owner ID. Patch IDs and species IDs are widened without losing bits.
+    ///   Uses the same xxHash64 and result interpretation as the root overload.
     /// </summary>
-    public static long Derive(long worldSeed, Domain domain, int generation, long ownerId)
+    public static long Derive(long seed, Domain domain, long ownerId)
     {
-        Span<byte> input = stackalloc byte[24];
-        BinaryPrimitives.WriteInt64LittleEndian(input, worldSeed);
+        Span<byte> input = stackalloc byte[20];
+        BinaryPrimitives.WriteInt64LittleEndian(input, seed);
         BinaryPrimitives.WriteUInt32LittleEndian(input[8..], (uint)domain);
-        BinaryPrimitives.WriteInt32LittleEndian(input[12..], generation);
-        BinaryPrimitives.WriteInt64LittleEndian(input[16..], ownerId);
+        BinaryPrimitives.WriteInt64LittleEndian(input[12..], ownerId);
         return unchecked((long)XxHash64.HashToUInt64(input));
     }
 }

@@ -473,7 +473,7 @@ public class RegisterNewSpeciesTests
     private sealed class ControlledRun(GameWorld world, params IRunStep[] steps)
         : AutoEvoRun(world, world.AutoEvoGlobalCache)
     {
-        protected override void GatherInfo(Queue<IRunStep> destination)
+        protected override void GatherInfo(Queue<IRunStep> destination, long seed)
         {
             foreach (var step in steps)
                 destination.Enqueue(step);

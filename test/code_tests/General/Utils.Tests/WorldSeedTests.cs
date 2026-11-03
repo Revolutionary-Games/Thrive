@@ -5,22 +5,20 @@ using Xunit;
 public class WorldSeedTests
 {
     /// <summary>
-    ///   Verifies task seed derivation against independent xxHash64 vectors for the 24-byte identity encoding,
-    ///   protecting domain and generation separation and preservation of the full world seed and owner ID.
+    ///   Verifies task seed derivation against independent xxHash64 vectors for the 20-byte identity encoding,
+    ///   protecting field order, domain separation and preservation of the full root seed and owner ID.
     /// </summary>
     [Theory]
-    [InlineData(0L, WorldSeed.Domain.AutoEvoModifySpecies, 0, 0L, 4500431172382057997L)]
-    [InlineData(0L, WorldSeed.Domain.AutoEvoMigrateSpecies, 0, 0L, -7495222163240469744L)]
-    [InlineData(long.MinValue, WorldSeed.Domain.AutoEvoMigrateSpecies, int.MaxValue, uint.MaxValue,
-        -4052545058602171213L)]
-    [InlineData(long.MaxValue, WorldSeed.Domain.AutoEvoModifySpecies, 0, int.MinValue, -8759288772347118965L)]
-    [InlineData(4294967296L, WorldSeed.Domain.AutoEvoModifySpecies, 0, 11L, 4529398752378197944L)]
-    public void TaskDerivationUsesStableIdentity(long seed, WorldSeed.Domain domain, int generation, long owner,
-        long expected)
+    [InlineData(0L, WorldSeed.Domain.AutoEvoModifySpecies, 0L, -9183548790926087643L)]
+    [InlineData(0L, WorldSeed.Domain.AutoEvoMigrateSpecies, 0L, -7054944205724847261L)]
+    [InlineData(long.MinValue, WorldSeed.Domain.AutoEvoMigrateSpecies, uint.MaxValue, 7156370087293823420L)]
+    [InlineData(long.MaxValue, WorldSeed.Domain.AutoEvoModifySpecies, int.MinValue, -1472908689342849021L)]
+    [InlineData(4294967296L, WorldSeed.Domain.AutoEvoModifySpecies, 11L, 2689368312846164605L)]
+    public void TaskDerivationUsesStableIdentity(long seed, WorldSeed.Domain domain, long owner, long expected)
     {
         checked
         {
-            Assert.Equal(expected, WorldSeed.Derive(seed, domain, generation, owner));
+            Assert.Equal(expected, WorldSeed.Derive(seed, domain, owner));
         }
     }
 

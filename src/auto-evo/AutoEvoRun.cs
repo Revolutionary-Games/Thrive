@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   A single run of the auto-evo system happening in a background thread
@@ -28,6 +29,8 @@ public class AutoEvoRun
 
     private readonly List<Task> concurrentStepTasks = new();
 
+    private readonly long runSeed;
+
     private volatile RunStage state = RunStage.GatheringInfo;
 
     private bool started;
@@ -43,11 +46,27 @@ public class AutoEvoRun
 
     private int completeSteps;
 
+    /// <summary>
+    ///   Creates a run with a randomly selected seed that remains fixed for this instance.
+    /// </summary>
     public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache)
+        : this(world, globalCache, new XoShiRo256starstar().Next64())
+    {
+    }
+
+    /// <summary>
+    ///   Creates a run with an explicit seed for its mutation and migration random streams.
+    ///   This does not make the entire Auto-Evo result deterministic.
+    /// </summary>
+    /// <param name="world">The world to simulate</param>
+    /// <param name="globalCache">Shared Auto-Evo data</param>
+    /// <param name="seed">The run seed. All long values, including zero and negative values, are valid.</param>
+    public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache, long seed)
     {
         Parameters = new RunParameters(world);
         configuration = world.WorldSettings.AutoEvoConfiguration;
         this.globalCache = globalCache;
+        runSeed = seed;
     }
 
     private enum RunStage
@@ -425,17 +444,12 @@ public class AutoEvoRun
     /// <summary>
     ///   The info gather phase
     /// </summary>
-    protected virtual void GatherInfo(Queue<IRunStep> steps)
+    /// <param name="steps">The queue to populate with this run's steps</param>
+    /// <param name="seed">The run seed used to derive private mutation and migration streams</param>
+    protected virtual void GatherInfo(Queue<IRunStep> steps, long seed)
     {
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
-
-        // Editor entry can advance PlayerSpecies.Generation before this run finishes. The last applied
-        // generation stays the same until results are applied, including when a run is rebuilt or retried.
-        if (Parameters.World.GenerationHistory.Count == 0)
-            throw new InvalidOperationException("Cannot seed auto-evo tasks without generation history");
-
-        var generation = Parameters.World.GenerationHistory.Keys.Max();
 
         var autoEvoConfiguration = configuration;
 
@@ -458,8 +472,7 @@ public class AutoEvoRun
         foreach (var entry in map.Patches)
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
-                WorldSeed.Derive(worldSettings.Seed, WorldSeed.Domain.AutoEvoModifySpecies, generation,
-                    entry.Value.ID)));
+                WorldSeed.Derive(seed, WorldSeed.Domain.AutoEvoModifySpecies, entry.Value.ID)));
         }
 
         foreach (var species in allSpecies)
@@ -468,7 +481,7 @@ public class AutoEvoRun
                 continue;
 
             steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings),
-                WorldSeed.Derive(worldSettings.Seed, WorldSeed.Domain.AutoEvoMigrateSpecies, generation, species.ID)));
+                WorldSeed.Derive(seed, WorldSeed.Domain.AutoEvoMigrateSpecies, species.ID)));
         }
 
         // End concurrent steps.
@@ -631,7 +644,7 @@ public class AutoEvoRun
         {
             case RunStage.GatheringInfo:
             {
-                GatherInfo(runSteps);
+                GatherInfo(runSteps, runSeed);
 
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum(s => s.TotalSteps) + 2;

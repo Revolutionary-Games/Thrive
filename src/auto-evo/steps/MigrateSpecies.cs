@@ -24,18 +24,12 @@ public class MigrateSpecies : IRunStep
         this.map = map;
         this.worldSettings = worldSettings;
 
-        RandomSeed = seed;
         random = new XoShiRo128starstar(seed);
     }
 
     public int TotalSteps => 1;
 
     public bool CanRunConcurrently => true;
-
-    /// <summary>
-    ///   Initial seed of this task's private stream, available for passive binding diagnostics.
-    /// </summary>
-    internal long RandomSeed { get; }
 
     public bool RunStep(RunResults results)
     {
