@@ -118,11 +118,30 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
 
             // If there is already a Cell Type with this organelle, add more of this type adjacent to existing,
             // trying multiple configurations.
-            // Otherwise, create a new Cell Type with this Organelle, and place a new cell on the center line.
+            // Otherwise, create a new Cell Type with this organelle, and place a new cell on the center line.
+            // Also attempt adding another copy of the organelle to this cell type instead.
             if (highestTargetOrganelleCount > 0)
             {
                 AddExistingCellType(mp, baseCellTypes, mostSuitableIndex, baseMulticellularSpecies, baseCells,
                     baseCellsCount, workMemory1, workMemory2, mutated);
+
+                // Don't add duplicate unique organelles
+                if (organelle.Unique && baseCellTypes[mostSuitableIndex].Organelles.Select(x => x.Definition).Contains(organelle))
+                    continue;
+
+                if (mp < organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR)
+                    continue;
+
+                var newSpecies = baseMulticellularSpecies.Clone(true, false);
+
+                // In the rare case that adding the organelle fails, this can skip adding it to be tested as the species
+                // is not any different
+                if (!AddOrganelle(organelle, direction, newSpecies.ModifiableCellTypes[mostSuitableIndex], workMemory1,
+                        workMemory2, workMemory3, random))
+                    continue;
+
+                var newMp = mp - organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+                mutated.Add(new Mutant(newSpecies, newMp));
             }
             else
             {
