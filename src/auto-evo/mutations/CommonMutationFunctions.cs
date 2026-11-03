@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using AutoEvo;
@@ -8,7 +7,7 @@ public static class CommonMutationFunctions
 {
     public static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-    private const int RANDOM_ORDER_STACK_LIMIT = 256;
+    private const int RANDOM_ORDER_STACK_LIMIT = 512;
 
     // These must be defined this way to avoid allocations
     private static readonly Hex.HexSide[] TraversalOrder1 = [Hex.HexSide.Top];
@@ -474,111 +473,90 @@ public static class CommonMutationFunctions
         existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
         var organelleCount = existingOrganelles.Count;
-        int[]? rentedOrder = null;
-        try
-        {
-            var randomOrder = organelleCount <= RANDOM_ORDER_STACK_LIMIT ?
-                stackalloc int[organelleCount] :
-                (rentedOrder = ArrayPool<int>.Shared.Rent(organelleCount)).AsSpan(0, organelleCount);
 
-            PrepareRandomOrganelleOrder(randomOrder, random);
+        var randomOrder = organelleCount <= RANDOM_ORDER_STACK_LIMIT ?
+            stackalloc int[organelleCount] :
+            new int[organelleCount].AsSpan();
 
-            // Loop through all the organelles and find an open spot to
-            // place our new organelle attached to existing organelles
-            // This almost always is over at the first iteration, so it's
-            // not a huge performance hog
-            for (int i = 0; i < organelleCount; ++i)
-            {
-                var otherOrganelle = existingOrganelles[randomOrder[i]];
-
-                // The otherOrganelle is the organelle we wish to be next to
-                // Loop its hexes and check positions next to them
-                var rotated = otherOrganelle.RotatedHexes;
-                var rotatedCount = rotated.Count;
-                for (int j = 0; j < rotatedCount; ++j)
-                {
-                    var hex = rotated[j];
-
-                    // Offset by hexes in organelle we are looking at
-                    var pos = otherOrganelle.Position + hex;
-
-                    foreach (int side in SideTraversalOrder(hex, direction, random))
-                    {
-                        // pick a hex direction, with a slight bias towards forwards
-                        for (int radius = 1; radius <= 3; ++radius)
-                        {
-                            // Offset by hex offset multiplied by a factor to check for greater range
-                            var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
-                            hexOffset *= radius;
-                            var currentPosition = pos + hexOffset;
-
-                            if (organelle.HasMovementComponent)
-                            {
-                                // Face movement to move forward
-
-                                if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
-                                        currentPosition.R, 3, workMemory2, out _))
-                                {
-                                    result.Position = currentPosition;
-                                    result.Orientation = 3;
-                                    return result;
-                                }
-                            }
-
-                            // Check every possible rotation value.
-                            for (int rotation = 0; rotation <= 5; ++rotation)
-                            {
-                                result.Orientation = rotation;
-
-                                if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
-                                        currentPosition.R, rotation, workMemory2, out var primaryHexWasFree))
-                                {
-                                    result.Position = currentPosition;
-                                    result.Orientation = rotation;
-                                    return result;
-                                }
-
-                                if (rotation == 0 && !primaryHexWasFree)
-                                {
-                                    // If the primary hex was occupied, no rotation value can ever cause that hex to be
-                                    // unoccupied, so we can fail early here to save a lot of computations
-                                    break;
-                                }
-
-                                // Single hex organelles don't change what they occupy if rotated
-                                if (isSingleHex)
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-        finally
-        {
-            if (rentedOrder != null)
-                ArrayPool<int>.Shared.Return(rentedOrder);
-        }
-    }
-
-    /// <summary>
-    ///   Fills the buffer with every organelle index and shuffles it before the placement search.
-    /// </summary>
-    private static void PrepareRandomOrganelleOrder(Span<int> randomOrder, Random random)
-    {
         for (int i = 0; i < randomOrder.Length; ++i)
         {
             randomOrder[i] = i;
         }
 
-        // Complete the same forward Fisher-Yates shuffle as ListUtils.Shuffle before any placement attempts.
-        for (int i = 0; i < randomOrder.Length - 1; ++i)
+        random.Shuffle(randomOrder);
+
+        // Loop through all the organelles and find an open spot to
+        // place our new organelle attached to existing organelles
+        // This almost always is over at the first iteration, so it's
+        // not a huge performance hog
+        for (int i = 0; i < organelleCount; ++i)
         {
-            int j = random.Next(i, randomOrder.Length);
-            (randomOrder[i], randomOrder[j]) = (randomOrder[j], randomOrder[i]);
+            var otherOrganelle = existingOrganelles[randomOrder[i]];
+
+            // The otherOrganelle is the organelle we wish to be next to
+            // Loop its hexes and check positions next to them
+            var rotated = otherOrganelle.RotatedHexes;
+            var rotatedCount = rotated.Count;
+            for (int j = 0; j < rotatedCount; ++j)
+            {
+                var hex = rotated[j];
+
+                // Offset by hexes in organelle we are looking at
+                var pos = otherOrganelle.Position + hex;
+
+                foreach (int side in SideTraversalOrder(hex, direction, random))
+                {
+                    // pick a hex direction, with a slight bias towards forwards
+                    for (int radius = 1; radius <= 3; ++radius)
+                    {
+                        // Offset by hex offset multiplied by a factor to check for greater range
+                        var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
+                        hexOffset *= radius;
+                        var currentPosition = pos + hexOffset;
+
+                        if (organelle.HasMovementComponent)
+                        {
+                            // Face movement to move forward
+
+                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
+                                    currentPosition.R, 3, workMemory2, out _))
+                            {
+                                result.Position = currentPosition;
+                                result.Orientation = 3;
+                                return result;
+                            }
+                        }
+
+                        // Check every possible rotation value.
+                        for (int rotation = 0; rotation <= 5; ++rotation)
+                        {
+                            result.Orientation = rotation;
+
+                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
+                                    currentPosition.R, rotation, workMemory2, out var primaryHexWasFree))
+                            {
+                                result.Position = currentPosition;
+                                result.Orientation = rotation;
+                                return result;
+                            }
+
+                            if (rotation == 0 && !primaryHexWasFree)
+                            {
+                                // If the primary hex was occupied, no rotation value can ever cause that hex to be
+                                // unoccupied, so we can fail early here to save a lot of computations
+                                break;
+                            }
+
+                            // Single hex organelles don't change what they occupy if rotated
+                            if (isSingleHex)
+                                break;
+                        }
+                    }
+                }
+            }
         }
+
+        return null;
     }
 
     private static OrganelleTemplate? GetSpiralPosition(OrganelleDefinition organelle,
