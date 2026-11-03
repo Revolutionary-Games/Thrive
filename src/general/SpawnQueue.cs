@@ -85,6 +85,10 @@ public abstract class SpawnQueue : IDisposable
     {
     }
 
+    public virtual void RunConfigurationAfterSpawn(CommandBuffer recorder, Entity entity, Vector3 playerPosition)
+    {
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -108,20 +112,24 @@ public class SingleItemSpawnQueue : SpawnQueue
     private readonly Factory factory;
 
     private readonly CheckTooCloseToPlayer cancelCheck;
+    private readonly ConfigureAfterSpawn? configureAfterSpawn;
 
     private Vector3 spawnLocation;
 
     public SingleItemSpawnQueue(Factory factory, Vector3 spawnLocation, CheckTooCloseToPlayer cancelCheck,
-        Spawner fromSpawnType) : base(fromSpawnType)
+        Spawner fromSpawnType, ConfigureAfterSpawn? configureAfterSpawn = null) : base(fromSpawnType)
     {
         this.factory = factory;
         this.spawnLocation = spawnLocation;
         this.cancelCheck = cancelCheck;
+        this.configureAfterSpawn = configureAfterSpawn;
     }
 
     public delegate (CommandBuffer CommandRecorder, float SpawnedWeight) Factory(out Entity entity);
 
     public delegate bool CheckTooCloseToPlayer(Vector3 spawnLocation, Vector3 playerPosition);
+
+    public delegate void ConfigureAfterSpawn(CommandBuffer recorder, Entity entity, Vector3 playerPosition);
 
     public override bool Ended { get; protected set; }
 
@@ -137,6 +145,11 @@ public class SingleItemSpawnQueue : SpawnQueue
         {
             Ended = true;
         }
+    }
+
+    public override void RunConfigurationAfterSpawn(CommandBuffer recorder, Entity entity, Vector3 playerPosition)
+    {
+        configureAfterSpawn?.Invoke(recorder, entity, playerPosition);
     }
 }
 
