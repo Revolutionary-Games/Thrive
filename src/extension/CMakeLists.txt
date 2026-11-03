@@ -44,7 +44,7 @@ target_include_directories(thrive_extension PUBLIC ${CMAKE_CURRENT_LIST_DIR}
 
 target_precompile_headers(thrive_extension PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
   PRIVATE "../../third_party/godot-cpp/include/godot_cpp/classes/ref.hpp"
-  "${GODOT_GDEXTENSION_DIR}/gdextension_interface.h"
+  <gdextension_interface.h>
 )
 
 set_target_properties(thrive_extension PROPERTIES
