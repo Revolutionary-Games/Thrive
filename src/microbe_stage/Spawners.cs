@@ -1194,8 +1194,7 @@ public static class SpawnHelpers
             MovementDirection = Vector3.Forward,
         });
 
-        // And spawn with the rotation already set so the cell doesn't turn on spawning. Unless the initial velocity is
-        // zero, in which case the gamete was likely created by a spawner
+        // And spawn with the rotation already set so the cell doesn't turn on spawning.
         Quaternion rotation = Quaternion.Identity;
         if (initialVelocity != Vector3.Zero)
         {
