@@ -126,7 +126,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                     baseCellsCount, workMemory1, workMemory2, mutated);
 
                 // Don't add duplicate unique organelles
-                if (organelle.Unique && baseCellTypes[mostSuitableIndex].Organelles.Select(x => x.Definition).Contains(organelle))
+                if (organelle.Unique && baseCellTypes[mostSuitableIndex].Organelles.Select(x => x.Definition)
+                        .Contains(organelle))
                     continue;
 
                 if (mp < organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR)
@@ -138,7 +139,9 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 // is not any different
                 if (!AddOrganelle(organelle, direction, newSpecies.ModifiableCellTypes[mostSuitableIndex], workMemory1,
                         workMemory2, workMemory3, random))
+                {
                     continue;
+                }
 
                 var newMp = mp - organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
                 mutated.Add(new Mutant(newSpecies, newMp));
