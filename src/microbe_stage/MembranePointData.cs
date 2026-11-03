@@ -217,7 +217,7 @@ public sealed class CellData
     public readonly List<Vector2> Vertices2D;
     public int VertexCount;
 
-    public Dictionary<long, LineData> LinesData;
+    public List<LineData> LinesData;
     public Dictionary<long, IntersetionData> IntersectionsData;
 
     public readonly List<BoundaryPathData> BoundaryPaths;
@@ -231,8 +231,7 @@ public sealed class CellData
     /// <summary>
     /// Initializes cell geometry in world space using its position and orientation.
     /// </summary>
-    public CellData(
-        long cellKey,
+    public CellData(long cellKey,
         MembranePointData membranePointData,
         MulticellularMembraneGenerationCellData generationData)
     {
@@ -243,22 +242,13 @@ public sealed class CellData
         VertexCount = membranePointData.VertexCount;
 
         Vertices2D = new List<Vector2>(VertexCount);
-        LinesData = new Dictionary<long, LineData>();
+        LinesData = new List<LineData>();
         IntersectionsData = new Dictionary<long, IntersetionData>();
         BoundaryPaths = new List<BoundaryPathData>();
 
-        float orientationAngle = MembraneShapeStretcher.GetOrientationAngle(
-            generationData.Orientation);
-
-        Vector2 position = generationData.Position;
-
-        for (int vertexIndex = 0; vertexIndex < VertexCount; vertexIndex++)
+        for (int i = 0; i < VertexCount; ++i)
         {
-            Vector2 rotatedVertex = MembraneShapeStretcher.RotatePoint(
-                membranePointData.Vertices2D[vertexIndex],
-                orientationAngle);
-
-            Vertices2D.Add(rotatedVertex + position);
+            Vertices2D.Add(membranePointData.Vertices2D[i]);
         }
 
         AverageVertex = MembranePointData.GetAverageVertex(Vertices2D, VertexCount);
@@ -282,52 +272,25 @@ public sealed class BoundaryPathData
 /// </summary>
 public sealed class LineData
 {
-    public long LineKey;
-    public long CellKey;
     public long OtherCellKey;
 
     public Vector2 MiddlePoint;
     public Vector2 Line;
     public Vector2 Normal;
+    public bool ShouldRemove = true;
+    public bool IsOverLapping = false;
 
     /// <summary>
     /// Creates a line representation from its midpoint and normal.
     /// </summary>
-    public LineData(
-        Vector2 middlePoint,
-        Vector2 normal,
-        long cellKey,
-        long otherCellKey)
+    public LineData(Vector2 middlePoint, Vector2 normal, long otherCellKey, bool isOverlapping = false)
     {
         MiddlePoint = middlePoint;
         Normal = normal;
         Line = new Vector2(normal.Y, -normal.X);
 
-        CellKey = cellKey;
         OtherCellKey = otherCellKey;
-
-        LineKey = CalculateLineKey(middlePoint, normal);
-    }
-
-    /// <summary>
-    /// Calculates a deterministic hash from the line geometry.
-    /// </summary>
-    private static long CalculateLineKey(Vector2 middlePoint, Vector2 normal)
-    {
-        const long hashPrime = 1099511628211L;
-        const long hashOffset = unchecked((long)14695981039346656037UL);
-
-        unchecked
-        {
-            long hash = hashOffset;
-
-            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(middlePoint.X);
-            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(middlePoint.Y);
-            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(normal.X);
-            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(normal.Y);
-
-            return hash;
-        }
+        IsOverLapping = isOverlapping;
     }
 }
 
@@ -367,6 +330,7 @@ public sealed class IntersetionData
         }
     }
 }
+
 /// <summary>
 ///   Cache entry that holds the base collision shape of a microbe (the physics shape of the membrane)
 /// </summary>

@@ -76,7 +76,7 @@ public static class MembraneGenerationCoordinator
         if (!tracker.TryBeginSecondPass())
             return generatedMembranes;
 
-        foreach (var (key, membraneData) in MembraneShapeStretcher.GenerateMulticellularMembrane(tracker.CellsData))
+        foreach (var (key, membraneData) in generator.GenerateMulticellularMembrane(tracker.CellsData))
         {
             AddMulticellularMembrane(key, membraneData);
             generatedMembranes.Add(key);

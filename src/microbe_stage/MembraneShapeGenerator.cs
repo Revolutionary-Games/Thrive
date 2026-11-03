@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Buffers;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -29,6 +32,9 @@ public class MembraneShapeGenerator
     ///   Buffer for starting points when generating membrane data
     /// </summary>
     private readonly List<Vector2> startingBuffer = new();
+
+    private readonly Dictionary<long, MembranePointData> stretchedMembranesPointData = new();
+    private readonly List<LineData> linesData = new();
 
     /// <summary>
     ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
@@ -141,6 +147,95 @@ public class MembraneShapeGenerator
         var mesh = BuildEngulfMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex);
 
         return (mesh, surfaceIndex);
+    }
+
+    /// <summary>
+    ///   Modifies already generated membrane to make it stretch towards other cells. Also applies membrane
+    ///   waviness as it is normally done in single cellular membrane
+    /// </summary>
+    public Dictionary<long, MembranePointData> GenerateMulticellularMembrane(
+        ConcurrentDictionary<long, CellData> cellsData)
+    {
+        stretchedMembranesPointData.Clear();
+
+        // DO NOT REMOVE: this is used for debugging and printing the membrane data to the console
+        var info = string.Empty;
+
+        foreach (var (_, data) in cellsData)
+        {
+            info += string.Join(", ",
+                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})"));
+            info += "\n";
+        }
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.RotateCellVertices(cellData);
+        }
+
+        MembraneShapeStretcher.CreateBoundaryLines(cellsData, ref info, linesData);
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            var averageVertex = cellData.AverageVertex;
+            MembraneShapeStretcher.GetIntersections(cellData, averageVertex);
+        }
+
+        MembraneShapeStretcher.FilterInconsistentIntersections(cellsData);
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.BuildBoundaryPaths(cellData);
+            MembraneShapeStretcher.CastMembranePoints(cellData);
+
+            if (!cellData.OriginalPointData.Type.CellWall)
+            {
+                MembraneShapeStretcher.SmoothVertexRegion(cellData);
+            }
+
+            foreach (var path in cellData.BoundaryPaths)
+            {
+                foreach (var point in path.Points)
+                {
+                    info += $"({point.X:F3}, " +
+                        $"{point.Y:F3}),";
+                }
+            }
+
+            info = info.TrimEnd(',');
+
+            info += "\n";
+        }
+
+        foreach (var (_, data) in cellsData)
+        {
+            info += string.Join(", ",
+                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})"));
+            info += "\n";
+        }
+
+        if (cellsData.Count >= 3)
+        {
+            GD.Print();
+            GD.Print($"{info}");
+        }
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.UnrotateCellVertices(cellData);
+        }
+
+        foreach (var (key, data) in cellsData)
+        {
+            int hexCount = data.OriginalPointData.HexPositionCount;
+            var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
+            data.OriginalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
+            var membraneData = new MembranePointData(hexCopy, hexCount, data.OriginalPointData.Type, data.Vertices2D);
+
+            stretchedMembranesPointData.Add(key, membraneData);
+        }
+
+        return stretchedMembranesPointData;
     }
 
     /// <summary>

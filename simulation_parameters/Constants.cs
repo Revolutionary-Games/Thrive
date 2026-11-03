@@ -211,6 +211,8 @@ public static class Constants
     public const float MEMBRANE_MIDDLE_POINT_OVERREACH = 0.5f;
     public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS = 750.0f;
     public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES = 150.0f;
+    
+    public const float MEMBRANE_MAX_STRETCHED_DISTANCE_SQUARED = 450.0f * 450.0f;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
