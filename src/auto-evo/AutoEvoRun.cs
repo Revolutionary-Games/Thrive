@@ -29,6 +29,8 @@ public class AutoEvoRun
 
     private readonly List<Task> concurrentStepTasks = new();
 
+    private readonly long runSeed;
+
     private volatile RunStage state = RunStage.GatheringInfo;
 
     private bool started;
@@ -44,11 +46,27 @@ public class AutoEvoRun
 
     private int completeSteps;
 
+    /// <summary>
+    ///   Creates a run with a randomly selected seed that remains fixed for this instance.
+    /// </summary>
     public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache)
+        : this(world, globalCache, new XoShiRo256starstar().Next64())
+    {
+    }
+
+    /// <summary>
+    ///   Creates a run with an explicit seed for its mutation and migration random streams.
+    ///   This does not make the entire Auto-Evo result deterministic.
+    /// </summary>
+    /// <param name="world">The world to simulate</param>
+    /// <param name="globalCache">Shared Auto-Evo data</param>
+    /// <param name="seed">The run seed. All long values, including zero and negative values, are valid.</param>
+    public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache, long seed)
     {
         Parameters = new RunParameters(world);
         configuration = world.WorldSettings.AutoEvoConfiguration;
         this.globalCache = globalCache;
+        runSeed = seed;
     }
 
     private enum RunStage
@@ -426,10 +444,10 @@ public class AutoEvoRun
     /// <summary>
     ///   The info gather phase
     /// </summary>
-    protected virtual void GatherInfo(Queue<IRunStep> steps)
+    /// <param name="steps">The queue to populate with this run's steps</param>
+    /// <param name="seed">The run seed used to derive private mutation and migration streams</param>
+    protected virtual void GatherInfo(Queue<IRunStep> steps, long seed)
     {
-        var random = new XoShiRo256starstar();
-
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
@@ -454,7 +472,7 @@ public class AutoEvoRun
         foreach (var entry in map.Patches)
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
-                random));
+                WorldSeed.Derive(seed, WorldSeed.Domain.AutoEvoModifySpecies, entry.Value.ID)));
         }
 
         foreach (var species in allSpecies)
@@ -462,7 +480,8 @@ public class AutoEvoRun
             if (species is not MicrobeSpecies and not MulticellularSpecies)
                 continue;
 
-            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
+            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings),
+                WorldSeed.Derive(seed, WorldSeed.Domain.AutoEvoMigrateSpecies, species.ID)));
         }
 
         // End concurrent steps.
@@ -625,7 +644,7 @@ public class AutoEvoRun
         {
             case RunStage.GatheringInfo:
             {
-                GatherInfo(runSteps);
+                GatherInfo(runSteps, runSeed);
 
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum(s => s.TotalSteps) + 2;

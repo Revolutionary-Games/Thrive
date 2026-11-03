@@ -5,6 +5,24 @@ using Xunit;
 public class WorldSeedTests
 {
     /// <summary>
+    ///   Verifies task seed derivation against independent xxHash64 vectors for the 20-byte identity encoding,
+    ///   protecting field order, domain separation and preservation of the full root seed and owner ID.
+    /// </summary>
+    [Theory]
+    [InlineData(0L, WorldSeed.Domain.AutoEvoModifySpecies, 0L, -9183548790926087643L)]
+    [InlineData(0L, WorldSeed.Domain.AutoEvoMigrateSpecies, 0L, -7054944205724847261L)]
+    [InlineData(long.MinValue, WorldSeed.Domain.AutoEvoMigrateSpecies, uint.MaxValue, 7156370087293823420L)]
+    [InlineData(long.MaxValue, WorldSeed.Domain.AutoEvoModifySpecies, int.MinValue, -1472908689342849021L)]
+    [InlineData(4294967296L, WorldSeed.Domain.AutoEvoModifySpecies, 11L, 2689368312846164605L)]
+    public void TaskDerivationUsesStableIdentity(long seed, WorldSeed.Domain domain, long owner, long expected)
+    {
+        checked
+        {
+            Assert.Equal(expected, WorldSeed.Derive(seed, domain, owner));
+        }
+    }
+
+    /// <summary>
     ///   Verifies the stable seed encoding and domain identifiers against independently calculated xxHash64 vectors,
     ///   protecting signed and high seed bits from truncation and keeping the two random domains distinct.
     /// </summary>

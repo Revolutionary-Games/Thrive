@@ -67,7 +67,7 @@ public class ModifyExistingSpecies : IRunStep
     private Step step;
 
     public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
-        Random randomSeed)
+        long seed)
     {
         this.patch = patch;
         this.cache = cache;
@@ -75,7 +75,7 @@ public class ModifyExistingSpecies : IRunStep
 
         mutationSorter = new MutationSorter(patch, cache);
 
-        random = new XoShiRo256starstar(randomSeed.NextInt64());
+        random = new XoShiRo256starstar(seed);
 
         // Patch species count is used to know how many steps there are to perform
         TotalSteps = patch.SpeciesInPatch.Count;

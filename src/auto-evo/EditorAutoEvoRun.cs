@@ -31,7 +31,7 @@ public class EditorAutoEvoRun : AutoEvoRun
     /// </summary>
     public bool ApplyPlayerPopulationChangeClamp { get; set; } = true;
 
-    protected override void GatherInfo(Queue<IRunStep> steps)
+    protected override void GatherInfo(Queue<IRunStep> steps, long seed)
     {
         // Custom run setup for editor's use
         var map = Parameters.World.Map;
