@@ -402,9 +402,7 @@ public static class MulticellularLayoutHelpers
     /// </summary>
     public static Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
     {
-        var center = MicrobeInternalCalculations.CalculateCenterOfMass(localOrganelles);
-
-        return Hex.CartesianToAxial(center);
+        return CellType.CalculateLayoutOriginShift(localOrganelles);
     }
 
     private static bool FindPositionMultiplierWithNoOverlaps(ref int positionMultiplier, bool firstRun,

@@ -16,8 +16,6 @@ public partial class CellBodyPlanEditorComponent
 
     private readonly StringBuilder macroscopicConditionResultsBuilder = new();
 
-    private int usedToleranceWarnings;
-
     private bool changingPlayerGameteTypeAutomatically;
 
     /// <summary>
@@ -83,6 +81,12 @@ public partial class CellBodyPlanEditorComponent
 
         gui.RightPanelScrollContainer = rightPanelScrollContainer;
         gui.MacroscopicRequirementsButton = macroscopicConditionsViewButton;
+    }
+
+    public override void NotifyFreebuild(bool freeBuilding)
+    {
+        base.NotifyFreebuild(freeBuilding);
+        macroscopicConditionsViewButton.Visible = !freeBuilding;
     }
 
     protected override void OnTranslationsChanged()
@@ -331,13 +335,15 @@ public partial class CellBodyPlanEditorComponent
         // inexplicably also a bonus percentage as that would be very confusing to see.
         var tolerances = CalculateRawTolerances(true);
 
-        MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
-            activeToleranceWarnings, tolerances,
-            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
-            toleranceWarningsFont, MaxToleranceWarnings);
+        toleranceWarningsPanel.GenerateToleranceProblemList(tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances),
+            out bool areToleranceWarnings);
 
-        if (usedToleranceWarnings > 0)
+        toleranceWarningsPanel.Visible = areToleranceWarnings;
+
+        if (areToleranceWarnings)
         {
+            // Need to make sure the player is not locked out of the tab to address these
             tolerancesTabButton.Visible = true;
         }
     }
@@ -718,6 +724,16 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
     {
+        if (CanCancelAction)
+        {
+            OnActionBlockedWhileAnotherIsInProgress();
+
+            // Force button state back for the rejected action
+            GD.Print("Switching layout mode rejected due to active action in the editor");
+            UpdateLayoutTabContent();
+            return;
+        }
+
         bool targetValue = !usesAutomatic;
 
         if (UsesManualPlayerLayout == targetValue)

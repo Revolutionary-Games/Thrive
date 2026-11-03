@@ -1,5 +1,5 @@
 # Native code side of Thrive
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.20)
 
 # Configuration types. Jolt requires a "Distribution" build type
 # Need to be defined before project()
@@ -204,15 +204,17 @@ include_directories(${PROJECT_BINARY_DIR})
 # Configure gdextension stuff
 if(THRIVE_GODOT_API_FILE)
   set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
-  include_directories("${THRIVE_GODOT_API_FILE}")
   message(STATUS "Using custom location of Godot API file")
 else()
   set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
-  include_directories("${CMAKE_BINARY_DIR}/api")
 endif()
 
 # Float precision configuration for Godot
-set(FLOAT_PRECISION "single")
+set(GODOTCPP_PRECISION "single")
+
+# Use the API and interface header dumped by the installed editor.
+set(GODOTCPP_GDEXTENSION_DIR "${GODOT_GDEXTENSION_DIR}")
+set(GODOTCPP_CUSTOM_API_FILE "${GODOT_GDEXTENSION_DIR}/extension_api.json")
 
 # GODOT_CPP_SYSTEM_HEADERS
 # GODOT_CPP_WARNING_AS_ERROR

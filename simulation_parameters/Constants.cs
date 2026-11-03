@@ -1315,6 +1315,11 @@ public static class Constants
 
     public const float GAMETE_FUSION_ANIMATION_DURATION = 5.0f;
 
+    /// <summary>
+    ///   The chance that a gamete spawns instead of a colony. Only works for species with sexual reproduction
+    /// </summary>
+    public const float GAMETE_SPAWN_CHANCE = 0.2f;
+
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
     public const int CORPSE_CHUNK_DIVISOR = 4;

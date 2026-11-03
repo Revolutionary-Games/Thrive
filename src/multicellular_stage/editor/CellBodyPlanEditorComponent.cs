@@ -14,9 +14,6 @@ public partial class CellBodyPlanEditorComponent :
 {
     public const ushort SERIALIZATION_VERSION = 12;
 
-    [Export]
-    public int MaxToleranceWarnings = 3;
-
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -92,7 +89,7 @@ public partial class CellBodyPlanEditorComponent :
     private PanelContainer toleranceTab = null!;
 
     [Export]
-    private Container toleranceWarningContainer = null!;
+    private ToleranceWarningsPanel toleranceWarningsPanel = null!;
 
     [Export]
     private PanelContainer layoutTab = null!;
@@ -143,6 +140,9 @@ public partial class CellBodyPlanEditorComponent :
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
+    private UnusedCellTypePopup unusedCellTypePopup = null!;
+
+    [Export]
     private CustomWindow duplicateCellTypeDialog = null!;
 
     [Export]
@@ -173,9 +173,6 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private SpecialCellTypeUnsetPopup specialCellTypeUnsetPopup = null!;
-
-    [Export]
-    private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
     private OptionButton reproductionMethodDropdown = null!;
@@ -1029,6 +1026,41 @@ public partial class CellBodyPlanEditorComponent :
         if (UsesManualPlayerLayout && manualLayoutHasErrors)
         {
             ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR"), 4);
+            return false;
+        }
+
+        // Manual layout always reflects the small layout, so we can ignore it in this check:
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            var editedCellType = GetEditedCellDataIfEdited(cellType);
+            bool isUsed = false;
+
+            foreach (var cell in editedMicrobeCells.AsModifiable())
+            {
+                if (cell.Data != null && ReferenceEquals(GetEditedCellDataIfEdited(cell.Data.ModifiableCellType),
+                        editedCellType))
+                {
+                    isUsed = true;
+                    break;
+                }
+            }
+
+            if (!isUsed)
+            {
+                // Reproduction cell types are considered used even when they aren't placed as regular cells
+                // (as they cannot be placed)
+                if (ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(SporeCellType), editedCellType) ||
+                    ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteACellType), editedCellType) ||
+                    ReferenceEquals(GetEditedCellDataIfEditedAndNotNull(GameteBCellType), editedCellType))
+                {
+                    isUsed = true;
+                }
+            }
+
+            if (isUsed)
+                continue;
+
+            unusedCellTypePopup.DisplayForCellType(editedCellType.CellTypeName);
             return false;
         }
 
@@ -2603,6 +2635,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnNewCellTextAccepted(string text)
     {
+        // Prevent Enter from triggering another confirmation after the text submission.
+        GetViewport().SetInputAsHandled();
+
         // Just to make sure the latest text is already available to us
         if (duplicateCellTypeName.Text != text)
             GD.PrintErr("Text not updated");

@@ -155,7 +155,7 @@ public partial class GameteSystem : BaseSystem<World, float>
             // Don't allow self-fertilization but require same species and compatible types
             if (gamete.ForSpecies == otherGamete.ForSpecies &&
                 GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
-                gamete.EmittedBy != otherGamete.EmittedBy)
+                !IsSelfFertilization(gamete.EmittedBy, otherGamete.EmittedBy))
             {
                 var otherPosition = other.Get<WorldPosition>().Position;
                 var squaredDistance = (otherPosition - position.Position).LengthSquared();
@@ -207,7 +207,7 @@ public partial class GameteSystem : BaseSystem<World, float>
 
             if (gamete.ForSpecies == otherGamete.ForSpecies &&
                 GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
-                gamete.EmittedBy != otherGamete.EmittedBy)
+                !IsSelfFertilization(gamete.EmittedBy, otherGamete.EmittedBy))
             {
                 if (!(otherGamete.MergingWith == Entity.Null || otherGamete.MergingWith.IsAllZero()) ||
                     otherGamete.IsMerging)
@@ -230,6 +230,13 @@ public partial class GameteSystem : BaseSystem<World, float>
                 break;
             }
         }
+    }
+
+    private bool IsSelfFertilization(Entity thisEmittedBy, Entity otherEmittedBy)
+    {
+        // In a save after an EmittedBy entity dies, it becomes Null, which means that self-fertilization can be
+        // possible in this case
+        return thisEmittedBy == otherEmittedBy && thisEmittedBy != Entity.Null;
     }
 
     private void HandleMerging(float delta, ref GameteCell gamete, ref Physics physics, ref WorldPosition position,

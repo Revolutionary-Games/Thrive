@@ -552,14 +552,6 @@ public partial class CellBodyPlanEditorComponent
         // We do a manual fetch of the organelle positions here so that we have the latest data if the type is
         // edited
         var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
-        foreach (var organelle in type.ModifiableOrganelles)
-        {
-            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
-            {
-                var position = organelleHex + organelle.Position;
-                positions.Add(position);
-            }
-        }
 
         // The automatic layout is generated from the cell types' current, unshifted organelle positions. Applying
         // the origin shift there would therefore validate a different layout than the one generated. Manual layouts
@@ -576,7 +568,7 @@ public partial class CellBodyPlanEditorComponent
         {
             foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
             {
-                // And now we can calculate global final positions
+                // Here we calculate the global final positions
                 var globalPosition = cell.Position +
                     Hex.RotateAxialNTimes(organelleHex + organelle.Position - originShift, cell.Orientation);
 
@@ -935,6 +927,15 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnReapplyAutomaticLayoutPressed()
     {
+        // Can't allow this when an action is in-progress as that breaks the GUI
+        if (CanCancelAction)
+        {
+            OnActionBlockedWhileAnotherIsInProgress();
+
+            GD.Print("Disallowing layout reset due to in-progress action");
+            return;
+        }
+
         manualFullLayout.Clear();
         manualLayoutMissingAdjacencyPairs.Clear();
         manualLayoutSources.Clear();
@@ -1011,6 +1012,12 @@ public partial class CellBodyPlanEditorComponent
             manualFullLayout.Add(manualCell);
             SetManualLayoutSource(manualCell, source);
         }
+
+        // Cell additions can happen while the manual layout preview is hidden. Rebuild the order mapping so newly
+        // added cells have their own growth-order indices but keep the existing mappings while a cell is being moved
+        // because its compact source is temporarily absent from editedMicrobeCells.
+        if (MovingPlacedHex == null)
+            RebuildManualLayoutGrowthOrderSources();
     }
 
     private sealed class LayoutCalculationResult

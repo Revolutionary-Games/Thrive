@@ -28,9 +28,7 @@ internal class MoveOrganelleBack : IMutationStrategy<Species>
         var mutated = new List<Mutant>();
 
         // TODO: try to avoid these temporary list allocations
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-        var workMemory3 = new HashSet<Hex>();
+        var workMemory = new MutationWorkMemory();
 
         foreach (OrganelleTemplate organelle in baseMicrobeSpecies.Organelles.Where(x =>
                      allOrganelles.Contains(x.Definition)))
@@ -39,9 +37,16 @@ internal class MoveOrganelleBack : IMutationStrategy<Species>
 
             newSpecies.Organelles.Remove(organelle);
 
-            if (AddOrganelle(organelle.Definition, Direction.Rear, newSpecies, workMemory1, workMemory2, workMemory3,
-                    random))
+            if (AddOrganelle(organelle.Definition, Direction.Rear, newSpecies, workMemory.WorkingMemory1,
+                    workMemory.WorkingMemory2, workMemory.WorkingMemory3, random))
             {
+                // Moving a bridging organelle can leave disconnected groups behind.
+                if (newSpecies.Organelles.GetIslandHexes(workMemory.WorkingMemory1, workMemory.WorkingMemory3,
+                        workMemory.WorkingMemory2, workMemory.WorkingMemory4) > 0)
+                {
+                    continue;
+                }
+
                 // Add mutation attempt only if was able to place the organelle
                 // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step
                 // for things that cannot be moved?

@@ -65,7 +65,7 @@ public class GameWorld : IArchivable
     /// <param name="startingSpecies">Starting species for the player</param>
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this(settings)
     {
-        var random = new XoShiRo256starstar();
+        var random = new XoShiRo256starstar(WorldSeed.Derive(settings.Seed, WorldSeed.Domain.WorldEvents));
 
         // Create timed effects for the world that happen when generations pass
         TimedEffects = new TimedWorldOperations();
@@ -75,7 +75,9 @@ public class GameWorld : IArchivable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(this));
-            TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
+
+            // This root only allocates seeds in registration order; each effect owns its runtime random stream.
+            TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this, random.Next64()));
 
             // Patch events. PatchEventsManager HAS to be the last one
             TimedEffects.RegisterEffect("global_glaciation_event",
@@ -539,6 +541,18 @@ public class GameWorld : IArchivable
             throw new ArgumentException("Species is already in this world");
 
         species.OnBecomePartOfWorld(GetNextSpeciesID());
+
+#if DEBUG
+        foreach (var existingSpecies in worldSpecies.Values)
+        {
+            if (existingSpecies.ID == species.ID)
+            {
+                throw new InvalidOperationException(
+                    "Trying to add auto-evo species to world failed due to duplicate ID");
+            }
+        }
+#endif
+
         worldSpecies[species.ID] = species;
     }
 
@@ -839,41 +853,12 @@ public class GameWorld : IArchivable
         if (microbeSpecies.IsBacteria)
             throw new ArgumentException("bacteria can't turn multicellular");
 
-        var multicellularVersion = new MulticellularSpecies(species.ID, species.Genus, species.Epithet);
-        species.CopyDataToConvertedSpecies(multicellularVersion);
-
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
-        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
-
-        if (initialBlob)
-        {
-            // As it is simpler to use the editor layout, we create that primarily and then rely on the algorithm to
-            // convert it to a gameplay layout
-            var simpleLayout = new IndividualHexLayout<CellTemplate>();
-
-            simpleLayout.AddFast(
-                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(0, 0), 0), new Hex(0, 0), 0),
-                workMemory1, workMemory2);
-            simpleLayout.AddFast(
-                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(-1, 1), 0), new Hex(-1, 1), 0),
-                workMemory1, workMemory2);
-            simpleLayout.AddFast(
-                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(1, 0), 0), new Hex(1, 0), 0),
-                workMemory1, workMemory2);
-
-            MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
-                multicellularVersion.ModifiableEditorCells, simpleLayout, AlgorithmQuality.High, workMemory1,
-                workMemory2, workMemory3);
-        }
-        else
-        {
-            multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
-                workMemory1, workMemory2);
-        }
+        var multicellularVersion = microbeSpecies.GenerateMulticellularVersion(initialBlob,
+            workMemory1, workMemory2, workMemory3);
 
         multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);
@@ -1130,6 +1115,20 @@ public class GameWorld : IArchivable
                 "World ran out of species ID numbers and restarting sequence is not implemented");
         }
 
+        // Safety check against this code originating duplicate IDs
+        if (worldSpecies.ContainsKey(speciesId))
+            throw new InvalidOperationException($"New species ID is already registered in this world: {speciesId}");
+
+#if DEBUG
+
+        // Check the objects as well as dictionary keys in case a registered species' ID has changed
+        foreach (var species in worldSpecies.Values)
+        {
+            if (species.ID == speciesId)
+                throw new InvalidOperationException($"New species ID is already used in this world: {speciesId}");
+        }
+#endif
+
         return speciesId;
     }
 
@@ -1140,6 +1139,9 @@ public class GameWorld : IArchivable
 
         RemoveSpecies(old);
         worldSpecies.Add(old.ID, newSpecies);
+
+        if (newSpecies.ID != old.ID)
+            GD.Print($"Species ID changed from {old.ID} to {newSpecies.ID} when replacing it");
 
         Map.ReplaceSpecies(old, newSpecies);
 

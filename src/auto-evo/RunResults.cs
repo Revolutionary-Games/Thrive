@@ -140,6 +140,10 @@ public class RunResults : IArchivable
 
         results[species].MutatedProperties = mutated;
 
+        // Fix the successor's generation before any mutations are applied to its parent.
+        // Other species splitting from the same parent this run must receive the same generation.
+        mutated?.Generation = species.Generation + 1;
+
         results[species].NewPopulationInPatches.TryGetValue(populationBoostInPatches.Key, out var existing);
         results[species].NewPopulationInPatches[populationBoostInPatches.Key] =
             existing + populationBoostInPatches.Value;
@@ -253,22 +257,46 @@ public class RunResults : IArchivable
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
 
+        species.Generation = parentSpecies.Generation + 1;
+
         foreach (var patchPopulation in initialPopulationInPatches)
         {
             results[species].NewPopulationInPatches[patchPopulation.Key] = Math.Max(patchPopulation.Value, 0);
         }
     }
 
+    /// <summary>
+    ///   Registers a new species for the <see cref="RegisterNewSpecies"/> step. Absolutely should not be used in other
+    ///   steps, as it requires populations to already be calculated.
+    /// </summary>
     public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
-        NewSpeciesType addType, Species parentSpecies)
+        NewSpeciesType addType, Species parentSpecies, bool inheritingPopulation)
     {
         MakeSureResultExistsForSpecies(species);
+        MakeSureResultExistsForSpecies(parentSpecies);
 
         results[species].NewlyCreated = addType;
         results[species].SplitFrom = parentSpecies;
 
+        species.Generation = parentSpecies.Generation + 1;
+
+        var population = initialPopulationInPatch.Value;
+
+        // If set as inheriting, the population of the parent species is added to the new species.
+        // Because of this, it needs to be ASSURED that the population of the parent species has already been calculated
+        // in a previous step and is NOT otherwise modified in this step.
+        if (inheritingPopulation)
+        {
+            results[parentSpecies].NewPopulationInPatches.TryGetValue(initialPopulationInPatch.Key,
+                out var existing);
+            population += existing;
+
+            // Also transfer any migrations from the parent species to the new species.
+            TransferMigrationsBetween(species, parentSpecies);
+        }
+
         results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
-            Math.Max(initialPopulationInPatch.Value, 0);
+            Math.Max(population, 0);
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
@@ -428,111 +456,41 @@ public class RunResults : IArchivable
             if (!skipMutations && entry.Value.MutatedProperties != null)
             {
                 entry.Key.ApplyMutation(entry.Value.MutatedProperties);
+                entry.Key.Generation = entry.Value.MutatedProperties.Generation;
             }
 
-            bool registeredAlready = false;
+            ApplyBasePopulations(world, entry.Key, entry.Value);
+            ApplyMigrations(world, entry.Key, entry.Value);
+            ApplySpeciesSplit(world, entry.Key, entry.Value);
+        }
 
-            // Process newly created species first to not cause errors when trying to register populations
-            if (entry.Value.NewlyCreated != null)
+#if DEBUG
+
+        // New species have their final IDs now. Include miche occupants that may be missing from the results,
+        // keeping distinct objects with matching IDs so that invalid mutation candidates cannot escape validation.
+        var allSpecies = new HashSet<Species>(results.Keys, ReferenceEqualityComparer.Instance);
+        lock (micheByPatch)
+        {
+            foreach (var miche in micheByPatch.Values)
             {
-                // If we split off from a species that didn't take a population hit, we need to register ourselves
-
-                if (entry.Value.SplitFrom == null)
-                {
-                    registeredAlready = true;
-                }
-                else if (results[entry.Value.SplitFrom].SplitOff != entry.Key)
-                {
-                    registeredAlready = true;
-                }
-
-                if (registeredAlready)
-                {
-                    foreach (var populationEntry in entry.Value.NewPopulationInPatches)
-                    {
-                        var patch = world.Map.GetPatch(populationEntry.Key.ID);
-
-                        if (!patch.AddSpecies(entry.Key, populationEntry.Value))
-                        {
-                            GD.PrintErr("RunResults has new species that already exists in patch");
-                        }
-                    }
-                }
-            }
-
-            if (!registeredAlready)
-            {
-                foreach (var populationEntry in entry.Value.NewPopulationInPatches)
-                {
-                    var patch = world.Map.GetPatch(populationEntry.Key.ID);
-
-                    // We ignore the return value as population results are added for all existing patches for all
-                    // species (if the species is not in the patch, the population is 0 in the results)
-                    if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value) &&
-                        populationEntry.Value > 0)
-                    {
-                        GD.PrintErr(
-                            $"Failed to apply species ({entry.Key}) population ({populationEntry.Value}) to patch " +
-                            $"({patch.Name}) it should be in");
-                    }
-                }
-            }
-
-            foreach (var spreadEntry in entry.Value.SpreadToPatches)
-            {
-                var from = world.Map.GetPatch(spreadEntry.From.ID);
-                var to = world.Map.GetPatch(spreadEntry.To.ID);
-
-                long remainingPopulation = from.GetSpeciesSimulationPopulation(entry.Key) - spreadEntry.Population;
-                long newPopulation = to.GetSpeciesSimulationPopulation(entry.Key) + spreadEntry.Population;
-
-                if (!from.UpdateSpeciesSimulationPopulation(entry.Key, remainingPopulation))
-                {
-                    GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
-                }
-
-                if (!to.UpdateSpeciesSimulationPopulation(entry.Key, newPopulation))
-                {
-                    if (!to.AddSpecies(entry.Key, newPopulation))
-                    {
-                        GD.PrintErr("RunResults failed to update population and also add species failed on " +
-                            "migration target patch");
-                    }
-                }
-            }
-
-            if (entry.Value.SplitOff != null)
-            {
-                if (entry.Value.SplitOffPatches != null)
-                {
-                    // Set populations to 0 for the patches that split off and use the populations for the split-off
-                    // species
-                    foreach (var splitOffPatch in entry.Value.SplitOffPatches)
-                    {
-                        var patch = world.Map.GetPatch(splitOffPatch.ID);
-
-                        var population = patch.GetSpeciesSimulationPopulation(entry.Key);
-
-                        if (population <= 0)
-                            continue;
-
-                        if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, 0))
-                        {
-                            GD.PrintErr("RunResults failed to update population for a species that split");
-                        }
-
-                        if (!patch.AddSpecies(entry.Value.SplitOff, population))
-                        {
-                            GD.PrintErr("RunResults failed to add species to patch that split off");
-                        }
-                    }
-                }
-                else
-                {
-                    GD.PrintErr("List of split off patches is null, can't actually perform the split");
-                }
+                miche.GetOccupants(allSpecies);
             }
         }
+
+        var speciesIDs = new HashSet<uint>();
+        foreach (var species in allSpecies)
+        {
+            if (!speciesIDs.Add(species.ID))
+                throw new InvalidOperationException($"Duplicate species ID in auto-evo results: {species.ID}");
+
+            if (!world.TryGetSpecies(species.ID, out var registeredSpecies) ||
+                !ReferenceEquals(species, registeredSpecies))
+            {
+                throw new InvalidOperationException(
+                    $"Auto-evo species is not registered with its identity in this world: {species.ID}");
+            }
+        }
+#endif
 
         world.Map.DiscardGameplayPopulations();
     }
@@ -780,6 +738,23 @@ public class RunResults : IArchivable
         }
 
         return migrationsToPatch;
+    }
+
+    /// <summary>
+    ///   Copies all migrations from a parent species to a child species and deletes them from the parent species.
+    ///   This is used for stage-transition mutants that can't be applied to the parent species directly.
+    ///   Note: both species must have results already, or this will throw an exception.
+    /// </summary>
+    public void TransferMigrationsBetween(Species childSpecies, Species parentSpecies)
+    {
+        var speciesMigrations = results[parentSpecies].SpreadToPatches;
+
+        foreach (var migration in speciesMigrations)
+        {
+            results[childSpecies].SpreadToPatches.Add(migration);
+        }
+
+        speciesMigrations.Clear();
     }
 
     public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
@@ -1509,6 +1484,100 @@ public class RunResults : IArchivable
         results[species] = result;
 
         return result;
+    }
+
+    private static void ApplyMigrations(GameWorld world, Species species, SpeciesResult result)
+    {
+        foreach (var spreadEntry in result.SpreadToPatches)
+        {
+            var from = world.Map.GetPatch(spreadEntry.From.ID);
+            var to = world.Map.GetPatch(spreadEntry.To.ID);
+
+            long remainingPopulation = from.GetSpeciesSimulationPopulation(species) - spreadEntry.Population;
+            long newPopulation = to.GetSpeciesSimulationPopulation(species) + spreadEntry.Population;
+
+            if (!from.UpdateSpeciesSimulationPopulation(species, remainingPopulation))
+            {
+                GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
+            }
+
+            if (!to.UpdateSpeciesSimulationPopulation(species, newPopulation) &&
+                !to.AddSpecies(species, newPopulation))
+            {
+                GD.PrintErr("RunResults failed to update population and also add species failed on " +
+                    "migration target patch");
+            }
+        }
+    }
+
+    private static void ApplySpeciesSplit(GameWorld world, Species species, SpeciesResult result)
+    {
+        if (result.SplitOff == null)
+            return;
+
+        if (result.SplitOffPatches == null)
+        {
+            GD.PrintErr("List of split off patches is null, can't actually perform the split");
+            return;
+        }
+
+        // Set populations to 0 for the patches that split off and use the populations for the split-off
+        // species
+        foreach (var splitOffPatch in result.SplitOffPatches)
+        {
+            var patch = world.Map.GetPatch(splitOffPatch.ID);
+
+            var population = patch.GetSpeciesSimulationPopulation(species);
+
+            if (population <= 0)
+                continue;
+
+            if (!patch.UpdateSpeciesSimulationPopulation(species, 0))
+            {
+                GD.PrintErr("RunResults failed to update population for a species that split");
+            }
+
+            if (!patch.AddSpecies(result.SplitOff, population))
+            {
+                GD.PrintErr("RunResults failed to add species to patch that split off");
+            }
+        }
+    }
+
+    private void ApplyBasePopulations(GameWorld world, Species species, SpeciesResult result)
+    {
+        // New species need adding here unless they receive their population through a split
+        bool addSpeciesToPatches = result.NewlyCreated != null &&
+            (result.SplitFrom == null || results[result.SplitFrom].SplitOff != species);
+
+        if (addSpeciesToPatches)
+        {
+            foreach (var populationEntry in result.NewPopulationInPatches)
+            {
+                var patch = world.Map.GetPatch(populationEntry.Key.ID);
+
+                if (!patch.AddSpecies(species, populationEntry.Value))
+                {
+                    GD.PrintErr("RunResults has new species that already exists in patch");
+                }
+            }
+
+            return;
+        }
+
+        foreach (var populationEntry in result.NewPopulationInPatches)
+        {
+            var patch = world.Map.GetPatch(populationEntry.Key.ID);
+
+            // Missing species entries are expected for zero-population results;
+            // only failures for positive populations are reported
+            if (!patch.UpdateSpeciesSimulationPopulation(species, populationEntry.Value) &&
+                populationEntry.Value > 0)
+            {
+                GD.PrintErr($"Failed to apply species ({species}) population ({populationEntry.Value}) to patch " +
+                    $"({patch.Name}) it should be in");
+            }
+        }
     }
 
     /// <summary>

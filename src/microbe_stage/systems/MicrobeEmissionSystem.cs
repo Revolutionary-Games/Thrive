@@ -16,13 +16,16 @@ using World = Arch.Core.World;
 /// <remarks>
 ///   <para>
 ///     This technically writes to the <see cref="OrganelleContainer"/> but only to the Slime Jets' active property
-///     and nothing else so this shouldn't conflict with other things.
+///     and nothing else, so this shouldn't conflict with other things.
 ///   </para>
 /// </remarks>
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(AttachedToEntity))]
+[ReadsComponent(typeof(MulticellularSpeciesMember))]
+[ReadsComponent(typeof(PlayerMarker))]
+[ReadsComponent(typeof(Health))]
 [WritesToComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(ProcessSystem))]
@@ -31,6 +34,8 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly CompoundCloudSystem clouds;
+
+    private int playerToxinsEmitted;
 
     public MicrobeEmissionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem, World world) :
         base(world)
@@ -71,6 +76,17 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         return 1;
     }
 
+    public override void BeforeUpdate(in float delta)
+    {
+        playerToxinsEmitted = 0;
+    }
+
+    public override void AfterUpdate(in float delta)
+    {
+        if (playerToxinsEmitted > 0)
+            AchievementEvents.ReportMulticellularToxinsPerUpdate(playerToxinsEmitted);
+    }
+
     /// <summary>
     ///   Handles colony logic to determine the actual facing vector of this microbe
     /// </summary>
@@ -98,7 +114,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
     private void Update([Data] in float delta, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref WorldPosition position, ref SoundEffectPlayer soundEffectPlayer,
         ref CompoundStorage compoundStorage, ref Engulfable engulfable, ref SpecializationFactor specializationFactor,
-        in Entity entity)
+        ref Health health, in Entity entity)
     {
         DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
@@ -108,23 +124,28 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         bool engulfed = engulfable.PhagocytosisStep != PhagocytosisPhase.None;
 
         // Fire queued agents
-        if (control.QueuedToxinToEmit != Compound.Invalid)
+        if (!health.Dead)
         {
-            EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                control.QueuedToxinToEmit, compounds, engulfed, false, specializationFactor.TotalSpecializationBonus);
-            control.QueuedToxinToEmit = Compound.Invalid;
-        }
+            if (control.QueuedToxinToEmit != Compound.Invalid)
+            {
+                EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+                    ref position, control.QueuedToxinToEmit, compounds, engulfed, false,
+                    specializationFactor.TotalSpecializationBonus);
+                control.QueuedToxinToEmit = Compound.Invalid;
+            }
 
-        if (control.QueuedSiderophoreToEmit)
-        {
-            EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                Compound.Invalid, null, engulfed, true, specializationFactor.TotalSpecializationBonus);
-            control.QueuedSiderophoreToEmit = false;
+            if (control.QueuedSiderophoreToEmit)
+            {
+                EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+                    ref position, Compound.Invalid, null, engulfed, true,
+                    specializationFactor.TotalSpecializationBonus);
+                control.QueuedSiderophoreToEmit = false;
+            }
         }
 
         // This method itself checks for the preconditions on emitting slime
         HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
-            ref position, compounds, engulfed, specializationFactor.TotalSpecializationBonus, delta);
+            ref position, ref health, compounds, engulfed, specializationFactor.TotalSpecializationBonus, delta);
     }
 
     /// <summary>
@@ -241,6 +262,16 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 
                 ++control.FiredToxinCount;
 
+                if (entity.Has<MulticellularSpeciesMember>())
+                {
+                    var leader = entity;
+                    if (entity.Has<AttachedToEntity>())
+                        leader = entity.Get<AttachedToEntity>().AttachedTo;
+
+                    if (leader.IsAliveAndHas<PlayerMarker>())
+                        ++playerToxinsEmitted;
+                }
+
                 if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
                 {
                     soundEffectPlayer
@@ -300,7 +331,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,
         ref OrganelleContainer organelles, ref CellProperties cellProperties,
-        ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition worldPosition,
+        ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition worldPosition, ref Health health,
         CompoundBag compounds, bool engulfed, float specializationBonus, float delta)
     {
         // Ignore if we have no slime jets
@@ -322,7 +353,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
             control.QueuedSlimeSecretionTime = 0;
 
         // If we've been told to secrete slime and can do it, proceed
-        if (control.QueuedSlimeSecretionTime > 0 && control.SlimeSecretionCooldown <= 0)
+        if (control.QueuedSlimeSecretionTime > 0 && control.SlimeSecretionCooldown <= 0 && !health.Dead)
         {
             // Play a sound only if we've just started, i.e. only if no jets are already active
             if (organelles.SlimeJets.All(c => !c.Active))

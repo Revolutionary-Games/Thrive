@@ -25,7 +25,7 @@ public class UnlockProgress : IArchiveUpdatable
     private readonly HashSet<OrganelleDefinition> recentlyUnlocked = new();
 
     /// <summary>
-    ///   If true, <see cref="IsUnlocked"/> will always return true
+    ///   If true, <see cref="IsUnlocked"/> ignores unlock conditions but still requires reaching the organelle's stage
     /// </summary>
     public bool UnlockAll { get; set; }
 
@@ -73,6 +73,19 @@ public class UnlockProgress : IArchiveUpdatable
     public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerData,
         GameProperties game, bool autoUnlock)
     {
+        // Stage-specific organelles remain unavailable until the player reaches their stage
+        if (organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Multicellular &&
+            worldAndPlayerData.CurrentStage < Stage.MulticellularStage)
+        {
+            return false;
+        }
+
+        if (organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Macroscopic &&
+            worldAndPlayerData.CurrentStage < Stage.MacroscopicStage)
+        {
+            return false;
+        }
+
         if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
             return true;
 

@@ -351,11 +351,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         ChangePage(pageName, true, true, playSound);
     }
 
-    public Species? GetActiveSpeciesData(uint speciesId)
+    public Species? GetActiveSpeciesData(uint speciesId, bool printErrors = true)
     {
         if (CurrentGame == null)
         {
-            PrintErrorAboutCurrentGame();
+            if (printErrors)
+                PrintErrorAboutCurrentGame();
             return null;
         }
 

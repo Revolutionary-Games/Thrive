@@ -68,7 +68,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
-        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource(), Stage.MicrobeStage);
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
 
