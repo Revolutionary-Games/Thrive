@@ -671,6 +671,7 @@ public partial class CellBodyPlanEditorComponent :
             if (MovingPlacedHex != null && !Editor.ShowHover)
             {
                 hoveringCellBorderDisplay.HideBorders();
+                hoveringCellBorderDisplay.ClearCellTypeCache();
             }
         }
         else if (forceUpdateCellGraphics)
@@ -1249,6 +1250,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateSpecialCellTypeDisplays();
+
+        hoveringCellBorderDisplay.ClearCellTypeCache();
+        cellLayoutBorderDisplay.ClearCellTypeCache();
     }
 
     /// <summary>

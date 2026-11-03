@@ -459,6 +459,7 @@ public partial class CellBodyPlanEditorComponent
         cellLayoutBorderDisplay.DisplayCellLayoutBorders(cellPositions.Keys.ToList(), UsesManualPlayerLayout,
             GetEditedCellDataIfEdited);
         hoveringCellBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.ClearCellTypeCache();
 
         RecalculateFullLayoutGrowthOrderErrors();
         UpdateGrowthOrderNumbers();
@@ -922,7 +923,10 @@ public partial class CellBodyPlanEditorComponent
         UpdateArrow();
 
         cellLayoutBorderDisplay.HideBorders();
+        cellLayoutBorderDisplay.ClearCellTypeCache();
+
         hoveringCellBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.ClearCellTypeCache();
     }
 
     private void OnReapplyAutomaticLayoutPressed()
