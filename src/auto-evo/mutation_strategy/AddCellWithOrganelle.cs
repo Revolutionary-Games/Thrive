@@ -128,7 +128,9 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 // Don't add duplicate unique organelles
                 if (organelle.Unique && baseCellTypes[mostSuitableIndex].Organelles.Select(x => x.Definition)
                         .Contains(organelle))
+                {
                     continue;
+                }
 
                 if (mp < organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR)
                     continue;
