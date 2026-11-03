@@ -29,6 +29,9 @@ else()
   target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic
     -Wno-unknown-pragmas)
 
+  # godot-cpp 4.5 declares an unused variable in GDCLASS's free_property_list_bind.
+  target_compile_options(thrive_extension PRIVATE -Wno-unused-variable)
+
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_extension PRIVATE -Werror)
   endif()
