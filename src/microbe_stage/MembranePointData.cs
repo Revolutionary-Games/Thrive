@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -127,7 +128,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     /// </summary>
     public bool IsPreMulticellularStretch { get; }
 
-    public static Vector2 GetAverageVertex(Vector2[] vertices2D, int vertexCount)
+    public static Vector2 GetAverageVertex(IReadOnlyList<Vector2> vertices2D, int vertexCount)
     {
         if (vertexCount == 0)
             throw new InvalidOperationException("Cannot calculate average vertex with zero vertices");
@@ -206,67 +207,79 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     }
 }
 
-public sealed class NeighbourData
-{
-    public long CellKey;
-    public Vector2 OriginalAverageVertex;
-    public Vector2 LocalAverageVertex;
-    public MembranePointData OriginalPointData;
-
-    public MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
-
-    /// <summary>
-    ///   Modified vertices separate from original. Used to persist changes across multiple calls to
-    ///   GenerateMulticellularMembrane.
-    /// </summary>
-    public List<Vector2>? ModifiedVertices;
-
-    /// <summary>
-    ///   Tracks which cell pairs have already been processed to avoid duplicate work when the relationship
-    ///   reverses (when the cell was a neighbor and is now the current cell).
-    /// </summary>
-    public HashSet<long> ProcessedNeighbours = new();
-
-    public NeighbourData(long cellKey,
-        MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
-        MembranePointData originalPointData)
-    {
-        CellKey = cellKey;
-        OriginalPointData = originalPointData;
-        MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
-        OriginalAverageVertex =
-            MembranePointData.GetAverageVertex(OriginalPointData.Vertices2D, OriginalPointData.VertexCount);
-    }
-}
-
+/// <summary>
+/// Stores the generated geometry and related data for one cell.
+/// </summary>
 public sealed class CellData
 {
     public long CellKey;
-    public List<Vector2> Vertices2D = null!;
-    public Dictionary<long, LineData> LinesData = new();
-    public Dictionary<long, IntersetionData> IntersectionsData = new();
-    public List<BoundaryPathData> BoundaryPaths = new();
-    public MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
+
+    public readonly List<Vector2> Vertices2D;
+    public int VertexCount;
+
+    public Dictionary<long, LineData> LinesData;
+    public Dictionary<long, IntersetionData> IntersectionsData;
+
+    public readonly List<BoundaryPathData> BoundaryPaths;
+
+    public readonly MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
+
     public Vector2 AverageVertex;
 
-    public CellData(long cellKey, List<Vector2> vertices2D,
-        MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData)
+    public readonly MembranePointData OriginalPointData;
+
+    /// <summary>
+    /// Initializes cell geometry in world space using its position and orientation.
+    /// </summary>
+    public CellData(
+        long cellKey,
+        MembranePointData membranePointData,
+        MulticellularMembraneGenerationCellData generationData)
     {
         CellKey = cellKey;
-        Vertices2D = vertices2D;
-        MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
-        AverageVertex = MembranePointData.GetAverageVertex(Vertices2D.ToArray(), Vertices2D.Count);
+        OriginalPointData = membranePointData;
+        MulticellularMembraneGenerationCellData = generationData;
+
+        VertexCount = membranePointData.VertexCount;
+
+        Vertices2D = new List<Vector2>(VertexCount);
+        LinesData = new Dictionary<long, LineData>();
+        IntersectionsData = new Dictionary<long, IntersetionData>();
+        BoundaryPaths = new List<BoundaryPathData>();
+
+        float orientationAngle = MembraneShapeStretcher.GetOrientationAngle(
+            generationData.Orientation);
+
+        Vector2 position = generationData.Position;
+
+        for (int vertexIndex = 0; vertexIndex < VertexCount; vertexIndex++)
+        {
+            Vector2 rotatedVertex = MembraneShapeStretcher.RotatePoint(
+                membranePointData.Vertices2D[vertexIndex],
+                orientationAngle);
+
+            Vertices2D.Add(rotatedVertex + position);
+        }
+
+        AverageVertex = MembranePointData.GetAverageVertex(Vertices2D, VertexCount);
     }
 }
 
+/// <summary>
+/// Stores one continuous section of a cell boundary.
+/// </summary>
 public sealed class BoundaryPathData
 {
-    public List<Vector2> Points = new();
+    public readonly List<Vector2> Points = new(8);
 
-    public bool IsClosed => Points.Count > 2 &&
+    public bool IsClosed =>
+        Points.Count > 2 &&
         Points[0].DistanceSquaredTo(Points[^1]) <= 0.0000001f;
 }
 
+/// <summary>
+/// Stores the separating line between two cells.
+/// </summary>
 public sealed class LineData
 {
     public long LineKey;
@@ -277,60 +290,83 @@ public sealed class LineData
     public Vector2 Line;
     public Vector2 Normal;
 
-    public long LeftIntersectionId;
-    public long RightIntersectionId;
-
-    public LineData(Vector2 middlePoint, Vector2 normal, long cellKey, long otherCellKey)
+    /// <summary>
+    /// Creates a line representation from its midpoint and normal.
+    /// </summary>
+    public LineData(
+        Vector2 middlePoint,
+        Vector2 normal,
+        long cellKey,
+        long otherCellKey)
     {
         MiddlePoint = middlePoint;
         Normal = normal;
         Line = new Vector2(normal.Y, -normal.X);
+
         CellKey = cellKey;
         OtherCellKey = otherCellKey;
 
-        const long prime1 = 1099511628211L;
-        var lineKey = prime1;
+        LineKey = CalculateLineKey(middlePoint, normal);
+    }
+
+    /// <summary>
+    /// Calculates a deterministic hash from the line geometry.
+    /// </summary>
+    private static long CalculateLineKey(Vector2 middlePoint, Vector2 normal)
+    {
+        const long hashPrime = 1099511628211L;
+        const long hashOffset = unchecked((long)14695981039346656037UL);
 
         unchecked
         {
-            lineKey = (lineKey * prime1) ^ BitConverter.SingleToInt32Bits(middlePoint.X);
-            lineKey = (lineKey * prime1) ^ BitConverter.SingleToInt32Bits(middlePoint.Y);
-        }
+            long hash = hashOffset;
 
-        LineKey = lineKey;
+            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(middlePoint.X);
+            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(middlePoint.Y);
+            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(normal.X);
+            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(normal.Y);
+
+            return hash;
+        }
     }
 }
 
+/// <summary>
+/// Stores the position and identifier of a membrane intersection.
+/// </summary>
 public sealed class IntersetionData
 {
     public long IntersectionId;
-    public long CellKey;
-    public long OtherCellKey;
-    public long lineKey1;
-    public long lineKey2;
     public Vector2 Position;
 
-    public IntersetionData(Vector2 position, long cellKey, long otherCellKey, long lineKey1, long lineKey2)
+    /// <summary>
+    /// Creates an intersection identified by its position.
+    /// </summary>
+    public IntersetionData(Vector2 position)
     {
         Position = position;
-        CellKey = cellKey;
-        OtherCellKey = otherCellKey;
-        this.lineKey1 = lineKey1;
-        this.lineKey2 = lineKey2;
+        IntersectionId = CalculateIntersectionId(position);
+    }
 
-        const long prime1 = 1099511628211L;
-        var intersectionId = prime1;
+    /// <summary>
+    /// Calculates a deterministic hash from the intersection position.
+    /// </summary>
+    private static long CalculateIntersectionId(Vector2 position)
+    {
+        const long hashPrime = 1099511628211L;
+        const long hashOffset = unchecked((long)14695981039346656037UL);
 
         unchecked
         {
-            intersectionId = (intersectionId * prime1) ^ BitConverter.SingleToInt32Bits(position.X);
-            intersectionId = (intersectionId * prime1) ^ BitConverter.SingleToInt32Bits(position.Y);
-        }
+            long hash = hashOffset;
 
-        IntersectionId = intersectionId;
+            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(position.X);
+            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(position.Y);
+
+            return hash;
+        }
     }
 }
-
 /// <summary>
 ///   Cache entry that holds the base collision shape of a microbe (the physics shape of the membrane)
 /// </summary>
