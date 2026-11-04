@@ -397,7 +397,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
-    public void SetEditorWorldGuideObjectVisibility(bool shown)
+    public virtual void SetEditorWorldGuideObjectVisibility(bool shown)
     {
         editorArrow.Visible = shown;
         editorGrid.Visible = shown;

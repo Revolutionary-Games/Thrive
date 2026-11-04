@@ -236,6 +236,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CustomConfirmationDialog macroscopicConditionsView = null!;
+
+    [Export]
+    private CellLayoutBorderDisplay cellLayoutBorderDisplay = null!;
+
+    [Export]
+    private CellLayoutBorderDisplay hoveringCellBorderDisplay = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -661,6 +667,12 @@ public partial class CellBodyPlanEditorComponent :
         else if (layoutPreviewActive && UsesManualPlayerLayout)
         {
             DisplayManualLayoutAdjacencyErrors();
+
+            if (MovingPlacedHex != null && !Editor.ShowHover)
+            {
+                hoveringCellBorderDisplay.HideBorders();
+                hoveringCellBorderDisplay.ClearCellTypeCache();
+            }
         }
         else if (forceUpdateCellGraphics)
         {
@@ -985,6 +997,14 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnFinishEditing();
     }
 
+    public override void SetEditorWorldGuideObjectVisibility(bool shown)
+    {
+        base.SetEditorWorldGuideObjectVisibility(shown);
+
+        cellLayoutBorderDisplay.Visible = shown;
+        hoveringCellBorderDisplay.Visible = shown;
+    }
+
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
@@ -1230,6 +1250,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateSpecialCellTypeDisplays();
+
+        hoveringCellBorderDisplay.ClearCellTypeCache();
+        cellLayoutBorderDisplay.ClearCellTypeCache();
     }
 
     /// <summary>

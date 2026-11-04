@@ -397,6 +397,14 @@ public static class MulticellularLayoutHelpers
         }
     }
 
+    /// <summary>
+    ///   Calculates the origin shift that would happen to the cell with the given organelles upon exiting the editor.
+    /// </summary>
+    public static Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
+    {
+        return CellType.CalculateLayoutOriginShift(localOrganelles);
+    }
+
     private static bool FindPositionMultiplierWithNoOverlaps(ref int positionMultiplier, bool firstRun,
         CellLayout<CellTemplate> targetGameplayLayout, IndividualHexLayout<CellTemplate> targetEditorLayout,
         HexLayout<HexWithData<CellTemplate>> modifiableSource, List<Hex> hexTemporaryMemory,
