@@ -9,12 +9,11 @@ public class MembraneShapeStretcher
 
     public const float DistanceSquared = Distance * Distance;
 
-    /// <summary>Tolerancja na równoległość (bezwymiarowa, sinus kąta) i zerową długość wektora.</summary>
     public const float Parallel = 1e-6f;
 
     /// <summary>
-    /// Smooths every vertex by averaging it with its two neighbouring vertices.
-    /// The polygon is treated as closed, so the first and last vertices are neighbours.
+    ///   Smooths every vertex by averaging it with its two neighbouring vertices.
+    ///   The polygon is treated as closed, so the first and last vertices are neighbours.
     /// </summary>
     public static void SmoothVertexRegion(CellData cellData)
     {
@@ -32,7 +31,7 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Converts the discrete cell orientation into a rotation angle in radians.
+    ///   Converts the discrete cell orientation into a rotation angle in radians.
     /// </summary>
     public static float GetOrientationAngle(int orientation)
     {
@@ -40,7 +39,7 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Rotates a point around the origin by the supplied angle in radians.
+    ///   Rotates a point around the origin by the supplied angle in radians.
     /// </summary>
     public static Vector2 RotatePoint(Vector2 point, float angle)
     {
@@ -54,7 +53,7 @@ public class MembraneShapeStretcher
 
         Vector2 position = cellData.MulticellularMembraneGenerationCellData.Position;
 
-        for (int i = 0; i < cellData.VertexCount; i++)
+        for (int i = 0; i < cellData.VertexCount; ++i)
         {
             cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i], orientationAngle) + position;
         }
@@ -68,7 +67,7 @@ public class MembraneShapeStretcher
 
         Vector2 position = cellData.MulticellularMembraneGenerationCellData.Position;
 
-        for (int i = 0; i < cellData.VertexCount; i++)
+        for (int i = 0; i < cellData.VertexCount; ++i)
         {
             cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i] - position, -orientationAngle);
         }
@@ -76,66 +75,23 @@ public class MembraneShapeStretcher
         cellData.AverageVertex = RotatePoint(cellData.AverageVertex - position, -orientationAngle);
     }
 
-    private static bool TryGetIntersection(LineData firstLine, LineData secondLine, out Vector2 intersection)
-    {
-        intersection = Vector2.Zero;
-
-        var firstLineMiddlePoint = firstLine.MiddlePoint;
-        var secondLineMiddlePoint = secondLine.MiddlePoint;
-
-        var firstLineDirection = firstLine.Line;
-        var secondLineDirection = secondLine.Line;
-
-        var directionCrossProduct =
-            firstLineDirection.X * secondLineDirection.Y - firstLineDirection.Y * secondLineDirection.X;
-
-        // Parallel or almost parallel lines
-        var directionLengthProductSquared = firstLineDirection.LengthSquared() * secondLineDirection.LengthSquared();
-        if (directionLengthProductSquared < Parallel ||
-            MathF.Abs(directionCrossProduct) < Parallel * directionLengthProductSquared)
-        {
-            return false;
-        }
-
-        var middlePointsDifference = secondLineMiddlePoint - firstLineMiddlePoint;
-
-        var intersectionParameter =
-            (middlePointsDifference.X * secondLineDirection.Y - middlePointsDifference.Y * secondLineDirection.X) /
-            directionCrossProduct;
-
-        intersection = firstLineMiddlePoint + intersectionParameter * firstLineDirection;
-        return true;
-    }
-
-    private static float SignedDistanceToLine(LineData line, Vector2 point)
-    {
-        var length = line.Normal.Length();
-
-        if (length < Parallel)
-            return 0f;
-
-        return line.Normal.Dot(point - line.MiddlePoint) / length;
-    }
-
     /// <summary>
-    /// Calculates visible intersections between cell lines and removes
-    /// duplicate intersection positions within the configured tolerance.
+    ///   Calculates visible intersections between cell lines and removes
+    ///   duplicate intersection positions within the configured tolerance.
     /// </summary>
-    public static void GetIntersections(CellData cell,
-        Vector2 averageVertex)
+    public static void GetIntersections(CellData cell, Vector2 averageVertex, List<Vector2> intersectionPositions)
     {
         var lines = cell.LinesData;
         var intersections = cell.IntersectionsData;
 
         intersections.Clear();
+        intersectionPositions.Clear();
 
-        var intersectionPositions = new List<Vector2>();
-
-        for (int i = 0; i < lines.Count; i++)
+        for (int i = 0; i < lines.Count; ++i)
         {
             LineData firstLine = lines[i];
 
-            for (int j = i + 1; j < lines.Count; j++)
+            for (int j = i + 1; j < lines.Count; ++j)
             {
                 LineData secondLine = lines[j];
 
@@ -165,7 +121,7 @@ public class MembraneShapeStretcher
 
                 bool alreadyExists = false;
 
-                for (int k = 0; k < intersectionPositions.Count; k++)
+                for (int k = 0; k < intersectionPositions.Count; ++k)
                 {
                     if (intersectionPositions[k].DistanceSquaredTo(intersection) <= DistanceSquared)
                     {
@@ -186,15 +142,16 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Removes intersections that the neighbouring cells do not agree on.
-    /// A corner of cell A built from lines to B and C is kept only when every pair of
-    /// cells meeting at that point (B, C) is mutually connected by lines.
-    /// Requires CopyLinesToNeighbours to have run, so that line relations are symmetric.
+    ///   Removes intersections that the neighbouring cells do not agree on.
+    ///   A corner of cell A built from lines to B and C is kept only when every pair of
+    ///   cells meeting at that point (B, C) is mutually connected by lines.
+    ///   Requires CopyLinesToNeighbours to have run, so that line relations are symmetric.
     /// </summary>
-    public static void FilterInconsistentIntersections(ConcurrentDictionary<long, CellData> cellsData)
+    public static void FilterInconsistentIntersections(ConcurrentDictionary<long, CellData> cellsData,
+        List<CellData> neighbouringCells, List<long> deletedIntersections)
     {
-        var meetingCells = new List<CellData>(8);
-        var deletedIntersections = new List<long>(8);
+        neighbouringCells.Clear();
+        deletedIntersections.Clear();
 
         foreach (CellData cell in cellsData.Values)
         {
@@ -202,7 +159,7 @@ public class MembraneShapeStretcher
 
             foreach (IntersetionData intersection in cell.IntersectionsData.Values)
             {
-                if (!IsIntersectionConsistent(cell, intersection.Position, cellsData, meetingCells))
+                if (!IsIntersectionConsistent(cell, intersection.Position, cellsData, neighbouringCells))
                     deletedIntersections.Add(intersection.IntersectionId);
             }
 
@@ -214,58 +171,8 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Checks whether all cells meeting at <paramref name="position"/> are neighbours of each other.
-    /// </summary>
-    private static bool IsIntersectionConsistent(CellData cell, Vector2 position,
-        ConcurrentDictionary<long, CellData> cellsData, List<CellData> meetingCells)
-    {
-        meetingCells.Clear();
-
-        foreach (LineData line in cell.LinesData)
-        {
-            if (MathF.Abs(SignedDistanceToLine(line, position)) > Distance)
-                continue;
-
-            if (!cellsData.TryGetValue(line.OtherCellKey, out CellData? other))
-                return false;
-
-            meetingCells.Add(other);
-        }
-
-        if (meetingCells.Count < 2)
-            return false;
-
-        for (int i = 0; i < meetingCells.Count; i++)
-        {
-            for (int j = i + 1; j < meetingCells.Count; j++)
-            {
-                if (!HasLineTo(meetingCells[i], meetingCells[j].CellKey) ||
-                    !HasLineTo(meetingCells[j], meetingCells[i].CellKey))
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private static bool HasLineTo(CellData cell, long otherCellKey)
-    {
-        List<LineData> lines = cell.LinesData;
-
-        for (int i = 0; i < lines.Count; i++)
-        {
-            if (lines[i].OtherCellKey == otherCellKey)
-                return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Finds the closest points on two finite line segments and returns their
-    /// squared distance. The output points lie on their respective segments.
+    ///   Finds the closest points on two finite line segments and returns their
+    ///   squared distance. The output points lie on their respective segments.
     /// </summary>
     public static float ClosestPointsOnSegments(Vector2 firstSegmentStart, Vector2 firstSegmentEnd,
         Vector2 secondSegmentStart, Vector2 secondSegmentEnd, out Vector2 closestPointOnFirstSegment,
@@ -291,8 +198,8 @@ public class MembraneShapeStretcher
 
         if (firstSegmentLengthSquared <= MathUtils.EPSILON)
         {
-            firstSegmentParameter = 0f;
-            secondSegmentParameter = Math.Clamp(secondDirectionOffsetDot / secondSegmentLengthSquared, 0f, 1f);
+            firstSegmentParameter = 0.0f;
+            secondSegmentParameter = Math.Clamp(secondDirectionOffsetDot / secondSegmentLengthSquared, 0.0f, 1.0f);
         }
         else
         {
@@ -300,8 +207,8 @@ public class MembraneShapeStretcher
 
             if (secondSegmentLengthSquared <= MathUtils.EPSILON)
             {
-                secondSegmentParameter = 0f;
-                firstSegmentParameter = Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0f, 1f);
+                secondSegmentParameter = 0.0f;
+                firstSegmentParameter = Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0.0f, 1.0f);
             }
             else
             {
@@ -311,22 +218,24 @@ public class MembraneShapeStretcher
 
                 firstSegmentParameter = denominator > MathUtils.EPSILON ?
                     Math.Clamp((directionDotProduct * secondDirectionOffsetDot -
-                        firstDirectionOffsetDot * secondSegmentLengthSquared) / denominator, 0f, 1f) :
-                    0f;
+                        firstDirectionOffsetDot * secondSegmentLengthSquared) / denominator, 0.0f, 1.0f) :
+                    0.0f;
 
                 secondSegmentParameter = (directionDotProduct * firstSegmentParameter + secondDirectionOffsetDot) /
                     secondSegmentLengthSquared;
 
-                if (secondSegmentParameter < 0f)
+                if (secondSegmentParameter < 0.0f)
                 {
-                    secondSegmentParameter = 0f;
-                    firstSegmentParameter = Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0f, 1f);
-                }
-                else if (secondSegmentParameter > 1f)
-                {
-                    secondSegmentParameter = 1f;
+                    secondSegmentParameter = 0.0f;
                     firstSegmentParameter =
-                        Math.Clamp((directionDotProduct - firstDirectionOffsetDot) / firstSegmentLengthSquared, 0f, 1f);
+                        Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0.0f, 1.0f);
+                }
+                else if (secondSegmentParameter > 1.0f)
+                {
+                    secondSegmentParameter = 1.0f;
+                    firstSegmentParameter =
+                        Math.Clamp((directionDotProduct - firstDirectionOffsetDot) / firstSegmentLengthSquared, 0.0f,
+                            1.0f);
                 }
             }
         }
@@ -362,9 +271,10 @@ public class MembraneShapeStretcher
 
                 var positionB = cellB.MulticellularMembraneGenerationCellData.Position;
 
-                if (positionA.DistanceSquaredTo(positionB) >
-                    maxDistanceSquared)
+                if (positionA.DistanceSquaredTo(positionB) > maxDistanceSquared)
+                {
                     continue;
+                }
 
                 var countB = cellB.VertexCount;
                 if (countB < 2)
@@ -460,13 +370,13 @@ public class MembraneShapeStretcher
                 {
                     List<LineData> neighbourLines = neighbour.LinesData;
 
-                    for (int i = 0; i < neighbourLines.Count; i++)
+                    for (int i = 0; i < neighbourLines.Count; ++i)
                     {
                         LineData neighbourLine = neighbourLines[i];
 
                         if (neighbourLine.OtherCellKey == cellKey)
                         {
-                            neighbourLine.ShouldRemove &= false;
+                            neighbourLine.ShouldRemove = false;
                             break;
                         }
                     }
@@ -492,14 +402,14 @@ public class MembraneShapeStretcher
     {
         bool? sign = null;
 
-        for (int i = 0; i < vectices2D.Count; i++)
+        for (int i = 0; i < vectices2D.Count; ++i)
         {
             Vector2 a = vectices2D[i];
             Vector2 b = vectices2D[(i + 1) % vectices2D.Count];
 
             float cross = (b - a).Cross(point - a);
 
-            if (Mathf.Abs(cross) < 0.0001f)
+            if (Math.Abs(cross) < 0.0001f)
                 continue;
 
             bool currentSign = cross > 0;
@@ -513,56 +423,17 @@ public class MembraneShapeStretcher
         return true;
     }
 
-    private static void CreateBoundaryLinesForNeighbours(Vector2 pointB, Vector2 pointA, CellData cellA, long cellKeyB,
-        CellData cellB, long cellKeyA, bool isOverlapping)
-    {
-        Vector2 normal = pointB - pointA;
-
-        if (normal.LengthSquared() < MathUtils.EPSILON)
-            return;
-
-        Vector2 middlePoint = (pointA + pointB) * 0.5f;
-
-        cellA.LinesData.Add(new LineData(middlePoint, normal, cellKeyB, isOverlapping));
-        cellB.LinesData.Add(new LineData(middlePoint, normal, cellKeyA, isOverlapping));
-    }
-
-    private static void FindClosestPointsOnMembranes(int countA, List<Vector2> verticesA, int countB,
-        List<Vector2> verticesB,
-        ref float minDistance, ref Vector2 closestA, ref Vector2 closestB)
-    {
-        for (int i = 0; i < countA; i++)
-        {
-            Vector2 a0 = verticesA[i];
-            Vector2 a1 = verticesA[(i + 1) % countA];
-
-            for (int j = 0; j < countB; j++)
-            {
-                Vector2 b0 = verticesB[j];
-                Vector2 b1 = verticesB[(j + 1) % countB];
-
-                float distance = ClosestPointsOnSegments(a0, a1, b0, b1, out Vector2 pointA, out Vector2 pointB);
-
-                if (distance < minDistance)
-                {
-                    minDistance = distance;
-                    closestA = pointA;
-                    closestB = pointB;
-                }
-            }
-        }
-    }
-
     /// <summary>
-    /// Builds the visible boundary paths from the cell polygon, line midpoints,
-    /// and accepted intersections.
+    ///   Builds the visible boundary paths from the cell polygon, line midpoints,
+    ///   and accepted intersections.
     /// </summary>
-    public static void BuildBoundaryPaths(CellData cell)
+    public static void BuildBoundaryPaths(CellData cell, List<Vector2> points, List<bool> validEdges)
     {
         if (cell.Vertices2D.Count < 3)
             throw new InvalidOperationException("Membrane needs at least 3 vertices.");
 
-        var points = new List<Vector2>();
+        points.Clear();
+        validEdges.Clear();
 
         foreach (IntersetionData intersection in cell.IntersectionsData.Values)
         {
@@ -595,14 +466,11 @@ public class MembraneShapeStretcher
             return;
         }
 
-        // Case with two or more points
-        var validEdges = new bool[points.Count];
-
-        for (int i = 0; i < points.Count; i++)
+        for (int i = 0; i < points.Count; ++i)
         {
             int next = (i + 1) % points.Count;
 
-            validEdges[i] = CanConnect(points[i], points[next], cell.Vertices2D);
+            validEdges.Add(CanConnect(points[i], points[next], cell.Vertices2D));
         }
 
         if (points.Count == 2 && validEdges[0] && validEdges[1])
@@ -611,10 +479,11 @@ public class MembraneShapeStretcher
             return;
         }
 
-        // Edge is not valid if it crosses the membrane or if the membrane is not entirely on the right side of the edge.
+        // Edge is not valid if it crosses the membrane or if the membrane is not
+        // entirely on the right side of the edge.
         bool allEdgesValid = true;
 
-        for (int edgeIndex = 0; edgeIndex < validEdges.Length; edgeIndex++)
+        for (int edgeIndex = 0; edgeIndex < validEdges.Count; ++edgeIndex)
         {
             if (validEdges[edgeIndex])
                 continue;
@@ -637,9 +506,9 @@ public class MembraneShapeStretcher
         int firstInvalidEdge = validEdges.FindIndex(x => !x);
         int startIndex = (firstInvalidEdge + 1) % points.Count;
 
-        List<Vector2> currentPath = new();
+        List<Vector2> currentPath = new List<Vector2>();
 
-        for (int i = 0; i < points.Count; i++)
+        for (int i = 0; i < points.Count; ++i)
         {
             int currentIndex = (startIndex + i) % points.Count;
 
@@ -660,12 +529,12 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Projects membrane vertices onto the nearest valid boundary-path intersection
-    /// along the ray starting at the cell's average vertex.
+    ///   Projects membrane vertices onto the nearest valid boundary-path intersection
+    ///   along the ray starting at the cell's average vertex.
     /// </summary>
     public static void CastMembranePoints(CellData cell)
     {
-        for (int i = 0; i < cell.VertexCount; i++)
+        for (int i = 0; i < cell.VertexCount; ++i)
         {
             Vector2 membranePoint = cell.Vertices2D[i];
 
@@ -675,6 +544,137 @@ public class MembraneShapeStretcher
             }
 
             cell.Vertices2D[i] = hitPoint;
+        }
+    }
+
+    private static bool TryGetIntersection(LineData firstLine, LineData secondLine, out Vector2 intersection)
+    {
+        intersection = Vector2.Zero;
+
+        var firstLineMiddlePoint = firstLine.MiddlePoint;
+        var secondLineMiddlePoint = secondLine.MiddlePoint;
+
+        var firstLineDirection = firstLine.Line;
+        var secondLineDirection = secondLine.Line;
+
+        var directionCrossProduct =
+            firstLineDirection.X * secondLineDirection.Y - firstLineDirection.Y * secondLineDirection.X;
+
+        // Parallel or almost parallel lines
+        var directionLengthProductSquared = firstLineDirection.LengthSquared() * secondLineDirection.LengthSquared();
+        if (directionLengthProductSquared < Parallel ||
+            MathF.Abs(directionCrossProduct) < Parallel * directionLengthProductSquared)
+        {
+            return false;
+        }
+
+        var middlePointsDifference = secondLineMiddlePoint - firstLineMiddlePoint;
+
+        var intersectionParameter =
+            (middlePointsDifference.X * secondLineDirection.Y - middlePointsDifference.Y * secondLineDirection.X) /
+            directionCrossProduct;
+
+        intersection = firstLineMiddlePoint + intersectionParameter * firstLineDirection;
+        return true;
+    }
+
+    private static float SignedDistanceToLine(LineData line, Vector2 point)
+    {
+        var length = line.Normal.Length();
+
+        if (length < Parallel)
+            return 0.0f;
+
+        return line.Normal.Dot(point - line.MiddlePoint) / length;
+    }
+
+    /// <summary>
+    ///   Checks whether all cells meeting at <paramref name="position"/> are neighbours of each other.
+    /// </summary>
+    private static bool IsIntersectionConsistent(CellData cell, Vector2 position,
+        ConcurrentDictionary<long, CellData> cellsData, List<CellData> meetingCells)
+    {
+        meetingCells.Clear();
+
+        foreach (LineData line in cell.LinesData)
+        {
+            if (MathF.Abs(SignedDistanceToLine(line, position)) > Distance)
+                continue;
+
+            if (!cellsData.TryGetValue(line.OtherCellKey, out CellData? other))
+                return false;
+
+            meetingCells.Add(other);
+        }
+
+        if (meetingCells.Count < 2)
+            return false;
+
+        for (int i = 0; i < meetingCells.Count; ++i)
+        {
+            for (int j = i + 1; j < meetingCells.Count; ++j)
+            {
+                if (!HasLineTo(meetingCells[i], meetingCells[j].CellKey) ||
+                    !HasLineTo(meetingCells[j], meetingCells[i].CellKey))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private static bool HasLineTo(CellData cell, long otherCellKey)
+    {
+        List<LineData> lines = cell.LinesData;
+
+        for (int i = 0; i < lines.Count; ++i)
+        {
+            if (lines[i].OtherCellKey == otherCellKey)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static void CreateBoundaryLinesForNeighbours(Vector2 pointB, Vector2 pointA, CellData cellA, long cellKeyB,
+        CellData cellB, long cellKeyA, bool isOverlapping)
+    {
+        Vector2 normal = pointB - pointA;
+
+        if (normal.LengthSquared() < MathUtils.EPSILON)
+            return;
+
+        Vector2 middlePoint = (pointA + pointB) * 0.5f;
+
+        cellA.LinesData.Add(new LineData(middlePoint, normal, cellKeyB, isOverlapping));
+        cellB.LinesData.Add(new LineData(middlePoint, normal, cellKeyA, isOverlapping));
+    }
+
+    private static void FindClosestPointsOnMembranes(int countA, List<Vector2> verticesA, int countB,
+        List<Vector2> verticesB,
+        ref float minDistance, ref Vector2 closestA, ref Vector2 closestB)
+    {
+        for (int i = 0; i < countA; ++i)
+        {
+            Vector2 a0 = verticesA[i];
+            Vector2 a1 = verticesA[(i + 1) % countA];
+
+            for (int j = 0; j < countB; ++j)
+            {
+                Vector2 b0 = verticesB[j];
+                Vector2 b1 = verticesB[(j + 1) % countB];
+
+                float distance = ClosestPointsOnSegments(a0, a1, b0, b1, out Vector2 pointA, out Vector2 pointB);
+
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestA = pointA;
+                    closestB = pointB;
+                }
+            }
         }
     }
 
@@ -698,7 +698,7 @@ public class MembraneShapeStretcher
 
         foreach (BoundaryPathData path in boundaryPaths)
         {
-            for (int i = 0; i < path.Points.Count - 1; i++)
+            for (int i = 0; i < path.Points.Count - 1; ++i)
             {
                 Vector2 a = path.Points[i];
                 Vector2 b = path.Points[i + 1];
@@ -723,9 +723,6 @@ public class MembraneShapeStretcher
         return found;
     }
 
-    /// <summary>
-    ///   rayDirection MUSI być jednostkowy.
-    /// </summary>
     private static bool TryRaySegmentIntersection(Vector2 rayOrigin,
         Vector2 rayDirection,
         Vector2 segmentStart,
@@ -772,9 +769,7 @@ public class MembraneShapeStretcher
         });
     }
 
-    private static void AddOpenPath(List<Vector2> points,
-        List<Vector2> polygon,
-        List<BoundaryPathData> result)
+    private static void AddOpenPath(List<Vector2> points, List<Vector2> polygon, List<BoundaryPathData> result)
     {
         if (points.Count == 0)
             return;
@@ -782,7 +777,7 @@ public class MembraneShapeStretcher
         Vector2 incomingTangent = GetIncomingTangent(points[0], polygon);
         Vector2 outgoingTangent = GetOutgoingTangent(points[^1], polygon);
 
-        BoundaryPathData path = new();
+        var path = new BoundaryPathData();
 
         path.Points.Add(incomingTangent);
         path.Points.AddRange(points);
@@ -815,8 +810,8 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Determines whether a segment passes through the interior of a convex polygon
-    /// using parametric clipping.
+    ///   Determines whether a segment passes through the interior of a convex polygon
+    ///   using parametric clipping.
     /// </summary>
     private static bool SegmentEntersPolygonInterior(Vector2 segmentStart,
         Vector2 segmentEnd,
@@ -828,12 +823,12 @@ public class MembraneShapeStretcher
         if (segmentLength < Distance)
             return false;
 
-        float minimumSegmentParameter = 0f;
-        float maximumSegmentParameter = 1f;
+        float minimumSegmentParameter = 0.0f;
+        float maximumSegmentParameter = 1.0f;
 
         const float interiorLimit = -Distance;
 
-        for (int edgeIndex = 0; edgeIndex < polygon.Count; edgeIndex++)
+        for (int edgeIndex = 0; edgeIndex < polygon.Count; ++edgeIndex)
         {
             Vector2 edgeStart = polygon[edgeIndex];
             Vector2 edgeEnd = polygon[(edgeIndex + 1) % polygon.Count];
@@ -888,18 +883,12 @@ public class MembraneShapeStretcher
         return interiorSegmentLength > Distance;
     }
 
-    // Styczna wejściowa:
-    // kierunek stycznej to T -> P.
-    // Membrana musi być po prawej stronie tego kierunku.
     private static Vector2 GetIncomingTangent(Vector2 point,
         List<Vector2> polygon)
     {
         return FindTangent(point, polygon, incoming: true);
     }
 
-    // Styczna wyjściowa:
-    // kierunek stycznej to P -> T.
-    // Membrana musi być po prawej stronie tego kierunku.
     private static Vector2 GetOutgoingTangent(Vector2 point,
         List<Vector2> polygon)
     {
@@ -907,18 +896,18 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Finds the nearest polygon vertex that forms a valid incoming or outgoing
-    /// tangent from a point outside the polygon.
+    ///   Finds the nearest polygon vertex that forms a valid incoming or outgoing
+    ///   tangent from a point outside the polygon.
     /// </summary>
-    private static Vector2 FindTangent(Vector2 point,
-        List<Vector2> polygon,
-        bool incoming)
+    private static Vector2 FindTangent(Vector2 point, List<Vector2> polygon, bool incoming)
     {
+#if DEBUG
         if (IsPointInsideOrOnPolygon(point, polygon))
         {
-            throw new InvalidOperationException($"Punkt {point} leży wewnątrz membrany lub na jej obrysie. " +
-                "Nie można wyznaczyć zewnętrznej stycznej.");
+            GD.PrintErr($"Point {point} is inside or on the polygon. " +
+                "Cannot find an external tangent.");
         }
+#endif
 
         Vector2? bestCandidate = null;
         float bestDistance = float.MaxValue;
@@ -929,7 +918,6 @@ public class MembraneShapeStretcher
 
             foreach (Vector2 vertex in polygon)
             {
-                // incoming: prosta T -> P, outgoing: prosta P -> T.
                 float side = incoming ?
                     SideOf(tangentPoint, point, vertex) :
                     SideOf(point, tangentPoint, vertex);
@@ -955,7 +943,8 @@ public class MembraneShapeStretcher
 
         if (bestCandidate == null)
         {
-            throw new InvalidOperationException($"Nie udało się znaleźć stycznej dla punktu {point}.");
+            GD.PrintErr($"Could not find an external tangent for point {point}.");
+            return point;
         }
 
         return bestCandidate.Value;
@@ -964,7 +953,7 @@ public class MembraneShapeStretcher
     private static bool IsPointInsideOrOnPolygon(Vector2 point,
         List<Vector2> polygon)
     {
-        for (int i = 0; i < polygon.Count; i++)
+        for (int i = 0; i < polygon.Count; ++i)
         {
             Vector2 a = polygon[i];
             Vector2 b = polygon[(i + 1) % polygon.Count];
@@ -977,13 +966,8 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    /// Removes points that are closer to an already accepted point
-    /// than the configured geometric tolerance.
-    /// </summary>
-    /// <summary>
-    /// Removes points that are closer to an already accepted point than the
-    /// configured tolerance. Compacts the input list in place to avoid allocating
-    /// a second list.
+    ///   Removes points that are closer to an already accepted point
+    ///   than the configured geometric tolerance.
     /// </summary>
     private static List<Vector2> RemoveDuplicatePoints(List<Vector2> points)
     {
@@ -991,14 +975,12 @@ public class MembraneShapeStretcher
 
         int uniquePointCount = 0;
 
-        for (int pointIndex = 0; pointIndex < points.Count; pointIndex++)
+        for (int pointIndex = 0; pointIndex < points.Count; ++pointIndex)
         {
             Vector2 candidatePoint = points[pointIndex];
             bool isDuplicate = false;
 
-            for (int existingPointIndex = 0;
-                 existingPointIndex < uniquePointCount;
-                 existingPointIndex++)
+            for (int existingPointIndex = 0; existingPointIndex < uniquePointCount; ++existingPointIndex)
             {
                 if (points[existingPointIndex].DistanceSquaredTo(candidatePoint) <=
                     toleranceSquared)
@@ -1012,7 +994,7 @@ public class MembraneShapeStretcher
                 continue;
 
             points[uniquePointCount] = candidatePoint;
-            uniquePointCount++;
+            ++uniquePointCount;
         }
 
         if (uniquePointCount < points.Count)
@@ -1021,17 +1003,13 @@ public class MembraneShapeStretcher
         return points;
     }
 
-    /// <summary>
-    ///   Odległość ze znakiem punktu p od prostej a -> b (dodatnia = po lewej stronie kierunku a -> b).
-    ///   W przeciwieństwie do surowego Cross nie zależy od długości odcinka a-b.
-    /// </summary>
     private static float SideOf(Vector2 a, Vector2 b, Vector2 p)
     {
         Vector2 direction = b - a;
         float length = direction.Length();
 
         if (length < Parallel)
-            return 0f;
+            return 0.0f;
 
         return Cross(direction, p - a) / length;
     }

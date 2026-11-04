@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -208,28 +207,23 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 }
 
 /// <summary>
-/// Stores the generated geometry and related data for one cell.
+///   Stores the generated geometry and related data for one cell.
 /// </summary>
 public sealed class CellData
 {
-    public long CellKey;
-
+    public readonly MembranePointData OriginalPointData;
     public readonly List<Vector2> Vertices2D;
-    public int VertexCount;
-
-    public List<LineData> LinesData;
-    public Dictionary<long, IntersetionData> IntersectionsData;
-
     public readonly List<BoundaryPathData> BoundaryPaths;
-
     public readonly MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
+    public readonly Dictionary<long, IntersetionData> IntersectionsData;
+    public readonly List<LineData> LinesData;
+    public readonly long CellKey;
+    public readonly int VertexCount;
 
     public Vector2 AverageVertex;
 
-    public readonly MembranePointData OriginalPointData;
-
     /// <summary>
-    /// Initializes cell geometry in world space using its position and orientation.
+    ///   Initializes cell geometry in world space using its position and orientation.
     /// </summary>
     public CellData(long cellKey,
         MembranePointData membranePointData,
@@ -256,32 +250,29 @@ public sealed class CellData
 }
 
 /// <summary>
-/// Stores one continuous section of a cell boundary.
+///   Stores one continuous section of a cell boundary.
 /// </summary>
 public sealed class BoundaryPathData
 {
-    public readonly List<Vector2> Points = new(8);
-
-    public bool IsClosed =>
-        Points.Count > 2 &&
-        Points[0].DistanceSquaredTo(Points[^1]) <= 0.0000001f;
+    public readonly List<Vector2> Points = new();
 }
 
 /// <summary>
-/// Stores the separating line between two cells.
+///   Stores the separating line between two cells.
 /// </summary>
 public sealed class LineData
 {
-    public long OtherCellKey;
+    public readonly long OtherCellKey;
+    public readonly bool IsOverLapping;
 
     public Vector2 MiddlePoint;
     public Vector2 Line;
     public Vector2 Normal;
+
     public bool ShouldRemove = true;
-    public bool IsOverLapping = false;
 
     /// <summary>
-    /// Creates a line representation from its midpoint and normal.
+    ///   Creates a line representation from its midpoint and normal.
     /// </summary>
     public LineData(Vector2 middlePoint, Vector2 normal, long otherCellKey, bool isOverlapping = false)
     {
@@ -295,15 +286,15 @@ public sealed class LineData
 }
 
 /// <summary>
-/// Stores the position and identifier of a membrane intersection.
+///   Stores the position and identifier of a membrane intersection.
 /// </summary>
 public sealed class IntersetionData
 {
-    public long IntersectionId;
+    public readonly long IntersectionId;
     public Vector2 Position;
 
     /// <summary>
-    /// Creates an intersection identified by its position.
+    ///   Creates an intersection identified by its position.
     /// </summary>
     public IntersetionData(Vector2 position)
     {
@@ -312,7 +303,7 @@ public sealed class IntersetionData
     }
 
     /// <summary>
-    /// Calculates a deterministic hash from the intersection position.
+    ///   Calculates a deterministic hash from the intersection position.
     /// </summary>
     private static long CalculateIntersectionId(Vector2 position)
     {

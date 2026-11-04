@@ -35,6 +35,10 @@ public class MembraneShapeGenerator
 
     private readonly Dictionary<long, MembranePointData> stretchedMembranesPointData = new();
     private readonly List<LineData> linesData = new();
+    private readonly List<CellData> neighbouringCells = new();
+    private readonly List<long> deletedIntersections = new();
+    private readonly List<Vector2> points = new();
+    private readonly List<bool> validEdges = new();
 
     /// <summary>
     ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
@@ -178,14 +182,14 @@ public class MembraneShapeGenerator
         foreach (var (_, cellData) in cellsData)
         {
             var averageVertex = cellData.AverageVertex;
-            MembraneShapeStretcher.GetIntersections(cellData, averageVertex);
+            MembraneShapeStretcher.GetIntersections(cellData, averageVertex, points);
         }
 
-        MembraneShapeStretcher.FilterInconsistentIntersections(cellsData);
+        MembraneShapeStretcher.FilterInconsistentIntersections(cellsData, neighbouringCells, deletedIntersections);
 
         foreach (var (_, cellData) in cellsData)
         {
-            MembraneShapeStretcher.BuildBoundaryPaths(cellData);
+            MembraneShapeStretcher.BuildBoundaryPaths(cellData, points, validEdges);
             MembraneShapeStretcher.CastMembranePoints(cellData);
 
             if (!cellData.OriginalPointData.Type.CellWall)

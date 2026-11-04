@@ -62,8 +62,8 @@ public static class MembraneGenerationCoordinator
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
 
-        tracker.CellsData[generationParameters.CellKey] = new CellData(generationParameters.CellKey, singleCellMembranePointData,
-            multicellularMembraneData);
+        tracker.CellsData[generationParameters.CellKey] = new CellData(generationParameters.CellKey,
+            singleCellMembranePointData, multicellularMembraneData);
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
         // for too long to avoid potential memory leaks
