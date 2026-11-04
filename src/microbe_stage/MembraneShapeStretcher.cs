@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Text;
 using Godot;
 
 public class MembraneShapeStretcher
@@ -247,8 +248,7 @@ public class MembraneShapeStretcher
     }
 
     public static void CreateBoundaryLines(ConcurrentDictionary<long, CellData> cellsData,
-        ref string info,
-        List<LineData> linesData)
+        StringBuilder info, List<LineData> linesData)
     {
         linesData.Clear();
 
@@ -333,7 +333,7 @@ public class MembraneShapeStretcher
 
                     if (Math.Abs(candidate.Line.X) < 0.00001f)
                     {
-                        info += $"x = {candidate.MiddlePoint.X:F3}\n";
+                        info.Append($"x = {candidate.MiddlePoint.X:F3}\n");
                     }
                     else
                     {
@@ -341,10 +341,10 @@ public class MembraneShapeStretcher
                         var b = candidate.MiddlePoint.Y -
                             a * candidate.MiddlePoint.X;
 
-                        info += $"y = {a:F3}x + {b:F3}\n";
+                        info.Append($"y = {a:F3}x + {b:F3}\n");
                     }
 
-                    info += $"({candidate.MiddlePoint.X:F3}, {candidate.MiddlePoint.Y:F3})\n";
+                    info.Append($"({candidate.MiddlePoint.X:F3}, {candidate.MiddlePoint.Y:F3})\n");
 
                     float averageSide = SignedDistanceToLine(otherLine, averageVertex);
                     float candidateSide = SignedDistanceToLine(otherLine, candidate.MiddlePoint);

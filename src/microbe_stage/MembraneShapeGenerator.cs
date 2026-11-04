@@ -3,6 +3,7 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -163,13 +164,13 @@ public class MembraneShapeGenerator
         stretchedMembranesPointData.Clear();
 
         // DO NOT REMOVE: this is used for debugging and printing the membrane data to the console
-        var info = string.Empty;
+        var info = new StringBuilder();
 
         foreach (var (_, data) in cellsData)
         {
-            info += string.Join(", ",
-                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})"));
-            info += "\n";
+            info.Append(string.Join(", ",
+                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
+            info.Append("\n");
         }
 
         foreach (var (_, cellData) in cellsData)
@@ -177,7 +178,7 @@ public class MembraneShapeGenerator
             MembraneShapeStretcher.RotateCellVertices(cellData);
         }
 
-        MembraneShapeStretcher.CreateBoundaryLines(cellsData, ref info, linesData);
+        MembraneShapeStretcher.CreateBoundaryLines(cellsData, info, linesData);
 
         foreach (var (_, cellData) in cellsData)
         {
@@ -201,21 +202,20 @@ public class MembraneShapeGenerator
             {
                 foreach (var point in path.Points)
                 {
-                    info += $"({point.X:F3}, " +
-                        $"{point.Y:F3}),";
+                    info.Append($"({point.X:F3}, " +
+                        $"{point.Y:F3}),");
                 }
             }
 
-            info = info.TrimEnd(',');
-
-            info += "\n";
+            info.Remove(info.Length - 1, 1);
+            info.Append("\n");
         }
 
         foreach (var (_, data) in cellsData)
         {
-            info += string.Join(", ",
-                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})"));
-            info += "\n";
+            info.Append(string.Join(", ",
+                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
+            info.Append("\n");
         }
 
         if (cellsData.Count >= 3)
