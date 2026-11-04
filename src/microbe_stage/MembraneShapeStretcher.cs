@@ -886,13 +886,13 @@ public class MembraneShapeStretcher
     private static Vector2 GetIncomingTangent(Vector2 point,
         List<Vector2> polygon)
     {
-        return FindTangent(point, polygon, incoming: true);
+        return FindTangent(point, polygon, true);
     }
 
     private static Vector2 GetOutgoingTangent(Vector2 point,
         List<Vector2> polygon)
     {
-        return FindTangent(point, polygon, incoming: false);
+        return FindTangent(point, polygon, false);
     }
 
     /// <summary>
