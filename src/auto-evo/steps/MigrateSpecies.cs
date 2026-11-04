@@ -17,14 +17,14 @@ public class MigrateSpecies : IRunStep
     private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
 
     public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
-        Random randomSource)
+        long seed)
     {
         this.species = species;
         this.cache = cache;
         this.map = map;
         this.worldSettings = worldSettings;
 
-        random = new XoShiRo128starstar(randomSource.NextInt64());
+        random = new XoShiRo128starstar(seed);
     }
 
     public int TotalSteps => 1;

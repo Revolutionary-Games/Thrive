@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using AutoEvo;
 
 public static class CommonMutationFunctions
 {
     public static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+    private const int RANDOM_ORDER_STACK_LIMIT = 512;
 
     // These must be defined this way to avoid allocations
     private static readonly Hex.HexSide[] TraversalOrder1 = [Hex.HexSide.Top];
@@ -471,20 +472,34 @@ public static class CommonMutationFunctions
         // Create a cache of the already used positions to have much more efficient placement checking
         existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
+        var organelleCount = existingOrganelles.Count;
+
+        var randomOrder = organelleCount <= RANDOM_ORDER_STACK_LIMIT ?
+            stackalloc int[organelleCount] :
+            new int[organelleCount].AsSpan();
+
+        for (int i = 0; i < randomOrder.Length; ++i)
+        {
+            randomOrder[i] = i;
+        }
+
+        random.Shuffle(randomOrder);
+
         // Loop through all the organelles and find an open spot to
         // place our new organelle attached to existing organelles
         // This almost always is over at the first iteration, so it's
         // not a huge performance hog
-        // TODO: try to avoid the memory allocation here
-        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var otherOrganelle = existingOrganelles[randomOrder[i]];
+
             // The otherOrganelle is the organelle we wish to be next to
             // Loop its hexes and check positions next to them
             var rotated = otherOrganelle.RotatedHexes;
             var rotatedCount = rotated.Count;
-            for (int i = 0; i < rotatedCount; ++i)
+            for (int j = 0; j < rotatedCount; ++j)
             {
-                var hex = rotated[i];
+                var hex = rotated[j];
 
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
