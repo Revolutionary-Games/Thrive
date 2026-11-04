@@ -13,8 +13,6 @@ public class MutationLogicFunctions
     /// </summary>
     public static void NameNewSpecies(Random random, Species newSpecies, Species parentSpecies)
     {
-        ArgumentNullException.ThrowIfNull(random);
-
         // Keep the same genus name if the species are similar enough
         var keepGenus = false;
         if (newSpecies is MicrobeSpecies microbeSpecies && parentSpecies is MicrobeSpecies parentMicrobeSpecies)
