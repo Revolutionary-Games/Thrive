@@ -8,7 +8,8 @@ using Godot;
 public class MutationLogicFunctions
 {
     /// <summary>
-    ///   Synchronously consumes the owning task's stream, advancing colour generation and later candidates.
+    ///   Names a retained species using the owning task's random stream. This advances the stream used for
+    ///   subsequent colouring and for naming and colouring later retained species.
     /// </summary>
     public static void NameNewSpecies(Random random, Species newSpecies, Species parentSpecies)
     {
