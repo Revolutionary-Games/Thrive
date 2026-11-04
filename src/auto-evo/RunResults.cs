@@ -243,7 +243,12 @@ public class RunResults : IArchivable
     /// </summary>
     public List<PossibleSpecies> GetPossibleSpeciesList()
     {
-        return modifiedSpecies;
+        // This lock basically does nothing as it doesn't help with the returned result, but is needed to suppress
+        // a warning.
+        lock (modifiedSpecies)
+        {
+            return modifiedSpecies;
+        }
     }
 
     public void AddPossibleMutation(Species species, KeyValuePair<Patch, long> initialPopulationInPatches,
