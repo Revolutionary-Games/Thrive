@@ -75,6 +75,15 @@ public class Settings
         Disabled,
     }
 
+    public enum ShadowResolutionPreset
+    {
+        MSAA,
+        TemporalAntiAliasing,
+        MSAAAndTemporal,
+        ScreenSpaceFx,
+        Disabled,
+    }
+
     public enum MicrobeCurrentParticlesMode
     {
         All,
@@ -131,7 +140,14 @@ public class Settings
     ///   Sets realtime shadows' resolution
     /// </summary>
     [JsonProperty]
-    public SettingValue<int> ShadowResolution { get; private set; } = new(4096);
+    public SettingValue<int> ShadowResolution { get; private set; } = new(2048);
+
+    /// <summary>
+    ///   Sets the quality of soft shadow filtering
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<RenderingServer.ShadowQuality> ShadowFilteringQuality { get; private set; } =
+        new(RenderingServer.ShadowQuality.SoftLow);
 
     /// <summary>
     ///   Game rendering scale. Lower values enable upscaling from a lower resolution image
@@ -944,11 +960,17 @@ public class Settings
     {
         var viewport = GUICommon.Instance.GetTree().Root.GetViewport();
         viewport.AnisotropicFilteringLevel = AnisotropicFilterLevel;
+        viewport.PositionalShadowAtlasSize = ShadowResolution;
 
         // Values less than 0 are undefined behaviour
         int max = MaxFramesPerSecond;
         Engine.MaxFps = max >= 0 ? max : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+
+        RenderingServer.Singleton.DirectionalShadowAtlasSetSize(ShadowResolution, true);
+
+        RenderingServer.Singleton.PositionalSoftShadowFilterSetQuality(ShadowFilteringQuality);
+        RenderingServer.Singleton.DirectionalSoftShadowFilterSetQuality(ShadowFilteringQuality);
 
         // Upscaling settings
         var scale = RenderScale.Value;
@@ -1031,8 +1053,6 @@ public class Settings
                 GD.PrintErr("Unknown anti aliasing mode: ", AntiAliasing.Value);
                 break;
         }
-
-        RenderingServer.Singleton.DirectionalShadowAtlasSetSize(ShadowResolution, true);
     }
 
     public void ApplyGUISettings()

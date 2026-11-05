@@ -126,6 +126,9 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton shadowResolutionSetting = null!;
 
     [Export]
+    private OptionButton shadowFilteringQualitySetting = null!;
+
+    [Export]
     private CheckButton chromaticAberrationToggle = null!;
 
     [Export]
@@ -847,7 +850,8 @@ public partial class OptionsMenu : ControlWithInput
         renderScale.Value = settings.RenderScale;
         upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
         upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
-        shadowResolutionSetting.Selected = settings.ShadowResolution.Value;
+        shadowResolutionSetting.Selected = ShadowResolutionValueToIndex(settings.ShadowResolution.Value);
+        shadowFilteringQualitySetting.Selected = (int)settings.ShadowFilteringQuality.Value;
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
@@ -1383,6 +1387,50 @@ public partial class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid max frames per second index");
                 return 360;
+        }
+    }
+
+    private int ShadowResolutionValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case 32:
+                return 0;
+            case 128:
+                return 1;
+            case 512:
+                return 2;
+            case 1024:
+                return 3;
+            case 2048:
+                return 4;
+            case 4096:
+                return 5;
+            default:
+                GD.PrintErr("invalid shadow resolution value");
+                return 6;
+        }
+    }
+
+    private int ShadowResolutionIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return 32;
+            case 1:
+                return 128;
+            case 2:
+                return 512;
+            case 3:
+                return 1024;
+            case 4:
+                return 2048;
+            case 5:
+                return 4096;
+            default:
+                GD.PrintErr("invalid shadow resolution index");
+                return 2048;
         }
     }
 
@@ -2138,6 +2186,30 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.ColourblindSetting.Value = index;
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnShadowResolutionChanged(int index)
+    {
+        if (isProgrammaticControlUpdateInProgress)
+            return;
+
+        Settings.Instance.ShadowResolution.Value = ShadowResolutionIndexToValue(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateSelectedGraphicsPresetIfNeeded();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnShadowFilteringQualityChanged(int index)
+    {
+        if (isProgrammaticControlUpdateInProgress)
+            return;
+
+        Settings.Instance.ShadowFilteringQuality.Value = (RenderingServer.ShadowQuality)index;
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
