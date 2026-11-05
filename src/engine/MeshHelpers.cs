@@ -30,7 +30,9 @@ public static class MeshHelpers
         // copied into Godot-owned packed arrays, but the surface array wrapper still owns the native array handle.
         GC.KeepAlive(arrays);
         GC.KeepAlive(mesh);
-        GC.KeepAlive(blendShapeStorage);
-        GC.KeepAlive(lods);
+
+        // We don't need to keep alive lods or blend shapes here because the using statement causes the same kind of
+        // lifetime behaviour of keeping them alive. We still keep references to the mesh and arrays because we don't
+        // know if our caller has them in a using statement.
     }
 }
