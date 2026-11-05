@@ -851,7 +851,7 @@ public partial class OptionsMenu : ControlWithInput
         upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
         upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
         shadowResolutionSetting.Selected = ShadowResolutionValueToIndex(settings.ShadowResolution.Value);
-        shadowFilteringQualitySetting.Selected = (int)settings.ShadowFilteringQuality.Value;
+        shadowFilteringQualitySetting.Selected = ShadowFilteringValueToIndex(settings.ShadowFilteringQuality.Value);
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
@@ -1431,6 +1431,50 @@ public partial class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid shadow resolution index");
                 return 2048;
+        }
+    }
+
+    private int ShadowFilteringValueToIndex(RenderingServer.ShadowQuality shadowFiltering)
+    {
+        switch (shadowFiltering)
+        {
+            case RenderingServer.ShadowQuality.Hard:
+                return 0;
+            case RenderingServer.ShadowQuality.SoftVeryLow:
+                return 1;
+            case RenderingServer.ShadowQuality.SoftLow:
+                return 2;
+            case RenderingServer.ShadowQuality.SoftMedium:
+                return 3;
+            case RenderingServer.ShadowQuality.SoftHigh:
+                return 4;
+            case RenderingServer.ShadowQuality.SoftUltra:
+                return 5;
+            default:
+                GD.PrintErr("invalid shadow resolution value");
+                return 3;
+        }
+    }
+
+    private RenderingServer.ShadowQuality ShadowFilteringIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return RenderingServer.ShadowQuality.Hard;
+            case 1:
+                return RenderingServer.ShadowQuality.SoftVeryLow;
+            case 2:
+                return RenderingServer.ShadowQuality.SoftLow;
+            case 3:
+                return RenderingServer.ShadowQuality.SoftMedium;
+            case 4:
+                return RenderingServer.ShadowQuality.SoftHigh;
+            case 5:
+                return RenderingServer.ShadowQuality.SoftUltra;
+            default:
+                GD.PrintErr("invalid shadow resolution index");
+                return RenderingServer.ShadowQuality.SoftMedium;
         }
     }
 
@@ -2206,7 +2250,7 @@ public partial class OptionsMenu : ControlWithInput
         if (isProgrammaticControlUpdateInProgress)
             return;
 
-        Settings.Instance.ShadowFilteringQuality.Value = (RenderingServer.ShadowQuality)index;
+        Settings.Instance.ShadowFilteringQuality.Value = ShadowFilteringIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
         UpdateSelectedGraphicsPresetIfNeeded();
