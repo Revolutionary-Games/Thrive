@@ -123,6 +123,9 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting = null!;
 
     [Export]
+    private OptionButton shadowResolutionSetting = null!;
+
+    [Export]
     private CheckButton chromaticAberrationToggle = null!;
 
     [Export]
@@ -844,6 +847,7 @@ public partial class OptionsMenu : ControlWithInput
         renderScale.Value = settings.RenderScale;
         upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
         upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
+        shadowResolutionSetting.Selected = settings.ShadowResolution.Value;
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;

@@ -758,6 +758,48 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
+[node name="VBoxContainer31" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1196731276]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31" unique_id=1680984854]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31/HBoxContainer" unique_id=292213558]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "Da shadow stuff"
+autowrap_mode = 2
+
+[node name="AnisotropicFilterLevel" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31/HBoxContainer" unique_id=1047627405]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "512"
+popup/item_0/id = 0
+popup/item_1/text = "1024"
+popup/item_1/id = 1
+popup/item_2/text = "32"
+popup/item_2/id = 2
+popup/item_3/text = "2048"
+popup/item_3/id = 3
+popup/item_3/disabled = true
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31" unique_id=1502689368]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
+label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
+
 [node name="HBocContainer23" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1362431328]
 layout_mode = 2
 

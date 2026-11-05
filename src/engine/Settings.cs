@@ -126,6 +126,13 @@ public class Settings
     public SettingValue<Viewport.AnisotropicFiltering> AnisotropicFilterLevel { get; private set; } =
         new(Viewport.AnisotropicFiltering.Anisotropy8X);
 
+
+    /// <summary>
+    ///   Sets realtime shadows' resolution
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> ShadowResolution { get; private set; } = new(4096);
+
     /// <summary>
     ///   Game rendering scale. Lower values enable upscaling from a lower resolution image
     /// </summary>
@@ -1024,6 +1031,8 @@ public class Settings
                 GD.PrintErr("Unknown anti aliasing mode: ", AntiAliasing.Value);
                 break;
         }
+
+        RenderingServer.Singleton.DirectionalShadowAtlasSetSize(ShadowResolution, true);
     }
 
     public void ApplyGUISettings()
