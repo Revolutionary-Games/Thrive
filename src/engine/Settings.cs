@@ -138,7 +138,7 @@ public class Settings
     /// </summary>
     [JsonProperty]
     public SettingValue<RenderingServer.ShadowQuality> ShadowFilteringQuality { get; private set; } =
-        new(RenderingServer.ShadowQuality.SoftLow);
+        new(RenderingServer.ShadowQuality.SoftMedium);
 
     /// <summary>
     ///   Game rendering scale. Lower values enable upscaling from a lower resolution image
