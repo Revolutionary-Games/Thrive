@@ -122,6 +122,11 @@ public partial class DebugDrawer : ControlWithInput
         }
 
         NativeMethods.DebugDrawerAddLine(nativeInstance, new JVec3(from), new JVec3(to), new JColour(color));
+
+#if DEBUG
+        if (!IsInstanceValid(this))
+            throw new InvalidOperationException("DebugDrawer was freed during a native call");
+#endif
     }
 
     public void DebugPoint(Vector3 position, Color color)
@@ -133,6 +138,11 @@ public partial class DebugDrawer : ControlWithInput
         }
 
         NativeMethods.DebugDrawerAddPoint(nativeInstance, new JVec3(position), new JColour(color));
+
+#if DEBUG
+        if (!IsInstanceValid(this))
+            throw new InvalidOperationException("DebugDrawer was freed during a native call");
+#endif
     }
 
     [RunOnKeyDown("d_physics_debug", Priority = -2)]
