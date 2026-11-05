@@ -75,15 +75,6 @@ public class Settings
         Disabled,
     }
 
-    public enum ShadowResolutionPreset
-    {
-        MSAA,
-        TemporalAntiAliasing,
-        MSAAAndTemporal,
-        ScreenSpaceFx,
-        Disabled,
-    }
-
     public enum MicrobeCurrentParticlesMode
     {
         All,

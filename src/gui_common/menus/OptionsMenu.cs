@@ -1408,7 +1408,7 @@ public partial class OptionsMenu : ControlWithInput
                 return 5;
             default:
                 GD.PrintErr("invalid shadow resolution value");
-                return 6;
+                return 2;
         }
     }
 
