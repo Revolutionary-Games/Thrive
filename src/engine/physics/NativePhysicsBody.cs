@@ -43,16 +43,19 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     {
         this.nativeInstance = nativeInstance;
 
-#if DEBUG
-        CheckIfDisposedAfterNativeCall();
-#endif
-
         if (this.nativeInstance.ToInt64() == 0)
         {
             // TODO: should this crash the game?
             GD.PrintErr(
                 "Physics body can't be created from null native pointer, we probably ran out of physics bodies");
         }
+
+#if DEBUG
+
+        // This can trigger if the allocation returned null, but that's not the worst thing to catch during debugging
+        // as that means we are using way too many physics bodies.
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     ~NativePhysicsBody()
