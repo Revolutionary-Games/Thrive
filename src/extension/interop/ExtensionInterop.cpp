@@ -5,9 +5,9 @@ BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/core/object.hpp>
+#include <godot_cpp/variant/color.hpp>
 #include <godot_cpp/variant/variant.hpp>
 #include <godot_cpp/variant/vector3.hpp>
-#include <godot_cpp/variant/color.hpp>
 END_GODOT_INCLUDES;
 
 #include "atlas/atlas_unwrap.hpp"
@@ -61,14 +61,27 @@ bool ArrayMeshUnwrap(GodotVariant* mesh, float texelSize)
         return false;
     }
 
-    auto obj = (godot::Object*)variant;
+    const auto obj = variant->get_validated_object();
+
+    if (obj == nullptr)
+    {
+        ERR_PRINT("Invalid variant passed to ArrayMeshUnwrap, it doesn't contain an object");
+        return false;
+    }
 
     if (!obj->is_class("ArrayMesh"))
     {
+        ERR_PRINT("Expected 'ArrayMesh' object but got: " + obj->get_class());
         return false;
     }
 
     auto arrayMesh = godot::Object::cast_to<godot::ArrayMesh>(obj);
+
+    if (!arrayMesh)
+    {
+        ERR_PRINT("Cast of mesh object failed");
+        return false;
+    }
 
     return Thrive::Unwrap(*arrayMesh, texelSize);
 }
