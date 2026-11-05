@@ -43,6 +43,10 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     {
         this.nativeInstance = nativeInstance;
 
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
+
         if (this.nativeInstance.ToInt64() == 0)
         {
             // TODO: should this crash the game?
@@ -69,7 +73,18 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     public bool MicrobeControlEnabled { get; set; }
 
     public bool IsDisposed => disposed;
-    public bool IsDetached => NativeMethods.PhysicsBodyIsDetached(AccessBodyInternal());
+
+    public bool IsDetached
+    {
+        get
+        {
+            var result = NativeMethods.PhysicsBodyIsDetached(AccessBodyInternal());
+#if DEBUG
+            CheckIfDisposedAfterNativeCall();
+#endif
+            return result;
+        }
+    }
 
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {
@@ -93,6 +108,10 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 #endif
 
         NativeMethods.PhysicsBodySetUserData(AccessBodyInternal(), entity, EntityDataSize);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public bool Equals(NativePhysicsBody? other)
@@ -164,6 +183,22 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
         return nativeInstance;
     }
 
+#if DEBUG
+    /// <summary>
+    ///   Checks for disposal or an invalid handle after a native call. This keeps the wrapper alive in debug builds,
+    ///   so it cannot diagnose premature finalization in release builds or a native call that crashes before returning
+    ///   but should help catch any underlying problems during debugging.
+    /// </summary>
+    internal void CheckIfDisposedAfterNativeCall([CallerMemberName] string caller = "")
+    {
+        if (disposed || nativeInstance == IntPtr.Zero)
+        {
+            GD.PrintErr("PhysicsBody is destroyed while it is being used!");
+            throw new InvalidOperationException($"NativePhysicsBody native handle is invalid after {caller}");
+        }
+    }
+#endif
+
     protected virtual void Dispose(bool disposing)
     {
         ReleaseUnmanagedResources();
@@ -196,6 +231,9 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
         GD.PrintErr("Force stopping collision reporting! This should not happen when properly destroying bodies");
 
         NativeMethods.PhysicsBodyForceClearRecordingTargets(nativeInstance);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
 
         NotifyCollisionRecordingStopped();
     }
