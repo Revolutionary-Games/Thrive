@@ -34,18 +34,44 @@ public class MembraneShapeGenerator
     /// </summary>
     private readonly List<Vector2> startingBuffer = new();
 
+    /// <summary>
+    ///   Stores stretched membrane results by cell key and is reused for each colony.
+    /// </summary>
     private readonly Dictionary<long, MembranePointData> stretchedMembranesPointData = new();
 
     /// <summary>
-    ///   Working cells belong to this thread's generator and are reused between colonies.
+    ///   Working cells data from <see cref="reusableCells"/>.
     /// </summary>
-    private readonly Dictionary<long, CellData> cellsData = new();
+    private readonly Dictionary<long, MembraneShapeStretcher.CellData> cellsData = new();
 
-    private readonly Stack<CellData> reusableCells = new();
-    private readonly List<LineData> linesData = new();
-    private readonly List<CellData> neighbouringCells = new();
+    /// <summary>
+    ///   Pools working cell data for reuse after a colony has been processed.
+    /// </summary>
+    private readonly Stack<MembraneShapeStretcher.CellData> reusableCells = new();
+
+    /// <summary>
+    ///   Storage for boundary lines during neighbour detection.
+    /// </summary>
+    private readonly List<MembraneShapeStretcher.LineData> linesData = new();
+
+    /// <summary>
+    ///   Storage for cells meeting at an intersection.
+    /// </summary>
+    private readonly List<MembraneShapeStretcher.CellData> neighbouringCells = new();
+
+    /// <summary>
+    ///   Collects candidate boundary points before deduplication and clockwise sorting.
+    /// </summary>
     private readonly List<Vector2> points = new();
+
+    /// <summary>
+    ///   Records whether each pair of consecutive boundary candidates can be connected.
+    /// </summary>
     private readonly List<bool> validEdges = new();
+
+    /// <summary>
+    ///   Accumulates boundary points for the open path currently being built.
+    /// </summary>
     private readonly List<Vector2> currentPath = new();
 
     /// <summary>
@@ -53,7 +79,14 @@ public class MembraneShapeGenerator
     /// </summary>
     private readonly List<Vector2> boundaryPoints = new();
 
-    private readonly List<BoundaryPathRange> boundaryPaths = new();
+    /// <summary>
+    ///   Stores ranges identifying individual paths within the shared boundary point buffer.
+    /// </summary>
+    private readonly List<MembraneShapeStretcher.BoundaryPathRange> boundaryPaths = new();
+
+    /// <summary>
+    ///   Reuses the clockwise boundary point comparison around the current cell centre.
+    /// </summary>
     private readonly MembraneShapeStretcher.BoundaryPointComparer boundaryPointComparer = new();
 
     /// <summary>
@@ -187,7 +220,8 @@ public class MembraneShapeGenerator
                 }
                 else
                 {
-                    cellsData.Add(key, new CellData(key, input.OriginalPointData, input.GenerationData));
+                    cellsData.Add(key,
+                        new MembraneShapeStretcher.CellData(key, input.OriginalPointData, input.GenerationData));
                 }
             }
 
