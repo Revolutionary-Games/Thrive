@@ -62,31 +62,24 @@ public static class MembraneGenerationCoordinator
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
 
-        var singleCellData = new NeighbourData(generationParameters.CellKey, multicellularMembraneData,
-            singleCellMembranePointData);
-
-        tracker.NeighboursData[generationParameters.CellKey] = singleCellData;
+        tracker.CellsData[generationParameters.CellKey] = new MembraneShapeStretcher.CellGenerationData(
+            singleCellMembranePointData, multicellularMembraneData);
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
         // for too long to avoid potential memory leaks
 
         // Colony not yet complete — return empty
-        if (tracker.NeighboursData.Count < tracker.ExpectedCount)
+        if (tracker.CellsData.Count < tracker.ExpectedCount)
             return generatedMembranes;
 
         // Pass 2: all base membranes are ready. Use a flag to ensure exactly one thread executes the second pass.
         if (!tracker.TryBeginSecondPass())
             return generatedMembranes;
 
-        // Return ALL resolved hashes so every cell's pending entry gets cleared
-        foreach (var (key, data) in tracker.NeighboursData)
+        foreach (var (key, membraneData) in generator.GenerateMulticellularMembrane(tracker.CellsData))
         {
-            var multicellularMembrane =
-                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData,
-                    generationParameters.LeaderCellKey);
-
-            AddMulticellularMembrane(data.CellKey, multicellularMembrane);
-            generatedMembranes.Add(data.CellKey);
+            AddMulticellularMembrane(key, membraneData);
+            generatedMembranes.Add(key);
         }
 
         ColonyTrackers.TryRemove(generationParameters.LeaderCellKey, out _);
@@ -141,10 +134,10 @@ public static class MembraneGenerationCoordinator
         FinishedMulticellularMembranes[cellKey] = data;
     }
 
-    private class ColonyTracker
+    public class ColonyTracker
     {
         public int ExpectedCount;
-        public ConcurrentDictionary<long, NeighbourData> NeighboursData = new();
+        public ConcurrentDictionary<long, MembraneShapeStretcher.CellGenerationData> CellsData = new();
         private int secondPassStarted;
 
         /// <summary>
