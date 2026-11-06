@@ -62,6 +62,11 @@ public static class Constants
     /// </remarks>
     public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
+    /// <summary>
+    ///   Visual displacement of cavity cells below the gameplay plane.
+    /// </summary>
+    public const float CAVITY_CELL_Y_OFFSET = -5.0f;
+
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
