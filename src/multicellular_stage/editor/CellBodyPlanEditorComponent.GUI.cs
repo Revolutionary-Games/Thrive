@@ -309,6 +309,11 @@ public partial class CellBodyPlanEditorComponent
             finalOrder.Add(current);
         }
 
+        foreach (var pair in unassigned)
+        {
+            finalOrder.Add(pair.Value);
+        }
+
         growthOrderGUI.UpdateItems(finalOrder);
 
         UpdateGrowthOrderNumbers();
