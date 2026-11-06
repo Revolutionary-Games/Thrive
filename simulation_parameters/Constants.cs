@@ -192,7 +192,11 @@ public static class Constants
     ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
     ///   by the terrain.
     /// </summary>
-    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 2;
+
+    public const int TERRAIN_VENT_OVERLAP_MARGIN = 2;
+    public const int TERRAIN_VENT_RING_HEIGHT_REDUCTION = 10;
+    public const int TERRAIN_VENT_OUTER_RING_HEIGHT = -27;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
