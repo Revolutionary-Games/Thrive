@@ -211,34 +211,49 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 /// </summary>
 public sealed class CellData
 {
-    public readonly MembranePointData OriginalPointData;
     public readonly List<Vector2> Vertices2D;
-    public readonly List<BoundaryPathData> BoundaryPaths;
-    public readonly MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
-    public readonly Dictionary<long, IntersetionData> IntersectionsData;
+    public readonly List<Vector2> IntersectionsData;
     public readonly List<LineData> LinesData;
-    public readonly long CellKey;
-    public readonly int VertexCount;
 
     public Vector2 AverageVertex;
 
     /// <summary>
-    ///   Initializes cell geometry in world space using its position and orientation.
+    ///   Creates working buffers and initialises cell geometry from the original membrane.
     /// </summary>
     public CellData(long cellKey,
         MembranePointData membranePointData,
         MulticellularMembraneGenerationCellData generationData)
     {
+        Vertices2D = new List<Vector2>(membranePointData.VertexCount);
+        LinesData = new List<LineData>();
+        IntersectionsData = new List<Vector2>();
+
+        Initialise(cellKey, membranePointData, generationData);
+    }
+
+    public MembranePointData OriginalPointData { get; private set; } = null!;
+
+    public MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData { get; private set; }
+
+    public long CellKey { get; private set; }
+
+    public int VertexCount { get; private set; }
+
+    /// <summary>
+    ///   Reuses the working buffers for a cell. Must be called before using an instance returned to the pool.
+    /// </summary>
+    public void Initialise(long cellKey, MembranePointData membranePointData,
+        MulticellularMembraneGenerationCellData generationData)
+    {
         CellKey = cellKey;
         OriginalPointData = membranePointData;
         MulticellularMembraneGenerationCellData = generationData;
-
         VertexCount = membranePointData.VertexCount;
 
-        Vertices2D = new List<Vector2>(VertexCount);
-        LinesData = new List<LineData>();
-        IntersectionsData = new Dictionary<long, IntersetionData>();
-        BoundaryPaths = new List<BoundaryPathData>();
+        Vertices2D.Clear();
+        LinesData.Clear();
+        IntersectionsData.Clear();
+        Vertices2D.EnsureCapacity(VertexCount);
 
         for (int i = 0; i < VertexCount; ++i)
         {
@@ -247,20 +262,42 @@ public sealed class CellData
 
         AverageVertex = MembranePointData.GetAverageVertex(Vertices2D, VertexCount);
     }
+
+    /// <summary>
+    ///   Releases input references when returning to the generator's pool, retaining buffer capacity.
+    /// </summary>
+    public void Clear()
+    {
+        OriginalPointData = null!;
+        MulticellularMembraneGenerationCellData = default;
+        CellKey = default;
+        VertexCount = 0;
+        AverageVertex = default;
+        Vertices2D.Clear();
+        LinesData.Clear();
+        IntersectionsData.Clear();
+    }
 }
 
 /// <summary>
-///   Stores one continuous section of a cell boundary.
+///   Identifies one continuous section in the generator's boundary point buffer.
 /// </summary>
-public sealed class BoundaryPathData
+public readonly struct BoundaryPathRange
 {
-    public readonly List<Vector2> Points = new();
+    public readonly int Start;
+    public readonly int Count;
+
+    public BoundaryPathRange(int start, int count)
+    {
+        Start = start;
+        Count = count;
+    }
 }
 
 /// <summary>
 ///   Stores the separating line between two cells.
 /// </summary>
-public sealed class LineData
+public struct LineData
 {
     public readonly long OtherCellKey;
     public readonly bool IsOverLapping;
@@ -282,43 +319,6 @@ public sealed class LineData
 
         OtherCellKey = otherCellKey;
         IsOverLapping = isOverlapping;
-    }
-}
-
-/// <summary>
-///   Stores the position and identifier of a membrane intersection.
-/// </summary>
-public sealed class IntersetionData
-{
-    public readonly long IntersectionId;
-    public Vector2 Position;
-
-    /// <summary>
-    ///   Creates an intersection identified by its position.
-    /// </summary>
-    public IntersetionData(Vector2 position)
-    {
-        Position = position;
-        IntersectionId = CalculateIntersectionId(position);
-    }
-
-    /// <summary>
-    ///   Calculates a deterministic hash from the intersection position.
-    /// </summary>
-    private static long CalculateIntersectionId(Vector2 position)
-    {
-        const long hashPrime = 1099511628211L;
-        const long hashOffset = unchecked((long)14695981039346656037UL);
-
-        unchecked
-        {
-            long hash = hashOffset;
-
-            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(position.X);
-            hash = (hash * hashPrime) ^ BitConverter.SingleToInt32Bits(position.Y);
-
-            return hash;
-        }
     }
 }
 

@@ -35,11 +35,26 @@ public class MembraneShapeGenerator
     private readonly List<Vector2> startingBuffer = new();
 
     private readonly Dictionary<long, MembranePointData> stretchedMembranesPointData = new();
+
+    /// <summary>
+    ///   Working cells belong to this thread's generator and are reused between colonies.
+    /// </summary>
+    private readonly Dictionary<long, CellData> cellsData = new();
+
+    private readonly Stack<CellData> reusableCells = new();
     private readonly List<LineData> linesData = new();
     private readonly List<CellData> neighbouringCells = new();
-    private readonly List<long> deletedIntersections = new();
     private readonly List<Vector2> points = new();
     private readonly List<bool> validEdges = new();
+    private readonly List<Vector2> currentPath = new();
+
+    /// <summary>
+    ///   Shared boundary storage, consumed before processing the next cell.
+    /// </summary>
+    private readonly List<Vector2> boundaryPoints = new();
+
+    private readonly List<BoundaryPathRange> boundaryPaths = new();
+    private readonly MembraneShapeStretcher.BoundaryPointComparer boundaryPointComparer = new();
 
     /// <summary>
     ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
@@ -159,87 +174,37 @@ public class MembraneShapeGenerator
     ///   waviness as it is normally done in single cellular membrane
     /// </summary>
     public Dictionary<long, MembranePointData> GenerateMulticellularMembrane(
-        ConcurrentDictionary<long, CellData> cellsData)
+        ConcurrentDictionary<long, CellGenerationData> generationData)
     {
-        stretchedMembranesPointData.Clear();
-
-        // DO NOT REMOVE: this is used for debugging and printing the membrane data to the console
-        var info = new StringBuilder();
-
-        foreach (var (_, data) in cellsData)
+        try
         {
-            info.Append(string.Join(", ",
-                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
-            info.Append("\n");
-        }
-
-        foreach (var (_, cellData) in cellsData)
-        {
-            MembraneShapeStretcher.RotateCellVertices(cellData);
-        }
-
-        MembraneShapeStretcher.CreateBoundaryLines(cellsData, info, linesData);
-
-        foreach (var (_, cellData) in cellsData)
-        {
-            var averageVertex = cellData.AverageVertex;
-            MembraneShapeStretcher.GetIntersections(cellData, averageVertex, points);
-        }
-
-        MembraneShapeStretcher.FilterInconsistentIntersections(cellsData, neighbouringCells, deletedIntersections);
-
-        foreach (var (_, cellData) in cellsData)
-        {
-            MembraneShapeStretcher.BuildBoundaryPaths(cellData, points, validEdges);
-            MembraneShapeStretcher.CastMembranePoints(cellData);
-
-            if (!cellData.OriginalPointData.Type.CellWall)
+            foreach (var (key, input) in generationData)
             {
-                MembraneShapeStretcher.SmoothVertexRegion(cellData);
-            }
-
-            foreach (var path in cellData.BoundaryPaths)
-            {
-                foreach (var point in path.Points)
+                if (reusableCells.TryPop(out var cell))
                 {
-                    info.Append($"({point.X:F3}, " +
-                        $"{point.Y:F3}),");
+                    cellsData.Add(key, cell);
+                    cell.Initialise(key, input.OriginalPointData, input.GenerationData);
+                }
+                else
+                {
+                    cellsData.Add(key, new CellData(key, input.OriginalPointData, input.GenerationData));
                 }
             }
 
-            info.Remove(info.Length - 1, 1);
-            info.Append("\n");
+            return StretchMembranes();
         }
-
-        foreach (var (_, data) in cellsData)
+        finally
         {
-            info.Append(string.Join(", ",
-                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
-            info.Append("\n");
+            // Results own copies of the vertices, so no working cell escapes this generation pass.
+            foreach (var cell in cellsData.Values)
+            {
+                cell.Clear();
+                reusableCells.Push(cell);
+            }
+
+            cellsData.Clear();
+            neighbouringCells.Clear();
         }
-
-        if (cellsData.Count >= 3)
-        {
-            GD.Print();
-            GD.Print($"{info}");
-        }
-
-        foreach (var (_, cellData) in cellsData)
-        {
-            MembraneShapeStretcher.UnrotateCellVertices(cellData);
-        }
-
-        foreach (var (key, data) in cellsData)
-        {
-            int hexCount = data.OriginalPointData.HexPositionCount;
-            var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
-            data.OriginalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
-            var membraneData = new MembranePointData(hexCopy, hexCount, data.OriginalPointData.Type, data.Vertices2D);
-
-            stretchedMembranesPointData.Add(key, membraneData);
-        }
-
-        return stretchedMembranesPointData;
     }
 
     /// <summary>
@@ -558,6 +523,90 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
+    /// <summary>
+    ///   Stretches the current colony using generator-owned working cells.
+    /// </summary>
+    private Dictionary<long, MembranePointData> StretchMembranes()
+    {
+        stretchedMembranesPointData.Clear();
+
+        // DO NOT REMOVE: this is used for debugging and printing the membrane data to the console
+        var info = new StringBuilder();
+
+        foreach (var (_, data) in cellsData)
+        {
+            info.Append(string.Join(", ",
+                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
+            info.Append("\n");
+        }
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.RotateCellVertices(cellData);
+        }
+
+        MembraneShapeStretcher.CreateBoundaryLines(cellsData, info, linesData);
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            var averageVertex = cellData.AverageVertex;
+            MembraneShapeStretcher.GetIntersections(cellData, averageVertex);
+        }
+
+        MembraneShapeStretcher.FilterInconsistentIntersections(cellsData, neighbouringCells);
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.BuildBoundaryPaths(cellData, points, validEdges, currentPath, boundaryPoints,
+                boundaryPaths, boundaryPointComparer);
+            MembraneShapeStretcher.CastMembranePoints(cellData, boundaryPoints, boundaryPaths);
+
+            if (!cellData.OriginalPointData.Type.CellWall)
+            {
+                MembraneShapeStretcher.SmoothVertexRegion(cellData);
+            }
+
+            foreach (var point in boundaryPoints)
+            {
+                info.Append($"({point.X:F3}, " +
+                    $"{point.Y:F3}),");
+            }
+
+            info.Remove(info.Length - 1, 1);
+            info.Append("\n");
+        }
+
+        foreach (var (_, data) in cellsData)
+        {
+            info.Append(string.Join(", ",
+                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
+            info.Append("\n");
+        }
+
+        if (cellsData.Count >= 3)
+        {
+            GD.Print();
+            GD.Print($"{info}");
+        }
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.UnrotateCellVertices(cellData);
+        }
+
+        foreach (var (key, data) in cellsData)
+        {
+            int hexCount = data.OriginalPointData.HexPositionCount;
+            var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
+            data.OriginalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
+            var membraneData = new MembranePointData(hexCopy, hexCount, data.OriginalPointData.Type, data.Vertices2D);
+
+            stretchedMembranesPointData.Add(key, membraneData);
+        }
+
+        return stretchedMembranesPointData;
+    }
+
     private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
         bool isMulticellular)
     {
@@ -652,6 +701,22 @@ public class MembraneShapeGenerator
             var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
 
             vertices2D[i] = point + movement;
+        }
+    }
+
+    /// <summary>
+    ///   Input shared between generation threads, without mutable working geometry.
+    /// </summary>
+    public readonly struct CellGenerationData
+    {
+        public readonly MembranePointData OriginalPointData;
+        public readonly MulticellularMembraneGenerationCellData GenerationData;
+
+        public CellGenerationData(MembranePointData originalPointData,
+            MulticellularMembraneGenerationCellData generationData)
+        {
+            OriginalPointData = originalPointData;
+            GenerationData = generationData;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
@@ -20,14 +19,20 @@ public class MembraneShapeStretcher
     {
         var vertexCount = cellData.VertexCount;
 
-        for (int i = 0; i <= vertexCount; ++i)
-        {
-            int index = i % vertexCount;
-            int previousPointIndex = (i + vertexCount - 1) % vertexCount;
-            int nextPointIndex = (i + 1) % vertexCount;
+        if (vertexCount == 0)
+            return;
 
-            cellData.Vertices2D[index] = (cellData.Vertices2D[previousPointIndex] + cellData.Vertices2D[index] * 3 +
-                cellData.Vertices2D[nextPointIndex]) * 0.2f;
+        var firstPoint = cellData.Vertices2D[0];
+        var previousPoint = cellData.Vertices2D[vertexCount - 1];
+
+        // Preserve original neighbours while writing the smoothed positions in place.
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            var currentPoint = cellData.Vertices2D[i];
+            var nextPoint = i + 1 < vertexCount ? cellData.Vertices2D[i + 1] : firstPoint;
+
+            cellData.Vertices2D[i] = (previousPoint + currentPoint * 3 + nextPoint) * 0.2f;
+            previousPoint = currentPoint;
         }
     }
 
@@ -45,48 +50,52 @@ public class MembraneShapeStretcher
     public static Vector2 RotatePoint(Vector2 point, float angle)
     {
         (float sin, float cos) = MathF.SinCos(angle);
-        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
+        return RotatePoint(point, sin, cos);
     }
 
     public static void RotateCellVertices(CellData cellData)
     {
         float orientationAngle = GetOrientationAngle(cellData.MulticellularMembraneGenerationCellData.Orientation);
+        (float sin, float cos) = MathF.SinCos(orientationAngle);
 
         Vector2 position = cellData.MulticellularMembraneGenerationCellData.Position;
 
         for (int i = 0; i < cellData.VertexCount; ++i)
         {
-            cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i], orientationAngle) + position;
+            cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i], sin, cos) + position;
         }
 
-        cellData.AverageVertex = RotatePoint(cellData.AverageVertex, orientationAngle) + position;
+        cellData.AverageVertex = RotatePoint(cellData.AverageVertex, sin, cos) + position;
     }
 
     public static void UnrotateCellVertices(CellData cellData)
     {
         float orientationAngle = GetOrientationAngle(cellData.MulticellularMembraneGenerationCellData.Orientation);
+        (float sin, float cos) = MathF.SinCos(-orientationAngle);
 
         Vector2 position = cellData.MulticellularMembraneGenerationCellData.Position;
 
         for (int i = 0; i < cellData.VertexCount; ++i)
         {
-            cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i] - position, -orientationAngle);
+            cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i] - position, sin, cos);
         }
 
-        cellData.AverageVertex = RotatePoint(cellData.AverageVertex - position, -orientationAngle);
+        cellData.AverageVertex = RotatePoint(cellData.AverageVertex - position, sin, cos);
     }
 
     /// <summary>
     ///   Calculates visible intersections between cell lines and removes
     ///   duplicate intersection positions within the configured tolerance.
+    ///   Intersections beyond the maximum stretching distance from the cell position are discarded.
     /// </summary>
-    public static void GetIntersections(CellData cell, Vector2 averageVertex, List<Vector2> intersectionPositions)
+    public static void GetIntersections(CellData cell, Vector2 averageVertex)
     {
         var lines = cell.LinesData;
         var intersections = cell.IntersectionsData;
+        var position = cell.MulticellularMembraneGenerationCellData.Position;
+        var maxDistance = Constants.MEMBRANE_MAX_STRETCHED_DISTANCE_SQUARED * 0.5f * 0.5f;
 
         intersections.Clear();
-        intersectionPositions.Clear();
 
         for (int i = 0; i < lines.Count; ++i)
         {
@@ -97,6 +106,9 @@ public class MembraneShapeStretcher
                 LineData secondLine = lines[j];
 
                 if (!TryGetIntersection(firstLine, secondLine, out Vector2 intersection))
+                    continue;
+
+                if (position.DistanceSquaredTo(intersection) > maxDistance)
                     continue;
 
                 bool isVisible = true;
@@ -122,9 +134,9 @@ public class MembraneShapeStretcher
 
                 bool alreadyExists = false;
 
-                for (int k = 0; k < intersectionPositions.Count; ++k)
+                for (int k = 0; k < intersections.Count; ++k)
                 {
-                    if (intersectionPositions[k].DistanceSquaredTo(intersection) <= DistanceSquared)
+                    if (intersections[k].DistanceSquaredTo(intersection) <= DistanceSquared)
                     {
                         alreadyExists = true;
                         break;
@@ -134,10 +146,7 @@ public class MembraneShapeStretcher
                 if (alreadyExists)
                     continue;
 
-                intersectionPositions.Add(intersection);
-
-                var intersectionData = new IntersetionData(intersection);
-                intersections[intersectionData.IntersectionId] = intersectionData;
+                intersections.Add(intersection);
             }
         }
     }
@@ -146,28 +155,27 @@ public class MembraneShapeStretcher
     ///   Removes intersections that the neighbouring cells do not agree on.
     ///   A corner of cell A built from lines to B and C is kept only when every pair of
     ///   cells meeting at that point (B, C) is mutually connected by lines.
-    ///   Requires CopyLinesToNeighbours to have run, so that line relations are symmetric.
+    ///   Requires CreateBoundaryLines to have run, so that line relations are symmetric.
     /// </summary>
-    public static void FilterInconsistentIntersections(ConcurrentDictionary<long, CellData> cellsData,
-        List<CellData> neighbouringCells, List<long> deletedIntersections)
+    public static void FilterInconsistentIntersections(Dictionary<long, CellData> cellsData,
+        List<CellData> neighbouringCells)
     {
         neighbouringCells.Clear();
-        deletedIntersections.Clear();
 
         foreach (CellData cell in cellsData.Values)
         {
-            deletedIntersections.Clear();
+            var intersections = cell.IntersectionsData;
+            int consistentCount = 0;
 
-            foreach (IntersetionData intersection in cell.IntersectionsData.Values)
+            for (int i = 0; i < intersections.Count; ++i)
             {
-                if (!IsIntersectionConsistent(cell, intersection.Position, cellsData, neighbouringCells))
-                    deletedIntersections.Add(intersection.IntersectionId);
+                var intersection = intersections[i];
+                if (IsIntersectionConsistent(cell, intersection, cellsData, neighbouringCells))
+                    intersections[consistentCount++] = intersection;
             }
 
-            foreach (long intersectionId in deletedIntersections)
-            {
-                cell.IntersectionsData.Remove(intersectionId);
-            }
+            if (consistentCount < intersections.Count)
+                intersections.RemoveRange(consistentCount, intersections.Count - consistentCount);
         }
     }
 
@@ -247,7 +255,7 @@ public class MembraneShapeStretcher
         return closestPointOnFirstSegment.DistanceSquaredTo(closestPointOnSecondSegment);
     }
 
-    public static void CreateBoundaryLines(ConcurrentDictionary<long, CellData> cellsData,
+    public static void CreateBoundaryLines(Dictionary<long, CellData> cellsData,
         StringBuilder info, List<LineData> linesData)
     {
         linesData.Clear();
@@ -362,6 +370,7 @@ public class MembraneShapeStretcher
 
                 // Remove only when the candidate is not visible to both cells
                 candidate.ShouldRemove &= !isVisible;
+                candidates[candidateIndex] = candidate;
 
                 if (!isVisible)
                     continue;
@@ -377,6 +386,7 @@ public class MembraneShapeStretcher
                         if (neighbourLine.OtherCellKey == cellKey)
                         {
                             neighbourLine.ShouldRemove = false;
+                            neighbourLines[i] = neighbourLine;
                             break;
                         }
                     }
@@ -387,14 +397,18 @@ public class MembraneShapeStretcher
         foreach (var cellData in cellsData.Values)
         {
             List<LineData> cellLines = cellData.LinesData;
+            int retainedCount = 0;
 
-            for (int i = cellLines.Count - 1; i >= 0; --i)
+            for (int i = 0; i < cellLines.Count; ++i)
             {
                 LineData line = cellLines[i];
 
-                if (line.ShouldRemove || line.IsOverLapping)
-                    cellLines.RemoveAt(i);
+                if (!line.ShouldRemove && !line.IsOverLapping)
+                    cellLines[retainedCount++] = line;
             }
+
+            if (retainedCount < cellLines.Count)
+                cellLines.RemoveRange(retainedCount, cellLines.Count - retainedCount);
         }
     }
 
@@ -427,18 +441,20 @@ public class MembraneShapeStretcher
     ///   Builds the visible boundary paths from the cell polygon, line midpoints,
     ///   and accepted intersections.
     /// </summary>
-    public static void BuildBoundaryPaths(CellData cell, List<Vector2> points, List<bool> validEdges)
+    public static void BuildBoundaryPaths(CellData cell, List<Vector2> points, List<bool> validEdges,
+        List<Vector2> currentPath, List<Vector2> boundaryPoints, List<BoundaryPathRange> boundaryPaths,
+        BoundaryPointComparer pointComparer)
     {
         if (cell.Vertices2D.Count < 3)
             throw new InvalidOperationException("Membrane needs at least 3 vertices.");
 
         points.Clear();
         validEdges.Clear();
+        currentPath.Clear();
+        boundaryPoints.Clear();
+        boundaryPaths.Clear();
 
-        foreach (IntersetionData intersection in cell.IntersectionsData.Values)
-        {
-            points.Add(intersection.Position);
-        }
+        points.AddRange(cell.IntersectionsData);
 
         foreach (LineData line in cell.LinesData)
         {
@@ -450,19 +466,13 @@ public class MembraneShapeStretcher
         if (points.Count == 0)
             return;
 
-        var averageVertex = cell.AverageVertex;
-
-        points.Sort((firstPoint, secondPoint) =>
-        {
-            float firstAngle = MathF.Atan2(firstPoint.Y - averageVertex.Y, firstPoint.X - averageVertex.X);
-            float secondAngle = MathF.Atan2(secondPoint.Y - averageVertex.Y, secondPoint.X - averageVertex.X);
-            return secondAngle.CompareTo(firstAngle);
-        });
+        pointComparer.Centre = cell.AverageVertex;
+        points.Sort(pointComparer.Comparison);
 
         // One point -> two tangents
         if (points.Count == 1)
         {
-            AddSinglePointPath(points[0], cell.Vertices2D, cell.BoundaryPaths);
+            AddSinglePointPath(points[0], cell.Vertices2D, boundaryPoints, boundaryPaths);
             return;
         }
 
@@ -475,7 +485,7 @@ public class MembraneShapeStretcher
 
         if (points.Count == 2 && validEdges[0] && validEdges[1])
         {
-            AddOpenPath(points, cell.Vertices2D, cell.BoundaryPaths);
+            AddOpenPath(points, cell.Vertices2D, boundaryPoints, boundaryPaths);
             return;
         }
 
@@ -494,19 +504,14 @@ public class MembraneShapeStretcher
 
         if (allEdgesValid)
         {
-            BoundaryPathData closedPath = new();
-
-            closedPath.Points.AddRange(points);
-            closedPath.Points.Add(points[0]);
-
-            cell.BoundaryPaths.Add(closedPath);
+            boundaryPoints.AddRange(points);
+            boundaryPoints.Add(points[0]);
+            boundaryPaths.Add(new BoundaryPathRange(0, boundaryPoints.Count));
             return;
         }
 
         int firstInvalidEdge = validEdges.FindIndex(x => !x);
         int startIndex = (firstInvalidEdge + 1) % points.Count;
-
-        List<Vector2> currentPath = new List<Vector2>();
 
         for (int i = 0; i < points.Count; ++i)
         {
@@ -516,14 +521,14 @@ public class MembraneShapeStretcher
 
             if (i == points.Count - 1)
             {
-                AddOpenPath(currentPath, cell.Vertices2D, cell.BoundaryPaths);
+                AddOpenPath(currentPath, cell.Vertices2D, boundaryPoints, boundaryPaths);
                 break;
             }
 
             if (!validEdges[currentIndex])
             {
-                AddOpenPath(currentPath, cell.Vertices2D, cell.BoundaryPaths);
-                currentPath = new List<Vector2>();
+                AddOpenPath(currentPath, cell.Vertices2D, boundaryPoints, boundaryPaths);
+                currentPath.Clear();
             }
         }
     }
@@ -532,19 +537,26 @@ public class MembraneShapeStretcher
     ///   Projects membrane vertices onto the nearest valid boundary-path intersection
     ///   along the ray starting at the cell's average vertex.
     /// </summary>
-    public static void CastMembranePoints(CellData cell)
+    public static void CastMembranePoints(CellData cell, List<Vector2> boundaryPoints,
+        List<BoundaryPathRange> boundaryPaths)
     {
         for (int i = 0; i < cell.VertexCount; ++i)
         {
             Vector2 membranePoint = cell.Vertices2D[i];
 
-            if (!TryCastMembranePoint(membranePoint, cell.AverageVertex, cell.BoundaryPaths, out Vector2 hitPoint))
+            if (!TryCastMembranePoint(membranePoint, cell.AverageVertex, boundaryPoints, boundaryPaths,
+                    out Vector2 hitPoint))
             {
                 continue;
             }
 
             cell.Vertices2D[i] = hitPoint;
         }
+    }
+
+    private static Vector2 RotatePoint(Vector2 point, float sin, float cos)
+    {
+        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
     }
 
     private static bool TryGetIntersection(LineData firstLine, LineData secondLine, out Vector2 intersection)
@@ -592,7 +604,7 @@ public class MembraneShapeStretcher
     ///   Checks whether all cells meeting at <paramref name="position"/> are neighbours of each other.
     /// </summary>
     private static bool IsIntersectionConsistent(CellData cell, Vector2 position,
-        ConcurrentDictionary<long, CellData> cellsData, List<CellData> meetingCells)
+        Dictionary<long, CellData> cellsData, List<CellData> meetingCells)
     {
         meetingCells.Clear();
 
@@ -680,7 +692,8 @@ public class MembraneShapeStretcher
 
     private static bool TryCastMembranePoint(Vector2 membranePoint,
         Vector2 averagePoint,
-        List<BoundaryPathData> boundaryPaths,
+        List<Vector2> boundaryPoints,
+        List<BoundaryPathRange> boundaryPaths,
         out Vector2 hitPoint)
     {
         hitPoint = Vector2.Zero;
@@ -696,12 +709,13 @@ public class MembraneShapeStretcher
         float closestDistance = float.MaxValue;
         bool found = false;
 
-        foreach (BoundaryPathData path in boundaryPaths)
+        foreach (var path in boundaryPaths)
         {
-            for (int i = 0; i < path.Points.Count - 1; ++i)
+            int end = path.Start + path.Count - 1;
+            for (int i = path.Start; i < end; ++i)
             {
-                Vector2 a = path.Points[i];
-                Vector2 b = path.Points[i + 1];
+                Vector2 a = boundaryPoints[i];
+                Vector2 b = boundaryPoints[i + 1];
 
                 if (!TryRaySegmentIntersection(membranePoint, direction, a, b, out Vector2 intersection))
                 {
@@ -758,18 +772,21 @@ public class MembraneShapeStretcher
 
     private static void AddSinglePointPath(Vector2 point,
         List<Vector2> polygon,
-        List<BoundaryPathData> boundaryPaths)
+        List<Vector2> boundaryPoints,
+        List<BoundaryPathRange> boundaryPaths)
     {
         Vector2 incomingTangent = GetIncomingTangent(point, polygon);
         Vector2 outgoingTangent = GetOutgoingTangent(point, polygon);
 
-        boundaryPaths.Add(new BoundaryPathData
-        {
-            Points = { incomingTangent, point, outgoingTangent },
-        });
+        int start = boundaryPoints.Count;
+        boundaryPoints.Add(incomingTangent);
+        boundaryPoints.Add(point);
+        boundaryPoints.Add(outgoingTangent);
+        boundaryPaths.Add(new BoundaryPathRange(start, 3));
     }
 
-    private static void AddOpenPath(List<Vector2> points, List<Vector2> polygon, List<BoundaryPathData> result)
+    private static void AddOpenPath(List<Vector2> points, List<Vector2> polygon, List<Vector2> boundaryPoints,
+        List<BoundaryPathRange> result)
     {
         if (points.Count == 0)
             return;
@@ -777,13 +794,12 @@ public class MembraneShapeStretcher
         Vector2 incomingTangent = GetIncomingTangent(points[0], polygon);
         Vector2 outgoingTangent = GetOutgoingTangent(points[^1], polygon);
 
-        var path = new BoundaryPathData();
+        int start = boundaryPoints.Count;
+        boundaryPoints.Add(incomingTangent);
+        boundaryPoints.AddRange(points);
+        boundaryPoints.Add(outgoingTangent);
 
-        path.Points.Add(incomingTangent);
-        path.Points.AddRange(points);
-        path.Points.Add(outgoingTangent);
-
-        result.Add(path);
+        result.Add(new BoundaryPathRange(start, boundaryPoints.Count - start));
     }
 
     private static bool CanConnect(Vector2 a,
@@ -1017,5 +1033,27 @@ public class MembraneShapeStretcher
     private static float Cross(Vector2 a, Vector2 b)
     {
         return a.X * b.Y - a.Y * b.X;
+    }
+
+    /// <summary>
+    ///   Sorts boundary points clockwise around a cell's centre using a reusable comparison delegate.
+    /// </summary>
+    public sealed class BoundaryPointComparer
+    {
+        public BoundaryPointComparer()
+        {
+            Comparison = Compare;
+        }
+
+        public Vector2 Centre { get; set; }
+
+        public Comparison<Vector2> Comparison { get; }
+
+        private int Compare(Vector2 firstPoint, Vector2 secondPoint)
+        {
+            float firstAngle = MathF.Atan2(firstPoint.Y - Centre.Y, firstPoint.X - Centre.X);
+            float secondAngle = MathF.Atan2(secondPoint.Y - Centre.Y, secondPoint.X - Centre.X);
+            return secondAngle.CompareTo(firstAngle);
+        }
     }
 }
