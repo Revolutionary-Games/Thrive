@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" unique_id=1262351791 node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "currentGUIScaleDisplay", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "alternativeTimescaleSlider", "alternativeTimescaleLabel", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
+[node name="OptionsMenu" type="Control" unique_id=1262351791 node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "shadowResolutionSetting", "shadowFilteringQualitySetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "currentGUIScaleDisplay", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "alternativeTimescaleSlider", "alternativeTimescaleLabel", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -71,6 +71,8 @@ upscalingMethod = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCont
 upscalingSharpening = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer/Sharpening")
 maxFramesPerSecond = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer/MaxFramesPerSecond")
 colourblindSetting = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer/ColourblindSetting")
+shadowResolutionSetting = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31/HBoxContainer/ShadowResolutionSetting")
+shadowFilteringQualitySetting = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer32/HBoxContainer/ShadowFilteringSetting")
 chromaticAberrationToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer23/HBoxContainer/HBoxContainer/ChromaticToggle")
 chromaticAberrationSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer23/HBoxContainer/HBoxContainer/ChromaticAmount")
 controllerPromptType = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer23/HBoxContainer/ControllerPromptType")
@@ -757,6 +759,96 @@ layout_mode = 2
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" unique_id=793915243]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+
+[node name="VBoxContainer31" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1196731276]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31" unique_id=1680984854]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31/HBoxContainer" unique_id=292213558]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "SHADOW_RESOLUTION"
+autowrap_mode = 2
+
+[node name="ShadowResolutionSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31/HBoxContainer" unique_id=1047627405]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+selected = 0
+item_count = 6
+popup/item_0/text = "32"
+popup/item_0/id = 0
+popup/item_1/text = "128"
+popup/item_1/id = 1
+popup/item_2/text = "512"
+popup/item_2/id = 2
+popup/item_3/text = "1024"
+popup/item_3/id = 3
+popup/item_4/text = "2048"
+popup/item_4/id = 4
+popup/item_5/text = "4096"
+popup/item_5/id = 5
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31" unique_id=1502689368]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
+label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
+
+[node name="VBoxContainer32" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" unique_id=883155779]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer32" unique_id=1964469272]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer32/HBoxContainer" unique_id=564258833]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "SHADOW_FILTERING"
+autowrap_mode = 2
+
+[node name="ShadowFilteringSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer32/HBoxContainer" unique_id=319545701]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+selected = 0
+item_count = 6
+popup/item_0/text = "SHADOW_FILTERING_OPTION_HARD"
+popup/item_0/id = 0
+popup/item_1/text = "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "SHADOW_FILTERING_OPTION_SOFT_LOW"
+popup/item_2/id = 2
+popup/item_3/text = "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+popup/item_3/id = 3
+popup/item_4/text = "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+popup/item_4/id = 4
+popup/item_5/text = "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+popup/item_5/id = 5
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer32" unique_id=97016392]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
+label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="HBocContainer23" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1362431328]
 layout_mode = 2
@@ -3528,6 +3620,8 @@ grow_vertical = 1
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer/Sharpening" to="." method="OnUpscalingSharpeningChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer/MaxFramesPerSecond" to="." method="OnMaxFramesPerSecondSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer31/HBoxContainer/ShadowResolutionSetting" to="." method="OnShadowResolutionChanged"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer32/HBoxContainer/ShadowFilteringSetting" to="." method="OnShadowFilteringQualityChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer23/HBoxContainer/HBoxContainer/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer23/HBoxContainer/HBoxContainer/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer24/HBoxContainer/HBoxContainer/BloomAmount" to="." method="OnBloomStrengthChanged"]
