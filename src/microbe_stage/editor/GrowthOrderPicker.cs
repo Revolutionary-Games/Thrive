@@ -51,6 +51,9 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     public delegate void OrderResetEventHandler();
 
     [Signal]
+    public delegate void OrderAutoCalculateEventHandler();
+
+    [Signal]
     public delegate void OnGrowthOrderChangedEventHandler();
 
     /// <summary>
@@ -267,6 +270,13 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OrderReset);
+        EmitSignal(SignalName.OnGrowthOrderChanged);
+    }
+
+    private void OnAutoCalculateButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(SignalName.OrderAutoCalculate);
         EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 

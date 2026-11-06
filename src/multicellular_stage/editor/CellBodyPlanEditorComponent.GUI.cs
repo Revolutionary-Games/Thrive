@@ -278,6 +278,42 @@ public partial class CellBodyPlanEditorComponent
         UpdateGrowthOrderNumbers();
     }
 
+    private void OnAutoCalculateGrowthOrderPressed()
+    {
+        var toAssign = new Queue<CellTemplate>();
+        var unassigned = new Dictionary<Hex, CellTemplate>();
+
+        foreach (var cell in editedMicrobeCells)
+        {
+            unassigned.Add(cell.Position, cell.Data!);
+        }
+
+        var finalOrder = new List<CellTemplate>();
+
+        toAssign.Enqueue(editedMicrobeCells[0].Data!);
+        unassigned.Remove(editedMicrobeCells[0].Position);
+
+        while (toAssign.Count > 0)
+        {
+            var current = toAssign.Dequeue();
+
+            foreach (var neighbor in Hex.HexNeighbourOffset.Values)
+            {
+                if (unassigned.ContainsKey(current.Position + neighbor))
+                {
+                    toAssign.Enqueue(unassigned[current.Position + neighbor]);
+                    unassigned.Remove(current.Position + neighbor);
+                }
+            }
+
+            finalOrder.Add(current);
+        }
+
+        growthOrderGUI.UpdateItems(finalOrder);
+
+        UpdateGrowthOrderNumbers();
+    }
+
     private void UpdateGrowthOrderNumbers()
     {
         if (!ShowGrowthOrder)

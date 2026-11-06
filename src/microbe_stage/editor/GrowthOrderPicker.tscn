@@ -15,10 +15,21 @@ buttonContainer = NodePath("OrderableItems")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Reset" type="Button" parent="." unique_id=177072050]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2114329804]
+layout_mode = 2
+alignment = 1
+
+[node name="Reset" type="Button" parent="HBoxContainer" unique_id=177072050]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "RESET_ITEM_ORDER_TO_DEFAULT"
 text = "RESET"
 
-[connection signal="pressed" from="Reset" to="." method="OnResetButtonPressed"]
+[node name="AutoCalculate" type="Button" parent="HBoxContainer" unique_id=1743454685]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "RESET_ITEM_ORDER_TO_DEFAULT"
+text = "AUTO_CALCULATE_GROWTH_ORDER"
+
+[connection signal="pressed" from="HBoxContainer/Reset" to="." method="OnResetButtonPressed"]
+[connection signal="pressed" from="HBoxContainer/AutoCalculate" to="." method="OnAutoCalculateButtonPressed"]
