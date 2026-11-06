@@ -205,7 +205,7 @@ public class MembraneShapeGenerator
     ///   waviness as it is normally done in single cellular membrane
     /// </summary>
     public Dictionary<long, MembranePointData> GenerateMulticellularMembrane(
-        ConcurrentDictionary<long, CellGenerationData> generationData)
+        ConcurrentDictionary<long, MembraneShapeStretcher.CellGenerationData> generationData)
     {
         try
         {
@@ -713,21 +713,5 @@ public class MembraneShapeGenerator
             return;
 
         MakeMembraneWavier(vertices2D, membraneType, circumference);
-    }
-
-    /// <summary>
-    ///   Input shared between generation threads, without mutable working geometry.
-    /// </summary>
-    public readonly struct CellGenerationData
-    {
-        public readonly MembranePointData OriginalPointData;
-        public readonly MulticellularMembraneGenerationCellData GenerationData;
-
-        public CellGenerationData(MembranePointData originalPointData,
-            MulticellularMembraneGenerationCellData generationData)
-        {
-            OriginalPointData = originalPointData;
-            GenerationData = generationData;
-        }
     }
 }

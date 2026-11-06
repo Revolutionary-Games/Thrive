@@ -789,9 +789,7 @@ public class MembraneShapeStretcher
     /// <summary>
     ///   Appends a boundary path through one external point, joined to the polygon by incoming and outgoing tangents.
     /// </summary>
-    private static void AddSinglePointPath(Vector2 point,
-        List<Vector2> polygon,
-        List<Vector2> boundaryPoints,
+    private static void AddSinglePointPath(Vector2 point, List<Vector2> polygon, List<Vector2> boundaryPoints,
         List<BoundaryPathRange> boundaryPaths)
     {
         Vector2 incomingTangent = GetIncomingTangent(point, polygon);
@@ -1172,10 +1170,52 @@ public class MembraneShapeStretcher
     // Added warning disable as SA1201 requires a struct to be before a class,
     // but format_test doesn't like that order...
 #pragma warning disable SA1201
+
+    /// <summary>
+    ///   Input shared between generation threads, without mutable working geometry.
+    /// </summary>
+    public readonly struct CellGenerationData : IEquatable<CellGenerationData>
+    {
+        public readonly MembranePointData OriginalPointData;
+        public readonly MulticellularMembraneGenerationCellData GenerationData;
+
+        public CellGenerationData(MembranePointData originalPointData,
+            MulticellularMembraneGenerationCellData generationData)
+        {
+            OriginalPointData = originalPointData;
+            GenerationData = generationData;
+        }
+
+        public static bool operator ==(CellGenerationData left, CellGenerationData right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(CellGenerationData left, CellGenerationData right)
+        {
+            return !left.Equals(right);
+        }
+
+        public bool Equals(CellGenerationData other)
+        {
+            return OriginalPointData.Equals(other.OriginalPointData) && GenerationData.Equals(other.GenerationData);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is CellGenerationData other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(OriginalPointData, GenerationData);
+        }
+    }
+
     /// <summary>
     ///   Identifies one continuous section in the generator's boundary point buffer.
     /// </summary>
-    public readonly struct BoundaryPathRange
+    public readonly struct BoundaryPathRange : IEquatable<BoundaryPathRange>
     {
         public readonly int Start;
         public readonly int Count;
@@ -1185,12 +1225,37 @@ public class MembraneShapeStretcher
             Start = start;
             Count = count;
         }
+
+        public static bool operator ==(BoundaryPathRange left, BoundaryPathRange right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BoundaryPathRange left, BoundaryPathRange right)
+        {
+            return !left.Equals(right);
+        }
+
+        public bool Equals(BoundaryPathRange other)
+        {
+            return Start == other.Start && Count == other.Count;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is BoundaryPathRange other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Start, Count);
+        }
     }
 
     /// <summary>
     ///   Stores the separating line between two cells.
     /// </summary>
-    public struct LineData
+    public struct LineData : IEquatable<LineData>
     {
         public readonly long OtherCellKey;
         public readonly bool IsOverLapping;
@@ -1209,6 +1274,33 @@ public class MembraneShapeStretcher
 
             OtherCellKey = otherCellKey;
             IsOverLapping = isOverlapping;
+        }
+
+        public bool Equals(LineData other)
+        {
+            return OtherCellKey == other.OtherCellKey && IsOverLapping == other.IsOverLapping &&
+                MiddlePoint.Equals(other.MiddlePoint) && Line.Equals(other.Line) && Normal.Equals(other.Normal) &&
+                ShouldRemove == other.ShouldRemove;
+        }
+
+        public static bool operator ==(LineData left, LineData right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(LineData left, LineData right)
+        {
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is LineData other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(OtherCellKey, IsOverLapping, MiddlePoint, Line, Normal, ShouldRemove);
         }
     }
 #pragma warning restore SA1201

@@ -62,7 +62,7 @@ public static class MembraneGenerationCoordinator
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
 
-        tracker.CellsData[generationParameters.CellKey] = new MembraneShapeGenerator.CellGenerationData(
+        tracker.CellsData[generationParameters.CellKey] = new MembraneShapeStretcher.CellGenerationData(
             singleCellMembranePointData, multicellularMembraneData);
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
@@ -137,7 +137,7 @@ public static class MembraneGenerationCoordinator
     public class ColonyTracker
     {
         public int ExpectedCount;
-        public ConcurrentDictionary<long, MembraneShapeGenerator.CellGenerationData> CellsData = new();
+        public ConcurrentDictionary<long, MembraneShapeStretcher.CellGenerationData> CellsData = new();
         private int secondPassStarted;
 
         /// <summary>

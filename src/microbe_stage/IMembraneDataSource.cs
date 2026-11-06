@@ -14,7 +14,7 @@ public interface IMembraneDataSource
     public bool IsPreMulticellularStretch { get; }
 }
 
-public struct MulticellularMembraneGenerationCellData
+public struct MulticellularMembraneGenerationCellData : IEquatable<MulticellularMembraneGenerationCellData>
 {
     public MulticellularMembraneGenerationCellData(Vector2 position, int orientation)
     {
@@ -24,6 +24,33 @@ public struct MulticellularMembraneGenerationCellData
 
     public Vector2 Position { get; }
     public int Orientation { get; }
+
+    public static bool operator ==(MulticellularMembraneGenerationCellData left,
+        MulticellularMembraneGenerationCellData right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(MulticellularMembraneGenerationCellData left,
+        MulticellularMembraneGenerationCellData right)
+    {
+        return !left.Equals(right);
+    }
+
+    public bool Equals(MulticellularMembraneGenerationCellData other)
+    {
+        return Position.Equals(other.Position) && Orientation == other.Orientation;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is MulticellularMembraneGenerationCellData other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Position, Orientation);
+    }
 }
 
 /// <summary>
