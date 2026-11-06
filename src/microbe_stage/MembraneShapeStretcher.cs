@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Godot;
 
 /// <summary>
@@ -132,7 +131,8 @@ public class MembraneShapeStretcher
 
                 for (int k = 0; k < intersections.Count; ++k)
                 {
-                    if (intersections[k].DistanceSquaredTo(intersection) <= Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
+                    if (intersections[k].DistanceSquaredTo(intersection) <=
+                        Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
                     {
                         alreadyExists = true;
                         break;
@@ -255,8 +255,7 @@ public class MembraneShapeStretcher
     ///   Creates shared boundary lines between nearby cells, retains mutually visible neighbours,
     ///   and removes boundaries for overlapping cells.
     /// </summary>
-    public static void CreateBoundaryLines(Dictionary<long, CellData> cellsData,
-        StringBuilder info, List<LineData> linesData)
+    public static void CreateBoundaryLines(Dictionary<long, CellData> cellsData, List<LineData> linesData)
     {
         linesData.Clear();
 
@@ -338,21 +337,6 @@ public class MembraneShapeStretcher
                         continue;
 
                     LineData otherLine = candidates[otherIndex];
-
-                    if (Math.Abs(candidate.Line.X) < 0.00001f)
-                    {
-                        info.Append($"x = {candidate.MiddlePoint.X:F3}\n");
-                    }
-                    else
-                    {
-                        var a = candidate.Line.Y / candidate.Line.X;
-                        var b = candidate.MiddlePoint.Y -
-                            a * candidate.MiddlePoint.X;
-
-                        info.Append($"y = {a:F3}x + {b:F3}\n");
-                    }
-
-                    info.Append($"({candidate.MiddlePoint.X:F3}, {candidate.MiddlePoint.Y:F3})\n");
 
                     float averageSide = SignedSquaredDistanceToLine(otherLine, averageVertex);
                     float candidateSide = SignedSquaredDistanceToLine(otherLine, candidate.MiddlePoint);
@@ -625,7 +609,8 @@ public class MembraneShapeStretcher
 
         foreach (LineData line in cell.LinesData)
         {
-            if (MathF.Abs(SignedSquaredDistanceToLine(line, position)) > Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
+            if (MathF.Abs(SignedSquaredDistanceToLine(line, position)) >
+                Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
                 continue;
 
             if (!cellsData.TryGetValue(line.OtherCellKey, out CellData? other))
@@ -789,7 +774,8 @@ public class MembraneShapeStretcher
 
         // Measure endpoint overshoot in squared world units without normalising the segment.
         float endpointOffset = u < 0.0f ? u : MathF.Max(u - 1.0f, 0.0f);
-        if (endpointOffset * endpointOffset * segmentLengthSquared > Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
+        if (endpointOffset * endpointOffset * segmentLengthSquared >
+            Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
             return false;
 
         intersection = rayOrigin + rayDirection * t;

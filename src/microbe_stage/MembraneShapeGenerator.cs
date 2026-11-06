@@ -2,8 +2,6 @@
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -564,22 +562,12 @@ public class MembraneShapeGenerator
     {
         stretchedMembranesPointData.Clear();
 
-        // DO NOT REMOVE: this is used for debugging and printing the membrane data to the console
-        var info = new StringBuilder();
-
-        foreach (var (_, data) in cellsData)
-        {
-            info.Append(string.Join(", ",
-                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
-            info.Append("\n");
-        }
-
         foreach (var (_, cellData) in cellsData)
         {
             MembraneShapeStretcher.RotateCellVertices(cellData);
         }
 
-        MembraneShapeStretcher.CreateBoundaryLines(cellsData, info, linesData);
+        MembraneShapeStretcher.CreateBoundaryLines(cellsData, linesData);
 
         foreach (var (_, cellData) in cellsData)
         {
@@ -599,28 +587,6 @@ public class MembraneShapeGenerator
             {
                 MembraneShapeStretcher.SmoothVertexRegion(cellData);
             }
-
-            foreach (var point in boundaryPoints)
-            {
-                info.Append($"({point.X:F3}, " +
-                    $"{point.Y:F3}),");
-            }
-
-            info.Remove(info.Length - 1, 1);
-            info.Append("\n");
-        }
-
-        foreach (var (_, data) in cellsData)
-        {
-            info.Append(string.Join(", ",
-                data.Vertices2D.Select(v => $"({v.X:F3}, {v.Y:F3})")));
-            info.Append("\n");
-        }
-
-        if (cellsData.Count >= 3)
-        {
-            GD.Print();
-            GD.Print($"{info}");
         }
 
         foreach (var (_, cellData) in cellsData)
