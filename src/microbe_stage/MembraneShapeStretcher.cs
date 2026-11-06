@@ -611,7 +611,9 @@ public class MembraneShapeStretcher
         {
             if (MathF.Abs(SignedSquaredDistanceToLine(line, position)) >
                 Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
+            {
                 continue;
+            }
 
             if (!cellsData.TryGetValue(line.OtherCellKey, out CellData? other))
                 return false;
@@ -776,7 +778,9 @@ public class MembraneShapeStretcher
         float endpointOffset = u < 0.0f ? u : MathF.Max(u - 1.0f, 0.0f);
         if (endpointOffset * endpointOffset * segmentLengthSquared >
             Constants.MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED)
+        {
             return false;
+        }
 
         intersection = rayOrigin + rayDirection * t;
         return true;
@@ -1071,46 +1075,6 @@ public class MembraneShapeStretcher
     }
 
     /// <summary>
-    ///   Identifies one continuous section in the generator's boundary point buffer.
-    /// </summary>
-    public readonly struct BoundaryPathRange
-    {
-        public readonly int Start;
-        public readonly int Count;
-
-        public BoundaryPathRange(int start, int count)
-        {
-            Start = start;
-            Count = count;
-        }
-    }
-
-    /// <summary>
-    ///   Stores the separating line between two cells.
-    /// </summary>
-    public struct LineData
-    {
-        public readonly long OtherCellKey;
-        public readonly bool IsOverLapping;
-
-        public Vector2 MiddlePoint;
-        public Vector2 Line;
-        public Vector2 Normal;
-
-        public bool ShouldRemove = true;
-
-        public LineData(Vector2 middlePoint, Vector2 normal, long otherCellKey, bool isOverlapping = false)
-        {
-            MiddlePoint = middlePoint;
-            Normal = normal;
-            Line = new Vector2(normal.Y, -normal.X);
-
-            OtherCellKey = otherCellKey;
-            IsOverLapping = isOverlapping;
-        }
-    }
-
-    /// <summary>
     ///   Sorts boundary points clockwise around a cell's centre.
     /// </summary>
     public class BoundaryPointComparer
@@ -1204,4 +1168,48 @@ public class MembraneShapeStretcher
             IntersectionsData.Clear();
         }
     }
+
+    // Added warning disable as SA1201 requires a struct to be before a class,
+    // but format_test doesn't like that order...
+#pragma warning disable SA1201
+    /// <summary>
+    ///   Identifies one continuous section in the generator's boundary point buffer.
+    /// </summary>
+    public readonly struct BoundaryPathRange
+    {
+        public readonly int Start;
+        public readonly int Count;
+
+        public BoundaryPathRange(int start, int count)
+        {
+            Start = start;
+            Count = count;
+        }
+    }
+
+    /// <summary>
+    ///   Stores the separating line between two cells.
+    /// </summary>
+    public struct LineData
+    {
+        public readonly long OtherCellKey;
+        public readonly bool IsOverLapping;
+
+        public Vector2 MiddlePoint;
+        public Vector2 Line;
+        public Vector2 Normal;
+
+        public bool ShouldRemove = true;
+
+        public LineData(Vector2 middlePoint, Vector2 normal, long otherCellKey, bool isOverlapping = false)
+        {
+            MiddlePoint = middlePoint;
+            Normal = normal;
+            Line = new Vector2(normal.Y, -normal.X);
+
+            OtherCellKey = otherCellKey;
+            IsOverLapping = isOverlapping;
+        }
+    }
+#pragma warning enable SA1201
 }
