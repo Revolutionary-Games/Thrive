@@ -261,7 +261,7 @@ public class CustomImmediateMesh : IDisposable
         // TODO: find out if we can use this for much higher performance:
         // Mesh.SurfaceUpdateRegion();
 
-        Mesh.AddSurfaceFromArrays(drawType, arrays);
+        Mesh.AddSurfaceFromArraysWithKeepAlive(drawType, arrays);
         Mesh.SurfaceSetMaterial(0, meshMaterial);
     }
 
