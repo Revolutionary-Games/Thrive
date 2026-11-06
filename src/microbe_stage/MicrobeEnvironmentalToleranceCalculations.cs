@@ -331,31 +331,35 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (temperatureScore < 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, temperatureScore);
+                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, 1 - (1 - temperatureScore) *
+                    (1 - Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN));
 
             result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX,
-                2 - temperatureScore);
+                1 + (1 - temperatureScore) * (Constants.TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX - 1));
 
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, temperatureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, 1 - (1 - temperatureScore) *
+                (1 - Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN));
         }
         else if (data.TemperatureScore > 1)
         {
-            result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX, temperatureScore);
+            result.ProcessSpeedModifier *= 1 + (temperatureScore - 1) * Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX;
         }
 
         var pressureScore = (float)data.PressureScore;
         if (pressureScore < 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, pressureScore);
+                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, 1 - (1 - pressureScore) *
+                    (1 - Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN));
             result.OsmoregulationModifier *=
-                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 2 - pressureScore);
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, pressureScore);
+                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 1 + (1 - pressureScore) *
+                    (Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX - 1));
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, 1 - (1 - pressureScore) *
+                (1 - Constants.TOLERANCE_PRESSURE_HEALTH_MIN));
         }
         else if (data.PressureScore > 1)
         {
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX, pressureScore);
+            result.HealthModifier *= 1 + (pressureScore - 1) * Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX;
         }
 
         var oxygenScore = (float)data.OxygenScore;
@@ -448,7 +452,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
             patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
         {
             // Not adapted to the temperature
-            var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment);
+            var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment) -
+                speciesTolerances.TemperatureTolerance;
 
             if (adjustmentSize > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE)
             {
@@ -470,9 +475,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 // be really hard to apply
 
                 // Perfectly adapted
-                var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
-                    (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
-                result.TemperatureScore = 1 + perfectionFactor;
+                result.TemperatureScore = 2;
             }
             else
             {
@@ -485,7 +488,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TemperatureRangeSizeAdjustment =
                 Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE - noExtraEffects.TemperatureTolerance;
 
-            result.TemperatureScore = 1;
+            if (!excludePositiveBuffs)
+            {
+                // Adaptation bonus ranges are calculated without the effects of organelles as they would otherwise
+                // be really hard to apply
+                var perfectionFactor = 1 - Math.Max(0,
+                        noExtraEffects.TemperatureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE) /
+                    (Constants.TOLERANCE_MAXIMUM_TEMPERATURE_RANGE - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE);
+                result.TemperatureScore = 1 + perfectionFactor;
+            }
+            else
+            {
+                result.TemperatureScore = 1;
+            }
         }
 
         if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance)
@@ -550,9 +565,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 // Perfectly adapted
                 if (!excludePositiveBuffs)
                 {
-                    var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                        (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
-                    result.PressureScore = 1 + perfectionFactor;
+                    result.PressureScore = 2;
                 }
                 else
                 {
@@ -565,7 +578,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
                     noExtraEffects.PressureTolerance;
 
-                result.PressureScore = 1;
+                if (!excludePositiveBuffs)
+                {
+                    // Adaptation bonus ranges are calculated without the effects of organelles as they would otherwise
+                    // be really hard to apply
+                    var perfectionFactor = 1 - Math.Max(0,
+                            noExtraEffects.PressureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE) /
+                        (Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                    result.PressureScore = 1 + perfectionFactor;
+                }
+                else
+                {
+                    result.PressureScore = 1;
+                }
             }
 
             result.MinimumPressureAdjustment = 0.0f;

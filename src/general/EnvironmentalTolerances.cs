@@ -129,7 +129,8 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
 
         if (version <= 1)
         {
-            PressureTolerance = Math.Min(reader.ReadFloat() - PressureMinimum, Constants.TOLERANCE_PRESSURE_RANGE_MAX);
+            PressureTolerance = Math.Min(reader.ReadFloat() - PressureMinimum,
+                Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE);
         }
         else
         {
