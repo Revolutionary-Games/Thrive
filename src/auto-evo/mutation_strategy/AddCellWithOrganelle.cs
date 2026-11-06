@@ -132,7 +132,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                     continue;
                 }
 
-                if (mp < organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR)
+                var cost = organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+                if (mp < cost)
                     continue;
 
                 var newSpecies = baseMulticellularSpecies.Clone(true, false);
@@ -145,8 +146,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                     continue;
                 }
 
-                var newMp = mp - organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
-                mutated.Add(new Mutant(newSpecies, newMp));
+                mutated.Add(new Mutant(newSpecies, mp - cost));
             }
             else
             {
