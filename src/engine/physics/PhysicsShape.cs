@@ -16,6 +16,10 @@ public class PhysicsShape : IDisposable
     private PhysicsShape(IntPtr nativeInstance)
     {
         this.nativeInstance = nativeInstance;
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     ~PhysicsShape()
@@ -128,7 +132,13 @@ public class PhysicsShape : IDisposable
             }
 
             // TODO: does this need to fix the buffer memory?
-            return new PhysicsShape(NativeMethods.CreateStaticCompoundShape(buffer[0], (uint)count));
+            var result = new PhysicsShape(NativeMethods.CreateStaticCompoundShape(buffer[0], (uint)count));
+
+#if DEBUG
+            for (int i = 0; i < count; ++i)
+                subShapes[i].Shape.CheckIfDisposedAfterNativeCall();
+#endif
+            return result;
 
             // return new PhysicsShape(NativeMethods.CreateStaticCompoundShape(pin.AddrOfPinnedObject(), (uint)count));
         }
@@ -185,12 +195,22 @@ public class PhysicsShape : IDisposable
     /// <returns>The mass</returns>
     public float GetMass()
     {
-        return NativeMethods.ShapeGetMass(AccessShapeInternal());
+        var result = NativeMethods.ShapeGetMass(AccessShapeInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     public uint GetSubShapeIndexFromData(uint subShapeData)
     {
-        return NativeMethods.ShapeGetSubShapeIndex(AccessShapeInternal(), subShapeData);
+        var result = NativeMethods.ShapeGetSubShapeIndex(AccessShapeInternal(), subShapeData);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     /// <summary>
@@ -201,7 +221,12 @@ public class PhysicsShape : IDisposable
     /// <returns>Resulting angular velocities around the same axes as the torque was given in</returns>
     public Vector3 CalculateResultingTorqueFromInertia(Vector3 torque)
     {
-        return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
+        var result = NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     /// <summary>
@@ -238,6 +263,21 @@ public class PhysicsShape : IDisposable
 
         return nativeInstance;
     }
+
+#if DEBUG
+    /// <summary>
+    ///   Checks for disposal or an invalid handle after a native call. This keeps the wrapper alive in debug builds,
+    ///   so it cannot diagnose premature finalization in release builds or a native call that crashes before returning.
+    /// </summary>
+    internal void CheckIfDisposedAfterNativeCall([CallerMemberName] string caller = "")
+    {
+        if (disposed || nativeInstance == IntPtr.Zero)
+        {
+            GD.PrintErr("PhysicsShape is destroyed while it is being used!");
+            throw new InvalidOperationException($"PhysicsShape native handle is invalid after {caller}");
+        }
+    }
+#endif
 
     protected virtual void Dispose(bool disposing)
     {
