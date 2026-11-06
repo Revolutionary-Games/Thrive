@@ -1276,13 +1276,6 @@ public class MembraneShapeStretcher
             IsOverLapping = isOverlapping;
         }
 
-        public bool Equals(LineData other)
-        {
-            return OtherCellKey == other.OtherCellKey && IsOverLapping == other.IsOverLapping &&
-                MiddlePoint.Equals(other.MiddlePoint) && Line.Equals(other.Line) && Normal.Equals(other.Normal) &&
-                ShouldRemove == other.ShouldRemove;
-        }
-
         public static bool operator ==(LineData left, LineData right)
         {
             return left.Equals(right);
@@ -1291,6 +1284,13 @@ public class MembraneShapeStretcher
         public static bool operator !=(LineData left, LineData right)
         {
             return !left.Equals(right);
+        }
+
+        public bool Equals(LineData other)
+        {
+            return OtherCellKey == other.OtherCellKey && IsOverLapping == other.IsOverLapping &&
+                MiddlePoint.Equals(other.MiddlePoint) && Line.Equals(other.Line) && Normal.Equals(other.Normal) &&
+                ShouldRemove == other.ShouldRemove;
         }
 
         public override bool Equals(object? obj)
