@@ -31,6 +31,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
+[ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(SpatialAnimation))]
 [ReadsComponent(typeof(SpecializationFactor))]
@@ -324,6 +325,12 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             if (colonyMembranes.Count != memberCount - 1 && memberCount != 1)
                 throw new Exception("Colony member count mismatch with given membrane count");
 
+            // Build a mapping of where each collision shape is in the colony. This is needed now as some cells
+            // do not participate in collision.
+            var shapeMemberIndexes = new int[memberCount];
+            shapeMemberIndexes[0] = 0;
+            int shapeMemberCount = 1;
+
             // The bodies need to be added colony member list order
             for (int i = 0; i < memberCount; ++i)
             {
@@ -337,6 +344,10 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 #endif
                     continue;
                 }
+
+                // Cavity cells have no collision
+                if (member.Has<MulticellularSpeciesMember>() && member.Get<MulticellularSpeciesMember>().IsCavity())
+                    continue;
 
                 // Rarely, it seems that colony leader is not first in the list of members
                 Membrane? membrane;
@@ -374,10 +385,14 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                     throw new Exception("Colony member has no organelles but it had a membrane"), relativePosition,
                     attached.RelativeRotation));
 
+                shapeMemberIndexes[shapeMemberCount++] = i;
+
                 combinedData.Add((
                     CreateColonyMemberBaseShape(ref extraData, ref currentMemberOrganelles, membrane, isBacteria),
                     relativePosition, attached.RelativeRotation));
             }
+
+            extraData.MicrobeShapeColonyMemberIndexes = shapeMemberIndexes;
         }
 
         // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just

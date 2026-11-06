@@ -5,15 +5,16 @@ using SharedBase.Archive;
 public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IReadOnlyCellTemplate>,
     IPlayerReadableName, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private CellType modifiableCellType;
 
-    public CellTemplate(CellType cellType, Hex position, int orientation)
+    public CellTemplate(CellType cellType, Hex position, int orientation, bool isCavity = false)
     {
         modifiableCellType = cellType;
         Position = position;
         Orientation = orientation;
+        IsCavity = isCavity;
     }
 
     public Hex Position { get; set; }
@@ -25,6 +26,11 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
         // We normalize rotations here as it isn't normalized later for cell templates
         set => field = value % 6;
     }
+
+    /// <summary>
+    ///   Whether this cell represents a cavity, with no colony collision shape (and some other effects).
+    /// </summary>
+    public bool IsCavity { get; set; }
 
     public string ReadableName => modifiableCellType.FormattedName;
 
@@ -103,7 +109,8 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new CellTemplate(reader.ReadObject<CellType>(), reader.ReadHex(), reader.ReadInt32());
+        return new CellTemplate(reader.ReadObject<CellType>(), reader.ReadHex(), reader.ReadInt32(),
+            version >= 2 && reader.ReadBool());
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -111,6 +118,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
         writer.WriteObject(ModifiableCellType);
         writer.Write(Position);
         writer.Write(Orientation);
+        writer.Write(IsCavity);
     }
 
     public bool RepositionToOrigin()
@@ -145,12 +153,13 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
 
     public object Clone()
     {
-        return new CellTemplate(ModifiableCellType, Position, Orientation);
+        return new CellTemplate(ModifiableCellType, Position, Orientation, IsCavity);
     }
 
     public ulong GetVisualHashCode()
     {
-        return ModifiableCellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
+        return ModifiableCellType.GetVisualHashCode() ^ (IsCavity ? 1UL : 0UL) * 349 ^
+            (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
     }
 
     public override string ToString()

@@ -25,9 +25,15 @@ public struct MicrobePhysicsExtraData : IArchivableComponent
 
     /// <summary>
     ///   Total microbe shapes. In the physics body there's this many physics shapes first that represent cells.
-    ///   The indexes of the sub-shapes match the order of cells in the microbe colony.
+    ///   Sub-shape indexes are mapped to colony members by MicrobeShapeColonyMemberIndexes.
     /// </summary>
     public int MicrobeShapesCount;
+
+    /// <summary>
+    ///   Runtime mapping from cell sub-shapes to colony member indexes, excluding cavity cells.
+    ///   Rebuilt with the physics shape after loading. Null when indexes match colony member order.
+    /// </summary>
+    public int[]? MicrobeShapeColonyMemberIndexes;
 
     /// <summary>
     ///   How many pilus collision shapes there are in the physics body after the microbe shapes. 0 means there
@@ -94,14 +100,14 @@ public static class MicrobePhysicsExtraDataHelpers
     {
         if (subShape < physicsExtraData.MicrobeShapesCount)
         {
-            index = (int)subShape;
+            index = physicsExtraData.MicrobeShapeColonyMemberIndexes?[(int)subShape] ?? (int)subShape;
             return true;
         }
 
         // When there's one subs-shape it gets mapped to uint.max so handle that
         if (subShape == PhysicsCollision.COLLISION_UNKNOWN_SUB_SHAPE && physicsExtraData.MicrobeShapesCount == 1)
         {
-            index = 0;
+            index = physicsExtraData.MicrobeShapeColonyMemberIndexes?[0] ?? 0;
             return true;
         }
 
