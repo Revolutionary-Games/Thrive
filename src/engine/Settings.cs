@@ -126,7 +126,6 @@ public class Settings
     public SettingValue<Viewport.AnisotropicFiltering> AnisotropicFilterLevel { get; private set; } =
         new(Viewport.AnisotropicFiltering.Anisotropy8X);
 
-
     /// <summary>
     ///   Sets realtime shadows' resolution
     /// </summary>
