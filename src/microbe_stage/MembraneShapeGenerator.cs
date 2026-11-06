@@ -556,6 +556,36 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
+    ///   Applies membrane waves to the supplied outline using its circumference and membrane type.
+    /// </summary>
+    private static void MakeMembraneWavier(List<Vector2> vertices, MembraneType membraneType, float circumference)
+    {
+        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices.Count;
+
+        float heightMultiplier = membraneType.CellWall ?
+            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
+            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
+
+        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
+            * heightMultiplier;
+
+        // Make the membrane wavier
+        for (int i = 0, end = vertices.Count; i < end; ++i)
+        {
+            var point = vertices[i];
+            var nextPoint = vertices[(i + 1) % end];
+            var direction = (nextPoint - point).Normalized();
+
+            // Turn 90 degrees
+            direction = new Vector2(-direction.Y, direction.X);
+
+            var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
+
+            vertices[i] = point + movement;
+        }
+    }
+
+    /// <summary>
     ///   Stretches the current colony using generator-owned working cells.
     /// </summary>
     private Dictionary<long, MembranePointData> StretchMembranes()
@@ -596,6 +626,14 @@ public class MembraneShapeGenerator
 
         foreach (var (key, data) in cellsData)
         {
+            float circumference = 0.0f;
+            for (int i = 0; i < data.VertexCount; ++i)
+            {
+                circumference += data.Vertices2D[i].DistanceTo(data.Vertices2D[(i + 1) % data.VertexCount]);
+            }
+
+            MakeMembraneWavier(data.Vertices2D, data.OriginalPointData.Type, circumference);
+
             int hexCount = data.OriginalPointData.HexPositionCount;
             var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
             data.OriginalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
@@ -674,34 +712,7 @@ public class MembraneShapeGenerator
         if (isMulticellular)
             return;
 
-        MakeMembraneWavier(membraneType, circumference);
-    }
-
-    private void MakeMembraneWavier(MembraneType membraneType, float circumference)
-    {
-        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
-
-        float heightMultiplier = membraneType.CellWall ?
-            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
-            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
-
-        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
-            * heightMultiplier;
-
-        // Make the membrane wavier
-        for (int i = 0, end = vertices2D.Count; i < end; ++i)
-        {
-            var point = vertices2D[i];
-            var nextPoint = vertices2D[(i + 1) % end];
-            var direction = (nextPoint - point).Normalized();
-
-            // Turn 90 degrees
-            direction = new Vector2(-direction.Y, direction.X);
-
-            var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
-
-            vertices2D[i] = point + movement;
-        }
+        MakeMembraneWavier(vertices2D, membraneType, circumference);
     }
 
     /// <summary>

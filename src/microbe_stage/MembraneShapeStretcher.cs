@@ -986,13 +986,13 @@ public class MembraneShapeStretcher
             }
         }
 
-#if DEBUG
         if (bestCandidate == null)
         {
+#if DEBUG
             GD.PrintErr($"Could not find an external tangent for point {point}.");
+#endif
             return point;
         }
-#endif
 
         return bestCandidate.Value;
     }
@@ -1211,5 +1211,5 @@ public class MembraneShapeStretcher
             IsOverLapping = isOverlapping;
         }
     }
-#pragma warning enable SA1201
+#pragma warning restore SA1201
 }
