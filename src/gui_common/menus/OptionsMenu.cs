@@ -1451,7 +1451,7 @@ public partial class OptionsMenu : ControlWithInput
             case RenderingServer.ShadowQuality.SoftUltra:
                 return 5;
             default:
-                GD.PrintErr("invalid shadow resolution value");
+                GD.PrintErr("invalid shadow filtering value");
                 return 3;
         }
     }
@@ -1473,7 +1473,7 @@ public partial class OptionsMenu : ControlWithInput
             case 5:
                 return RenderingServer.ShadowQuality.SoftUltra;
             default:
-                GD.PrintErr("invalid shadow resolution index");
+                GD.PrintErr("invalid shadow filtering index");
                 return RenderingServer.ShadowQuality.SoftMedium;
         }
     }
