@@ -27,6 +27,8 @@ public class Settings
 
     private static int oldDisplaySelectionIndex = -2;
 
+    private RenderingServer.ShadowQuality? lastAppliedShadowQuality;
+
     static Settings()
     {
     }
@@ -959,8 +961,13 @@ public class Settings
 
         RenderingServer.Singleton.DirectionalShadowAtlasSetSize(ShadowResolution, true);
 
-        RenderingServer.Singleton.PositionalSoftShadowFilterSetQuality(ShadowFilteringQuality);
-        RenderingServer.Singleton.DirectionalSoftShadowFilterSetQuality(ShadowFilteringQuality);
+        if (ShadowFilteringQuality != lastAppliedShadowQuality)
+        {
+            RenderingServer.Singleton.PositionalSoftShadowFilterSetQuality(ShadowFilteringQuality);
+            RenderingServer.Singleton.DirectionalSoftShadowFilterSetQuality(ShadowFilteringQuality);
+
+            lastAppliedShadowQuality = ShadowFilteringQuality;
+        }
 
         // Upscaling settings
         var scale = RenderScale.Value;
