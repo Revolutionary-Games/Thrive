@@ -20,6 +20,20 @@ public partial class CellBodyPlanEditorComponent
     }
 
     [ArchiveAllowedMethod]
+    private void DoCellCavityAction(CellCavityActionData data)
+    {
+        data.Cell.Data!.IsCavity = data.NewIsCavity;
+        cellDataDirty = true;
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoCellCavityAction(CellCavityActionData data)
+    {
+        data.Cell.Data!.IsCavity = data.OldIsCavity;
+        cellDataDirty = true;
+    }
+
+    [ArchiveAllowedMethod]
     private void DoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.Remove(data.RemovedHex);
