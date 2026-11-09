@@ -10,6 +10,15 @@ using Systems;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
+    private static Hex[] autoGrowthOrderCalculationHeighborOrder = [
+        new Hex(0, -1),
+        new Hex(-1, 0),
+        new Hex(1, -1),
+        new Hex(0, 1),
+        new Hex(1, 0),
+        new Hex(-1, 1)
+    ];
+
     private readonly List<Label> activeToleranceWarnings = new();
 
     private readonly List<(bool FulFilled, string Description)> macroscopicConditionResults = new();
@@ -298,7 +307,7 @@ public partial class CellBodyPlanEditorComponent
         {
             var current = toAssign.Dequeue();
 
-            foreach (var neighbor in Hex.HexNeighbourOffset.Values)
+            foreach (var neighbor in autoGrowthOrderCalculationHeighborOrder)
             {
                 if (unassigned.ContainsKey(current.Position + neighbor))
                 {
