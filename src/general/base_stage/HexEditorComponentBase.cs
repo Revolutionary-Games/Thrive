@@ -1044,7 +1044,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                         }
 
                         // Mark as invalid
-                        placed.MaterialOverride = invalidMaterial;
+                        placed.MaterialOverride = GetInvalidOverlapMaterial(hoverOverriddenMaterials[placed]);
 
                         hadDuplicate = true;
                     }
@@ -1072,13 +1072,38 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             hoverHex.Position = pos;
             hoverHex.Visible = true;
 
-            hoverHex.MaterialOverride = canPlace ? validMaterial : invalidMaterial;
+            hoverHex.MaterialOverride = GetHoverHexMaterial(canPlace);
         }
     }
 
+    /// <summary>
+    ///   Selects the material for a hover preview hex before it is displayed.
+    /// </summary>
+    protected virtual Material GetHoverHexMaterial(bool canPlace)
+    {
+        return canPlace ? validMaterial : invalidMaterial;
+    }
+
+    /// <summary>
+    ///   Selects the invalid material for an overlapped placed hex, given its original material.
+    /// </summary>
+    protected virtual Material GetInvalidOverlapMaterial(Material originalMaterial)
+    {
+        return invalidMaterial;
+    }
+
+    /// <summary>
+    ///   Updates placed hexes, optionally customising each material during the same pass.
+    /// </summary>
+    /// <param name="hexes">Items and their local hexes to display</param>
+    /// <param name="islands">Base positions to mark as disconnected</param>
+    /// <param name="forceHide">Whether to hide all placed hexes</param>
+    /// <param name="customiseMaterial">
+    ///   Receives the absolute hex position and default material, and returns the material to apply
+    /// </param>
     protected void UpdateAlreadyPlacedHexes(
         IEnumerable<(Hex BasePosition, IReadOnlyList<Hex> Hexes, bool PlacedThisSession)> hexes, List<Hex> islands,
-        bool forceHide = false)
+        bool forceHide = false, Func<Hex, Material, Material>? customiseMaterial = null)
     {
         int nextFreeHex = 0;
 
@@ -1096,20 +1121,23 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
                 var hexNode = placedHexes[nextFreeHex++];
 
+                Material material;
                 if (islands.Contains(position))
                 {
-                    hexNode.MaterialOverride = islandMaterial;
+                    material = islandMaterial;
                 }
                 else if (placedThisSession)
                 {
-                    hexNode.MaterialOverride = validMaterial;
+                    material = validMaterial;
                 }
                 else
                 {
-                    hexNode.MaterialOverride = oldMaterial;
+                    material = oldMaterial;
                 }
 
-                // As we set the correct material, we don't need to remember to restore it anymore
+                hexNode.MaterialOverride = customiseMaterial?.Invoke(hex + position, material) ?? material;
+
+                // As we set the correct material, we don't need to remember to restore it any more
                 hoverOverriddenMaterials.Remove(hexNode);
 
                 hexNode.Position = pos;

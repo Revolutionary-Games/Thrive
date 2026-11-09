@@ -435,10 +435,6 @@ public partial class CellBodyPlanEditorComponent
         // Order doesn't really matter here, so just make it a list.
         var displayed = fullLayoutOccupied /*.OrderBy(h => h.Q).ThenBy(h => h.R) */.ToList();
 
-        // We use the invalid hexes as islands to mark them as invalid
-        UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
-            fullLayoutInvalid.ToList());
-
         var cavityPositions = new HashSet<Hex>();
         var invalidCavityPositions = new HashSet<Hex>();
         foreach (var pair in cellPositions)
@@ -454,17 +450,16 @@ public partial class CellBodyPlanEditorComponent
             }
         }
 
-        for (int i = 0; i < displayed.Count; ++i)
-        {
-            var position = displayed[i];
-            if (cavityPositions.Contains(position))
+        // We use the invalid hexes as islands to mark them as invalid
+        UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
+            fullLayoutInvalid.ToList(), customiseMaterial: (position, material) =>
             {
-                placedHexes[i].MaterialOverride = fullLayoutInvalid.Contains(position) ||
-                    invalidCavityPositions.Contains(position) ?
-                        invalidCavityMaterial :
-                        cavityMaterial;
-            }
-        }
+                if (!cavityPositions.Contains(position))
+                    return material;
+
+                return material == islandMaterial || invalidCavityPositions.Contains(position) ?
+                    invalidCavityMaterial : cavityMaterial;
+            });
 
         // TODO: display all organelle models?
         int nextModel = 0;

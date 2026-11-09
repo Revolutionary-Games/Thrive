@@ -1457,6 +1457,24 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypesSecondaryInfo();
     }
 
+    protected override Material GetHoverHexMaterial(bool canPlace)
+    {
+        var material = base.GetHoverHexMaterial(canPlace);
+        if (MovingPlacedHex?.Data?.IsCavity == true)
+            return canPlace ? cavityMaterial : invalidCavityMaterial;
+
+        return material;
+    }
+
+    protected override Material GetInvalidOverlapMaterial(Material originalMaterial)
+    {
+        var material = base.GetInvalidOverlapMaterial(originalMaterial);
+        if (originalMaterial == cavityMaterial || originalMaterial == invalidCavityMaterial)
+            return invalidCavityMaterial;
+
+        return material;
+    }
+
     protected override void LoadHexMaterials()
     {
         base.LoadHexMaterials();
@@ -2568,8 +2586,23 @@ public partial class CellBodyPlanEditorComponent :
 
         // Build the entities to show the current microbe
         IReadOnlyList<Hex> positionZeroList = [new(0, 0)];
+        var firstCell = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), c => c.Data!)
+            .FirstOrDefault();
+        int nextCell = 0;
         UpdateAlreadyPlacedHexes(editedMicrobeCells.AsModifiable().Select(o => (o.Position, positionZeroList,
-            Editor.HexPlacedThisSession<HexWithData<CellTemplate>, MulticellularSpecies>(o))), islandResults);
+                Editor.HexPlacedThisSession<HexWithData<CellTemplate>, MulticellularSpecies>(o))), islandResults,
+            customiseMaterial: (position, material) =>
+            {
+                // Each cell is represented by a single hex, in the same order as editedMicrobeCells
+                var cell = editedMicrobeCells[nextCell++];
+                if (!cell.Data!.IsCavity)
+                    return material;
+
+                return material == islandMaterial || wrongGrowthOrderCells.Contains(position) ||
+                    ReferenceEquals(cell, firstCell) ?
+                        invalidCavityMaterial :
+                        cavityMaterial;
+            });
 
         int nextFreeCell = 0;
 
