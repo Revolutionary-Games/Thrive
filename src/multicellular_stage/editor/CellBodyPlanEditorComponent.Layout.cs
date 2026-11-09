@@ -320,7 +320,7 @@ public partial class CellBodyPlanEditorComponent
             var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
 
             // Unfortunately, we have to take a full clone here for safety
-            var snapshot = new CellTemplate(type.Clone(true), cell.Position, cell.Orientation);
+            var snapshot = new CellTemplate(type.Clone(true), cell.Position, cell.Orientation, cell.Data!.IsCavity);
             source.AddFast(new HexWithData<CellTemplate>(snapshot, snapshot.Position, snapshot.Orientation),
                 hexTemporaryMemory, hexTemporaryMemory2);
         }
