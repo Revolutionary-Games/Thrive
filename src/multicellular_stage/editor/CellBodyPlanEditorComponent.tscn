@@ -1360,6 +1360,7 @@ IsMulticellular = true
 [connection signal="Confirmed" from="NewCellTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_submitted" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
+[connection signal="CavityToggled" from="CellPopupMenu" to="." method="OnCellCavityToggled"]
 [connection signal="DeletePressed" from="CellPopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="CellPopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="CellPopupMenu" to="." method="OnMovePressed"]
