@@ -11,7 +11,6 @@ grow_vertical = 2
 script = ExtResource("1_ju87a")
 buttonContainer = NodePath("OrderableItems")
 autoCalculateButton = NodePath("HBoxContainer/AutoCalculate")
-ShowAutoCalculateButton = true
 
 [node name="OrderableItems" type="VBoxContainer" parent="." unique_id=445309676]
 layout_mode = 2
@@ -30,7 +29,7 @@ text = "RESET"
 [node name="AutoCalculate" type="Button" parent="HBoxContainer" unique_id=1743454685]
 layout_mode = 2
 size_flags_horizontal = 4
-tooltip_text = "RESET_ITEM_ORDER_TO_DEFAULT"
+tooltip_text = "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
 text = "AUTO_CALCULATE_GROWTH_ORDER"
 
 [connection signal="pressed" from="HBoxContainer/Reset" to="." method="OnResetButtonPressed"]
