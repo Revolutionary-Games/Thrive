@@ -245,6 +245,31 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             return true;
         }
 
+        if (actionData is CellCavityActionData cavityActionData)
+        {
+            var original = GetByExactElementRootPositionForAction(cavityActionData.Location);
+            if (original == null || original.Orientation != cavityActionData.Orientation ||
+                !ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                    cellTypes.ResolveCellDefinition(cavityActionData.Cell.Data!.CellType)))
+            {
+                throw new InvalidOperationException("Could not find the cell a cavity operation is related to");
+            }
+
+            if (original is CellWithOriginalReference modified && addedCells.Contains(modified))
+            {
+                modified.IsCavity = cavityActionData.NewIsCavity;
+            }
+            else
+            {
+                var modifiable = GetModifiable(original);
+                modifiable.IsCavity = cavityActionData.NewIsCavity;
+                removedCells.Add(original);
+                addedCells.Add(modifiable);
+            }
+
+            return true;
+        }
+
         if (actionData is CellRemoveActionData cellRemoveActionData)
         {
             IReadOnlyHexWithData<IReadOnlyCellTemplate>? original = null;
@@ -386,6 +411,18 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return base.ApplyAction(actionData);
     }
 
+    private IReadOnlyHexWithData<IReadOnlyCellTemplate>? GetByExactElementRootPositionForAction(Hex location)
+    {
+        foreach (var cell in addedCells)
+        {
+            if (cell.Position == location)
+                return cell;
+        }
+
+        var original = multicellularSpecies.EditorCells.GetByExactElementRootPosition(location);
+        return original != null && !removedCells.Contains(original) ? original : null;
+    }
+
     private CellWithOriginalReference GetModifiable(IReadOnlyHexWithData<IReadOnlyCellTemplate> cellTemplate)
     {
         if (unusedCells.TryPop(out var existing))
@@ -407,6 +444,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         {
             Position = original.Position;
             Orientation = original.Orientation;
+            IsCavity = original.Data!.IsCavity;
 
             usingCustomType = typeWrapper;
 
@@ -423,6 +461,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public Hex Position { get; set; }
         public int Orientation { get; set; }
+        public bool IsCavity { get; set; }
         public IReadOnlyCellTemplate Data => this;
 
         public IReadOnlyCellTypeDefinition CellType => usingCustomType;
@@ -457,6 +496,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
             Position = original.Position;
             Orientation = original.Orientation;
+            IsCavity = original.Data!.IsCavity;
         }
     }
 
