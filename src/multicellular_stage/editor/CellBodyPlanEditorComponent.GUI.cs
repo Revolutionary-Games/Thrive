@@ -290,6 +290,7 @@ public partial class CellBodyPlanEditorComponent
 
         var finalOrder = new List<CellTemplate>();
 
+        // Assign the root of the growth order
         toAssign.Enqueue(editedMicrobeCells[0].Data!);
         unassigned.Remove(editedMicrobeCells[0].Position);
 
@@ -309,6 +310,8 @@ public partial class CellBodyPlanEditorComponent
             finalOrder.Add(current);
         }
 
+        // Cells that remain unassigned are disconnected from the rest of the body plan. Which means that there is no
+        // valid growth order.
         foreach (var pair in unassigned)
         {
             finalOrder.Add(pair.Value);
