@@ -376,7 +376,7 @@ public static class Constants
     public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
     public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
     public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.25f;
-    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
+    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.18f;
 
     public const float AXON_MOVEMENT_BUFF_PER = 0.15f;
     public const float AXON_ROTATION_BUFF_PER = 0.15f;
@@ -384,7 +384,7 @@ public static class Constants
     /// <summary>
     ///   Diminishing returns on having multiple axons in a colony. Higher numbers cause harsher scaling.
     /// </summary>
-    public const float AXON_DIMINISHING_RETURNS_SCALE = 0.6f;
+    public const float AXON_DIMINISHING_RETURNS_SCALE = 0.8f;
 
     // TODO: harsher wording in the tooltip
 
