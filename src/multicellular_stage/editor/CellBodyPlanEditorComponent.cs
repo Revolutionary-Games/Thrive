@@ -309,6 +309,10 @@ public partial class CellBodyPlanEditorComponent :
             if (wrongGrowthOrderCells.Count > 0)
                 return true;
 
+            // TODO: other cavity error cases
+            if (FirstCellIsCavity())
+                return true;
+
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
@@ -1010,6 +1014,14 @@ public partial class CellBodyPlanEditorComponent :
         var editorUserOverrides = userOverrides.ToList();
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
+
+        if (FirstCellIsCavity())
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("FIRST_CELL_CANNOT_BE_CAVITY"), 5);
+            return false;
+        }
+
+        // TODO: other cavity check cases
 
         if (UsesManualPlayerLayout)
         {
