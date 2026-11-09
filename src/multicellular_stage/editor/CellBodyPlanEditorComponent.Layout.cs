@@ -643,11 +643,10 @@ public partial class CellBodyPlanEditorComponent
         {
             var cell = ordered[i];
 
-            // Automatic layout still shows the growth order for reference, but its algorithmic placement order is
-            // excluded from error detection, so its numbers must always remain white.
-            var textColor = UsesManualPlayerLayout && wrongGrowthOrderCells.Contains(cell.Position) ?
-                Colors.Red :
-                Colors.White;
+            // Automatic layout's placement order is excluded from connectivity error detection.
+            var textColor = GrowthOrderNumberColour(cell.Data!.IsCavity,
+                (UsesManualPlayerLayout && wrongGrowthOrderCells.Contains(cell.Position)) ||
+                (i == 0 && cell.Data.IsCavity));
 
             yield return (Hex.AxialToCartesian(cell.Position), (i + 1).ToString(), textColor);
         }
