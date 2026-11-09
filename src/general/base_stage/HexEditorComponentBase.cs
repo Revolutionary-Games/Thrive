@@ -86,9 +86,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     [Export]
     protected Control floatingLabelContainer = null!;
-
-    [Export]
-    protected LabelSettings growthOrderLabelSettings = null!;
 #pragma warning restore CA2213
 
     protected string? activeActionName;
@@ -108,18 +105,21 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected int placementRotation;
 
-    private readonly StringName fontColorOverrideName = new("font_color");
-
     private readonly List<FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
 
     private readonly List<HexAdjacencyDrawElement> hexDrawList = new();
 
+    private readonly Dictionary<Color, LabelSettings> growthOrderLabelsByColour = new();
+
     // This is different from the other Godot resources as this is private and they are protected
 #pragma warning disable CA2213
     [Export]
     private CustomConfirmationDialog islandPopup = null!;
+
+    [Export]
+    private LabelSettings growthOrderLabelSettings = null!;
 #pragma warning restore CA2213
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
@@ -1127,11 +1127,23 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Font configuration for floating labels in the editor. Note this assumes the font's base colour is white.
+    ///   Font configuration for floating labels in the editor.
     /// </summary>
-    protected virtual LabelSettings GetFloatingLabelSettings()
+    /// <param name="colour">Colour of the font</param>
+    protected virtual LabelSettings GetFloatingLabelSettings(Color colour)
     {
-        return growthOrderLabelSettings;
+        if (colour == Colors.White)
+            return growthOrderLabelSettings;
+
+        // Otherwise we need to generate a new label settings to apply a colour
+        if (growthOrderLabelsByColour.TryGetValue(colour, out var customizedColour))
+            return customizedColour;
+
+        customizedColour = (LabelSettings)growthOrderLabelSettings.Duplicate();
+        customizedColour.FontColor = colour;
+        growthOrderLabelsByColour.Add(colour, customizedColour);
+
+        return customizedColour;
     }
 
     /// <summary>
@@ -1168,16 +1180,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
             graphicalLabel.TargetPosition = label.TargetPosition;
             graphicalLabel.Text = label.Text;
-            graphicalLabel.LabelSettings = GetFloatingLabelSettings();
-
-            if (label.TextColor != Colors.White)
-            {
-                graphicalLabel.AddThemeColorOverride(fontColorOverrideName, label.TextColor);
-            }
-            else
-            {
-                graphicalLabel.RemoveThemeColorOverride(fontColorOverrideName);
-            }
+            graphicalLabel.LabelSettings = GetFloatingLabelSettings(label.TextColor);
 
             ++currentLabelId;
         }
@@ -1300,7 +1303,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (disposing)
         {
             positionZReference.Dispose();
-            fontColorOverrideName.Dispose();
+
+            // Let go of customized label settings
+            growthOrderLabelSettings.Dispose();
+            foreach (var customized in growthOrderLabelsByColour.Values)
+            {
+                customized.Dispose();
+            }
+
+            growthOrderLabelsByColour.Clear();
         }
 
         base.Dispose(disposing);
