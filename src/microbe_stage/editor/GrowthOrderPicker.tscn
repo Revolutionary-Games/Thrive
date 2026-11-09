@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck3e4jt0l0lc4" path="res://src/microbe_stage/editor/GrowthOrderPicker.cs" id="1_ju87a"]
 
-[node name="GrowthOrderPicker" type="VBoxContainer" unique_id=284503096 node_paths=PackedStringArray("buttonContainer")]
+[node name="GrowthOrderPicker" type="VBoxContainer" unique_id=284503096 node_paths=PackedStringArray("buttonContainer", "autoCalculateButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +10,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ju87a")
 buttonContainer = NodePath("OrderableItems")
+autoCalculateButton = NodePath("HBoxContainer/AutoCalculate")
+ShowAutoCalculateButton = true
 
 [node name="OrderableItems" type="VBoxContainer" parent="." unique_id=445309676]
 layout_mode = 2
