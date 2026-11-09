@@ -331,8 +331,8 @@ public static class MulticellularLayoutHelpers
             if (cell != null)
             {
                 source.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
-                        cell.Position, cell.Orientation), cell.Position, cell.Orientation), hexTemporaryMemory,
-                    hexTemporaryMemory2);
+                        cell.Position, cell.Orientation, cell.IsCavity), cell.Position, cell.Orientation),
+                    hexTemporaryMemory, hexTemporaryMemory2);
             }
             else
             {
