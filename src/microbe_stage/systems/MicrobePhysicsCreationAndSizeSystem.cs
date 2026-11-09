@@ -185,6 +185,18 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                 requiresCompoundShape = true;
             }
 
+            // We don't immediately re-assign this data, so safely clear it but in a way that we can reuse the data
+            // container.
+            var memberIndexesOld = extraData.MicrobeShapeColonyMemberIndexes;
+            if (memberIndexesOld != null)
+            {
+                var memberLength = memberIndexesOld.Length;
+                for (int i = 0; i < memberLength; ++i)
+                {
+                    memberIndexesOld[i] = 0;
+                }
+            }
+
             extraData.MicrobeShapesCount = 0;
             extraData.TotalShapeCount = 0;
             extraData.PilusCount = 0;
@@ -327,7 +339,21 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
             // Build a mapping of where each collision shape is in the colony. This is needed now as some cells
             // do not participate in collision.
-            var shapeMemberIndexes = new int[memberCount];
+
+            // Reuse existing data array if the size is the same
+            int[] shapeMemberIndexes;
+            if (extraData.MicrobeShapeColonyMemberIndexes != null &&
+                extraData.MicrobeShapeColonyMemberIndexes.Length == memberCount)
+            {
+                // Turns out this doesn't really get called as rebuilds don't generally happen for the same size.
+                // So this isn't really tested, and doesn't help with memory allocations.
+                shapeMemberIndexes = extraData.MicrobeShapeColonyMemberIndexes;
+            }
+            else
+            {
+                shapeMemberIndexes = new int[memberCount];
+            }
+
             shapeMemberIndexes[0] = 0;
             int shapeMemberCount = 1;
 
