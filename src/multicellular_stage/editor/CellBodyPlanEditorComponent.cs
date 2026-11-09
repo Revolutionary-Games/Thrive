@@ -242,6 +242,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CellLayoutBorderDisplay hoveringCellBorderDisplay = null!;
+
+    private Material cavityMaterial = null!;
+    private Material invalidCavityMaterial = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -935,7 +938,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 var type = editedSpecies.ModifiableCellTypes.First(t =>
                     t.CellTypeName == cell.Data!.ModifiableCellType.CellTypeName);
-                var template = new CellTemplate(type, cell.Position, cell.Orientation);
+                var template = new CellTemplate(type, cell.Position, cell.Orientation, cell.Data!.IsCavity);
                 editedSpecies.ModifiableGameplayCells.AddFast(template, hexTemporaryMemory, hexTemporaryMemory2);
             }
 
@@ -1283,7 +1286,7 @@ public partial class CellBodyPlanEditorComponent :
                 throw new InvalidOperationException("Layout to edit should not have cells with no data");
 
             var dataToAdd = new CellTemplate(GetEditedCellDataIfEdited(editedMicrobeCell.Data.ModifiableCellType),
-                editedMicrobeCell.Position, editedMicrobeCell.Orientation);
+                editedMicrobeCell.Position, editedMicrobeCell.Orientation, editedMicrobeCell.Data!.IsCavity);
 
             tempFreshlyUpdatedCells.AddFast(
                 new HexWithData<CellTemplate>(dataToAdd, dataToAdd.Position, dataToAdd.Orientation), hexTemporaryMemory,
@@ -1452,6 +1455,14 @@ public partial class CellBodyPlanEditorComponent :
         CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
+    }
+
+    protected override void LoadHexMaterials()
+    {
+        base.LoadHexMaterials();
+
+        cavityMaterial = GD.Load<Material>("res://src/multicellular_stage/editor/CavityHex.tres");
+        invalidCavityMaterial = GD.Load<Material>("res://src/multicellular_stage/editor/InvalidCavityHex.tres");
     }
 
     protected override void RegisterTooltips()
@@ -2247,6 +2258,9 @@ public partial class CellBodyPlanEditorComponent :
         if (UsesManualPlayerLayout)
             SynchronizeManualLayoutWithEditorCells();
 
+        // Do before layout so that it can use cavity status
+        RecalculateWrongGrowthOrderCells();
+
         if (layoutPreviewActive)
         {
             if (UsesManualPlayerLayout)
@@ -2266,8 +2280,6 @@ public partial class CellBodyPlanEditorComponent :
         UpdateStats();
 
         UpdateArrow();
-
-        RecalculateWrongGrowthOrderCells();
 
         UpdateFinishButtonWarningVisibility();
 
@@ -2500,10 +2512,25 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
+    private bool FirstCellIsCavity()
+    {
+        return growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), c => c.Data!)
+            .FirstOrDefault()?.Data?.IsCavity == true;
+    }
+
     private void OnGrowthOrderChanged()
     {
         RefreshFullLayoutGrowthOrderIndices();
         RecalculateWrongGrowthOrderCells();
+
+        if (layoutPreviewActive)
+        {
+            UpdateFullLayoutVisuals();
+        }
+        else
+        {
+            UpdateAlreadyPlacedVisuals();
+        }
 
         UpdateGrowthOrderUI();
 

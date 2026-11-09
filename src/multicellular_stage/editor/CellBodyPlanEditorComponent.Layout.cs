@@ -904,11 +904,9 @@ public partial class CellBodyPlanEditorComponent
     {
         foreach (var cell in manualFullLayout)
         {
-            var sourceType = manualLayoutSources.TryGetValue(cell, out var source) ?
-                source.Data!.ModifiableCellType :
-                cell.Data!.ModifiableCellType;
-            var type = GetEditedCellDataIfEdited(sourceType);
-            cell.Data = new CellTemplate(type, cell.Position, cell.Orientation);
+            var sourceTemplate = manualLayoutSources.TryGetValue(cell, out var source) ? source.Data! : cell.Data!;
+            var type = GetEditedCellDataIfEdited(sourceTemplate.ModifiableCellType);
+            cell.Data = new CellTemplate(type, cell.Position, cell.Orientation, sourceTemplate.IsCavity);
         }
     }
 
@@ -1011,7 +1009,7 @@ public partial class CellBodyPlanEditorComponent
 
             // Adding new cells to the layout at 0, 0 so that they need to be fixed manually
             var type = GetEditedCellDataIfEdited(source.Data!.ModifiableCellType);
-            var clone = new CellTemplate(type, new Hex(0, 0), source.Orientation);
+            var clone = new CellTemplate(type, new Hex(0, 0), source.Orientation, source.Data!.IsCavity);
             var manualCell = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
             manualFullLayout.Add(manualCell);
             SetManualLayoutSource(manualCell, source);

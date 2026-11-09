@@ -100,6 +100,23 @@ public partial class CellBodyPlanEditorComponent
         UpdateAnisogamyStateAndCost();
     }
 
+    private static Color GrowthOrderNumberColour(bool isCavity, bool invalid)
+    {
+        if (isCavity)
+        {
+            // These are same colours as configured for the hex materials (at the time of writing)
+            if (invalid)
+                return new Color(0.651f, 0.149f, 0.502f);
+
+            return new Color(0.651f, 0.302f, 0.851f);
+        }
+
+        if (invalid)
+            return Colors.Red;
+
+        return Colors.White;
+    }
+
     private void ConfirmFinishEditingWithNegativeATPPressed()
     {
         if (OnFinish == null)
@@ -320,7 +337,8 @@ public partial class CellBodyPlanEditorComponent
             }
 
             yield return (Hex.AxialToCartesian(cell.Position), order.ToString(),
-                wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
+                GrowthOrderNumberColour(cell.Data!.IsCavity,
+                    wrongGrowthOrderCells.Contains(cell.Position) || (order == 1 && cell.Data.IsCavity)));
         }
     }
 
@@ -644,6 +662,31 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
+    private void OnCellCavityToggled(bool isCavity)
+    {
+        var targets = cellPopupMenu.SelectedCells.Select(cell =>
+        {
+            if (editedMicrobeCells.Contains(cell))
+                return cell;
+
+            if (manualLayoutSources.TryGetValue(cell, out var source))
+                return source;
+
+            if (fullLayoutGrowthOrderSources.TryGetValue(cell, out var template))
+                return editedMicrobeCells.AsModifiable().FirstOrDefault(c => ReferenceEquals(c.Data, template));
+
+            return null;
+        }).Where(c => c != null && c.Data!.IsCavity != isCavity).Distinct().ToList();
+
+        if (targets.Count == 0)
+            return;
+
+        var actions = targets.Select(cell => (EditorAction)new SingleEditorAction<CellCavityActionData>(
+            DoCellCavityAction, UndoCellCavityAction,
+            new CellCavityActionData(cell!, cell!.Data!.IsCavity, isCavity))).ToList();
+        EnqueueAction(new CombinedEditorAction(actions));
+    }
+
     // These next 4 methods related to endosymbiosis are copied from the CellEditor as there's no easy way to share
     // this code
     private void UpdateEndosymbiosisSpeciesData()
@@ -781,8 +824,9 @@ public partial class CellBodyPlanEditorComponent
         foreach (var editedCell in editedMicrobeCells)
         {
             cellDataToUse.Add(new HexWithData<CellTemplate>(new CellTemplate(
-                GetEditedCellDataIfEdited(editedCell.Data!.ModifiableCellType),
-                editedCell.Position, editedCell.Orientation), editedCell.Position, editedCell.Orientation));
+                    GetEditedCellDataIfEdited(editedCell.Data!.ModifiableCellType),
+                    editedCell.Position, editedCell.Orientation, editedCell.Data!.IsCavity),
+                editedCell.Position, editedCell.Orientation));
         }
 
         CellBodyPlanInternalCalculations.CalculateMacroscopicConditions(cellDataToUse, ReproductionMethod,
