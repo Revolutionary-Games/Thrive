@@ -429,6 +429,8 @@ public partial class CellBodyPlanEditorComponent
             return;
         }
 
+        RecalculateFullLayoutGrowthOrderErrors();
+
         // Update the display hexes.
         // Order doesn't really matter here, so just make it a list.
         var displayed = fullLayoutOccupied /*.OrderBy(h => h.Q).ThenBy(h => h.R) */.ToList();
@@ -436,6 +438,33 @@ public partial class CellBodyPlanEditorComponent
         // We use the invalid hexes as islands to mark them as invalid
         UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
             fullLayoutInvalid.ToList());
+
+        var cavityPositions = new HashSet<Hex>();
+        var invalidCavityPositions = new HashSet<Hex>();
+        foreach (var pair in cellPositions)
+        {
+            if (!pair.Key.Data!.IsCavity)
+                continue;
+
+            cavityPositions.UnionWith(pair.Value);
+            if (fullLayoutGrowthOrderIndices.GetValueOrDefault(pair.Key, -1) == 0 ||
+                wrongGrowthOrderCells.Contains(pair.Key.Position))
+            {
+                invalidCavityPositions.UnionWith(pair.Value);
+            }
+        }
+
+        for (int i = 0; i < displayed.Count; ++i)
+        {
+            var position = displayed[i];
+            if (cavityPositions.Contains(position))
+            {
+                placedHexes[i].MaterialOverride = fullLayoutInvalid.Contains(position) ||
+                    invalidCavityPositions.Contains(position) ?
+                        invalidCavityMaterial :
+                        cavityMaterial;
+            }
+        }
 
         // TODO: display all organelle models?
         int nextModel = 0;
@@ -461,7 +490,6 @@ public partial class CellBodyPlanEditorComponent
         hoveringCellBorderDisplay.HideBorders();
         hoveringCellBorderDisplay.ClearCellTypeCache();
 
-        RecalculateFullLayoutGrowthOrderErrors();
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
         UpdateArrow();
