@@ -17,6 +17,8 @@ struct CloudRay {
     vec3  sunDirection;
     vec3  sunEnergy;
     vec3  ambientEnergy;
+    vec3  phases;
+    float ground;
     float inner;
     float outer;
     float thickness;
@@ -27,8 +29,8 @@ struct CloudRay {
     float transmittance;
 };
 
-CloudRay CreateCloudRay(vec3 ro, vec3 rd, vec3 center, float inner, float outer, vec3 sunDirection, float sunEnergy,
-    float jitter) {
+CloudRay CreateCloudRay(vec3 ro, vec3 rd, vec3 center, float ground, float inner, float outer, vec3 sunDirection,
+    float sunEnergy, float jitter) {
     CloudRay ray;
     ray.ro = ro;
     ray.rd = rd;
@@ -36,10 +38,12 @@ CloudRay CreateCloudRay(vec3 ro, vec3 rd, vec3 center, float inner, float outer,
     ray.sunDirection = sunDirection;
     ray.sunEnergy = SUN_TINT * sunEnergy;
     ray.ambientEnergy = AMBIENT_TINT * AMBIENT_ENERGY;
+    ray.ground = ground;
     ray.inner = inner;
     ray.outer = outer;
     ray.thickness = outer - inner;
     ray.cosAngle = dot(rd, sunDirection);
+    ray.phases = MultiScatterPhases(ray.cosAngle);
     ray.jitter = jitter;
     ray.accumulated = vec3(0.0);
     ray.transmittance = 1.0;
@@ -134,7 +138,7 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
         emptyRun = 0;
 
         float lightOpticalDepth = LightMarch(ray, rel);
-        float scatter = MultiScatter(lightOpticalDepth, ray.cosAngle);
+        float scatter = MultiScatter(lightOpticalDepth, ray.phases);
 
         float powder = 1.0 - exp(-density * 2.0);
         powder = mix(1.0, powder, clamp(-ray.cosAngle * 0.5 + 0.5, 0.0, 1.0));
@@ -155,16 +159,20 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
     }
 }
 
-// Marches an already set up ray through the cloud shell, stopping at tMax. Scattered light ends up in .rgb and the
-// remaining transmittance in .a.
+// Marches an already set up ray through the cloud shell, stopping at tMax or the ground. Scattered light ends up in
+// .rgb and the remaining transmittance in .a.
 vec4 MarchClouds(inout CloudRay ray, float tMax) {
-    float ot0, ot1, it0, it1;
+    float ot0, ot1, it0, it1, gt0, gt1;
 
     if (!RaySphere(ray.ro, ray.rd, ray.center, ray.outer, ot0, ot1))
         return NO_CLOUD;
 
+    float tEnd = tMax;
+    if (RaySphere(ray.ro, ray.rd, ray.center, ray.ground, gt0, gt1) && gt0 > 0.0)
+        tEnd = min(tEnd, gt0);
+
     float o0 = max(ot0, 0.0);
-    float o1 = min(ot1, tMax);
+    float o1 = min(ot1, tEnd);
     if (o1 <= o0)
         return NO_CLOUD;
 
