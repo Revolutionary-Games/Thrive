@@ -86,6 +86,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     [Export]
     protected Control floatingLabelContainer = null!;
+
+    [Export]
+    protected LabelSettings growthOrderLabelSettings = null!;
 #pragma warning restore CA2213
 
     protected string? activeActionName;
@@ -222,6 +225,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     public override void _Ready()
     {
+        // Take a clone of these settings so that we can allow them to change
+        growthOrderLabelSettings = (LabelSettings)growthOrderLabelSettings.Duplicate();
+
         base._Ready();
 
         camera!.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
@@ -1121,6 +1127,14 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
+    ///   Font configuration for floating labels in the editor. Note this assumes the font's base colour is white.
+    /// </summary>
+    protected virtual LabelSettings GetFloatingLabelSettings()
+    {
+        return growthOrderLabelSettings;
+    }
+
+    /// <summary>
     ///   Updates floating labels which can be used by inheriting classes for arbitrary purposes (like growth order)
     /// </summary>
     protected void UpdateFloatingLabelConfiguration(
@@ -1154,6 +1168,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
             graphicalLabel.TargetPosition = label.TargetPosition;
             graphicalLabel.Text = label.Text;
+            graphicalLabel.LabelSettings = GetFloatingLabelSettings();
 
             if (label.TextColor != Colors.White)
             {
