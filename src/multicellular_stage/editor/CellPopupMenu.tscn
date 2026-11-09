@@ -9,6 +9,8 @@ cavityCheckBox = NodePath("PanelContainer/VBoxContainer/Cavity")
 
 [node name="Cavity" type="CheckBox" parent="PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(706553967) index="5" unique_id=782264464]
 layout_mode = 2
+tooltip_text = "CELL_IS_CAVITY_TOOLTIP"
+focus_mode = 0
 text = "CELL_IS_CAVITY"
 
 [connection signal="toggled" from="PanelContainer/VBoxContainer/Cavity" to="." method="OnCavityToggled"]

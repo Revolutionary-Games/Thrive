@@ -126,12 +126,6 @@ public partial class CellPopupMenu : HexPopupMenu
         moveButton.Disabled = !EnableMoveOption;
     }
 
-    protected override void OnOpen()
-    {
-        base.OnOpen();
-        cavityCheckBox.GrabFocus();
-    }
-
     private void UpdateCavityCheckBox()
     {
         cavityCheckBox.SetPressedNoSignal(selectedCells?.Count > 0 && selectedCells.All(c => c.Data!.IsCavity));
@@ -139,6 +133,7 @@ public partial class CellPopupMenu : HexPopupMenu
 
     private void OnCavityToggled(bool isCavity)
     {
+        GUICommon.Instance.PlayButtonPressSound();
         ShowPopup = false;
         EmitSignal(SignalName.CavityToggled, isCavity);
     }
