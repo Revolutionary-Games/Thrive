@@ -1,5 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
+using Arch.Buffer;
+using Arch.Core.Extensions;
+using Components;
 using GdUnit4;
 using Godot;
 using Saving.Serializers;
@@ -13,6 +16,35 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class CellCavityActionTests
 {
+    [TestCase(true, true)]
+    [TestCase(true, false)]
+    [TestCase(false, true)]
+    [TestCase(false, false)]
+    public void DetachedCavityCellsDie(bool isCavity, bool removeAttachedComponent)
+    {
+        using var world = ThriveWorld.Create();
+        using var recorder = new CommandBuffer();
+        var (species, cell) = CreateSpecies();
+        cell.Data!.IsCavity = isCavity;
+        species.ModifiableGameplayCells.AddFast(cell.Data, [], []);
+
+        var leader = world.Create(default(MicrobeControl), default(CellProperties), default(Physics));
+        var member = world.Create(default(MicrobeControl), default(Physics),
+            new Health { CurrentHealth = 100, MaxHealth = 100 },
+            new MulticellularSpeciesMember(species, cell.Data.ModifiableCellType, 0),
+            new MicrobeColonyMember(leader),
+            new AttachedToEntity(leader, new Vector3(0, Constants.CAVITY_CELL_Y_OFFSET, 0), Quaternion.Identity));
+        leader.Add(new MicrobeColony(leader, MicrobeState.Normal, leader, member));
+
+        AssertThat(leader.Get<MicrobeColony>().RemoveFromColonyAndDisbandIfEmpty(leader, member, recorder,
+            removeAttachedComponent)).IsFalse();
+        recorder.Playback(world);
+
+        AssertThat(member.Get<Health>().Dead).IsEqual(isCavity);
+        AssertThat(member.Has<MicrobeColonyMember>()).IsFalse();
+        AssertThat(member.Has<AttachedToEntity>()).IsEqual(!removeAttachedComponent);
+    }
+
     [TestCase]
     public void CavityChangesCanBeReplayedAndCleared()
     {

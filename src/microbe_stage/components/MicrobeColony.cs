@@ -1676,6 +1676,20 @@ public static class MicrobeColonyHelpers
     {
         recorder.Remove<MicrobeColonyMember>(removedMember);
 
+        // Cavity cells depend on the organism and cannot survive after losing their colony membership.
+        if (removedMember.Has<MulticellularSpeciesMember>() &&
+            removedMember.Get<MulticellularSpeciesMember>().IsCavity())
+        {
+            try
+            {
+                removedMember.Get<Health>().Kill();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Failed to kill detaching cavity cell: ", e);
+            }
+        }
+
         if (removeAttachedComponent)
             recorder.Remove<AttachedToEntity>(removedMember);
 
