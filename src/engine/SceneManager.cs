@@ -297,6 +297,8 @@ public partial class SceneManager : Node
                 GD.PrintErr("Load command: the specified starter alias or resource path does not exist.");
                 return false;
             }
+
+            overrideGameStartAgain = true;
         }
 
         CheatManager.OnCheatsDisabled();
