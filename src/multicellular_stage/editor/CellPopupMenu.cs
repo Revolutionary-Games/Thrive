@@ -128,7 +128,7 @@ public partial class CellPopupMenu : HexPopupMenu
 
     private void UpdateCavityCheckBox()
     {
-        cavityCheckBox.SetPressedNoSignal(selectedCells?.Count > 0 && selectedCells.All(c => c.Data!.IsCavity));
+        cavityCheckBox.SetPressedNoSignal(selectedCells?.Count > 0 && selectedCells.TrueForAll(c => c.Data!.IsCavity));
     }
 
     private void OnCavityToggled(bool isCavity)
