@@ -294,7 +294,8 @@ public partial class CellBodyPlanEditorComponent
     }
 
     /// <summary>
-    ///   Rejects outdated snapshots immediately, before deferred cell updates or switching to manual layout can use them.
+    ///   Rejects outdated snapshots immediately, before deferred cell updates or switching to manual layout can use
+    ///   them.
     /// </summary>
     private void InvalidateCalculatedLayout()
     {
