@@ -120,7 +120,7 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
         // Support for cavity cells that are off the usual gameplay plane
         // TODO: maybe we should limit the angles a little bit as being totally vertical doesn't look the best?
-        var pitch = Mathf.Atan2(relativePosition.Y, horizontalDirection.Length());
+        var pitch = MathF.Atan2(relativePosition.Y, horizontalDirection.Length());
 
         var connection = ConnectionScene.Value.Instantiate<Node3D>();
         instance.AddChild(connection);
