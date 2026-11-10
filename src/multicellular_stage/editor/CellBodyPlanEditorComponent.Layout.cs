@@ -458,7 +458,8 @@ public partial class CellBodyPlanEditorComponent
                     return material;
 
                 return material == islandMaterial || invalidCavityPositions.Contains(position) ?
-                    invalidCavityMaterial : cavityMaterial;
+                    invalidCavityMaterial :
+                    cavityMaterial;
             });
 
         // TODO: display all organelle models?
@@ -990,6 +991,7 @@ public partial class CellBodyPlanEditorComponent
                 mappedSources.Add(source);
                 manualCell.Orientation = source.Orientation;
                 manualCell.Data!.Orientation = source.Orientation;
+                manualCell.Data.IsCavity = source.Data!.IsCavity;
                 continue;
             }
 
@@ -1006,6 +1008,7 @@ public partial class CellBodyPlanEditorComponent
                 mappedSources.Add(replacement);
                 manualCell.Orientation = replacement.Orientation;
                 manualCell.Data!.Orientation = replacement.Orientation;
+                manualCell.Data.IsCavity = replacement.Data!.IsCavity;
             }
         }
 
