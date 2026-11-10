@@ -264,10 +264,19 @@ public partial class SceneManager : Node
     {
         bool overrideGameStartAgain = false;
 
+        const string multicellularStageStarterPath = "res://src/stage_starters/MulticellularStageStarter.tscn";
+        const string awareStageStarterPath = "res://src/stage_starters/AwareStageStarter.tscn";
+
         if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase) ||
             scenePath.Equals("MulticellularStage", StringComparison.OrdinalIgnoreCase))
         {
-            scenePath = "res://src/stage_starters/MulticellularStageStarter.tscn";
+            scenePath = multicellularStageStarterPath;
+            overrideGameStartAgain = true;
+        }
+        else if (scenePath.Equals("aware", StringComparison.OrdinalIgnoreCase) ||
+                 scenePath.Equals("AwareStage", StringComparison.OrdinalIgnoreCase))
+        {
+            scenePath = awareStageStarterPath;
             overrideGameStartAgain = true;
         }
         else if (!ResourceLoader.Exists(scenePath))
