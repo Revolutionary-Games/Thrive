@@ -1332,11 +1332,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         {
             positionZReference.Dispose();
 
-            // Let go of customized label settings
-            growthOrderLabelSettings.Dispose();
-            foreach (var customized in growthOrderLabelsByColour.Values)
+            // Let go of customized label settings.
+            // This seems to sometimes be null in unit tests.
+            if (growthOrderLabelSettings != null!)
             {
-                customized.Dispose();
+                growthOrderLabelSettings.Dispose();
+                foreach (var customized in growthOrderLabelsByColour.Values)
+                {
+                    customized.Dispose();
+                }
             }
 
             growthOrderLabelsByColour.Clear();
