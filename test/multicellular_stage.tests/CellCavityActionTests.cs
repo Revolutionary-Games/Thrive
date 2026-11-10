@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Arch.Buffer;
 using Arch.Core.Extensions;
 using Components;
@@ -10,12 +13,111 @@ using SharedBase.Archive;
 using static GdUnit4.Assertions;
 
 /// <summary>
-///   Checks cavity action replay without mutating the species used as the facade's baseline.
+///   Checks cavity actions, cell detachment, and editor source mappings.
 /// </summary>
 [TestSuite]
 [RequireGodotRuntime]
 public class CellCavityActionTests
 {
+    [TestCase]
+    public void PreviewSourcesSurviveGrowthOrderChangesAndCopying()
+    {
+        var (species, first) = CreateSpecies();
+        var second = new HexWithData<CellTemplate>(
+            new CellTemplate(first.Data!.ModifiableCellType, new Hex(1, 0), 0, true), new Hex(1, 0), 0);
+        species.ModifiableEditorCells.AddFast(second, [], []);
+        var editor = new CellBodyPlanEditorComponent();
+        var picker = new GrowthOrderPicker();
+        var firstItem = new DraggableItem { UserData = first.Data };
+        var secondItem = new DraggableItem { UserData = second.Data };
+        try
+        {
+            SetPrivateField(editor, "editedMicrobeCells", species.ModifiableEditorCells);
+            SetPrivateField(editor, "growthOrderGUI", picker);
+
+            // The picker has changed order while a calculation using [first, second] was running.
+            GetPrivateField<List<DraggableItem>>(picker, "itemControls").AddRange([secondItem, firstItem]);
+            var snapshots = new List<CellTemplate>
+            {
+                new(first.Data.ModifiableCellType.Clone(true), first.Position, 0),
+                new(second.Data!.ModifiableCellType.Clone(true), second.Position, 0, true),
+            };
+            var preview = snapshots.Select(cell =>
+                new HexWithData<CellTemplate>((CellTemplate)cell.Clone(), cell.Position, 0)).ToList();
+            var resultType = typeof(CellBodyPlanEditorComponent).GetNestedType("LayoutCalculationResult",
+                BindingFlags.NonPublic)!;
+            var result = Activator.CreateInstance(resultType, true)!;
+            resultType.GetProperty("GrowthOrderSources")!.SetValue(result, snapshots);
+            resultType.GetProperty("CompactSources")!.SetValue(result,
+                new List<HexWithData<CellTemplate>> { first, second });
+
+            InvokePrivate(editor, "RebuildFullLayoutGrowthOrderSources", preview, result);
+            var sources =
+                GetPrivateField<Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>>>(editor,
+                    "fullLayoutGrowthOrderSources");
+            AssertThat(ReferenceEquals(sources[preview[0]], first)).IsTrue();
+            AssertThat(ReferenceEquals(sources[preview[1]], second)).IsTrue();
+
+            var manual = new List<HexWithData<CellTemplate>>();
+            InvokePrivate(editor, "CopyLayout", preview, manual);
+            var manualSources =
+                GetPrivateField<Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>>>(editor,
+                    "manualLayoutSources");
+            AssertThat(ReferenceEquals(manualSources[manual[0]], first)).IsTrue();
+            AssertThat(ReferenceEquals(manualSources[manual[1]], second)).IsTrue();
+
+            AssertThat((bool)InvokePrivate(editor, "LayoutCalculationSourcesAreValid", result)!).IsTrue();
+            species.ModifiableEditorCells.Clear();
+            species.ModifiableEditorCells.AddFast(first.Clone(), [], []);
+            species.ModifiableEditorCells.AddFast(second, [], []);
+            AssertThat((bool)InvokePrivate(editor, "LayoutCalculationSourcesAreValid", result)!).IsFalse();
+        }
+        finally
+        {
+            firstItem.Free();
+            secondItem.Free();
+            picker.Free();
+            editor.Free();
+        }
+    }
+
+    [TestCase]
+    public void ManualFirstCellValidationRebuildsMissingGrowthOrderMapping()
+    {
+        var (species, first) = CreateSpecies();
+        var editor = new CellBodyPlanEditorComponent();
+        var picker = new GrowthOrderPicker();
+        try
+        {
+            SetPrivateField(editor, "editedMicrobeCells", species.ModifiableEditorCells);
+            SetPrivateField(editor, "growthOrderGUI", picker);
+            var manual = new HexWithData<CellTemplate>((CellTemplate)first.Data!.Clone(), new Hex(1, 0), 0);
+            SetPrivateField(editor, "manualFullLayout", new List<HexWithData<CellTemplate>> { manual });
+            InvokePrivate(editor, "SetManualLayoutSource", manual, first);
+            var cavity = new HexWithData<CellTemplate>(
+                new CellTemplate(first.Data.ModifiableCellType, new Hex(1, 0), 0, true), new Hex(1, 0), 0);
+            species.ModifiableEditorCells.AddFast(cavity, [], []);
+            var manualCavity = new HexWithData<CellTemplate>((CellTemplate)cavity.Data!.Clone(), new Hex(0, 0), 0);
+
+            // Moving the leader puts the cavity first in storage order, with the growth-order cache missing.
+            SetPrivateField(editor, "manualFullLayout", new List<HexWithData<CellTemplate>> { manualCavity, manual });
+            InvokePrivate(editor, "SetManualLayoutSource", manualCavity, cavity);
+
+            AssertThat((bool)InvokePrivate(editor, "ManualLayoutHasValidFirstCell")!).IsTrue();
+            manual.Data!.IsCavity = true;
+            AssertThat((bool)InvokePrivate(editor, "ManualLayoutHasValidFirstCell")!).IsFalse();
+            manual.Data.IsCavity = false;
+            GetPrivateField<Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>>>(editor,
+                "manualLayoutSources").Clear();
+            AssertThat((bool)InvokePrivate(editor, "ManualLayoutHasValidFirstCell")!).IsFalse();
+        }
+        finally
+        {
+            picker.Free();
+            editor.Free();
+        }
+    }
+
     [TestCase(true, true)]
     [TestCase(true, false)]
     [TestCase(false, true)]
@@ -197,6 +299,22 @@ public class CellCavityActionTests
         {
             menu.Free();
         }
+    }
+
+    private static void SetPrivateField(object target, string name, object value)
+    {
+        target.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(target, value);
+    }
+
+    private static T GetPrivateField<T>(object target, string name)
+    {
+        return (T)target.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(target)!;
+    }
+
+    private static object? InvokePrivate(object target, string name, params object[] arguments)
+    {
+        return target.GetType().GetMethod(name, BindingFlags.Instance | BindingFlags.NonPublic)!
+            .Invoke(target, arguments);
     }
 
     private static (MulticellularSpecies Species, HexWithData<CellTemplate> Cell) CreateSpecies()

@@ -26,7 +26,7 @@ public partial class CellBodyPlanEditorComponent
     /// <summary>
     ///   Identity mapping for the full layout to keep it consistent
     /// </summary>
-    private readonly Dictionary<HexWithData<CellTemplate>, CellTemplate> fullLayoutGrowthOrderSources =
+    private readonly Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>> fullLayoutGrowthOrderSources =
         new(ReferenceEqualityComparer.Instance);
 
     private readonly Dictionary<HexWithData<CellTemplate>, int> fullLayoutGrowthOrderIndices =
@@ -83,7 +83,8 @@ public partial class CellBodyPlanEditorComponent
     private IReadOnlyList<HexWithData<CellTemplate>> CurrentFullLayout =>
         UsesManualPlayerLayout ? manualFullLayout : fullLayoutPreview;
 
-    private static LayoutCalculationResult CalculateFullLayout(IndividualHexLayout<CellTemplate> sourceLayout)
+    private static LayoutCalculationResult CalculateFullLayout(IndividualHexLayout<CellTemplate> sourceLayout,
+        IReadOnlyList<HexWithData<CellTemplate>> compactSources)
     {
         var result = new LayoutCalculationResult();
         var work1 = new List<Hex>();
@@ -100,6 +101,7 @@ public partial class CellBodyPlanEditorComponent
         // result.Gameplay = gameplay;
 
         result.GrowthOrderSources = growthOrderSources;
+        result.CompactSources = compactSources;
 
         // Create the wrappers on the background thread
         var wrapped = result.Wrapped = new List<HexWithData<CellTemplate>>(gameplay.Count);
@@ -122,9 +124,10 @@ public partial class CellBodyPlanEditorComponent
         var sourceGrowthOrderSources = sourceCells
             .Select(cell => fullLayoutGrowthOrderSources.GetValueOrDefault(cell))
             .ToList();
-        var sourceGrowthOrderIndices = sourceCells
-            .Select(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, -1))
-            .ToList();
+
+        // A preview can outlive its compact sources while a replacement calculation is pending.
+        if (sourceGrowthOrderSources.Any(cell => cell == null || !editedMicrobeCells.Contains(cell)))
+            return;
 
         target.Clear();
         manualLayoutSources.Clear();
@@ -133,10 +136,6 @@ public partial class CellBodyPlanEditorComponent
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
-        var growthOrderCells = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
-            .ToList();
-        var growthOrder = growthOrderCells.Select(i => i.Data!).ToList();
-
         for (int i = 0; i < sourceCells.Count; ++i)
         {
             var cell = sourceCells[i];
@@ -144,74 +143,56 @@ public partial class CellBodyPlanEditorComponent
             var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
             target.Add(copied);
 
-            var growthOrderIndex = sourceGrowthOrderIndices[i] >= 0 ? sourceGrowthOrderIndices[i] : i;
-            if (growthOrderIndex < growthOrder.Count)
-            {
-                SetManualLayoutSource(copied, growthOrderCells[growthOrderIndex]);
-                fullLayoutGrowthOrderSources[copied] = sourceGrowthOrderSources[i] ?? growthOrder[growthOrderIndex];
-                fullLayoutGrowthOrderIndices[copied] = growthOrderIndex;
-            }
+            SetManualLayoutSource(copied, sourceGrowthOrderSources[i]!);
         }
+
+        RebuildManualLayoutGrowthOrderSources();
     }
 
     private void RebuildFullLayoutGrowthOrderSources(IReadOnlyList<HexWithData<CellTemplate>> layout,
-        IReadOnlyList<CellTemplate>? growthOrderSources = null)
+        LayoutCalculationResult calculation)
     {
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
-        var cells = layout.ToList();
-
-        var growthOrder = growthOrderSources ?? growthOrderGUI
-            .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!).Select(i => i.Data!).ToList();
-
-        if (growthOrderSources != null)
+        var growthOrderIndices = new Dictionary<CellTemplate, int>(ReferenceEqualityComparer.Instance);
+        var growthOrderTypeIndices = new Dictionary<CellType, int>(ReferenceEqualityComparer.Instance);
+        for (int i = 0; i < calculation.GrowthOrderSources.Count; ++i)
         {
-            var growthOrderIndices = new Dictionary<CellTemplate, int>(ReferenceEqualityComparer.Instance);
-            var growthOrderTypeIndices = new Dictionary<CellType, int>(ReferenceEqualityComparer.Instance);
-            for (int i = 0; i < growthOrder.Count; ++i)
-            {
-                growthOrderIndices[growthOrder[i]] = i;
-                growthOrderTypeIndices[growthOrder[i].ModifiableCellType] = i;
-            }
+            var snapshot = calculation.GrowthOrderSources[i];
+            growthOrderIndices[snapshot] = i;
+            growthOrderTypeIndices[snapshot.ModifiableCellType] = i;
+        }
 
-            var originalGrowthOrder = growthOrderGUI
-                .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
-                .Select(i => i.Data!).ToList();
-
-            foreach (var cell in cells)
+        foreach (var cell in layout)
+        {
+            if (cell.Data != null &&
+                (growthOrderIndices.TryGetValue(cell.Data, out var index) ||
+                    growthOrderTypeIndices.TryGetValue(cell.Data.ModifiableCellType, out index)))
             {
-                if (cell.Data != null &&
-                    (growthOrderIndices.TryGetValue(cell.Data, out var index) ||
-                        growthOrderTypeIndices.TryGetValue(cell.Data.ModifiableCellType, out index)) &&
-                    index < originalGrowthOrder.Count)
-                {
-                    // Keep the original editor data as the source. RefreshFullLayoutGrowthOrderIndices compares these
-                    // references with the growth-order picker after the preview has been recalculated.
-                    fullLayoutGrowthOrderSources[cell] = originalGrowthOrder[index];
-                    fullLayoutGrowthOrderIndices[cell] = index;
-                }
+                fullLayoutGrowthOrderSources[cell] = calculation.CompactSources[index];
             }
         }
-        else
-        {
-            for (int i = 0; i < cells.Count && i < growthOrder.Count; ++i)
-            {
-                fullLayoutGrowthOrderSources[cells[i]] = growthOrder[i];
-                fullLayoutGrowthOrderIndices[cells[i]] = i;
-            }
-        }
+
+        RefreshFullLayoutGrowthOrderIndices();
+    }
+
+    private bool LayoutCalculationSourcesAreValid(LayoutCalculationResult calculation)
+    {
+        return calculation.CompactSources.Count == editedMicrobeCells.Count &&
+            calculation.CompactSources.All(cell => editedMicrobeCells.Contains(cell));
     }
 
     private void RefreshFullLayoutGrowthOrderIndices()
     {
+        fullLayoutGrowthOrderIndices.Clear();
         var order = growthOrderGUI.GetCurrentOrder();
         foreach (var pair in fullLayoutGrowthOrderSources)
         {
             var index = -1;
             for (int i = 0; i < order.Count; ++i)
             {
-                if (ReferenceEquals(order[i], pair.Value))
+                if (ReferenceEquals(order[i], pair.Value.Data))
                 {
                     index = i;
                     break;
@@ -293,9 +274,23 @@ public partial class CellBodyPlanEditorComponent
             if (index < 0)
                 continue;
 
-            fullLayoutGrowthOrderSources[pair.Key] = pair.Value.Data!;
+            fullLayoutGrowthOrderSources[pair.Key] = pair.Value;
             fullLayoutGrowthOrderIndices[pair.Key] = index;
         }
+    }
+
+    private bool ManualLayoutHasValidFirstCell()
+    {
+        RebuildManualLayoutGrowthOrderSources();
+        if (manualFullLayout.Count != editedMicrobeCells.Count ||
+            fullLayoutGrowthOrderIndices.Count != manualFullLayout.Count ||
+            fullLayoutGrowthOrderIndices.Values.Distinct().Count() != manualFullLayout.Count)
+        {
+            return false;
+        }
+
+        var first = manualFullLayout.OrderBy(cell => fullLayoutGrowthOrderIndices[cell]).FirstOrDefault();
+        return first?.Data != null && !first.Data.IsCavity;
     }
 
     /// <summary>
@@ -315,7 +310,9 @@ public partial class CellBodyPlanEditorComponent
 
         // Clone the data on the main thread to prepare it for background processing
         var source = new IndividualHexLayout<CellTemplate>();
-        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!))
+        var compactSources = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
+            .ToList();
+        foreach (var cell in compactSources)
         {
             var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
 
@@ -326,7 +323,7 @@ public partial class CellBodyPlanEditorComponent
         }
 
         layoutCalculationSpinner.Show();
-        pendingLayoutCalculation = new Task<LayoutCalculationResult>(() => CalculateFullLayout(source));
+        pendingLayoutCalculation = new Task<LayoutCalculationResult>(() => CalculateFullLayout(source, compactSources));
         TaskExecutor.Instance.AddTask(pendingLayoutCalculation);
     }
 
@@ -1053,6 +1050,7 @@ public partial class CellBodyPlanEditorComponent
 
         // public CellLayout<CellTemplate> Gameplay { get; set; } = null!;
 
+        public IReadOnlyList<HexWithData<CellTemplate>> CompactSources { get; set; } = null!;
         public IReadOnlyList<CellTemplate> GrowthOrderSources { get; set; } = null!;
         public List<HexWithData<CellTemplate>> Wrapped { get; set; } = null!;
     }

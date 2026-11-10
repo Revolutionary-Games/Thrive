@@ -670,10 +670,10 @@ public partial class CellBodyPlanEditorComponent
                 return cell;
 
             if (manualLayoutSources.TryGetValue(cell, out var source))
-                return source;
+                return editedMicrobeCells.Contains(source) ? source : null;
 
-            if (fullLayoutGrowthOrderSources.TryGetValue(cell, out var template))
-                return editedMicrobeCells.AsModifiable().FirstOrDefault(c => ReferenceEquals(c.Data, template));
+            if (fullLayoutGrowthOrderSources.TryGetValue(cell, out source))
+                return editedMicrobeCells.Contains(source) ? source : null;
 
             return null;
         }).Where(c => c != null && c.Data!.IsCavity != isCavity).Distinct().ToList();
@@ -791,6 +791,8 @@ public partial class CellBodyPlanEditorComponent
             if (fullLayoutPreview.Count > 0)
             {
                 CopyLayout(fullLayoutPreview, manualFullLayout);
+                if (manualFullLayout.Count == 0)
+                    StartLayoutCalculation();
             }
             else
             {

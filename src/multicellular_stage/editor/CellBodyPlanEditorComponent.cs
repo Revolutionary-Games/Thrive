@@ -546,12 +546,25 @@ public partial class CellBodyPlanEditorComponent :
             {
                 GD.PrintErr("Failed to calculate the full cell layout: ", calculation.Exception);
             }
+            else if (!LayoutCalculationSourcesAreValid(calculation.Result))
+            {
+                layoutCalculationRequested = true;
+            }
             else if (!layoutCalculationRequested)
             {
                 SetFullLayoutPreview(calculation.Result.Wrapped);
-                RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result.GrowthOrderSources);
-                if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
-                    CopyLayout(fullLayoutPreview, manualFullLayout);
+                RebuildFullLayoutGrowthOrderSources(fullLayoutPreview, calculation.Result);
+                if (UsesManualPlayerLayout)
+                {
+                    if (manualFullLayout.Count == 0)
+                    {
+                        CopyLayout(fullLayoutPreview, manualFullLayout);
+                    }
+                    else
+                    {
+                        RebuildManualLayoutGrowthOrderSources();
+                    }
+                }
 
                 if (layoutPreviewActive)
                 {
@@ -1031,6 +1044,12 @@ public partial class CellBodyPlanEditorComponent :
             if (pendingLayoutCalculation != null || manualFullLayout.Count == 0)
             {
                 ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_LAYOUT_IS_BEING_CALCULATED"), 4);
+                return false;
+            }
+
+            if (!ManualLayoutHasValidFirstCell())
+            {
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("FIRST_CELL_CANNOT_BE_CAVITY"), 5);
                 return false;
             }
 
