@@ -22,6 +22,7 @@ void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
     float modelHeight = abs(VERTEX.y);
+    float scaledModelHeight = modelHeight * length(MODEL_MATRIX[1].xyz);
 
     // Copy non-distorted vertex for normal map
     UV2 = VERTEX.xz * -0.07f;
@@ -43,9 +44,9 @@ void vertex(){
     vec2 horizontalDerivative = vec2(cos(horizontalAngle), 1.0f);
 
     vec3 worldspaceNormal = normalize(vec3(-horizontalDerivative.x, (horizontalDerivative.y + verticalDerivative.y) * 0.5f, -verticalDerivative.x))
-        * 0.1f * wigglyNess * modelHeight;
+        * 0.1f * wigglyNess * scaledModelHeight;
     vec3 worldspaceTangent = normalize(vec3(horizontalDerivative.y, (-horizontalDerivative.x - verticalDerivative.x) * 0.5f, verticalDerivative.y))
-        * 0.1f * wigglyNess * modelHeight;
+        * 0.1f * wigglyNess * scaledModelHeight;
 
     // Convert worldspace normals into model space and apply,
     // also make wave normals less visible for faster microbes to reduce flickering
