@@ -228,7 +228,7 @@ public class CellCavityActionTests
 
         facade.SetActiveActions([placement]);
         var placementCost = comparer.Compare(species, facade, double.MaxValue);
-        AssertThat(placementCost).IsEqual((double)type.MPCost);
+        AssertThat(placementCost).IsEqual(type.MPCost);
 
         facade.SetActiveActions([placement, cavity]);
         AssertThat(comparer.Compare(species, facade, double.MaxValue)).IsEqual(placementCost);
