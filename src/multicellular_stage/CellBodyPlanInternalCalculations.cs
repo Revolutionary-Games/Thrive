@@ -209,10 +209,8 @@ public static class CellBodyPlanInternalCalculations
 
     public static float AdjustedColonyMemberRotationFromPosition(Vector3 relativePosition, float rawRotation)
     {
-        /*
         // Rotation is around the Y axis, so visual height offsets for cavity cells must not add leverage
         relativePosition.Y = 0;
-        */
 
         var distance = relativePosition.Length();
 
