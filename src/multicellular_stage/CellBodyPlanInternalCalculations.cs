@@ -73,8 +73,7 @@ public static class CellBodyPlanInternalCalculations
             // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to
             // figure out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
             // This is why Auto-Evo just estimates the value of the output instead
-            // Cavity cells contribute movement but have no collision shape mass
-            if (!useEstimate && !cell.IsCavity)
+            if (!useEstimate)
             {
                 shapeMass += MicrobeInternalCalculations.CalculateShapeMass(cell.ModifiableOrganelles,
                     cell.MembraneType, cell.IsBacteria);
@@ -82,11 +81,8 @@ public static class CellBodyPlanInternalCalculations
 
             foreach (var organelle in cell.Organelles)
             {
-                if (!cell.IsCavity)
-                {
-                    massEstimate += organelle.Definition.Density * organelle.Definition.HexCount *
-                        Constants.MASS_ESTIMATE_MULTIPLIER;
-                }
+                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount *
+                    Constants.MASS_ESTIMATE_MULTIPLIER;
 
                 if (organelle.Definition.HasActomyosinComponent)
                     ++cellActomyosinCount;
@@ -213,8 +209,10 @@ public static class CellBodyPlanInternalCalculations
 
     public static float AdjustedColonyMemberRotationFromPosition(Vector3 relativePosition, float rawRotation)
     {
+        /*
         // Rotation is around the Y axis, so visual height offsets for cavity cells must not add leverage
         relativePosition.Y = 0;
+        */
 
         var distance = relativePosition.Length();
 

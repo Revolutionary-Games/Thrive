@@ -28,7 +28,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
     }
 
     /// <summary>
-    ///   Whether this cell represents a cavity, with no colony collision shape (and some other effects).
+    ///   Whether this cell represents a cavity, positioned below the other cells in the organism.
     /// </summary>
     public bool IsCavity { get; set; }
 

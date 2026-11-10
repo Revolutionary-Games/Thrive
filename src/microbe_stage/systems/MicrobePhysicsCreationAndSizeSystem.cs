@@ -31,7 +31,6 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
-[ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(SpatialAnimation))]
 [ReadsComponent(typeof(SpecializationFactor))]
@@ -185,18 +184,6 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                 requiresCompoundShape = true;
             }
 
-            // We don't immediately re-assign this data, so safely clear it but in a way that we can reuse the data
-            // container.
-            var memberIndexesOld = extraData.MicrobeShapeColonyMemberIndexes;
-            if (memberIndexesOld != null)
-            {
-                var memberLength = memberIndexesOld.Length;
-                for (int i = 0; i < memberLength; ++i)
-                {
-                    memberIndexesOld[i] = 0;
-                }
-            }
-
             extraData.MicrobeShapesCount = 0;
             extraData.TotalShapeCount = 0;
             extraData.PilusCount = 0;
@@ -337,26 +324,6 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             if (colonyMembranes.Count != memberCount - 1 && memberCount != 1)
                 throw new Exception("Colony member count mismatch with given membrane count");
 
-            // Build a mapping of where each collision shape is in the colony. This is needed now as some cells
-            // do not participate in collision.
-
-            // Reuse existing data array if the size is the same
-            int[] shapeMemberIndexes;
-            if (extraData.MicrobeShapeColonyMemberIndexes != null &&
-                extraData.MicrobeShapeColonyMemberIndexes.Length == memberCount)
-            {
-                // Turns out this doesn't really get called as rebuilds don't generally happen for the same size.
-                // So this isn't really tested, and doesn't help with memory allocations.
-                shapeMemberIndexes = extraData.MicrobeShapeColonyMemberIndexes;
-            }
-            else
-            {
-                shapeMemberIndexes = new int[memberCount];
-            }
-
-            shapeMemberIndexes[0] = 0;
-            int shapeMemberCount = 1;
-
             // The bodies need to be added colony member list order
             for (int i = 0; i < memberCount; ++i)
             {
@@ -370,10 +337,6 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 #endif
                     continue;
                 }
-
-                // Cavity cells have no collision
-                if (member.Has<MulticellularSpeciesMember>() && member.Get<MulticellularSpeciesMember>().IsCavity())
-                    continue;
 
                 // Rarely, it seems that colony leader is not first in the list of members
                 Membrane? membrane;
@@ -411,14 +374,10 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                     throw new Exception("Colony member has no organelles but it had a membrane"), relativePosition,
                     attached.RelativeRotation));
 
-                shapeMemberIndexes[shapeMemberCount++] = i;
-
                 combinedData.Add((
                     CreateColonyMemberBaseShape(ref extraData, ref currentMemberOrganelles, membrane, isBacteria),
                     relativePosition, attached.RelativeRotation));
             }
-
-            extraData.MicrobeShapeColonyMemberIndexes = shapeMemberIndexes;
         }
 
         // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
