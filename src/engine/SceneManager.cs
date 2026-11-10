@@ -262,27 +262,41 @@ public partial class SceneManager : Node
     [Command("load", true, "Switches to the specified scene, given its resource path.")]
     private static bool CommandLoadScene(string scenePath)
     {
+        if (string.IsNullOrEmpty(scenePath))
+        {
+            GD.PrintErr("Please specify a scene path");
+            return false;
+        }
+
         bool overrideGameStartAgain = false;
 
-        const string multicellularStageStarterPath = "res://src/stage_starters/MulticellularStageStarter.tscn";
-        const string awareStageStarterPath = "res://src/stage_starters/AwareStageStarter.tscn";
+        if (!ResourceLoader.Exists(scenePath))
+        {
+            // This is either a starter alias or the path does not exist. Let's try to match the starter aliases.
+            // Process the parameter to check for starter aliases. If it ends with Stage, strip it off ignoring case since
+            // it will be appended later anyway.
+            if (scenePath.EndsWith("Stage", StringComparison.OrdinalIgnoreCase))
+            {
+                scenePath = scenePath.Substring(0, scenePath.Length - 5);
+            }
 
-        if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase) ||
-            scenePath.Equals("MulticellularStage", StringComparison.OrdinalIgnoreCase))
-        {
-            scenePath = multicellularStageStarterPath;
-            overrideGameStartAgain = true;
-        }
-        else if (scenePath.Equals("aware", StringComparison.OrdinalIgnoreCase) ||
-                 scenePath.Equals("AwareStage", StringComparison.OrdinalIgnoreCase))
-        {
-            scenePath = awareStageStarterPath;
-            overrideGameStartAgain = true;
-        }
-        else if (!ResourceLoader.Exists(scenePath))
-        {
-            GD.PrintErr("Load command: the resource at the specified path does not exist.");
-            return false;
+            if (scenePath.Length > 0)
+            {
+                // To lowercase, then first letter to uppercase. Afterwards append "Stage" and build full starter string.
+                // For example, "load aware" will go "aware -> Aware -> AwareStage" and then produce the starter path.
+                scenePath = char.ToUpperInvariant(scenePath[0]) + scenePath.Substring(1).ToLowerInvariant();
+                scenePath += "Stage";
+                scenePath = $"res://src/stage_starters/{scenePath}Starter.tscn";
+            }
+
+            GD.Print($"Trying to load starter from alias: {scenePath}");
+
+            // Check if the alias exists
+            if (scenePath.Length == 0 || !ResourceLoader.Exists(scenePath))
+            {
+                GD.PrintErr("Load command: the specified starter alias or resource path does not exist.");
+                return false;
+            }
         }
 
         CheatManager.OnCheatsDisabled();
