@@ -21,6 +21,7 @@ uniform vec4 tint : source_color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
+    float modelHeight = abs(VERTEX.y);
 
     // Copy non-distorted vertex for normal map
     UV2 = VERTEX.xz * -0.07f;
@@ -36,15 +37,15 @@ void vertex(){
     float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.25f
         + wigglyNess * worldVertex.x * 1.5f + TIME / 4.0f;
     VERTEX.y += (sin(verticalAngle) + sin(horizontalAngle) + 2.0f)
-        * 0.20f * wigglyNess * abs(VERTEX.y);
+        * 0.20f * wigglyNess * modelHeight;
 
     vec2 verticalDerivative = vec2(cos(verticalAngle), 1.0f);
     vec2 horizontalDerivative = vec2(cos(horizontalAngle), 1.0f);
 
     vec3 worldspaceNormal = normalize(vec3(-horizontalDerivative.x, (horizontalDerivative.y + verticalDerivative.y) * 0.5f, -verticalDerivative.x))
-        * 0.1f * wigglyNess * abs(worldVertex.y);
+        * 0.1f * wigglyNess * modelHeight;
     vec3 worldspaceTangent = normalize(vec3(horizontalDerivative.y, (-horizontalDerivative.x - verticalDerivative.x) * 0.5f, verticalDerivative.y))
-        * 0.1f * wigglyNess * abs(worldVertex.y);
+        * 0.1f * wigglyNess * modelHeight;
 
     // Convert worldspace normals into model space and apply,
     // also make wave normals less visible for faster microbes to reduce flickering
