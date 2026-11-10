@@ -72,10 +72,22 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     // Approximate counts. Note: this can go even negative when using spore special cell types in certain ways. As this
     // count is not relied on currently, it is not required to be accurate. But in the future if that is the case,
     // then this will need a rework to be actually accurate.
-    public int Count => multicellularSpecies.EditorCells.Count + addedCells.Count - removedCells.Count;
+    public int Count
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return CurrentCellCount;
+        }
+    }
 
     int IReadOnlyCollection<IReadOnlyCellTypeDefinition>.Count =>
         multicellularSpecies.CellTypes.Count + cellTypes.ApproximateCount;
+
+    /// <summary>
+    ///   Also used during action replay, where resolving dirty data again would recurse.
+    /// </summary>
+    private int CurrentCellCount => multicellularSpecies.EditorCells.Count + addedCells.Count - removedCells.Count;
 
     public IReadOnlyCellTypeDefinition this[int index]
     {
@@ -375,7 +387,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         if (actionData is MassBuddingCellCountActionData massBuddingCellCountActionData)
         {
             massBuddingCellCountOverride = Math.Min(massBuddingCellCountActionData.NewCellCount,
-                CellBodyPlanInternalCalculations.MaxBudSize(EditorCells.Count));
+                CellBodyPlanInternalCalculations.MaxBudSize(CurrentCellCount));
 
             return true;
         }
