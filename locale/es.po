@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-10-26 07:58+0000\n"
 "Last-Translator: Frank <fsanchezflorido@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -786,6 +786,17 @@ msgstr "En esta pestaña puedes ver la disposición actual completa que se usa p
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "Haz clic en una célula para empezar a moverla. Mueve las células a las posiciones que prefieras. Todas las células deben seguir conectadas y permanecer cerca de donde se supone que deben estar en la estructura. Editar los orgánulos puede causar superposiciones que también deben corregirse antes de que la disposición manual sea válida. Salir del modo de disposición manual descarta todos los cambios realizados en ella."
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"Especializar una célula para que use menos tipos de orgánulos otorga un bono a la eficacia de todos los orgánulos de esa célula.\n"
+"El bono actual es {0}% (la fuerza máxima del bono aumenta con el tamaño de la célula hasta {3} hexágonos)\n"
+"El bono actual se otorga porque hay {1} hexágonos de {2}.\n"
+"El bono aumenta a medida que se colocan más orgánulos del tipo más común y se eliminan orgánulos de otros tipos."
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -2640,6 +2651,9 @@ msgstr "Lanzar toxinas"
 
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Proyectil de toxina de fuego que causa daño a las células golpeadas"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "Flagelo"
