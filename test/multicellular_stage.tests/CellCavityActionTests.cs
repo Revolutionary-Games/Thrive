@@ -205,6 +205,41 @@ public class CellCavityActionTests
         AssertThat(facade.EditorCells.Single().Data!.IsCavity).IsFalse();
     }
 
+    [TestCase(0)]
+    [TestCase(1)]
+    [TestCase(2)]
+    public void CavityChangesAfterPlacementDoNotAddMutationPointCost(int cavityCellIndex)
+    {
+        var (species, first) = CreateSpecies();
+        var type = first.Data!.ModifiableCellType;
+        foreach (var position in new[] { new Hex(0, 1), new Hex(-1, 1) })
+        {
+            species.ModifiableEditorCells.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(type, position, 0), position, 0), [], []);
+        }
+
+        var facade = new MulticellularEditsFacade(species);
+        var comparer = new MulticellularSpeciesComparer();
+        var placedPosition = new Hex(0, -1);
+        var placed = new HexWithData<CellTemplate>(new CellTemplate(type, placedPosition, 0), placedPosition, 0);
+        var placement = new CellPlacementActionData(placed, placedPosition, 0);
+        var original = species.ModifiableEditorCells.AsModifiable().ElementAt(cavityCellIndex);
+        var cavity = new CellCavityActionData(original, false, true);
+
+        facade.SetActiveActions([placement]);
+        var placementCost = comparer.Compare(species, facade, double.MaxValue);
+        AssertThat(placementCost).IsEqual((double)type.MPCost);
+
+        facade.SetActiveActions([placement, cavity]);
+        AssertThat(comparer.Compare(species, facade, double.MaxValue)).IsEqual(placementCost);
+
+        facade.SetActiveActions([placement, cavity, new CellCavityActionData(original, true, false)]);
+        AssertThat(comparer.Compare(species, facade, double.MaxValue)).IsEqual(placementCost);
+
+        facade.SetActiveActions([cavity]);
+        AssertThat(comparer.Compare(species, facade, double.MaxValue)).IsEqual(0.0);
+    }
+
     [TestCase]
     public void MovingACavityPreservesItsOverride()
     {
