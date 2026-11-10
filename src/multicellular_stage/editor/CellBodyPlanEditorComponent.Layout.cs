@@ -294,6 +294,16 @@ public partial class CellBodyPlanEditorComponent
     }
 
     /// <summary>
+    ///   Rejects outdated snapshots immediately, before deferred cell updates or switching to manual layout can use them.
+    /// </summary>
+    private void InvalidateCalculatedLayout()
+    {
+        fullLayoutPreview.Clear();
+        if (pendingLayoutCalculation != null)
+            layoutCalculationRequested = true;
+    }
+
+    /// <summary>
     ///   Starts a background task to calculate the full layout of the edited microbe cells. This is done in the
     ///   background as the calculation can take tens of seconds.
     /// </summary>

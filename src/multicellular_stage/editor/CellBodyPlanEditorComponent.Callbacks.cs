@@ -23,6 +23,7 @@ public partial class CellBodyPlanEditorComponent
     private void DoCellCavityAction(CellCavityActionData data)
     {
         data.Cell.Data!.IsCavity = data.NewIsCavity;
+        InvalidateCalculatedLayout();
         cellDataDirty = true;
     }
 
@@ -30,6 +31,7 @@ public partial class CellBodyPlanEditorComponent
     private void UndoCellCavityAction(CellCavityActionData data)
     {
         data.Cell.Data!.IsCavity = data.OldIsCavity;
+        InvalidateCalculatedLayout();
         cellDataDirty = true;
     }
 

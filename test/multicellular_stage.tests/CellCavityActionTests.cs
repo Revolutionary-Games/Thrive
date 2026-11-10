@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Arch.Buffer;
 using Arch.Core.Extensions;
 using Components;
@@ -77,6 +78,41 @@ public class CellCavityActionTests
             firstItem.Free();
             secondItem.Free();
             picker.Free();
+            editor.Free();
+        }
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void CavityEditsInvalidateCompletedCalculationsAndExistingPreviews(bool undo)
+    {
+        var (species, cell) = CreateSpecies();
+        var editor = new CellBodyPlanEditorComponent();
+        try
+        {
+            SetPrivateField(editor, "editedMicrobeCells", species.ModifiableEditorCells);
+            var preview = GetPrivateField<IndividualHexLayout<CellTemplate>>(editor, "fullLayoutPreview");
+            preview.AddFast(cell.Clone(), [], []);
+            var resultType = typeof(CellBodyPlanEditorComponent).GetNestedType("LayoutCalculationResult",
+                BindingFlags.NonPublic)!;
+            var result = Activator.CreateInstance(resultType, true)!;
+            var completedCalculation = typeof(Task).GetMethod(nameof(Task.FromResult))!
+                .MakeGenericMethod(resultType).Invoke(null, [result])!;
+            SetPrivateField(editor, "pendingLayoutCalculation", completedCalculation);
+            SetPrivateField(editor, "cellDataDirty", false);
+
+            // The result is already complete, but _Process has not applied it yet.
+            cell.Data!.IsCavity = undo;
+            InvokePrivate(editor, undo ? "UndoCellCavityAction" : "DoCellCavityAction",
+                new CellCavityActionData(cell, false, true));
+
+            AssertThat(cell.Data.IsCavity).IsEqual(!undo);
+            AssertThat(preview.Count).IsEqual(0);
+            AssertThat(GetPrivateField<bool>(editor, "layoutCalculationRequested")).IsTrue();
+            AssertThat(GetPrivateField<bool>(editor, "cellDataDirty")).IsTrue();
+        }
+        finally
+        {
             editor.Free();
         }
     }
