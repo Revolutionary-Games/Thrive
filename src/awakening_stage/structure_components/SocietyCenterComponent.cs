@@ -18,7 +18,7 @@ public class SocietyCenterComponent : StructureComponent
             return false;
 
         // TODO: a cleaner way to do this
-        var stage = owningStructure.FirstAncestorOfType<MacroscopicStage>();
+        var stage = OwningStructure.FirstAncestorOfType<MacroscopicStage>();
 
         if (stage == null)
         {
@@ -26,7 +26,7 @@ public class SocietyCenterComponent : StructureComponent
             return true;
         }
 
-        stage.OnSocietyFounded(owningStructure);
+        stage.OnSocietyFounded(OwningStructure);
         return true;
     }
 }

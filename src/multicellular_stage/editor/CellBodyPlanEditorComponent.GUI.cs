@@ -5,9 +5,9 @@ using System.Text;
 using Godot;
 using Systems;
 
-/// <summary>
+/// <content>
 ///   The partial class containing GUI updating actions
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
     private static Hex[] autoGrowthOrderCalculationHeighborOrder = [

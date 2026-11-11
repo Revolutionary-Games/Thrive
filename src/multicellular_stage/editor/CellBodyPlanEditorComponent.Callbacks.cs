@@ -2,9 +2,9 @@
 using Godot;
 using SharedBase.Archive;
 
-/// <summary>
+/// <content>
 ///   Callbacks of the cell body plan editor
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
     [ArchiveAllowedMethod]

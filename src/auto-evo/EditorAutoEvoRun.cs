@@ -41,10 +41,10 @@ public class EditorAutoEvoRun : AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, GlobalCache));
         }
 
-        var populationCalculation = new CalculatePopulation(configuration, worldSettings, map,
+        var populationCalculation = new CalculatePopulation(Configuration, worldSettings, map,
             new Dictionary<Species, Species>
                 { { OriginalEditedSpecies, ModifiedProperties } }, CollectEnergyInfo);
 

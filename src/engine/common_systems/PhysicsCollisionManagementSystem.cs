@@ -52,7 +52,7 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
         if (collisionManagement.ActiveCollisions != null)
         {
             collisionManagement.ActiveCollisions = null;
-            collisionManagement.ActiveCollisionCountPtr = IntPtr.Zero;
+            collisionManagement.ActiveCollisionCountPtr = nint.Zero;
 
             // Note the other systems handle destroying the physics body, which will also force disable the collision
             // recording, so that is not required to be done here
@@ -170,7 +170,7 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
         {
             // Stop recording collisions
             collisionManagement.ActiveCollisions = null;
-            collisionManagement.ActiveCollisionCountPtr = IntPtr.Zero;
+            collisionManagement.ActiveCollisionCountPtr = nint.Zero;
 
             physicalWorld.BodyStopCollisionRecording(physicsBody);
         }

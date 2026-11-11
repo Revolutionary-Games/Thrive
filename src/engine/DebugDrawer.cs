@@ -16,7 +16,7 @@ public partial class DebugDrawer : ControlWithInput
     private readonly StringName debugLevelName = new("debug_level");
     private readonly StringName cameraPosition = new("debug_camera_location");
 
-    private IntPtr nativeInstance;
+    private nint nativeInstance;
 
     private bool physicsDebugSupported;
     private bool warnedAboutNotBeingSupported;
@@ -72,9 +72,9 @@ public partial class DebugDrawer : ControlWithInput
             // StringNames aren't stored in this method as these are called all just once
             var nativeCallResult = Call("get_native_instance");
 
-            nativeInstance = new IntPtr(nativeCallResult.AsInt64());
+            nativeInstance = new nint(nativeCallResult.AsInt64());
 
-            if (nativeInstance == IntPtr.Zero)
+            if (nativeInstance == nint.Zero)
                 throw new Exception("Returned native instance is null");
         }
         catch (Exception e)
@@ -115,7 +115,7 @@ public partial class DebugDrawer : ControlWithInput
 
     public void DebugLine(Vector3 from, Vector3 to, Color color)
     {
-        if (nativeInstance == IntPtr.Zero)
+        if (nativeInstance == nint.Zero)
         {
             GD.PrintErr("Native side of debug draw not initialized");
             return;
@@ -131,7 +131,7 @@ public partial class DebugDrawer : ControlWithInput
 
     public void DebugPoint(Vector3 position, Color color)
     {
-        if (nativeInstance == IntPtr.Zero)
+        if (nativeInstance == nint.Zero)
         {
             GD.PrintErr("Native side of debug draw not initialized");
             return;
@@ -199,15 +199,15 @@ public partial class DebugDrawer : ControlWithInput
     }
 }
 
-/// <summary>
+/// <content>
 ///   Native methods used directly by <see cref="DebugDrawer"/> for more performance when calling.
-/// </summary>
+/// </content>
 internal static partial class NativeMethods
 {
     [DllImport("thrive_extension")]
     internal static extern void
-        DebugDrawerAddLine(IntPtr drawerInstance, in JVec3 from, in JVec3 to, in JColour colour);
+        DebugDrawerAddLine(nint drawerInstance, in JVec3 from, in JVec3 to, in JColour colour);
 
     [DllImport("thrive_extension")]
-    internal static extern void DebugDrawerAddPoint(IntPtr drawerInstance, in JVec3 position, in JColour colour);
+    internal static extern void DebugDrawerAddPoint(nint drawerInstance, in JVec3 position, in JColour colour);
 }
