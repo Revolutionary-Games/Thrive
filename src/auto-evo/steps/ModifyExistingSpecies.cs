@@ -53,6 +53,9 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Mutation> mutationsToTry = new();
     private readonly HashSet<Species> handledMutations = new();
+    private readonly HashSet<Species> rejectedMutations = new(ReferenceEqualityComparer.Instance);
+
+    private readonly List<(Miche Leaf, Species? Occupant)> leafOccupantsBeforeMutations = new();
 
     private readonly List<Miche> nonEmptyLeafNodes = new();
     private readonly List<Miche> emptyLeafNodes = new();
@@ -64,7 +67,7 @@ public class ModifyExistingSpecies : IRunStep
     private Step step;
 
     public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
-        Random randomSeed)
+        long seed)
     {
         this.patch = patch;
         this.cache = cache;
@@ -72,7 +75,7 @@ public class ModifyExistingSpecies : IRunStep
 
         mutationSorter = new MutationSorter(patch, cache);
 
-        random = new XoShiRo256starstar(randomSeed.NextInt64());
+        random = new XoShiRo256starstar(seed);
 
         // Patch species count is used to know how many steps there are to perform
         TotalSteps = patch.SpeciesInPatch.Count;
@@ -135,6 +138,16 @@ public class ModifyExistingSpecies : IRunStep
                     if (species is MicrobeSpecies or MulticellularSpecies)
                     {
                         GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
+
+                        // If the species is a MicrobeSpecies, check if it can become Multicellular,
+                        // and if so, generate Multicellular mutants.
+                        if (species is MicrobeSpecies microbeSpecies)
+                        {
+                            var multicellularBase = AttemptBecomingMulticellular(microbeSpecies);
+
+                            if (multicellularBase != null)
+                                GetMutationsForSpecies(multicellularBase, patch.SpeciesInPatch.Count, species);
+                        }
                     }
                 }
                 else
@@ -193,6 +206,13 @@ public class ModifyExistingSpecies : IRunStep
 
             case Step.MutationTest:
             {
+                if (mutationsToTry.Count > 0)
+                {
+                    // As new mutations may later be rejected, we need to store the previous occupants to restore.
+                    // Keep leaf references in a list because Occupant participates in Miche's hash code.
+                    CaptureLeafOccupants(miche, leafOccupantsBeforeMutations);
+                }
+
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
@@ -262,7 +282,7 @@ public class ModifyExistingSpecies : IRunStep
                         }
 
                         // Only apply a new name and colour to results that are actually kept
-                        MutationLogicFunctions.NameNewSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        MutationLogicFunctions.NameNewSpecies(random, mutation.MutatedSpecies, mutation.ParentSpecies);
 
                         if (mutation.MutatedSpecies is MicrobeSpecies microbeSpecies &&
                             mutation.ParentSpecies is MicrobeSpecies parentMicrobeSpecies)
@@ -282,6 +302,17 @@ public class ModifyExistingSpecies : IRunStep
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
                     }
+                    else
+                    {
+                        rejectedMutations.Add(mutation.MutatedSpecies);
+                    }
+                }
+
+                // For any leaf node occupied by a mutant that was rejected, restore the previous occupant.
+                foreach (var (leaf, previousOccupant) in leafOccupantsBeforeMutations)
+                {
+                    if (leaf.Occupant != null && rejectedMutations.Contains(leaf.Occupant))
+                        leaf.Occupant = previousOccupant;
                 }
 
                 return true;
@@ -293,6 +324,20 @@ public class ModifyExistingSpecies : IRunStep
 
         // More steps to run
         return false;
+    }
+
+    private static void CaptureLeafOccupants(Miche node, List<(Miche Leaf, Species? Occupant)> snapshot)
+    {
+        if (node.IsLeafNode())
+        {
+            snapshot.Add((node, node.Occupant));
+            return;
+        }
+
+        foreach (var child in node.Children)
+        {
+            CaptureLeafOccupants(child, snapshot);
+        }
     }
 
     private static void PruneMutations(List<Mutant> addResultsTo, Species baseSpecies,
@@ -370,7 +415,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(Species species, int speciesInPatch)
+    private void GetMutationsForSpecies(Species species, int speciesInPatch, Species? trueParent = null)
     {
         // We avoid auto-evo taking forever by skipping any (probably player) species that has far too many cells
         if (species is MulticellularSpecies { GameplayCells.Count: > Constants.AUTO_EVO_CUTOFF_CELL_COUNT })
@@ -384,7 +429,7 @@ public class ModifyExistingSpecies : IRunStep
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
         inputSpecies.Add(new Mutant(species, totalMP));
 
-        GenerateMutations(species, miche!, 1, false, speciesInPatch);
+        GenerateMutations(species, miche!, 1, false, speciesInPatch, trueParent);
     }
 
     /// <summary>
@@ -421,7 +466,7 @@ public class ModifyExistingSpecies : IRunStep
     ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
     private void GenerateMutations(Species baseSpecies, Miche currentMiche, int depth, bool lastChild,
-        int speciesInPatch)
+        int speciesInPatch, Species? trueParent = null)
     {
         var baseSpeciesMutant = new Mutant(baseSpecies,
             Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier);
@@ -567,7 +612,15 @@ public class ModifyExistingSpecies : IRunStep
 
             foreach (var species in lastGeneratedMutations)
             {
-                mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+                // If there is a designated parent species different from the base species, use that.
+                if (trueParent != null)
+                {
+                    mutationsToTry.Add(new Mutation(trueParent, species, RunResults.NewSpeciesType.SplitDueToMutation));
+                }
+                else
+                {
+                    mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+                }
             }
 
             pressureStack.Pop();
@@ -588,13 +641,44 @@ public class ModifyExistingSpecies : IRunStep
                 foreach (var child in currentMiche.Children)
                 {
                     bool isLast = index == childCount - 1;
-                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch);
+                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch, trueParent);
                     ++index;
                 }
             }
 
             pressureStack.Pop();
         }
+    }
+
+    private MulticellularSpecies? AttemptBecomingMulticellular(MicrobeSpecies baseMicrobeSpecies)
+    {
+        // We don't generate new Multicellular species for the player species.
+        if (baseMicrobeSpecies.PlayerSpecies)
+            return null;
+
+        var organelles = baseMicrobeSpecies.Organelles;
+
+        // Right now the only requirement for becoming multicellular is that the species has a Binding Agent.
+        // (the in-gameplay requirement of having a colony of size 5 can be supposed to happen anytime)
+        // If more requirements are added for the player, that should extend to auto-evo as well.
+        var hasBindingFeature = false;
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            if (organelles[i].Definition.HasBindingFeature)
+            {
+                hasBindingFeature = true;
+                break;
+            }
+        }
+
+        if (!hasBindingFeature)
+            return null;
+
+        var newSpecies = baseMicrobeSpecies.GenerateMulticellularVersion(true, hexTemporaryMemory1,
+            hexTemporaryMemory2, hexTemporaryMemory3, true);
+        newSpecies.OnAttemptedInAutoEvo(true, false);
+        return newSpecies;
     }
 
     private record struct Mutation(Species ParentSpecies, Species MutatedSpecies, RunResults.NewSpeciesType AddType);
@@ -635,8 +719,9 @@ public class ModifyExistingSpecies : IRunStep
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
 
-        // Only reused within one sort. Reference identity avoids conflating distinct mutant records.
-        private readonly Dictionary<Mutant, float> strengths = new(ReferenceEqualityComparer.Instance);
+        // Only reused within one sort. Strength depends on the species, not the candidate's remaining MP.
+        // Reference identity keeps different species instances with the same ID separate.
+        private readonly Dictionary<Species, float> strengths = new(ReferenceEqualityComparer.Instance);
         private readonly List<float> baseScores = new();
 
         // Use the concrete Stack type to avoid allocating an enumerator in GetStrength.
@@ -655,15 +740,8 @@ public class ModifyExistingSpecies : IRunStep
             baseScores.Clear();
         }
 
-        public int Compare(Mutant? x, Mutant? y)
+        public int Compare(Mutant x, Mutant y)
         {
-            if (ReferenceEquals(x, y))
-                return 0;
-            if (y is null)
-                return -1;
-            if (x is null)
-                return 1;
-
             var strengthX = GetStrength(x);
             var strengthY = GetStrength(y);
 
@@ -684,7 +762,7 @@ public class ModifyExistingSpecies : IRunStep
 
         private float GetStrength(Mutant mutant)
         {
-            if (strengths.TryGetValue(mutant, out var strength))
+            if (strengths.TryGetValue(mutant.Species, out var strength))
                 return strength;
 
             strength = 0.0f;
@@ -699,7 +777,7 @@ public class ModifyExistingSpecies : IRunStep
                 ++index;
             }
 
-            strengths.Add(mutant, strength);
+            strengths.Add(mutant.Species, strength);
             return strength;
         }
     }

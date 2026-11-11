@@ -77,6 +77,48 @@ public class CellLayoutTests
         layout.ThrowIfCellsOverlap();
     }
 
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    public void CellLayout_PredictedOriginShiftMatchesFinalFootprint(int orientation)
+    {
+        var work1 = new List<Hex>();
+        var work2 = new List<Hex>();
+        var type = CreateCellType("NeedsTwoShifts",
+        [
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(-5, -5)),
+            ([new Hex(0, 0)], new Hex(-5, -4)),
+            ([new Hex(0, 0)], new Hex(-5, -3)),
+        ], work1, work2);
+        var organelles = type.ModifiableOrganelles;
+        var originalPositions = organelles.Select(o => o.Position).ToList();
+        var firstShift = organelles.CenterOfMass;
+        var totalShift = CellType.CalculateLayoutOriginShift(organelles);
+        Assert.NotEqual(firstShift, totalShift);
+
+        // Prediction must leave the edited organelles untouched.
+        Assert.Equal(originalPositions, organelles.Select(o => o.Position));
+
+        var layout = new CellLayout<CellTemplate>();
+        var cell = new CellTemplate(type, new Hex(3, 25), orientation);
+        layout.GetHexComponentPositions(cell, work1);
+        var predictedPositions = work1.Select(h => cell.Position + h -
+            Hex.RotateAxialNTimes(totalShift, orientation)).ToHashSet();
+
+        // Match the two shifts and final safety check used when leaving the editor.
+        Assert.True(organelles.RepositionToOrigin());
+        Assert.True(organelles.RepositionToOrigin());
+        Assert.False(organelles.RepositionToOrigin());
+        Assert.NotEqual(firstShift, totalShift);
+
+        layout.AddFast(cell, work1, work2);
+        Assert.True(predictedPositions.SetEquals(layout.ComputeHexCache()));
+    }
+
     [Fact]
     public void CellLayout_RotatingCellHasExpectedPositions()
     {

@@ -68,10 +68,16 @@ public class ThriveopediaManager
     {
         foreach (var provider in Instance.speciesDataProviders)
         {
-            var species = provider.GetActiveSpeciesData(speciesId);
+            var species = provider.GetActiveSpeciesData(speciesId, false);
 
             if (species != null)
                 return species;
+        }
+
+        // Print potential errors if nothing found
+        foreach (var provider in Instance.speciesDataProviders)
+        {
+            provider.GetActiveSpeciesData(speciesId, true);
         }
 
         return null;

@@ -10,8 +10,8 @@ using Godot;
 public partial class StructureToBuildPopupBase<TSelection> : Control
 {
     // Cached string builders used to generate the structure button labels
-    protected readonly StringBuilder stringBuilder = new();
-    protected readonly StringBuilder stringBuilder2 = new();
+    protected readonly StringBuilder StringBuilder = new();
+    protected readonly StringBuilder StringBuilder2 = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -121,19 +121,19 @@ public partial class StructureToBuildPopupBase<TSelection> : Control
 
     protected abstract class CreatedButtonBase
     {
-        protected readonly Button nativeNode;
-        protected readonly CustomRichTextLabel customRichTextLabel;
+        protected readonly Button NativeNode;
+        protected readonly CustomRichTextLabel CustomRichTextLabel;
 
         protected CreatedButtonBase(Button nativeNode, CustomRichTextLabel customRichTextLabel)
         {
-            this.nativeNode = nativeNode;
-            this.customRichTextLabel = customRichTextLabel;
+            NativeNode = nativeNode;
+            CustomRichTextLabel = customRichTextLabel;
         }
 
         public bool Disabled
         {
-            get => nativeNode.Disabled;
-            protected set => nativeNode.Disabled = value;
+            get => NativeNode.Disabled;
+            protected set => NativeNode.Disabled = value;
         }
     }
 }

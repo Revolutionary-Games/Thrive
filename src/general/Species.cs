@@ -110,6 +110,11 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// </remarks>
     public long Population { get; set; } = 1;
 
+    /// <summary>
+    ///   The evolutionary generation of this species. Auto-evo advances it from the parent's generation when a mutation
+    ///   or split takes effect, while the player advances it through the editor. Unchanged AI species do not advance
+    ///   with each world history round, and ordinary clones preserve this value.
+    /// </summary>
     public int Generation { get; set; } = 1;
 
     /// <summary>

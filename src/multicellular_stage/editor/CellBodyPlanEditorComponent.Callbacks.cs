@@ -2,9 +2,9 @@
 using Godot;
 using SharedBase.Archive;
 
-/// <summary>
+/// <content>
 ///   Callbacks of the cell body plan editor
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
     [ArchiveAllowedMethod]
@@ -16,6 +16,22 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
     {
+        cellDataDirty = true;
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoCellCavityAction(CellCavityActionData data)
+    {
+        data.Cell.Data!.IsCavity = data.NewIsCavity;
+        InvalidateCalculatedLayout();
+        cellDataDirty = true;
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoCellCavityAction(CellCavityActionData data)
+    {
+        data.Cell.Data!.IsCavity = data.OldIsCavity;
+        InvalidateCalculatedLayout();
         cellDataDirty = true;
     }
 

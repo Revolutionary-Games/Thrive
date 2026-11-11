@@ -111,7 +111,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor;
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
-        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource(), Stage.MulticellularStage);
 
     protected override string MusicCategory => "MulticellularEditor";
 

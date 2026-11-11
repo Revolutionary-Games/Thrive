@@ -19,7 +19,7 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "BiFbOHf4F4zJ91WEKBJDfFj40WJ6RcuIWELLu/gBJnE=";
+    private const string ACHIEVEMENTS_INTEGRITY = "aHb8PkploVWbmffc1YDGVRMeelZE9PL/c1LDx/Gz6cU=";
 
     private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
     private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
@@ -161,11 +161,16 @@ public partial class AchievementsManager : Node
     {
         base._Ready();
 
-        // Determine backend to use
-        if (SteamHandler.Instance.IsLoaded || SteamHandler.Instance.WasLoadAttempted)
+        // Use local storage if Steam initialization failed, as Steam achievements are unavailable in that case
+        if (SteamHandler.Instance.IsLoaded)
         {
             GD.Print("Using Steam as achievements storage");
             statsStore = new SteamStatStore(SteamHandler.Instance.GetSteamClientForAchievements());
+        }
+        else if (SteamHandler.Instance.WasLoadAttempted)
+        {
+            GD.PrintErr("Steam was attempted to load, but failed, so we cannot store achievements there, " +
+                "this is likely undesired!");
         }
 
         if (!SceneManager.Instance.QuittingRequested())
@@ -404,6 +409,140 @@ public partial class AchievementsManager : Node
 
     // Callbacks forwarded from AchievementEvents
 
+    internal void OnUltimateColony(int colonySize)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum = statsStore.GetIntStat(IAchievementStatStore.STAT_ULTIMATE_COLONY);
+            if (colonySize <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_ULTIMATE_COLONY, colonySize);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.ULTIMATE_COLONY]);
+        }
+    }
+
+    internal void OnUltimateCellularFirepower(int projectilesInVolley)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum =
+                statsStore.GetIntStat(IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER);
+            if (projectilesInVolley <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_ULTIMATE_CELLULAR_FIREPOWER, projectilesInVolley);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.ULTIMATE_CELLULAR_FIREPOWER]);
+        }
+    }
+
+    internal void OnYouAnimal()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_YOU_ANIMAL, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.YOU_ANIMAL]);
+        }
+    }
+
+    internal void OnSpecializedWeapons()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_SPECIALIZED_WEAPONS, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.SPECIALIZED_WEAPONS]);
+        }
+    }
+
+    internal void OnSpecializationSpecialist(int specializedCellTypeCount)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum =
+                statsStore.GetIntStat(IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST);
+            if (specializedCellTypeCount <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_SPECIALIZATION_SPECIALIST, specializedCellTypeCount);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.SPECIALIZATION_SPECIALIST]);
+        }
+    }
+
+    internal void OnJustAFleshWound()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_JUST_A_FLESH_WOUND, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.JUST_A_FLESH_WOUND]);
+        }
+    }
+
+    internal void OnInLookOfAHome(int distanceTravelled)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            var currentMaximum = statsStore.GetIntStat(IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME);
+            if (distanceTravelled <= currentMaximum)
+            {
+                return;
+            }
+
+            statsStore.SetIntStat(IAchievementStatStore.STAT_IN_LOOK_OF_A_HOME, distanceTravelled);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.IN_LOOK_OF_A_HOME]);
+        }
+    }
+
+    internal void OnMicroscopicBirdsAndBees()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_MICROSCOPIC_BIRDS_AND_BEES, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.MICROSCOPIC_BIRDS_AND_BEES]);
+        }
+    }
+
+    internal void OnPerfectlyPacked()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.SetIntStat(IAchievementStatStore.STAT_PERFECTLY_PACKED, 1);
+            ReportStatUpdateToRelevantAchievements([AchievementIds.PERFECTLY_PACKED]);
+        }
+    }
+
     internal void OnPlayerMicrobeKill()
     {
         if (preventAchievements)
@@ -534,6 +673,22 @@ public partial class AchievementsManager : Node
             }
 
             ReportStatUpdateToRelevantAchievements([AchievementIds.BEYOND_THE_CELL]);
+        }
+    }
+
+    internal void OnReturnToMacroscopicStageFromEditor()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_REACHED_MACROSCOPIC) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_REACHED_MACROSCOPIC, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.BEYOND_THE_MICROBE]);
         }
     }
 

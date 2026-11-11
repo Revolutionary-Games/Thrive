@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using AutoEvo;
 
 public static class CommonMutationFunctions
 {
     public static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+    private const int RANDOM_ORDER_STACK_LIMIT = 512;
 
     // These must be defined this way to avoid allocations
     private static readonly Hex.HexSide[] TraversalOrder1 = [Hex.HexSide.Top];
@@ -89,14 +90,14 @@ public static class CommonMutationFunctions
 
         while (mp > 0)
         {
-            var mutation = mutationStrategy.MutationsOf(mutated, mp, true, random, forPatch.Biome)
-                .RandomOrDefault(random);
+            var mutations = mutationStrategy.MutationsOf(mutated, mp, true, random, forPatch.Biome);
 
-            if (mutation == null)
+            if (mutations == null || mutations.Count == 0)
                 break;
 
+            var mutation = mutations.Random(random);
             mutated = mutation.Species as MicrobeSpecies ?? throw new InvalidOperationException();
-            mp -= mutation.MP;
+            mp = mutation.MP;
 
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
@@ -134,26 +135,8 @@ public static class CommonMutationFunctions
         Direction direction, MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2,
         HashSet<Hex> workMemory3, Random random)
     {
-        OrganelleTemplate? position;
-
-        switch (strategy)
-        {
-            case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory3,
-                    random);
-                break;
-            case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
-        }
+        var position = GetOrganellePosition(strategy, organelle, newSpecies.Organelles, direction,
+            workMemory1, workMemory3, random);
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -174,26 +157,8 @@ public static class CommonMutationFunctions
         Direction direction, CellType cellType, List<Hex> workMemory1, List<Hex> workMemory2,
         HashSet<Hex> workMemory3, Random random)
     {
-        OrganelleTemplate? position;
-
-        switch (strategy)
-        {
-            case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, cellType.ModifiableOrganelles, direction, workMemory1,
-                    workMemory3, random);
-                break;
-            case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
-                break;
-            case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
-        }
+        var position = GetOrganellePosition(strategy, organelle, cellType.ModifiableOrganelles, direction,
+            workMemory1, workMemory3, random);
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -238,20 +203,19 @@ public static class CommonMutationFunctions
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)
     {
-        HashSet<Hex>? mainHexes = null;
-
         // Use as much work memory as we can get from what we are given
-        // TODO: this would need one more hashset to not allocate memory
         var islandHexes = workMemory.WorkingMemory1;
 
         organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
             workMemory.WorkingMemory4);
 
+        // Reuse the occupied hex cache after the island search has finished. This is safe as this data doesn't need
+        // to be valid across island hex calculations.
+        HashSet<Hex> mainHexes = workMemory.WorkingMemory3;
+
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            // Unfortunately, it seems that just barely the cache is not enough for this to not allocate memory
-            mainHexes ??= new HashSet<Hex>();
             organelles.ComputeHexCache(mainHexes, workMemory.WorkingMemory2);
 
             // Compute the shortest hex distance
@@ -483,6 +447,21 @@ public static class CommonMutationFunctions
         return true;
     }
 
+    private static OrganelleTemplate? GetOrganellePosition(OrganelleAddStrategy strategy,
+        OrganelleDefinition organelle, OrganelleLayout<OrganelleTemplate> existingOrganelles,
+        Direction direction, List<Hex> workMemory1, HashSet<Hex> workMemory2, Random random)
+    {
+        return strategy switch
+        {
+            OrganelleAddStrategy.Realistic => GetRealisticPosition(organelle, existingOrganelles, direction,
+                workMemory1, workMemory2, random),
+            OrganelleAddStrategy.Spiral => GetSpiralPosition(organelle, existingOrganelles, workMemory1, workMemory2),
+            OrganelleAddStrategy.Front => GetFrontPosition(organelle, existingOrganelles, workMemory1, workMemory2),
+            OrganelleAddStrategy.Back => GetBackPosition(organelle, existingOrganelles, workMemory1, workMemory2),
+            _ => throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null),
+        };
+    }
+
     private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
         HashSet<Hex> workMemory2, Random random)
@@ -493,20 +472,34 @@ public static class CommonMutationFunctions
         // Create a cache of the already used positions to have much more efficient placement checking
         existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
+        var organelleCount = existingOrganelles.Count;
+
+        var randomOrder = organelleCount <= RANDOM_ORDER_STACK_LIMIT ?
+            stackalloc int[organelleCount] :
+            new int[organelleCount].AsSpan();
+
+        for (int i = 0; i < randomOrder.Length; ++i)
+        {
+            randomOrder[i] = i;
+        }
+
+        random.Shuffle(randomOrder);
+
         // Loop through all the organelles and find an open spot to
         // place our new organelle attached to existing organelles
         // This almost always is over at the first iteration, so it's
         // not a huge performance hog
-        // TODO: try to avoid the memory allocation here
-        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var otherOrganelle = existingOrganelles[randomOrder[i]];
+
             // The otherOrganelle is the organelle we wish to be next to
             // Loop its hexes and check positions next to them
             var rotated = otherOrganelle.RotatedHexes;
             var rotatedCount = rotated.Count;
-            for (int i = 0; i < rotatedCount; ++i)
+            for (int j = 0; j < rotatedCount; ++j)
             {
-                var hex = rotated[i];
+                var hex = rotated[j];
 
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
@@ -650,15 +643,11 @@ public static class CommonMutationFunctions
         var newHexPosition = oldHex - Hex.HexNeighbourOffset[side];
         var orientation = cellTemplate.Orientation;
 
+        if (!existingCells.CanPlace(newHexPosition))
+            return null;
+
         var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
-        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
-
-        if (existingCells.CanPlace(result.Position))
-        {
-            return result;
-        }
-
-        return null;
+        return new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
     }
 
     private static HexWithData<CellTemplate>? GetCenterlineFrontPosition(CellType newCellType,
@@ -747,7 +736,5 @@ public static class CommonMutationFunctions
         return TraversalOrder8;
     }
 
-    // TODO: this would be really nice to convert into a struct record as the mutation strategies generate a lot of
-    // these, which in turn makes a lot of small objects just to hold the species reference and one double.
-    public record Mutant(Species Species, double MP);
+    public readonly record struct Mutant(Species Species, double MP);
 }

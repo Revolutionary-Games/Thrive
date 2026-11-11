@@ -13,9 +13,9 @@ public class PhysicalWorld : IDisposable
 {
     private bool disposed;
     private bool stackAllocWarned;
-    private IntPtr nativeInstance;
+    private nint nativeInstance;
 
-    private PhysicalWorld(IntPtr nativeInstance)
+    private PhysicalWorld(nint nativeInstance)
     {
         this.nativeInstance = nativeInstance;
 
@@ -32,6 +32,10 @@ public class PhysicalWorld : IDisposable
             SetUpdatedDebugLevel(currentDebugLevel);
             UpdateDebugCameraInfo(debugDrawer.DebugCameraLocation);
         }
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     ~PhysicalWorld()
@@ -46,13 +50,33 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     public delegate bool OnCollisionFilterCallback(ref PhysicsCollision collision);
 
-    public float LatestPhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsLatestTime(AccessWorldInternal());
+    public float LatestPhysicsDuration
+    {
+        get
+        {
+            var result = NativeMethods.PhysicalWorldGetPhysicsLatestTime(AccessWorldInternal());
+#if DEBUG
+            CheckIfDisposedAfterNativeCall();
+#endif
+            return result;
+        }
+    }
 
     /// <summary>
     ///   Average time in seconds that physics simulation runs take. A run may
     ///   process multiple fixed-time physics steps.
     /// </summary>
-    public float AveragePhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsAverageTime(AccessWorldInternal());
+    public float AveragePhysicsDuration
+    {
+        get
+        {
+            var result = NativeMethods.PhysicalWorldGetPhysicsAverageTime(AccessWorldInternal());
+#if DEBUG
+            CheckIfDisposedAfterNativeCall();
+#endif
+            return result;
+        }
+    }
 
     /// <summary>
     ///   Used to turn off metrics reporting when the game is closing to no longer access metrics object which may be
@@ -72,6 +96,9 @@ public class PhysicalWorld : IDisposable
     public void SetPhysicsTimestep(float timestep)
     {
         NativeMethods.PhysicalWorldSetPhysicsTimestep(AccessWorldInternal(), timestep);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -82,6 +109,9 @@ public class PhysicalWorld : IDisposable
     public bool ProcessPhysics(float delta)
     {
         bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
 
         if (processed && !DisablePhysicsTimeRecording)
         {
@@ -102,11 +132,17 @@ public class PhysicalWorld : IDisposable
     public void ProcessPhysicsOnBackgroundThread(float delta)
     {
         NativeMethods.ProcessPhysicalWorldInBackground(AccessWorldInternal(), delta);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public bool WaitUntilPhysicsRunEnds()
     {
         bool processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
 
         if (processed && !DisablePhysicsTimeRecording)
         {
@@ -140,8 +176,14 @@ public class PhysicalWorld : IDisposable
             throw new ArgumentException("Movable shape must have a valid mass", nameof(shape));
 #endif
 
-        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
+        var result = new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
             shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), addToWorld));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        shape.CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     /// <summary>
@@ -164,9 +206,16 @@ public class PhysicalWorld : IDisposable
             throw new ArgumentException("Movable shape must have a valid mass", nameof(shape));
 #endif
 
-        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBodyWithAxisLock(AccessWorldInternal(),
-            shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), new JVecF3(lockedAxes), lockRotation,
-            addToWorld));
+        var result = new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBodyWithAxisLock(
+            AccessWorldInternal(), shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation),
+            new JVecF3(lockedAxes), lockRotation, addToWorld));
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        shape.CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quaternion rotation,
@@ -175,9 +224,16 @@ public class PhysicalWorld : IDisposable
         if (!position.IsFinite() || !rotation.IsFinite())
             throw new ArgumentException("Position and rotation must be finite");
 
-        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
+        var result = new NativePhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), addToWorld));
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        shape.CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     public NativePhysicsBody CreateSensor(PhysicsShape shape, Vector3 position, Quaternion rotation,
@@ -186,9 +242,16 @@ public class PhysicalWorld : IDisposable
         if (!position.IsFinite() || !rotation.IsFinite())
             throw new ArgumentException("Position and rotation must be finite");
 
-        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateSensor(AccessWorldInternal(),
+        var result = new NativePhysicsBody(NativeMethods.PhysicalWorldCreateSensor(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), detectSleepingBodies, detectStaticBodies));
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        shape.CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     /// <summary>
@@ -199,6 +262,10 @@ public class PhysicalWorld : IDisposable
     public void AddBody(NativePhysicsBody body, bool activate = true)
     {
         NativeMethods.PhysicalWorldAddBody(AccessWorldInternal(), body.AccessBodyInternal(), activate);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -209,6 +276,10 @@ public class PhysicalWorld : IDisposable
     public void DetachBody(NativePhysicsBody body)
     {
         NativeMethods.PhysicalWorldDetachBody(AccessWorldInternal(), body.AccessBodyInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -222,6 +293,10 @@ public class PhysicalWorld : IDisposable
     public void DestroyBody(NativePhysicsBody body, bool dispose = true)
     {
         NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
 
         // As the body will be forcefully destroyed, all the collision writing resources can be freed
         body.NotifyCollisionRecordingStopped();
@@ -241,6 +316,11 @@ public class PhysicalWorld : IDisposable
         {
             NativeMethods.SetPhysicsBodyLinearDamping(AccessWorldInternal(), body.AccessBodyInternal(), linearDamping);
         }
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public Transform3D ReadBodyTransform(NativePhysicsBody body)
@@ -257,6 +337,11 @@ public class PhysicalWorld : IDisposable
         NativeMethods.ReadPhysicsBodyTransform(AccessWorldInternal(), body.AccessBodyInternal(),
             out var position, out var orientation);
 
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
+
         return (position, orientation);
     }
 
@@ -264,6 +349,11 @@ public class PhysicalWorld : IDisposable
     {
         NativeMethods.ReadPhysicsBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             out var velocity, out var angularVelocity);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
 
         return (velocity, angularVelocity);
     }
@@ -285,6 +375,11 @@ public class PhysicalWorld : IDisposable
 #endif
 
         NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse));
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void GiveAngularImpulse(NativePhysicsBody body, Vector3 angularImpulse)
@@ -298,6 +393,11 @@ public class PhysicalWorld : IDisposable
 #endif
 
         NativeMethods.GiveAngularImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(angularImpulse));
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -332,6 +432,11 @@ public class PhysicalWorld : IDisposable
 
         NativeMethods.SetBodyControl(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedDivisor);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void DisableMicrobeBodyControl(NativePhysicsBody body)
@@ -344,6 +449,12 @@ public class PhysicalWorld : IDisposable
         }
 
         NativeMethods.DisableBodyControl(AccessWorldInternal(), body.AccessBodyInternal());
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
+
         body.MicrobeControlEnabled = false;
     }
 
@@ -355,6 +466,10 @@ public class PhysicalWorld : IDisposable
 #endif
 
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void SetBodyPositionAndRotation(NativePhysicsBody body, Vector3 position, Quaternion rotation)
@@ -366,6 +481,10 @@ public class PhysicalWorld : IDisposable
 
         NativeMethods.SetBodyPositionAndRotation(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position),
             new JQuat(rotation));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -380,6 +499,10 @@ public class PhysicalWorld : IDisposable
 
         NativeMethods.SetBodyVelocityAndAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(velocity), new JVecF3(angularVelocity));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -395,6 +518,10 @@ public class PhysicalWorld : IDisposable
 #endif
 
         NativeMethods.SetBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(velocity));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void SetOnlyBodyAngularVelocity(NativePhysicsBody body, Vector3 angularVelocity)
@@ -406,22 +533,42 @@ public class PhysicalWorld : IDisposable
 
         NativeMethods.SetBodyAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(angularVelocity));
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void SetBodyAllowSleep(NativePhysicsBody body, bool allowSleep)
     {
         NativeMethods.SetBodyAllowSleep(AccessWorldInternal(), body.AccessBodyInternal(), allowSleep);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public bool FixBodyYCoordinateToZero(NativePhysicsBody body)
     {
-        return NativeMethods.FixBodyYCoordinateToZero(AccessWorldInternal(), body.AccessBodyInternal());
+        var result = NativeMethods.FixBodyYCoordinateToZero(AccessWorldInternal(), body.AccessBodyInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     public void ChangeBodyShape(NativePhysicsBody body, PhysicsShape shape, bool activate = true)
     {
         NativeMethods.ChangeBodyShape(AccessWorldInternal(), body.AccessBodyInternal(),
             shape.AccessShapeInternal(), activate);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+        shape.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -442,29 +589,51 @@ public class PhysicalWorld : IDisposable
 
         NativeMethods.PhysicsBodyAddAxisLock(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(axis),
             lockRotation);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void SetBodyCollisionsEnabledState(NativePhysicsBody body, bool collisionsEnabled)
     {
         NativeMethods.PhysicsBodySetCollisionEnabledState(AccessWorldInternal(), body.AccessBodyInternal(),
             collisionsEnabled);
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void BodyIgnoreCollisionsWithBody(NativePhysicsBody body, NativePhysicsBody otherBody)
     {
         NativeMethods.PhysicsBodyAddCollisionIgnore(AccessWorldInternal(), body.AccessBodyInternal(),
             otherBody.AccessBodyInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+        otherBody.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void BodyRemoveCollisionIgnoreWith(NativePhysicsBody body, NativePhysicsBody otherBody)
     {
         NativeMethods.PhysicsBodyRemoveCollisionIgnore(AccessWorldInternal(), body.AccessBodyInternal(),
             otherBody.AccessBodyInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+        otherBody.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void BodyClearCollisionsIgnores(NativePhysicsBody body)
     {
         NativeMethods.PhysicsBodyClearCollisionIgnores(AccessWorldInternal(), body.AccessBodyInternal());
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void BodySetCollisionIgnores(NativePhysicsBody body, IReadOnlyList<NativePhysicsBody> ignoredBodies)
@@ -495,6 +664,13 @@ public class PhysicalWorld : IDisposable
             {
                 NativeMethods.PhysicsBodySetCollisionIgnores(AccessWorldInternal(), body.AccessBodyInternal(),
                     pinHandle.AddrOfPinnedObject(), size);
+
+#if DEBUG
+                CheckIfDisposedAfterNativeCall();
+                body.CheckIfDisposedAfterNativeCall();
+                for (int i = 0; i < size; ++i)
+                    ignoredBodies[i].CheckIfDisposedAfterNativeCall();
+#endif
             }
             finally
             {
@@ -503,7 +679,7 @@ public class PhysicalWorld : IDisposable
         }
         else
         {
-            Span<IntPtr> nativePointers = stackalloc IntPtr[ignoredBodies.Count];
+            Span<nint> nativePointers = stackalloc nint[ignoredBodies.Count];
 
             for (int i = 0; i < size; ++i)
             {
@@ -512,6 +688,13 @@ public class PhysicalWorld : IDisposable
 
             NativeMethods.PhysicsBodySetCollisionIgnores(AccessWorldInternal(), body.AccessBodyInternal(),
                 MemoryMarshal.GetReference(nativePointers), size);
+
+#if DEBUG
+            CheckIfDisposedAfterNativeCall();
+            body.CheckIfDisposedAfterNativeCall();
+            for (int i = 0; i < size; ++i)
+                ignoredBodies[i].CheckIfDisposedAfterNativeCall();
+#endif
         }
     }
 
@@ -519,10 +702,16 @@ public class PhysicalWorld : IDisposable
     {
         NativeMethods.PhysicsBodyClearAndSetSingleIgnore(AccessWorldInternal(), body.AccessBodyInternal(),
             singleIgnoredBody.AccessBodyInternal());
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+        singleIgnoredBody.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public PhysicsCollision[] BodyStartCollisionRecording(NativePhysicsBody body, int maxRecordedCollisions,
-        out IntPtr receiverOfAddressOfCollisionCount)
+        out nint receiverOfAddressOfCollisionCount)
     {
         if (maxRecordedCollisions < 1)
             throw new ArgumentException("Need to record at least one collision", nameof(maxRecordedCollisions));
@@ -532,7 +721,12 @@ public class PhysicalWorld : IDisposable
         receiverOfAddressOfCollisionCount = NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(),
             body.AccessBodyInternal(), arrayAddress, maxRecordedCollisions);
 
-        if (receiverOfAddressOfCollisionCount == IntPtr.Zero)
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
+
+        if (receiverOfAddressOfCollisionCount == nint.Zero)
         {
             GD.PrintErr("Failed to start collision recording, result count variable pointer is null");
             throw new Exception("Native side collision recording start failed");
@@ -544,6 +738,12 @@ public class PhysicalWorld : IDisposable
     public void BodyStopCollisionRecording(NativePhysicsBody body)
     {
         NativeMethods.PhysicsBodyDisableCollisionRecording(AccessWorldInternal(), body.AccessBodyInternal());
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
+
         body.NotifyCollisionRecordingStopped();
     }
 
@@ -557,11 +757,21 @@ public class PhysicalWorld : IDisposable
     public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)
     {
         NativeMethods.PhysicsBodyAddCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal(), filterCallback);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void BodyDisableCollisionFilter(NativePhysicsBody body)
     {
         NativeMethods.PhysicsBodyDisableCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal());
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+        body.CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void SetGravity(JVecF3? gravity = null)
@@ -569,11 +779,19 @@ public class PhysicalWorld : IDisposable
         gravity ??= new JVecF3(0.0f, -9.81f, 0.0f);
 
         NativeMethods.PhysicalWorldSetGravity(AccessWorldInternal(), gravity.Value);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     public void RemoveGravity()
     {
         NativeMethods.PhysicalWorldRemoveGravity(AccessWorldInternal());
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
     }
 
     /// <summary>
@@ -585,8 +803,14 @@ public class PhysicalWorld : IDisposable
     /// <returns>The number of hits in results, all other array indexes are left untouched</returns>
     public int CastRayGetAllHits(Vector3 start, Vector3 directionAndLength, PhysicsRayWithUserData[] results)
     {
-        return NativeMethods.PhysicalWorldCastRayGetAll(AccessWorldInternal(), new JVec3(start),
+        var result = NativeMethods.PhysicalWorldCastRayGetAll(AccessWorldInternal(), new JVec3(start),
             new JVecF3(directionAndLength), ref results[0], results.Length);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     /// <summary>
@@ -611,7 +835,13 @@ public class PhysicalWorld : IDisposable
 
     public bool DumpPhysicsState(string path)
     {
-        return NativeMethods.PhysicalWorldDumpPhysicsState(AccessWorldInternal(), path);
+        var result = NativeMethods.PhysicalWorldDumpPhysicsState(AccessWorldInternal(), path);
+
+#if DEBUG
+        CheckIfDisposedAfterNativeCall();
+#endif
+
+        return result;
     }
 
     public void Dispose()
@@ -621,7 +851,7 @@ public class PhysicalWorld : IDisposable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal IntPtr AccessWorldInternal()
+    internal nint AccessWorldInternal()
     {
         if (disposed)
             throw new ObjectDisposedException(nameof(PhysicalWorld));
@@ -640,12 +870,27 @@ public class PhysicalWorld : IDisposable
         }
     }
 
+#if DEBUG
+    /// <summary>
+    ///   Checks for disposal or an invalid handle after a native call. This keeps the wrapper alive in debug builds,
+    ///   so it cannot diagnose premature finalization in release builds or a native call that crashes before returning.
+    /// </summary>
+    private void CheckIfDisposedAfterNativeCall([CallerMemberName] string caller = "")
+    {
+        if (disposed || nativeInstance == nint.Zero)
+        {
+            GD.PrintErr("PhysicalWorld is destroyed while it is being used!");
+            throw new InvalidOperationException($"PhysicalWorld native handle is invalid after {caller}");
+        }
+    }
+#endif
+
     private void ReleaseUnmanagedResources()
     {
         if (nativeInstance.ToInt64() != 0)
         {
             NativeMethods.DestroyPhysicalWorld(nativeInstance);
-            nativeInstance = new IntPtr(0);
+            nativeInstance = new nint(0);
         }
     }
 
@@ -654,6 +899,9 @@ public class PhysicalWorld : IDisposable
         if (nativeInstance.ToInt64() != 0)
         {
             NativeMethods.PhysicalWorldSetDebugDrawLevel(AccessWorldInternal(), level);
+#if DEBUG
+            CheckIfDisposedAfterNativeCall();
+#endif
         }
     }
 
@@ -662,180 +910,183 @@ public class PhysicalWorld : IDisposable
         if (nativeInstance.ToInt64() != 0)
         {
             NativeMethods.PhysicalWorldSetDebugDrawCameraLocation(AccessWorldInternal(), new JVecF3(position));
+#if DEBUG
+            CheckIfDisposedAfterNativeCall();
+#endif
         }
     }
 }
 
-/// <summary>
+/// <content>
 ///   Thrive native library methods related to physics worlds
-/// </summary>
+/// </content>
 internal static partial class NativeMethods
 {
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreatePhysicalWorld();
+    internal static extern nint CreatePhysicalWorld();
 
     [DllImport("thrive_native")]
-    internal static extern void DestroyPhysicalWorld(IntPtr physicalWorld);
-
-    [DllImport("thrive_native")]
-    [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool ProcessPhysicalWorld(IntPtr physicalWorld, float delta);
-
-    [DllImport("thrive_native")]
-    internal static extern void ProcessPhysicalWorldInBackground(IntPtr physicalWorld, float delta);
+    internal static extern void DestroyPhysicalWorld(nint physicalWorld);
 
     [DllImport("thrive_native")]
     [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool WaitForPhysicsToCompleteInPhysicalWorld(IntPtr physicalWorld);
+    internal static extern bool ProcessPhysicalWorld(nint physicalWorld, float delta);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicalWorldCreateMovingBody(IntPtr physicalWorld, IntPtr shape,
+    internal static extern void ProcessPhysicalWorldInBackground(nint physicalWorld, float delta);
+
+    [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.U1)]
+    internal static extern bool WaitForPhysicsToCompleteInPhysicalWorld(nint physicalWorld);
+
+    [DllImport("thrive_native")]
+    internal static extern nint PhysicalWorldCreateMovingBody(nint physicalWorld, nint shape,
         JVec3 position, JQuat rotation, bool addToWorld);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicalWorldCreateMovingBodyWithAxisLock(IntPtr physicalWorld, IntPtr shape,
+    internal static extern nint PhysicalWorldCreateMovingBodyWithAxisLock(nint physicalWorld, nint shape,
         JVec3 position, JQuat rotation, JVecF3 lockedAxes, bool lockRotation, bool addToWorld);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicalWorldCreateStaticBody(IntPtr physicalWorld, IntPtr shape,
+    internal static extern nint PhysicalWorldCreateStaticBody(nint physicalWorld, nint shape,
         JVec3 position, JQuat rotation, bool addToWorld);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicalWorldCreateSensor(IntPtr physicalWorld, IntPtr shape,
+    internal static extern nint PhysicalWorldCreateSensor(nint physicalWorld, nint shape,
         JVec3 position, JQuat rotation, bool detectSleepingBodies,
         bool detectStaticBodies);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldAddBody(IntPtr physicalWorld, IntPtr body, bool activate);
+    internal static extern void PhysicalWorldAddBody(nint physicalWorld, nint body, bool activate);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldDetachBody(IntPtr physicalWorld, IntPtr body);
+    internal static extern void PhysicalWorldDetachBody(nint physicalWorld, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void DestroyPhysicalWorldBody(IntPtr physicalWorld, IntPtr body);
+    internal static extern void DestroyPhysicalWorldBody(nint physicalWorld, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void SetPhysicsBodyLinearDamping(IntPtr physicalWorld, IntPtr body, float damping);
+    internal static extern void SetPhysicsBodyLinearDamping(nint physicalWorld, nint body, float damping);
 
     [DllImport("thrive_native")]
-    internal static extern void SetPhysicsBodyLinearAndAngularDamping(IntPtr physicalWorld, IntPtr body,
+    internal static extern void SetPhysicsBodyLinearAndAngularDamping(nint physicalWorld, nint body,
         float linearDamping, float angularDamping);
 
     [DllImport("thrive_native")]
-    internal static extern void ReadPhysicsBodyTransform(IntPtr world, IntPtr body, [Out] out JVec3 position,
+    internal static extern void ReadPhysicsBodyTransform(nint world, nint body, [Out] out JVec3 position,
         [Out] out JQuat orientation);
 
     [DllImport("thrive_native")]
-    internal static extern void ReadPhysicsBodyVelocity(IntPtr world, IntPtr body, [Out] out JVecF3 velocity,
+    internal static extern void ReadPhysicsBodyVelocity(nint world, nint body, [Out] out JVecF3 velocity,
         [Out] out JVecF3 angularVelocity);
 
     [DllImport("thrive_native")]
-    internal static extern void GiveImpulse(IntPtr world, IntPtr body, JVecF3 impulse);
+    internal static extern void GiveImpulse(nint world, nint body, JVecF3 impulse);
 
     [DllImport("thrive_native")]
-    internal static extern void GiveAngularImpulse(IntPtr world, IntPtr body, JVecF3 angularImpulse);
+    internal static extern void GiveAngularImpulse(nint world, nint body, JVecF3 angularImpulse);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyControl(IntPtr world, IntPtr body, JVecF3 movementImpulse,
+    internal static extern void SetBodyControl(nint world, nint body, JVecF3 movementImpulse,
         JQuat targetRotation, float reachTargetInSeconds);
 
     [DllImport("thrive_native")]
-    internal static extern void DisableBodyControl(IntPtr world, IntPtr body);
+    internal static extern void DisableBodyControl(nint world, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyPosition(IntPtr world, IntPtr body, JVec3 position, bool activate = true);
+    internal static extern void SetBodyPosition(nint world, nint body, JVec3 position, bool activate = true);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyPositionAndRotation(IntPtr world, IntPtr body, JVec3 position, JQuat rotation,
+    internal static extern void SetBodyPositionAndRotation(nint world, nint body, JVec3 position, JQuat rotation,
         bool activate = true);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyVelocity(IntPtr world, IntPtr body, JVecF3 velocity);
+    internal static extern void SetBodyVelocity(nint world, nint body, JVecF3 velocity);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyAngularVelocity(IntPtr world, IntPtr body, JVecF3 angularVelocity);
+    internal static extern void SetBodyAngularVelocity(nint world, nint body, JVecF3 angularVelocity);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyVelocityAndAngularVelocity(IntPtr world, IntPtr body, JVecF3 velocity,
+    internal static extern void SetBodyVelocityAndAngularVelocity(nint world, nint body, JVecF3 velocity,
         JVecF3 angularVelocity);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyAllowSleep(IntPtr world, IntPtr body, bool allowSleep);
+    internal static extern void SetBodyAllowSleep(nint world, nint body, bool allowSleep);
 
     [DllImport("thrive_native")]
     [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool FixBodyYCoordinateToZero(IntPtr world, IntPtr body);
+    internal static extern bool FixBodyYCoordinateToZero(nint world, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void ChangeBodyShape(IntPtr world, IntPtr body, IntPtr shape, bool activate);
+    internal static extern void ChangeBodyShape(nint world, nint body, nint shape, bool activate);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicsBodyAddAxisLock(IntPtr physicalWorld, IntPtr body, JVecF3 axis,
+    internal static extern nint PhysicsBodyAddAxisLock(nint physicalWorld, nint body, JVecF3 axis,
         bool lockRotation);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodySetCollisionEnabledState(IntPtr physicalWorld,
-        IntPtr body, bool collisionsEnabled);
+    internal static extern void PhysicsBodySetCollisionEnabledState(nint physicalWorld,
+        nint body, bool collisionsEnabled);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyAddCollisionIgnore(IntPtr physicalWorld, IntPtr body,
-        IntPtr addIgnore);
+    internal static extern void PhysicsBodyAddCollisionIgnore(nint physicalWorld, nint body,
+        nint addIgnore);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyRemoveCollisionIgnore(IntPtr physicalWorld, IntPtr body,
-        IntPtr removeIgnore);
+    internal static extern void PhysicsBodyRemoveCollisionIgnore(nint physicalWorld, nint body,
+        nint removeIgnore);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyClearCollisionIgnores(IntPtr physicalWorld, IntPtr body);
+    internal static extern void PhysicsBodyClearCollisionIgnores(nint physicalWorld, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodySetCollisionIgnores(IntPtr physicalWorld, IntPtr body,
-        in IntPtr ignoredBodies, int count);
+    internal static extern void PhysicsBodySetCollisionIgnores(nint physicalWorld, nint body,
+        in nint ignoredBodies, int count);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyClearAndSetSingleIgnore(IntPtr physicalWorld,
-        IntPtr body, IntPtr onlyIgnoredBody);
+    internal static extern void PhysicsBodyClearAndSetSingleIgnore(nint physicalWorld,
+        nint body, nint onlyIgnoredBody);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicsBodyEnableCollisionRecording(IntPtr physicalWorld, IntPtr body,
-        IntPtr collisionRecordingTarget, int maxRecordedCollisions);
+    internal static extern nint PhysicsBodyEnableCollisionRecording(nint physicalWorld, nint body,
+        nint collisionRecordingTarget, int maxRecordedCollisions);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyDisableCollisionRecording(IntPtr physicalWorld, IntPtr body);
+    internal static extern void PhysicsBodyDisableCollisionRecording(nint physicalWorld, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyAddCollisionFilter(IntPtr physicalWorld, IntPtr body,
+    internal static extern void PhysicsBodyAddCollisionFilter(nint physicalWorld, nint body,
         PhysicalWorld.OnCollisionFilterCallback callback);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyDisableCollisionFilter(IntPtr physicalWorld, IntPtr body);
+    internal static extern void PhysicsBodyDisableCollisionFilter(nint physicalWorld, nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldSetGravity(IntPtr physicalWorld, JVecF3 gravity);
+    internal static extern void PhysicalWorldSetGravity(nint physicalWorld, JVecF3 gravity);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldRemoveGravity(IntPtr physicalWorld);
+    internal static extern void PhysicalWorldRemoveGravity(nint physicalWorld);
 
     [DllImport("thrive_native")]
-    internal static extern int PhysicalWorldCastRayGetAll(IntPtr physicalWorld, JVec3 start,
+    internal static extern int PhysicalWorldCastRayGetAll(nint physicalWorld, JVec3 start,
         JVecF3 endOffset, ref PhysicsRayWithUserData dataReceiver, int maxHits);
 
     [DllImport("thrive_native")]
-    internal static extern float PhysicalWorldGetPhysicsLatestTime(IntPtr physicalWorld);
+    internal static extern float PhysicalWorldGetPhysicsLatestTime(nint physicalWorld);
 
     [DllImport("thrive_native")]
-    internal static extern float PhysicalWorldGetPhysicsAverageTime(IntPtr physicalWorld);
+    internal static extern float PhysicalWorldGetPhysicsAverageTime(nint physicalWorld);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldSetPhysicsTimestep(IntPtr physicalWorld, float timestep);
+    internal static extern void PhysicalWorldSetPhysicsTimestep(nint physicalWorld, float timestep);
 
     [DllImport("thrive_native", CharSet = CharSet.Ansi, BestFitMapping = false)]
     [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool PhysicalWorldDumpPhysicsState(IntPtr physicalWorld, string path);
+    internal static extern bool PhysicalWorldDumpPhysicsState(nint physicalWorld, string path);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldSetDebugDrawLevel(IntPtr physicalWorld, int level);
+    internal static extern void PhysicalWorldSetDebugDrawLevel(nint physicalWorld, int level);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicalWorldSetDebugDrawCameraLocation(IntPtr physicalWorld, JVecF3 position);
+    internal static extern void PhysicalWorldSetDebugDrawCameraLocation(nint physicalWorld, JVecF3 position);
 }

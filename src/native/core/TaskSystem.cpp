@@ -453,6 +453,15 @@ TaskSystem::JobHandle TaskSystem::CreateJob(
     return handle;
 }
 
+void TaskSystem::CreateJobs(const char* inName, JPH::ColorArg inColor, const JobFunction& inJobFunction,
+    JobHandle* outJobs, uint32_t inNumJobs, uint32_t inNumDependencies)
+{
+    for (uint32_t i = 0; i < inNumJobs; ++i)
+    {
+        outJobs[i] = CreateJob(inName, inColor, inJobFunction, inNumDependencies);
+    }
+}
+
 void TaskSystem::FreeJob(Job* inJob)
 {
 #ifdef USE_OBJECT_POOLS

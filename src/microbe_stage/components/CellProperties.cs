@@ -269,6 +269,11 @@ public static class CellPropertiesHelpers
         // Also must copy the useful compounds, otherwise the bag will reject all of the compounds
         copyEntityCompounds.CopyUsefulFrom(originalCompounds);
 
+        // If the process system hasn't run yet on the original cell (for example when it was just spawned), nothing
+        // is marked useful yet. In that case the compounds are added ignoring usefulness as otherwise the copy would
+        // get none of the compounds (and the process system will soon set the useful compounds for the copy).
+        bool ignoreUsefulness = !originalCompounds.HasAnyBeenSetUseful();
+
         var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 
         bool isPlayerMicrobe = entity.Has<PlayerMarker>();
@@ -300,7 +305,7 @@ public static class CellPropertiesHelpers
                 // Since the child cell is always an NPC they are given either 50% of the compound from the
                 // parent, or 90% of the amount required to immediately divide again, whichever is smaller.
                 float amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
-                var addedCompound = copyEntityCompounds.AddCompound(compound, amountToGive);
+                var addedCompound = copyEntityCompounds.AddCompound(compound, amountToGive, ignoreUsefulness);
 
                 if (addedCompound < amountToGive)
                 {
@@ -312,7 +317,7 @@ public static class CellPropertiesHelpers
                 // Non-reproductive compounds just always get split evenly to both cells.
                 originalCompounds.TakeCompound(compound, amount * 0.5f);
 
-                var amountAdded = copyEntityCompounds.AddCompound(compound, amount * 0.5f);
+                var amountAdded = copyEntityCompounds.AddCompound(compound, amount * 0.5f, ignoreUsefulness);
 
                 if (amountAdded < amount)
                 {

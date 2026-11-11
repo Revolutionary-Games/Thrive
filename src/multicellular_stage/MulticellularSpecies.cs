@@ -551,41 +551,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public void RepositionCellTypesToOrigin()
     {
-        bool neededTwoShifts = false;
-
-        foreach (var cellType in ModifiableCellTypes)
-        {
-            if (cellType.RepositionToOrigin())
-            {
-                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
-                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
-                // in case some type needs it.
-                if (cellType.RepositionToOrigin())
-                {
-                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
-                    neededTwoShifts = true;
-                }
-            }
-        }
-
-        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
-        foreach (var cellType in ModifiableCellTypes)
-        {
-            if (cellType.RepositionToOrigin())
-            {
-                GD.PrintErr("Cell type shouldn't get a second move to origin");
-                LogInterceptor.ForwardCaughtError(new Exception(
-                        "Detected a cell layout that infinitely shifts around the origin, this will break " +
-                        "multicellular cell positioning!"),
-                    "Please include a save or screenshot of your species' cell types with the report");
-                break;
-            }
-        }
-
-        if (neededTwoShifts)
-        {
-            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
-        }
+        CellType.SafelyRepositionCellsToOrigin(ModifiableCellTypes);
     }
 
     public override void UpdateInitialCompounds()
@@ -756,7 +722,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation,
+                    oldTemplate.IsCavity);
                 modifiableEditorCells.AddFast(
                     new HexWithData<CellTemplate>(newTemplate, hexWithData.Position, hexWithData.Orientation),
                     workMemory1, workMemory2);
@@ -772,7 +739,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             if (!typeMapping.TryGetValue(oldType, out var newType))
                 throw new Exception("Cell type not found in species");
 
-            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation,
+                    cellTemplate.IsCavity),
                 workMemory1, workMemory2);
         }
 
@@ -984,7 +952,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 throw new InvalidOperationException($"No cell type exists for: {wantedTypeName}");
 
             modifiableEditorCells.AddFast(new HexWithData<CellTemplate>(
-                new CellTemplate(cellType, cell.Position, cell.Orientation),
+                new CellTemplate(cellType, cell.Position, cell.Orientation, cell.Data!.IsCavity),
                 cell.Position, cell.Orientation), hexTemporaryMemory, hexTemporaryMemory2);
         }
     }
@@ -1045,8 +1013,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                result.ModifiableGameplayCells.AddFast(
-                    new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                result.ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position,
+                        cellTemplate.Orientation,
+                        cellTemplate.IsCavity),
                     workMemory1, workMemory2);
             }
         }
@@ -1076,7 +1045,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation,
+                    oldTemplate.IsCavity);
             }
 
             result.modifiableEditorCells.AddFast(
