@@ -368,7 +368,8 @@ public partial class CloudBenchmark : BenchmarkBase
 
         if (stressTestResult != 0)
         {
-            builder.Append($"Cloud sim multiplier before under {TARGET_FPS_FOR_SPAWNING} FPS: ");
+            builder.Append(CultureInfo.InvariantCulture,
+                $"Cloud sim multiplier before under {TARGET_FPS_FOR_SPAWNING} FPS: ");
             builder.Append(Math.Round(stressTestResult, scoreDecimals + 1).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
