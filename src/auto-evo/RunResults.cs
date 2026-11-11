@@ -238,15 +238,27 @@ public class RunResults : IArchivable
         }
     }
 
+    /// <summary>
+    ///   Returns the collected candidates. Do not access this list while concurrent mutation steps are running.
+    /// </summary>
     public List<PossibleSpecies> GetPossibleSpeciesList()
     {
-        return modifiedSpecies;
+        // This lock basically does nothing as it doesn't help with the returned result, but is needed to suppress
+        // a warning.
+        lock (modifiedSpecies)
+        {
+            return modifiedSpecies;
+        }
     }
 
     public void AddPossibleMutation(Species species, KeyValuePair<Patch, long> initialPopulationInPatches,
         NewSpeciesType addType, Species parentSpecies)
     {
-        modifiedSpecies.Add(new PossibleSpecies(species, initialPopulationInPatches, addType, parentSpecies));
+        // Patch mutation steps can accept candidates concurrently
+        lock (modifiedSpecies)
+        {
+            modifiedSpecies.Add(new PossibleSpecies(species, initialPopulationInPatches, addType, parentSpecies));
+        }
     }
 
     public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,

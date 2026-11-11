@@ -26,27 +26,27 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
-    protected readonly List<MeshInstance3D> hoverHexes = new();
+    protected readonly List<MeshInstance3D> HoverHexes = new();
 
     /// <summary>
     ///   The sample models that are positioned to show what the player is about to place.
     /// </summary>
-    protected readonly List<SceneDisplayer> hoverModels = new();
+    protected readonly List<SceneDisplayer> HoverModels = new();
 
     /// <summary>
     ///   This is the hexes for the edited thing that are placed; this is the already placed hexes
     /// </summary>
-    protected readonly List<MeshInstance3D> placedHexes = new();
+    protected readonly List<MeshInstance3D> PlacedHexes = new();
 
     /// <summary>
     ///   The hexes that have been changed by a hovering hex and need to be reset to old material.
     /// </summary>
-    protected readonly Dictionary<MeshInstance3D, Material> hoverOverriddenMaterials = new();
+    protected readonly Dictionary<MeshInstance3D, Material> HoverOverriddenMaterials = new();
 
     /// <summary>
-    ///   This is the placed-down version of models, compare to <see cref="hoverModels"/>
+    ///   This is the placed-down version of models, compare to <see cref="HoverModels"/>
     /// </summary>
-    protected readonly List<SceneDisplayer> placedModels = new();
+    protected readonly List<SceneDisplayer> PlacedModels = new();
 
 #pragma warning disable CA2213
 
@@ -105,18 +105,21 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected int placementRotation;
 
-    private readonly StringName fontColorOverrideName = new("font_color");
-
     private readonly List<FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
 
     private readonly List<HexAdjacencyDrawElement> hexDrawList = new();
 
+    private readonly Dictionary<Color, LabelSettings> growthOrderLabelsByColour = new();
+
     // This is different from the other Godot resources as this is private and they are protected
 #pragma warning disable CA2213
     [Export]
     private CustomConfirmationDialog islandPopup = null!;
+
+    [Export]
+    private LabelSettings growthOrderLabelSettings = null!;
 #pragma warning restore CA2213
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
@@ -222,6 +225,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     public override void _Ready()
     {
+        // Take a clone of these settings so that we can allow them to change
+        growthOrderLabelSettings = (LabelSettings)growthOrderLabelSettings.Duplicate();
+
         base._Ready();
 
         camera!.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
@@ -260,24 +266,24 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         UpdateSymmetryIcon();
 
         // For now, we never reuse editors, so it isn't worth the trouble to have code to properly clear these
-        if (hoverHexes.Count > 0 || hoverModels.Count > 0 || hoverOverriddenMaterials.Count > 0)
+        if (HoverHexes.Count > 0 || HoverModels.Count > 0 || HoverOverriddenMaterials.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (hexes not empty)");
 
         // Create new hover hexes. See the TODO comment in _Process
         // This seems really cluttered, there must be a better way.
         for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
         {
-            hoverHexes.Add(CreateEditorHex());
+            HoverHexes.Add(CreateEditorHex());
         }
 
         for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
         {
-            hoverModels.Add(CreatePreviewModelHolder());
+            HoverModels.Add(CreatePreviewModelHolder());
         }
 
         // The world is reset each time, so these are gone. We throw an exception if that's not the case as that
         // indicates a programming bug
-        if (placedHexes.Count > 0 || placedModels.Count > 0)
+        if (PlacedHexes.Count > 0 || PlacedModels.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
     }
 
@@ -289,13 +295,13 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         // the editor is free to replace them wherever
         // TODO: it would be way better if we didn't have to do this and instead only updated
         // the hover hexes and models when there is some change to them
-        foreach (var hex in hoverHexes)
+        foreach (var hex in HoverHexes)
         {
             hex.Position = new Vector3(0, 0, 0);
             hex.Visible = false;
         }
 
-        foreach (var model in hoverModels)
+        foreach (var model in HoverModels)
         {
             model.Position = new Vector3(0, 0, 0);
             model.Visible = false;
@@ -305,12 +311,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         // and materials all the time
 
         // Reset the material of hexes that have been hovered over
-        foreach (var entry in hoverOverriddenMaterials)
+        foreach (var entry in HoverOverriddenMaterials)
         {
             entry.Key.MaterialOverride = entry.Value;
         }
 
-        hoverOverriddenMaterials.Clear();
+        HoverOverriddenMaterials.Clear();
 
         usedHoverHex = 0;
         usedHoverModel = 0;
@@ -375,29 +381,29 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         if (!shown)
         {
-            foreach (var hoverHex in hoverHexes)
+            foreach (var hoverHex in HoverHexes)
             {
                 hoverHex.Visible = false;
             }
 
-            foreach (var hoverModel in hoverModels)
+            foreach (var hoverModel in HoverModels)
             {
                 hoverModel.Visible = false;
             }
         }
 
-        foreach (var placedHex in placedHexes)
+        foreach (var placedHex in PlacedHexes)
         {
             placedHex.Visible = shown;
         }
 
-        foreach (var placedModel in placedModels)
+        foreach (var placedModel in PlacedModels)
         {
             placedModel.Visible = shown;
         }
     }
 
-    public void SetEditorWorldGuideObjectVisibility(bool shown)
+    public virtual void SetEditorWorldGuideObjectVisibility(bool shown)
     {
         editorArrow.Visible = shown;
         editorGrid.Visible = shown;
@@ -769,9 +775,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <param name="requiredCount">The total number of hover hexes that need to be available.</param>
     protected void EnsureHoverHexes(int requiredCount)
     {
-        while (hoverHexes.Count < requiredCount)
+        while (HoverHexes.Count < requiredCount)
         {
-            hoverHexes.Add(CreateEditorHex());
+            HoverHexes.Add(CreateEditorHex());
         }
     }
 
@@ -1021,7 +1027,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             bool duplicate = false;
 
             // Skip if there is a placed organelle here already
-            foreach (var placed in placedHexes)
+            foreach (var placed in PlacedHexes)
             {
                 if ((pos - placed.Position).LengthSquared() < 0.001f)
                 {
@@ -1031,14 +1037,14 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                     {
                         // This check is here so that if there are multiple hover hexes overlapping this hex, then
                         // we do actually remember the original material
-                        if (!hoverOverriddenMaterials.ContainsKey(placed))
+                        if (!HoverOverriddenMaterials.ContainsKey(placed))
                         {
                             // Store the material to put it back later
-                            hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+                            HoverOverriddenMaterials[placed] = placed.MaterialOverride;
                         }
 
                         // Mark as invalid
-                        placed.MaterialOverride = invalidMaterial;
+                        placed.MaterialOverride = GetInvalidOverlapMaterial(HoverOverriddenMaterials[placed]);
 
                         hadDuplicate = true;
                     }
@@ -1050,7 +1056,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             // Or if there is already a hover hex at this position
             for (int i = 0; i < usedHoverHex; ++i)
             {
-                if ((pos - hoverHexes[i].Position).LengthSquared() < 0.001f)
+                if ((pos - HoverHexes[i].Position).LengthSquared() < 0.001f)
                 {
                     duplicate = true;
                     break;
@@ -1061,18 +1067,43 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                 continue;
 
             EnsureHoverHexes(usedHoverHex + 1);
-            var hoverHex = hoverHexes[usedHoverHex++];
+            var hoverHex = HoverHexes[usedHoverHex++];
 
             hoverHex.Position = pos;
             hoverHex.Visible = true;
 
-            hoverHex.MaterialOverride = canPlace ? validMaterial : invalidMaterial;
+            hoverHex.MaterialOverride = GetHoverHexMaterial(canPlace);
         }
     }
 
+    /// <summary>
+    ///   Selects the material for a hover preview hex before it is displayed.
+    /// </summary>
+    protected virtual Material GetHoverHexMaterial(bool canPlace)
+    {
+        return canPlace ? validMaterial : invalidMaterial;
+    }
+
+    /// <summary>
+    ///   Selects the invalid material for an overlapped placed hex, given its original material.
+    /// </summary>
+    protected virtual Material GetInvalidOverlapMaterial(Material originalMaterial)
+    {
+        return invalidMaterial;
+    }
+
+    /// <summary>
+    ///   Updates placed hexes, optionally customising each material during the same pass.
+    /// </summary>
+    /// <param name="hexes">Items and their local hexes to display</param>
+    /// <param name="islands">Base positions to mark as disconnected</param>
+    /// <param name="forceHide">Whether to hide all placed hexes</param>
+    /// <param name="customiseMaterial">
+    ///   Receives the absolute hex position and default material, and returns the material to apply
+    /// </param>
     protected void UpdateAlreadyPlacedHexes(
         IEnumerable<(Hex BasePosition, IReadOnlyList<Hex> Hexes, bool PlacedThisSession)> hexes, List<Hex> islands,
-        bool forceHide = false)
+        bool forceHide = false, Func<Hex, Material, Material>? customiseMaterial = null)
     {
         int nextFreeHex = 0;
 
@@ -1082,29 +1113,32 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             {
                 var pos = Hex.AxialToCartesian(hex + position);
 
-                if (nextFreeHex >= placedHexes.Count)
+                if (nextFreeHex >= PlacedHexes.Count)
                 {
                     // New hex needed
-                    placedHexes.Add(CreateEditorHex());
+                    PlacedHexes.Add(CreateEditorHex());
                 }
 
-                var hexNode = placedHexes[nextFreeHex++];
+                var hexNode = PlacedHexes[nextFreeHex++];
 
+                Material material;
                 if (islands.Contains(position))
                 {
-                    hexNode.MaterialOverride = islandMaterial;
+                    material = islandMaterial;
                 }
                 else if (placedThisSession)
                 {
-                    hexNode.MaterialOverride = validMaterial;
+                    material = validMaterial;
                 }
                 else
                 {
-                    hexNode.MaterialOverride = oldMaterial;
+                    material = oldMaterial;
                 }
 
-                // As we set the correct material, we don't need to remember to restore it anymore
-                hoverOverriddenMaterials.Remove(hexNode);
+                hexNode.MaterialOverride = customiseMaterial?.Invoke(hex + position, material) ?? material;
+
+                // As we set the correct material, we don't need to remember to restore it any more
+                HoverOverriddenMaterials.Remove(hexNode);
 
                 hexNode.Position = pos;
 
@@ -1113,11 +1147,31 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
 
         // Delete excess entities
-        while (nextFreeHex < placedHexes.Count)
+        while (nextFreeHex < PlacedHexes.Count)
         {
-            placedHexes[placedHexes.Count - 1].DetachAndQueueFree();
-            placedHexes.RemoveAt(placedHexes.Count - 1);
+            PlacedHexes[PlacedHexes.Count - 1].DetachAndQueueFree();
+            PlacedHexes.RemoveAt(PlacedHexes.Count - 1);
         }
+    }
+
+    /// <summary>
+    ///   Font configuration for floating labels in the editor.
+    /// </summary>
+    /// <param name="colour">Colour of the font</param>
+    protected virtual LabelSettings GetFloatingLabelSettings(Color colour)
+    {
+        if (colour == Colors.White)
+            return growthOrderLabelSettings;
+
+        // Otherwise we need to generate a new label settings to apply a colour
+        if (growthOrderLabelsByColour.TryGetValue(colour, out var customizedColour))
+            return customizedColour;
+
+        customizedColour = (LabelSettings)growthOrderLabelSettings.Duplicate();
+        customizedColour.FontColor = colour;
+        growthOrderLabelsByColour.Add(colour, customizedColour);
+
+        return customizedColour;
     }
 
     /// <summary>
@@ -1154,15 +1208,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
             graphicalLabel.TargetPosition = label.TargetPosition;
             graphicalLabel.Text = label.Text;
-
-            if (label.TextColor != Colors.White)
-            {
-                graphicalLabel.AddThemeColorOverride(fontColorOverrideName, label.TextColor);
-            }
-            else
-            {
-                graphicalLabel.RemoveThemeColorOverride(fontColorOverrideName);
-            }
+            graphicalLabel.LabelSettings = GetFloatingLabelSettings(label.TextColor);
 
             ++currentLabelId;
         }
@@ -1285,7 +1331,19 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (disposing)
         {
             positionZReference.Dispose();
-            fontColorOverrideName.Dispose();
+
+            // Let go of customized label settings.
+            // This seems to sometimes be null in unit tests.
+            if (growthOrderLabelSettings != null!)
+            {
+                growthOrderLabelSettings.Dispose();
+                foreach (var customized in growthOrderLabelsByColour.Values)
+                {
+                    customized.Dispose();
+                }
+            }
+
+            growthOrderLabelsByColour.Clear();
         }
 
         base.Dispose(disposing);

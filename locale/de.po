@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: Alice König <alice.purple-rose@outlook.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -797,6 +797,17 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"Eine Zelle auf weniger Organellentypen zu spezialisieren, gewährt einen Bonus auf die Effektivität aller Organellen dieser Zelle.\n"
+"Der aktuelle Bonus beträgt {0}% (Der maximale Bonus erhöht sich mit der Zellgröße bis zu {3} Hexagonen.)\n"
+"Der aktuelle Bonus wird gewährt, da {1} {2} Hexagone vorhanden sind.\n"
+"Der Bonus erhöht sich, wenn mehr Organellen des selben Typs platziert werden und andere Organellen entfernt werden."
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -2671,6 +2682,9 @@ msgstr "Gift schießen"
 
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Giftprojektil abschießen und Zielzellen beschädigen"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "Geißeln"

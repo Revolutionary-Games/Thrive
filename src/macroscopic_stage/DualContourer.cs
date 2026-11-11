@@ -108,7 +108,7 @@ public class DualContourer
 
         SetColours(points, colors);
 
-        var arrays = new Array();
+        using var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
 
         arrays[(int)Mesh.ArrayType.Vertex] = points.ToArray();
@@ -117,7 +117,7 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Color] = colors;
 
         ArrayMesh mesh = new ArrayMesh();
-        mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+        mesh.AddSurfaceFromArraysWithKeepAlive(Mesh.PrimitiveType.Triangles, arrays);
 
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");

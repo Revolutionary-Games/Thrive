@@ -62,6 +62,11 @@ public static class Constants
     /// </remarks>
     public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
+    /// <summary>
+    ///   Visual displacement of cavity cells below the gameplay plane.
+    /// </summary>
+    public const float CAVITY_CELL_Y_OFFSET = -5.0f;
+
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
@@ -1316,6 +1321,11 @@ public static class Constants
     public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
 
     public const float GAMETE_FUSION_ANIMATION_DURATION = 5.0f;
+
+    /// <summary>
+    ///   The chance that a gamete spawns instead of a colony. Only works for species with sexual reproduction
+    /// </summary>
+    public const float GAMETE_SPAWN_CHANCE = 0.2f;
 
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;

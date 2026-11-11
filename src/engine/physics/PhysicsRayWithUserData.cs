@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using Arch.Core;
 
 /// <summary>
@@ -35,7 +34,7 @@ public struct PhysicsRayWithUserData
     /// <summary>
     ///   Raw pointer that is not wrapped in a <see cref="NativePhysicsBody"/> for performance reasons
     /// </summary>
-    public readonly IntPtr Body;
+    public readonly nint Body;
 
     /// <summary>
     ///   Copies a hit but replaces the entity. Used to resolve microbe hits to real microbe entities.

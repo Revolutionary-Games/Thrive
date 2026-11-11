@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
-"PO-Revision-Date: 2026-10-29 12:56+0000\n"
-"Last-Translator: Guno haozheum <15721507614@163.com>\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
+"PO-Revision-Date: 2026-10-31 14:26+0000\n"
+"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -784,6 +784,17 @@ msgstr "在该选项卡中，你可以查看你的细胞群落在游玩过程中
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "点击一个细胞以开始移动它。将细胞移动到你喜欢的位置。所有的细胞必须仍然保持相互连接，并且靠近它们在结构中应该在的位置。编辑细胞的细胞器可能会导致细胞间出现重叠，必须修复后才能使手动布局保持有效。退出手动布局模式将丢弃对其所做的所有更改。"
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"将细胞特化为使用更少种类的细胞器，可为该细胞中的所有细胞器给予效率加成。\n"
+"当前加成为 {0}%（最大加成幅度会随着细胞尺寸的增加而提升，直至达到 {3} 个六角格）。\n"
+"当前加成由 {1} 个 {2} 六角格提供。\n"
+"放置更多该主要类型的细胞器，并移除其他类型的细胞器，即可进一步提升加成。"
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -2620,6 +2631,9 @@ msgstr "发射毒素"
 
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "发射毒素投射物对命中细胞造成伤害"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "鞭毛"
@@ -5491,9 +5505,8 @@ msgstr "压力耐受性"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "您的物种能适应的压力值。两个滑块可以分别设置最小值与最大值。当环境压力超出设定范围时，将对您的物种产生诸多负面影响。取消勾选滑块下方复选框即可调整压力范围大小。"
 
-#, fuzzy
 msgid "PRESSURE_UNIT_KPA"
-msgstr "压力"
+msgstr "千帕"
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下您要设置的按钮…"
@@ -5507,7 +5520,6 @@ msgstr "预览图像文件太大"
 msgid "PREVIOUS_COLON"
 msgstr "之前："
 
-#, fuzzy
 msgid "PROCESSES_SPEED_MODIFIER"
 msgstr "生物代谢速度"
 
@@ -6697,9 +6709,8 @@ msgstr "温度适应范围"
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "您的物种理想的温度。当环境温度超出理想温度的适应范围时，将产生不利影响，导致生存难度增加。请根据您想游玩的地区来调整适应参数滑块。"
 
-#, fuzzy
 msgid "TEMPERATURE_UNIT_CELSIUS"
-msgstr "温度"
+msgstr "摄氏度"
 
 msgid "TESTING_TEAM"
 msgstr "测试团队"

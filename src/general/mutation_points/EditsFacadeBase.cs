@@ -6,10 +6,10 @@ using System.Collections.Generic;
 /// </summary>
 public abstract class EditsFacadeBase
 {
-    protected readonly List<EditorCombinableActionData> activeActions = new();
+    protected readonly List<EditorCombinableActionData> ActiveActions = new();
 
     /// <summary>
-    ///   If <see cref="SpeciesEditsFacade.activeActions"/> contains a history reset action, this is the index of
+    ///   If <see cref="SpeciesEditsFacade.ActiveActions"/> contains a history reset action, this is the index of
     ///   that action. When applying changes, this is used to quickly skip over useless things from before.
     /// </summary>
     protected int lastHistoryReset = -1;
@@ -22,18 +22,18 @@ public abstract class EditsFacadeBase
     /// <returns>A checkpoint number that can be used to revert another set of actions</returns>
     public int SetActiveActions(List<EditorCombinableActionData> actions)
     {
-        activeActions.Clear();
-        activeActions.AddRange(actions);
+        ActiveActions.Clear();
+        ActiveActions.AddRange(actions);
 
         RefreshHistoryResetPoint();
 
         MarkDirty();
-        return activeActions.Count;
+        return ActiveActions.Count;
     }
 
     public void ClearActiveActions()
     {
-        activeActions.Clear();
+        ActiveActions.Clear();
         lastHistoryReset = -1;
         MarkDirty();
     }
@@ -42,29 +42,29 @@ public abstract class EditsFacadeBase
     {
         foreach (var actionData in data)
         {
-            activeActions.Add(actionData);
+            ActiveActions.Add(actionData);
 
             if (actionData.ResetsHistory)
             {
-                lastHistoryReset = activeActions.Count - 1;
+                lastHistoryReset = ActiveActions.Count - 1;
             }
         }
 
         MarkDirty();
-        return activeActions.Count;
+        return ActiveActions.Count;
     }
 
     public int AppendAction(EditorCombinableActionData singleAction)
     {
-        activeActions.Add(singleAction);
+        ActiveActions.Add(singleAction);
 
         if (singleAction.ResetsHistory)
         {
-            lastHistoryReset = activeActions.Count - 1;
+            lastHistoryReset = ActiveActions.Count - 1;
         }
 
         MarkDirty();
-        return activeActions.Count;
+        return ActiveActions.Count;
     }
 
     /// <summary>
@@ -75,16 +75,16 @@ public abstract class EditsFacadeBase
     /// <returns>True if the checkpoint is valid</returns>
     public bool RevertAppend(int checkpoint)
     {
-        if (checkpoint < 0 || checkpoint > activeActions.Count)
+        if (checkpoint < 0 || checkpoint > ActiveActions.Count)
             return false;
 
-        while (activeActions.Count >= checkpoint)
+        while (ActiveActions.Count >= checkpoint)
         {
-            activeActions.RemoveAt(activeActions.Count - 1);
+            ActiveActions.RemoveAt(ActiveActions.Count - 1);
             MarkDirty();
         }
 
-        if (lastHistoryReset >= activeActions.Count)
+        if (lastHistoryReset >= ActiveActions.Count)
         {
             RefreshHistoryResetPoint();
         }
@@ -105,13 +105,13 @@ public abstract class EditsFacadeBase
         // We need to only process from the latest history reset action as nothing from-before-that can affect things
         // Note that many reset history actions need to set up state correctly in the processing, so we must process
         // it itself
-        int count = activeActions.Count;
+        int count = ActiveActions.Count;
         for (int i = start; i < count; ++i)
         {
-            if (!ApplyAction(activeActions[i]))
+            if (!ApplyAction(ActiveActions[i]))
             {
                 throw new InvalidOperationException(
-                    $"Could not apply action data at index {i}: {activeActions[i]} ({activeActions[i].GetType()})");
+                    $"Could not apply action data at index {i}: {ActiveActions[i]} ({ActiveActions[i].GetType()})");
             }
         }
 
@@ -140,10 +140,10 @@ public abstract class EditsFacadeBase
     protected void RefreshHistoryResetPoint()
     {
         lastHistoryReset = -1;
-        int count = activeActions.Count;
+        int count = ActiveActions.Count;
         for (int i = 0; i < count; ++i)
         {
-            if (activeActions[i].ResetsHistory)
+            if (ActiveActions[i].ResetsHistory)
                 lastHistoryReset = i;
         }
     }
