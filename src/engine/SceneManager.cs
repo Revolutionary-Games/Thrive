@@ -273,8 +273,8 @@ public partial class SceneManager : Node
         if (!ResourceLoader.Exists(scenePath))
         {
             // This is either a starter alias or the path does not exist. Let's try to match the starter aliases.
-            // Process the parameter to check for starter aliases. If it ends with Stage, strip it off ignoring case since
-            // it will be appended later anyway.
+            // Process the parameter to check for starter aliases. If it ends with Stage, strip it off ignoring case
+            // since it will be appended later anyway.
             if (scenePath.EndsWith("Stage", StringComparison.OrdinalIgnoreCase))
             {
                 scenePath = scenePath.Substring(0, scenePath.Length - 5);
@@ -282,7 +282,8 @@ public partial class SceneManager : Node
 
             if (scenePath.Length > 0)
             {
-                // To lowercase, then first letter to uppercase. Afterwards append "Stage" and build full starter string.
+                // To lowercase, then first letter to uppercase. Afterwards append "Stage" and build full starter
+                // string.
                 // For example, "load aware" will go "aware -> Aware -> AwareStage" and then produce the starter path.
                 scenePath = char.ToUpperInvariant(scenePath[0]) + scenePath.Substring(1).ToLowerInvariant();
                 scenePath += "Stage";
