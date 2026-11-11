@@ -10,7 +10,8 @@ using Systems;
 /// </content>
 public partial class CellBodyPlanEditorComponent
 {
-    private static Hex[] autoGrowthOrderCalculationHeighborOrder = [
+    private static Hex[] autoGrowthOrderCalculationHeighborOrder =
+    [
         new(0, -1),
         new(-1, 0),
         new(1, -1),
