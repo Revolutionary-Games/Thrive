@@ -6,8 +6,8 @@
     vec3 viewRd = normalize(target.xyz / target.w);
 
     CloudRay ray = CreateCloudRay(p.cameraPosition.xyz,
-        normalize((m.cameraTransform * vec4(viewRd, 0.0)).xyz), p.planetCenter.xyz, p.shell.x, p.shell.y,
-        normalize(p.sun.xyz), p.sun.w, Ign(vec2(px)));
+        normalize((m.cameraTransform * vec4(viewRd, 0.0)).xyz), p.planetCenter.xyz, p.planetCenter.w,
+        p.shell.x, p.shell.y, normalize(p.sun.xyz), p.sun.w, Ign(vec2(px)));
 
     // Opaque
     ivec2 depthPx = ivec2((vec2(px) + 0.5) * p.marchSize.zw * p.screenSize.xy);

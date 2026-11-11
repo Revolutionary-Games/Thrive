@@ -9,7 +9,7 @@ using Godot;
 [GodotAbstract]
 public partial class BarPanelBase : VBoxContainer
 {
-    protected readonly List<CompoundProgressBar> primaryBars = new();
+    protected readonly List<CompoundProgressBar> PrimaryBars = new();
 
 #pragma warning disable CA2213
 
@@ -84,7 +84,7 @@ public partial class BarPanelBase : VBoxContainer
         bar.Compact = PanelCompressed;
 
         primaryBarContainer.AddChild(bar);
-        primaryBars.Add(bar);
+        PrimaryBars.Add(bar);
     }
 
     public virtual void HideWithoutAnimation()

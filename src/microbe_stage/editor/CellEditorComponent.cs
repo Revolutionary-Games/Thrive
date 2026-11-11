@@ -344,10 +344,10 @@ public partial class CellEditorComponent :
             // Need to reapply the species as changes to it are ignored when the appearance tab is not shown
             UpdateCellVisualization();
 
-            foreach (var hex in placedHexes)
+            foreach (var hex in PlacedHexes)
                 hex.Visible = !MicrobePreviewMode;
 
-            foreach (var model in placedModels)
+            foreach (var model in PlacedModels)
                 model.Visible = !MicrobePreviewMode;
         }
     }
@@ -2383,7 +2383,7 @@ public partial class CellEditorComponent :
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
-            var organelleModel = hoverModels[usedHoverModel++];
+            var organelleModel = HoverModels[usedHoverModel++];
 
             organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
                 cartesianPosition + shownOrganelleDefinition.ModelOffset);
@@ -2778,13 +2778,13 @@ public partial class CellEditorComponent :
             // Model of the organelle
             if (organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var modelInfo))
             {
-                if (nextFreeOrganelle >= placedModels.Count)
+                if (nextFreeOrganelle >= PlacedModels.Count)
                 {
                     // New organelle model needed
-                    placedModels.Add(CreatePreviewModelHolder());
+                    PlacedModels.Add(CreatePreviewModelHolder());
                 }
 
-                var organelleModel = placedModels[nextFreeOrganelle++];
+                var organelleModel = PlacedModels[nextFreeOrganelle++];
 
                 UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
@@ -2794,10 +2794,10 @@ public partial class CellEditorComponent :
             }
         }
 
-        while (nextFreeOrganelle < placedModels.Count)
+        while (nextFreeOrganelle < PlacedModels.Count)
         {
-            placedModels[placedModels.Count - 1].DetachAndQueueFree();
-            placedModels.RemoveAt(placedModels.Count - 1);
+            PlacedModels[PlacedModels.Count - 1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
         }
     }
 
