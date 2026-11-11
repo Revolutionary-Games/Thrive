@@ -120,10 +120,11 @@ public class MulticellularSpeciesComparer
         newCells.AddRange(speciesB.EditorCells);
         oldCells.AddRange(speciesA.EditorCells);
 
-        // TODO: should this go in reverse order for more efficient removes?
-        foreach (var newCell in newCells)
+        // Match all unchanged positions before considering moves, so an added cell cannot steal an old cell
+        // that still exists later in the new layout's enumeration (for example after a cavity edit).
+        for (int i = newCells.Count - 1; i >= 0; --i)
         {
-            bool match = false;
+            var newCell = newCells[i];
 
             foreach (var oldCell in oldCells)
             {
@@ -135,30 +136,31 @@ public class MulticellularSpeciesComparer
                     if (!oldCells.Remove(oldCell))
                         throw new Exception("Expected remove failed");
 
-                    match = true;
+                    newCells.RemoveAt(i);
                     break;
                 }
             }
+        }
 
-            if (!match)
+        foreach (var newCell in newCells)
+        {
+            bool match = false;
+
+            // Turn into a move, as those are cheaper than placing. All remaining old cells have actually
+            // left their original positions, so they can be matched without affecting unchanged cells.
+            foreach (var oldCell in oldCells)
             {
-                // Turn into a move, as those are cheaper than placing
-                // Unlike in microbe, it should be safe to "steal" a cell from a placed location as anyway we would
-                // end up with a single move and add operation in the end anyway
-                foreach (var oldCell in oldCells)
+                if (StringComparer.InvariantCultureIgnoreCase.Equals(oldCell.Data!.CellType.CellTypeName,
+                        newCell.Data!.CellType.CellTypeName))
                 {
-                    if (StringComparer.InvariantCultureIgnoreCase.Equals(oldCell.Data!.CellType.CellTypeName,
-                            newCell.Data!.CellType.CellTypeName))
-                    {
-                        if (!oldCells.Remove(oldCell))
-                            throw new Exception("Expected remove failed");
+                    if (!oldCells.Remove(oldCell))
+                        throw new Exception("Expected remove failed");
 
-                        match = true;
+                    match = true;
 
-                        // A move
-                        cost += Math.Min(Constants.ORGANELLE_MOVE_COST * costMultiplier, maxSingleActionCost);
-                        break;
-                    }
+                    // A move
+                    cost += Math.Min(Constants.ORGANELLE_MOVE_COST * costMultiplier, maxSingleActionCost);
+                    break;
                 }
             }
 

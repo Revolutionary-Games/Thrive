@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
-"PO-Revision-Date: 2026-10-29 08:21+0000\n"
-"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
+"PO-Revision-Date: 2026-11-08 17:58+0000\n"
+"Last-Translator: Nie <nie@users.noreply.translate.revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -785,6 +785,17 @@ msgstr "W tej zakładce można zobaczyć faktyczny całokształt układu, który
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "Kliknij komórkę, aby zacząć ją przemieszczać. Przenoś komórki wedle upodobania. Wszystkie komórki muszą pozostać połączone i być blisko miejsc, gdzie mają się znajdować w strukturze. Edytowanie organelli może czasem spowodować przenikanie się komórek, które należy naprawić, aby układ był prawidłowy. Opuszczenie trybu układu ręcznego prowadzi do odrzucenia wszystkich zmian wprowadzonych do układu."
 
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"Specjalizowanie komórki, żeby używała mniej typów organelli daje premię do wydajności wszystkich organelli w tej komórce.\n"
+"Obecna premia wynosi {0}% (maksymalna moc premii zwiększa się z wielkością komórki do {3} pól)\n"
+"Obecna premia jest realizowana ponieważ jest/są {1}{2} pól/pola.\n"
+"Premia zwiększa się z liczbą organelli najczęstszego typu i gdy organelle innych typów są usuwane."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "We wielokomórkowym to pokazuje średnią premię specjalizacji wszystkich komórek, wliczając premie za sąsiedztwo.\n"
@@ -1361,9 +1372,8 @@ msgstr "Lewy zderzak"
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
 msgstr "Wciśnięcie lewego grzybka"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_MISC1"
-msgstr "Strefy Martwe Kontrolera"
+msgstr ""
 
 msgid "CONTROLLER_BUTTON_PADDLE1"
 msgstr "Przycisk Paddle 1"
@@ -2610,6 +2620,9 @@ msgstr "Strzel toksyną"
 
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Wystrzel toksyczny pocisk aby uszkodzić trafione komórki"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "Wić"
@@ -5538,9 +5551,8 @@ msgstr "Tolerancja na Ciśnienie"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Preferencję ciśnienia dla Twojego gatunku. Ustawiane oddzielnie jako minimalne i maksymalne. Kiedy warunki wykraczają poza ten przedział, dotkną Cię negatywne efekty. Zmień zakres przez odznaczenie checkboxów poniższej sliderów."
 
-#, fuzzy
 msgid "PRESSURE_UNIT_KPA"
-msgstr "Ciśn."
+msgstr "kPa"
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Naciśnij klawisz..."
@@ -5554,9 +5566,8 @@ msgstr "Podgląd jest za duży"
 msgid "PREVIOUS_COLON"
 msgstr "poprzedni:"
 
-#, fuzzy
 msgid "PROCESSES_SPEED_MODIFIER"
-msgstr "Prędkość Bioprocesów"
+msgstr "Prędkość Procesów Biologicznych"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Przetwarzanie wczytanych obiektów"
@@ -6750,9 +6761,8 @@ msgstr "Zakres Tolerancji Temperatury"
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Temperatura preferowana przez twój gatunek. W warunkach poza zakresem tolerancji wokół temperatury idealnej pojawią się negatywne efekty utrudniające przetrwanie. Dostosuj suwaki do obszarów, w których planujesz grać."
 
-#, fuzzy
 msgid "TEMPERATURE_UNIT_CELSIUS"
-msgstr "Temperatura preferowana przez twój gatunek. W warunkach poza zakresem tolerancji wokół temperatury idealnej pojawią się negatywne efekty utrudniające przetrwanie. Dostosuj suwaki do obszarów, w których planujesz grać."
+msgstr "°C"
 
 msgid "TESTING_TEAM"
 msgstr "Testerzy"
@@ -10024,6 +10034,8 @@ msgstr "Ogólne statystyki obecnego świata"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+"Uwzględniaj prototypy późniejszych etapów: {0}\n"
+"Uwzględniaj easter eggi: {1}"
 
 msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr "Easter eggi w rozgrywce: {0}"

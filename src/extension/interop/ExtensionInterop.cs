@@ -111,7 +111,14 @@ public static class ExtensionInterop
             return -1;
         }
 
-        return NativeMethods.ExtensionGetVersion(nativeConfigInstance);
+        var result = NativeMethods.ExtensionGetVersion(nativeConfigInstance);
+
+#if DEBUG
+        if (shutdown || !GodotObject.IsInstanceValid(ThriveExtension.Value))
+            throw new InvalidOperationException("ThriveConfig was freed during a native call");
+#endif
+
+        return result;
     }
 }
 

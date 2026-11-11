@@ -334,7 +334,7 @@ public class MacroscopicSpeciesCompatibilityTests
         public Queue<IRunStep> GatherSteps()
         {
             var steps = new Queue<IRunStep>();
-            GatherInfo(steps);
+            GatherInfo(steps, 0);
             return steps;
         }
     }

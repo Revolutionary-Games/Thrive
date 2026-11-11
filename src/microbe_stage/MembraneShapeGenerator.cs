@@ -406,7 +406,7 @@ public class MembraneShapeGenerator
         var bufferSize = layerCount * vertexCount + 2;
         var indexSize = (vertexCount * 2 + (layerCount - 1) * vertexCount * 2) * 3;
 
-        var arrays = new Array();
+        using var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
 
         // Build vertex, index, and uv lists
@@ -478,7 +478,7 @@ public class MembraneShapeGenerator
         var generatedMesh = new ArrayMesh();
 
         surfaceIndex = generatedMesh.GetSurfaceCount();
-        generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+        generatedMesh.AddSurfaceFromArraysWithKeepAlive(Mesh.PrimitiveType.Triangles, arrays);
 
         return generatedMesh;
     }
@@ -499,7 +499,7 @@ public class MembraneShapeGenerator
         // Need two exta indices to connect back to the orginal triangle
         var indexSize = trueVertexCount + 2;
 
-        var arrays = new Array();
+        using var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
 
         // Write mesh data
@@ -550,7 +550,7 @@ public class MembraneShapeGenerator
         var generatedMesh = new ArrayMesh();
 
         surfaceIndex = generatedMesh.GetSurfaceCount();
-        generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.TriangleStrip, arrays);
+        generatedMesh.AddSurfaceFromArraysWithKeepAlive(Mesh.PrimitiveType.TriangleStrip, arrays);
 
         return generatedMesh;
     }

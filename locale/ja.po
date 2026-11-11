@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-09-22 15:32+0000\n"
 "Last-Translator: mousleep <willowisp0919@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -797,6 +797,15 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -2455,6 +2464,9 @@ msgid "FIRE_TOXIN"
 msgstr ""
 
 msgid "FIRE_TOXIN_TOOLTIP"
+msgstr ""
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
 msgstr ""
 
 msgid "FLAGELLUM"
