@@ -14,8 +14,8 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class AutoEvoRun
 {
-    protected readonly IAutoEvoConfiguration configuration;
-    protected readonly AutoEvoGlobalCache globalCache;
+    protected readonly IAutoEvoConfiguration Configuration;
+    protected readonly AutoEvoGlobalCache GlobalCache;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
@@ -64,8 +64,8 @@ public class AutoEvoRun
     public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache, long seed)
     {
         Parameters = new RunParameters(world);
-        configuration = world.WorldSettings.AutoEvoConfiguration;
-        this.globalCache = globalCache;
+        Configuration = world.WorldSettings.AutoEvoConfiguration;
+        GlobalCache = globalCache;
         runSeed = seed;
     }
 
@@ -208,7 +208,7 @@ public class AutoEvoRun
     {
         if (autoEvoRun != null)
         {
-            return autoEvoRun.globalCache;
+            return autoEvoRun.GlobalCache;
         }
 
         return new AutoEvoGlobalCache(worldSettings);
@@ -451,7 +451,7 @@ public class AutoEvoRun
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
-        var autoEvoConfiguration = configuration;
+        var autoEvoConfiguration = Configuration;
 
         var allSpecies = new HashSet<Species>();
 
@@ -459,7 +459,7 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, GlobalCache));
 
             foreach (var species in entry.Value.SpeciesInPatch)
             {

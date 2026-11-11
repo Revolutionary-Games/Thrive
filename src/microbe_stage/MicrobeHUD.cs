@@ -554,7 +554,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             stage.Player.Get<Engulfable>().PhagocytosisStep is PhagocytosisPhase.None or PhagocytosisPhase.Ingestion)
         {
             playerWasDigested = false;
-            healthBar.TintProgress = defaultHealthBarColour;
+            healthBar.TintProgress = DefaultHealthBarColour;
             base.UpdateHealth(delta);
             return;
         }
@@ -646,7 +646,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         var playerStorage = GetPlayerStorage();
 
-        foreach (var (compound, bar) in compoundBars)
+        foreach (var (compound, bar) in CompoundBars)
         {
             if (bar.Visible)
                 continue;
@@ -663,10 +663,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (!stage!.Player.Has<MicrobeColony>())
         {
-            return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
+            return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(AllAgents);
         }
 
-        return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
+        return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(AllAgents);
     }
 
     protected override ICompoundStorage GetPlayerStorage()

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-/// <summary>
+/// <content>
 ///   Implements the manual layout editing part of the editor. This is a separate file as this is a bit of a long new
 ///   functionality, so it is cleared to have it in a separate file.
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
     /// <summary>
@@ -474,19 +474,19 @@ public partial class CellBodyPlanEditorComponent
         int nextModel = 0;
         foreach (var cell in CurrentFullLayout)
         {
-            if (nextModel >= placedModels.Count)
-                placedModels.Add(CreatePreviewModelHolder());
+            if (nextModel >= PlacedModels.Count)
+                PlacedModels.Add(CreatePreviewModelHolder());
 
-            var model = placedModels[nextModel++];
+            var model = PlacedModels[nextModel++];
             ShowCellTypeInModelHolder(model, GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType),
                 Hex.AxialToCartesian(cell.Position) + microbeModelOffset, cell.Orientation);
             model.Visible = true;
         }
 
-        while (nextModel < placedModels.Count)
+        while (nextModel < PlacedModels.Count)
         {
-            placedModels[^1].DetachAndQueueFree();
-            placedModels.RemoveAt(placedModels.Count - 1);
+            PlacedModels[^1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
         }
 
         cellLayoutBorderDisplay.DisplayCellLayoutBorders(cellPositions.Keys.ToList(), UsesManualPlayerLayout,
@@ -872,7 +872,7 @@ public partial class CellBodyPlanEditorComponent
             .Select(position => Hex.RotateAxialNTimes(position, moving.Orientation));
         RenderHoveredHex(q, r, positionsLocal, isPlacementProbablyValid, out _);
 
-        var model = hoverModels[usedHoverModel++];
+        var model = HoverModels[usedHoverModel++];
         ShowCellTypeInModelHolder(model, type, Hex.AxialToCartesian(new Hex(q, r)) + microbeModelOffset,
             moving.Orientation);
         model.Visible = true;
@@ -906,12 +906,12 @@ public partial class CellBodyPlanEditorComponent
 
         // Make the normal view invisible
         MouseHoverPositions = null;
-        foreach (var hex in placedHexes)
+        foreach (var hex in PlacedHexes)
         {
             hex.Visible = false;
         }
 
-        foreach (var model in placedModels)
+        foreach (var model in PlacedModels)
         {
             model.Visible = false;
         }

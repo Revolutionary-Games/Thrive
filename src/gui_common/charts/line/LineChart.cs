@@ -1170,13 +1170,13 @@ public partial class LineChart : VBoxContainer
     /// </summary>
     public partial class DatasetsIconLegend : RefCounted, IDataSetsLegend
     {
-        protected readonly LineChart chart;
-        protected readonly List<DatasetIcon> icons = new();
+        protected readonly LineChart Chart;
+        protected readonly List<DatasetIcon> Icons = new();
         protected DataSetDictionary? datasets;
 
         public DatasetsIconLegend(LineChart chart)
         {
-            this.chart = chart;
+            Chart = chart;
         }
 
         public virtual Control CreateLegend(DataSetDictionary datasets, string? title,
@@ -1196,12 +1196,12 @@ public partial class LineChart : VBoxContainer
                 // Use the default icon as a fallback if the data icon texture hasn't been set already
                 if (data.Value.Icon == null)
                 {
-                    data.Value.Icon = chart.defaultIconLegendTexture;
+                    data.Value.Icon = Chart.defaultIconLegendTexture;
                     fallbackIconIsUsed = true;
                 }
 
-                var icon = new DatasetIcon(data.Key, chart, (LineChartData)data.Value, fallbackIconIsUsed);
-                icons.Add(icon);
+                var icon = new DatasetIcon(data.Key, Chart, (LineChartData)data.Value, fallbackIconIsUsed);
+                Icons.Add(icon);
 
                 hBox.AddChild(icon);
 
@@ -1220,7 +1220,7 @@ public partial class LineChart : VBoxContainer
                 {
                     toolTip = ToolTipHelper.GetDefaultToolTip();
                     createdToolTips.Add(icon, toolTip);
-                    ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + chart.ChartName);
+                    ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + Chart.ChartName);
                 }
 
                 toolTip.DisplayName = data.Key;
@@ -1237,7 +1237,7 @@ public partial class LineChart : VBoxContainer
             if (datasets == null)
                 throw new InvalidOperationException("Datasets are not loaded");
 
-            var icon = icons.Find(i => i.DataName == dataset);
+            var icon = Icons.Find(i => i.DataName == dataset);
 
             if (icon == null)
                 return;
@@ -1258,24 +1258,24 @@ public partial class LineChart : VBoxContainer
 
         public virtual object Clone()
         {
-            return new DatasetsIconLegend(chart);
+            return new DatasetsIconLegend(Chart);
         }
 
         private void OnIconLegendToggled(bool toggled, DatasetIcon icon)
         {
-            var result = chart.UpdateDataSetVisibility(icon.DataName, toggled);
+            var result = Chart.UpdateDataSetVisibility(icon.DataName, toggled);
 
             switch (result)
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
                     icon.ButtonPressed = false;
                     ToolTipManager.Instance.ShowPopup(Localization.Translate("MAX_VISIBLE_DATASET_WARNING")
-                        .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
+                        .FormatSafe(Chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
                     icon.ButtonPressed = true;
                     ToolTipManager.Instance.ShowPopup(Localization.Translate("MIN_VISIBLE_DATASET_WARNING")
-                        .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
+                        .FormatSafe(Chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }

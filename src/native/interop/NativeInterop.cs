@@ -220,7 +220,7 @@ public static class NativeInterop
     /// <summary>
     ///   Gets the intercommunication interface for the native libraries
     /// </summary>
-    /// <returns>IntPtr put into the variant on success, 0 on failure</returns>
+    /// <returns>nint put into the variant on success, 0 on failure</returns>
     public static Variant GetIntercommunication(out int libraryVersion)
     {
         libraryVersion = version;
@@ -368,7 +368,7 @@ public static class NativeInterop
         return builder.ToString();
     }
 
-    private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
+    private static void ForwardMessage(nint messageData, int messageLength, NativeMethods.LogLevel level)
     {
         var message = Marshal.PtrToStringAnsi(messageData, messageLength);
 
@@ -436,11 +436,11 @@ public static class NativeInterop
         return debug ? PrecompiledTag.Debug : PrecompiledTag.None;
     }
 
-    private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+    private static nint DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
         // Would be complicated to inline due to the conditional compilation
         // ReSharper disable once InlineOutVariableDeclaration
-        IntPtr loaded;
+        nint loaded;
 
         // TODO: caching once loaded? This method is called again for each native method that is used so this gets
         // called some extra 50 or so times.
@@ -693,7 +693,7 @@ public static class NativeInterop
         return location;
     }
 
-    private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)
+    private static bool LoadLibraryIfExists(string libraryPath, out nint loaded)
     {
         var executableFolder = GetExecutableFolder();
 
@@ -726,11 +726,11 @@ public static class NativeInterop
         GD.Print("Executable relative variant: ", executableRelative);
 #endif
 
-        loaded = IntPtr.Zero;
+        loaded = nint.Zero;
         return false;
     }
 
-    private static bool LookForLibraryUpInFolders(string libraryName, out IntPtr loaded)
+    private static bool LookForLibraryUpInFolders(string libraryName, out nint loaded)
     {
         // If library was already looked for, return that instead of doing the lookup again assuming that the libraries
         // won't be moved or deleted during runtime
@@ -741,7 +741,7 @@ public static class NativeInterop
 
         var folders = Path.GetFullPath(".").Split(Path.DirectorySeparatorChar);
 
-        loaded = IntPtr.Zero;
+        loaded = nint.Zero;
 
         if (folders.Length < 2)
         {
@@ -783,7 +783,7 @@ public static class NativeInterop
 /// </summary>
 internal static partial class NativeMethods
 {
-    internal delegate void OnLogMessage(IntPtr messageData, int messageLength, LogLevel level);
+    internal delegate void OnLogMessage(nint messageData, int messageLength, LogLevel level);
 
     internal delegate void OnLineDraw(JVec3 from, JVec3 to, JColour colour);
 
@@ -810,7 +810,7 @@ internal static partial class NativeMethods
     internal static extern void ShutdownThriveLibrary();
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr GetIntercommunicationBridge();
+    internal static extern nint GetIntercommunicationBridge();
 
     [DllImport("early_checks")]
     internal static extern CPUCheckResult CheckRequiredCPUFeatures();

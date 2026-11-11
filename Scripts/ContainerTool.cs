@@ -49,7 +49,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         ColourConsole.WriteInfoLine($"Selected image type to build: {options.Image}");
     }
 
-    protected override string ExportFileNameBase => options.Image switch
+    protected override string ExportFileNameBase => Options.Image switch
     {
         ImageType.CI => "godot-ci",
         ImageType.NativeBuilder => "native-builder",
@@ -59,7 +59,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
     protected override string ImagesAndConfigsFolder => "podman";
 
-    protected override (string BuildRelativeFolder, string? TargetToStopAt) DefaultImageToBuild => options.Image switch
+    protected override (string BuildRelativeFolder, string? TargetToStopAt) DefaultImageToBuild => Options.Image switch
     {
         ImageType.CI => ("ci", null),
         ImageType.NativeBuilder => ("native_builder", null),
@@ -70,7 +70,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     protected override string ImageNameBase => $"thrive/{ExportFileNameBase}";
 
     protected override bool SaveByDefault =>
-        options.Image is not (ImageType.NativeBuilder or ImageType.NativeBuilderCross);
+        Options.Image is not (ImageType.NativeBuilder or ImageType.NativeBuilderCross);
 
     protected override async Task<ProcessRunHelpers.ProcessResult> RunImageBuild(ProcessStartInfo startInfo,
         bool capture, CancellationToken cancellationToken)
@@ -124,12 +124,12 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
     protected override Task<bool> PostCheckBuild(string tagOrId)
     {
-        if (options.Image == ImageType.NativeBuilder)
+        if (Options.Image == ImageType.NativeBuilder)
         {
             return CheckClangProducesCleanExecutables(tagOrId);
         }
 
-        if (options.Image == ImageType.NativeBuilderCross)
+        if (Options.Image == ImageType.NativeBuilderCross)
         {
             return CheckClangCanCrossCompileToWindows(tagOrId);
         }
@@ -139,7 +139,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
     protected override IEnumerable<string> ImagesToPullIfTheyAreOld()
     {
-        if (options.Image is ImageType.NativeBuilder or ImageType.NativeBuilderCross)
+        if (Options.Image is ImageType.NativeBuilder or ImageType.NativeBuilderCross)
         {
             // To update the image the relevant Dockerfile must also be updated
             // ReSharper disable once StringLiteralTypo

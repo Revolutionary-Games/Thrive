@@ -8,12 +8,12 @@ using World = Arch.Core.World;
 /// </summary>
 public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimulationWithPhysics
 {
-    protected readonly PhysicalWorld physics = PhysicalWorld.Create();
+    protected readonly PhysicalWorld Physics = PhysicalWorld.Create();
 
     /// <summary>
     ///   All created physics bodies. Must be tracked to correctly destroy them all
     /// </summary>
-    protected readonly List<NativePhysicsBody> createdBodies = new();
+    protected readonly List<NativePhysicsBody> CreatedBodies = new();
 
     /// <summary>
     ///   Set to true to force physics on the main thread (well, at least to wait the main thread while physics runs).
@@ -61,7 +61,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         QuarterSimulationTime,
     }
 
-    public PhysicalWorld PhysicalWorld => physics;
+    public PhysicalWorld PhysicalWorld => Physics;
 
     public PhysicsSteppingState CurrentPhysicsSteppingState => physicsSteppingState;
 
@@ -72,37 +72,37 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
-        var body = physics.CreateMovingBody(shape, position, rotation);
-        createdBodies.Add(body);
+        var body = Physics.CreateMovingBody(shape, position, rotation);
+        CreatedBodies.Add(body);
         return body;
     }
 
     public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quaternion rotation,
         Vector3 lockedAxis, bool lockRotation)
     {
-        var body = physics.CreateMovingBodyWithAxisLock(shape, position, rotation, lockedAxis, lockRotation);
-        createdBodies.Add(body);
+        var body = Physics.CreateMovingBodyWithAxisLock(shape, position, rotation, lockedAxis, lockRotation);
+        CreatedBodies.Add(body);
         return body;
     }
 
     public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
-        var body = physics.CreateStaticBody(shape, position, rotation);
-        createdBodies.Add(body);
+        var body = Physics.CreateStaticBody(shape, position, rotation);
+        CreatedBodies.Add(body);
         return body;
     }
 
     public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quaternion rotation,
         bool detectSleepingBodies = false, bool detectStaticBodies = false)
     {
-        var body = physics.CreateSensor(sensorShape, position, rotation, detectSleepingBodies, detectStaticBodies);
-        createdBodies.Add(body);
+        var body = Physics.CreateSensor(sensorShape, position, rotation, detectSleepingBodies, detectStaticBodies);
+        CreatedBodies.Add(body);
         return body;
     }
 
     public void DestroyBody(NativePhysicsBody body)
     {
-        if (!createdBodies.Remove(body))
+        if (!CreatedBodies.Remove(body))
         {
             GD.PrintErr("Can't destroy body not in simulation");
             return;
@@ -110,9 +110,9 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
         // Stop collision recording if it is active to make sure the memory for that is returned to the pool
         if (body.ActiveCollisions != null)
-            physics.BodyStopCollisionRecording(body);
+            Physics.BodyStopCollisionRecording(body);
 
-        physics.DestroyBody(body);
+        Physics.DestroyBody(body);
 
         // Other code is not allowed to hold on to physics bodies on entities that are destroyed, so we dispose this
         // here to get the native side wrapper released as well
@@ -141,7 +141,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
         if (usePhysicsOnMainThread)
         {
-            if (physics.ProcessPhysics(physicsDelta))
+            if (Physics.ProcessPhysics(physicsDelta))
             {
                 physicsPerformanceForCurrentRunConsumed = false;
                 RecordPhysicsPerformance();
@@ -153,7 +153,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
             // A background call is a new run from the point of view of the completion result. It may not actually
             // step physics yet, in which case the following wait returns false and no measurement is recorded.
             physicsPerformanceForCurrentRunConsumed = false;
-            physics.ProcessPhysicsOnBackgroundThread(physicsDelta);
+            Physics.ProcessPhysicsOnBackgroundThread(physicsDelta);
         }
     }
 
@@ -165,7 +165,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     protected override void Dispose(bool disposing)
     {
         // Derived classes should also wait for this before destroying things (and set metrics reporting off)
-        physics.DisablePhysicsTimeRecording = true;
+        Physics.DisablePhysicsTimeRecording = true;
         WaitForStartedPhysicsRun(disposing);
 
         ReleaseUnmanagedResources();
@@ -180,7 +180,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     private void WaitForStartedPhysicsRun(bool recordPerformance)
     {
-        if (physics.WaitUntilPhysicsRunEnds() && recordPerformance && !physicsPerformanceForCurrentRunConsumed)
+        if (Physics.WaitUntilPhysicsRunEnds() && recordPerformance && !physicsPerformanceForCurrentRunConsumed)
         {
             RecordPhysicsPerformance();
             physicsPerformanceForCurrentRunConsumed = true;
@@ -189,9 +189,9 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     private void ReleaseUnmanagedResources()
     {
-        while (createdBodies.Count > 0)
+        while (CreatedBodies.Count > 0)
         {
-            var body = createdBodies[^1];
+            var body = CreatedBodies[^1];
 
             // This should never happen, but this is here in case this does happen to give a better error message
             if (body.IsDisposed)
@@ -200,13 +200,13 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
             DestroyBody(body);
         }
 
-        physics.Dispose();
+        Physics.Dispose();
     }
 
     private void RecordPhysicsPerformance()
     {
         physicsEvaluationTime += physicsTimeSinceLastRun;
-        physicsEvaluationDuration += physics.LatestPhysicsDuration;
+        physicsEvaluationDuration += Physics.LatestPhysicsDuration;
         physicsTimeSinceLastRun = 0;
 
         if (physicsEvaluationTime < PhysicsEvaluationPeriod)
@@ -276,6 +276,6 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
             _ => throw new ArgumentOutOfRangeException(),
         };
 
-        physics.SetPhysicsTimestep(timestep);
+        Physics.SetPhysicsTimestep(timestep);
     }
 }
