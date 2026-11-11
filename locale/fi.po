@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 12:43+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -583,6 +583,9 @@ msgstr ""
 msgid "BEYOND_THE_CELL"
 msgstr ""
 
+msgid "BEYOND_THE_MICROBE"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Iso rautalohkare"
 
@@ -815,6 +818,13 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "Laita peli tauolle"
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -1065,14 +1075,6 @@ msgstr "Pyöriminen:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Pyöriminen:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Pyöriminen:"
 
 msgid "COLOUR"
 msgstr "Väri"
@@ -2833,6 +2835,9 @@ msgstr "Ammu myrkkyä"
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Kuole"
 
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
+
 msgid "FLAGELLUM"
 msgstr "Siima"
 
@@ -3589,6 +3594,17 @@ msgstr ""
 msgid "INVERTED"
 msgstr "Käänteinen"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -3621,6 +3637,13 @@ msgstr "Heinäkuu"
 
 msgid "JUNE"
 msgstr "Kesäkuu"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4721,6 +4744,21 @@ msgstr ""
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
 #, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
 msgid "MICRO_BORG"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
@@ -5595,10 +5633,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Lisää soluelin"
 
@@ -5874,6 +5908,13 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
 #, fuzzy
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
@@ -6083,6 +6124,10 @@ msgstr "Palaa Päävalikkoon"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Palaa Päävalikkoon"
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Paine"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Paina jotain näppäintä..."
 
@@ -6094,6 +6139,10 @@ msgstr ""
 
 msgid "PREVIOUS_COLON"
 msgstr "edellinen:"
+
+#, fuzzy
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Solun prosessit"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Prosessoidaan ladattuja objekteja"
@@ -6194,6 +6243,17 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -6445,6 +6505,10 @@ msgstr "Käännä vasemmalle"
 
 msgid "ROTATE_RIGHT"
 msgstr "Käännä oikealle"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Lisää uusi syöte"
 
 msgid "ROTATION_COLON"
 msgstr "Pyöriminen:"
@@ -7010,6 +7074,26 @@ msgid "SPECIALIZATION_COLON"
 msgstr "populaatio:"
 
 #, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "populaatio:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "populaatio:"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Lisää solun varastointitilaa kerätyille yhdisteille."
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Lisää solun varastointitilaa kerätyille yhdisteille."
+
+#, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Luo uusi soluelin"
 
@@ -7408,6 +7492,10 @@ msgstr "Laita peli tauolle"
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "Laita peli tauolle"
+
 msgid "TESTING_TEAM"
 msgstr "Testaustiimi"
 
@@ -7731,9 +7819,6 @@ msgstr ""
 #, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
 
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
@@ -8188,6 +8273,30 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Terv.:"
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Monisoluinen editori"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Monisoluinen editori"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Koko:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Koko:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Tallentamattomia muutoksia"
 
@@ -8357,6 +8466,13 @@ msgstr ""
 #, fuzzy
 msgid "UNTITLED"
 msgstr "Biomi: {0}"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Luo uusi soluelin"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -9142,6 +9258,10 @@ msgstr "Lämpöplasti"
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "Lämpöplasti"
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
@@ -10692,6 +10812,13 @@ msgstr "Tullaan toteuttamaan tulevaisuudessa."
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Laita peli tauolle"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

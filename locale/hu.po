@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 12:43+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -574,6 +574,10 @@ msgstr "Jobb együtt"
 msgid "BEYOND_THE_CELL"
 msgstr "A sejten túl"
 
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
+msgstr "A sejten túl"
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Nagy vasdarab"
 
@@ -792,6 +796,13 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -1035,14 +1046,6 @@ msgstr "Fordulás:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Fordulás:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Fordulás:"
 
 msgid "COLOUR"
 msgstr "Szín"
@@ -2794,6 +2797,9 @@ msgstr "Méreg lövése"
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Egyes beállítások lehet, hogy nem elérhetők, hogyha a LAWK engedélyezve van"
 
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
+
 msgid "FLAGELLUM"
 msgstr "Ostor"
 
@@ -3550,6 +3556,17 @@ msgstr "Talaj"
 msgid "INVERTED"
 msgstr "Fordított"
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanóp (Piros-Zöld)"
@@ -3583,6 +3600,15 @@ msgstr "Július"
 
 msgid "JUNE"
 msgstr "Június"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4659,6 +4685,14 @@ msgid "MICROBIAL_MASSACRE"
 msgstr "Sejtfázis"
 
 #, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
 msgid "MICRO_BORG"
 msgstr "Sejtfázis"
 
@@ -5541,10 +5575,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Szúrd le a többi sejtet ezzel."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Sejtszervecske elhelyezése"
 
@@ -5804,6 +5834,13 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
+
 #, fuzzy
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
@@ -6008,6 +6045,10 @@ msgstr "Kilépés a főmenübe"
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Kilépés a főmenübe"
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Nyomás"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Nyomj le egy gombot..."
 
@@ -6019,6 +6060,10 @@ msgstr "Az előzetes kép fájlja túl hosszú"
 
 msgid "PREVIOUS_COLON"
 msgstr "Előző:"
+
+#, fuzzy
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Sejtfolyamatok"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Betöltött objektumok feldolgozása"
@@ -6118,6 +6163,10 @@ msgstr "Érj meg 15 generációt ugyanazzal a fajjal legalább Normál nehézsé
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Érj meg {0}/{1} generációt ugyanazzal a fajjal legalább Normál nehézségi szinten"
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Sejtfázis"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -6361,6 +6410,10 @@ msgstr "Forgatás balra"
 
 msgid "ROTATE_RIGHT"
 msgstr "Forgatás jobbra"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Segítség"
 
 msgid "ROTATION_COLON"
 msgstr "Fordulás:"
@@ -6905,6 +6958,28 @@ msgid "SPECIALIZATION_COLON"
 msgstr "Populáció:"
 
 #, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Populáció:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Populáció:"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "Növeli a sejt tárkapacitását."
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Növeli a sejt tárkapacitását."
+
+#, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Új sejttípus létrehozása"
 
@@ -7300,6 +7375,10 @@ msgstr "Játék szüneteltetése"
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "Játék szüneteltetése"
+
 msgid "TESTING_TEAM"
 msgstr "Tesztelő csapat"
 
@@ -7614,9 +7693,6 @@ msgstr ""
 #, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
 
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
@@ -8052,6 +8128,30 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Típus:"
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "A celluláz lehetővé teszi a sejt számára a cellulóz membrán lebontását. Minden hozzáadás növeli a hatékonyságot."
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Cím:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Cím:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "A modban nem elfogadott változtatások vannak"
 
@@ -8213,6 +8313,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Névtelen"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Új sejttípus létrehozása"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -8978,6 +9085,10 @@ msgstr "Termoplasztisz"
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "Termoplasztisz"
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
@@ -10467,6 +10578,13 @@ msgstr "Fejlesztés alatt."
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Látogasd meg YouTube csatornánkat"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

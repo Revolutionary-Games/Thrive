@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 12:43+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2025-09-24 02:53+0000\n"
 "Last-Translator: Emanuel Gossain <thisisfor33@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -567,6 +567,9 @@ msgstr ""
 msgid "BEYOND_THE_CELL"
 msgstr ""
 
+msgid "BEYOND_THE_MICROBE"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -788,6 +791,13 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -1036,22 +1046,6 @@ msgstr ""
 
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr ""
-"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
-"i veća je šansa da će se braniti kada su napadnuti.\n"
-"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
-"i manja je šansa da će koristiti toksine protiv predatora."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr ""
-"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
-"i veća je šansa da će se braniti kada su napadnuti.\n"
-"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
-"i manja je šansa da će koristiti toksine protiv predatora."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
 msgstr ""
 "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
 "i veća je šansa da će se braniti kada su napadnuti.\n"
@@ -2557,6 +2551,9 @@ msgstr ""
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
+
 msgid "FLAGELLUM"
 msgstr ""
 
@@ -3224,6 +3221,17 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Anaerobna fiksacija dušika"
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -3253,6 +3261,13 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
 
 msgid "KEEP_MIGRATION"
 msgstr ""
@@ -4282,6 +4297,14 @@ msgid "MICROBIAL_MASSACRE"
 msgstr "Stadij mikroba"
 
 #, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
+
+#, fuzzy
 msgid "MICRO_BORG"
 msgstr "Stadij mikroba"
 
@@ -5062,10 +5085,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Anaerobna fiksacija dušika"
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Višestanični stadij"
 
@@ -5314,6 +5333,13 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
 
@@ -5515,6 +5541,10 @@ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -5525,6 +5555,9 @@ msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
 msgid "PREVIOUS_COLON"
+msgstr ""
+
+msgid "PROCESSES_SPEED_MODIFIER"
 msgstr ""
 
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -5616,6 +5649,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Stadij mikroba"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5876,6 +5913,10 @@ msgstr ""
 
 msgid "ROTATE_RIGHT"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Dodaj novu postavku tipke"
 
 msgid "ROTATION_COLON"
 msgstr ""
@@ -6380,6 +6421,24 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+msgid "SPECIALIZED_WEAPONS"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
+
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
 
@@ -6753,6 +6812,10 @@ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
 msgid "TESTING_TEAM"
 msgstr ""
 
@@ -7078,9 +7141,6 @@ msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
 msgstr ""
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
-msgstr ""
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
@@ -7451,6 +7511,30 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Višestanični uređivač"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "Višestanični uređivač"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Višestanični uređivač"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Umjetnik:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Umjetnik:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
@@ -7595,6 +7679,12 @@ msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
 msgid "UNTITLED"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL"
@@ -8310,6 +8400,22 @@ msgstr "Stadij mikroba"
 
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
@@ -9681,6 +9787,13 @@ msgstr ""
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

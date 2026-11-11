@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 12:43+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -585,6 +585,10 @@ msgstr "Beter Samen"
 msgid "BEYOND_THE_CELL"
 msgstr "Meer dan de cel"
 
+#, fuzzy
+msgid "BEYOND_THE_MICROBE"
+msgstr "Meer dan de cel"
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Groot Brok IJzer"
 
@@ -807,6 +811,13 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -1054,14 +1065,6 @@ msgstr "Totale populatie:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Totale populatie:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Totale populatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -2777,6 +2780,9 @@ msgstr "Vergif vuren"
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Zelfmoord"
 
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
+
 msgid "FLAGELLUM"
 msgstr "Flagellum"
 
@@ -3538,6 +3544,17 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
+
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanope (Rood-Groen)"
@@ -3571,6 +3588,13 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4637,6 +4661,14 @@ msgid "MICROBIAL_MASSACRE"
 msgstr "Microbestadium"
 
 #, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "Microbestadium"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "Dit membraan heeft een sterke wand van siliciumdioxide. Het kan algemene schade goed weerstaan en is zeer resistent tegen fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel met een grote factor en de cel absorbeert stoffen minder snel."
+
+#, fuzzy
 msgid "MICRO_BORG"
 msgstr "Microbestadium"
 
@@ -5484,10 +5516,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Steek hiermee andere cellen."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Steek hiermee andere cellen."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Organel plaatsen"
 
@@ -5760,6 +5788,13 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "Wanneer de tolerantiebereiken op de minimale waarden worden ingesteld en je soort de huidige omstandigheden perfect vindt, wordt er een aangepaste bonus toegevoegd. Dit geeft jou een voordeel als je in één enkele zone wilt spelen in plaats van je te verspreiden."
+
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "Wanneer de tolerantiebereiken op de minimale waarden worden ingesteld en je soort de huidige omstandigheden perfect vindt, wordt er een aangepaste bonus toegevoegd. Dit geeft jou een voordeel als je in één enkele zone wilt spelen in plaats van je te verspreiden."
 
@@ -5965,6 +6000,10 @@ msgstr "De gewenste druk van je soort. Ingesteld met een minimum- en maximumwaar
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "De gewenste druk van je soort. Ingesteld met een minimum- en maximumwaarde als aparte schuifbalken. Wanneer jouw soort zich onder omstandigheden buiten dit bereik bevindt, zullen er veel negatieve effecten zijn. Verander de grootte van het bereik door het vakje onder de schuifbalken uit te vinken."
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "Druk"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Druk een toets..."
 
@@ -5977,6 +6016,10 @@ msgstr "Voorbeeld foto bestand is te groot"
 #, fuzzy
 msgid "PREVIOUS_COLON"
 msgstr "Soorten:"
+
+#, fuzzy
+msgid "PROCESSES_SPEED_MODIFIER"
+msgstr "Bioproces Snelheid"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Verwerken van geladen objecten"
@@ -6077,6 +6120,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "Microbestadium"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -6329,6 +6376,10 @@ msgstr "Draaien naar links"
 
 msgid "ROTATE_RIGHT"
 msgstr "Draaien naar rechts"
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
 
 #, fuzzy
 msgid "ROTATION_COLON"
@@ -6884,6 +6935,26 @@ msgid "SPECIALIZATION_COLON"
 msgstr "Totale populatie:"
 
 #, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "De vacuole zal {0} eenheden van de geselecteerde stof opslaan"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "De vacuole zal {0} eenheden van de geselecteerde stof opslaan"
+
+#, fuzzy
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Maak Een Nieuw Celtype"
 
@@ -7272,6 +7343,10 @@ msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstand
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstandigheden bevindt buiten het bereik rond de ideale temperatuur, zullen er negatieve effecten zijn dat het overleven bemoeilijkt. Pas uw organisme aan een zone waarin je wilt spelen via de schuifbalken."
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstandigheden bevindt buiten het bereik rond de ideale temperatuur, zullen er negatieve effecten zijn dat het overleven bemoeilijkt. Pas uw organisme aan een zone waarin je wilt spelen via de schuifbalken."
+
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
@@ -7592,9 +7667,6 @@ msgstr ""
 #, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "{0}: +{1} ATP"
-
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
 
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
@@ -8045,6 +8117,30 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "HP:"
 
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr "Meercellige bewerker"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen cellen."
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "Meercellige bewerker"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "Grootte:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "Grootte:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Er zijn niet toegepaste aanpassingen"
 
@@ -8213,6 +8309,13 @@ msgstr ""
 
 msgid "UNTITLED"
 msgstr "Naamloos"
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
+msgstr "Maak Een Nieuw Celtype"
 
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -8991,6 +9094,10 @@ msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmte
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -10452,6 +10559,13 @@ msgstr "Moet nog toegevoegd worden."
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Bezoek ons YouTube kanaal"
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""

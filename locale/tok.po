@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-14 12:43+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -571,6 +571,9 @@ msgstr ""
 msgid "BEYOND_THE_CELL"
 msgstr ""
 
+msgid "BEYOND_THE_MICROBE"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -791,6 +794,13 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -1034,14 +1044,6 @@ msgstr "PALI PI WAWA SIKE LI LILI!"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "PALI PI WAWA SIKE LI LILI!"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "PALI PI WAWA SIKE LI LILI!"
 
 msgid "COLOUR"
 msgstr ""
@@ -2480,6 +2482,9 @@ msgstr ""
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "open e lipu pi ante lili"
 
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
+
 msgid "FLAGELLUM"
 msgstr ""
 
@@ -3179,6 +3184,17 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
+msgid "IN_LOOK_OF_A_HOME"
+msgstr ""
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "IN_LOOK_OF_A_HOME_PROGRESS"
+msgstr "pali pi kon ilo kepeken kon ala"
+
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -3208,6 +3224,13 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "JUST_A_FLESH_WOUND"
+msgstr ""
+
+#, fuzzy
+msgid "JUST_A_FLESH_WOUND_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "KEEP_MIGRATION"
 msgstr ""
@@ -4215,6 +4238,14 @@ msgstr ""
 msgid "MICROBIAL_MASSACRE"
 msgstr ""
 
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MICROSCOPIC_BIRDS_AND_BEES_DESCRIPTION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "MICRO_BORG"
 msgstr ""
 
@@ -4965,10 +4996,6 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "pali pi kon ilo kepeken kon ala"
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr ""
 
@@ -5201,6 +5228,13 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+msgid "PERFECTLY_PACKED"
+msgstr ""
+
+#, fuzzy
+msgid "PERFECTLY_PACKED_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
 #, fuzzy
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr "pali pi kon ilo kepeken kon ala"
@@ -5403,6 +5437,10 @@ msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
+#, fuzzy
+msgid "PRESSURE_UNIT_KPA"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -5413,6 +5451,9 @@ msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
 msgid "PREVIOUS_COLON"
+msgstr ""
+
+msgid "PROCESSES_SPEED_MODIFIER"
 msgstr ""
 
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -5505,6 +5546,10 @@ msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
+
+#, fuzzy
+msgid "REACH_MACROSCOPIC_STAGE"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5730,6 +5775,10 @@ msgstr ""
 
 msgid "ROTATE_RIGHT"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATE_TOOL_BUTTON_TOOLTIP"
+msgstr "pali e nasin nena sin"
 
 msgid "ROTATION_COLON"
 msgstr ""
@@ -6209,6 +6258,26 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_DESCRIPTION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "SPECIALIZATION_SPECIALIST_PROGRESS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "SPECIALIZED_WEAPONS_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
 msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
 
@@ -6574,6 +6643,10 @@ msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
+#, fuzzy
+msgid "TEMPERATURE_UNIT_CELSIUS"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
 msgid "TESTING_TEAM"
 msgstr ""
 
@@ -6851,9 +6924,6 @@ msgstr ""
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
-msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
-
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
@@ -7099,6 +7169,29 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
+msgid "ULTIMATE_CELLULAR_FIREPOWER"
+msgstr ""
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "ULTIMATE_CELLULAR_FIREPOWER_PROGRESS"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY"
+msgstr "jan pi pali sitelen:"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "ULTIMATE_COLONY_PROGRESS"
+msgstr "jan pi pali sitelen:"
+
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
@@ -7246,6 +7339,12 @@ msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
 msgid "UNTITLED"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR"
+msgstr ""
+
+msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL"
@@ -7965,6 +8064,10 @@ msgstr "pali pi kon ilo kepeken kon"
 #, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "WIKI_FILEMELANOSOMEICONJPG"
+msgstr "tawa 3D"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
@@ -9323,6 +9426,13 @@ msgstr ""
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
+
+msgid "YOU_ANIMAL"
+msgstr ""
+
+#, fuzzy
+msgid "YOU_ANIMAL_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
