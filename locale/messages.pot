@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-09 17:26+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
+"PO-Revision-Date: "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE
+"\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1353,8 +1354,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/EditorAutoEvoPredictionPanel.tscn:235
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:609
-#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
-#: ../src/thriveopedia/Thriveopedia.tscn:322
+#: ../src/microbe_stage/ProcessPanel.tscn:122
+#: ../src/modding/ModManager.tscn:698 ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:320
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:437
@@ -2426,7 +2427,8 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:565 ../src/microbe_stage/MicrobeHUD.cs:570
+#: ../src/microbe_stage/MicrobeHUD.cs:565
+#: ../src/microbe_stage/MicrobeHUD.cs:570
 msgid "DEVOURED"
 msgstr ""
 
@@ -8065,7 +8067,8 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:701 ../src/general/PauseMenu.cs:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:701
+#: ../src/general/PauseMenu.cs:484
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -12996,3 +12999,14 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#: ../src/multicellular_stage/editor/CellPopupMenu.tscn:14
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#: ../src/multicellular_stage/editor/CellPopupMenu.tscn:12
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1023
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
