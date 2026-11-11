@@ -570,7 +570,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             HealthModifier = 1,
             OsmoregulationModifier = 1,
-            SliderOsmoregulationAdditionalModifier = 0,
+            SliderOsmoregulationAdditionalModifier =
+                MicrobeEnvironmentalToleranceCalculations.CalculateSliderOsmoregulationModifier(
+                    Tolerances.OxygenResistance, Tolerances.UVResistance),
             ProcessSpeedModifier = 1,
         };
 

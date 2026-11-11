@@ -345,6 +345,25 @@ public static class MicrobeEnvironmentalToleranceCalculations
         tolerances.AddValuesFrom(typeTolerances);
     }
 
+    public static float CalculateSliderOsmoregulationModifier(float oxygenResistance, float uvResistance)
+    {
+        float result = 0;
+
+        if (oxygenResistance > 0)
+        {
+            result += Math.Min(Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX,
+                oxygenResistance * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER);
+        }
+
+        if (uvResistance > 0)
+        {
+            result += Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_COST_MAX,
+                uvResistance * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER);
+        }
+
+        return result;
+    }
+
     public static ResolvedMicrobeTolerances ResolveToleranceValues(in ToleranceResult data)
     {
         var result = default(ResolvedMicrobeTolerances);
@@ -352,7 +371,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.ProcessSpeedModifier = 1;
         result.HealthModifier = 1;
         result.OsmoregulationModifier = 1;
-        result.SliderOsmoregulationAdditionalModifier = 0;
+        result.SliderOsmoregulationAdditionalModifier =
+            CalculateSliderOsmoregulationModifier(data.OxygenResistance, data.UVResistance);
 
         var temperatureScore = (float)data.TemperatureScore;
         if (temperatureScore < 1)
@@ -393,24 +413,11 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 Math.Max(Constants.TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX, oxygenScore);
         }
 
-        if (data.OxygenResistance > 0)
-        {
-            result.SliderOsmoregulationAdditionalModifier += Math.Min(
-                Constants.TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX,
-                data.OxygenResistance * Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER);
-        }
-
         var uvScore = (float)data.UVScore;
         if (uvScore < 1)
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, uvScore);
             result.ProcessSpeedModifier *= Math.Max(Constants.TOLERANCE_UV_SPEED_MODIFIER_MAX, uvScore);
-        }
-
-        if (data.UVResistance > 0)
-        {
-            result.SliderOsmoregulationAdditionalModifier += Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_COST_MAX,
-                data.UVResistance * Constants.TOLERANCE_UV_OSMOREGULATION_MODIFIER);
         }
 
 #if DEBUG

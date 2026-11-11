@@ -297,7 +297,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         {
             HealthModifier = 1,
             OsmoregulationModifier = 1,
-            SliderOsmoregulationAdditionalModifier = 0,
+            SliderOsmoregulationAdditionalModifier =
+                MicrobeEnvironmentalToleranceCalculations.CalculateSliderOsmoregulationModifier(
+                    Tolerances.OxygenResistance, Tolerances.UVResistance),
             ProcessSpeedModifier = 1,
         };
 
