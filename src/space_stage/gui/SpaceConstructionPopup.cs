@@ -34,7 +34,7 @@ public partial class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStr
 
             var createdButtonHolder = new CreatedButton(availableStructure, button, richText);
 
-            createdButtonHolder.UpdateResourceCost(availableResources, stringBuilder, stringBuilder2);
+            createdButtonHolder.UpdateResourceCost(availableResources, StringBuilder, StringBuilder2);
 
             HandleAddingStructureSelector(structureContent, !createdButtonHolder.Disabled,
                 () => OnStructureSelected(availableStructure.InternalName),
@@ -87,13 +87,13 @@ public partial class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStr
 
             if (!canStart)
             {
-                customRichTextLabel.ExtendedBbcode = Localization.Translate(
+                CustomRichTextLabel.ExtendedBbcode = Localization.Translate(
                         "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES")
                     .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
             }
             else
             {
-                customRichTextLabel.ExtendedBbcode = Localization.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
+                CustomRichTextLabel.ExtendedBbcode = Localization.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
                     .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
             }
         }

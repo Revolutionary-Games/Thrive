@@ -36,7 +36,7 @@ public partial class EnvironmentPanel : BarPanelBase
 
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 17);
 
-            foreach (var bar in primaryBars)
+            foreach (var bar in PrimaryBars)
             {
                 bar.Compact = true;
             }
@@ -50,7 +50,7 @@ public partial class EnvironmentPanel : BarPanelBase
 
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 0);
 
-            foreach (var bar in primaryBars)
+            foreach (var bar in PrimaryBars)
             {
                 bar.Compact = false;
             }

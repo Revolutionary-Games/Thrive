@@ -697,7 +697,7 @@ public partial class CellBodyPlanEditorComponent :
         else if (forceUpdateCellGraphics)
         {
             // Make sure all cell graphics holders are updated
-            foreach (var hoverModel in hoverModels)
+            foreach (var hoverModel in HoverModels)
             {
                 if (hoverModel.InstancedNode is CellBillboard billboard)
                     billboard.NotifyCellTypeMayHaveChanged();
@@ -1803,7 +1803,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
-            var modelHolder = hoverModels[usedHoverModel++];
+            var modelHolder = HoverModels[usedHoverModel++];
 
             ShowCellTypeInModelHolder(modelHolder, GetEditedCellDataIfEdited(cellToPlace), cartesianPosition, rotation);
 
@@ -2629,12 +2629,12 @@ public partial class CellBodyPlanEditorComponent :
         {
             var pos = Hex.AxialToCartesian(hexWithData.Position) + microbeModelOffset;
 
-            if (nextFreeCell >= placedModels.Count)
+            if (nextFreeCell >= PlacedModels.Count)
             {
-                placedModels.Add(CreatePreviewModelHolder());
+                PlacedModels.Add(CreatePreviewModelHolder());
             }
 
-            var modelHolder = placedModels[nextFreeCell++];
+            var modelHolder = PlacedModels[nextFreeCell++];
 
             ShowCellTypeInModelHolder(modelHolder, GetEditedCellDataIfEdited(hexWithData.Data!.ModifiableCellType), pos,
                 hexWithData.Data!.Orientation);
@@ -2642,10 +2642,10 @@ public partial class CellBodyPlanEditorComponent :
             modelHolder.Visible = true;
         }
 
-        while (nextFreeCell < placedModels.Count)
+        while (nextFreeCell < PlacedModels.Count)
         {
-            placedModels[placedModels.Count - 1].DetachAndQueueFree();
-            placedModels.RemoveAt(placedModels.Count - 1);
+            PlacedModels[PlacedModels.Count - 1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
         }
     }
 

@@ -252,7 +252,7 @@ public partial class CloudBenchmark : BenchmarkBase
                 extraSimulations = spawnCounter / STRESS_TEST_SIMULATION_INCREASE_EVERY_N;
 
                 // If the performance stays too good for a while, start to ramp things up
-                int rampCount = fpsValues.Count - STRESS_TEST_RAMP_UP;
+                int rampCount = FpsValues.Count - STRESS_TEST_RAMP_UP;
                 while (rampCount > 0)
                 {
                     var localCount = Math.Min(rampCount, STRESS_TEST_RAMP_UP);
@@ -270,22 +270,22 @@ public partial class CloudBenchmark : BenchmarkBase
                     AbsorbAndUpdatePositionState(delta);
                 }
 
-                fpsValues.Add(Engine.GetFramesPerSecond());
+                FpsValues.Add(Engine.GetFramesPerSecond());
 
                 float endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
                     STRESS_TEST_END_THRESHOLD - spawnCounter / STRESS_TEST_THRESHOLD_REDUCE_EVERY_N *
                     STRESS_TEST_THRESHOLD_REDUCE);
 
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) ||
-                    fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
+                if ((timeSinceSpawn > endThreshold && FpsValues.Count > 0) ||
+                    FpsValues.Count > STRESS_TEST_ABSOLUTE_END)
                 {
-                    if (fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
+                    if (FpsValues.Count > STRESS_TEST_ABSOLUTE_END)
                         GD.Print("Ending cloud stress test phase as reached absolute end");
 
                     stressTestResult = extraSimulations + 1;
                     stressTestEmittersResult = emittersCount;
-                    stressTestMinFPS = (float)fpsValues.Min();
+                    stressTestMinFPS = (float)FpsValues.Min();
                     stressTestAverageFPS = ScoreFromMeasuredFPS();
                     IncrementPhase();
                 }

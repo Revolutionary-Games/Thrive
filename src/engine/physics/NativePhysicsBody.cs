@@ -37,9 +37,9 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// </summary>
     private PhysicsCollision[]? activeCollisions;
 
-    private IntPtr nativeInstance;
+    private nint nativeInstance;
 
-    internal NativePhysicsBody(IntPtr nativeInstance)
+    internal NativePhysicsBody(nint nativeInstance)
     {
         this.nativeInstance = nativeInstance;
 
@@ -148,7 +148,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
         return nativeInstance.GetHashCode();
     }
 
-    internal (PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)
+    internal (PhysicsCollision[] CollisionsArray, nint ArrayAddress)
         SetupCollisionRecording(int maxCollisions)
     {
         // Can re-use the collision recording array if the max count is still low enough
@@ -178,7 +178,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal IntPtr AccessBodyInternal()
+    internal nint AccessBodyInternal()
     {
         if (disposed)
             throw new ObjectDisposedException(nameof(NativePhysicsBody));
@@ -194,7 +194,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// </summary>
     internal void CheckIfDisposedAfterNativeCall([CallerMemberName] string caller = "")
     {
-        if (disposed || nativeInstance == IntPtr.Zero)
+        if (disposed || nativeInstance == nint.Zero)
         {
             GD.PrintErr("PhysicsBody is destroyed while it is being used!");
             throw new InvalidOperationException($"NativePhysicsBody native handle is invalid after {caller}");
@@ -218,7 +218,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
             ForceStopCollisionRecording();
 
             NativeMethods.ReleasePhysicsBodyReference(nativeInstance);
-            nativeInstance = new IntPtr(0);
+            nativeInstance = new nint(0);
         }
     }
 
@@ -242,21 +242,21 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     }
 }
 
-/// <summary>
+/// <content>
 ///   Thrive native library methods related to bodies
-/// </summary>
+/// </content>
 internal static partial class NativeMethods
 {
     [DllImport("thrive_native")]
-    internal static extern void ReleasePhysicsBodyReference(IntPtr body);
+    internal static extern void ReleasePhysicsBodyReference(nint body);
 
     [DllImport("thrive_native")]
     [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool PhysicsBodyIsDetached(IntPtr body);
+    internal static extern bool PhysicsBodyIsDetached(nint body);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodySetUserData(IntPtr body, in Entity userData, int userDataSize);
+    internal static extern void PhysicsBodySetUserData(nint body, in Entity userData, int userDataSize);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyForceClearRecordingTargets(IntPtr body);
+    internal static extern void PhysicsBodyForceClearRecordingTargets(nint body);
 }

@@ -11,9 +11,9 @@ using Godot;
 public class PhysicsShape : IDisposable
 {
     private bool disposed;
-    private IntPtr nativeInstance;
+    private nint nativeInstance;
 
-    private PhysicsShape(IntPtr nativeInstance)
+    private PhysicsShape(nint nativeInstance)
     {
         this.nativeInstance = nativeInstance;
 
@@ -256,7 +256,7 @@ public class PhysicsShape : IDisposable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal IntPtr AccessShapeInternal()
+    internal nint AccessShapeInternal()
     {
         if (disposed)
             throw new ObjectDisposedException(nameof(PhysicsShape));
@@ -271,7 +271,7 @@ public class PhysicsShape : IDisposable
     /// </summary>
     internal void CheckIfDisposedAfterNativeCall([CallerMemberName] string caller = "")
     {
-        if (disposed || nativeInstance == IntPtr.Zero)
+        if (disposed || nativeInstance == nint.Zero)
         {
             GD.PrintErr("PhysicsShape is destroyed while it is being used!");
             throw new InvalidOperationException($"PhysicsShape native handle is invalid after {caller}");
@@ -418,7 +418,7 @@ public class PhysicsShape : IDisposable
         if (nativeInstance.ToInt64() != 0)
         {
             NativeMethods.ReleaseShape(nativeInstance);
-            nativeInstance = new IntPtr(0);
+            nativeInstance = new nint(0);
         }
     }
 
@@ -449,55 +449,55 @@ public class PhysicsShape : IDisposable
     }
 }
 
-/// <summary>
+/// <content>
 ///   Thrive native library methods related to physics shapes
-/// </summary>
+/// </content>
 internal static partial class NativeMethods
 {
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateBoxShape(float halfSideLength, float density);
+    internal static extern nint CreateBoxShape(float halfSideLength, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateBoxShapeWithDimensions(JVecF3 halfDimensions, float density);
+    internal static extern nint CreateBoxShapeWithDimensions(JVecF3 halfDimensions, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateSphereShape(float radius, float density);
+    internal static extern nint CreateSphereShape(float radius, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateCylinderShape(float halfHeight, float radius, float density);
+    internal static extern nint CreateCylinderShape(float halfHeight, float radius, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateCapsuleShape(float halfHeight, float radius, float density);
+    internal static extern nint CreateCapsuleShape(float halfHeight, float radius, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,
+    internal static extern nint CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,
         float scale, float thickness = 1);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateMicrobeShapeSpheres(in JVecF3 microbePoints, uint pointCount, float density,
+    internal static extern nint CreateMicrobeShapeSpheres(in JVecF3 microbePoints, uint pointCount, float density,
         float scale);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateConvexShape(in JVecF3 convexPoints, uint pointCount, float density,
+    internal static extern nint CreateConvexShape(in JVecF3 convexPoints, uint pointCount, float density,
         float scale = 1, float convexRadius = 0.01f);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateStaticCompoundShape(in SubShapeDefinition subShapes, uint shapeCount);
+    internal static extern nint CreateStaticCompoundShape(in SubShapeDefinition subShapes, uint shapeCount);
 
     [DllImport("thrive_native")]
-    internal static extern void ReleaseShape(IntPtr shape);
+    internal static extern void ReleaseShape(nint shape);
 
     [DllImport("thrive_native")]
-    internal static extern float ShapeGetMass(IntPtr shape);
+    internal static extern float ShapeGetMass(nint shape);
 
     [DllImport("thrive_native")]
-    internal static extern uint ShapeGetSubShapeIndex(IntPtr shape, uint subShapeData);
+    internal static extern uint ShapeGetSubShapeIndex(nint shape, uint subShapeData);
 
     [DllImport("thrive_native")]
-    internal static extern uint ShapeGetSubShapeIndexWithRemainder(IntPtr shape, uint subShapeData,
+    internal static extern uint ShapeGetSubShapeIndexWithRemainder(nint shape, uint subShapeData,
         out uint remainder);
 
     [DllImport("thrive_native")]
-    internal static extern JVecF3 ShapeCalculateResultingAngularVelocity(IntPtr shape, JVecF3 appliedTorque,
+    internal static extern JVecF3 ShapeCalculateResultingAngularVelocity(nint shape, JVecF3 appliedTorque,
         float deltaTime = 1);
 }
