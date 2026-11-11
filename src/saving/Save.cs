@@ -207,12 +207,7 @@ public sealed class Save : IArchivable, IDisposable
         byte[]? screenshotData)
     {
         var save = new Save { Name = saveName, Info = info };
-
-        if (screenshotData != null)
-        {
-            save.Screenshot = TarHelper.ImageFromBuffer(screenshotData);
-        }
-
+        save.Screenshot = TarHelper.ImageFromBuffer(screenshotData);
         return save;
     }
 

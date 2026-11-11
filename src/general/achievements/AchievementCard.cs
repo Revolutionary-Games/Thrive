@@ -39,6 +39,15 @@ public partial class AchievementCard : MarginContainer
 
     public void UpdateDataFrom(IAchievement achievement, IAchievementStatStore stats)
     {
+        // Set a tooltip showing the description which might otherwise not be available
+        var tooltip = achievement.Description.ToString().WrapTextToApproximateWidth();
+        if (TooltipText != tooltip)
+        {
+            TooltipText = tooltip;
+            title.TooltipText = tooltip;
+            description.TooltipText = tooltip;
+        }
+
         title.Text = achievement.Name.ToString();
 
         if (achievement.Achieved)

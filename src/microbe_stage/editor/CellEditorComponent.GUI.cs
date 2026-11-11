@@ -5,15 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-/// <summary>
-///   Partial class to mostly separate the GUI interacting parts from the cell editor
-/// </summary>
-/// <remarks>
-///   <para>
-///     This is done this way as multiple scripts can't be attached to the same node). And this is done in the first
-///     place because otherwise the CellEditorComponent class would be a very long file.
-///   </para>
-/// </remarks>
+/// <content>
+///   Partial class to mostly separate the GUI interacting parts from the cell editor.
+///   This is done this way as multiple scripts can't be attached to the same node.
+///   And this is done in the first place because otherwise the CellEditorComponent class would be a very long file.
+/// </content>
 public partial class CellEditorComponent
 {
     private readonly List<Label> activeToleranceWarnings = new();
@@ -83,8 +79,7 @@ public partial class CellEditorComponent
     {
         base.OnTranslationsChanged();
 
-        UpdateAutoEvoPredictionTranslations();
-        UpdateAutoEvoPredictionDetailsText();
+        autoEvoPredictionPanel.OnTranslationsChanged();
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
@@ -611,7 +606,7 @@ public partial class CellEditorComponent
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        totalEnergyLabel.Value = float.NaN;
+        autoEvoPredictionPanel.ShowWaiting();
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 
@@ -843,12 +838,13 @@ public partial class CellEditorComponent
             // inexplicably also a bonus percentage as that would be very confusing to see.
             var tolerances = CalculateRawTolerances(true);
 
-            MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
-                activeToleranceWarnings, tolerances,
-                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
-                toleranceWarningsFont, MaxToleranceWarnings);
+            toleranceWarningsPanel.GenerateToleranceProblemList(tolerances,
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances),
+                out bool areToleranceWarnings);
 
-            if (usedToleranceWarnings > 0)
+            toleranceWarningsPanel.Visible = areToleranceWarnings;
+
+            if (areToleranceWarnings)
             {
                 // Need to make sure the player is not locked out of the tab to address these
                 toleranceTabButton.Visible = true;
@@ -856,13 +852,7 @@ public partial class CellEditorComponent
         }
         else
         {
-            usedToleranceWarnings = 0;
-            while (usedToleranceWarnings < activeToleranceWarnings.Count)
-            {
-                var last = activeToleranceWarnings[^1];
-                last.QueueFree();
-                activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
-            }
+            toleranceWarningsPanel.Visible = false;
         }
     }
 

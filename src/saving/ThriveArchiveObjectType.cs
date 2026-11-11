@@ -333,6 +333,7 @@ public enum ThriveArchiveObjectType : uint
     TutorialMulticellularCellEditor = 4413,
     TutorialMulticellularCellBodyPlanLayout = 4414,
     TutorialMulticellularActomyosin = 4415,
+    CellCavityActionData = 4416,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

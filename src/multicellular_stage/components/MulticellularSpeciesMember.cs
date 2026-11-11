@@ -1,6 +1,7 @@
 ﻿namespace Components;
 
 using System;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -55,6 +56,19 @@ public struct MulticellularSpeciesMember : IArchivableComponent
 
 public static class MulticellularSpeciesMemberHelpers
 {
+    public static bool IsCavity(this ref MulticellularSpeciesMember member)
+    {
+        try
+        {
+            return member.Species.ModifiableGameplayCells[member.MulticellularBodyPlanPartIndex].IsCavity;
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to read multicellular species member cavity info: ", e);
+            return false;
+        }
+    }
+
     public static MulticellularSpeciesMember ReadFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > MulticellularSpeciesMember.SERIALIZATION_VERSION or <= 0)

@@ -6,6 +6,7 @@ uniform sampler2D depthTexture : hint_depth_texture, filter_nearest, repeat_disa
 
 // Prefixed so they can't collide with the locals of the shared modules, which read them through the macros below
 uniform vec3 cloudPlanetCenter;
+uniform float cloudGroundRadius;
 uniform float cloudInnerRadius;
 uniform float cloudOuterRadius;
 uniform float cloudTileSize;

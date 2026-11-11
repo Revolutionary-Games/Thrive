@@ -17,6 +17,11 @@ public partial class MetaballBodyEditorComponent
     private void OnMetaballRemoved(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
+
+        if (ReferenceEquals(metaball, metaballSelectedForMoving))
+        {
+            HideTransformTools();
+        }
     }
 
     [ArchiveAllowedMethod]

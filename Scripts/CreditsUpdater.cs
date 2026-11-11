@@ -47,6 +47,7 @@ public static class CreditsUpdater
     [
         "noreply+90@weblate.org",
         "Deleted User",
+        "GitHub webhook",
         "Weblate Admin",
     ];
 

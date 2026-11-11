@@ -19,14 +19,14 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     public const ushort SERIALIZATION_VERSION_BASE = 1;
 
     /// <summary>
-    ///   Stores entities that are ignored on save. This field must be before <see cref="entities"/> for saving
+    ///   Stores entities that are ignored on save. This field must be before <see cref="Entities"/> for saving
     ///   to work correctly.
     /// </summary>
-    protected readonly UnsavedEntities entitiesToNotSave;
+    protected readonly UnsavedEntities EntitiesToNotSave;
 
-    protected readonly World entities;
+    protected readonly World Entities;
 
-    protected readonly Queue<Entity> queuedForDelete = new();
+    protected readonly Queue<Entity> QueuedForDelete = new();
 
     /// <summary>
     ///   Used to tell a few systems the approximate player position which might not always exist
@@ -60,14 +60,14 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public WorldSimulation()
     {
-        entities = ThriveWorld.Create();
-        entitiesToNotSave = new UnsavedEntities(queuedForDelete);
+        Entities = ThriveWorld.Create();
+        EntitiesToNotSave = new UnsavedEntities(QueuedForDelete);
     }
 
     protected WorldSimulation(World entities)
     {
-        this.entities = entities;
-        entitiesToNotSave = new UnsavedEntities(queuedForDelete);
+        Entities = entities;
+        EntitiesToNotSave = new UnsavedEntities(QueuedForDelete);
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     entities having specific components.
     ///   </para>
     /// </remarks>
-    public World EntitySystem => entities;
+    public World EntitySystem => Entities;
 
     // TODO: if required add a property that exposes the spawn system total entity weight here
 
@@ -338,7 +338,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             throw new InvalidOperationException("Can't use entity create at this time, use deferred create");
         }
 
-        return entities.Create(types);
+        return Entities.Create(types);
     }
 
     public Entity CreateEntityDeferred(CommandBuffer activeRecording, ComponentType[] componentTypes)
@@ -348,15 +348,15 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public bool DestroyEntity(Entity entity)
     {
-        lock (queuedForDelete)
+        lock (QueuedForDelete)
         {
-            if (queuedForDelete.Contains(entity))
+            if (QueuedForDelete.Contains(entity))
             {
                 // Already queued for delete
                 return true;
             }
 
-            queuedForDelete.Enqueue(entity);
+            QueuedForDelete.Enqueue(entity);
         }
 
         return true;
@@ -379,7 +379,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
             // If destroy all is used a lot, then this temporary memory use (ToList) here should be solved
             var toDestroy = new List<Entity>();
-            entities.Query(new QueryDescription(), toDestroy.Add);
+            Entities.Query(new QueryDescription(), toDestroy.Add);
 
             foreach (var entity in toDestroy)
             {
@@ -394,17 +394,17 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
                 break;
         }
 
-        lock (queuedForDelete)
+        lock (QueuedForDelete)
         {
-            queuedForDelete.Clear();
+            QueuedForDelete.Clear();
         }
     }
 
     public void ReportEntityDyingSoon(in Entity entity)
     {
-        lock (entitiesToNotSave)
+        lock (EntitiesToNotSave)
         {
-            entitiesToNotSave.Add(entity);
+            EntitiesToNotSave.Add(entity);
         }
     }
 
@@ -413,9 +413,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// </summary>
     public bool IsQueuedForDeletion(Entity entity)
     {
-        lock (queuedForDelete)
+        lock (QueuedForDelete)
         {
-            return queuedForDelete.Contains(entity);
+            return QueuedForDelete.Contains(entity);
         }
     }
 
@@ -479,9 +479,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         if (!entity.IsAlive())
             return false;
 
-        lock (queuedForDelete)
+        lock (QueuedForDelete)
         {
-            return !queuedForDelete.Contains(entity);
+            return !QueuedForDelete.Contains(entity);
         }
     }
 
@@ -614,12 +614,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
     {
-        lock (entitiesToNotSave)
+        lock (EntitiesToNotSave)
         {
-            writer.WriteObjectProperties(entitiesToNotSave);
+            writer.WriteObjectProperties(EntitiesToNotSave);
         }
 
-        writer.WriteAnyRegisteredValueAsObject(entities);
+        writer.WriteAnyRegisteredValueAsObject(Entities);
         writer.Write(minimumTimeBetweenLogicUpdates);
         writer.Write(RunAI);
         writer.Write(PlayerPosition);
@@ -685,9 +685,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             throw new ArgumentException("Entity reported to be destroyed cannot be null");
 #endif
 
-        lock (entitiesToNotSave)
+        lock (EntitiesToNotSave)
         {
-            entitiesToNotSave.Remove(entity);
+            EntitiesToNotSave.Remove(entity);
         }
 
         // Skip multiple destruction of entities that were already destroyed but were queued to be destroyed again
@@ -754,7 +754,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         if (disposing)
         {
-            entities.Dispose();
+            Entities.Dispose();
         }
     }
 
@@ -762,12 +762,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     {
         // We ensure that no processing operation can be in progress while this is called so this should be completely
         // fine to use without a lock here
-        lock (queuedForDelete)
+        lock (QueuedForDelete)
         {
             // This uses a while loop to allow entity destroy callbacks to queue more entities to be destroyed
-            while (queuedForDelete.Count > 0)
+            while (QueuedForDelete.Count > 0)
             {
-                PerformEntityDestroy(queuedForDelete.Dequeue());
+                PerformEntityDestroy(QueuedForDelete.Dequeue());
             }
 
             // TODO: would it make sense to switch entity count reporting to this class?

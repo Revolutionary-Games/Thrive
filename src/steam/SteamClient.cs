@@ -69,9 +69,12 @@ public sealed class SteamClient : ISteamClient
 
         try
         {
-            if (!SteamAPI.Init())
+            var initResult = SteamAPI.InitEx(out var error);
+            if (initResult != ESteamAPIInitResult.k_ESteamAPIInitResult_OK)
             {
                 GD.PrintErr("Failed to init Steam");
+                GD.PrintErr($"Steam error code: {initResult}, message: {error}");
+
                 SetError(Localization.Translate("STEAM_CLIENT_INIT_FAILED"), "Steamworks initialization failed");
                 return;
             }
