@@ -117,6 +117,9 @@ public partial class CreditsScroll : Control
         }
     }
 
+    /// <summary>
+    ///   Advances the credits scroll, loads sections as they become visible, and moves through the credits phases
+    /// </summary>
     public override void _Process(double delta)
     {
         if (!scrolling || phase == CreditsPhase.NotRunning)
