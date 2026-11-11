@@ -10,6 +10,14 @@ public partial class CellPopupMenu : HexPopupMenu
 {
     private List<HexWithData<CellTemplate>>? selectedCells;
 
+#pragma warning disable CA2213
+    [Export]
+    private CheckBox cavityCheckBox = null!;
+#pragma warning restore CA2213
+
+    [Signal]
+    public delegate void CavityToggledEventHandler(bool isCavity);
+
     public override bool EnableModifyOption
     {
         get => true;
@@ -28,12 +36,14 @@ public partial class CellPopupMenu : HexPopupMenu
         {
             selectedCells = value;
             UpdateTitleLabel();
+            UpdateCavityCheckBox();
         }
     }
 
     public override void _Ready()
     {
         base._Ready();
+        UpdateCavityCheckBox();
 
         // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
         if (selectedCells != null)
@@ -114,5 +124,17 @@ public partial class CellPopupMenu : HexPopupMenu
         mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         moveButton.Disabled = !EnableMoveOption;
+    }
+
+    private void UpdateCavityCheckBox()
+    {
+        cavityCheckBox.SetPressedNoSignal(selectedCells?.Count > 0 && selectedCells.TrueForAll(c => c.Data!.IsCavity));
+    }
+
+    private void OnCavityToggled(bool isCavity)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        ShowPopup = false;
+        EmitSignal(SignalName.CavityToggled, isCavity);
     }
 }

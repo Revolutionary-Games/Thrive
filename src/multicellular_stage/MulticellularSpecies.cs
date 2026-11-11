@@ -722,7 +722,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation,
+                    oldTemplate.IsCavity);
                 modifiableEditorCells.AddFast(
                     new HexWithData<CellTemplate>(newTemplate, hexWithData.Position, hexWithData.Orientation),
                     workMemory1, workMemory2);
@@ -738,7 +739,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             if (!typeMapping.TryGetValue(oldType, out var newType))
                 throw new Exception("Cell type not found in species");
 
-            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation,
+                    cellTemplate.IsCavity),
                 workMemory1, workMemory2);
         }
 
@@ -950,7 +952,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 throw new InvalidOperationException($"No cell type exists for: {wantedTypeName}");
 
             modifiableEditorCells.AddFast(new HexWithData<CellTemplate>(
-                new CellTemplate(cellType, cell.Position, cell.Orientation),
+                new CellTemplate(cellType, cell.Position, cell.Orientation, cell.Data!.IsCavity),
                 cell.Position, cell.Orientation), hexTemporaryMemory, hexTemporaryMemory2);
         }
     }
@@ -1011,8 +1013,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                result.ModifiableGameplayCells.AddFast(
-                    new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                result.ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position,
+                        cellTemplate.Orientation,
+                        cellTemplate.IsCavity),
                     workMemory1, workMemory2);
             }
         }
@@ -1042,7 +1045,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation,
+                    oldTemplate.IsCavity);
             }
 
             result.modifiableEditorCells.AddFast(

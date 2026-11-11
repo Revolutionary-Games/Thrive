@@ -92,6 +92,9 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         // and calculate the attachment position like that
         attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
 
+        if (cellTemplate.IsCavity)
+            attachPosition.RelativePosition.Y += Constants.CAVITY_CELL_Y_OFFSET;
+
         var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
             (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member,
@@ -111,9 +114,11 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         if (playAnimation)
         {
+            var initialPosition = attachPosition.RelativePosition * 0.8f;
+
             recorder.Add(member, new SpatialAnimation
             {
-                InitialPosition = attachPosition.RelativePosition * 0.8f,
+                InitialPosition = initialPosition,
                 FinalPosition = attachPosition.RelativePosition,
                 InitialScale = Vector3.Zero,
                 FinalScale = Vector3.One,
