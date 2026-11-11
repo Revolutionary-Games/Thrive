@@ -5,9 +5,9 @@ using System.Linq;
 using Godot;
 using SharedBase.Archive;
 
-/// <summary>
+/// <content>
 ///   This partial class has all the editor action callbacks needed for the microbe editor
-/// </summary>
+/// </content>
 public partial class CellEditorComponent
 {
     [ArchiveAllowedMethod]

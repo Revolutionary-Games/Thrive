@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-10 11:25+0200\n"
 "PO-Revision-Date: 2026-09-17 19:57+0000\n"
 "Last-Translator: fractalino <francescosollazzi37@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -791,6 +791,17 @@ msgstr ""
 
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
+
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"Specializzare una cellula affinché utilizzi un numero minore di tipi di organelli conferisce un bonus all'efficacia di tutti gli organelli presenti in quella cellula.\n"
+"Il bonus attuale è del {0}% (l'intensità massima del bonus aumenta con le dimensioni della cellula fino a {3} esagoni).\n"
+"Il bonus attuale viene applicato perché sono presenti {1} esagoni di tipo {2}.\n"
+"Il bonus aumenta aggiungendo altri organelli del tipo più comune e rimuovendo gli organelli degli altri tipi."
 
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
@@ -2730,6 +2741,9 @@ msgstr "Lancia tossine"
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Alcune opzioni potrebbero essere disattivate in caso che \"Solo VCLC\" sia attivata"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "Flagello"

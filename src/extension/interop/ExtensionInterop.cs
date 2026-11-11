@@ -14,7 +14,7 @@ public static class ExtensionInterop
     private static readonly Lazy<GodotObject> ThriveExtension =
         new(() => ClassDB.Instantiate("ThriveConfig").AsGodotObject() ?? throw new NullReferenceException());
 
-    private static IntPtr nativeConfigInstance;
+    private static nint nativeConfigInstance;
 
     private static bool shutdown;
 
@@ -63,9 +63,9 @@ public static class ExtensionInterop
 
         var result = godotObject.Call("Initialize", intercommunication);
 
-        var resultPtr = new IntPtr(result.AsInt64());
+        var resultPtr = new nint(result.AsInt64());
 
-        if (resultPtr == IntPtr.Zero)
+        if (resultPtr == nint.Zero)
         {
             GD.PrintErr("Thrive GDExtension initialization call failed");
             return false;
@@ -79,14 +79,14 @@ public static class ExtensionInterop
 
     public static bool ShutdownExtension()
     {
-        if (!ThriveExtension.IsValueCreated || nativeConfigInstance == IntPtr.Zero)
+        if (!ThriveExtension.IsValueCreated || nativeConfigInstance == nint.Zero)
             return true;
 
         if (shutdown)
             return true;
 
         // No longer allow calling to the extension
-        nativeConfigInstance = IntPtr.Zero;
+        nativeConfigInstance = nint.Zero;
         shutdown = true;
 
         var result = ThriveExtension.Value.Call("Shutdown");
@@ -105,7 +105,7 @@ public static class ExtensionInterop
 
     public static int GetVersion()
     {
-        if (shutdown || nativeConfigInstance == IntPtr.Zero)
+        if (shutdown || nativeConfigInstance == nint.Zero)
         {
             GD.PrintErr("Thrive extension is not available");
             return -1;
@@ -122,13 +122,13 @@ public static class ExtensionInterop
     }
 }
 
-/// <summary>
+/// <content>
 ///   Native methods specifically from the Thrive GDExtension binary
-/// </summary>
+/// </content>
 internal static partial class NativeMethods
 {
     [DllImport("thrive_extension")]
-    internal static extern int ExtensionGetVersion(IntPtr thriveConfig);
+    internal static extern int ExtensionGetVersion(nint thriveConfig);
 
     [DllImport("thrive_extension")]
     [return: MarshalAs(UnmanagedType.U1)]

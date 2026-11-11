@@ -5,15 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-/// <summary>
-///   Partial class to mostly separate the GUI interacting parts from the cell editor
-/// </summary>
-/// <remarks>
-///   <para>
-///     This is done this way as multiple scripts can't be attached to the same node). And this is done in the first
-///     place because otherwise the CellEditorComponent class would be a very long file.
-///   </para>
-/// </remarks>
+/// <content>
+///   Partial class to mostly separate the GUI interacting parts from the cell editor.
+///   This is done this way as multiple scripts can't be attached to the same node.
+///   And this is done in the first place because otherwise the CellEditorComponent class would be a very long file.
+/// </content>
 public partial class CellEditorComponent
 {
     private readonly List<Label> activeToleranceWarnings = new();

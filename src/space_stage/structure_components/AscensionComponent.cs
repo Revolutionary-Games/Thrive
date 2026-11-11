@@ -50,7 +50,7 @@ public class AscensionComponent : SpaceStructureComponent
         GD.Print("Ascension gate is triggered");
 
         // TODO: a cleaner way to do this
-        var stage = owningStructure.FirstAncestorOfType<SpaceStage>();
+        var stage = OwningStructure.FirstAncestorOfType<SpaceStage>();
 
         if (stage == null)
         {
@@ -58,7 +58,7 @@ public class AscensionComponent : SpaceStructureComponent
             return true;
         }
 
-        stage.OnStartAscension(owningStructure);
+        stage.OnStartAscension(OwningStructure);
         return true;
     }
 }

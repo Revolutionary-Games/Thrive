@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using Arch.Core;
 
 /// <summary>
@@ -43,9 +42,9 @@ public readonly struct PhysicsCollision
     ///   First colliding body, this is not wrapped in a <see cref="NativePhysicsBody"/> to avoid extra reference
     ///   counting and object allocations, rather this is directly the pointer to the native side body
     /// </summary>
-    public readonly IntPtr FirstBody;
+    public readonly nint FirstBody;
 
-    public readonly IntPtr SecondBody;
+    public readonly nint SecondBody;
 
     /// <summary>
     ///   How hard the collision is. This is not calculated in the collision filter

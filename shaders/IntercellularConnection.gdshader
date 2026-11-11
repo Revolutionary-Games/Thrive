@@ -1,5 +1,8 @@
 shader_type spatial;
 
+// With cavity cells the connectors are no longer horizontal and can be seen from the back
+render_mode cull_disabled;
+
 uniform sampler2D mainTexture;
 uniform sampler2D normalTexture;
 
