@@ -14,7 +14,6 @@ public partial class CreditsScroll : Control
     private const bool ShowFullLicenseTexts = false;
 
     private const float GameNameEndOffset = 355;
-    private const float GameNameInvisibleOffset = 1200;
 
     private const int OffsetBeforeNextDynamicPart = 65;
     private const int OffsetAfterSection = 50;
@@ -155,7 +154,9 @@ public partial class CreditsScroll : Control
                 UpdateDynamicItems();
                 UpdateStaticItemPositions();
 
-                if (scrollOffset > GameNameInvisibleOffset)
+                // Wait until the intro has actually scrolled off-screen as the viewport may be
+                // taller than the base resolution when the window has a tall aspect ratio
+                if (developersHeading.Position.Y + developersHeading.Size.Y < 0)
                 {
                     logo.Visible = false;
                     revolutionaryGames.Visible = false;
