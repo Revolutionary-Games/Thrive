@@ -223,9 +223,11 @@ public static class Constants
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
     public const float MEMBRANE_ENGULF_ANIMATION_DISTANCE = 1.25f;
 
-    public const float MEMBRANE_MIDDLE_POINT_OVERREACH = 0.5f;
-    public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS = 750.0f;
-    public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES = 150.0f;
+    public const float MEMBRANE_MAX_STRETCHED_DISTANCE_SQUARED = 50.0f * 50.0f;
+    public const float MEMBRANE_POINT_DISTANCE_TOLERANCE = 0.01f;
+
+    public const float MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED =
+        MEMBRANE_POINT_DISTANCE_TOLERANCE * MEMBRANE_POINT_DISTANCE_TOLERANCE;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
@@ -2228,14 +2230,18 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
 
     // These values must be the same as in the editor
-    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.2f;
     public const float TOLERANCE_OXYGEN_STEP = 0.01f;
-    public const float TOLERANCE_UV_STEP = 0.05f;
+    public const float TOLERANCE_UV_RANGE_MAX = 0.2f;
+    public const float TOLERANCE_UV_STEP = 0.01f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
     /// </summary>
     public const float TOLERANCE_UV_APPLY_AFTER = 0.01f;
+
+    public const float TOLERANCE_UV_DEFAULT_VALUE = 1.0f;
+    public const float TOLERANCE_UV_HEX_DEBUFF = 0.02f;
 
     public const float TOLERANCE_OXYGEN_APPLY_AFTER = 0.01f;
 
@@ -2274,10 +2280,14 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
 
     public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
+    public const float TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX = 0.8f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER = 1.0f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX = 0.3f;
 
     public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
+    public const float TOLERANCE_UV_SPEED_MODIFIER_MAX = 0.8f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MODIFIER = 1.0f;
+    public const float TOLERANCE_UV_OSMOREGULATION_COST_MAX = 0.3f;
 
     /// <summary>
     ///   This is an additional modifier on top of the averaging effect applied to make the values less extreme.

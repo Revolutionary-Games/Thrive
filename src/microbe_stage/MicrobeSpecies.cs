@@ -297,6 +297,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         {
             HealthModifier = 1,
             OsmoregulationModifier = 1,
+            SliderOsmoregulationAdditionalModifier =
+                MicrobeEnvironmentalToleranceCalculations.CalculateSliderOsmoregulationModifier(
+                    Tolerances.OxygenResistance, Tolerances.UVResistance),
             ProcessSpeedModifier = 1,
         };
 
@@ -550,7 +553,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
                 Tolerances.PressureMinimum,
                 Tolerances.PressureMinimum + Tolerances.PressureTolerance,
                 Math.Round(Tolerances.OxygenResistance * 100, 2),
-                Math.Round(Tolerances.UVResistance * 100, 2));
+                Math.Round((Tolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE) * 100, 2));
     }
 
     protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
