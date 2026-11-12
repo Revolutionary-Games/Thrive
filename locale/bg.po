@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 17:38+0100\n"
+"POT-Creation-Date: 2026-11-12 15:52+0200\n"
 "PO-Revision-Date: 2026-09-01 14:53+0000\n"
 "Last-Translator: Kelvin2500 <georgkostov6@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -401,6 +401,14 @@ msgstr "(определя разхода на мутационни точки в
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автоматичен запис по време на игра"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Ограничаване на растежа"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(ограничава скоростта на растеж на създанията)"
+
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
@@ -756,6 +764,9 @@ msgstr "в оскъдно количество"
 msgid "CAUTIOUS"
 msgstr "Предпазливо"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Клетка"
 
@@ -823,10 +834,6 @@ msgstr "Идентификаторът трябва да е положителн
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
-
-#, fuzzy
-msgid "CELL_SIZE"
-msgstr "Клетки"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -6620,6 +6627,33 @@ msgstr "Пасивно усвояване на хранителните веще
 msgid "SFX_VOLUME"
 msgstr "Ефекти"
 
+msgid "SHADOW_FILTERING"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Автоматична ({0}x{1})"
+
 msgid "SHIFT"
 msgstr "Клавиш „Shift“"
 
@@ -7586,20 +7620,6 @@ msgstr "Превключване на химичните съединения"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
-
-#, fuzzy
-msgid "TOLERANCE_UPKEEP_COST"
-msgstr ""
-"[b]Създания[/b]\n"
-"  {0}:{1}\n"
-"[b]Поколение[/b]\n"
-"  {2}\n"
-"[b]Популация[/b]\n"
-"  {3}\n"
-"[b]Цвят[/b]\n"
-"  #{4}\n"
-"[b]Поведение[/b]\n"
-"  {5}"
 
 msgid "TOOLS"
 msgstr "Инструменти"

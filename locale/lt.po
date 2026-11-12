@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 17:38+0100\n"
+"POT-Creation-Date: 2026-11-12 15:52+0200\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -399,6 +399,14 @@ msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatinis išsaugojimas žaidimo metu"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "AUTO_EVO"
 msgstr "Automatinė Evoliucija"
 
@@ -749,6 +757,9 @@ msgstr "labai mažai"
 msgid "CAUTIOUS"
 msgstr "Atsargus"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Ląstelė"
 
@@ -816,10 +827,6 @@ msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sve
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
-
-#, fuzzy
-msgid "CELL_SIZE"
-msgstr "Ląstelės"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -6229,6 +6236,33 @@ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 msgid "SFX_VOLUME"
 msgstr ""
 
+msgid "SHADOW_FILTERING"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Auto ({0}x{1})"
+
 msgid "SHIFT"
 msgstr ""
 
@@ -7128,10 +7162,6 @@ msgstr "Rodyti / slėpti junginius"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
-
-#, fuzzy
-msgid "TOLERANCE_UPKEEP_COST"
-msgstr "Mikroorganizmo būsena"
 
 msgid "TOOLS"
 msgstr "Įrankiai"

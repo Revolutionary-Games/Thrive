@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 17:38+0100\n"
+"POT-Creation-Date: 2026-11-12 15:52+0200\n"
 "PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -383,6 +383,14 @@ msgstr "(náklady na organely, membrány a ďalšie predmety v editore)"
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukladanie počas hry"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Normálny"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "AUTO_EVO"
 msgstr "Automatická evolúcia"
 
@@ -749,6 +757,9 @@ msgstr "veľmi málo"
 msgid "CAUTIOUS"
 msgstr "Opatrný"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Bunka"
 
@@ -816,10 +827,6 @@ msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť �
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
-
-#, fuzzy
-msgid "CELL_SIZE"
-msgstr "Bunky"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -6370,6 +6377,33 @@ msgstr "(rýchlosť, akou druhy AI mutujú)"
 msgid "SFX_VOLUME"
 msgstr "Hlasitosť SFX"
 
+msgid "SHADOW_FILTERING"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Automatické ({0}x{1})"
+
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -7314,10 +7348,6 @@ msgstr "Zobraziť / skryť prostredie a zlúčeniny"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
-
-#, fuzzy
-msgid "TOLERANCE_UPKEEP_COST"
-msgstr "{0} (x{1})"
 
 msgid "TOOLS"
 msgstr "Nástroje"
