@@ -33,14 +33,6 @@ public static class MembraneShapeStretcher
     }
 
     /// <summary>
-    ///   Converts the discrete cell orientation into a rotation angle in radians.
-    /// </summary>
-    public static float GetOrientationAngle(int orientation)
-    {
-        return orientation * MathUtils.SIXTY_DEGREES_ANGLE;
-    }
-
-    /// <summary>
     ///   Transforms membrane vertices and their average from cell-local coordinates into colony coordinates.
     /// </summary>
     public static void RotateCellVertices(CellData cellData)
@@ -174,82 +166,6 @@ public static class MembraneShapeStretcher
             if (consistentCount < intersections.Count)
                 intersections.RemoveRange(consistentCount, intersections.Count - consistentCount);
         }
-    }
-
-    /// <summary>
-    ///   Finds the closest points on two finite line segments and returns their
-    ///   squared distance. The output points lie on their respective segments.
-    /// </summary>
-    public static float ClosestPointsOnSegments(Vector2 firstSegmentStart, Vector2 firstSegmentEnd,
-        Vector2 secondSegmentStart, Vector2 secondSegmentEnd, out Vector2 closestPointOnFirstSegment,
-        out Vector2 closestPointOnSecondSegment)
-    {
-        var firstSegmentDirection = firstSegmentEnd - firstSegmentStart;
-        var secondSegmentDirection = secondSegmentEnd - secondSegmentStart;
-        var startPointOffset = firstSegmentStart - secondSegmentStart;
-
-        var firstSegmentLengthSquared = firstSegmentDirection.LengthSquared();
-        var secondSegmentLengthSquared = secondSegmentDirection.LengthSquared();
-        var secondDirectionOffsetDot = secondSegmentDirection.Dot(startPointOffset);
-
-        float firstSegmentParameter;
-        float secondSegmentParameter;
-
-        if (firstSegmentLengthSquared <= MathUtils.EPSILON && secondSegmentLengthSquared <= MathUtils.EPSILON)
-        {
-            closestPointOnFirstSegment = firstSegmentStart;
-            closestPointOnSecondSegment = secondSegmentStart;
-            return closestPointOnFirstSegment.DistanceSquaredTo(closestPointOnSecondSegment);
-        }
-
-        if (firstSegmentLengthSquared <= MathUtils.EPSILON)
-        {
-            firstSegmentParameter = 0.0f;
-            secondSegmentParameter = Math.Clamp(secondDirectionOffsetDot / secondSegmentLengthSquared, 0.0f, 1.0f);
-        }
-        else
-        {
-            var firstDirectionOffsetDot = firstSegmentDirection.Dot(startPointOffset);
-
-            if (secondSegmentLengthSquared <= MathUtils.EPSILON)
-            {
-                secondSegmentParameter = 0.0f;
-                firstSegmentParameter = Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0.0f, 1.0f);
-            }
-            else
-            {
-                var directionDotProduct = firstSegmentDirection.Dot(secondSegmentDirection);
-                var denominator = firstSegmentLengthSquared * secondSegmentLengthSquared -
-                    directionDotProduct * directionDotProduct;
-
-                firstSegmentParameter = denominator > MathUtils.EPSILON ?
-                    Math.Clamp((directionDotProduct * secondDirectionOffsetDot -
-                        firstDirectionOffsetDot * secondSegmentLengthSquared) / denominator, 0.0f, 1.0f) :
-                    0.0f;
-
-                secondSegmentParameter = (directionDotProduct * firstSegmentParameter + secondDirectionOffsetDot) /
-                    secondSegmentLengthSquared;
-
-                if (secondSegmentParameter < 0.0f)
-                {
-                    secondSegmentParameter = 0.0f;
-                    firstSegmentParameter =
-                        Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0.0f, 1.0f);
-                }
-                else if (secondSegmentParameter > 1.0f)
-                {
-                    secondSegmentParameter = 1.0f;
-                    firstSegmentParameter =
-                        Math.Clamp((directionDotProduct - firstDirectionOffsetDot) / firstSegmentLengthSquared, 0.0f,
-                            1.0f);
-                }
-            }
-        }
-
-        closestPointOnFirstSegment = firstSegmentStart + firstSegmentDirection * firstSegmentParameter;
-        closestPointOnSecondSegment = secondSegmentStart + secondSegmentDirection * secondSegmentParameter;
-
-        return closestPointOnFirstSegment.DistanceSquaredTo(closestPointOnSecondSegment);
     }
 
     /// <summary>
@@ -398,36 +314,6 @@ public static class MembraneShapeStretcher
     }
 
     /// <summary>
-    ///   Checks whether a point lies inside or on the boundary of a convex polygon, regardless of winding order.
-    /// </summary>
-    public static bool IsPointInsideConvexPolygon(Vector2 point, List<Vector2> vectices2D)
-    {
-        bool sign = false;
-        bool hasSign = false;
-
-        for (int i = 0; i < vectices2D.Count; ++i)
-        {
-            Vector2 a = vectices2D[i];
-            Vector2 b = vectices2D[(i + 1) % vectices2D.Count];
-
-            float cross = (b - a).Cross(point - a);
-
-            if (Math.Abs(cross) < 0.0001f)
-                continue;
-
-            bool currentSign = cross > 0;
-
-            if (hasSign && sign != currentSign)
-                return false;
-
-            sign = currentSign;
-            hasSign = true;
-        }
-
-        return true;
-    }
-
-    /// <summary>
     ///   Builds the visible boundary paths from the cell polygon, line midpoints,
     ///   and accepted intersections.
     /// </summary>
@@ -542,6 +428,120 @@ public static class MembraneShapeStretcher
 
             cell.Vertices2D[i] = hitPoint;
         }
+    }
+
+    /// <summary>
+    ///   Converts the discrete cell orientation into a rotation angle in radians.
+    /// </summary>
+    private static float GetOrientationAngle(int orientation)
+    {
+        return orientation * MathUtils.SIXTY_DEGREES_ANGLE;
+    }
+
+    /// <summary>
+    ///   Finds the closest points on two finite line segments and returns their
+    ///   squared distance. The output points lie on their respective segments.
+    /// </summary>
+    private static float ClosestPointsOnSegments(Vector2 firstSegmentStart, Vector2 firstSegmentEnd,
+        Vector2 secondSegmentStart, Vector2 secondSegmentEnd, out Vector2 closestPointOnFirstSegment,
+        out Vector2 closestPointOnSecondSegment)
+    {
+        var firstSegmentDirection = firstSegmentEnd - firstSegmentStart;
+        var secondSegmentDirection = secondSegmentEnd - secondSegmentStart;
+        var startPointOffset = firstSegmentStart - secondSegmentStart;
+
+        var firstSegmentLengthSquared = firstSegmentDirection.LengthSquared();
+        var secondSegmentLengthSquared = secondSegmentDirection.LengthSquared();
+        var secondDirectionOffsetDot = secondSegmentDirection.Dot(startPointOffset);
+
+        float firstSegmentParameter;
+        float secondSegmentParameter;
+
+        if (firstSegmentLengthSquared <= MathUtils.EPSILON && secondSegmentLengthSquared <= MathUtils.EPSILON)
+        {
+            closestPointOnFirstSegment = firstSegmentStart;
+            closestPointOnSecondSegment = secondSegmentStart;
+            return closestPointOnFirstSegment.DistanceSquaredTo(closestPointOnSecondSegment);
+        }
+
+        if (firstSegmentLengthSquared <= MathUtils.EPSILON)
+        {
+            firstSegmentParameter = 0.0f;
+            secondSegmentParameter = Math.Clamp(secondDirectionOffsetDot / secondSegmentLengthSquared, 0.0f, 1.0f);
+        }
+        else
+        {
+            var firstDirectionOffsetDot = firstSegmentDirection.Dot(startPointOffset);
+
+            if (secondSegmentLengthSquared <= MathUtils.EPSILON)
+            {
+                secondSegmentParameter = 0.0f;
+                firstSegmentParameter = Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0.0f, 1.0f);
+            }
+            else
+            {
+                var directionDotProduct = firstSegmentDirection.Dot(secondSegmentDirection);
+                var denominator = firstSegmentLengthSquared * secondSegmentLengthSquared -
+                    directionDotProduct * directionDotProduct;
+
+                firstSegmentParameter = denominator > MathUtils.EPSILON ?
+                    Math.Clamp((directionDotProduct * secondDirectionOffsetDot -
+                        firstDirectionOffsetDot * secondSegmentLengthSquared) / denominator, 0.0f, 1.0f) :
+                    0.0f;
+
+                secondSegmentParameter = (directionDotProduct * firstSegmentParameter + secondDirectionOffsetDot) /
+                    secondSegmentLengthSquared;
+
+                if (secondSegmentParameter < 0.0f)
+                {
+                    secondSegmentParameter = 0.0f;
+                    firstSegmentParameter =
+                        Math.Clamp(-firstDirectionOffsetDot / firstSegmentLengthSquared, 0.0f, 1.0f);
+                }
+                else if (secondSegmentParameter > 1.0f)
+                {
+                    secondSegmentParameter = 1.0f;
+                    firstSegmentParameter =
+                        Math.Clamp((directionDotProduct - firstDirectionOffsetDot) / firstSegmentLengthSquared, 0.0f,
+                            1.0f);
+                }
+            }
+        }
+
+        closestPointOnFirstSegment = firstSegmentStart + firstSegmentDirection * firstSegmentParameter;
+        closestPointOnSecondSegment = secondSegmentStart + secondSegmentDirection * secondSegmentParameter;
+
+        return closestPointOnFirstSegment.DistanceSquaredTo(closestPointOnSecondSegment);
+    }
+
+    /// <summary>
+    ///   Checks whether a point lies inside or on the boundary of a convex polygon, regardless of winding order.
+    /// </summary>
+    private static bool IsPointInsideConvexPolygon(Vector2 point, List<Vector2> vectices2D)
+    {
+        bool sign = false;
+        bool hasSign = false;
+
+        for (int i = 0; i < vectices2D.Count; ++i)
+        {
+            Vector2 a = vectices2D[i];
+            Vector2 b = vectices2D[(i + 1) % vectices2D.Count];
+
+            float cross = (b - a).Cross(point - a);
+
+            if (Math.Abs(cross) < 0.0001f)
+                continue;
+
+            bool currentSign = cross > 0;
+
+            if (hasSign && sign != currentSign)
+                return false;
+
+            sign = currentSign;
+            hasSign = true;
+        }
+
+        return true;
     }
 
     /// <summary>
