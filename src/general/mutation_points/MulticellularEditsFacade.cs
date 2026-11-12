@@ -484,8 +484,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => CellType.Organelles;
         public MembraneType MembraneType => CellType.MembraneType;
         public float MembraneRigidity => CellType.MembraneRigidity;
-        public Color Colour => IsCavity ? CellType.Colour.Darkened(Constants.CAVITY_CELL_COLOUR_DARKENING) :
+
+        public Color Colour => IsCavity ?
+            CellType.Colour.Darkened(Constants.CAVITY_CELL_COLOUR_DARKENING) :
             CellType.Colour;
+
         public bool IsBacteria => CellType.IsBacteria;
 
         public bool MatchesDefinition(IActionHex other)
