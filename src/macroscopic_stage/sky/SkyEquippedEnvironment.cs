@@ -121,7 +121,8 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private DirectionalLight3D? sunLight;
 #pragma warning restore CA2213
 
-    private (float, float, float, Vector3, Vector3, float, float) bakedLutInputs;
+    private (float GroundRadius, float TopRadius, float RayleighScaleHeight, Vector3 RayleighScattering,
+        Vector3 OzoneAbsorption, float OzoneLayerCenter, float OzoneLayerWidth) bakedLutInputs;
 
     public override void _Ready()
     {
