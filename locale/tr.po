@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 15:45+0100\n"
-"PO-Revision-Date: 2026-10-31 05:47+0000\n"
+"POT-Creation-Date: 2026-11-11 19:27+0300\n"
+"PO-Revision-Date: 2026-11-12 09:06+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -731,6 +731,9 @@ msgstr "çok az miktarda"
 msgid "CAUTIOUS"
 msgstr "Temkinli"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Hücre"
 
@@ -786,15 +789,13 @@ msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "Taşımak için bir hücreye tıklayın. Hücreleri istediğiniz konuma taşıyın. Bütün hücreler, hala bedene bağlı kalmalıdır ve yapıda olması gerektiği konuma yakın olmalıdır. Organelleri düzenlemek, çakışmalara neden olabilir. Bu durumun da, manuel düzen geçerli hale gelmeden önce düzeltilmesi gerekir. Manuel düzenden çıkmak, bedende yapılan bütün değişiklikleri yoksayar."
 
 msgid "CELL_IS_CAVITY"
-msgstr ""
+msgstr "Beden Boşluğu"
 
-#, fuzzy
 msgid "CELL_IS_CAVITY_TOOLTIP"
 msgstr ""
-"Bir hücrenin daha az organel türü kullanmak üzere özelleştirilmesi, o hücredeki bütün organellerin etkinliğine bir bonus sağlar.\n"
-"Mevcut bonus %{0} değerindedir (maksimum bonus kapasitesi, {3} altıgen boyutuna kadar, hücre büyüklüğü ile artar).\n"
-"Mevcut bonus, {1} organeli {2} altıgen boyutunda bulunduğu için verilmekte.\n"
-"Bonus, en yaygın organel türünden daha fazlası yerleştirildikçe ve diğer organel türleri kaldırıldıkça artar."
+"Bir hücre beden boşluğu iken, diğer hücrelerin içinden geçmesine izin verir ve yakınlık bonusu sağlar.\n"
+"Ancak bir boşluk hücresinin düzgün bir şekilde bağlı olması için birçok taraftan yeterli desteğe ihtiyacı vardır.\n"
+"İlk hücre, beden boşluğu olamaz."
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -1046,14 +1047,6 @@ msgstr "Temel Koloni İlerleme Hızı"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Temel Koloni Dönme Hızı"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Temel Koloni İlerleme Hızı"
 
 msgid "COLOUR"
 msgstr "Renk"
@@ -2640,7 +2633,7 @@ msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Hücreleri vurmak için hasar veren toksin mermileri ateşle"
 
 msgid "FIRST_CELL_CANNOT_BE_CAVITY"
-msgstr ""
+msgstr "İlk hücre beden boşluğu olamaz"
 
 msgid "FLAGELLUM"
 msgstr "Kamçı"
@@ -5083,10 +5076,6 @@ msgstr "Akson"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Aksonlar, nöronların birbirlerine bağlanmak ve birbiriyle iletişim kurmak için kullandığı sinir lifleridir. Bu organeli yerleştirmek, bir hücre türünü beyin dokusuna dönüştürür."
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Diğer hücreleri delmek veya onların toksinlerine karşı hücreyi korumak için kullanılabilir."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Makroskopik"
 
@@ -6142,6 +6131,30 @@ msgstr "Anizogamiye yükselt ({0} MP)"
 
 msgid "SFX_VOLUME"
 msgstr "Ses efektleri"
+
+msgid "SHADOW_FILTERING"
+msgstr "Yumuşak gölge süzme"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr "Yok"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Yüksek"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr "Düşük"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr "Orta"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Çok Yüksek"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr "Çok Düşük"
+
+msgid "SHADOW_RESOLUTION"
+msgstr "Gölge çözünürlüğü"
 
 msgid "SHIFT"
 msgstr "Shift"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 15:45+0100\n"
+"POT-Creation-Date: 2026-11-11 19:27+0300\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -762,6 +762,9 @@ msgstr "muito pouco"
 msgid "CAUTIOUS"
 msgstr "Cauteloso"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Célula"
 
@@ -1062,14 +1065,6 @@ msgstr "Rotação:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Rotação:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Rotação:"
 
 msgid "COLOUR"
 msgstr "Cor"
@@ -5386,10 +5381,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se ligarem uns aos outros e comunicarem. Colocar este organelo transforma o tipo de célula para tecido cerebral."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Esfaqueie outras células com isso."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Multicelular"
 
@@ -6528,6 +6519,33 @@ msgstr "Obter passivamente progresso de reprodução"
 
 msgid "SFX_VOLUME"
 msgstr "Volume de Efeitos"
+
+msgid "SHADOW_FILTERING"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Exportar toda a informacão dos mundos em ficheiros .csv"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Exportar toda a informacão dos mundos em ficheiros .csv"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Auto ({0}x{1})"
 
 msgid "SHIFT"
 msgstr "Shift"
