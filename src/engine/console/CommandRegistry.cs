@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -225,7 +226,7 @@ public class CommandRegistry : IDisposable
 
         if (type == typeof(float))
         {
-            if (float.TryParse(token, out float floatVal))
+            if (float.TryParse(token, CultureInfo.InvariantCulture, out float floatVal))
             {
                 result = floatVal;
                 return true;
@@ -236,7 +237,7 @@ public class CommandRegistry : IDisposable
 
         if (type == typeof(double))
         {
-            if (double.TryParse(token, out double doubleVal))
+            if (double.TryParse(token, CultureInfo.InvariantCulture, out double doubleVal))
             {
                 result = doubleVal;
                 return true;
