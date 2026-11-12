@@ -434,7 +434,8 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
 
         var speciesList = new StringBuilder(100);
 
-        foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
+        foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName,
+                     StringComparer.CurrentCulture))
         {
             speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));

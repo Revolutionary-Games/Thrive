@@ -1,9 +1,9 @@
 ﻿using System;
 using Godot;
 
-/// <summary>
+/// <content>
 ///   Partial class: Scene tree dumper
-/// </summary>
+/// </content>
 public partial class DebugOverlays
 {
     private const string SCENE_DUMP_FILE = "user://logs/scene_tree_dump.txt";

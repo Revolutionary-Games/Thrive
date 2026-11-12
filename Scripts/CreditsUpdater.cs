@@ -176,7 +176,8 @@ public static class CreditsUpdater
         // Sort by the total words / translations people have done
         // ThenBy ensures here consistent ordering when there are multiple people with the same amount of translation
         // work done
-        return people.OrderByDescending(p => p.Value).ThenBy(p => p.Key).Select(p => p.Key).ToList();
+        return people.OrderByDescending(p => p.Value).ThenBy(p => p.Key, StringComparer.Ordinal)
+            .Select(p => p.Key).ToList();
     }
 
     private static async Task<Credits.GameDevelopers> FetchWikiDevelopers(HttpClient client,

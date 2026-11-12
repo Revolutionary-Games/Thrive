@@ -99,6 +99,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
     private readonly StringName cloudNoiseParameter = new("cloudNoise");
     private readonly StringName cloudPlanetCenterParameter = new("cloudPlanetCenter");
+    private readonly StringName cloudGroundRadiusParameter = new("cloudGroundRadius");
     private readonly StringName cloudInnerRadiusParameter = new("cloudInnerRadius");
     private readonly StringName cloudOuterRadiusParameter = new("cloudOuterRadius");
     private readonly StringName cloudTileSizeParameter = new("cloudTileSize");
@@ -231,6 +232,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
             cloudNoiseParameter.Dispose();
             cloudPlanetCenterParameter.Dispose();
+            cloudGroundRadiusParameter.Dispose();
             cloudInnerRadiusParameter.Dispose();
             cloudOuterRadiusParameter.Dispose();
             cloudTileSizeParameter.Dispose();
@@ -349,6 +351,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         float outer = MathF.Max(CloudsConfig.CloudOuterHeight, inner + 1.0f);
 
         cloudQuadMaterial.SetShaderParameter(cloudPlanetCenterParameter, CloudsConfig.PlanetCenter);
+        cloudQuadMaterial.SetShaderParameter(cloudGroundRadiusParameter, CloudsConfig.PlanetRadius);
         cloudQuadMaterial.SetShaderParameter(cloudInnerRadiusParameter, CloudsConfig.PlanetRadius + inner);
         cloudQuadMaterial.SetShaderParameter(cloudOuterRadiusParameter, CloudsConfig.PlanetRadius + outer);
         cloudQuadMaterial.SetShaderParameter(cloudTileSizeParameter, CloudsConfig.CloudTileSize);
