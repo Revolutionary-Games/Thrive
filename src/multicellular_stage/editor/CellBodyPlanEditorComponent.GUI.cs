@@ -336,9 +336,12 @@ public partial class CellBodyPlanEditorComponent
                 }
             }
 
+            var invalidCavity = cell.Data!.IsCavity && (order == 1 ||
+                !CellBodyPlanInternalCalculations.HasEnoughCavityNeighbours(cell.Position, editedMicrobeCells));
+
             yield return (Hex.AxialToCartesian(cell.Position), order.ToString(),
                 GrowthOrderNumberColour(cell.Data!.IsCavity,
-                    wrongGrowthOrderCells.Contains(cell.Position) || (order == 1 && cell.Data.IsCavity)));
+                    wrongGrowthOrderCells.Contains(cell.Position) || invalidCavity));
         }
     }
 
