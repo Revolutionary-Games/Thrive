@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers.Binary;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
@@ -35,7 +36,26 @@ public static class AtmosphereTransmittanceLut
 
         var data = new byte[Width * Height * Channels * BytesPerChannel];
 
-        Parallel.For(0, Height, y =>
+        int taskCount = Math.Clamp(TaskExecutor.Instance.ParallelTasks, 1, Height);
+        var tasks = new List<Task>(taskCount);
+
+        for (int i = 0; i < taskCount; ++i)
+        {
+            int fromRow = Height * i / taskCount;
+            int toRow = Height * (i + 1) / taskCount;
+
+            tasks.Add(new Task(() =>
+            {
+                for (int y = fromRow; y < toRow; ++y)
+                    BakeRow(y);
+            }));
+        }
+
+        TaskExecutor.Instance.RunTasks(tasks);
+
+        return Image.CreateFromData(Width, Height, false, Image.Format.Rgbh, data);
+
+        void BakeRow(int y)
         {
             float pointHorizonDistance = topHorizonDistance * y / (Height - 1);
             float radius = MathF.Sqrt(pointHorizonDistance * pointHorizonDistance + groundRadius * groundRadius);
@@ -72,9 +92,7 @@ public static class AtmosphereTransmittanceLut
                 WriteChannel(data, offset + BytesPerChannel, opticalDepth.Y);
                 WriteChannel(data, offset + 2 * BytesPerChannel, opticalDepth.Z);
             }
-        });
-
-        return Image.CreateFromData(Width, Height, false, Image.Format.Rgbh, data);
+        }
     }
 
     private static void WriteChannel(byte[] data, int offset, float opticalDepth)
