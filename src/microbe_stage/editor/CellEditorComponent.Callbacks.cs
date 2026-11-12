@@ -123,7 +123,7 @@ public partial class CellEditorComponent
             UpdateAlreadyPlacedVisuals();
 
             // Organelle placement *might* affect auto-evo in the future, so this is here for that reason
-            autoEvoPredictionDirty = true;
+            autoEvoPrediction.MarkDirty();
 
             // Suggestion is not restarted as the overall shape / movement speed is likely not significant enough to
             // invalidate the suggestion
@@ -173,7 +173,7 @@ public partial class CellEditorComponent
         UpdateAlreadyPlacedVisuals();
         UpdateStats();
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
 
         // As this is a move, this kind of doesn't need to trigger suggestions again, so this apparently doesn't
 
@@ -257,7 +257,7 @@ public partial class CellEditorComponent
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
         ApplyMembraneToPreview(membrane);
@@ -280,7 +280,7 @@ public partial class CellEditorComponent
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
         ApplyMembraneToPreview(Membrane);
