@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
 using Xoshiro.PRNG32;
@@ -1594,7 +1595,19 @@ public static class SpawnHelpers
         Vector3 direction,
         float lifetime, Vector3 normalizedDirection, Entity emitter)
     {
-        commandBuffer.Set(entity, new WorldPosition(location + direction * 1.5f));
+        var spawnPosition = location + direction * 1.5f;
+
+        if (emitter.IsAliveAndHas<MulticellularSpeciesMember>() &&
+            emitter.Get<MulticellularSpeciesMember>().IsCavity())
+        {
+            // Cavities can fire from their centre without hitting themselves. Projectiles belong on the gameplay
+            // plane rather than at the cavity cell's visual height.
+            // This handling is here so that this accounts automatically for all projectile types.
+            spawnPosition = emitter.Get<WorldPosition>().Position;
+            spawnPosition.Y = 0;
+        }
+
+        commandBuffer.Set(entity, new WorldPosition(spawnPosition));
         commandBuffer.Set<SpatialInstance>(entity);
 
         commandBuffer.Set(entity, new TimedLife
