@@ -452,7 +452,7 @@ public partial class CellBodyPlanEditorComponent
 
             cavityPositions.UnionWith(pair.Value);
             if (fullLayoutGrowthOrderIndices.GetValueOrDefault(pair.Key, -1) == 0 ||
-                wrongGrowthOrderCells.Contains(pair.Key.Position))
+                wrongGrowthOrderCells.Contains(pair.Key.Position) || IsUnsupportedFullLayoutCavity(pair.Key))
             {
                 invalidCavityPositions.UnionWith(pair.Value);
             }
@@ -678,10 +678,20 @@ public partial class CellBodyPlanEditorComponent
             // Automatic layout's placement order is excluded from connectivity error detection.
             var textColor = GrowthOrderNumberColour(cell.Data!.IsCavity,
                 (UsesManualPlayerLayout && wrongGrowthOrderCells.Contains(cell.Position)) ||
-                (i == 0 && cell.Data.IsCavity));
+                (i == 0 && cell.Data.IsCavity) || IsUnsupportedFullLayoutCavity(cell));
 
             yield return (Hex.AxialToCartesian(cell.Position), (i + 1).ToString(), textColor);
         }
+    }
+
+    /// <summary>
+    ///   Checks cavity support at the compact source position, as full layout cells have different positions and
+    ///   footprints. The source mapping covers both automatic previews and manual layouts.
+    /// </summary>
+    private bool IsUnsupportedFullLayoutCavity(HexWithData<CellTemplate> cell)
+    {
+        return cell.Data!.IsCavity && fullLayoutGrowthOrderSources.TryGetValue(cell, out var source) &&
+            !CellBodyPlanInternalCalculations.HasEnoughCavityNeighbours(source.Position, editedMicrobeCells);
     }
 
     private HexWithData<CellTemplate>? GetFullCellAt(Hex position)

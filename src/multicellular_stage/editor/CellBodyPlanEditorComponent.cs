@@ -312,8 +312,7 @@ public partial class CellBodyPlanEditorComponent :
             if (wrongGrowthOrderCells.Count > 0)
                 return true;
 
-            // TODO: other cavity error cases
-            if (FirstCellIsCavity())
+            if (FirstCellIsCavity() || CellBodyPlanInternalCalculations.HasUnsupportedCavities(editedMicrobeCells))
                 return true;
 
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
@@ -1037,7 +1036,12 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
-        // TODO: other cavity check cases
+        if (CellBodyPlanInternalCalculations.HasUnsupportedCavities(editedMicrobeCells))
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CAVITY_CELLS_NEED_NEIGHBOURS")
+                .FormatSafe(Constants.CAVITY_CELL_MINIMUM_NEIGHBOURS), 5);
+            return false;
+        }
 
         if (UsesManualPlayerLayout)
         {
@@ -1751,9 +1755,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             // We are hovering over an existing hex, show its adjacency effects
             // Or placing a new cell
-            var text = "+" + Localization.Translate("PERCENTAGE_VALUE")
-                .FormatSafe(Math.Round(100 * Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS));
-
             float totalBonus = 0;
 
             // If placing on existing cell, check that type to show existing info, otherwise use the cell to place
@@ -1775,21 +1776,24 @@ public partial class CellBodyPlanEditorComponent :
                 if (cellAtPosition == null)
                     continue;
 
-                // For now cell adjacency only looks at the type, so we can easily re-calculate that here
+                // Match the adjacency calculation, including the bonus given by cavity cells
                 if (!ReferenceEquals(GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType),
                         GetEditedCellDataIfEdited(cellToCheckAgainst)))
                 {
                     continue;
                 }
 
-                totalBonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+                var bonus = Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS *
+                    (cellAtPosition.Data.IsCavity ? Constants.CAVITY_CELL_ADJACENCY_BONUS_MULTIPLIER : 1);
+                totalBonus += bonus;
+                var text = "+" + Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(100 * bonus));
                 DisplayHexAdjacencyEffect(new Hex(q, r), positionToCheck, text, Colors.LightGreen);
             }
 
             if (totalBonus > 0)
             {
                 // TODO: show total bonus number
-                text = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                var text = "+" + Localization.Translate("PERCENTAGE_VALUE")
                     .FormatSafe(Math.Round(100 * totalBonus));
 
                 // We just draw the text here and not the line
@@ -2617,8 +2621,10 @@ public partial class CellBodyPlanEditorComponent :
                 if (!cell.Data!.IsCavity)
                     return material;
 
+                // Apply cavity material state as an override
                 return material == islandMaterial || wrongGrowthOrderCells.Contains(position) ||
-                    ReferenceEquals(cell, firstCell) ?
+                    ReferenceEquals(cell, firstCell) ||
+                    !CellBodyPlanInternalCalculations.HasEnoughCavityNeighbours(position, editedMicrobeCells) ?
                         invalidCavityMaterial :
                         cavityMaterial;
             });
