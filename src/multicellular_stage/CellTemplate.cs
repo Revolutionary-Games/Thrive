@@ -66,7 +66,13 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
         set => ModifiableCellType.MembraneRigidity = value;
     }
 
-    public Color Colour { get => ModifiableCellType.Colour; set => ModifiableCellType.Colour = value; }
+    public Color Colour
+    {
+        get => IsCavity ?
+            ModifiableCellType.Colour.Darkened(Constants.CAVITY_CELL_COLOUR_DARKENING) :
+            ModifiableCellType.Colour;
+        set => ModifiableCellType.Colour = value;
+    }
 
     public bool IsBacteria { get => ModifiableCellType.IsBacteria; set => ModifiableCellType.IsBacteria = value; }
 
@@ -164,6 +170,11 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
 
     public override string ToString()
     {
+        if (IsCavity)
+        {
+            return $"Cavity Cell ({CellType.CellTypeName}) at {Position}";
+        }
+
         return $"Cell ({CellType.CellTypeName}) at {Position}";
     }
 }

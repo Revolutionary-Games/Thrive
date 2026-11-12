@@ -328,7 +328,8 @@ public static class CellBodyPlanInternalCalculations
             if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
-                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS *
+                    (cell.Data.IsCavity ? Constants.CAVITY_CELL_ADJACENCY_BONUS_MULTIPLIER : 1);
             }
         }
 
@@ -353,11 +354,42 @@ public static class CellBodyPlanInternalCalculations
             if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
-                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS *
+                    (cell.Data.IsCavity ? Constants.CAVITY_CELL_ADJACENCY_BONUS_MULTIPLIER : 1);
             }
         }
 
         return 1 + bonus;
+    }
+
+    /// <summary>
+    ///   Checks support for a cavity in the main body plan, where each cell occupies a single position.
+    ///   Neighbours count regardless of their type or cavity status.
+    /// </summary>
+    /// <typeparam name="T">The type of the cell template.</typeparam>
+    public static bool HasEnoughCavityNeighbours<T>(Hex position, IReadOnlyIndividualLayout<T> bodyPlan)
+        where T : class, IReadOnlyCellTemplate
+    {
+        int neighbourCount = 0;
+        foreach (var offset in Hex.HexNeighbourOffset.Values)
+        {
+            if (bodyPlan.GetByExactElementRootPosition(position + offset)?.Data != null)
+                ++neighbourCount;
+        }
+
+        return neighbourCount >= Constants.CAVITY_CELL_MINIMUM_NEIGHBOURS;
+    }
+
+    public static bool HasUnsupportedCavities<T>(IReadOnlyIndividualLayout<T> bodyPlan)
+        where T : class, IReadOnlyCellTemplate
+    {
+        foreach (var cell in bodyPlan)
+        {
+            if (cell.Data!.IsCavity && !HasEnoughCavityNeighbours(cell.Position, bodyPlan))
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>

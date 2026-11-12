@@ -2,9 +2,9 @@
 using Godot;
 using SharedBase.Archive;
 
-/// <summary>
+/// <content>
 ///   Callbacks for the metaball body editor
-/// </summary>
+/// </content>
 public partial class MetaballBodyEditorComponent
 {
     [ArchiveAllowedMethod]

@@ -225,9 +225,11 @@ public class GenerateMiche : IRunStep
             predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 8.0f)));
 
             // Endosymbiosis Miches
-            if (targetSpecies.Key.PlayerSpecies && targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis != null)
+            // Editor prediction runs in the background, while the player can cancel endosymbiosis.
+            if (targetSpecies.Key.PlayerSpecies &&
+                targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis is { } endosymbiosis)
             {
-                var endosymbiont = targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis.Species;
+                var endosymbiont = endosymbiosis.Species;
                 var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, targetSpecies.Key, 1.0f));
                 parentMiche.AddChild(endosymbiosisPressure);
             }

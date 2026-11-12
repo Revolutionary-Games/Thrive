@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -53,7 +54,7 @@ public partial class ResourceDisplayBar : HBoxContainer
         // The resources are sorted here to ensure consistent order of icons in the GUI, this would not really be
         // necessary each frame so TODO something better to only sort when required (for example when new items are
         // created)
-        foreach (var pair in resourceStorage.GetAllResources().OrderBy(t => t.Key.InternalName))
+        foreach (var pair in resourceStorage.GetAllResources().OrderBy(t => t.Key.InternalName, StringComparer.Ordinal))
         {
             var display = resourceDisplayCache.GetChild(pair.Key);
 
