@@ -14,7 +14,7 @@ public interface IMembraneDataSource
     public bool IsPreMulticellularStretch { get; }
 }
 
-public struct MulticellularMembraneGenerationCellData : IEquatable<MulticellularMembraneGenerationCellData>
+public readonly struct MulticellularMembraneGenerationCellData : IEquatable<MulticellularMembraneGenerationCellData>
 {
     public MulticellularMembraneGenerationCellData(Vector2 position, int orientation)
     {

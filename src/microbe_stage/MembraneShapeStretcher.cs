@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Stretches colony cell membranes towards shared boundaries.
 /// </summary>
-public class MembraneShapeStretcher
+public static class MembraneShapeStretcher
 {
     /// <summary>
     ///   Smooths every vertex by averaging it with its two neighbouring vertices.
@@ -301,17 +301,17 @@ public class MembraneShapeStretcher
                     continue;
 
                 var middlePoint = (closestA + closestB) * 0.5f;
-                var isOverlappig = false;
+                var isOverlapping = false;
 
                 if (IsPointInsideConvexPolygon(middlePoint, cellA.Vertices2D) ||
                     IsPointInsideConvexPolygon(middlePoint, cellB.Vertices2D))
                 {
                     closestB = cellB.AverageVertex;
                     closestA = cellA.AverageVertex;
-                    isOverlappig = true;
+                    isOverlapping = true;
                 }
 
-                CreateBoundaryLinesForNeighbours(closestB, closestA, cellA, cellKeyB, cellB, cellKeyA, isOverlappig);
+                CreateBoundaryLinesForNeighbours(closestB, closestA, cellA, cellKeyB, cellB, cellKeyA, isOverlapping);
             }
         }
 
