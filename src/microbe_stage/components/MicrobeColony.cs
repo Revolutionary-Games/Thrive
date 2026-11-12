@@ -1046,11 +1046,15 @@ public static class MicrobeColonyHelpers
 
         // Actomyosin acts as the key buff to keep the rotation rate reasonable. This is a float as multiple actomyosin
         // per cell give a small extra bonus
-        float actomyosinCount = 0;
+        float effectiveActomyosinCount = 0;
         float totalRotationSpeed = 0;
         bool leader = true;
 
-        // We first calculate the actomyosin bonus, because the individual cell calculations will be using it.
+        // We first calculate the axon and actomyosin bonuses, because the individual cell calculations will be using
+        // them.
+        var axonPower = 0.0f;
+        var axonCount = 0;
+
         foreach (var colonyMember in colony.ColonyMembers)
         {
             try
@@ -1058,7 +1062,13 @@ public static class MicrobeColonyHelpers
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
                 var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
-                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                if (memberOrganelleContainer.HasAxon)
+                {
+                    axonPower += memberTotalSpecializationBonus;
+                    ++axonCount;
+                }
+
+                effectiveActomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
                     memberTotalSpecializationBonus;
             }
             catch (Exception e)
@@ -1068,8 +1078,10 @@ public static class MicrobeColonyHelpers
             }
         }
 
+        var axonBonus = CellBodyPlanInternalCalculations.CalculateAxonRotationMultiplier(axonPower, axonCount);
         var actomyosinMultiplier =
-            CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(actomyosinCount);
+            CellBodyPlanInternalCalculations.CalculateActomyosinRotationMultiplier(effectiveActomyosinCount *
+                axonBonus);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1080,8 +1092,8 @@ public static class MicrobeColonyHelpers
                     colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus,
-                    actomyosinMultiplier);
+                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus *
+                    axonBonus, actomyosinMultiplier);
 
                 // Bonus from position
                 if (!leader)
