@@ -16,6 +16,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
+    private readonly CellEditorPrediction autoEvoPrediction;
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
     private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = [];
@@ -163,6 +165,9 @@ public partial class CellBodyPlanEditorComponent :
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
+    private EditorAutoEvoPredictionPanel autoEvoPredictionPanel = null!;
+
+    [Export]
     private ScrollContainer rightPanelScrollContainer = null!;
 
     [Export]
@@ -278,6 +283,14 @@ public partial class CellBodyPlanEditorComponent :
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     private StorageValueBreakdown? storageValueBreakdown;
+
+    public CellBodyPlanEditorComponent()
+    {
+        autoEvoPrediction = new CellEditorPrediction(CreateAutoEvoPrediction, _ => { },
+            species => new EditorAutoEvoRun(Editor.CurrentGame.GameWorld,
+                Editor.CurrentGame.GameWorld.AutoEvoGlobalCache, Editor.EditedSpecies, species, Editor.TargetPatch),
+            () => Editor.EditedSpecies, () => { }, OnAutoEvoPredictionComplete, false);
+    }
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -459,6 +472,10 @@ public partial class CellBodyPlanEditorComponent :
     public override void Init(MulticellularEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+        autoEvoPredictionPanel.ConfigureHost(finishOrNextButton,
+            () => (Editor.CurrentPatch, Editor.CurrentGame.GameWorld.WorldSettings));
+        autoEvoPredictionPanel.ShowWaiting();
+
         behaviourEditor.Init(owningEditor, fresh);
         tolerancesEditor.Init(owningEditor, fresh);
 
@@ -592,6 +609,8 @@ public partial class CellBodyPlanEditorComponent :
             OnCellsChanged();
             cellDataDirty = false;
         }
+
+        autoEvoPrediction.Process(delta, Editor.EditorReady, false);
 
         if (refreshTolerancesWarnings)
         {
@@ -1240,6 +1259,8 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
+        StopAutoEvoPrediction();
+
         // Make sure specialization is calculated
         changedType.CalculateSpecialization();
 
@@ -1463,6 +1484,7 @@ public partial class CellBodyPlanEditorComponent :
         refreshTolerancesWarnings = true;
 
         Editor.OnTolerancesChanged(newTolerances);
+        autoEvoPrediction.MarkDirty();
     }
 
     public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
@@ -2332,6 +2354,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateMassBuddingCellCountSlider();
+
+        autoEvoPrediction.MarkDirty();
     }
 
     private void UpdateStats()
@@ -2576,6 +2600,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateGrowthOrderUI();
 
         UpdateFinishButtonWarningVisibility();
+
+        autoEvoPrediction.MarkDirty();
     }
 
     private void ApplyGrowthOrderToCells()

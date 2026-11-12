@@ -225,9 +225,11 @@ public partial class CellEditorComponent :
 
     public CellEditorComponent()
     {
-        autoEvoPrediction = new CellEditorPrediction(CreateAutoEvoPredictionSpecies, FillAutoEvoPredictionSpecies,
-            CreateAutoEvoPredictionRun, () => Editor.EditedBaseSpecies, () => autoEvoPredictionPanel.ShowWaiting(),
-            OnAutoEvoPredictionComplete);
+        autoEvoPrediction = new CellEditorPrediction(CreateAutoEvoPredictionSpecies,
+            species => FillAutoEvoPredictionSpecies((MicrobeSpecies)species),
+            species => CreateAutoEvoPredictionRun((MicrobeSpecies)species),
+            () => Editor.EditedBaseSpecies, () => autoEvoPredictionPanel.ShowWaiting(),
+            OnAutoEvoPredictionComplete, true);
     }
 
     public enum SelectionMenuTab

@@ -104,6 +104,7 @@ public partial class CellBodyPlanEditorComponent
         base.OnTranslationsChanged();
 
         organismStatisticsPanel.OnTranslationsChanged();
+        autoEvoPredictionPanel.OnTranslationsChanged();
 
         UpdateSpecializationDisplay();
 
@@ -657,6 +658,7 @@ public partial class CellBodyPlanEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
         SelectedGameteTypeForPlayer = GameteType.A;
+        autoEvoPrediction.MarkDirty();
     }
 
     private void OnPlayerSetGameteB(bool pressed)
@@ -669,6 +671,7 @@ public partial class CellBodyPlanEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
         SelectedGameteTypeForPlayer = GameteType.B;
+        autoEvoPrediction.MarkDirty();
     }
 
     private void UpdateMassBuddingCellCountSlider()

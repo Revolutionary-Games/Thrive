@@ -71,6 +71,8 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
     {
+        StopAutoEvoPrediction();
+
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
@@ -112,8 +114,6 @@ public partial class CellBodyPlanEditorComponent
             cellDataDirty = true;
             UpdateAlreadyPlacedVisuals();
 
-            // TODO: notify auto-evo prediction once that is done
-
             UpdateSpecializationDisplay();
         }
         else
@@ -142,6 +142,7 @@ public partial class CellBodyPlanEditorComponent
     private void DoReproductionMethodChangeAction(MulticellularReproductionActionData data)
     {
         ReproductionMethod = data.NewReproductionMethod;
+        autoEvoPrediction.MarkDirty();
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
@@ -172,6 +173,7 @@ public partial class CellBodyPlanEditorComponent
     private void UndoReproductionMethodChangeAction(MulticellularReproductionActionData data)
     {
         ReproductionMethod = data.OldReproductionMethod;
+        autoEvoPrediction.MarkDirty();
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
@@ -209,6 +211,8 @@ public partial class CellBodyPlanEditorComponent
 
     private void ChangeCellType(CellType? oldCellType, CellType? newCellType, SpecialCellArchetype specialCellArchetype)
     {
+        StopAutoEvoPrediction();
+
         if (oldCellType != null)
         {
             if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(oldCellType))
@@ -227,6 +231,8 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnCellTypeAdded(CellType added)
     {
+        StopAutoEvoPrediction();
+
         var originalName = added.CellTypeName;
         var count = 1;
 
@@ -300,6 +306,7 @@ public partial class CellBodyPlanEditorComponent
     private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
         DesiredMassBuddingCellCount = data.NewCellCount;
+        autoEvoPrediction.MarkDirty();
 
         UpdateMassBuddingCellCountSlider();
     }
@@ -308,8 +315,14 @@ public partial class CellBodyPlanEditorComponent
     private void UndoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
         DesiredMassBuddingCellCount = data.OldCellCount;
+        autoEvoPrediction.MarkDirty();
 
         UpdateMassBuddingCellCountSlider();
+    }
+
+    private void OnBehaviourChanged()
+    {
+        autoEvoPrediction.MarkDirty();
     }
 
     private void OnReproductionMethodChangedToSexual()
