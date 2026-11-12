@@ -28,55 +28,65 @@ public class MembraneShapeGenerator
     private static readonly int MembraneVerticalResolution = Constants.MEMBRANE_VERTICAL_RESOLUTION;
 
     /// <summary>
-    ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
-    ///   from here to <see cref="MembranePointData"/> for actual usage (and checks like containing points)
-    /// </summary>
-    private readonly List<Vector2> vertices2D = new();
-
-    /// <summary>
-    ///   Pool of scratch objects, sized to the largest neighbour count seen so far.
-    ///   Bounded by max simultaneous neighbours a cell can have, NOT by total cells ever processed.
-    /// </summary>
-    private readonly List<NeighbourWorkingData> neighbourWorkingDataPool = new();
-
-    /// <summary>
-    ///   Maps a neighbour's key -> its slot index in <see cref="neighbourWorkingDataPool"/> for the current call only.
-    /// </summary>
-    private readonly Dictionary<long, int> neighbourKeyToSlot = new();
-
-    /// <summary>
-    ///   Stores key of the neighbours that are in the vicinity of the current cell
-    /// </summary>
-    private readonly List<long> closeNeighboursKeys = new();
-
-    /// <summary>
-    ///   Stores positions of current cells vertices that have been cast onto the tangent lines during
-    ///   multicellular processing in case there are overlaps with other neighbours and the transformations cannot
-    ///   be applied
-    /// </summary>
-    private readonly Dictionary<int, Vector2> validPointsCasts = new();
-
-    /// <summary>
-    ///   Stores positions of neighbour cells vertices that have been cast onto the tangent lines during
-    ///   multicellular processing in case there are overlaps with other neighbours and the transformations cannot
-    ///   be applied
-    /// </summary>
-    private readonly Dictionary<int, Vector2> validNeighbourPointsCasts = new();
-
-    /// <summary>
     ///   Buffer for starting points when generating membrane data
     /// </summary>
     private readonly List<Vector2> startingBuffer = new();
 
     /// <summary>
-    ///   Id of the current cell that is being processed during multicellular membrane stretching
+    ///   Stores stretched membrane results by cell key and is reused for each colony.
     /// </summary>
-    private long currentColonyCellKey;
+    private readonly Dictionary<long, MembranePointData> stretchedMembranesPointData = new();
 
     /// <summary>
-    ///   Id of the neighbour cell that is being processed during multicellular membrane stretching
+    ///   Working cells data from <see cref="reusableCells"/>.
     /// </summary>
-    private long neighbourColonyCellKey;
+    private readonly Dictionary<long, MembraneShapeStretcher.CellData> cellsData = new();
+
+    /// <summary>
+    ///   Pools working cell data for reuse after a colony has been processed.
+    /// </summary>
+    private readonly Stack<MembraneShapeStretcher.CellData> reusableCells = new();
+
+    /// <summary>
+    ///   Storage for cells meeting at an intersection.
+    /// </summary>
+    private readonly List<MembraneShapeStretcher.CellData> neighbouringCells = new();
+
+    /// <summary>
+    ///   Collects candidate boundary points before deduplication and clockwise sorting.
+    /// </summary>
+    private readonly List<Vector2> points = new();
+
+    /// <summary>
+    ///   Records whether each pair of consecutive boundary candidates can be connected.
+    /// </summary>
+    private readonly List<bool> validEdges = new();
+
+    /// <summary>
+    ///   Accumulates boundary points for the open path currently being built.
+    /// </summary>
+    private readonly List<Vector2> currentPath = new();
+
+    /// <summary>
+    ///   Shared boundary storage, consumed before processing the next cell.
+    /// </summary>
+    private readonly List<Vector2> boundaryPoints = new();
+
+    /// <summary>
+    ///   Stores ranges identifying individual paths within the shared boundary point buffer.
+    /// </summary>
+    private readonly List<MembraneShapeStretcher.BoundaryPathRange> boundaryPaths = new();
+
+    /// <summary>
+    ///   Reuses the clockwise boundary point comparison around the current cell centre.
+    /// </summary>
+    private readonly MembraneShapeStretcher.BoundaryPointComparer boundaryPointComparer = new();
+
+    /// <summary>
+    ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
+    ///   from here to <see cref="MembranePointData"/> for actual usage (and checks like containing points)
+    /// </summary>
+    private List<Vector2> vertices2D = new();
 
     /// <summary>
     ///   Gets a generator for the current thread. This is required to be used as the generators are not thread safe.
@@ -162,34 +172,6 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
-    ///   Modifies already generated membrane to make it stretch towards other cells. Also applies membrane
-    ///   waviness as it is normally done in single cellular membrane
-    /// </summary>
-    public MembranePointData GenerateMulticellularMembrane(long thisCellKey,
-        ConcurrentDictionary<long, NeighbourData> neighboursData, long leaderCellId)
-    {
-        currentColonyCellKey = thisCellKey;
-        var currentCellData = neighboursData[currentColonyCellKey];
-        var originalPointData = currentCellData.OriginalPointData;
-
-        SetCellVertices(currentCellData);
-        GenerateMulticellularMembrane(currentCellData, neighboursData);
-
-        // Apply the same waviness pass used for single-cell membranes
-        float circumference = 0.0f;
-        for (int i = 0, end = vertices2D.Count; i < end; ++i)
-            circumference += (vertices2D[(i + 1) % end] - vertices2D[i]).Length();
-
-        MakeMembraneWavier(originalPointData.Type, circumference);
-
-        int hexCount = originalPointData.HexPositionCount;
-        var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
-        originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
-
-        return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D);
-    }
-
-    /// <summary>
     ///   Creates the visual mesh from the overall shape (see GenerateShape method above) that is already created
     /// </summary>
     public (ArrayMesh Mesh, int SurfaceIndex) GenerateMesh(MembranePointData shapeData)
@@ -211,6 +193,45 @@ public class MembraneShapeGenerator
         var mesh = BuildEngulfMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex);
 
         return (mesh, surfaceIndex);
+    }
+
+    /// <summary>
+    ///   Modifies already generated membrane to make it stretch towards other cells. Also applies membrane
+    ///   waviness as it is normally done in single cellular membrane
+    /// </summary>
+    public Dictionary<long, MembranePointData> GenerateMulticellularMembrane(
+        ConcurrentDictionary<long, MembraneShapeStretcher.CellGenerationData> generationData)
+    {
+        try
+        {
+            foreach (var (key, input) in generationData)
+            {
+                if (reusableCells.TryPop(out var cell))
+                {
+                    cellsData.Add(key, cell);
+                    cell.Initialise(key, input.OriginalPointData, input.GenerationData);
+                }
+                else
+                {
+                    cellsData.Add(key,
+                        new MembraneShapeStretcher.CellData(key, input.OriginalPointData, input.GenerationData));
+                }
+            }
+
+            return StretchMembranes();
+        }
+        finally
+        {
+            // Results own copies of the vertices, so no working cell escapes this generation pass.
+            foreach (var cell in cellsData.Values)
+            {
+                cell.Clear();
+                reusableCells.Push(cell);
+            }
+
+            cellsData.Clear();
+            neighbouringCells.Clear();
+        }
     }
 
     /// <summary>
@@ -355,12 +376,6 @@ public class MembraneShapeGenerator
 
             writeIndex += 3;
         }
-    }
-
-    private static Vector2 RotatePoint(Vector2 point, float angle)
-    {
-        (float sin, float cos) = MathF.SinCos(angle);
-        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
     }
 
     /// <summary>
@@ -535,170 +550,93 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
-    private static float Cross(Vector2 a, Vector2 b, Vector2 p)
+    /// <summary>
+    ///   Applies membrane waves to the supplied outline using its circumference and membrane type.
+    /// </summary>
+    private static void MakeMembraneWavier(List<Vector2> vertices, MembraneType membraneType, float circumference)
     {
-        // 2D cross product of vectors (b-a) and (p-a).
-        // Positive = p is left of edge a→b, negative = right, zero = collinear.
-        return (b - a).Cross(p - a);
-    }
+        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices.Count;
 
-    private static bool IsInsideConvexPolygon(List<Vector2> vertices, Vector2 point)
-    {
-        int count = vertices.Count;
-        if (count < 3)
-            return false;
+        float heightMultiplier = membraneType.CellWall ?
+            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
+            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
 
-        // Determine winding from the first non-degenerate edge so we know which sign = "inside"
-        float referenceCross = 0.0f;
+        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
+            * heightMultiplier;
 
-        for (int i = 0; i < count; ++i)
+        // Make the membrane wavier
+        for (int i = 0, end = vertices.Count; i < end; ++i)
         {
-            var a = vertices[i];
-            var b = vertices[(i + 1) % count];
+            var point = vertices[i];
+            var nextPoint = vertices[(i + 1) % end];
+            var direction = (nextPoint - point).Normalized();
 
-            float cross = (b.X - a.X) * (point.Y - a.Y)
-                - (b.Y - a.Y) * (point.X - a.X);
+            // Turn 90 degrees
+            direction = new Vector2(-direction.Y, direction.X);
 
-            if (cross == 0.0f)
-                continue;
+            var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
 
-            if (referenceCross == 0.0f)
-            {
-                referenceCross = cross;
-                continue;
-            }
-
-            // If the signs are different, the point is outside the edge
-            if (referenceCross > 0.0f != cross > 0.0f)
-            {
-                return false;
-            }
+            vertices[i] = point + movement;
         }
-
-        return true;
-    }
-
-    private static float GetOrientationAngle(int orientation)
-    {
-        return orientation * MathF.PI * 0.3333333f;
-    }
-
-    private static float Angle(Vector2 a, Vector2 b, Vector2 c)
-    {
-        var ba = a - b;
-        var bc = c - b;
-
-        return ba.AngleTo(bc);
     }
 
     /// <summary>
-    ///   Finds the vertex closest to the half-line from <paramref name="origin"/> toward <paramref name="target"/>,
-    ///   and returns its projection distance along that direction.
+    ///   Stretches the current colony using generator-owned working cells.
     /// </summary>
-    private static float GetMembraneReachToward(List<Vector2> vertices, Vector2 origin, Vector2 target,
-        out int closestVertexIndex)
+    private Dictionary<long, MembranePointData> StretchMembranes()
     {
-        var direction = (target - origin).Normalized();
-        float minDistanceToRay = float.MaxValue;
-        float bestProjection = 0.0f;
-        closestVertexIndex = 0;
+        stretchedMembranesPointData.Clear();
 
-        for (int i = 0; i < vertices.Count; ++i)
+        foreach (var (_, cellData) in cellsData)
         {
-            var vertex = vertices[i];
-            var directionToVertex = vertex - origin;
-            float projection = directionToVertex.Dot(direction);
+            MembraneShapeStretcher.RotateCellVertices(cellData);
+        }
 
-            // Only consider vertices on the forward half
-            if (projection <= 0.0f)
-                continue;
+        MembraneShapeStretcher.CreateBoundaryLines(cellsData);
 
-            // Perpendicular distance from vertex to the ray
-            float distanceToRay = (directionToVertex - direction * projection).LengthSquared();
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.GetIntersections(cellData);
+        }
 
-            if (distanceToRay < minDistanceToRay)
+        MembraneShapeStretcher.FilterInconsistentIntersections(cellsData, neighbouringCells);
+
+        foreach (var (_, cellData) in cellsData)
+        {
+            MembraneShapeStretcher.BuildBoundaryPaths(cellData, points, validEdges, currentPath, boundaryPoints,
+                boundaryPaths, boundaryPointComparer);
+            MembraneShapeStretcher.CastMembranePoints(cellData, boundaryPoints, boundaryPaths);
+
+            if (!cellData.OriginalPointData.Type.CellWall)
             {
-                minDistanceToRay = distanceToRay;
-                bestProjection = projection;
-                closestVertexIndex = i;
+                MembraneShapeStretcher.SmoothVertexRegion(cellData);
             }
         }
 
-        return bestProjection;
-    }
-
-    /// <summary>
-    ///   Finds the intersection ray (half-line) and line. Returns false when the lines are parallel or
-    ///   the intersection lies behind rayOrigin relative to rayDirection.
-    /// </summary>
-    private static bool CalculateRayLineIntersection(Vector2 rayOrigin, Vector2 rayDirection, Vector2 linePoint,
-        Vector2 lineDirection, out float rayDistance)
-    {
-        var determinant = rayDirection.X * lineDirection.Y - rayDirection.Y * lineDirection.X;
-        rayDistance = 0;
-
-        // Parallel lines
-        if (MathF.Abs(determinant) < MathUtils.EPSILON)
+        foreach (var (_, cellData) in cellsData)
         {
-            return false;
+            MembraneShapeStretcher.UnrotateCellVertices(cellData);
         }
 
-        var offset = linePoint - rayOrigin;
-        rayDistance = (offset.X * lineDirection.Y - offset.Y * lineDirection.X) / determinant;
-
-        // Interdection behind rayOrigin
-        if (rayDistance < 0)
-            return false;
-
-        return true;
-    }
-
-    /// <summary>
-    ///   Uses neigbours positions to smooth membrane points. Used to get rid of sharp corner in the membrane
-    /// </summary>
-    private static void SmoothVertexRegion(List<Vector2> vertices, int indexStart, int indexEnd)
-    {
-        var vertexCount = vertices.Count;
-
-        for (int i = indexStart; i < indexEnd; ++i)
+        foreach (var (key, data) in cellsData)
         {
-            int index = i % vertexCount;
-            int previousPointIndex = (i + vertexCount - 1) % vertexCount;
-            int nextPointIndex = (i + 1) % vertexCount;
+            float circumference = 0.0f;
+            for (int i = 0; i < data.VertexCount; ++i)
+            {
+                circumference += data.Vertices2D[i].DistanceTo(data.Vertices2D[(i + 1) % data.VertexCount]);
+            }
 
-            vertices[index] = (vertices[previousPointIndex] + vertices[index] + vertices[nextPointIndex]) * 0.333333f;
-        }
-    }
+            MakeMembraneWavier(data.Vertices2D, data.OriginalPointData.Type, circumference);
 
-    /// <summary>
-    ///   Define from which index of vertices2D to which index the points should be moved
-    /// </summary>
-    /// <param name="vertices">The list of vertices</param>
-    /// <param name="tangentPointIndexA">First tangent line's point on the membrane</param>
-    /// <param name="tangentPointIndexB">Second tangent line's point on the membrane</param>
-    /// <param name="reachVertexIndex">A point on the membrane between the tangent points</param>
-    /// <param name="indexStart">The starting index for the iteration</param>
-    /// <param name="indexEnd">The ending index for the iteration</param>
-    private static void CalculateIterationIndices(List<Vector2> vertices, int tangentPointIndexA,
-        int tangentPointIndexB, int reachVertexIndex,
-        out int indexStart, out int indexEnd)
-    {
-        var vertexCount = vertices.Count;
+            int hexCount = data.OriginalPointData.HexPositionCount;
+            var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
+            data.OriginalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
+            var membraneData = new MembranePointData(hexCopy, hexCount, data.OriginalPointData.Type, data.Vertices2D);
 
-        int forwardLength = (tangentPointIndexB - tangentPointIndexA + vertexCount) % vertexCount;
-        int backwardLength = (tangentPointIndexA - tangentPointIndexB + vertexCount) % vertexCount;
-
-        int reachOffsetFromA = (reachVertexIndex - tangentPointIndexA + vertexCount) % vertexCount;
-
-        if (reachOffsetFromA <= forwardLength)
-        {
-            indexStart = tangentPointIndexA;
-            indexEnd = tangentPointIndexA + forwardLength;
-            return;
+            stretchedMembranesPointData.Add(key, membraneData);
         }
 
-        indexStart = tangentPointIndexB;
-        indexEnd = tangentPointIndexB + backwardLength;
+        return stretchedMembranesPointData;
     }
 
     private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
@@ -768,404 +706,6 @@ public class MembraneShapeGenerator
         if (isMulticellular)
             return;
 
-        MakeMembraneWavier(membraneType, circumference);
-    }
-
-    private void MakeMembraneWavier(MembraneType membraneType, float circumference)
-    {
-        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
-
-        float heightMultiplier = membraneType.CellWall ?
-            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
-            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
-
-        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
-            * heightMultiplier;
-
-        // Make the membrane wavier
-        for (int i = 0, end = vertices2D.Count; i < end; ++i)
-        {
-            var point = vertices2D[i];
-            var nextPoint = vertices2D[(i + 1) % end];
-            var direction = (nextPoint - point).Normalized();
-
-            // Turn 90 degrees
-            direction = new Vector2(-direction.Y, direction.X);
-
-            var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
-
-            vertices2D[i] = point + movement;
-        }
-    }
-
-    /// <summary>
-    ///   Modifies single cell membrane to make it stretch towards its neighbours. First, a point between two cells is
-    ///   chosen, then 2 tangent lines are created for each cell. After that, vertices between those lines are cast
-    ///   onto them and afterwards smoothed out. If there are any overlaps with neighbours, the operation is canceled.
-    /// </summary>
-    private void GenerateMulticellularMembrane(NeighbourData cellData,
-        ConcurrentDictionary<long, NeighbourData> neighboursData)
-    {
-        var cellPosition = cellData.MulticellularMembraneGenerationCellData.Position;
-        var cellOrientation = cellData.MulticellularMembraneGenerationCellData.Orientation;
-        var cellAngle = GetOrientationAngle(cellOrientation);
-        var cellAverageVertex = cellData.OriginalAverageVertex;
-
-        GetCloseNeighbours(neighboursData, cellPosition);
-        RotateAndShiftCloseNeighbours(neighboursData, cellAngle, cellPosition);
-
-        foreach (var neighbourKey in closeNeighboursKeys)
-        {
-            var neighbourData = neighboursData[neighbourKey];
-
-            if (cellData.ProcessedNeighbours.Contains(neighbourKey))
-            {
-                continue;
-            }
-
-            neighbourData.ProcessedNeighbours.Add(currentColonyCellKey);
-            neighbourColonyCellKey = neighbourKey;
-
-            var neighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[neighbourKey]];
-            var editableNeighbourVertices = neighbourCell.ShiftedVertices;
-
-            var neighbourAverageVertex = neighbourData.LocalAverageVertex;
-
-            var middlePoint = GetMiddlePoint(editableNeighbourVertices, cellAverageVertex, neighbourAverageVertex,
-                out var closestCellVertexIndex, out var closestNeighbourVertexIndex);
-
-            if (vertices2D[closestCellVertexIndex]
-                    .DistanceSquaredTo(editableNeighbourVertices[closestNeighbourVertexIndex]) >
-                Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES)
-            {
-                continue;
-            }
-
-            // This might happen if cells are close to each other
-            var isMiddlePointInsideMembrane = IsInsideConvexPolygon(vertices2D, middlePoint) ||
-                IsInsideConvexPolygon(editableNeighbourVertices, middlePoint);
-
-            if (isMiddlePointInsideMembrane)
-                continue;
-
-            var pointsWereCastOntoTangentLines = CastVerticesOntoTheTangentLines(editableNeighbourVertices, middlePoint,
-                cellAverageVertex, neighbourAverageVertex, closestCellVertexIndex, closestNeighbourVertexIndex);
-
-            if (!pointsWereCastOntoTangentLines)
-            {
-                continue;
-            }
-
-            neighbourData.ModifiedVertices ??= new List<Vector2>(editableNeighbourVertices.Count);
-            neighbourData.ModifiedVertices.Clear();
-
-            // Revert the preprocessing transform (subtract local offset, counter-rotate) and store.
-            var storedLocalOffset = neighbourCell.Shift;
-            var storedRelativeAngle = neighbourCell.Rotation;
-
-            for (int i = 0; i < editableNeighbourVertices.Count; ++i)
-            {
-                var vertex = editableNeighbourVertices[i];
-                vertex -= storedLocalOffset;
-                vertex = RotatePoint(vertex, -storedRelativeAngle);
-                neighbourData.ModifiedVertices.Add(vertex);
-            }
-        }
-
-        // Store also current cells modified vertices so that when other neighbours are processed they can
-        // see those changes and avoid overlaps
-        cellData.ModifiedVertices ??= new List<Vector2>(vertices2D.Count);
-        cellData.ModifiedVertices.Clear();
-
-        for (int i = 0; i < vertices2D.Count; ++i)
-        {
-            cellData.ModifiedVertices.Add(vertices2D[i]);
-        }
-    }
-
-    /// <summary>
-    ///   Preprocess all neighbours in closeNeighboursKeys by rotating and shifting their original vertices
-    ///   into this cell's local space, storing results in <see cref="NeighbourWorkingData"/> to avoid
-    ///   per-iteration allocations. Membrane generation can give different result depending on which
-    ///   cells are processed first.
-    /// </summary>
-    private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
-        float thisAngle, Vector2 thisCellPosition)
-    {
-        neighbourKeyToSlot.Clear();
-
-        for (int slot = 0; slot < closeNeighboursKeys.Count; ++slot)
-        {
-            var neighbourKey = closeNeighboursKeys[slot];
-            var neighbourData = neighboursData[neighbourKey];
-
-            // Grow the pool only if this call needs more slots than we've ever needed before.
-            if (slot >= neighbourWorkingDataPool.Count)
-            {
-                neighbourWorkingDataPool.Add(new NeighbourWorkingData());
-            }
-
-            var neighbourCell = neighbourWorkingDataPool[slot];
-            neighbourCell.ShiftedVertices.Clear();
-
-            neighbourKeyToSlot[neighbourKey] = slot;
-
-            var neighbourAngle = GetOrientationAngle(neighbourData.MulticellularMembraneGenerationCellData.Orientation);
-            var relativeAngle = neighbourAngle - thisAngle;
-
-            var worldOffset = neighbourData.MulticellularMembraneGenerationCellData.Position - thisCellPosition;
-            var localOffset = RotatePoint(worldOffset, -thisAngle);
-
-            var vertexCount = neighbourData.OriginalPointData.VertexCount;
-
-            if (neighbourData.ModifiedVertices != null)
-            {
-                for (int i = 0; i < vertexCount; ++i)
-                {
-                    var modified = neighbourData.ModifiedVertices[i];
-                    neighbourCell.ShiftedVertices.Add(RotatePoint(modified, relativeAngle) + localOffset);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < vertexCount; ++i)
-                {
-                    var original = neighbourData.OriginalPointData.Vertices2D[i];
-                    neighbourCell.ShiftedVertices.Add(RotatePoint(original, relativeAngle) + localOffset);
-                }
-            }
-
-            neighbourData.LocalAverageVertex =
-                RotatePoint(neighbourData.OriginalAverageVertex, relativeAngle) + localOffset;
-
-            neighbourCell.Shift = localOffset;
-            neighbourCell.Rotation = relativeAngle;
-        }
-    }
-
-    private void SetCellVertices(NeighbourData currentCellData)
-    {
-        vertices2D.Clear();
-
-        var vertexCount = currentCellData.OriginalPointData.VertexCount;
-
-        if (currentCellData.ModifiedVertices != null)
-        {
-            for (int i = 0; i < vertexCount; ++i)
-            {
-                vertices2D.Add(currentCellData.ModifiedVertices[i]);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < vertexCount; ++i)
-            {
-                vertices2D.Add(currentCellData.OriginalPointData.Vertices2D[i]);
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Calculates weighted middle point between cells' average vertex, based on how much the membrane reaches out
-    ///   from that average point to the other average point
-    /// </summary>
-    private Vector2 GetMiddlePoint(List<Vector2> neighbourVertices2D, Vector2 averageVertex,
-        Vector2 neighbourAverageVertex, out int closestVertexIndex,
-        out int closestNeighbourVertexIndex)
-    {
-        // Find how far each cell's membrane reaches toward the other
-        float thisReach = GetMembraneReachToward(vertices2D, averageVertex, neighbourAverageVertex,
-            out closestVertexIndex);
-        float neighbourReach =
-            GetMembraneReachToward(neighbourVertices2D, neighbourAverageVertex, averageVertex,
-                out closestNeighbourVertexIndex);
-
-        float totalReach = thisReach + neighbourReach;
-
-        // Fallback to just the middle just in case
-        float calculatedReach = totalReach > 0 ? thisReach / totalReach : 0.5f;
-
-        // Weighted middle point
-        var middlePoint = averageVertex + (neighbourAverageVertex - averageVertex) * calculatedReach;
-        return middlePoint;
-    }
-
-    private void GetCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
-        Vector2 thisCellPosition)
-    {
-        closeNeighboursKeys.Clear();
-
-        foreach (var (neighbourKey, neighbourData) in neighboursData)
-        {
-            var otherCellPosition = neighbourData.MulticellularMembraneGenerationCellData.Position;
-
-            if (neighbourKey != currentColonyCellKey &&
-                otherCellPosition.DistanceSquaredTo(thisCellPosition) <=
-                Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS)
-            {
-                closeNeighboursKeys.Add(neighbourKey);
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Casts the vertices between the tangent points onto the lines defined by each tangent point
-    ///   and the middle point, in the direction from the average vertex to the middle point.
-    /// </summary>
-    private bool CastVerticesOntoTheTangentLines(List<Vector2> neighbourCellVertices, Vector2 middlePoint,
-        Vector2 averageVertex, Vector2 neighbourAverageVertex, int closestVertexIndex, int neighbourClosestVertexIndex)
-    {
-        var castDirection = middlePoint - averageVertex;
-        castDirection = castDirection.Normalized();
-
-        // extend the middle point a little bit away from middle point,
-        // so that vertices smoothing doesn't create a big gap
-        var extendedMiddlePointForCurrentCell =
-            middlePoint + castDirection * Constants.MEMBRANE_MIDDLE_POINT_OVERREACH;
-        var extendedMiddlePointForNeighbourCell =
-            middlePoint - castDirection * Constants.MEMBRANE_MIDDLE_POINT_OVERREACH;
-
-        CalculateTangentPoints(vertices2D, averageVertex, extendedMiddlePointForCurrentCell,
-            out var tangentPointIndexA, out var tangentPointIndexB);
-        CalculateTangentPoints(neighbourCellVertices, neighbourAverageVertex, extendedMiddlePointForNeighbourCell,
-            out var tangentPointIndexC, out var tangentPointIndexD);
-
-        var tangentLineA = vertices2D[tangentPointIndexA] - extendedMiddlePointForCurrentCell;
-        var tangentLineB = vertices2D[tangentPointIndexB] - extendedMiddlePointForCurrentCell;
-        var tangentLineC = neighbourCellVertices[tangentPointIndexC] - extendedMiddlePointForNeighbourCell;
-        var tangentLineD = neighbourCellVertices[tangentPointIndexD] - extendedMiddlePointForNeighbourCell;
-
-        CalculateIterationIndices(vertices2D, tangentPointIndexA, tangentPointIndexB, closestVertexIndex,
-            out var indexStart, out var indexEnd);
-        CalculateIterationIndices(neighbourCellVertices, tangentPointIndexC, tangentPointIndexD,
-            neighbourClosestVertexIndex, out var neighbourIndexStart, out var neighbourIndexEnd);
-
-        // Store casts in a temporary dictionary before applying them
-        validPointsCasts.Clear();
-        validNeighbourPointsCasts.Clear();
-
-        var canCastVertices = CanCastPoints(validPointsCasts, vertices2D, extendedMiddlePointForCurrentCell, indexStart,
-            indexEnd, castDirection, tangentLineA, tangentLineB);
-        canCastVertices &= CanCastPoints(validNeighbourPointsCasts, neighbourCellVertices,
-            extendedMiddlePointForNeighbourCell, neighbourIndexStart, neighbourIndexEnd, -castDirection, tangentLineC,
-            tangentLineD);
-
-        if (!canCastVertices)
-        {
-            return false;
-        }
-
-        foreach (var castPoints in validPointsCasts)
-        {
-            vertices2D[castPoints.Key] = castPoints.Value;
-        }
-
-        foreach (var castPoints in validNeighbourPointsCasts)
-        {
-            neighbourCellVertices[castPoints.Key] = castPoints.Value;
-        }
-
-        SmoothVertexRegion(vertices2D, indexStart, indexEnd);
-        SmoothVertexRegion(neighbourCellVertices, neighbourIndexStart, neighbourIndexEnd);
-
-        return true;
-    }
-
-    private bool CanCastPoints(Dictionary<int, Vector2> validCasts, List<Vector2> vertices, Vector2 middlePoint,
-        int indexStart, int indexEnd, Vector2 castDirection, Vector2 tangentLineA, Vector2 tangentLineB)
-    {
-        for (var i = indexStart; i < indexEnd; ++i)
-        {
-            int index = i % vertices.Count;
-            var point = vertices[index];
-
-            var hitLineA = CalculateRayLineIntersection(point, castDirection, middlePoint,
-                tangentLineA, out float distanceToLeftBoundary);
-
-            var hitLineB = CalculateRayLineIntersection(point, castDirection, middlePoint,
-                tangentLineB, out float distanceToRightBoundary);
-
-            if (!hitLineA || !hitLineB)
-            {
-                GD.PrintErr("Failed to find intersection for membrane point with tangent lines");
-                return false;
-            }
-
-            var distance = Math.Min(distanceToLeftBoundary, distanceToRightBoundary);
-
-#if DEBUG
-            if (distance < 0)
-            {
-                throw new Exception("Distance to middle point is negative");
-            }
-#endif
-
-            var newPosition = point + castDirection * distance;
-
-            validCasts.Add(index, newPosition);
-
-            // Check that the new position does not lie inside any other neighbour's (preprocessed) polygon.
-            foreach (var otherNeighbourKey in closeNeighboursKeys)
-            {
-                if (otherNeighbourKey == neighbourColonyCellKey || otherNeighbourKey == currentColonyCellKey)
-                    continue;
-
-                var otherNeighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[otherNeighbourKey]];
-
-                if (IsInsideConvexPolygon(otherNeighbourCell.ShiftedVertices, newPosition))
-                {
-                    // Reject this cast if it would put a vertex inside another neighbour.
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    ///   Gets two points on the membrane that create lines going through middlePoint that are tangent to the membrane
-    /// </summary>
-    private void CalculateTangentPoints(List<Vector2> vertices, Vector2 averageVertex, Vector2 middlePoint,
-        out int tangentPointIndexA,
-        out int tangentPointIndexB)
-    {
-        tangentPointIndexA = 0;
-        tangentPointIndexB = 0;
-        var maxPositiveAngle = 0.0f;
-        var maxNegativeAngle = 0.0f;
-
-        for (var i = 0; i < vertices.Count; ++i)
-        {
-            var point = vertices[i];
-            var angle = Angle(averageVertex, middlePoint, point);
-
-            if (angle > maxPositiveAngle)
-            {
-                maxPositiveAngle = angle;
-                tangentPointIndexA = i;
-            }
-            else if (angle < maxNegativeAngle)
-            {
-                maxNegativeAngle = angle;
-                tangentPointIndexB = i;
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Per-neighbour data used during a single <see cref="GenerateMulticellularMembrane"/> call. Reused
-    ///   across calls to reduce number of allocations.
-    /// </summary>
-    private sealed class NeighbourWorkingData
-    {
-        /// <summary>
-        ///   The neighbour's vertices, rotated and shifted into the current cell's local reference frame.
-        ///   Cleared and refilled in place rather than reallocated when this slot is reused.
-        /// </summary>
-        public readonly List<Vector2> ShiftedVertices = new();
-
-        public Vector2 Shift;
-        public float Rotation;
+        MakeMembraneWavier(vertices2D, membraneType, circumference);
     }
 }
