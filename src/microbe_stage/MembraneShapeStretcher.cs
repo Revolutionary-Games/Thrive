@@ -52,10 +52,10 @@ public static class MembraneShapeStretcher
 
         for (int i = 0; i < cellData.VertexCount; ++i)
         {
-            cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i], sin, cos) + position;
+            cellData.Vertices2D[i] = MathUtils.RotatePoint(cellData.Vertices2D[i], sin, cos) + position;
         }
 
-        cellData.AverageVertex = RotatePoint(cellData.AverageVertex, sin, cos) + position;
+        cellData.AverageVertex = MathUtils.RotatePoint(cellData.AverageVertex, sin, cos) + position;
     }
 
     /// <summary>
@@ -70,10 +70,10 @@ public static class MembraneShapeStretcher
 
         for (int i = 0; i < cellData.VertexCount; ++i)
         {
-            cellData.Vertices2D[i] = RotatePoint(cellData.Vertices2D[i] - position, sin, cos);
+            cellData.Vertices2D[i] = MathUtils.RotatePoint(cellData.Vertices2D[i] - position, sin, cos);
         }
 
-        cellData.AverageVertex = RotatePoint(cellData.AverageVertex - position, sin, cos);
+        cellData.AverageVertex = MathUtils.RotatePoint(cellData.AverageVertex - position, sin, cos);
     }
 
     /// <summary>
@@ -81,12 +81,13 @@ public static class MembraneShapeStretcher
     ///   duplicate intersection positions within the configured tolerance.
     ///   Intersections beyond the maximum stretching distance from the cell position are discarded.
     /// </summary>
-    public static void GetIntersections(CellData cell, Vector2 averageVertex)
+    public static void GetIntersections(CellData cell)
     {
         var lines = cell.LinesData;
         var intersections = cell.IntersectionsData;
         var position = cell.MulticellularMembraneGenerationCellData.Position;
         var maxDistance = Constants.MEMBRANE_MAX_STRETCHED_DISTANCE_SQUARED * 0.5f * 0.5f;
+        var averageVertex = cell.AverageVertex;
 
         intersections.Clear();
 
@@ -187,8 +188,8 @@ public static class MembraneShapeStretcher
         var secondSegmentDirection = secondSegmentEnd - secondSegmentStart;
         var startPointOffset = firstSegmentStart - secondSegmentStart;
 
-        var firstSegmentLengthSquared = firstSegmentDirection.Dot(firstSegmentDirection);
-        var secondSegmentLengthSquared = secondSegmentDirection.Dot(secondSegmentDirection);
+        var firstSegmentLengthSquared = firstSegmentDirection.LengthSquared();
+        var secondSegmentLengthSquared = secondSegmentDirection.LengthSquared();
         var secondDirectionOffsetDot = secondSegmentDirection.Dot(startPointOffset);
 
         float firstSegmentParameter;
@@ -255,10 +256,8 @@ public static class MembraneShapeStretcher
     ///   Creates shared boundary lines between nearby cells, retains mutually visible neighbours,
     ///   and removes boundaries for overlapping cells.
     /// </summary>
-    public static void CreateBoundaryLines(Dictionary<long, CellData> cellsData, List<LineData> linesData)
+    public static void CreateBoundaryLines(Dictionary<long, CellData> cellsData)
     {
-        linesData.Clear();
-
         var maxDistanceSquared = Constants.MEMBRANE_MAX_STRETCHED_DISTANCE_SQUARED;
 
         foreach (var (cellKeyA, cellA) in cellsData)
@@ -403,7 +402,8 @@ public static class MembraneShapeStretcher
     /// </summary>
     public static bool IsPointInsideConvexPolygon(Vector2 point, List<Vector2> vectices2D)
     {
-        bool? sign = null;
+        bool sign = false;
+        bool hasSign = false;
 
         for (int i = 0; i < vectices2D.Count; ++i)
         {
@@ -417,10 +417,11 @@ public static class MembraneShapeStretcher
 
             bool currentSign = cross > 0;
 
-            if (sign.HasValue && sign.Value != currentSign)
+            if (hasSign && sign != currentSign)
                 return false;
 
             sign = currentSign;
+            hasSign = true;
         }
 
         return true;
@@ -541,14 +542,6 @@ public static class MembraneShapeStretcher
 
             cell.Vertices2D[i] = hitPoint;
         }
-    }
-
-    /// <summary>
-    ///   Rotates a point around the origin using the precomputed sine and cosine of the rotation angle.
-    /// </summary>
-    private static Vector2 RotatePoint(Vector2 point, float sin, float cos)
-    {
-        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
     }
 
     /// <summary>
@@ -883,11 +876,11 @@ public static class MembraneShapeStretcher
             // Signed distance from the segment start to the edge line.
             // Positive means the point is on the left side.
             float initialSignedDistance =
-                Cross(edgeDirection, segmentStart - edgeStart) / edgeLength;
+                MathUtils.Cross(edgeDirection, segmentStart - edgeStart) / edgeLength;
 
             // Change in signed distance over the entire segment (parameter 0 -> 1).
             float signedDistanceChange =
-                Cross(edgeDirection, segmentDirection) / edgeLength;
+                MathUtils.Cross(edgeDirection, segmentDirection) / edgeLength;
 
             if (MathF.Abs(signedDistanceChange) < MathUtils.EPSILON)
             {
@@ -952,7 +945,8 @@ public static class MembraneShapeStretcher
         }
 #endif
 
-        Vector2? bestCandidate = null;
+        Vector2 bestCandidate = default(Vector2);
+        bool hasBestCandidate = false;
         float bestDistance = float.MaxValue;
 
         foreach (Vector2 tangentPoint in polygon)
@@ -981,10 +975,11 @@ public static class MembraneShapeStretcher
             {
                 bestDistance = distance;
                 bestCandidate = tangentPoint;
+                hasBestCandidate = true;
             }
         }
 
-        if (bestCandidate == null)
+        if (!hasBestCandidate)
         {
 #if DEBUG
             GD.PrintErr($"Could not find an external tangent for point {point}.");
@@ -992,7 +987,7 @@ public static class MembraneShapeStretcher
             return point;
         }
 
-        return bestCandidate.Value;
+        return bestCandidate;
     }
 
     /// <summary>
@@ -1060,16 +1055,8 @@ public static class MembraneShapeStretcher
         if (lengthSquared < MathUtils.EPSILON * MathUtils.EPSILON)
             return 0.0f;
 
-        float cross = Cross(direction, p - a);
+        float cross = MathUtils.Cross(direction, p - a);
         return cross * MathF.Abs(cross) / lengthSquared;
-    }
-
-    /// <summary>
-    ///   Calculates the scalar cross product of two 2D vectors.
-    /// </summary>
-    private static float Cross(Vector2 a, Vector2 b)
-    {
-        return a.X * b.Y - a.Y * b.X;
     }
 
     /// <summary>

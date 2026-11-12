@@ -54,6 +54,22 @@ public static class MathUtils
     }
 
     /// <summary>
+    ///   Rotates a point around the origin using the precomputed sine and cosine of the rotation angle.
+    /// </summary>
+    public static Vector2 RotatePoint(Vector2 point, float sin, float cos)
+    {
+        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
+    }
+
+    /// <summary>
+    ///   Calculates the scalar cross product of two 2D vectors.
+    /// </summary>
+    public static float Cross(Vector2 a, Vector2 b)
+    {
+        return a.X * b.Y - a.Y * b.X;
+    }
+
+    /// <summary>
     ///   Returns a Lerped value, and snaps to the target value if current and target
     ///   value is approximately equal by the specified tolerance value.
     /// </summary>

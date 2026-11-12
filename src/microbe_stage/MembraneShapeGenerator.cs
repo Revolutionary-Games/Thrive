@@ -48,11 +48,6 @@ public class MembraneShapeGenerator
     private readonly Stack<MembraneShapeStretcher.CellData> reusableCells = new();
 
     /// <summary>
-    ///   Storage for boundary lines during neighbour detection.
-    /// </summary>
-    private readonly List<MembraneShapeStretcher.LineData> linesData = new();
-
-    /// <summary>
     ///   Storage for cells meeting at an intersection.
     /// </summary>
     private readonly List<MembraneShapeStretcher.CellData> neighbouringCells = new();
@@ -597,12 +592,11 @@ public class MembraneShapeGenerator
             MembraneShapeStretcher.RotateCellVertices(cellData);
         }
 
-        MembraneShapeStretcher.CreateBoundaryLines(cellsData, linesData);
+        MembraneShapeStretcher.CreateBoundaryLines(cellsData);
 
         foreach (var (_, cellData) in cellsData)
         {
-            var averageVertex = cellData.AverageVertex;
-            MembraneShapeStretcher.GetIntersections(cellData, averageVertex);
+            MembraneShapeStretcher.GetIntersections(cellData);
         }
 
         MembraneShapeStretcher.FilterInconsistentIntersections(cellsData, neighbouringCells);
