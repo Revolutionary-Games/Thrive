@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 13:28+0300\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-11-11 19:27+0300\n"
+"PO-Revision-Date: 2026-11-11 13:32+0000\n"
+"Last-Translator: Henri Hyyryläinen <henri.hyyrylainen@gmail.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -40,16 +40,8 @@ msgstr "Keskeytä"
 msgid "ABORTED_DOT"
 msgstr "Peruutettu."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr ""
-"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
-"\n"
-"Elämä.\n"
-"\n"
-"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
-"\n"
-"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+msgstr "Imijät:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssaalivyöhyke"
@@ -60,13 +52,16 @@ msgstr "Hyväksy"
 msgid "ACHIEVEMENTS"
 msgstr "Saavutukset"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Saavutukset {0} / {1}"
+msgstr "Saavutusten tietojen lataus epäonnistui"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr ""
+"Saavutusten tiedosto saattaa olla korruptoitunut.\n"
+"Tämä data voidaan tyhjentää, mutta tämä hukkaa kaiken saavutusten edistyksen, poistamalla:\n"
+"{0}\n"
+"Haluatko jatkaa pelaamista ilman saavutuksia?\n"
+"Peruutus-nappi sulkee pelin."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Saavutukset {0} / {1}"
@@ -394,14 +389,6 @@ msgstr ""
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Tallenna automaattisesti"
-
-#, fuzzy
-msgid "AUTO_CALCULATE_GROWTH_ORDER"
-msgstr "VAHVISTA"
-
-#, fuzzy
-msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
-msgstr "VAHVISTA"
 
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
@@ -770,6 +757,9 @@ msgstr "erittäin vähän"
 
 msgid "CAUTIOUS"
 msgstr "Varovainen"
+
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
 
 msgid "CELL"
 msgstr "Solu"
@@ -6835,6 +6825,34 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 
 msgid "SFX_VOLUME"
 msgstr "Efektien voimakkuus"
+
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "Anisotrooppinen suodatus:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Lisää uusi syöte"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Lisää uusi syöte"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Automaattinen ({0}x{1})"
 
 msgid "SHIFT"
 msgstr "Vaihto"

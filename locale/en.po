@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 13:28+0300\n"
+"POT-Creation-Date: 2026-11-11 19:27+0300\n"
 "PO-Revision-Date: 2026-11-10 15:43+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -398,12 +398,6 @@ msgstr "(percentage of the population change auto-evo applies to the player spec
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-msgid "AUTO_CALCULATE_GROWTH_ORDER"
-msgstr "Auto-calculate"
-
-msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
-msgstr "Automatically calculates a valid growth order. Note that if there are any disconnected cells, then there is no valid growth order."
-
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
@@ -736,6 +730,9 @@ msgstr "very little"
 
 msgid "CAUTIOUS"
 msgstr "Cautious"
+
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr "Each cavity cell needs at least {0} neighbouring positions filled with cells in the main layout."
 
 msgid "CELL"
 msgstr "Cell"
@@ -6135,6 +6132,30 @@ msgstr "Upgrade to Anisogamy ({0} MP)"
 
 msgid "SFX_VOLUME"
 msgstr "SFX volume"
+
+msgid "SHADOW_FILTERING"
+msgstr "Soft shadow filtering"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr "None"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "High"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr "Low"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr "Medium"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Ultra"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr "Very Low"
+
+msgid "SHADOW_RESOLUTION"
+msgstr "Shadow resolution"
 
 msgid "SHIFT"
 msgstr "Shift"
