@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 14:52+0100\n"
+"POT-Creation-Date: 2026-11-12 16:39+0200\n"
 "PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -400,6 +400,14 @@ msgstr "(az auto-evo által a játékos faján alkalmazott populációváltozás
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatikus mentés játék közben"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Elfogad"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
@@ -815,6 +823,10 @@ msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
 #, fuzzy
+msgid "CELL_SIZE"
+msgstr "Sejtek"
+
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
@@ -1049,14 +1061,6 @@ msgstr "Fordulás:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Fordulás:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Fordulás:"
 
 msgid "COLOUR"
 msgstr "Szín"
@@ -5586,10 +5590,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Szúrd le a többi sejtet ezzel."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Sejtszervecske elhelyezése"
 
@@ -7757,6 +7757,20 @@ msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Tűrés:"
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr ""
+"[b]Fajok[/b]\n"
+"  {0}:{1}\n"
+"[b]Generáció[/b]\n"
+"  {2}\n"
+"[b]Populáció[/b]\n"
+"  {3}\n"
+"[b]Szín[/b]\n"
+"  #{4}\n"
+"[b]Viselkedés[/b]\n"
+"  {5}"
 
 msgid "TOOLS"
 msgstr "Eszközök"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 14:52+0100\n"
+"POT-Creation-Date: 2026-11-12 16:39+0200\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -398,6 +398,14 @@ msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatinis išsaugojimas žaidimo metu"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "AUTO_EVO"
 msgstr "Automatinė Evoliucija"
@@ -821,6 +829,10 @@ msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
 #, fuzzy
+msgid "CELL_SIZE"
+msgstr "Ląstelės"
+
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
@@ -1052,14 +1064,6 @@ msgstr "{0} suvartojimas"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(greitis, kuriuo DI rūšys mutuoja)"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "{0} suvartojimas"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "{0} suvartojimas"
 
 msgid "COLOUR"
 msgstr "Spalva"
@@ -5147,10 +5151,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Elemento aprašymas:"
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Elemento aprašymas:"
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Daugialąstis"
 
@@ -7166,6 +7166,10 @@ msgstr "Rodyti / slėpti junginius"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "Mikroorganizmo būsena"
 
 msgid "TOOLS"
 msgstr "Įrankiai"

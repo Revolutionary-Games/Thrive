@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 14:52+0100\n"
+"POT-Creation-Date: 2026-11-12 16:39+0200\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -405,6 +405,14 @@ msgstr "Osmoregada Kosto"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Aŭtomata konservado dum la ludo"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "KONFIRMU"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 msgid "AUTO_EVO"
 msgstr "Aŭto-Evo"
@@ -862,6 +870,10 @@ msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
 #, fuzzy
+msgid "CELL_SIZE"
+msgstr "Celulozo"
+
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr "Rekomenci"
 
@@ -1111,14 +1123,6 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 msgid "COLOUR"
@@ -5607,10 +5611,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Piku aliajn ĉelojn per ĉi tio."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Disloku organeton"
 
@@ -7846,6 +7846,10 @@ msgstr "Aldonunovan funkcion por klavo"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "Listo de Specioj"
 
 msgid "TOOLS"
 msgstr "Iloj"

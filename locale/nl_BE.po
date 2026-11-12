@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 14:52+0100\n"
+"POT-Creation-Date: 2026-11-12 16:39+0200\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -407,6 +407,14 @@ msgstr "(kost van organellen, membranen en andere items in de bewerker)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisch opslaan tijdens het spelen"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "BEVESTIGEN"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
@@ -830,6 +838,10 @@ msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
 #, fuzzy
+msgid "CELL_SIZE"
+msgstr "Cellen"
+
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr "Pauzeer het spel"
 
@@ -1068,14 +1080,6 @@ msgstr "Totale populatie:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Totale populatie:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Totale populatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -5527,10 +5531,6 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Steek hiermee andere cellen."
 
 #, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Steek hiermee andere cellen."
-
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Organel plaatsen"
 
@@ -7720,6 +7720,10 @@ msgstr "Toleranties worden door sommige organellen zowel positief als negatief b
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibiliteit:"
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "{0} (x{1})"
 
 msgid "TOOLS"
 msgstr "Hulpmiddelen"

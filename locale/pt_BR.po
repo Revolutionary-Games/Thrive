@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 14:52+0100\n"
+"POT-Creation-Date: 2026-11-12 16:39+0200\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -401,6 +401,14 @@ msgstr "(porcentagem de mudança de população a Auto-Evo aplica à espécie do
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvamento automático durante o jogo"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Ordem de Crescimento"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "Esta aba permite definir a ordem em que as organelas crescem. Isso pode ser importante para células que têm produção instável de ATP enquanto crescem. A ordem das organelas também impacta a ordem de execução dos bio processos. Recomenda-se editar essa aba apenas após terminar de editar a estrutura, já que a edição de estruturas pode reverter mudanças feitas aqui."
 
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
@@ -818,6 +826,10 @@ msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
 #, fuzzy
+msgid "CELL_SIZE"
+msgstr "Células"
+
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Taxa de rotação da célula. Células maiores viram mais devagar, mas cílios podem ser adicionados para compensar.\n"
@@ -1049,14 +1061,6 @@ msgstr "Rotação:"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Esta aba permite definir a ordem em que as células da colônia crescem, com a primeira célula na ordem sendo a célula raiz (ou broto). Você pode usar isso para priorizar o crescimento de células mais cruciais ou garantir que a produção e consumo da colônia estejam propriamente equilibrados."
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Rotação:"
-
-#, fuzzy
-msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Rotação:"
 
 msgid "COLOUR"
 msgstr "Coloração"
@@ -5194,10 +5198,6 @@ msgstr "Axônio"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
 
-#, fuzzy
-msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
-msgstr "Perfure outras células com isto."
-
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Macroscópica"
 
@@ -7251,6 +7251,20 @@ msgstr "Quanta radiação ultravioleta a sua espécie pode aguentar antes de sof
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilidade:"
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr ""
+"[b]Espécie[/b]\n"
+"  {0}:{1}\n"
+"[b]Geração[/b]\n"
+"  {2}\n"
+"[b]População[/b]\n"
+"  {3}\n"
+"[b]Coloração[/b]\n"
+"  #{4}\n"
+"[b]Comportamento[/b]\n"
+"  {5}"
 
 msgid "TOOLS"
 msgstr "Ferramentas"
