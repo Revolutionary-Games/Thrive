@@ -375,6 +375,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         yield return cellEditorTab;
     }
 
+    protected override void OnEditorExitTransitionFinished()
+    {
+        cellEditorTab.StopAutoEvoPrediction();
+        base.OnEditorExitTransitionFinished();
+    }
+
     protected override void OnEditorReady()
     {
         // The base method stores the data, so we just need to update the GUI here (in case of failure)
