@@ -10,6 +10,16 @@ using Systems;
 /// </content>
 public partial class CellBodyPlanEditorComponent
 {
+    private static Hex[] autoGrowthOrderCalculationHeighborOrder =
+    [
+        new(0, -1),
+        new(-1, 0),
+        new(1, -1),
+        new(0, 1),
+        new(1, 0),
+        new(-1, 1),
+    ];
+
     private readonly List<Label> activeToleranceWarnings = new();
 
     private readonly List<(bool FulFilled, string Description)> macroscopicConditionResults = new();
@@ -295,6 +305,50 @@ public partial class CellBodyPlanEditorComponent
         UpdateGrowthOrderNumbers();
     }
 
+    private void OnAutoCalculateGrowthOrderPressed()
+    {
+        var toAssign = new Queue<CellTemplate>();
+        var unassigned = new Dictionary<Hex, CellTemplate>();
+
+        foreach (var cell in editedMicrobeCells)
+        {
+            unassigned.Add(cell.Position, cell.Data!);
+        }
+
+        var finalOrder = new List<CellTemplate>();
+
+        // Assign the root of the growth order
+        toAssign.Enqueue(editedMicrobeCells[0].Data!);
+        unassigned.Remove(editedMicrobeCells[0].Position);
+
+        while (toAssign.Count > 0)
+        {
+            var current = toAssign.Dequeue();
+
+            foreach (var neighbor in autoGrowthOrderCalculationHeighborOrder)
+            {
+                if (unassigned.ContainsKey(current.Position + neighbor))
+                {
+                    toAssign.Enqueue(unassigned[current.Position + neighbor]);
+                    unassigned.Remove(current.Position + neighbor);
+                }
+            }
+
+            finalOrder.Add(current);
+        }
+
+        // Cells that remain unassigned are disconnected from the rest of the body plan. Which means that there is no
+        // valid growth order.
+        foreach (var pair in unassigned)
+        {
+            finalOrder.Add(pair.Value);
+        }
+
+        growthOrderGUI.UpdateItems(finalOrder);
+
+        UpdateGrowthOrderNumbers();
+    }
+
     private void UpdateGrowthOrderNumbers()
     {
         if (!ShowGrowthOrder)
@@ -336,9 +390,12 @@ public partial class CellBodyPlanEditorComponent
                 }
             }
 
+            var invalidCavity = cell.Data!.IsCavity && (order == 1 ||
+                !CellBodyPlanInternalCalculations.HasEnoughCavityNeighbours(cell.Position, editedMicrobeCells));
+
             yield return (Hex.AxialToCartesian(cell.Position), order.ToString(),
                 GrowthOrderNumberColour(cell.Data!.IsCavity,
-                    wrongGrowthOrderCells.Contains(cell.Position) || (order == 1 && cell.Data.IsCavity)));
+                    wrongGrowthOrderCells.Contains(cell.Position) || invalidCavity));
         }
     }
 

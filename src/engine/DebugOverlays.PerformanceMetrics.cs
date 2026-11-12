@@ -6,9 +6,9 @@ using System.Linq;
 using Godot;
 using Nito.Collections;
 
-/// <summary>
+/// <content>
 ///   Partial class: Performance metrics
-/// </summary>
+/// </content>
 public partial class DebugOverlays
 {
     /// <summary>

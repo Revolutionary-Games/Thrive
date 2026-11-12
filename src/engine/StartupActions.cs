@@ -41,7 +41,9 @@ public partial class StartupActions : Node
         // when technical players might read the log files
         try
         {
-            GD.Print("Thrive is starting at: " + DateTime.Now.ToLocalTime().ToString("F") +
+            // TODO: should this be in the user's culture or not? Being invariant helps in developers reading the
+            // log file, but user culture helps users in determining from when the log is.
+            GD.Print("Thrive is starting at: " + DateTime.Now.ToLocalTime().ToString("F", CultureInfo.CurrentCulture) +
                 " (log file name may say something else but this is the correct time)");
         }
         catch (Exception e)

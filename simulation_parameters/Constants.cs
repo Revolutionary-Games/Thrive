@@ -67,6 +67,16 @@ public static class Constants
     /// </summary>
     public const float CAVITY_CELL_Y_OFFSET = -5.0f;
 
+    /// <summary>
+    ///   How much cavity cell colours are darkened to make them appear in shadow.
+    /// </summary>
+    public const float CAVITY_CELL_COLOUR_DARKENING = 0.4f;
+
+    /// <summary>
+    ///   Minimum number of occupied neighbouring positions a cavity needs in the main body plan.
+    /// </summary>
+    public const int CAVITY_CELL_MINIMUM_NEIGHBOURS = 4;
+
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
@@ -723,6 +733,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
+
+    /// <summary>
+    ///   Multiplier for the adjacency specialization bonus given by a cavity cell to its neighbours.
+    /// </summary>
+    public const float CAVITY_CELL_ADJACENCY_BONUS_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   How many existing cell-to-cell adjacencies a player may break when repositioning a cell in the manual body
