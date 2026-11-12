@@ -40,8 +40,7 @@ public partial class CellEditorComponent
 
             if (organelleHere.Definition.InternalName != "cytoplasm")
             {
-                throw new Exception("Can't place organelle on top of something " +
-                    "else than cytoplasm");
+                throw new Exception("Can't place organelle on top of something else than cytoplasm");
             }
 
             // First we save the organelle data and then delete it
@@ -114,15 +113,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        if (IsMulticellularEditor || IsMacroscopicEditor)
-        {
-            // Try to recover if there is a new organelle instance we should act on instead
-            var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
-                o.Position == data.OldLocation && o.Orientation == data.OldRotation);
-
-            if (newlyInitializedOrganelle != null)
-                data.MovedHex = newlyInitializedOrganelle;
-        }
+        RecoverMovedOrganelle(data, data.OldLocation, data.OldRotation);
 
         data.MovedHex.Position = data.NewLocation;
         data.MovedHex.Orientation = data.NewRotation;
@@ -147,6 +138,24 @@ public partial class CellEditorComponent
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
 
+        RefreshPreviewAfterOrganelleMove();
+    }
+
+    private void RecoverMovedOrganelle(OrganelleMoveActionData data, Hex expectedPosition, int expectedOrientation)
+    {
+        if (!IsMulticellularEditor && !IsMacroscopicEditor)
+            return;
+
+        // Try to recover if there is a new organelle instance we should act on instead
+        var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
+            o.Position == expectedPosition && o.Orientation == expectedOrientation);
+
+        if (newlyInitializedOrganelle != null)
+            data.MovedHex = newlyInitializedOrganelle;
+    }
+
+    private void RefreshPreviewAfterOrganelleMove()
+    {
         // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
         // just not do anything. That may have been the reason for the dynamic MP PR TODO.
         microbeVisualizationOrganellePositionsAreDirty = true;
@@ -156,15 +165,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        if (IsMulticellularEditor || IsMacroscopicEditor)
-        {
-            // Try to recover if there is a new organelle instance we should act on instead
-            var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
-                o.Position == data.NewLocation && o.Orientation == data.NewRotation);
-
-            if (newlyInitializedOrganelle != null)
-                data.MovedHex = newlyInitializedOrganelle;
-        }
+        RecoverMovedOrganelle(data, data.NewLocation, data.NewRotation);
 
         data.MovedHex.Position = data.OldLocation;
         data.MovedHex.Orientation = data.OldRotation;
@@ -179,10 +180,7 @@ public partial class CellEditorComponent
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
 
-        // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
-        // just not do anything. That may have been the reason for the dynamic MP PR TODO.
-        microbeVisualizationOrganellePositionsAreDirty = true;
-        UpdateCellVisualization();
+        RefreshPreviewAfterOrganelleMove();
     }
 
     [ArchiveAllowedMethod]
@@ -262,6 +260,11 @@ public partial class CellEditorComponent
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
+        ApplyMembraneToPreview(membrane);
+    }
+
+    private void ApplyMembraneToPreview(MembraneType membrane)
+    {
         if (previewMicrobeSpecies != null)
         {
             previewMicrobeSpecies.MembraneType = membrane;
@@ -286,13 +289,7 @@ public partial class CellEditorComponent
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
-        if (previewMicrobeSpecies != null)
-        {
-            previewMicrobeSpecies.MembraneType = Membrane;
-
-            if (previewMicrobe.IsAliveAndNotNull())
-                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
-        }
+        ApplyMembraneToPreview(Membrane);
     }
 
     [ArchiveAllowedMethod]
