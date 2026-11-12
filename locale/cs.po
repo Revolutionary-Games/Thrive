@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 15:52+0200\n"
+"POT-Creation-Date: 2026-11-12 17:15+0200\n"
 "PO-Revision-Date: 2026-10-23 04:23+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -812,6 +812,10 @@ msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
 #, fuzzy
+msgid "CELL_SIZE"
+msgstr "Buňky"
+
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Otáčecí schopnost buňky. Větší buňky se otáčí pomaleji, ale s přidáním brv jim to jde lépe.\n"
@@ -1037,6 +1041,14 @@ msgstr "Rotace:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "Rotace:"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "Rotace:"
 
 msgid "COLOUR"
 msgstr "Barva"
@@ -5343,6 +5355,10 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, se neustále mění a nahrazují."
 
+#, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "Tímto bodneš ostatní buňky."
+
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Makroskopický"
 
@@ -7459,6 +7475,20 @@ msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilita:"
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr ""
+"[b]Živočich[/b]\n"
+"{0}:{1}\n"
+"[b]Generace[/b]\n"
+"{2}\n"
+"[b]Populace[/b]\n"
+"{3}\n"
+"[b]Barva[/b]\n"
+"#{4}\n"
+"[b]Chování[/b]\n"
+"{5}"
 
 msgid "TOOLS"
 msgstr "Nástroje"

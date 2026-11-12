@@ -14,6 +14,7 @@ public static class MathUtils
     public const float RADIANS_TO_DEGREES = 180 / MathF.PI;
     public const double FULL_CIRCLE = Math.PI * 2;
     public const float RIGHT_ANGLE = MathF.PI / 2;
+    public const float SIXTY_DEGREES_ANGLE = MathF.PI / 3;
     public const float SQRT_3 = 1.73205080757f;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -50,6 +51,22 @@ public static class MathUtils
     {
         return new Quaternion(new Vector3(0, 1, 0), 180 * DEGREES_TO_RADIANS) *
             new Quaternion(new Vector3(0, 1, 0), angle * DEGREES_TO_RADIANS);
+    }
+
+    /// <summary>
+    ///   Rotates a point around the origin using the precomputed sine and cosine of the rotation angle.
+    /// </summary>
+    public static Vector2 RotatePoint(Vector2 point, float sin, float cos)
+    {
+        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
+    }
+
+    /// <summary>
+    ///   Calculates the scalar cross product of two 2D vectors.
+    /// </summary>
+    public static float Cross(Vector2 a, Vector2 b)
+    {
+        return a.X * b.Y - a.Y * b.X;
     }
 
     /// <summary>

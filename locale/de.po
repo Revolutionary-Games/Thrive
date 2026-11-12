@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 15:52+0200\n"
+"POT-Creation-Date: 2026-11-12 17:15+0200\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: Alice König <alice.purple-rose@outlook.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -829,6 +829,10 @@ msgstr ""
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_SIZE"
+msgstr "Zellen"
+
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Eine Zelle auf weniger Organellentypen zu spezialisieren, gewährt einen Bonus auf die Effektivität aller Organellen dieser Zelle.\n"
@@ -1076,6 +1080,14 @@ msgstr "Drehung:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "Drehung:"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "Drehung:"
 
 msgid "COLOUR"
 msgstr "Farbe"
@@ -5241,6 +5253,10 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axone sind die Nervenfasern, die Neuronen zur Vernetzung und Kommunikation untereinander verwenden. Wenn diese Organellen platziert werden, ändert sich der Zelltyp auf Hirngewebe."
 
+#, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "Steche damit andere Zellen."
+
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Makroskopisch"
 
@@ -7357,6 +7373,20 @@ msgstr "Toleranzen werden von manchen Organellen positiv oder negativ beeinfluß
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilität:"
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr ""
+"[b]Spezies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Bevölkerung[/b]\n"
+"  {3}\n"
+"[b]Farbe[/b]\n"
+"  #{4}\n"
+"[b]Verhalten[/b]\n"
+"  {5}"
 
 msgid "TOOLS"
 msgstr "Werkzeuge"
