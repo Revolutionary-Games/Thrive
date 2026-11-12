@@ -731,6 +731,13 @@ public partial class CreditsScroll : Control
 
     private void UpdateStaticItemPositions()
     {
+        // The static items are laid out in the scene for a 1280 pixel wide control, widen them
+        // to fill the entire control so that they stay centered on wider windows
+        logo.Size = new Vector2(Size.X, logo.Size.Y);
+        revolutionaryGames.Size = new Vector2(Size.X, revolutionaryGames.Size.Y);
+        supportedBy.Size = new Vector2(Size.X, supportedBy.Size.Y);
+        developersHeading.Size = new Vector2(Size.X, developersHeading.Size.Y);
+
         logo.Position = new Vector2(0, Size.Y - smoothOffset);
         revolutionaryGames.Position = new Vector2(0, Size.Y - smoothOffset + 200);
         supportedBy.Position = new Vector2(0, Size.Y - smoothOffset + 250);
