@@ -1,6 +1,6 @@
-﻿/// <summary>
+﻿/// <content>
 ///   GUI-specific parts of this class
-/// </summary>
+/// </content>
 public partial class MetaballBodyEditorComponent
 {
     public void OnSkinTypeSelected(int newValue)

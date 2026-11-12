@@ -469,7 +469,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
             description.Append('\n');
             description.Append(Localization.Translate(simulationParameters.GetCompoundDefinition(entry.Key).Name));
             description.Append(": ");
-            description.Append(Math.Round(totalSpecificStorage.Total, 2));
+            description.Append(Math.Round(totalSpecificStorage.Total, 2).ToString(CultureInfo.CurrentCulture));
             AppendBreakdownToTooltip(description, totalSpecificStorage, 2, true);
         }
 
