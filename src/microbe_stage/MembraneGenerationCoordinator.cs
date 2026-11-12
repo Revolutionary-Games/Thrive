@@ -76,11 +76,15 @@ public static class MembraneGenerationCoordinator
         if (!tracker.TryBeginSecondPass())
             return generatedMembranes;
 
-        foreach (var (key, membraneData) in generator.GenerateMulticellularMembrane(tracker.CellsData))
+        var stretchedMembranes = generator.GenerateMulticellularMembrane(tracker.CellsData);
+
+        foreach (var (key, membraneData) in stretchedMembranes)
         {
             AddMulticellularMembrane(key, membraneData);
             generatedMembranes.Add(key);
         }
+
+        stretchedMembranes.Clear();
 
         ColonyTrackers.TryRemove(generationParameters.LeaderCellKey, out _);
 
