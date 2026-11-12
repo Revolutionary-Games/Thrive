@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-11 19:27+0300\n"
+"POT-Creation-Date: 2026-11-12 15:52+0200\n"
 "PO-Revision-Date: 2026-09-22 15:32+0000\n"
 "Last-Translator: mousleep <willowisp0919@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -403,6 +403,18 @@ msgstr "(自動進化がプレイヤー種に適用する個体数変化の割�
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "ゲーム中の自動セーブ"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "（環境中の化合物クラウドの密度）"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr ""
+"細胞の貯蔵容量。容量が大きいほど、一度により多くの化合物を保持できます。\n"
+"高容量の細胞は移動し続けられず、一時的にATPを補充してから再び移動する、といった戦略を取ることもできます。\n"
+"なお、貯蔵容量が少ないと、ATPバランスが正でもATP不足になることがあります。\n"
+"この問題はラグの発生やゲーム全体の低パフォーマンスによってさらに悪化する可能性があります。貯蔵容量を増やすことでこうした問題を軽減できます。"
 
 msgid "AUTO_EVO"
 msgstr "自動進化"

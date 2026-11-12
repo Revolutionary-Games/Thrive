@@ -938,6 +938,7 @@ layout_mode = 2
 [node name="GrowthOrderPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=997994053 instance=ExtResource("15_krpbw")]
 layout_mode = 2
 size_flags_vertical = 3
+ShowAutoCalculateButton = false
 
 [node name="Coordinates" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=2071788182]
 custom_minimum_size = Vector2(100, 0)
