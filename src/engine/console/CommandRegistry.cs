@@ -226,7 +226,7 @@ public class CommandRegistry : IDisposable
 
         if (type == typeof(float))
         {
-            if (float.TryParse(token, CultureInfo.InvariantCulture, out float floatVal))
+            if (float.TryParse(token, NumberStyles.Float, CultureInfo.InvariantCulture, out float floatVal))
             {
                 result = floatVal;
                 return true;
@@ -237,7 +237,7 @@ public class CommandRegistry : IDisposable
 
         if (type == typeof(double))
         {
-            if (double.TryParse(token, CultureInfo.InvariantCulture, out double doubleVal))
+            if (double.TryParse(token, NumberStyles.Float, CultureInfo.InvariantCulture, out double doubleVal))
             {
                 result = doubleVal;
                 return true;
