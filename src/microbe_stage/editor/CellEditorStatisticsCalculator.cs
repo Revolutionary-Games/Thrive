@@ -114,18 +114,6 @@ public class CellEditorStatisticsCalculator
     ///   The main cell's derived properties, computed before reading the editor's environmental tolerances.
     ///   This borrows the organelles for the current refresh; it is not an immutable cell snapshot.
     /// </summary>
-    public readonly struct CellProperties
-    {
-        public readonly IReadOnlyList<OrganelleTemplate> Organelles;
-        public readonly Vector3 MaximumMovementDirection;
-        public readonly float Specialization;
-
-        public CellProperties(IReadOnlyList<OrganelleTemplate> organelles, Vector3 maximumMovementDirection,
-            float specialization)
-        {
-            Organelles = organelles;
-            MaximumMovementDirection = maximumMovementDirection;
-            Specialization = specialization;
-        }
-    }
+    public readonly record struct CellProperties(IReadOnlyList<OrganelleTemplate> Organelles,
+        Vector3 MaximumMovementDirection, float Specialization);
 }
