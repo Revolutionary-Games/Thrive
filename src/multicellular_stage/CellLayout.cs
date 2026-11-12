@@ -42,7 +42,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
             // this instead has to rely on just hex positions (for now). See OrganelleLayout.CenterOfMass
             Vector3 weightedSum = Vector3.Zero;
             int count = 0;
-            foreach (var organelle in existingHexes.SelectMany(c => c.Organelles))
+            foreach (var organelle in ExistingHexes.SelectMany(c => c.Organelles))
             {
                 ++count;
                 weightedSum += Hex.AxialToCartesian(organelle.Position);
@@ -71,7 +71,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        writer.WriteObject(ExistingHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }
@@ -84,7 +84,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
     {
         var seen = new HashSet<Hex>();
 
-        foreach (var positionedCell in existingHexes)
+        foreach (var positionedCell in ExistingHexes)
         {
             var organellesInternal = positionedCell.ModifiableOrganelles.Organelles;
             int organelleCount = organellesInternal.Count;
@@ -112,14 +112,14 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
     public void ThrowIfCellsAreNotTouching()
     {
         // If there's just one cell, it doesn't need to touch anything
-        if (existingHexes.Count < 2)
+        if (ExistingHexes.Count < 2)
             return;
 
         var allCellPositions = new Dictionary<Hex, T>();
         var cellPositionTemporaryStorage = new List<Hex>();
         CalculateAllElementPositions(allCellPositions, cellPositionTemporaryStorage);
 
-        foreach (var positionedCell in existingHexes)
+        foreach (var positionedCell in ExistingHexes)
         {
             var organellesInternal = positionedCell.ModifiableOrganelles.Organelles;
             int organelleCount = organellesInternal.Count;

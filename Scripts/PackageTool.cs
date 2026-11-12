@@ -158,9 +158,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override IEnumerable<string> SourceFilesToPackage => SourceItemsToPackage;
 
-    private string ReadmeFile => Path.Join(options.OutputFolder, "README.txt");
-    private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
-    private string SteamLicenseFile => Path.Join(options.OutputFolder, "steam_LICENSE.txt");
+    private string ReadmeFile => Path.Join(Options.OutputFolder, "README.txt");
+    private string RevisionFile => Path.Join(Options.OutputFolder, "revision.txt");
+    private string SteamLicenseFile => Path.Join(Options.OutputFolder, "steam_LICENSE.txt");
 
     public static async Task EnsureGodotIgnoreFileExistsInFolder(string folder)
     {
@@ -256,8 +256,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
         {
             DebugLibrary = false,
-            DisableColour = options.DisableColour,
-            Verbose = options.Verbose,
+            DisableColour = Options.DisableColour,
+            Verbose = Options.Verbose,
             PrepareGodotAPI = true,
         });
 
@@ -269,12 +269,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
 
         // By default, disable Steam mode to make the script easier to use
-        options.Steam ??= false;
+        Options.Steam ??= false;
 
-        if (options.Steam != null)
+        if (Options.Steam != null)
         {
-            ColourConsole.WriteInfoLine($"Will set Steam mode to {options.Steam.Value} before exporting");
-            steamMode = options.Steam.Value;
+            ColourConsole.WriteInfoLine($"Will set Steam mode to {Options.Steam.Value} before exporting");
+            steamMode = Options.Steam.Value;
         }
         else
         {
@@ -302,7 +302,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var currentCommit = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
 
-        if (options.Dehydrated)
+        if (Options.Dehydrated)
         {
             if (steamMode)
             {
@@ -317,18 +317,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (steamMode)
         {
-            options.CompressRaw = false;
+            Options.CompressRaw = false;
         }
 
         // By default, source code is included in non-Steam builds
-        options.SourceCode ??= !steamMode;
+        Options.SourceCode ??= !steamMode;
 
         await CreateDynamicallyGeneratedFiles(cancellationToken);
 
         // Make sure godot ignores the builds folder in terms of imports
-        await EnsureGodotIgnoreFileExistsInFolder(options.OutputFolder);
+        await EnsureGodotIgnoreFileExistsInFolder(Options.OutputFolder);
 
-        if (!options.SkipGodotCheck)
+        if (!Options.SkipGodotCheck)
         {
             if (!await CheckGodotIsAvailable(cancellationToken))
                 return false;
@@ -342,7 +342,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             currentBranch = await GitRunHelpers.GetCurrentBranch("./", cancellationToken);
         }
 
-        await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, options.Dehydrated, cancellationToken);
+        await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, Options.Dehydrated, cancellationToken);
 
         ColourConsole.WriteSuccessLine("Pre-build operations succeeded");
         return true;
@@ -363,9 +363,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        if (options.Steam != null && platform is not PackagePlatform.Web)
+        if (Options.Steam != null && platform is not PackagePlatform.Web)
         {
-            if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
+            if (!await SteamBuild.SetBuildMode(Options.Steam.Value, true, cancellationToken,
                     SteamBuild.ConvertPackagePlatformToSteam(platform)))
             {
                 ColourConsole.WriteErrorLine("Failed to set wanted Steam mode");
@@ -536,7 +536,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 startInfo.ArgumentList.Add(file.PackagePathAndName);
             }
 
-            if (options.SourceCode == true)
+            if (Options.SourceCode == true)
             {
                 startInfo.ArgumentList.Add(CompressedSourceName);
             }
@@ -556,7 +556,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteInfoLine("Extra files included in mac zip");
         }
 
-        if (!options.Dehydrated)
+        if (!Options.Dehydrated)
         {
             var potentialCache = Path.Join(folder, IDehydrateCache.CacheFileName);
 
@@ -572,8 +572,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
         {
             DebugLibrary = false,
-            DisableColour = options.DisableColour,
-            Verbose = options.Verbose,
+            DisableColour = Options.DisableColour,
+            Verbose = Options.Verbose,
             PrepareGodotAPI = true,
 
             // Only the ThriveNative library is needed for manual copy (extension is copied by Godot)
@@ -586,7 +586,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             bool success = false;
 
-            if (options.FallbackToLocalNative)
+            if (Options.FallbackToLocalNative)
             {
                 ColourConsole.WriteWarningLine("Falling back to native library versions only meant for local use");
                 ColourConsole.WriteNormalLine("Releases made like this are not the best and may not work on " +
@@ -658,7 +658,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return true;
         }
 
-        if (options.Dehydrated)
+        if (Options.Dehydrated)
         {
             ColourConsole.WriteNormalLine($"Performing devbuild package on: {folder}");
 
@@ -672,7 +672,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (!await base.Compress(platform, folder, archiveFile, cancellationToken))
             return false;
 
-        if (options.Dehydrated)
+        if (Options.Dehydrated)
         {
             ColourConsole.WriteNormalLine($"Deleting folder that was packaged as a devbuild: {folder}");
 
@@ -685,7 +685,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
         CancellationToken cancellationToken)
     {
-        if (options.Dehydrated)
+        if (Options.Dehydrated)
         {
             // After normal packaging, move it to the devbuilds folder for the upload script
             Directory.CreateDirectory(Dehydration.DEVBUILDS_FOLDER);
@@ -847,7 +847,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteInfoLine("Performing final signing for Mac build");
 
-        if (string.IsNullOrEmpty(options.MacSigningKey))
+        if (string.IsNullOrEmpty(Options.MacSigningKey))
         {
             ColourConsole.WriteWarningLine(
                 "Signing without a specific key for mac (this should work but in an optimal case " +
@@ -858,10 +858,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else
         {
-            ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
+            ColourConsole.WriteInfoLine($"Signing mac build with key {Options.MacSigningKey}");
         }
 
-        if (!await BinaryHelpers.SignThriveAppMac(tempFolder, "./", MAC_ENTITLEMENTS, options.MacSigningKey,
+        if (!await BinaryHelpers.SignThriveAppMac(tempFolder, "./", MAC_ENTITLEMENTS, Options.MacSigningKey,
                 cancellationToken))
         {
             ColourConsole.WriteErrorLine("Failed to sign Mac Thrive build files");
@@ -912,15 +912,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             ColourConsole.WriteInfoLine("Notarizing Mac build");
 
-            if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
-                string.IsNullOrEmpty(options.AppleAppPassword))
+            if (string.IsNullOrEmpty(Options.MacTeamId) || string.IsNullOrEmpty(Options.AppleId) ||
+                string.IsNullOrEmpty(Options.AppleAppPassword))
             {
                 ColourConsole.WriteErrorLine("Notarizing Mac build requires Apple developer credentials and team id");
                 return false;
             }
 
-            if (!await BinaryHelpers.NotarizeFile(archiveFile, options.MacTeamId,
-                    options.AppleId, options.AppleAppPassword, cancellationToken))
+            if (!await BinaryHelpers.NotarizeFile(archiveFile, Options.MacTeamId,
+                    Options.AppleId, Options.AppleAppPassword, cancellationToken))
             {
                 ColourConsole.WriteErrorLine("Failed to notarize Mac build (.app)");
                 return false;
@@ -933,7 +933,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteInfoLine("Signing final zip");
 
-        if (!await BinaryHelpers.SignFileForMac(archiveFile, MAC_ENTITLEMENTS, options.MacSigningKey,
+        if (!await BinaryHelpers.SignFileForMac(archiveFile, MAC_ENTITLEMENTS, Options.MacSigningKey,
                 cancellationToken))
         {
             ColourConsole.WriteErrorLine("Failed to sign Mac build");
@@ -954,7 +954,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var pck = Path.Join(folder, "Thrive.pck");
 
-        var extractFolder = Path.Join(options.OutputFolder, "temp_extracted", Path.GetFileName(folder));
+        var extractFolder = Path.Join(Options.OutputFolder, "temp_extracted", Path.GetFileName(folder));
 
         var pckCache = new DehydrateCacheV2(extractFolder);
 

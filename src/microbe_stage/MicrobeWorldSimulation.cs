@@ -162,7 +162,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             // Add new SpecializationFactor component to all microbes as that is required to support older saves
 
             var microbes = new List<Entity>();
-            instance.entities.Query(new QueryDescription().WithAll<CellProperties>(), microbes.Add);
+            instance.Entities.Query(new QueryDescription().WithAll<CellProperties>(), microbes.Add);
 
             foreach (var microbe in microbes)
             {
@@ -225,19 +225,19 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem);
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem);
-        disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
+        disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(Physics, EntitySystem);
         entityLightSystem = new EntityLightSystem(EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
         fadeOutActionSystem = new FadeOutActionSystem(this, cloudSystem, EntitySystem);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem);
-        physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem);
-        physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
+        physicsBodyControlSystem = new PhysicsBodyControlSystem(Physics, EntitySystem);
+        physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(Physics, EntitySystem);
         physicsBodyCreationSystem =
             new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
-            new PhysicsCollisionManagementSystem(physics, EntitySystem);
+            new PhysicsCollisionManagementSystem(Physics, EntitySystem);
         physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
-        physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem);
+        physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(Physics, EntitySystem);
         collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
@@ -320,14 +320,14 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         CloudSystem = cloudSystem;
 
-        physics.RemoveGravity();
+        Physics.RemoveGravity();
 
         RunSystemInits();
 
         OnInitialized();
 
         // In case this is loaded from a save, ensure the next save has correct ignore entities
-        entitiesToNotSave.SetExtraIgnoreSource(queuedForDelete);
+        EntitiesToNotSave.SetExtraIgnoreSource(QueuedForDelete);
     }
 
     /// <summary>
@@ -476,7 +476,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     protected override void Dispose(bool disposing)
     {
         // Must disable recording to avoid disposing exceptions from metrics reporting
-        physics.DisablePhysicsTimeRecording = true;
+        Physics.DisablePhysicsTimeRecording = true;
         WaitForStartedPhysicsRun();
 
         if (disposing)

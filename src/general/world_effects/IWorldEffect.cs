@@ -5,13 +5,6 @@
 /// </summary>
 public interface IWorldEffect : IArchivable
 {
-    /// <summary>
-    ///   Called when added to a world. The best time to do dynamic casts
-    /// </summary>
-    public void OnRegisterToWorld();
-
-    public void OnTimePassed(double elapsed, double totalTimePassed);
-
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
         writer.WriteObject((IWorldEffect)obj);
@@ -21,4 +14,11 @@ public interface IWorldEffect : IArchivable
     {
         return reader.ReadObject<IWorldEffect>();
     }
+
+    /// <summary>
+    ///   Called when added to a world. The best time to do dynamic casts
+    /// </summary>
+    public void OnRegisterToWorld();
+
+    public void OnTimePassed(double elapsed, double totalTimePassed);
 }
