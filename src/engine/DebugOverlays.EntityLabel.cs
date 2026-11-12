@@ -5,9 +5,9 @@ using Arch.Core.Extensions;
 using Components;
 using Godot;
 
-/// <summary>
+/// <content>
 ///   Partial class: Entity label
-/// </summary>
+/// </content>
 public partial class DebugOverlays
 {
     private const float TextUpdateInterval = 0.2f;

@@ -6,9 +6,9 @@ using System.Linq;
 using Godot;
 using FileAccess = Godot.FileAccess;
 
-/// <summary>
+/// <content>
 ///   Partial class: Data export functionality of the auto-evo exploring tool
-/// </summary>
+/// </content>
 public partial class AutoEvoExploringTool
 {
     private void ExportWorlds()
