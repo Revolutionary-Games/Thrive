@@ -9,8 +9,8 @@ using Godot;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This is baked on the CPU so that it works with every renderer. The mapping follows Bruneton's precomputed
-///     atmospheric scattering.
+///     This is baked on the CPU so that it works with every renderer. The approach is from Bruneton and Neyret,
+///     "Precomputed Atmospheric Scattering" (2008), and the mapping from Bruneton's 2017 reimplementation.
 ///   </para>
 /// </remarks>
 public static class AtmosphereTransmittanceLut
