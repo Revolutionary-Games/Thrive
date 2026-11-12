@@ -651,7 +651,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         float cloudOuter = Math.Max(safeOuter, safeInner + 1.0f);
 
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(planetCenter.X, planetCenter.Y, planetCenter.Z,
-            0.0f));
+            planetRadius));
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(planetRadius + cloudInner,
             planetRadius + cloudOuter, cloudTileSize, densityMultiplier));
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X,
