@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-10 11:25+0200\n"
+"POT-Creation-Date: 2026-11-12 15:52+0200\n"
 "PO-Revision-Date: 2026-10-26 07:58+0000\n"
 "Last-Translator: Frank <fsanchezflorido@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -400,6 +400,14 @@ msgstr "(porcentaje del cambio de población que la auto-evo aplica a la especie
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autoguardado durante el juego"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Orden de crecimiento"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
+
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
@@ -732,6 +740,9 @@ msgstr "Muy poco"
 
 msgid "CAUTIOUS"
 msgstr "Cautelosa"
+
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
 
 msgid "CELL"
 msgstr "Célula"
@@ -6494,6 +6505,34 @@ msgstr "Gana progreso passivo de reproducción"
 
 msgid "SFX_VOLUME"
 msgstr "Volumen de efectos"
+
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "Filtro Anisotrópico:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Auto ({0}x{1})"
 
 msgid "SHIFT"
 msgstr "Shift"

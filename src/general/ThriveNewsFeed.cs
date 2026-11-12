@@ -147,7 +147,8 @@ public static class ThriveNewsFeed
             var published = element.Descendants().FirstOrDefault(p => p.Name.LocalName is "published" or "pubDate")
                 ?.Value;
 
-            if (published != null && DateTime.TryParse(published, out var parsedTime))
+            if (published != null &&
+                DateTime.TryParse(published, CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedTime))
             {
                 parsed.PublishedAt = parsedTime.ToUniversalTime();
             }

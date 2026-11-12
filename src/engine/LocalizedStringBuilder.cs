@@ -147,7 +147,7 @@ public class LocalizedStringBuilder : IFormattable, IArchivable
 
     public override string ToString()
     {
-        return ToString(null, null);
+        return ToString(null, CultureInfo.CurrentCulture);
     }
 
     public string ToString(string? format, IFormatProvider? formatProvider)

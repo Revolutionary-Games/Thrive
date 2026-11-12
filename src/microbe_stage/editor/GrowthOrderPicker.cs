@@ -30,9 +30,14 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     private Container buttonContainer = null!;
 
     private PackedScene draggableItemScene = null!;
+
+    [Export]
+    private Control autoCalculateButton = null!;
 #pragma warning restore CA2213
 
     private bool showCoordinates = true;
+
+    private bool showAutoCalculateButton = true;
 
     private List<IPlayerReadableName?>? currentSavedOrder;
 
@@ -49,6 +54,9 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 
     [Signal]
     public delegate void OrderResetEventHandler();
+
+    [Signal]
+    public delegate void OrderAutoCalculateEventHandler();
 
     [Signal]
     public delegate void OnGrowthOrderChangedEventHandler();
@@ -76,6 +84,25 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     }
 
     /// <summary>
+    ///   Whether the auto-calculate button needs to be shown. It's a good idea to turn it off if it isn't required by
+    ///   the specific editor.
+    /// </summary>
+    [Export]
+    public bool ShowAutoCalculateButton
+    {
+        get => showAutoCalculateButton;
+        set
+        {
+            if (showAutoCalculateButton == value)
+                return;
+
+            showAutoCalculateButton = value;
+
+            UpdateAutoCalculateButtonVisibility();
+        }
+    }
+
+    /// <summary>
     ///   A special property to handle saving and loading of state. Can technically be used to read the data, but this
     ///   causes more memory allocations than necessary.
     /// </summary>
@@ -99,6 +126,8 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 
     public override void _Ready()
     {
+        UpdateAutoCalculateButtonVisibility();
+
         draggableItemScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/DraggableItem.tscn");
     }
 
@@ -268,6 +297,18 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OrderReset);
         EmitSignal(SignalName.OnGrowthOrderChanged);
+    }
+
+    private void OnAutoCalculateButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(SignalName.OrderAutoCalculate);
+        EmitSignal(SignalName.OnGrowthOrderChanged);
+    }
+
+    private void UpdateAutoCalculateButtonVisibility()
+    {
+        autoCalculateButton.Visible = ShowAutoCalculateButton;
     }
 
     private void MoveDown(DraggableItem item)

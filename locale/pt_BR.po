@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-10 11:25+0200\n"
+"POT-Creation-Date: 2026-11-12 15:52+0200\n"
 "PO-Revision-Date: 2026-10-29 08:21+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -402,6 +402,14 @@ msgstr "(porcentagem de mudança de população a Auto-Evo aplica à espécie do
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvamento automático durante o jogo"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Ordem de Crescimento"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "Esta aba permite definir a ordem em que as organelas crescem. Isso pode ser importante para células que têm produção instável de ATP enquanto crescem. A ordem das organelas também impacta a ordem de execução dos bio processos. Recomenda-se editar essa aba apenas após terminar de editar a estrutura, já que a edição de estruturas pode reverter mudanças feitas aqui."
+
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
@@ -741,6 +749,9 @@ msgstr "muito pouco"
 
 msgid "CAUTIOUS"
 msgstr "Cauteloso"
+
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
 
 msgid "CELL"
 msgstr "Célula"
@@ -6282,6 +6293,34 @@ msgstr "Ganhar compostos para a reprodução passivamente"
 
 msgid "SFX_VOLUME"
 msgstr "Volume dos efeitos sonoros"
+
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "Filtragem anisotrópica:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Exportar os dados de todos os mundos no formato CSV (comma-separated values)"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Exportar os dados de todos os mundos no formato CSV (comma-separated values)"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Auto ({0}x{1})"
 
 msgid "SHIFT"
 msgstr "Shift"

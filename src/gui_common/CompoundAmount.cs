@@ -321,8 +321,8 @@ public partial class CompoundAmount : HBoxContainer
             if (showEvenSmallValues && absAmount is < 1 and > MINIMUM_DISPLAY_VALUE &&
                 absAmount < MathF.Pow(10, -decimals))
             {
-                numberPart = amount.ToString(GetFormatWithDecimals(CalculateNeededDecimalPlaces(absAmount)))
-                    .ToString(CultureInfo.CurrentCulture);
+                numberPart = amount.ToString(GetFormatWithDecimals(CalculateNeededDecimalPlaces(absAmount)),
+                    CultureInfo.CurrentCulture);
             }
             else
             {
