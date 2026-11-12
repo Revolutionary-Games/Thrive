@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 15:52+0200\n"
+"POT-Creation-Date: 2026-11-12 16:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,15 +131,15 @@ msgstr ""
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1511
+#: ../simulation_parameters/microbe_stage/organelles.json:1520
 msgid "ACTOMYOSIN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1512
+#: ../simulation_parameters/microbe_stage/organelles.json:1521
 msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1513
+#: ../simulation_parameters/microbe_stage/organelles.json:1522
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -810,15 +810,15 @@ msgstr ""
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1199
+#: ../simulation_parameters/microbe_stage/organelles.json:1202
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1200
+#: ../simulation_parameters/microbe_stage/organelles.json:1203
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1201
+#: ../simulation_parameters/microbe_stage/organelles.json:1204
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1108,6 +1108,10 @@ msgstr ""
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:215
+msgid "CELL_SIZE"
+msgstr ""
+
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:239
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:288
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:296
@@ -1205,11 +1209,11 @@ msgstr ""
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1071
+#: ../simulation_parameters/microbe_stage/organelles.json:1074
 msgid "CHEMORECEPTOR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1072
+#: ../simulation_parameters/microbe_stage/organelles.json:1075
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
 
@@ -1218,7 +1222,7 @@ msgstr ""
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1073
+#: ../simulation_parameters/microbe_stage/organelles.json:1076
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1298,15 +1302,15 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1288
+#: ../simulation_parameters/microbe_stage/organelles.json:1291
 msgid "CILIA"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1289
+#: ../simulation_parameters/microbe_stage/organelles.json:1292
 msgid "CILIA_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1290
+#: ../simulation_parameters/microbe_stage/organelles.json:1293
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -2228,11 +2232,11 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:970
+#: ../simulation_parameters/microbe_stage/organelles.json:973
 msgid "CYTOPLASM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:971
+#: ../simulation_parameters/microbe_stage/organelles.json:974
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 
@@ -2241,7 +2245,7 @@ msgstr ""
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:972
+#: ../simulation_parameters/microbe_stage/organelles.json:975
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -3296,15 +3300,15 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1390
+#: ../simulation_parameters/microbe_stage/organelles.json:1393
 msgid "FERROPLAST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1391
+#: ../simulation_parameters/microbe_stage/organelles.json:1394
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1392
+#: ../simulation_parameters/microbe_stage/organelles.json:1395
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5359,15 +5363,15 @@ msgstr ""
 msgid "LUCIFERASE_SYNTHESIS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1337
+#: ../simulation_parameters/microbe_stage/organelles.json:1340
 msgid "LYSOSOME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1338
+#: ../simulation_parameters/microbe_stage/organelles.json:1341
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1339
+#: ../simulation_parameters/microbe_stage/organelles.json:1342
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5563,15 +5567,15 @@ msgstr ""
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1444
+#: ../simulation_parameters/microbe_stage/organelles.json:1447
 msgid "MELANOSOME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1445
+#: ../simulation_parameters/microbe_stage/organelles.json:1448
 msgid "MELANOSOME_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1446
+#: ../simulation_parameters/microbe_stage/organelles.json:1449
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5880,7 +5884,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:543
+#: ../src/microbe_stage/MicrobeSpecies.cs:546
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6410,7 +6414,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1103
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1106
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6846,7 +6850,7 @@ msgstr ""
 msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1042
+#: ../simulation_parameters/microbe_stage/organelles.json:1045
 msgid "NUCLEUS"
 msgstr ""
 
@@ -6854,11 +6858,11 @@ msgstr ""
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1043
+#: ../simulation_parameters/microbe_stage/organelles.json:1046
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1044
+#: ../simulation_parameters/microbe_stage/organelles.json:1047
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
@@ -7037,11 +7041,11 @@ msgstr ""
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1560
+#: ../simulation_parameters/microbe_stage/organelles.json:1566
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1561
+#: ../simulation_parameters/microbe_stage/organelles.json:1567
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
@@ -7057,11 +7061,11 @@ msgstr ""
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1603
+#: ../simulation_parameters/microbe_stage/organelles.json:1609
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1604
+#: ../simulation_parameters/microbe_stage/organelles.json:1610
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
@@ -7121,6 +7125,8 @@ msgstr ""
 msgid "OSMOREGULATION"
 msgstr ""
 
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:460
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:603
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.tscn:91
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:128
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:127
@@ -7177,7 +7183,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:890
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:410
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:429
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
@@ -7375,7 +7381,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.cs:847
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:576
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:806
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:62
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:74
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:86
@@ -7658,7 +7664,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:863
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:871
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:251
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:270
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:196
 msgid "PRESSURE"
 msgstr ""
@@ -8631,7 +8637,7 @@ msgstr ""
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1156
+#: ../simulation_parameters/microbe_stage/organelles.json:1159
 msgid "SIGNALING_AGENT"
 msgstr ""
 
@@ -8639,11 +8645,11 @@ msgstr ""
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1157
+#: ../simulation_parameters/microbe_stage/organelles.json:1160
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1158
+#: ../simulation_parameters/microbe_stage/organelles.json:1161
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -8710,15 +8716,15 @@ msgstr ""
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1110
+#: ../simulation_parameters/microbe_stage/organelles.json:1113
 msgid "SLIME_JET"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1111
+#: ../simulation_parameters/microbe_stage/organelles.json:1114
 msgid "SLIME_JET_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1112
+#: ../simulation_parameters/microbe_stage/organelles.json:1115
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -9352,7 +9358,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:459
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:97
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:116
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
 msgid "TEMPERATURE"
 msgstr ""
@@ -9394,15 +9400,15 @@ msgstr ""
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1243
+#: ../simulation_parameters/microbe_stage/organelles.json:1246
 msgid "THERMOPLAST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1244
+#: ../simulation_parameters/microbe_stage/organelles.json:1247
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1245
+#: ../simulation_parameters/microbe_stage/organelles.json:1248
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -9735,8 +9741,8 @@ msgstr ""
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:548
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1106
+#: ../src/microbe_stage/MicrobeSpecies.cs:551
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1109
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -9747,9 +9753,14 @@ msgstr ""
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:191
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:348
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:210
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:367
 msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:470
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:613
+msgid "TOLERANCE_UPKEEP_COST"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:333
@@ -10303,11 +10314,11 @@ msgstr ""
 msgid "UNUSED_CELL_TYPE_IN_BODY_PLAN_ERROR_TITLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1304
+#: ../simulation_parameters/microbe_stage/organelles.json:1307
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1305
+#: ../simulation_parameters/microbe_stage/organelles.json:1308
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
@@ -10316,14 +10327,14 @@ msgid "UPGRADE_COST"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:47
-#: ../simulation_parameters/microbe_stage/organelles.json:1121
-#: ../simulation_parameters/microbe_stage/organelles.json:1301
+#: ../simulation_parameters/microbe_stage/organelles.json:1124
+#: ../simulation_parameters/microbe_stage/organelles.json:1304
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:46
-#: ../simulation_parameters/microbe_stage/organelles.json:1120
-#: ../simulation_parameters/microbe_stage/organelles.json:1300
+#: ../simulation_parameters/microbe_stage/organelles.json:1123
+#: ../simulation_parameters/microbe_stage/organelles.json:1303
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -10335,11 +10346,11 @@ msgstr ""
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1125
+#: ../simulation_parameters/microbe_stage/organelles.json:1128
 msgid "UPGRADE_SLIME_JET_MUCOCYST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1126
+#: ../simulation_parameters/microbe_stage/organelles.json:1129
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
 msgstr ""
 
@@ -10421,7 +10432,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:899
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:907
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:532
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:572
 msgid "UV_PROTECTION"
 msgstr ""
 
@@ -10453,18 +10464,18 @@ msgstr ""
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:117
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:271
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:136
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:290
 msgid "VALUE_MODIFIER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:430
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:552
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:449
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:592
 msgid "VALUE_OFFSET"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:445
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:567
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:485
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:628
 msgid "VALUE_TOTAL"
 msgstr ""
 
@@ -10472,7 +10483,7 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
 #: ../src/gui_common/tooltip/ToolTipManager.cs:804
 #: ../src/gui_common/tooltip/ToolTipManager.cs:819
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:773
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:803
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:102
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:110
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:129
@@ -10487,11 +10498,11 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:774
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:804
 msgid "VALUE_WITH_UNIT_PLUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:775
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:805
 msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 

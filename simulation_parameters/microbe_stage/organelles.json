@@ -311,7 +311,7 @@
       }
     },
     "ToleranceEffects": {
-      "UV": 0.03,
+      "UV": 0.05,
       "Oxygen": 0.015
     },
     "Density": 1600,
@@ -918,7 +918,7 @@
       }
     },
     "ToleranceEffects": {
-      "UV": 0.08,
+      "UV": 0.25,
       "Oxygen": 0.035
     },
     "Density": 1800,
@@ -962,6 +962,9 @@
       "Storage": {
         "Capacity": 0.5
       }
+    },
+    "ToleranceEffects": {
+      "UV": 0.025
     },
     "Density": 800,
     "CorpseChunkGraphics": {
@@ -1098,7 +1101,7 @@
       "SlimeJet": {}
     },
     "ToleranceEffects": {
-      "UV": 0.01
+      "UV": 0.06
     },
     "Density": 1100,
     "Graphics": {
@@ -1434,7 +1437,7 @@
       "RadiationBlock"
     ],
     "ToleranceEffects": {
-      "UV": 0.02
+      "UV": 0.35
     },
     "Density": 1300,
     "RelativeDensityVolume": 1,
@@ -1452,6 +1455,12 @@
         "DamageFromSource": {
           "SourceName": "radiation",
           "Amount": 1
+        }
+      },
+      {
+        "PatchCompound": {
+          "Compound": "sunlight",
+          "Min": 100
         }
       }
     ],
@@ -1548,9 +1557,6 @@
     "FeatureTags": [
       "Axon"
     ],
-    "ToleranceEffects": {
-      "UV": -0.1
-    },
     "Density": 1100,
     "RelativeDensityVolume": 1,
     "Graphics": {
