@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Godot;
 
@@ -85,7 +86,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
                         storageWarningBuilder.Append(new LocalizedString("COMPOUND_STORAGE_NOT_ENOUGH_SPACE",
                             compoundDefinition.InternalName,
                             Math.Round(lastingTime, 1),
-                            Math.Round(nightDuration)));
+                            Math.Round(nightDuration)).ToString(null, CultureInfo.CurrentCulture));
                         storageWarningBuilder.Append(' ');
                     }
                     else
@@ -104,7 +105,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
                             "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY",
                             compoundDefinition.InternalName,
                             Math.Round(generated, 1),
-                            Math.Round(required, 1)));
+                            Math.Round(required, 1)).ToString(null, CultureInfo.CurrentCulture));
                         storageWarningBuilder.Append(' ');
                     }
                 }
