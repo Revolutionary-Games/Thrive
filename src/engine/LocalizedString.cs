@@ -104,6 +104,8 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
     /// <summary>
     ///   Variant for more arguments. See the documentation for <see cref="UpdateFormatArgs{T}"/>.
     /// </summary>
+    /// <typeparam name="T">Type of the first argument</typeparam>
+    /// <typeparam name="T2">Type of the second argument</typeparam>
     public void UpdateFormatArgs<T, T2>(T arg1, T2 arg2)
         where T : notnull
         where T2 : notnull
