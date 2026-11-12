@@ -776,8 +776,22 @@ public static class SpawnHelpers
 
                 resolvedCellType = multicellularData.MulticellularCellType;
 
-                usedCellDefinition = multicellularData.MulticellularCellType;
-                var properties = new CellProperties(multicellularData.MulticellularCellType);
+                // Use the placed cell's definition so cavity colours are included. Gametes have no body plan entry.
+                // This is because by default the type is just the type of the cell, and not the body plan template,
+                // which knows about the cavity state.
+                try
+                {
+                    usedCellDefinition = isGameteSpawn ?
+                        resolvedCellType :
+                        multicellularSpecies.ModifiableGameplayCells[multicellularData.CellBodyPlanIndex];
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Could not read body plan for spawned cell, cavity status will be unknown: ", e);
+                    usedCellDefinition = resolvedCellType;
+                }
+
+                var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 

@@ -68,7 +68,8 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
 
     public Color Colour
     {
-        get => IsCavity ? ModifiableCellType.Colour.Darkened(Constants.CAVITY_CELL_COLOUR_DARKENING) :
+        get => IsCavity ?
+            ModifiableCellType.Colour.Darkened(Constants.CAVITY_CELL_COLOUR_DARKENING) :
             ModifiableCellType.Colour;
         set => ModifiableCellType.Colour = value;
     }
@@ -169,6 +170,11 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
 
     public override string ToString()
     {
+        if (IsCavity)
+        {
+            return $"Cavity Cell ({CellType.CellTypeName}) at {Position}";
+        }
+
         return $"Cell ({CellType.CellTypeName}) at {Position}";
     }
 }
