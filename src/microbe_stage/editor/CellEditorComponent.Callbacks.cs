@@ -14,14 +14,14 @@ public partial class CellEditorComponent
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
     }
 
     [ArchiveAllowedMethod]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
     }
 
     [ArchiveAllowedMethod]
@@ -158,7 +158,7 @@ public partial class CellEditorComponent
     {
         // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
         // just not do anything. That may have been the reason for the dynamic MP PR TODO.
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
         UpdateCellVisualization();
     }
 
@@ -265,13 +265,7 @@ public partial class CellEditorComponent
 
     private void ApplyMembraneToPreview(MembraneType membrane)
     {
-        if (previewMicrobeSpecies != null)
-        {
-            previewMicrobeSpecies.MembraneType = membrane;
-
-            if (previewMicrobe.IsAliveAndNotNull())
-                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
-        }
+        cellPreview.ApplyMembrane(membrane);
     }
 
     [ArchiveAllowedMethod]
@@ -327,7 +321,7 @@ public partial class CellEditorComponent
 
         data.UpgradedOrganelle.ModifiableUpgrades = data.NewUpgrades;
 
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
 
         OnOrganellesChanged();
     }
@@ -339,7 +333,7 @@ public partial class CellEditorComponent
 
         data.UpgradedOrganelle.ModifiableUpgrades = data.OldUpgrades;
 
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
 
         OnOrganellesChanged();
     }
