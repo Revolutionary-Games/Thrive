@@ -1259,8 +1259,6 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
-        StopAutoEvoPrediction();
-
         // Make sure specialization is calculated
         changedType.CalculateSpecialization();
 

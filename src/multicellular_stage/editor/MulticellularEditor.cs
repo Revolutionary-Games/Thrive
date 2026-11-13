@@ -656,8 +656,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void OnEditorExitTransitionFinished()
     {
-        bodyPlanEditorTab.StopAutoEvoPrediction();
-
         // Clear the edited cell type to avoid the cell editor applying the changes unnecessarily
         selectedCellTypeToEdit = null;
 
@@ -854,7 +852,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         else
         {
             // Apply the name immediately to the original species so that MP comparison works better
-            bodyPlanEditorTab.StopAutoEvoPrediction();
             GD.Print("Applying rename to original cell type immediately");
             cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit).CellTypeName =
                 selectedCellTypeToEdit.CellTypeName;

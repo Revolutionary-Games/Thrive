@@ -71,8 +71,6 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
     {
-        StopAutoEvoPrediction();
-
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
@@ -211,8 +209,6 @@ public partial class CellBodyPlanEditorComponent
 
     private void ChangeCellType(CellType? oldCellType, CellType? newCellType, SpecialCellArchetype specialCellArchetype)
     {
-        StopAutoEvoPrediction();
-
         if (oldCellType != null)
         {
             if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(oldCellType))
@@ -231,8 +227,6 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnCellTypeAdded(CellType added)
     {
-        StopAutoEvoPrediction();
-
         var originalName = added.CellTypeName;
         var count = 1;
 

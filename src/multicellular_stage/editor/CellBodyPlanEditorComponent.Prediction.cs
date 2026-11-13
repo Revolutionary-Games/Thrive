@@ -15,7 +15,8 @@ public partial class CellBodyPlanEditorComponent
     }
 
     /// <summary>
-    ///   Waits for prediction input borrowing to finish before shared editor data can be changed.
+    ///   Waits for the prediction to finish when leaving the scene tree. Editing uses independent prediction data
+    ///   and does not need to wait.
     /// </summary>
     public void StopAutoEvoPrediction()
     {
