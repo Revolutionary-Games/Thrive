@@ -3,12 +3,12 @@ using System.Threading;
 using Godot;
 
 /// <summary>
-///   Owns prediction scheduling and cached input reuse while the cell editor is processing.
+///   Owns prediction scheduling and input reuse while a cell or body-plan editor is processing.
 ///   Callbacks run synchronously on the main thread; stopping processing does not cancel or drain a run.
 /// </summary>
-public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Action<MicrobeSpecies> fillSpecies,
-    Func<MicrobeSpecies, EditorAutoEvoRun> createRun, Func<Species> getOriginalSpeciesAfterStart,
-    Action showWaiting, Action<AutoEvoRun, Species, Species> displayCompleted)
+public sealed class EditorAutoEvoPrediction(Func<Species?, Species?> prepareSpecies,
+    Func<Species, EditorAutoEvoRun> createRun, Func<Species> getOriginalSpeciesAfterStart,
+    Action? showWaiting, Action<AutoEvoRun, Species, Species> displayCompleted)
 {
     private bool autoEvoPredictionDirty = true;
     private bool autoEvoPredictionShutdownRequested;
@@ -16,10 +16,10 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
     private PendingAutoEvoPrediction? waitingForPrediction;
 
     /// <summary>
-    ///   Reused between runs after the previous run has finished borrowing it.
-    ///   Current editor changes are applied to predict their effect on the population.
+    ///   Holds the current prediction's input. Cell editors reuse it after the previous run finishes borrowing it;
+    ///   body-plan editors rebuild it from the current layout for each run.
     /// </summary>
-    private MicrobeSpecies? cachedAutoEvoPredictionSpecies;
+    private Species? cachedAutoEvoPredictionSpecies;
 
     public void MarkDirty()
     {
@@ -101,8 +101,13 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
             return;
         }
 
-        cachedAutoEvoPredictionSpecies ??= createSpecies();
-        fillSpecies(cachedAutoEvoPredictionSpecies);
+        // The previous run has finished borrowing the input. The host may reuse it or prepare a new one.
+        // Only a successfully returned input is cached; null postpones this prediction.
+        cachedAutoEvoPredictionSpecies = prepareSpecies(cachedAutoEvoPredictionSpecies);
+
+        // Incomplete body-plan input postpones prediction without replacing the existing display.
+        if (cachedAutoEvoPredictionSpecies == null)
+            return;
 
         var run = createRun(cachedAutoEvoPredictionSpecies);
         run.Start();
@@ -122,7 +127,7 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
     }
 
     private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
-        MicrobeSpecies playerSpeciesNew)
+        Species playerSpeciesNew)
     {
         if (waitingForPrediction != null)
         {
@@ -130,7 +135,7 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        showWaiting();
+        showWaiting?.Invoke();
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 

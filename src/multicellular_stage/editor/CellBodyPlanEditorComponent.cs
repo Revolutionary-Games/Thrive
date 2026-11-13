@@ -16,6 +16,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
+    private readonly EditorAutoEvoPrediction autoEvoPrediction;
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
     private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = [];
@@ -163,6 +165,9 @@ public partial class CellBodyPlanEditorComponent :
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
+    private EditorAutoEvoPredictionPanel autoEvoPredictionPanel = null!;
+
+    [Export]
     private ScrollContainer rightPanelScrollContainer = null!;
 
     [Export]
@@ -278,6 +283,14 @@ public partial class CellBodyPlanEditorComponent :
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     private StorageValueBreakdown? storageValueBreakdown;
+
+    public CellBodyPlanEditorComponent()
+    {
+        autoEvoPrediction = new EditorAutoEvoPrediction(_ => CreateAutoEvoPrediction(),
+            species => new EditorAutoEvoRun(Editor.CurrentGame.GameWorld,
+                Editor.CurrentGame.GameWorld.AutoEvoGlobalCache, Editor.EditedSpecies, species, Editor.TargetPatch),
+            () => Editor.EditedSpecies, () => autoEvoPredictionPanel.ShowWaiting(), OnAutoEvoPredictionComplete);
+    }
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -459,6 +472,10 @@ public partial class CellBodyPlanEditorComponent :
     public override void Init(MulticellularEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+        autoEvoPredictionPanel.ConfigureHost(finishOrNextButton,
+            () => (Editor.CurrentPatch, Editor.CurrentGame.GameWorld.WorldSettings));
+        autoEvoPredictionPanel.ShowWaiting();
+
         behaviourEditor.Init(owningEditor, fresh);
         tolerancesEditor.Init(owningEditor, fresh);
 
@@ -592,6 +609,8 @@ public partial class CellBodyPlanEditorComponent :
             OnCellsChanged();
             cellDataDirty = false;
         }
+
+        autoEvoPrediction.Process(delta, Editor.EditorReady, false);
 
         if (refreshTolerancesWarnings)
         {
@@ -934,9 +953,8 @@ public partial class CellBodyPlanEditorComponent :
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
-        editedSpecies.RepositionCellTypesToOrigin();
-
-        ApplyGrowthOrderToCells();
+        PrepareBodyPlanLayout(Editor.EditedSpecies, editedMicrobeCells,
+            editedMicrobeCells.AsModifiable().Select(cell => (cell, cell)));
 
         if (UsesManualPlayerLayout)
         {
@@ -1283,6 +1301,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
         refreshTolerancesWarnings = true;
 
+        autoEvoPrediction.MarkDirty();
+
         UpdateFinishButtonWarningVisibility();
 
         UpdateSpecializationDisplay();
@@ -1463,6 +1483,7 @@ public partial class CellBodyPlanEditorComponent :
         refreshTolerancesWarnings = true;
 
         Editor.OnTolerancesChanged(newTolerances);
+        autoEvoPrediction.MarkDirty();
     }
 
     public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
@@ -2332,6 +2353,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateMassBuddingCellCountSlider();
+
+        autoEvoPrediction.MarkDirty();
     }
 
     private void UpdateStats()
@@ -2576,23 +2599,37 @@ public partial class CellBodyPlanEditorComponent :
         UpdateGrowthOrderUI();
 
         UpdateFinishButtonWarningVisibility();
+
+        autoEvoPrediction.MarkDirty();
     }
 
-    private void ApplyGrowthOrderToCells()
+    /// <summary>
+    ///   Centres target cell types, applies source growth order, and moves both target position representations to
+    ///   the first cell's origin. Inputs must be non-empty, with valid templates referring to the target species'
+    ///   types. Only target data is changed; prediction callers must supply independent copies.
+    /// </summary>
+    private void PrepareBodyPlanLayout(MulticellularSpecies targetSpecies,
+        IndividualHexLayout<CellTemplate> targetLayout,
+        IEnumerable<(HexWithData<CellTemplate> Source, HexWithData<CellTemplate> Target)> cells)
     {
-        var order = new HexWithData<CellTemplate>[editedMicrobeCells.Count];
+        // Gameplay layout calculations require centred cell types. Editing deliberately defers this to preserve
+        // action history, so predictions must perform the same preparation on their independent copies.
+        targetSpecies.RepositionCellTypesToOrigin();
 
-        editedMicrobeCells.CopyTo(order, 0);
-        editedMicrobeCells.Clear();
+        // The picker recognises source template identities, not cloned targets. Materialise before clearing because
+        // completion reads from and writes to the same layout, retaining its collection callbacks and cell objects.
+        var orderedTargets = growthOrderGUI.ApplyOrderingToItems(cells, pair => pair.Source.Data!)
+            .Select(pair => pair.Target).ToArray();
+        targetLayout.Clear();
 
-        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order, i => i.Data!))
+        foreach (var cell in orderedTargets)
         {
-            editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
+            targetLayout.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
-        var leaderPosition = editedMicrobeCells[0].Position;
+        var leaderPosition = targetLayout[0].Position;
 
-        foreach (var cell in editedMicrobeCells.AsModifiable())
+        foreach (var cell in targetLayout.AsModifiable())
         {
             cell.Position -= leaderPosition;
             cell.Data!.Position -= leaderPosition;

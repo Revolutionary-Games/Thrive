@@ -41,7 +41,7 @@ public partial class CellEditorComponent :
 
     private readonly CellEditorPreview cellPreview = new();
 
-    private readonly CellEditorPrediction autoEvoPrediction;
+    private readonly EditorAutoEvoPrediction autoEvoPrediction;
 
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
@@ -225,8 +225,9 @@ public partial class CellEditorComponent :
 
     public CellEditorComponent()
     {
-        autoEvoPrediction = new CellEditorPrediction(CreateAutoEvoPredictionSpecies, FillAutoEvoPredictionSpecies,
-            CreateAutoEvoPredictionRun, () => Editor.EditedBaseSpecies, () => autoEvoPredictionPanel.ShowWaiting(),
+        autoEvoPrediction = new EditorAutoEvoPrediction(PrepareAutoEvoPredictionSpecies,
+            species => CreateAutoEvoPredictionRun((MicrobeSpecies)species),
+            () => Editor.EditedBaseSpecies, () => autoEvoPredictionPanel.ShowWaiting(),
             OnAutoEvoPredictionComplete);
     }
 
@@ -2048,6 +2049,13 @@ public partial class CellEditorComponent :
         var replacedCytoplasmData = GetReplacedCytoplasmRemoveActionData(organelles);
         return replacedCytoplasmData.Select(o =>
             new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
+    }
+
+    private Species PrepareAutoEvoPredictionSpecies(Species? previousSpecies)
+    {
+        var species = previousSpecies == null ? CreateAutoEvoPredictionSpecies() : (MicrobeSpecies)previousSpecies;
+        FillAutoEvoPredictionSpecies(species);
+        return species;
     }
 
     private MicrobeSpecies CreateAutoEvoPredictionSpecies()
