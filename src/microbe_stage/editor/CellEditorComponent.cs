@@ -41,6 +41,8 @@ public partial class CellEditorComponent :
 
     private readonly CellEditorPreview cellPreview = new();
 
+    private readonly CellEditorPrediction autoEvoPrediction;
+
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
@@ -175,9 +177,6 @@ public partial class CellEditorComponent :
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
-    private bool autoEvoPredictionDirty = true;
-    private double autoEvoPredictionStartTimer = 5;
-    private PendingAutoEvoPrediction? waitingForPrediction;
     private BehaviourDictionary? overwriteBehaviourForCalculations;
 
     private string? pendingWholeOrganismMembraneChangeTo;
@@ -203,12 +202,6 @@ public partial class CellEditorComponent :
     private float rigidity;
 
     /// <summary>
-    ///   To not have to recreate this object for each place / removal, this is a cached clone of editedSpecies to
-    ///   which current editor changes are applied for simulating what effect they would have on the population.
-    /// </summary>
-    private MicrobeSpecies? cachedAutoEvoPredictionSpecies;
-
-    /// <summary>
     ///   This is the container that has the edited organelles in
     ///   it. This is populated when entering and used to update the
     ///   player's species template on exit.
@@ -229,6 +222,13 @@ public partial class CellEditorComponent :
 
     private bool lightLevelChangeQueued;
     private float queuedLightFraction;
+
+    public CellEditorComponent()
+    {
+        autoEvoPrediction = new CellEditorPrediction(CreateAutoEvoPredictionSpecies, FillAutoEvoPredictionSpecies,
+            CreateAutoEvoPredictionRun, () => Editor.EditedBaseSpecies, () => autoEvoPredictionPanel.ShowWaiting(),
+            OnAutoEvoPredictionComplete);
+    }
 
     public enum SelectionMenuTab
     {
@@ -582,26 +582,7 @@ public partial class CellEditorComponent :
         base._Process(delta);
 
         // To have a value available earlier, this can run even before the right tab is set
-        autoEvoPredictionStartTimer += delta;
-
-        // But don't start before the editor is ready
-        if (autoEvoPredictionDirty && Editor.EditorReady)
-        {
-            // Don't constantly trigger prediction runs
-            if (autoEvoPredictionStartTimer >= Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
-            {
-                if (CancelPreviousAutoEvoPrediction())
-                {
-                    // Start a new run once safe to do so
-                    autoEvoPredictionStartTimer = 0;
-                    StartAutoEvoPrediction();
-                }
-            }
-        }
-        else if (Editor.EditorReady)
-        {
-            CheckRunningAutoEvoPrediction();
-        }
+        autoEvoPrediction.Process(delta, Editor.EditorReady, IsMulticellularEditor);
 
         if (!Visible)
             return;
@@ -1191,7 +1172,7 @@ public partial class CellEditorComponent :
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
     }
 
@@ -1203,13 +1184,13 @@ public partial class CellEditorComponent :
     {
         overwriteBehaviourForCalculations = behaviourData;
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
     }
 
     public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
     {
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
         // Need to show new tolerances warnings (and refresh a few other things)
@@ -2045,49 +2026,30 @@ public partial class CellEditorComponent :
             new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
-    /// <summary>
-    ///   Immediately start a new auto-evo prediction run. For actions that can trigger quickly in a sequence prefer
-    ///   setting <see cref="autoEvoPredictionDirty"/> to false to prevent rapid restarts of the prediction.
-    /// </summary>
-    private void StartAutoEvoPrediction()
+    private MicrobeSpecies CreateAutoEvoPredictionSpecies()
     {
-        // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
-        if (IsMulticellularEditor)
-        {
-            // Don't be dirty to not constantly try to retry the run
-            autoEvoPredictionDirty = false;
-            return;
-        }
-
-        // The first prediction can be made only after population numbers from the previous run are applied,
-        // so this is just here to guard against that potential programming mistake that may happen when code is
-        // changed
-        if (!Editor.EditorReady)
-        {
-            GD.PrintErr("Can't start auto-evo prediction before editor is ready");
-            return;
-        }
-
-        cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies,
+        return new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
             throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"),
             hexTemporaryMemory, hexTemporaryMemory2);
+    }
 
+    private void FillAutoEvoPredictionSpecies(MicrobeSpecies species)
+    {
         // Need to copy player species property to have auto-evo treat the predicted population the same way as
         // the player in a real run
         if (Editor.EditedBaseSpecies.PlayerSpecies)
         {
-            cachedAutoEvoPredictionSpecies.BecomePlayerSpecies();
+            species.BecomePlayerSpecies();
         }
 
-        CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
+        CopyEditedPropertiesToSpecies(species);
+    }
 
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
-            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies, Editor.TargetPatch);
-        run.Start();
-        autoEvoPredictionDirty = false;
-
-        UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
+    private EditorAutoEvoRun CreateAutoEvoPredictionRun(MicrobeSpecies species)
+    {
+        return new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
+            Editor.EditedBaseSpecies, species, Editor.TargetPatch);
     }
 
     private void OnEnergyBalanceOptionsChanged()
@@ -2379,7 +2341,7 @@ public partial class CellEditorComponent :
         OnRigidityChanged();
         OnColourChanged();
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
         cellPreview.MarkLayoutDirty();
@@ -2396,7 +2358,7 @@ public partial class CellEditorComponent :
 
         // Osmoregulation efficiency may play a role in the suggestion, so queue a new one
         suggestionDirty = true;
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
     }
 
     private void OnColourChanged()
@@ -2556,7 +2518,7 @@ public partial class CellEditorComponent :
 
         UpdateCellVisualization();
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
         UpdateFinishButtonWarningVisibility();
@@ -3088,9 +3050,9 @@ public partial class CellEditorComponent :
         TutorialState?.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
     }
 
-    private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
+    private void OnAutoEvoPredictionComplete(AutoEvoRun run, Species playerSpeciesOriginal, Species playerSpeciesNew)
     {
-        autoEvoPredictionPanel.DisplayRun(run.AutoEvoRun, run.PlayerSpeciesOriginal, run.PlayerSpeciesNew,
+        autoEvoPredictionPanel.DisplayRun(run, playerSpeciesOriginal, playerSpeciesNew,
             PreviousPlayerGatheredEnergy, Editor.CurrentPatch);
     }
 
@@ -3184,22 +3146,6 @@ public partial class CellEditorComponent :
                 }
             }
         }
-    }
-
-    private class PendingAutoEvoPrediction
-    {
-        public readonly AutoEvoRun AutoEvoRun;
-        public readonly Species PlayerSpeciesOriginal;
-        public readonly Species PlayerSpeciesNew;
-
-        public PendingAutoEvoPrediction(AutoEvoRun autoEvoRun, Species playerSpeciesOriginal, Species playerSpeciesNew)
-        {
-            AutoEvoRun = autoEvoRun;
-            PlayerSpeciesOriginal = playerSpeciesOriginal;
-            PlayerSpeciesNew = playerSpeciesNew;
-        }
-
-        public bool Finished => AutoEvoRun.Finished;
     }
 
     /// <summary>

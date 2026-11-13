@@ -99,15 +99,6 @@ public partial class CellEditorComponent
         refreshTolerancesWarnings = true;
     }
 
-    private void CheckRunningAutoEvoPrediction()
-    {
-        if (waitingForPrediction?.Finished != true)
-            return;
-
-        OnAutoEvoPredictionComplete(waitingForPrediction);
-        waitingForPrediction = null;
-    }
-
     private void CheckRunningSuggestion(double delta)
     {
         suggestionStartTimer += delta;
@@ -595,55 +586,6 @@ public partial class CellEditorComponent
 
         organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
             specificStorages, warningTime, fillingUpTime, compoundsThatWarnFillTime);
-    }
-
-    private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
-        MicrobeSpecies playerSpeciesNew)
-    {
-        if (waitingForPrediction != null)
-        {
-            GD.PrintErr(
-                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
-        }
-
-        autoEvoPredictionPanel.ShowWaiting();
-
-        var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
-
-        if (startedRun.Finished)
-        {
-            OnAutoEvoPredictionComplete(prediction);
-            waitingForPrediction = null;
-        }
-        else
-        {
-            waitingForPrediction = prediction;
-        }
-    }
-
-    /// <summary>
-    ///   Cancels the previous auto-evo prediction run if there is one
-    /// </summary>
-    /// <returns>True, once there is no active run</returns>
-    private bool CancelPreviousAutoEvoPrediction()
-    {
-        if (waitingForPrediction == null)
-            return true;
-
-        if (!waitingForPrediction.AutoEvoRun.Aborted)
-        {
-            GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
-            waitingForPrediction.AutoEvoRun.Abort();
-        }
-
-        if (waitingForPrediction.Finished)
-        {
-            GD.Print("Previous auto-evo prediction run finished now");
-            waitingForPrediction = null;
-            return true;
-        }
-
-        return false;
     }
 
     /// <summary>
