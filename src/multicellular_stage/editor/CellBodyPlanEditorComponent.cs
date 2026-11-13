@@ -1301,6 +1301,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
         refreshTolerancesWarnings = true;
 
+        autoEvoPrediction.MarkDirty();
+
         UpdateFinishButtonWarningVisibility();
 
         UpdateSpecializationDisplay();
