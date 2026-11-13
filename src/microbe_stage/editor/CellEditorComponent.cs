@@ -429,47 +429,6 @@ public partial class CellEditorComponent :
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
         Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier * Editor.MutationPointCostModifier;
 
-    public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
-    {
-        organelleModel.Transform = new Transform3D(
-            new Basis(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation)),
-            organelle.OrganelleModelPosition);
-
-        organelleModel.Scale = organelle.Definition.GetUpgradesSizeModification(organelle.Upgrades);
-    }
-
-    /// <summary>
-    ///   Updates the organelle model displayer to have the specified scene in it
-    /// </summary>
-    public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        LoadedSceneWithModelInfo displayScene, int renderPriority, List<ShaderMaterial> temporaryDataHolder)
-    {
-        organelleModel.Scene = displayScene.LoadedScene;
-
-        temporaryDataHolder.Clear();
-        if (!organelleModel.GetMaterial(temporaryDataHolder, displayScene.ModelPath))
-        {
-            GD.PrintErr("Failed to get material for editor / display cell to update render priority");
-            return;
-        }
-
-        // To follow MicrobeRenderPrioritySystem, this sets other than the first material to be -1 in priority
-        bool first = true;
-
-        foreach (var shaderMaterial in temporaryDataHolder)
-        {
-            if (first)
-            {
-                shaderMaterial.RenderPriority = renderPriority;
-                first = false;
-            }
-            else
-            {
-                shaderMaterial.RenderPriority = renderPriority - 1;
-            }
-        }
-    }
-
     public override void _Ready()
     {
         base._Ready();
@@ -1763,7 +1722,8 @@ public partial class CellEditorComponent :
     protected void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
         LoadedSceneWithModelInfo displayScene, int renderPriority)
     {
-        UpdateOrganellePlaceHolderScene(organelleModel, displayScene, renderPriority, temporaryDisplayerFetchList);
+        OrganelleModelPresentation.ApplySceneAndMaterialPriority(organelleModel, displayScene, renderPriority,
+            temporaryDisplayerFetchList);
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -2241,14 +2201,10 @@ public partial class CellEditorComponent :
         // Model
         if (showModel && shownOrganelleDefinition.TryGetGraphicsScene(upgrades, out var modelInfo))
         {
-            var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
-
             var organelleModel = HoverModels[usedHoverModel++];
 
-            organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
-                cartesianPosition + shownOrganelleDefinition.ModelOffset);
-
-            organelleModel.Scale = shownOrganelleDefinition.GetUpgradesSizeModification(upgrades);
+            OrganelleModelPresentation.ApplyTransform(organelleModel, shownOrganelleDefinition, new Hex(q, r),
+                rotation, upgrades);
 
             organelleModel.Visible = true;
 
@@ -2646,7 +2602,7 @@ public partial class CellEditorComponent :
 
                 var organelleModel = PlacedModels[nextFreeOrganelle++];
 
-                UpdateOrganelleDisplayerTransform(organelleModel, organelle);
+                OrganelleModelPresentation.ApplyTransform(organelleModel, organelle);
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
