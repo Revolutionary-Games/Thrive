@@ -950,7 +950,11 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
-        ApplyGrowthOrderToCells();
+        // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
+        // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
+        // editor component (that is used as a special mode in multicellular) is performed.
+        PrepareBodyPlanLayout(Editor.EditedSpecies, editedMicrobeCells,
+            editedMicrobeCells.AsModifiable().Select(cell => (cell, cell)));
 
         if (UsesManualPlayerLayout)
         {
@@ -2595,15 +2599,6 @@ public partial class CellBodyPlanEditorComponent :
         UpdateFinishButtonWarningVisibility();
 
         autoEvoPrediction.MarkDirty();
-    }
-
-    /// <summary>
-    ///   Prepares the live editor layout and its cell types for completion, after buffered type edits are applied.
-    /// </summary>
-    private void ApplyGrowthOrderToCells()
-    {
-        PrepareBodyPlanLayout(Editor.EditedSpecies, editedMicrobeCells,
-            editedMicrobeCells.AsModifiable().Select(cell => (cell, cell)));
     }
 
     /// <summary>
