@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
@@ -162,27 +161,7 @@ public static class NoiseUtils
         GD.Print($"Baking Perlin-Worley noise chunk of size {size}.");
 
         var buffers = new byte[size][];
-        float sizeFloat = size;
-        Parallel.For(0, size, z =>
-        {
-            var buffer = new byte[size * size * 4];
-            int i = 0;
-            for (int y = 0; y < size; ++y)
-            {
-                for (int x = 0; x < size; ++x)
-                {
-                    Vector3 p = new Vector3(x / sizeFloat, y / sizeFloat, z / sizeFloat);
-                    buffer[i++] = (byte)(Math.Clamp(PerlinWorley(p, seed), 0, 1) * 255);
-                    buffer[i++] = (byte)(Math.Clamp(FractionalBrownianMotionWorley(p, 8, 1, seed + 1000), 0, 1) * 255);
-                    buffer[i++] = (byte)
-                        (Math.Clamp(FractionalBrownianMotionWorley(p, 16, 1, seed + 2000), 0, 1) * 255);
-                    buffer[i++] = (byte)
-                        (Math.Clamp(FractionalBrownianMotionWorley(p, 32, 1, seed + 3000), 0, 1) * 255);
-                }
-            }
-
-            buffers[z] = buffer;
-        });
+        TaskExecutor.Instance.ParallelFor(0, size, new PerlinWorleySlicesBody(buffers, size, seed));
 
         var images = new Array<Image>();
         for (int z = 0; z < size; ++z)
@@ -199,5 +178,49 @@ public static class NoiseUtils
     private static float Remap(float value, float inMin, float inMax, float outMin, float outMax)
     {
         return outMin + (value - inMin) / (inMax - inMin) * (outMax - outMin);
+    }
+
+    /// <summary>
+    ///   Bakes a range of Z slices of a Perlin-Worley noise chunk, each into its own buffer
+    /// </summary>
+    private readonly struct PerlinWorleySlicesBody : IParallelForBody
+    {
+        private readonly byte[][] buffers;
+        private readonly int size;
+        private readonly int seed;
+
+        public PerlinWorleySlicesBody(byte[][] buffers, int size, int seed)
+        {
+            this.buffers = buffers;
+            this.size = size;
+            this.seed = seed;
+        }
+
+        public void Execute(int fromInclusive, int toExclusive)
+        {
+            float sizeFloat = size;
+
+            for (int z = fromInclusive; z < toExclusive; ++z)
+            {
+                var buffer = new byte[size * size * 4];
+                int i = 0;
+                for (int y = 0; y < size; ++y)
+                {
+                    for (int x = 0; x < size; ++x)
+                    {
+                        Vector3 p = new Vector3(x / sizeFloat, y / sizeFloat, z / sizeFloat);
+                        buffer[i++] = (byte)(Math.Clamp(PerlinWorley(p, seed), 0, 1) * 255);
+                        buffer[i++] = (byte)
+                            (Math.Clamp(FractionalBrownianMotionWorley(p, 8, 1, seed + 1000), 0, 1) * 255);
+                        buffer[i++] = (byte)
+                            (Math.Clamp(FractionalBrownianMotionWorley(p, 16, 1, seed + 2000), 0, 1) * 255);
+                        buffer[i++] = (byte)
+                            (Math.Clamp(FractionalBrownianMotionWorley(p, 32, 1, seed + 3000), 0, 1) * 255);
+                    }
+                }
+
+                buffers[z] = buffer;
+            }
+        }
     }
 }
