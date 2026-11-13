@@ -17,7 +17,6 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     // List of locales, edit this to add new ones:
     private static readonly List<string> ThriveLocales =
     [
-        "aeb",
         "ar",
         "af",
         "be",
@@ -35,7 +34,6 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "et",
         "fi",
         "fr",
-        "frm",
         "gsw",
         "he",
         "hr",
