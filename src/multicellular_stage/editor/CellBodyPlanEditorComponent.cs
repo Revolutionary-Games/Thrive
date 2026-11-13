@@ -950,11 +950,6 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
-        // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
-        // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
-        // editor component (that is used as a special mode in multicellular) is performed.
-        editedSpecies.RepositionCellTypesToOrigin();
-
         ApplyGrowthOrderToCells();
 
         if (UsesManualPlayerLayout)
@@ -2602,21 +2597,42 @@ public partial class CellBodyPlanEditorComponent :
         autoEvoPrediction.MarkDirty();
     }
 
+    /// <summary>
+    ///   Prepares the live editor layout and its cell types for completion, after buffered type edits are applied.
+    /// </summary>
     private void ApplyGrowthOrderToCells()
     {
-        var order = new HexWithData<CellTemplate>[editedMicrobeCells.Count];
+        PrepareBodyPlanLayout(Editor.EditedSpecies, editedMicrobeCells,
+            editedMicrobeCells.AsModifiable().Select(cell => (cell, cell)));
+    }
 
-        editedMicrobeCells.CopyTo(order, 0);
-        editedMicrobeCells.Clear();
+    /// <summary>
+    ///   Centres target cell types, applies source growth order, and moves both target position representations to
+    ///   the first cell's origin. Inputs must be non-empty, with valid templates referring to the target species'
+    ///   types. Only target data is changed; prediction callers must supply independent copies.
+    /// </summary>
+    private void PrepareBodyPlanLayout(MulticellularSpecies targetSpecies,
+        IndividualHexLayout<CellTemplate> targetLayout,
+        IEnumerable<(HexWithData<CellTemplate> Source, HexWithData<CellTemplate> Target)> cells)
+    {
+        // Gameplay layout calculations require centred cell types. Editing deliberately defers this to preserve
+        // action history, so predictions must perform the same preparation on their independent copies.
+        targetSpecies.RepositionCellTypesToOrigin();
 
-        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order, i => i.Data!))
+        // The picker recognises source template identities, not cloned targets. Materialise before clearing because
+        // completion reads from and writes to the same layout, retaining its collection callbacks and cell objects.
+        var orderedTargets = growthOrderGUI.ApplyOrderingToItems(cells, pair => pair.Source.Data!)
+            .Select(pair => pair.Target).ToArray();
+        targetLayout.Clear();
+
+        foreach (var cell in orderedTargets)
         {
-            editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
+            targetLayout.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
-        var leaderPosition = editedMicrobeCells[0].Position;
+        var leaderPosition = targetLayout[0].Position;
 
-        foreach (var cell in editedMicrobeCells.AsModifiable())
+        foreach (var cell in targetLayout.AsModifiable())
         {
             cell.Position -= leaderPosition;
             cell.Data!.Position -= leaderPosition;
