@@ -45,6 +45,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     private MicrobeEditsFacade? editsFacade;
 
     private bool checkingTabVisibility;
+    private bool exitRequested;
     private double tabCheckVisibilityTimer = 10;
 
     private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
@@ -205,10 +206,18 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public override bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
     {
+        if (exitRequested)
+            return false;
+
         var result = base.OnFinishEditing(overrides);
 
         if (result)
         {
+            exitRequested = true;
+
+            // Let prediction cancellation overlap the fade, retaining the synchronous wait before applying edits.
+            cellEditorTab.BeginAutoEvoPredictionShutdown();
+
             // Remember if advanced cell editor tabs have been seen for tutorial purposes
             if (cellEditorTab.AreAdvancedTabsVisible())
                 CurrentGame.SetBool(ADVANCED_TABS_SHOWN_BEFORE, true);

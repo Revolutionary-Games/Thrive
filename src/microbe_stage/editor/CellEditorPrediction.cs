@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Godot;
 
 /// <summary>
@@ -10,6 +11,7 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
     Action showWaiting, Action<AutoEvoRun, Species, Species> displayCompleted)
 {
     private bool autoEvoPredictionDirty = true;
+    private bool autoEvoPredictionShutdownRequested;
     private double autoEvoPredictionStartTimer = 5;
     private PendingAutoEvoPrediction? waitingForPrediction;
 
@@ -25,14 +27,40 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
     }
 
     /// <summary>
+    ///   Prevents further predictions and requests cancellation without waiting for the borrowed inputs.
+    /// </summary>
+    public void BeginShutdown()
+    {
+        autoEvoPredictionShutdownRequested = true;
+        autoEvoPredictionDirty = true;
+        CancelPreviousAutoEvoPrediction();
+    }
+
+    /// <summary>
+    ///   Cancels and waits before the host modifies or releases prediction inputs. Further predictions remain
+    ///   enabled unless shutdown has begun.
+    /// </summary>
+    public void Stop()
+    {
+        // An explicitly cancelled run must not be displayed as a prediction failure.
+        autoEvoPredictionDirty = true;
+        while (!CancelPreviousAutoEvoPrediction())
+            Thread.Sleep(1);
+    }
+
+    /// <summary>
     ///   Advances prediction scheduling independently of the editor tab's visibility.
     /// </summary>
     public void Process(double delta, bool editorReady, bool predictionDisabled)
     {
         autoEvoPredictionStartTimer += delta;
 
-        // Don't start before the editor is ready
-        if (autoEvoPredictionDirty && editorReady)
+        if (autoEvoPredictionShutdownRequested)
+        {
+            // Discard cancelled results without restarting, even if edits during the fade mark the prediction dirty.
+            CancelPreviousAutoEvoPrediction();
+        }
+        else if (autoEvoPredictionDirty && editorReady)
         {
             // Don't constantly trigger prediction runs
             if (autoEvoPredictionStartTimer >= Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
@@ -53,6 +81,9 @@ public sealed class CellEditorPrediction(Func<MicrobeSpecies> createSpecies, Act
 
     private void StartAutoEvoPrediction(bool editorReady, bool predictionDisabled)
     {
+        if (autoEvoPredictionShutdownRequested)
+            return;
+
         // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
         if (predictionDisabled)
         {

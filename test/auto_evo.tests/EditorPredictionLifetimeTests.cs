@@ -15,10 +15,12 @@ public class EditorPredictionLifetimeTests
 {
     /// <summary>
     ///   Holds a prediction step while stopping it, then changes its original input immediately after Stop returns.
-    ///   The step must read the unchanged input, and the editor must discard the run only after completion.
+    ///   Early shutdown must return without releasing the inputs; both direct and subsequent Stop calls must wait
+    ///   for the step to read the unchanged input before discarding the run.
     /// </summary>
-    [TestCase]
-    public void StopPredictionWaitsForTheCurrentStepBeforeReturningItsInputs()
+    [TestCase(false)]
+    [TestCase(true)]
+    public void StopPredictionWaitsForTheCurrentStepBeforeReturningItsInputs(bool beginShutdownEarly)
     {
         var timeout = TimeSpan.FromSeconds(10);
         var world = new GameWorld(new WorldGenerationSettings
@@ -50,6 +52,9 @@ public class EditorPredictionLifetimeTests
         bool finishedWhileBlocked = true;
         bool pendingWhileBlocked = false;
         int generationWhileBlocked = -1;
+        bool abortedAfterShutdownRequest = false;
+        bool finishedAfterShutdownRequest = true;
+        bool pendingAfterShutdownRequest = false;
         Exception? workerFailure = null;
         Exception? releaserFailure = null;
         var stoppingThread = Thread.CurrentThread;
@@ -101,6 +106,15 @@ public class EditorPredictionLifetimeTests
             releaser.Start();
             releaserStarted = true;
 
+            if (beginShutdownEarly)
+            {
+                editor.BeginAutoEvoPredictionShutdown();
+                editor.BeginAutoEvoPredictionShutdown();
+                abortedAfterShutdownRequest = run.Aborted;
+                finishedAfterShutdownRequest = run.Finished;
+                pendingAfterShutdownRequest = ReferenceEquals(pendingField.GetValue(editor), pending);
+            }
+
             editor.StopAutoEvoPrediction();
             var finishedAtReturn = run.Finished;
             ++world.PlayerSpecies.Generation;
@@ -110,6 +124,13 @@ public class EditorPredictionLifetimeTests
             AssertThat(worker.Join(timeout)).IsTrue();
             AssertThat(releaserFailure).IsNull();
             AssertThat(workerFailure).IsNull();
+            if (beginShutdownEarly)
+            {
+                AssertThat(abortedAfterShutdownRequest).IsTrue();
+                AssertThat(finishedAfterShutdownRequest).IsFalse();
+                AssertThat(pendingAfterShutdownRequest).IsTrue();
+            }
+
             AssertThat(returnedWhileBlocked).IsFalse();
             AssertThat(finishedWhileBlocked).IsFalse();
             AssertThat(pendingWhileBlocked).IsTrue();
