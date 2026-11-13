@@ -462,6 +462,12 @@ public partial class CellEditorComponent :
         RegisterTooltips();
     }
 
+    public override void _ExitTree()
+    {
+        StopAutoEvoPrediction();
+        base._ExitTree();
+    }
+
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
@@ -898,6 +904,24 @@ public partial class CellEditorComponent :
             // Make sure initial tolerance warnings are shown
             TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         }
+    }
+
+    /// <summary>
+    ///   Prevents further predictions for this editor session and requests cancellation without waiting.
+    ///   Call <see cref="StopAutoEvoPrediction"/> before modifying or releasing the prediction's inputs.
+    /// </summary>
+    public void BeginAutoEvoPredictionShutdown()
+    {
+        autoEvoPrediction.BeginShutdown();
+    }
+
+    /// <summary>
+    ///   Synchronously cancels the prediction and waits for all of its work to finish before its inputs can be
+    ///   modified. Further predictions remain enabled unless this editor session has begun shutting down.
+    /// </summary>
+    public void StopAutoEvoPrediction()
+    {
+        autoEvoPrediction.Stop();
     }
 
     public override void OnFinishEditing()

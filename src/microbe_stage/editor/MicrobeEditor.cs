@@ -209,6 +209,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         if (result)
         {
+            // Let prediction cancellation overlap the fade, retaining the synchronous wait before applying edits.
+            cellEditorTab.BeginAutoEvoPredictionShutdown();
+
             // Remember if advanced cell editor tabs have been seen for tutorial purposes
             if (cellEditorTab.AreAdvancedTabsVisible())
                 CurrentGame.SetBool(ADVANCED_TABS_SHOWN_BEFORE, true);
@@ -373,6 +376,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         yield return reportTab;
         yield return patchMapTab;
         yield return cellEditorTab;
+    }
+
+    protected override void OnEditorExitTransitionFinished()
+    {
+        cellEditorTab.StopAutoEvoPrediction();
+        base.OnEditorExitTransitionFinished();
     }
 
     protected override void OnEditorReady()
