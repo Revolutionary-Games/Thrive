@@ -2084,45 +2084,57 @@ public partial class CellEditorComponent :
         var actions = new List<EditorAction>();
         foreach (var (hex, organelle, orientation, occupied) in GetOccupancies(hexes, organelles))
         {
-            EditorAction action;
             if (occupied)
             {
-                var data = new OrganelleRemoveActionData(organelle)
-                {
-                    GotReplaced = organelle.Definition.InternalName == cytoplasm.InternalName,
-                };
-                action = new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction,
-                    UndoOrganelleRemoveAction, data);
+                actions.Add(CreateOccupiedOrganelleRemovalAction(organelle));
+            }
+            else if (moving)
+            {
+                actions.Add(CreateOrganelleMoveAction(organelle, hex, orientation));
             }
             else
             {
-                if (moving)
-                {
-                    var data = new OrganelleMoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
-                        orientation);
-                    action = new SingleEditorAction<OrganelleMoveActionData>(DoOrganelleMoveAction,
-                        UndoOrganelleMoveAction, data);
-                }
-                else
-                {
-                    var data = new OrganellePlacementActionData(organelle, hex, orientation);
-
-                    var replacedHexes = organelle.RotatedHexes
-                        .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h, hexTemporaryMemory)).WhereNotNull()
-                        .ToList();
-
-                    if (replacedHexes.Count > 0)
-                        data.ReplacedCytoplasm = replacedHexes;
-
-                    action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
-                        UndoOrganellePlaceAction, data);
-                }
+                actions.Add(CreateOrganellePlacementAction(organelle, hex, orientation));
             }
-
-            actions.Add(action);
         }
 
         return new CombinedEditorAction(actions);
+    }
+
+    private EditorAction CreateOccupiedOrganelleRemovalAction(OrganelleTemplate organelle)
+    {
+        var data = new OrganelleRemoveActionData(organelle)
+        {
+            GotReplaced = organelle.Definition.InternalName == cytoplasm.InternalName,
+        };
+        EditorAction action = new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction,
+            UndoOrganelleRemoveAction, data);
+        return action;
+    }
+
+    private EditorAction CreateOrganelleMoveAction(OrganelleTemplate organelle, Hex hex, int orientation)
+    {
+        var data = new OrganelleMoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
+            orientation);
+        EditorAction action = new SingleEditorAction<OrganelleMoveActionData>(DoOrganelleMoveAction,
+            UndoOrganelleMoveAction, data);
+        return action;
+    }
+
+    private EditorAction CreateOrganellePlacementAction(OrganelleTemplate organelle, Hex hex, int orientation)
+    {
+        var data = new OrganellePlacementActionData(organelle, hex, orientation);
+
+        var replacedHexes = organelle.RotatedHexes
+            .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h, hexTemporaryMemory)).WhereNotNull()
+            .ToList();
+
+        if (replacedHexes.Count > 0)
+            data.ReplacedCytoplasm = replacedHexes;
+
+        EditorAction action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
+            UndoOrganellePlaceAction, data);
+        return action;
     }
 
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
