@@ -24,10 +24,7 @@ public partial class CellBodyPlanEditorComponent
 
     private MulticellularSpecies? CreateAutoEvoPrediction()
     {
-        if (!TryCreateAutoEvoPredictionSpecies(out var prediction))
-            return null;
-
-        return prediction;
+        return TryCreateAutoEvoPredictionSpecies(out var prediction) ? prediction : null;
     }
 
     private void OnAutoEvoPredictionComplete(AutoEvoRun run, Species originalSpecies, Species predictedSpecies)
@@ -92,6 +89,8 @@ public partial class CellBodyPlanEditorComponent
             typeMapping.Add(editedType, clonedType);
         }
 
+        var leaderPosition = new Hex(0, 0);
+
         foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), c => c.Data!))
         {
             if (cell.Data == null ||
@@ -100,8 +99,13 @@ public partial class CellBodyPlanEditorComponent
                 return false;
             }
 
-            var template = new CellTemplate(clonedType, cell.Position, cell.Orientation, cell.Data.IsCavity);
-            predictionCells.AddFast(new HexWithData<CellTemplate>(template, cell.Position, cell.Orientation),
+            // Match the layout origin used by ApplyGrowthOrderToCells when editing finishes.
+            if (predictionCells.Count == 0)
+                leaderPosition = cell.Position;
+
+            var position = cell.Position - leaderPosition;
+            var template = new CellTemplate(clonedType, position, cell.Orientation, cell.Data.IsCavity);
+            predictionCells.AddFast(new HexWithData<CellTemplate>(template, position, cell.Orientation),
                 hexTemporaryMemory, hexTemporaryMemory2);
         }
 
