@@ -6,9 +6,9 @@ using Godot;
 ///   Owns prediction scheduling and input reuse while a cell or body-plan editor is processing.
 ///   Callbacks run synchronously on the main thread; stopping processing does not cancel or drain a run.
 /// </summary>
-public sealed class CellEditorPrediction(Func<Species?> createSpecies, Action<Species> fillSpecies,
+public sealed class EditorAutoEvoPrediction(Func<Species?, Species?> prepareSpecies,
     Func<Species, EditorAutoEvoRun> createRun, Func<Species> getOriginalSpeciesAfterStart,
-    Action showWaiting, Action<AutoEvoRun, Species, Species> displayCompleted, bool reuseSpecies)
+    Action? showWaiting, Action<AutoEvoRun, Species, Species> displayCompleted)
 {
     private bool autoEvoPredictionDirty = true;
     private bool autoEvoPredictionShutdownRequested;
@@ -101,14 +101,13 @@ public sealed class CellEditorPrediction(Func<Species?> createSpecies, Action<Sp
             return;
         }
 
-        if (!reuseSpecies || cachedAutoEvoPredictionSpecies == null)
-            cachedAutoEvoPredictionSpecies = createSpecies();
+        // The previous run has finished borrowing the input. The host may reuse it or prepare a new one.
+        // Only a successfully returned input is cached; null postpones this prediction.
+        cachedAutoEvoPredictionSpecies = prepareSpecies(cachedAutoEvoPredictionSpecies);
 
         // Incomplete body-plan input postpones prediction without replacing the existing display.
         if (cachedAutoEvoPredictionSpecies == null)
             return;
-
-        fillSpecies(cachedAutoEvoPredictionSpecies);
 
         var run = createRun(cachedAutoEvoPredictionSpecies);
         run.Start();
@@ -136,7 +135,7 @@ public sealed class CellEditorPrediction(Func<Species?> createSpecies, Action<Sp
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        showWaiting();
+        showWaiting?.Invoke();
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 

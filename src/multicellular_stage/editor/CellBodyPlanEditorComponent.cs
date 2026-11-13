@@ -16,7 +16,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
-    private readonly CellEditorPrediction autoEvoPrediction;
+    private readonly EditorAutoEvoPrediction autoEvoPrediction;
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
@@ -286,10 +286,10 @@ public partial class CellBodyPlanEditorComponent :
 
     public CellBodyPlanEditorComponent()
     {
-        autoEvoPrediction = new CellEditorPrediction(CreateAutoEvoPrediction, _ => { },
+        autoEvoPrediction = new EditorAutoEvoPrediction(_ => CreateAutoEvoPrediction(),
             species => new EditorAutoEvoRun(Editor.CurrentGame.GameWorld,
                 Editor.CurrentGame.GameWorld.AutoEvoGlobalCache, Editor.EditedSpecies, species, Editor.TargetPatch),
-            () => Editor.EditedSpecies, () => { }, OnAutoEvoPredictionComplete, false);
+            () => Editor.EditedSpecies, null, OnAutoEvoPredictionComplete);
     }
 
     [Signal]
