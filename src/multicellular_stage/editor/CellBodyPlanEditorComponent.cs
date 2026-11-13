@@ -289,7 +289,7 @@ public partial class CellBodyPlanEditorComponent :
         autoEvoPrediction = new EditorAutoEvoPrediction(_ => CreateAutoEvoPrediction(),
             species => new EditorAutoEvoRun(Editor.CurrentGame.GameWorld,
                 Editor.CurrentGame.GameWorld.AutoEvoGlobalCache, Editor.EditedSpecies, species, Editor.TargetPatch),
-            () => Editor.EditedSpecies, null, OnAutoEvoPredictionComplete);
+            () => Editor.EditedSpecies, () => autoEvoPredictionPanel.ShowWaiting(), OnAutoEvoPredictionComplete);
     }
 
     [Signal]
