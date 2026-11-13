@@ -2858,6 +2858,17 @@ public partial class CellEditorComponent :
         var organelleButtonGroup = new ButtonGroup();
         var membraneButtonGroup = new ButtonGroup();
 
+        if (!TrySetupOrganelleSelections(simulationParameters, organelleButtonGroup))
+            return;
+
+        SetupMembraneSelections(simulationParameters, membraneButtonGroup);
+
+        UpdateStageSelectionGroupVisibility();
+    }
+
+    private bool TrySetupOrganelleSelections(SimulationParameters simulationParameters,
+        ButtonGroup organelleButtonGroup)
+    {
         foreach (var organelle in simulationParameters.GetAllOrganelles().OrderBy(o => o.EditorButtonOrder))
         {
             if (organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
@@ -2868,7 +2879,7 @@ public partial class CellEditorComponent :
             if (group == null)
             {
                 GD.PrintErr("No node found for organelle selection button for ", organelle.InternalName);
-                return;
+                return false;
             }
 
             var control = organelleSelectionButtonScene.Instantiate<MicrobePartSelection>();
@@ -2896,6 +2907,11 @@ public partial class CellEditorComponent :
                 new Callable(this, nameof(OnOrganelleToPlaceSelected)));
         }
 
+        return true;
+    }
+
+    private void SetupMembraneSelections(SimulationParameters simulationParameters, ButtonGroup membraneButtonGroup)
+    {
         foreach (var membraneType in simulationParameters.GetAllMembranes().OrderBy(m => m.EditorButtonOrder))
         {
             var control = organelleSelectionButtonScene.Instantiate<MicrobePartSelection>();
@@ -2924,7 +2940,10 @@ public partial class CellEditorComponent :
             control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                 new Callable(this, nameof(OnMembraneSelected)));
         }
+    }
 
+    private void UpdateStageSelectionGroupVisibility()
+    {
         // Multicellular parts only available (visible) in multicellular.
         // For now, there aren't any multicellular specific organelles so the section is hidden.
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))

@@ -651,13 +651,23 @@ public partial class CellEditorComponent
     /// </summary>
     private void UpdateMicrobePartSelections()
     {
+        UpdateOrganelleSelections();
+
+        UpdateMembraneSelections();
+    }
+
+    private void UpdateOrganelleSelections()
+    {
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
             entry.Value.MPCost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
+    }
 
+    private void UpdateMembraneSelections()
+    {
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
