@@ -37,7 +37,9 @@ public class EditorAutoEvoRun : AutoEvoRun
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
+        var replacements = new Dictionary<Species, Species> { { OriginalEditedSpecies, ModifiedProperties } };
         var generateMicheCache = new SimulationCache(worldSettings);
+        generateMicheCache.SetSpeciesReplacements(replacements);
 
         foreach (var entry in map.Patches)
         {
@@ -45,8 +47,7 @@ public class EditorAutoEvoRun : AutoEvoRun
         }
 
         var populationCalculation = new CalculatePopulation(Configuration, worldSettings, map,
-            new Dictionary<Species, Species>
-                { { OriginalEditedSpecies, ModifiedProperties } }, CollectEnergyInfo);
+            replacements, CollectEnergyInfo);
 
         if (EditorTargetPatch != null)
         {

@@ -124,9 +124,33 @@ public class PredationEffectivenessPressure : SelectionPressure
         return predatorScore;
     }
 
+    public override float GetEnergy(Patch patch, SimulationCache cache)
+    {
+        var prey = cache.ResolveSpecies(Prey);
+        long population = cache.GetSpeciesPopulation(patch, prey);
+        if (population <= 0)
+            return 0;
+
+        return population * prey.GetPredationTargetSizeFactor() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+    }
+
     public override float GetEnergy(Patch patch)
     {
-        if (!patch.SpeciesInPatch.TryGetValue(Prey, out long population) || population <= 0)
+        // Generated prediction pressures hold the replacement, while the patch retains the original identity.
+        patch.SpeciesInPatch.TryGetValue(Prey, out long population);
+        if (population == 0)
+        {
+            foreach (var entry in patch.SpeciesInPatch)
+            {
+                if (entry.Key.ID == Prey.ID)
+                {
+                    population = entry.Value;
+                    break;
+                }
+            }
+        }
+
+        if (population <= 0)
             return 0;
 
         return population * Prey.GetPredationTargetSizeFactor() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;

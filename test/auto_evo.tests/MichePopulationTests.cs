@@ -212,6 +212,78 @@ public class MichePopulationTests
         AssertPatchResults(fixture, fixture.Patch, before, after, true);
     }
 
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ReplacementIsUsedDuringMicheGenerationAndPredation(bool multicellular)
+    {
+        var fixture = CreateFixture();
+        Species original = fixture.Species[0];
+        if (multicellular)
+        {
+            var cellType = new CellType(fixture.Species[0], new List<Hex>(), new List<Hex>());
+            original = SimulationCacheTestFixtures.CreateMulticellular(original.ID, "replacement", (cellType,
+                new Hex(0, 0)));
+            fixture.Patch.SpeciesInPatch.Remove(fixture.Species[0]);
+            fixture.Patch.AddSpecies(original, 1000);
+        }
+
+        var replacement = (Species)original.Clone();
+        var replacements = new Dictionary<Species, Species> { { original, replacement } };
+        var cache = new SimulationCache(fixture.Settings);
+        cache.SetSpeciesReplacements(replacements);
+
+        // The live editor data may be in an incomplete state. No fitness calculation may read it after replacement.
+        if (original is MicrobeSpecies microbe)
+        {
+            microbe.MembraneType = null!;
+        }
+        else
+        {
+            ((MulticellularSpecies)original).ModifiableCellTypes[0].MembraneType = null!;
+        }
+
+        var generator = new GenerateMiche(fixture.Patch, cache, fixture.World.AutoEvoGlobalCache);
+        var results = new RunResults();
+        generator.RunStep(results);
+        var configuration = new SimulationConfiguration(fixture.Settings.AutoEvoConfiguration,
+            fixture.World.Map, fixture.Settings)
+        {
+            Results = results,
+            ReplacedSpecies = replacements,
+            CollectEnergyInformation = true,
+            PatchesToRun = new HashSet<Patch> { fixture.Patch },
+        };
+        MichePopulation.Simulate(configuration, null, new Random(1234));
+
+        AssertThat(fixture.Patch.SpeciesInPatch.ContainsKey(original)).IsTrue();
+        AssertThat(fixture.Patch.SpeciesInPatch.ContainsKey(replacement)).IsFalse();
+        AssertThat(results.SpeciesHasResults(replacement)).IsTrue();
+        AssertThat(results.SpeciesHasResults(original)).IsFalse();
+
+        var pressure = new PredationEffectivenessPressure(original, 1);
+        var expectedEnergy = 1000 * replacement.GetPredationTargetSizeFactor() *
+            Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+        AssertFloatBits(pressure.GetEnergy(fixture.Patch, cache), expectedEnergy);
+        AssertFloatBits(new PredationEffectivenessPressure(replacement, 1).GetEnergy(fixture.Patch), expectedEnergy);
+        var expectedPredation = cache.GetPredationScore(replacement, fixture.Species[1], fixture.Patch.Biome);
+        AssertFloatBits(cache.GetPredationScore(original, fixture.Species[1], fixture.Patch.Biome), expectedPredation);
+    }
+
+    [TestCase]
+    public void ChangingReplacementsInvalidatesPressureScores()
+    {
+        var fixture = CreateFixture();
+        var original = fixture.Species[0];
+        var replacement = (MicrobeSpecies)original.Clone();
+        var cache = new SimulationCache(fixture.Settings);
+        var pressure = new CountingPressure(1301, species => ReferenceEquals(species, original) ? 1 : 2);
+        AssertThat(cache.GetPressureScore(pressure, fixture.Patch, original)).IsEqual(1.0f);
+        cache.SetSpeciesReplacements(new Dictionary<Species, Species> { { original, replacement } });
+        AssertThat(cache.GetPressureScore(pressure, fixture.Patch, original)).IsEqual(2.0f);
+        cache.SetSpeciesReplacements(new Dictionary<Species, Species>());
+        AssertThat(cache.GetPressureScore(pressure, fixture.Patch, original)).IsEqual(1.0f);
+    }
+
     private static RunResults SimulatePatches(Fixture fixture, Dictionary<Patch, Miche> trees,
         HashSet<Patch> patches, bool trackEnergy, int steps)
     {
