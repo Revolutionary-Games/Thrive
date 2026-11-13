@@ -39,15 +39,11 @@ public partial class CellEditorComponent :
 
     private readonly Dictionary<OrganelleDefinition, int> definitionCountWorkMemory = new();
 
-    private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
+    private readonly CellEditorStatisticsCalculator statisticsCalculator = new();
 
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
-
-    private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
-
-    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
 
 #pragma warning disable CA2213
 
@@ -2254,15 +2250,10 @@ public partial class CellEditorComponent :
         energyBalanceInfo = new EnergyBalanceInfoFull();
         energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
-        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
-
-        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
-
+        var cell = statisticsCalculator.PrepareCell(organelles);
         var tolerances = CalculateLatestTolerances();
-        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
-            membrane, maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-            organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
+        statisticsCalculator.CalculateEnergyBalance(cell, membrane, conditionsData, tolerances, moving,
+            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, energyBalanceInfo);
 
         organismStatisticsPanel.UpdateEnergyBalance(energyBalanceInfo);
 
@@ -2276,93 +2267,35 @@ public partial class CellEditorComponent :
         Dictionary<Compound, float>? specificStorages = null;
 
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
-        var compoundBalanceData =
-            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalanceInfo,
-                ref specificStorages, ref nominalStorage, tolerances, specialization);
+        var compoundBalanceData = statisticsCalculator.CalculateCompoundBalance(cell,
+            organismStatisticsPanel.BalanceDisplayType, organismStatisticsPanel.CompoundAmountType, conditionsData,
+            energyBalanceInfo, ref specificStorages, ref nominalStorage, tolerances);
 
-        tempCompoundSources.Clear();
-        ProcessSystem.CalculateInputCompoundsNeededForOutputs(organelles, conditionsData, tolerances, specialization,
-            organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
+        var dayDependentCompounds = statisticsCalculator.CalculateDayDependentCompounds(cell, conditionsData,
+            tolerances, organismStatisticsPanel.CompoundAmountType);
 
-        conditionsData.GetProducedCompoundsThatDependOnVarying(tempCompoundSources, compoundsThatDependOnDay);
-
-        UpdateCompoundBalances(compoundBalanceData, compoundsThatDependOnDay);
+        UpdateCompoundBalances(compoundBalanceData, dayDependentCompounds);
 
         // TODO: should this skip on being affected by the resource limited?
-        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-            CompoundAmountType.Minimum, organelles, conditionsData, energyBalanceInfo, ref specificStorages,
-            ref nominalStorage, tolerances, specialization);
+        var nightBalanceData = statisticsCalculator.CalculateCompoundBalance(cell,
+            organismStatisticsPanel.BalanceDisplayType, CompoundAmountType.Minimum, conditionsData, energyBalanceInfo,
+            ref specificStorages, ref nominalStorage, tolerances);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"),
-            compoundsThatDependOnDay);
+            dayDependentCompounds);
 
         HandleProcessList(energyBalanceInfo, conditionsData);
-    }
-
-    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
-        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions biome,
-        EnergyBalanceInfoFull energyBalance, ref Dictionary<Compound, float>? specificStorages,
-        ref float nominalStorage, in ResolvedMicrobeTolerances tolerances, float specializationBonus)
-    {
-        var compoundBalanceData = new Dictionary<Compound, CompoundBalance>();
-        switch (calculationType)
-        {
-            case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances, specializationBonus, amountType,
-                    true, compoundBalanceData);
-                break;
-            case BalanceDisplayType.EnergyEquilibrium:
-                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, tolerances, specializationBonus,
-                    amountType, energyBalance, compoundBalanceData);
-                break;
-            default:
-                GD.PrintErr("Unknown compound balance type: ", calculationType);
-                goto case BalanceDisplayType.EnergyEquilibrium;
-        }
-
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles,
-            specializationBonus, out nominalStorage);
-
-        return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
     private void HandleProcessList(EnergyBalanceInfoFull energyBalance, IBiomeConditions biome)
     {
         var processes = new List<TweakedProcess>();
-
-        // Empty list to later fill
-        var processStatistics = new List<ProcessSpeedInformation>();
-
         ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
 
         var tolerances = CalculateLatestTolerances();
-
-        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
-
-        var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
-
-        var speedModifier = tolerances.ProcessSpeedModifier * specialization;
-
-        foreach (var process in processes)
-        {
-            // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
-            // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier,
-                biome, CompoundAmountType.Current, true);
-
-            // If produces more ATP than consumes, lower down production for inputs and for outputs,
-            // otherwise use maximum production values (this matches the equilibrium display mode and what happens
-            // in the game once exiting the editor)
-            if (consumptionProductionRatio < 1.0f)
-            {
-                singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);
-            }
-
-            processStatistics.Add(singleProcess);
-        }
+        var processStatistics = statisticsCalculator.CalculateProcessStatistics(editedMicrobeOrganelles,
+            processes, tolerances, energyBalance, biome);
 
         organismStatisticsPanel.UpdateProcessList(processStatistics);
     }
