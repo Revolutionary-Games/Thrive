@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -989,14 +989,40 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
 
         var relative = new Vector3(0, 0, -1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
 
-        // TODO: a raycast to get the structure on the ground
+        
         // Also for player creature, taking the camera direction into account instead of the creature rotation would
         // be better
         var transform = GlobalTransform;
         var rotation = transform.Basis.GetRotationQuaternion();
+        
 
         var worldTransform = new Transform3D(new Basis(rotation).Rotated(Vector3.Up, MathF.PI), transform.Origin +
             rotation * relative);
+        
+        //Raycast to snap to ground
+        var query = PhysicsRayQueryParameters3D.Create(worldTransform.Origin + Vector3.Up * 10,
+        worldTransform.Origin + Vector3.Down * 200);
+        
+        //Exclude trees and ourselves
+        var excluded = new Godot.Collections.Array<Rid> { GetRid() };
+
+        foreach (var interactable in GetTree().GetNodesInGroup("interactable"))
+        {
+            if (interactable is CollisionObject3D body)
+                excluded.Add(body.GetRid());
+        }
+
+        query.Exclude = excluded;
+        
+        
+        var hit = GetWorld3D().DirectSpaceState.IntersectRay(query);
+        
+        if (hit.Count > 0)
+        {
+            worldTransform.Origin = hit["position"].AsVector3();
+        }
+            
+        
 
         return worldTransform;
     }
