@@ -7,9 +7,9 @@ using Range = Godot.Range;
 /// </summary>
 public partial class ToleranceRangeDisplay : HSlider
 {
+    public readonly Color MainColor = new(0.0667f, 1.0f, 0.8353f);
     private const float LINE_WIDTH = Constants.TOLERANCE_DISPLAY_MARKER_WIDTH;
 
-    private readonly Color mainColor = new(0.0667f, 1.0f, 0.8353f);
     private readonly Color mainColorTranslucent = new(0.0667f, 1.0f, 0.8353f, 0.5f);
 
     [Export]
@@ -57,7 +57,7 @@ public partial class ToleranceRangeDisplay : HSlider
 
     public override void _Ready()
     {
-        rangeColor = mainColor;
+        rangeColor = MainColor;
         rangeColorTranslucent = mainColorTranslucent;
 
         relatedSlider.Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnSliderValueChanged)));
@@ -181,7 +181,7 @@ public partial class ToleranceRangeDisplay : HSlider
 
     public void SetColorsAndRedraw()
     {
-        SetColorsAndRedraw(mainColor);
+        SetColorsAndRedraw(MainColor);
     }
 
     private void SetBoundPositions()
