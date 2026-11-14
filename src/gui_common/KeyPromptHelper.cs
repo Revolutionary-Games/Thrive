@@ -297,6 +297,19 @@ public static class KeyPromptHelper
         }
     }
 
+    /// <summary>
+    ///   Returns the generic controller diagram used to indicate a device-specific controller binding
+    /// </summary>
+    public static string GetPathForControllerDiagram()
+    {
+        return activeControllerType switch
+        {
+            ControllerType.PlayStation3 or ControllerType.PlayStation4 or ControllerType.PlayStation5 =>
+                "res://assets/textures/gui/xelu_prompts/PS5/PS5_Diagram_Simple.png",
+            _ => "res://assets/textures/gui/xelu_prompts/Xbox Series X/XboxSeriesX_Diagram_Simple.png",
+        };
+    }
+
     public static string? GetPathForControllerAxisDirection(JoyAxis axis, float direction, bool large = true)
     {
         var suffix = large ? string.Empty : "_Unscaled";
