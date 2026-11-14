@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
@@ -257,7 +258,7 @@ public class SpecifiedInputKey : ICloneable
                 container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton(button)));
 
                 if (device >= 0)
-                    GD.Print("TODO: displaying device restriction");
+                    container.AddChild(CreateDeviceRestrictionIndicator(device, labelSettings));
 
                 break;
             }
@@ -280,10 +281,11 @@ public class SpecifiedInputKey : ICloneable
                     overlayPositioner.AddChild(CreateTextureRect(directionImage));
                 }
 
-                if (device >= 0)
-                    GD.Print("TODO: displaying device restriction");
-
                 container.AddChild(overlayPositioner);
+
+                if (device >= 0)
+                    container.AddChild(CreateDeviceRestrictionIndicator(device, labelSettings));
+
                 break;
             }
 
@@ -579,6 +581,28 @@ public class SpecifiedInputKey : ICloneable
 
         result.ShiftPressed = Shift;
         return result;
+    }
+
+    private Control CreateDeviceRestrictionIndicator(int device, LabelSettings labelSettings)
+    {
+        var indicator = new HBoxContainer
+        {
+            MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+        };
+
+        var controllerIcon = CreateTextureRect(KeyPromptHelper.GetPathForControllerDiagram());
+        controllerIcon.MouseFilter = Godot.Control.MouseFilterEnum.Ignore;
+        indicator.AddChild(controllerIcon);
+
+        indicator.AddChild(new Label
+        {
+            Text = (device + 1).ToString(CultureInfo.InvariantCulture),
+            LabelSettings = labelSettings,
+            VerticalAlignment = VerticalAlignment.Center,
+            MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+        });
+
+        return indicator;
     }
 
     private TextureRect CreateTextureRect(string image, bool small = false)

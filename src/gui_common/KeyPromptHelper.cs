@@ -297,6 +297,26 @@ public static class KeyPromptHelper
         }
     }
 
+    /// <summary>
+    ///   Returns the path to a controller diagram icon matching the active controller type.
+    /// </summary>
+    public static string GetPathForControllerDiagram()
+    {
+        switch (activeControllerType)
+        {
+            case ControllerType.PlayStation3:
+            case ControllerType.PlayStation4:
+            case ControllerType.PlayStation5:
+                return "res://assets/textures/gui/xelu_prompts/PS5/PS5_Diagram_Simple.png";
+
+            default:
+            case ControllerType.Xbox360:
+            case ControllerType.XboxOne:
+            case ControllerType.XboxSeriesX:
+                return "res://assets/textures/gui/xelu_prompts/Xbox Series X/XboxSeriesX_Diagram_Simple.png";
+        }
+    }
+
     public static string? GetPathForControllerAxisDirection(JoyAxis axis, float direction, bool large = true)
     {
         var suffix = large ? string.Empty : "_Unscaled";
