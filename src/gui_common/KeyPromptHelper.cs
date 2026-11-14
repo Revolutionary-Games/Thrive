@@ -309,10 +309,10 @@ public static class KeyPromptHelper
             case ControllerType.PlayStation5:
                 return "res://assets/textures/gui/xelu_prompts/PS5/PS5_Diagram_Simple.png";
 
-            default:
             case ControllerType.Xbox360:
             case ControllerType.XboxOne:
             case ControllerType.XboxSeriesX:
+            default:
                 return "res://assets/textures/gui/xelu_prompts/Xbox Series X/XboxSeriesX_Diagram_Simple.png";
         }
     }
