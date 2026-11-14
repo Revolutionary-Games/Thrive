@@ -5,6 +5,7 @@ layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 layout(rgba16f, set = 0, binding = 0) uniform image2D cloudTarget;
 layout(set = 0, binding = 1) uniform sampler2D depthSampler;   // FULL resolution
 layout(set = 0, binding = 2) uniform sampler3D baseNoise;
+layout(set = 0, binding = 4) uniform sampler2D transmittanceLut;
 
 layout(set = 0, binding = 3, std140) uniform Params {
     vec4 planetCenter;   // .xyz center                          .w ground R
@@ -14,6 +15,7 @@ layout(set = 0, binding = 3, std140) uniform Params {
     vec4 cameraPosition; // .xyz world camera position           .w unused
     vec4 sun;            // .xyz direction TOWARD sun (unit)     .w sun energy
     vec4 quality;        // .x base steps, .y light steps, .z max march dist, .w coverage
+    vec4 atmosphere;     // .x ground R,    .y top R,          .z scale height
 } p;
 
 layout(push_constant, std430) uniform Matrices {
@@ -30,5 +32,9 @@ layout(push_constant, std430) uniform Matrices {
 #define CLOUD_BASE_STEPS int(p.quality.x)
 #define CLOUD_LIGHT_STEPS int(p.quality.y)
 #define CLOUD_MAX_DISTANCE p.quality.z
+#define CLOUD_TRANSMITTANCE_LUT transmittanceLut
+#define CLOUD_ATMOSPHERE_GROUND_RADIUS p.atmosphere.x
+#define CLOUD_ATMOSPHERE_TOP_RADIUS p.atmosphere.y
+#define CLOUD_ATMOSPHERE_SCALE_HEIGHT p.atmosphere.z
 
 const float PI = 3.14159265359;

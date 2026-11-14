@@ -50,20 +50,26 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private Rid depthSampler;
     private Rid noiseSampler;
+    private Rid lutSampler;
     private Rid rayMarcherShader;
     private Rid upsamplerShader;
     private Rid rayMarcherPipeline;
     private Rid upsamplerPipeline;
     private Rid noiseTexture;
     private Rid paramUbo;
+    private Rid transmittanceLut;
 
-    private RDUniform[] uniformPool = new RDUniform[8];
+    private RDUniform[] uniformPool = new RDUniform[9];
 
     private byte[] pushConstantsBuffer = new byte[PushConstantsBufferSize];
     private byte[] uniformParamsBuffer = new byte[UniformParamsBufferSize];
 
     private float lastAttemptedInner = -1.0f;
     private float lastAttemptedOuter = -1.0f;
+
+    private float atmosphereGroundRadius;
+    private float atmosphereTopRadius;
+    private float atmosphereScaleHeight;
 
 #pragma warning disable CA2213
     private RenderingDevice? renderingDevice;
@@ -136,8 +142,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         builder.AddModule("math", ShaderModuleDir + "math.gdshaderinc");
         builder.AddModule("phase", ShaderModuleDir + "phase.gdshaderinc", "math", "cloud_interface");
         builder.AddModule("cloud_density", ShaderModuleDir + "cloud_density.gdshaderinc", "math", "cloud_interface");
+        builder.AddModule("atmosphere_transmittance", ShaderModuleDir + "atmosphere_transmittance.gdshaderinc");
         builder.AddModule("cloud_march", ShaderModuleDir + "cloud_march.gdshaderinc", "math", "phase",
-            "cloud_density", "cloud_interface");
+            "cloud_density", "atmosphere_transmittance", "cloud_interface");
     }
 
     public override void _Notification(int what)
@@ -154,7 +161,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         var rids = new[]
         {
             rayMarcherPipeline, rayMarcherShader, upsamplerPipeline, upsamplerShader, depthSampler, noiseSampler,
-            paramUbo,
+            lutSampler, paramUbo,
         };
 
         RenderingServer.CallOnRenderThread(Callable.From(() =>
@@ -209,6 +216,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (renderingDevice is null || !rayMarcherPipeline.IsValid || !upsamplerPipeline.IsValid)
             return;
 
+        // Without an atmosphere there is nothing to light the clouds with
+        var lutTexture = transmittanceLut.IsValid ? RenderingServer.TextureGetRdTexture(transmittanceLut) : default;
+        if (!lutTexture.IsValid)
+            return;
+
         if (effectCallbackType != (int)EffectCallbackTypeEnum.PostTransparent)
             return;
 
@@ -258,24 +270,25 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 RenderingDevice.BarrierMask.Compute);
 
             // Pass 1: ray marcher.
-            // Uniforms 0-3 bindings 0-3
+            // Uniforms 0-4 bindings 0-4
             marchUniforms.Clear();
             RenderingUtils.UpdateImage(uniformPool[0], 0, cloudTexture);
             RenderingUtils.UpdateSampled(uniformPool[1], 1, depthSampler, depth);
             RenderingUtils.UpdateSampled(uniformPool[2], 2, noiseSampler, noiseTexture);
             RenderingUtils.UpdateUniformBuffer(uniformPool[3], 3, paramUbo);
-            marchUniforms.AddRange(uniformPool.AsSpan(0, 4));
+            RenderingUtils.UpdateSampled(uniformPool[4], 4, lutSampler, lutTexture);
+            marchUniforms.AddRange(uniformPool.AsSpan(0, 5));
 
             Rid marchSet = UniformSetCacheRD.GetCache(rayMarcherShader, 0, marchUniforms);
 
             // Pass 2: bilateral resolve and composite. Upsample pass.
-            // Uniforms 4-7 bindings 0-3
+            // Uniforms 5-8 bindings 0-3
             upsampleUniforms.Clear();
-            RenderingUtils.UpdateImage(uniformPool[4], 0, color);
-            RenderingUtils.UpdateSampled(uniformPool[5], 1, depthSampler, depth);
-            RenderingUtils.UpdateSampled(uniformPool[6], 2, depthSampler, cloudTexture);
-            RenderingUtils.UpdateUniformBuffer(uniformPool[7], 3, paramUbo);
-            upsampleUniforms.AddRange(uniformPool.AsSpan(4, 4));
+            RenderingUtils.UpdateImage(uniformPool[5], 0, color);
+            RenderingUtils.UpdateSampled(uniformPool[6], 1, depthSampler, depth);
+            RenderingUtils.UpdateSampled(uniformPool[7], 2, depthSampler, cloudTexture);
+            RenderingUtils.UpdateUniformBuffer(uniformPool[8], 3, paramUbo);
+            upsampleUniforms.AddRange(uniformPool.AsSpan(5, 4));
 
             Rid upsampleSet = UniformSetCacheRD.GetCache(upsamplerShader, 0, upsampleUniforms);
 
@@ -310,6 +323,21 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     public void BindCloudsConfig(CloudsConfig config)
     {
         CloudsConfig = config;
+    }
+
+    /// <summary>
+    ///   Sets the atmosphere the clouds are lit through. The clouds aren't rendered until this has been called.
+    /// </summary>
+    /// <param name="lut">The texture baked by <see cref="AtmosphereTransmittanceLut"/></param>
+    /// <param name="groundRadius">Ground radius the LUT was baked with</param>
+    /// <param name="topRadius">Top radius the LUT was baked with</param>
+    /// <param name="scaleHeight">Rayleigh scale height of the atmosphere</param>
+    public void BindAtmosphere(Texture2D lut, float groundRadius, float topRadius, float scaleHeight)
+    {
+        transmittanceLut = lut.GetRid();
+        atmosphereGroundRadius = groundRadius;
+        atmosphereTopRadius = topRadius;
+        atmosphereScaleHeight = scaleHeight;
     }
 
     protected override void Dispose(bool disposing)
@@ -503,6 +531,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             RepeatW = RenderingDevice.SamplerRepeatMode.Repeat,
         });
 
+        lutSampler = renderingDevice.SamplerCreate(new RDSamplerState
+        {
+            MagFilter = RenderingDevice.SamplerFilter.Linear,
+            MinFilter = RenderingDevice.SamplerFilter.Linear,
+            RepeatU = RenderingDevice.SamplerRepeatMode.ClampToEdge,
+            RepeatV = RenderingDevice.SamplerRepeatMode.ClampToEdge,
+        });
+
         if (noiseProfile is null)
             throw new Exception("Invalid noise texture");
 
@@ -665,8 +701,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(sun.X, sun.Y, sun.Z,
             SunConfig.SunEnergy));
 
-        _ = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(CloudsConfig.MarchSteps, CloudsConfig.LightSteps,
-            CloudsConfig.MaxMarchDistance, CloudsConfig.Coverage));
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(CloudsConfig.MarchSteps,
+            CloudsConfig.LightSteps, CloudsConfig.MaxMarchDistance, CloudsConfig.Coverage));
+
+        _ = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(atmosphereGroundRadius, atmosphereTopRadius,
+            atmosphereScaleHeight, 0.0f));
     }
 
     private void LoadResources()
@@ -696,6 +735,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         upsamplerShader = default;
         depthSampler = default;
         noiseSampler = default;
+        lutSampler = default;
         noiseTexture = default;
         paramUbo = default;
 
@@ -718,6 +758,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             renderingDevice.FreeRid(depthSampler);
         if (noiseSampler.IsValid)
             renderingDevice.FreeRid(noiseSampler);
+        if (lutSampler.IsValid)
+            renderingDevice.FreeRid(lutSampler);
         if (paramUbo.IsValid)
             renderingDevice.FreeRid(paramUbo);
     }

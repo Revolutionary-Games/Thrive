@@ -2,11 +2,11 @@
 const int   EMPTY_RUN_LIMIT   = 8;       // fine steps of nothing before going coarse again
 const float LIGHT_STEP_FRAC   = 0.06;    // first light step as a fraction of shell thickness
 const float LIGHT_STEP_GROW   = 1.45;    // light steps grow exponentially (cone-ish)
-const vec3  SUN_TINT          = vec3(1.0, 0.95, 0.87);
 const vec3  AMBIENT_TINT      = vec3(0.42, 0.55, 0.78);
 const float AMBIENT_ENERGY    = 1.2;
 const float AMBIENT_BASE_MUL  = 0.25;    // ambient at cloud base vs. cloud top
 const float DISTANCE_LOD      = 0.00015; // step growth per unit of distance
+const vec3  LUMINANCE_WEIGHTS = vec3(0.2126, 0.7152, 0.0722);
 
 const vec4 NO_CLOUD = vec4(0.0, 0.0, 0.0, 1.0);
 
@@ -16,6 +16,7 @@ struct CloudRay {
     vec3  center;
     vec3  sunDirection;
     vec3  sunEnergy;
+    float sunIntensity;
     vec3  ambientEnergy;
     vec3  phases;
     float ground;
@@ -36,8 +37,9 @@ CloudRay CreateCloudRay(vec3 ro, vec3 rd, vec3 center, float ground, float inner
     ray.rd = rd;
     ray.center = center;
     ray.sunDirection = sunDirection;
-    ray.sunEnergy = SUN_TINT * sunEnergy;
-    ray.ambientEnergy = AMBIENT_TINT * AMBIENT_ENERGY;
+    ray.sunIntensity = sunEnergy;
+    ray.sunEnergy = vec3(0.0);
+    ray.ambientEnergy = vec3(0.0);
     ray.ground = ground;
     ray.inner = inner;
     ray.outer = outer;
@@ -68,6 +70,21 @@ float LightMarch(CloudRay ray, vec3 rel) {
     }
 
     return opticalDepth;
+}
+
+// Light reaching a point through the atmosphere. This changes slowly, so it is reused for the whole cloud.
+void UpdateAirLight(inout CloudRay ray, vec3 rel, float h) {
+    float cosSunZenith = dot(rel, ray.sunDirection) / h;
+    vec3 airTransmittance = AtmosphereTransmittanceLookup(CLOUD_TRANSMITTANCE_LUT, h, cosSunZenith,
+        CLOUD_ATMOSPHERE_GROUND_RADIUS, CLOUD_ATMOSPHERE_TOP_RADIUS);
+
+    ray.sunEnergy = InPlanetShadow(h, cosSunZenith, CLOUD_ATMOSPHERE_GROUND_RADIUS) ?
+        vec3(0.0) : airTransmittance * ray.sunIntensity;
+
+    float shadowEdgeRadius = cosSunZenith < 0.0 ?
+        CLOUD_ATMOSPHERE_GROUND_RADIUS * inversesqrt(max(1.0 - cosSunZenith * cosSunZenith, 1e-6)) : 0.0;
+    ray.ambientEnergy = AMBIENT_TINT * AMBIENT_ENERGY * dot(airTransmittance, LUMINANCE_WEIGHTS)
+        * exp(-max(shadowEdgeRadius - h, 0.0) / CLOUD_ATMOSPHERE_SCALE_HEIGHT);
 }
 
 // Ray march
@@ -110,6 +127,7 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
 
         if (coarse) {
             if (SampleDensity(rel, shellFrac, true) > 0.0) {
+                UpdateAirLight(ray, rel, h);
                 coarse = false;
                 emptyRun = 0;
                 t = max(t - dtCoarse, segStart);
