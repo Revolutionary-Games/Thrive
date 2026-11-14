@@ -30,28 +30,45 @@ internal class MoveOrganelleBack : IMutationStrategy<Species>
         // TODO: try to avoid these temporary list allocations
         var workMemory = new MutationWorkMemory();
 
-        foreach (OrganelleTemplate organelle in baseMicrobeSpecies.Organelles.Where(x =>
-                     allOrganelles.Contains(x.Definition)))
+        foreach (var organelle in baseMicrobeSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            newSpecies.Organelles.Remove(organelle);
+            OrganelleTemplate? reusableTemplate = null;
 
-            if (AddOrganelle(organelle.Definition, Direction.Rear, newSpecies, workMemory.WorkingMemory1,
-                    workMemory.WorkingMemory2, workMemory.WorkingMemory3, random))
+            // Remove uses the first equal template, which need not have the parent's index in the clone.
+            for (int i = 0; i < newSpecies.Organelles.Count; ++i)
             {
-                // Moving a bridging organelle can leave disconnected groups behind.
-                if (newSpecies.Organelles.GetIslandHexes(workMemory.WorkingMemory1, workMemory.WorkingMemory3,
-                        workMemory.WorkingMemory2, workMemory.WorkingMemory4) > 0)
+                var candidate = newSpecies.Organelles[i];
+                if (candidate.Equals(organelle))
                 {
-                    continue;
+                    reusableTemplate = candidate;
+                    break;
                 }
-
-                // Add mutation attempt only if was able to place the organelle
-                // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step
-                // for things that cannot be moved?
-                mutated.Add(new Mutant(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
             }
+
+            // A move must reuse the candidate's organelle, including its upgrades and endosymbiont flag.
+            // If it cannot be removed, adding a replacement would turn the move into an addition.
+            if (reusableTemplate == null || !newSpecies.Organelles.Remove(reusableTemplate))
+                continue;
+
+            if (!AddOrganelle(reusableTemplate.Definition, Direction.Rear, newSpecies, reusableTemplate,
+                    workMemory.WorkingMemory1, workMemory.WorkingMemory2, workMemory.WorkingMemory3, random))
+            {
+                continue;
+            }
+
+            // Moving a bridging organelle can leave disconnected groups behind.
+            if (newSpecies.Organelles.GetIslandHexes(workMemory.WorkingMemory1, workMemory.WorkingMemory3,
+                    workMemory.WorkingMemory2, workMemory.WorkingMemory4) > 0)
+            {
+                continue;
+            }
+
+            // Add mutation attempt only if was able to place the organelle
+            // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step
+            // for things that cannot be moved?
+            mutated.Add(new Mutant(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
         }
 
         return mutated;
