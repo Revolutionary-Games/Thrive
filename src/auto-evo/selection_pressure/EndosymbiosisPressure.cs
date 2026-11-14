@@ -61,9 +61,32 @@ public class EndosymbiosisPressure : SelectionPressure
         return 0;
     }
 
+    public override float GetEnergy(Patch patch, SimulationCache cache)
+    {
+        long population = cache.GetSpeciesPopulation(patch, cache.ResolveSpecies(Host));
+        if (population <= 0)
+            return 0;
+
+        return population * cache.ResolveSpecies(Endosymbiont).GetPredationTargetSizeFactor();
+    }
+
     public override float GetEnergy(Patch patch)
     {
-        if (!patch.SpeciesInPatch.TryGetValue(Host, out long population) || population <= 0)
+        // Generated prediction pressures hold the replacement, while the patch retains the original identity.
+        patch.SpeciesInPatch.TryGetValue(Host, out long population);
+        if (population == 0)
+        {
+            foreach (var entry in patch.SpeciesInPatch)
+            {
+                if (entry.Key.ID == Host.ID)
+                {
+                    population = entry.Value;
+                    break;
+                }
+            }
+        }
+
+        if (population <= 0)
             return 0;
 
         return population * Endosymbiont.GetPredationTargetSizeFactor();

@@ -37,6 +37,14 @@ public abstract class SelectionPressure : IArchivable
     public abstract float GetEnergy(Patch patch);
 
     /// <summary>
+    ///   Calculates energy using the simulation's species replacements for species-dependent food sources.
+    /// </summary>
+    public virtual float GetEnergy(Patch patch, SimulationCache cache)
+    {
+        return GetEnergy(patch);
+    }
+
+    /// <summary>
     ///   Calculates the relative difference between the old and new scores
     /// </summary>
     public float WeightedComparedScores(float newScore, float oldScore)

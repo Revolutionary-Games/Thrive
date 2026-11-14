@@ -68,8 +68,9 @@ public class GenerateMiche : IRunStep
 
         var insertWorkMemory = new Miche.InsertWorkingMemory();
 
-        foreach (var species in patch.SpeciesInPatch.Keys)
+        foreach (var originalSpecies in patch.SpeciesInPatch.Keys)
         {
+            var species = cache.ResolveSpecies(originalSpecies);
             if (species is not MicrobeSpecies and not MulticellularSpecies)
                 continue;
 
@@ -214,23 +215,24 @@ public class GenerateMiche : IRunStep
         var supportedSpeciesCount = 0;
 
         // Per Target-Species Miches
-        foreach (var targetSpecies in patch.SpeciesInPatch)
+        foreach (var entry in patch.SpeciesInPatch)
         {
-            if (targetSpecies.Key is not MicrobeSpecies and not MulticellularSpecies)
+            var targetSpecies = cache.ResolveSpecies(entry.Key);
+            if (targetSpecies is not MicrobeSpecies and not MulticellularSpecies)
                 continue;
 
             ++supportedSpeciesCount;
 
             // Predation Miches
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 8.0f)));
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies, 8.0f)));
 
             // Endosymbiosis Miches
             // Editor prediction runs in the background, while the player can cancel endosymbiosis.
-            if (targetSpecies.Key.PlayerSpecies &&
-                targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis is { } endosymbiosis)
+            if (targetSpecies.PlayerSpecies &&
+                targetSpecies.Endosymbiosis.StartedEndosymbiosis is { } endosymbiosis)
             {
                 var endosymbiont = endosymbiosis.Species;
-                var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, targetSpecies.Key, 1.0f));
+                var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, targetSpecies, 1.0f));
                 parentMiche.AddChild(endosymbiosisPressure);
             }
         }
