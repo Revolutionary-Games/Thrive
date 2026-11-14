@@ -361,12 +361,10 @@ public partial class CellBodyPlanEditorComponent
             manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
             UpdateLayoutErrorDisplay();
 
-            // When there is nothing to show (like when the last cell was picked up to be moved,
-            // the previously displayed graphics also need to be cleared.)
+            // When there is nothing to show (for example when the last cell was picked up to be moved), the
+            // previously displayed graphics need to be cleared as well
             if (layoutPreviewActive)
-            {
                 ClearFullLayoutGraphics();
-            }
 
             return;
         }
