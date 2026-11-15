@@ -227,27 +227,49 @@ public class DualContourer
 
     private void CalculatePoints(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
     {
-        // Split by X slices of the grid. The grid end is inclusive, hence the + 1.
-        TaskExecutor.Instance.ParallelFor(gridFrom.X, gridTo.X + 1,
-            new CalculatePointsBody(this, shapePoints, gridFrom, gridTo));
+        // The grid end is inclusive, hence the + 1
+        var gridSize = gridTo - gridFrom + Vector3I.One;
+
+        if (gridSize.X <= 0 || gridSize.Y <= 0 || gridSize.Z <= 0)
+            return;
+
+        TaskExecutor.Instance.ParallelFor(0, gridSize.X * gridSize.Y * gridSize.Z,
+            new CalculatePointsBody(this, shapePoints, gridFrom, gridSize));
     }
 
-    private void CalculatePointsInRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo, Vector3I gridOffset)
+    /// <summary>
+    ///   Calculates the points of a range of the grid flattened in the same order as the shape points array
+    /// </summary>
+    private void CalculatePointsInFlatRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridSize,
+        int fromInclusive, int toExclusive)
     {
         float realFactor = 1.0f / PointsPerUnit;
 
-        for (int x = gridFrom.X; x <= gridTo.X; ++x)
-        {
-            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
-            {
-                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
-                {
-                    // var gridPos = new Vector3I(x, y, z);
-                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) * realFactor;
+        int planeSize = gridSize.Y * gridSize.Z;
+        int localX = fromInclusive / planeSize;
+        int localY = fromInclusive % planeSize / gridSize.Z;
+        int localZ = fromInclusive % gridSize.Z;
 
-                    shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
-                }
-            }
+        for (int i = fromInclusive; i < toExclusive; ++i)
+        {
+            int x = localX + gridFrom.X;
+            int y = localY + gridFrom.Y;
+            int z = localZ + gridFrom.Z;
+
+            var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) * realFactor;
+
+            shapePoints[localX, localY, localZ] = IsInShape(realPos);
+
+            if (++localZ < gridSize.Z)
+                continue;
+
+            localZ = 0;
+
+            if (++localY < gridSize.Y)
+                continue;
+
+            localY = 0;
+            ++localX;
         }
     }
 
@@ -704,28 +726,27 @@ public class DualContourer
     }
 
     /// <summary>
-    ///   Calculates which points are in the shape for a range of X slices of the grid
+    ///   Calculates which points are in the shape for a range of the flattened grid
     /// </summary>
     private readonly struct CalculatePointsBody : IParallelForBody
     {
         private readonly DualContourer contourer;
         private readonly bool[,,] shapePoints;
         private readonly Vector3I gridFrom;
-        private readonly Vector3I gridTo;
+        private readonly Vector3I gridSize;
 
         public CalculatePointsBody(DualContourer contourer, bool[,,] shapePoints, Vector3I gridFrom,
-            Vector3I gridTo)
+            Vector3I gridSize)
         {
             this.contourer = contourer;
             this.shapePoints = shapePoints;
             this.gridFrom = gridFrom;
-            this.gridTo = gridTo;
+            this.gridSize = gridSize;
         }
 
         public void Execute(int fromInclusive, int toExclusive)
         {
-            contourer.CalculatePointsInRange(shapePoints, new Vector3I(fromInclusive, gridFrom.Y, gridFrom.Z),
-                new Vector3I(toExclusive - 1, gridTo.Y, gridTo.Z), -gridFrom);
+            contourer.CalculatePointsInFlatRange(shapePoints, gridFrom, gridSize, fromInclusive, toExclusive);
         }
     }
 
