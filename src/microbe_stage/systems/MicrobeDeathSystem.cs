@@ -93,6 +93,10 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             return;
         }
 
+        // Corpse chunks belong on the gameplay plane (Y=0) rather than at visual offsets (like cavity cells have).
+        // So we always set the Y position to 0.
+        basePosition.Y = 0;
+
         // Eject the compounds that were in the microbe
         var compoundsToRelease = new Dictionary<Compound, float>();
 

@@ -116,4 +116,55 @@ public class MicrobeDeathSystemTests
             }
         }
     }
+
+    [TestCase]
+    public void CorpseChunksSpawnedFromCavityCellsHaveYPositionZero()
+    {
+        using var world = new TestWorldSimulation();
+        var spawnEnvironment = new DummyMicrobeSpawnEnvironment();
+        var simulationParameters = SimulationParameters.Instance;
+        var species = new MicrobeSpecies(1, "Test", "corpse")
+        {
+            IsBacteria = true,
+            MembraneType = simulationParameters.GetMembrane("single"),
+            Colour = Colors.White,
+        };
+        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+        species.OnEdited();
+
+        var cavityCellSpawnPosition = new Vector3(10.0f, Constants.CAVITY_CELL_Y_OFFSET, 20.0f);
+        SpawnHelpers.SpawnMicrobe(world, spawnEnvironment, species, cavityCellSpawnPosition, false, GameteType.All);
+        world.ProcessAll(0.1f);
+
+        var microbe = new FirstEntityGrabber(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+            world.EntitySystem).Found;
+        ref var storage = ref microbe.Get<CompoundStorage>();
+
+        const float storedAmountPerCompound = 100.0f;
+        foreach (var compound in simulationParameters.GetCloudCompounds())
+            storage.Compounds.Compounds[compound.ID] = storedAmountPerCompound;
+
+        ref var organelles = ref microbe.Get<OrganelleContainer>();
+        organelles.HexCount = 5;
+
+        var spawnSystem = new DummySpawnSystem();
+
+        var recorder = world.StartRecordingEntityCommands();
+        MicrobeDeathSystem.SpawnCorpseChunks(ref organelles, storage.Compounds, spawnSystem, world, recorder,
+            cavityCellSpawnPosition, new Random(1), null, true);
+        world.FinishRecordingEntityCommands(recorder);
+        world.ProcessAll(0.1f);
+
+        var spawnedChunks = new List<Entity>();
+        world.EntitySystem.Query(new QueryDescription().WithAll<CompoundVenter, CompoundStorage, WorldPosition>(),
+            spawnedChunks.Add);
+
+        AssertThat(spawnedChunks.Count).IsGreater(0);
+        foreach (var chunk in spawnedChunks)
+        {
+            var chunkPosition = chunk.Get<WorldPosition>().Position;
+            AssertThat(chunkPosition.Y).IsEqualApprox(0.0f, 0.0001f);
+        }
+    }
 }
