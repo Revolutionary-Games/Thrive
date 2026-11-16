@@ -94,8 +94,8 @@ imported Godot resources, and vendored dependencies.
   setup instructions' `Git with LFS` section.
 - **Releases** — [Making Releases](doc/making_releases.md) and
   [Exporting the game](doc/setup_instructions.md#exporting-the-game).
-- **If asked to interact on GitHub** (e.g. creating PRs or posting comments), read the full 
-  CONTRIBUTING.md file.
+- **If asked to create content on GitHub** (e.g. creating PRs or posting comments), read the 
+  [AI contribution rules](CONTRIBUTING.md#llm-and-other-ai-usage).
 
 ## Build and checks
 

@@ -120,8 +120,9 @@ You can find the necessary information about how to translate the game [here](do
 If you use or are planning on using LLM or other generative AI in Thrive development, please 
 read this section carefully.
 
-Note: **this section only applies to code contributions** and does not provide guidance for 
-the art, sound, or other non-code aspects of the project (except in-game text, see below).
+Note: **this section only has guidance in relation to code contributions** and does not 
+provide rules or guidance for other types of content, for example art, graphics, and sound.
+For rules related to other areas, see our main website.
 
 LLMs or agents *may* be used to help in Thrive code development. However, we have some 
 limitations on the usage that must be followed. However, as anyone can contribute to Thrive, 
