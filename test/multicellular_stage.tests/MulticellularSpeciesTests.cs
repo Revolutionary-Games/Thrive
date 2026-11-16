@@ -148,4 +148,47 @@ public class MulticellularSpeciesTests
         var hash3 = ColonyHexPhotoBuilder.GetVisualHash(species3);
         AssertThat(hash2).IsEqual(hash3);
     }
+
+    [TestCase]
+    public void TestColonyHexPhotoBuilderHexesHashCavitySwapping()
+    {
+        var species1 = new MulticellularSpecies(1, "Test", "Species1");
+        var species2 = new MulticellularSpecies(2, "Test", "Species2");
+        var membraneType = SimulationParameters.Instance.GetMembrane("single");
+
+        var cellType = new CellType(membraneType)
+        {
+            CellTypeName = "TestType",
+        };
+
+        species1.ModifiableCellTypes.Add(cellType);
+        species2.ModifiableCellTypes.Add(cellType);
+
+        // Layout with normal at (0, 0), cavity at (-2, 1), and normal at (-1, 0)
+        species1.ModifiableEditorCells.AddFast(
+            new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(0, 0), 0, false), new Hex(0, 0), 0), [],
+            []);
+        species1.ModifiableEditorCells.AddFast(
+            new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(-2, 1), 0, true), new Hex(-2, 1), 0), [],
+            []);
+        species1.ModifiableEditorCells.AddFast(
+            new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(-1, 0), 0, false), new Hex(-1, 0), 0), [],
+            []);
+
+        // Layout with normal at (0, 0), normal at (-2, 1), and cavity at (-1, 0)
+        species2.ModifiableEditorCells.AddFast(
+            new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(0, 0), 0, false), new Hex(0, 0), 0), [],
+            []);
+        species2.ModifiableEditorCells.AddFast(
+            new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(-2, 1), 0, false), new Hex(-2, 1), 0), [],
+            []);
+        species2.ModifiableEditorCells.AddFast(
+            new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(-1, 0), 0, true), new Hex(-1, 0), 0), [],
+            []);
+
+        var hash1 = ColonyHexPhotoBuilder.GetVisualHash(species1);
+        var hash2 = ColonyHexPhotoBuilder.GetVisualHash(species2);
+
+        AssertThat(hash1).IsNotEqual(hash2);
+    }
 }

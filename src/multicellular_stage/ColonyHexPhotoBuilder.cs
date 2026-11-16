@@ -44,7 +44,14 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
         {
             unchecked
             {
-                hash += (ulong)cell.Position.GetHashCode() * 317 ^ (cell.Data?.IsCavity == true ? 349UL : 13UL);
+                var isCavity = cell.Data?.IsCavity == true;
+                ulong posHash = (ulong)cell.Position.GetHashCode();
+
+                ulong cellHash = posHash * (isCavity ? 0x9E3779B97F4A7C15UL : 0xC6A4A7935BD1E995UL);
+                cellHash ^= cellHash >> 32;
+                cellHash *= isCavity ? 0xBF58476D1CE4E5B9UL : 0x94D049BB133111EBUL;
+
+                hash += cellHash;
             }
         }
 
