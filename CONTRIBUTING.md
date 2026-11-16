@@ -166,6 +166,9 @@ there is any need to add new translations, a human must write them.
 A simple rule to remember: no AI-generated final content (like text) may appear in the game 
 and no human-to-human messaging may be AI-generated.
 
+For opening issues by an agent, see the separate section in this document called "GitHub 
+Issues".
+
 ## Planning Board
 
 The planning board contains all issues and pull requests grouped
