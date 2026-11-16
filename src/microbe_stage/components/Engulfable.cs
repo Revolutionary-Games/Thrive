@@ -404,6 +404,9 @@ public static class EngulfableHelpers
                     {
                         var hostilePosition = engulfable.HostileEngulfer.Get<WorldPosition>().Position;
 
+                        // Make sure chunks spawn correctly even if the hostile's Y-position is unexpected
+                        hostilePosition.Y = 0;
+
                         customizeCallback = (ref position) =>
                         {
                             var direction = hostilePosition.DirectionTo(position);
