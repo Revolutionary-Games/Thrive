@@ -145,6 +145,12 @@ If we suspect this, you have one chance to correct your behaviour, if not made u
 reviewers then we will close the offending pull request (and any future ones). 
 AI *assistance* is allowed, but your communication to others must be your own words.
 
+Including reasoning or other parts of agent output as part of your communication is allowed, 
+*but* it cannot be the only part, and you must put in the effort to actually understand the 
+reasoning and changes being done in your PR. This rule specifically exists to allow you to 
+show other people how you used an agent so that they can also judge whether the agent was 
+likely performing the task correctly.
+
 Note: that as we cannot actually prevent anyone from using AI tools, we can only go off on the 
 vibes of the PR description text and communication text. As such we need to balance between 
 accusing someone of using AI tools too easily and not catching people spamming us with low 
