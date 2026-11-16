@@ -105,7 +105,8 @@ menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
 If your PR breaks save compatibility (older saves no longer being
-loadable) you should include new save object versions in your PR to keep compatibility. 
+loadable) you should include new save object versions in your PR to keep compatibility. For 
+bigger compatibility issues a save upgrader may need to be considered.
 
 If your PR requires new translations or touches a part that uses translations,
 please read the translations documentation linked in the next section.
