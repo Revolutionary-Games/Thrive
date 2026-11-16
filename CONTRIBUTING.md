@@ -8,7 +8,7 @@ and vote on our [suggestions
 site](https://suggestions.revolutionarygamesstudio.com/)!__ and don't
 create an issue about it.
 
-## Github Issues
+## GitHub Issues
 
 Issues on our GitHub are not meant for general feedback. We only
 accept bug reports about something not working. Team members after
@@ -23,6 +23,9 @@ proper labels.
 Issues that have not been confirmed by multiple people or a knowledgeable team member must 
 be tagged as "more-reports-wanted" so that we can track which bugs are common and which are 
 only seen once ever (and are such much lower priority to fix).
+
+Issues should not be written by LLM or AI tools as they cannot verify on their own that the 
+problems they find are actually problems in Thrive. Any bug report requires manual testing.
 
 ## Pull requests
 
@@ -51,8 +54,8 @@ making changes in existing code you **must** read the comments on the
 methods you modify, paying special attention to any comments really
 close to your code change. This is because otherwise you will cause
 bugs by not taking edge cases that existing methods have been coded
-with in mind. Also you need to update any comments that are no longer
-accurate after your changes. Otherwise the code base will become a
+with in mind. Also, you need to update any comments that are no longer
+accurate after your changes. Otherwise, the code base will become a
 mess so we can't let this kind of sloppy code changes through reviews.
 
 Note that currently it is not possible commit changes to Git LFS if
@@ -60,8 +63,16 @@ you are not a team member, so you need to ask someone from the team
 for help if your PR includes changes to assets.
 
 When opening a pull request, please use the closes or fixes keywords
-to mark the issues the PR closes. For example `closes #2000`. When the
-PR is then merged the linked issues are automatically closed.
+to mark the issues the PR closes (as shown in the PR template). For example `closes #2000`. 
+When the PR is then merged the linked issues are automatically closed.
+
+When writing the description of your PR, make sure to keep the template intact so that the
+workflow checklist is intact. The PR description *must start* with the rationale why the PR is
+being made or what it fixes and this must be **human-written** text. You *may* use LLM or
+other such tools to augment the PR description but the start must be your own words. But in
+any case you have to check the entire description for accuracy. If there are any leftover
+instructions on how to run Thrive tests, please remove them as AI tools love to add those
+useless bits of text.
 
 If there is a problem in a PR, please include new commits to the same
 branch (PR). You can even force push to remove every single commit in
@@ -74,7 +85,10 @@ through the PR testing checklist to not waste the reviewer's time if
 they have to find basic issues in your PR:
 https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
 
-Requirements in Github issues are often vague, so please feel free to
+Note: the most important part is to test the change manually yourself in the game. This is the 
+only way to verify if a fix or change actually works.
+
+Requirements in GitHub issues are often vague, so please feel free to
 ask for more details in the issue. If you contribute a feature or fix
 that doesn't have an open issue, or a [dev
 forum](https://forum.revolutionarygamesstudio.com/) discussion, we may
@@ -91,9 +105,7 @@ menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
 If your PR breaks save compatibility (older saves no longer being
-loadable) you should include a save upgrader in your PR. Note that you
-may need to introduce a new sub version / bump the version number to
-make it possible to trigger the save upgrader.
+loadable) you should include new save object versions in your PR to keep compatibility. 
 
 If your PR requires new translations or touches a part that uses translations,
 please read the translations documentation linked in the next section.
@@ -101,6 +113,47 @@ please read the translations documentation linked in the next section.
 ## Translating the game
 
 You can find the necessary information about how to translate the game [here](doc/working_with_translations.md).
+
+## LLM and other AI usage
+
+If you use or are planning on using LLM or other generative AI in Thrive development, please 
+read this section carefully.
+
+Note: **this section only applies to code contributions** and does not provide guidance for 
+the art, sound, or other non-code aspects of the project.
+
+LLMs or agents *may* be used to help in Thrive code development. However, we have some 
+limitations on the usage that must be followed. However, as anyone can contribute to Thrive, 
+we cannot effectively enforce what tools are used on people's own computers 
+when they work on Thrive. Because of this these rules focus on what is allowed in pull 
+requests and the end results.
+
+The first part of a pull request description must be human-written rationale on why the PR is 
+needed or what is being done in the PR. LLMs may be used to *augment* the rest of the PR 
+description but the start must be human-written. Also, the PR template text must be kept so 
+that the workflow checkboxes are intact. The first workflow checkbox must be checked by the
+human submitting the PR. This step includes a manual test by a human to verify all changes 
+being done in the PR as AI tools cannot play Thrive.
+
+When receiving review comments from humans (Thrive code reviewers or outsiders), 
+those comments must be replied to with human-written text.
+We do not want to interact with AI replies to our review comments. 
+If we suspect this, you have one chance to correct your behaviour, if not made up to the 
+reviewers then we will close the offending pull request (and any future ones). 
+AI *assistance* is allowed, but your communication to others must be your own words.
+
+Note: that as we cannot actually prevent anyone from using AI tools, we can only go off on the 
+vibes of the PR description text and communication text. As such we need to balance between 
+accusing someone of using AI tools too easily and not catching people spamming us with low 
+quality AI-generated text.
+
+If a pull request changes in-game text, that text must be human-written and may not be 
+AI-generated text as it is final "content" that appears in the game. So any PR made with an AI 
+agent needs to be careful that any of the text changed is not in the translations text and if
+there is any need to add new translations, a human must write them.
+
+A simple rule to remember: no AI-generated final content (like text) may appear in the game 
+and no human-to-human communication may be AI-generated.
 
 ## Planning Board
 
