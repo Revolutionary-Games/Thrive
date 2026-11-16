@@ -162,7 +162,7 @@ agent needs to be careful that any of the text changed is not in the translation
 there is any need to add new translations, a human must write them.
 
 A simple rule to remember: no AI-generated final content (like text) may appear in the game 
-and no human-to-human communication may be AI-generated.
+and no human-to-human messaging may be AI-generated.
 
 ## Planning Board
 
