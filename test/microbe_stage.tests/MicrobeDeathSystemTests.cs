@@ -167,4 +167,63 @@ public class MicrobeDeathSystemTests
             AssertThat(chunkPosition.Y).IsEqualApprox(0.0f, 0.0001f);
         }
     }
+
+    [TestCase]
+    public void CorpseChunksExpelledFromCavityCellEngulferHaveYPositionAndVelocityZero()
+    {
+        using var world = new TestWorldSimulation();
+        var spawnEnvironment = new DummyMicrobeSpawnEnvironment();
+        var simulationParameters = SimulationParameters.Instance;
+        var species = new MicrobeSpecies(1, "Test", "corpse")
+        {
+            IsBacteria = true,
+            MembraneType = simulationParameters.GetMembrane("single"),
+            Colour = Colors.White,
+        };
+        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+        species.OnEdited();
+
+        var engulferPosition = new Vector3(5.0f, Constants.CAVITY_CELL_Y_OFFSET, 5.0f);
+        var engulfedPosition = new Vector3(10.0f, 0.0f, 10.0f);
+
+        var engulfer = world.EntitySystem.Create(new WorldPosition(engulferPosition));
+
+        SpawnHelpers.SpawnMicrobe(world, spawnEnvironment, species, engulfedPosition, false, GameteType.All);
+        world.ProcessAll(0.1f);
+
+        var microbe = new FirstEntityGrabber(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+            world.EntitySystem).Found;
+        ref var storage = ref microbe.Get<CompoundStorage>();
+
+        const float storedAmountPerCompound = 100.0f;
+        foreach (var compound in simulationParameters.GetCloudCompounds())
+            storage.Compounds.Compounds[compound.ID] = storedAmountPerCompound;
+
+        ref var organelles = ref microbe.Get<OrganelleContainer>();
+        organelles.HexCount = 5;
+
+        ref var engulfable = ref microbe.Get<Engulfable>();
+        engulfable.HostileEngulfer = engulfer;
+        engulfable.DigestedAmount = Constants.PARTIALLY_DIGESTED_THRESHOLD + 0.1f;
+        engulfable.OriginalScale = Vector3.One;
+
+        var spawnSystem = new DummySpawnSystem();
+        engulfable.OnExpelledFromEngulfment(microbe, spawnSystem, world);
+        world.ProcessAll(0.1f);
+
+        var spawnedChunks = new List<Entity>();
+        world.EntitySystem.Query(
+            new QueryDescription().WithAll<CompoundVenter, CompoundStorage, WorldPosition, Physics>(),
+            spawnedChunks.Add);
+
+        AssertThat(spawnedChunks.Count).IsGreater(0);
+        foreach (var chunk in spawnedChunks)
+        {
+            var chunkPosition = chunk.Get<WorldPosition>().Position;
+            var chunkPhysics = chunk.Get<Physics>();
+            AssertThat(chunkPosition.Y).IsEqualApprox(0.0f, 0.0001f);
+            AssertThat(chunkPhysics.Velocity.Y).IsEqualApprox(0.0f, 0.0001f);
+        }
+    }
 }
