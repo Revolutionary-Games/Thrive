@@ -626,6 +626,53 @@ public class DualContourer
         }
     }
 
+    /// <summary>
+    ///   Calculates which points are in the shape for a range of the flattened grid
+    /// </summary>
+    private readonly struct CalculatePointsBody : IParallelForBody
+    {
+        private readonly DualContourer contourer;
+        private readonly bool[,,] shapePoints;
+        private readonly Vector3I gridFrom;
+        private readonly Vector3I gridSize;
+
+        public CalculatePointsBody(DualContourer contourer, bool[,,] shapePoints, Vector3I gridFrom,
+            Vector3I gridSize)
+        {
+            this.contourer = contourer;
+            this.shapePoints = shapePoints;
+            this.gridFrom = gridFrom;
+            this.gridSize = gridSize;
+        }
+
+        public void Execute(int fromInclusive, int toExclusive)
+        {
+            contourer.CalculatePointsInFlatRange(shapePoints, gridFrom, gridSize, fromInclusive, toExclusive);
+        }
+    }
+
+    private readonly struct AdjustVerticesBody : IParallelForBody
+    {
+        private readonly DualContourer contourer;
+        private readonly List<Vector3> points;
+        private readonly float changeClamp;
+        private readonly Vector3[]? meshNormals;
+
+        public AdjustVerticesBody(DualContourer contourer, List<Vector3> points, float changeClamp,
+            Vector3[]? meshNormals)
+        {
+            this.contourer = contourer;
+            this.points = points;
+            this.changeClamp = changeClamp;
+            this.meshNormals = meshNormals;
+        }
+
+        public void Execute(int fromInclusive, int toExclusive)
+        {
+            contourer.AdjustVerticesInRange(fromInclusive, toExclusive - 1, points, changeClamp, meshNormals);
+        }
+    }
+
     private struct EdgeData
     {
         public int Face0ID;
@@ -722,53 +769,6 @@ public class DualContourer
             Points[1, 0, 1] = ((id % 64) / 32) == 1;
             Points[1, 1, 0] = ((id % 128) / 64) == 1;
             Points[1, 1, 1] = ((id % 256) / 128) == 1;
-        }
-    }
-
-    /// <summary>
-    ///   Calculates which points are in the shape for a range of the flattened grid
-    /// </summary>
-    private readonly struct CalculatePointsBody : IParallelForBody
-    {
-        private readonly DualContourer contourer;
-        private readonly bool[,,] shapePoints;
-        private readonly Vector3I gridFrom;
-        private readonly Vector3I gridSize;
-
-        public CalculatePointsBody(DualContourer contourer, bool[,,] shapePoints, Vector3I gridFrom,
-            Vector3I gridSize)
-        {
-            this.contourer = contourer;
-            this.shapePoints = shapePoints;
-            this.gridFrom = gridFrom;
-            this.gridSize = gridSize;
-        }
-
-        public void Execute(int fromInclusive, int toExclusive)
-        {
-            contourer.CalculatePointsInFlatRange(shapePoints, gridFrom, gridSize, fromInclusive, toExclusive);
-        }
-    }
-
-    private readonly struct AdjustVerticesBody : IParallelForBody
-    {
-        private readonly DualContourer contourer;
-        private readonly List<Vector3> points;
-        private readonly float changeClamp;
-        private readonly Vector3[]? meshNormals;
-
-        public AdjustVerticesBody(DualContourer contourer, List<Vector3> points, float changeClamp,
-            Vector3[]? meshNormals)
-        {
-            this.contourer = contourer;
-            this.points = points;
-            this.changeClamp = changeClamp;
-            this.meshNormals = meshNormals;
-        }
-
-        public void Execute(int fromInclusive, int toExclusive)
-        {
-            contourer.AdjustVerticesInRange(fromInclusive, toExclusive - 1, points, changeClamp, meshNormals);
         }
     }
 }
