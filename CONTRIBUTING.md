@@ -121,7 +121,7 @@ If you use or are planning on using LLM or other generative AI in Thrive develop
 read this section carefully.
 
 Note: **this section only applies to code contributions** and does not provide guidance for 
-the art, sound, or other non-code aspects of the project.
+the art, sound, or other non-code aspects of the project (except in-game text, see below).
 
 LLMs or agents *may* be used to help in Thrive code development. However, we have some 
 limitations on the usage that must be followed. However, as anyone can contribute to Thrive, 
