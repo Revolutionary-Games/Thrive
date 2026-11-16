@@ -133,7 +133,10 @@ needed or what is being done in the PR. LLMs may be used to *augment* the rest o
 description but the start must be human-written. Also, the PR template text must be kept so 
 that the workflow checkboxes are intact. The first workflow checkbox must be checked by the
 human submitting the PR. This step includes a manual test by a human to verify all changes 
-being done in the PR as AI tools cannot play Thrive.
+being done in the PR as AI tools cannot play Thrive. You must additionally read all of the PR 
+description to ensure it is correct. If the AI-tool added a description on how to run Thrive 
+tests, such description is most of the time totally useless and incorrect and must be removed. 
+If such a thing is left in we will consider it a sign of low quality.
 
 When receiving review comments from humans (Thrive code reviewers or outsiders), 
 those comments must be replied to with human-written text.
