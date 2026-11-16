@@ -38,7 +38,17 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
 
     public static ulong GetVisualHash(MulticellularSpecies species)
     {
-        return Constants.VISUAL_HASH_HEX_LAYOUT ^ species.GetVisualHashCode();
+        ulong hash = Constants.VISUAL_HASH_HEX_LAYOUT;
+
+        foreach (var cell in species.EditorCells)
+        {
+            unchecked
+            {
+                hash += (ulong)cell.Position.GetHashCode() * 317 ^ (cell.Data?.IsCavity == true ? 349UL : 13UL);
+            }
+        }
+
+        return hash;
     }
 
     public void ApplySceneParameters(Node3D instancedScene)
@@ -64,6 +74,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
     {
         var hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         var hexMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
+        var cavityMaterial = GD.Load<Material>("res://src/multicellular_stage/editor/CavityHex.tres");
 
         this.QueueFreeChildren();
 
@@ -76,7 +87,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
 
             var hexNode = hexScene.Instantiate<MeshInstance3D>();
             AddChild(hexNode);
-            hexNode.MaterialOverride = hexMaterial;
+            hexNode.MaterialOverride = cell.Data?.IsCavity == true ? cavityMaterial : hexMaterial;
             hexNode.Position = pos;
         }
     }
