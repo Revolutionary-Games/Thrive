@@ -24,7 +24,8 @@ Examples of unacceptable behaviour include:
   professional setting
 * Using LLM or AI tools to reply and interact with other user's comments as this is not 
   respectful towards others' time. You *may* use such tools to help in planning what to say, 
-  but your comment text needs to be your own words.
+  but your comment's main text needs to be your own words (for example, you may include 
+  generated text as a quote if needed to make your point).
 
 ## Enforcement
 
