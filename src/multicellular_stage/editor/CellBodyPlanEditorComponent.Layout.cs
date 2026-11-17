@@ -360,6 +360,12 @@ public partial class CellBodyPlanEditorComponent
             fullLayoutHasAdjacencyDisconnects = false;
             manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
             UpdateLayoutErrorDisplay();
+
+            // When there is nothing to show (for example when the last cell was picked up to be moved), the
+            // previously displayed graphics need to be cleared as well
+            if (layoutPreviewActive)
+                ClearFullLayoutGraphics();
+
             return;
         }
 
@@ -497,6 +503,23 @@ public partial class CellBodyPlanEditorComponent
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
         UpdateArrow();
+    }
+
+    private void ClearFullLayoutGraphics()
+    {
+        fullLayoutOccupied.Clear();
+        fullLayoutInvalid.Clear();
+
+        UpdateAlreadyPlacedHexes([], []);
+
+        while (PlacedModels.Count > 0)
+        {
+            PlacedModels[^1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
+        }
+
+        cellLayoutBorderDisplay.HideBorders();
+        UpdateGrowthOrderNumbers();
     }
 
     private void UpdateLayoutErrorDisplay()
