@@ -10,7 +10,7 @@ using Systems;
 /// </content>
 public partial class CellBodyPlanEditorComponent
 {
-    private static Hex[] autoGrowthOrderCalculationHeighborOrder =
+    private static Hex[] autoGrowthOrderCalculationNeighborOrder =
     [
         new(0, -1),
         new(-1, 0),
@@ -311,22 +311,26 @@ public partial class CellBodyPlanEditorComponent
         var toAssign = new Queue<CellTemplate>();
         var unassigned = new Dictionary<Hex, CellTemplate>();
 
-        foreach (var cell in editedMicrobeCells)
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(
+            editedMicrobeCells.AsModifiable().Select(a => a.Data!)))
         {
-            unassigned.Add(cell.Position, cell.Data!);
+            if (toAssign.Count == 0)
+            {
+                // This sets the root of the growth order
+                toAssign.Enqueue(cell);
+                continue;
+            }
+
+            unassigned.Add(cell.Position, cell);
         }
 
         var finalOrder = new List<CellTemplate>();
-
-        // Assign the root of the growth order
-        toAssign.Enqueue(editedMicrobeCells[0].Data!);
-        unassigned.Remove(editedMicrobeCells[0].Position);
 
         while (toAssign.Count > 0)
         {
             var current = toAssign.Dequeue();
 
-            foreach (var neighbor in autoGrowthOrderCalculationHeighborOrder)
+            foreach (var neighbor in autoGrowthOrderCalculationNeighborOrder)
             {
                 if (unassigned.ContainsKey(current.Position + neighbor))
                 {
