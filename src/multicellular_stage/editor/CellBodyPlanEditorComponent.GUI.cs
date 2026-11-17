@@ -312,7 +312,7 @@ public partial class CellBodyPlanEditorComponent
         var unassigned = new Dictionary<Hex, CellTemplate>();
 
         foreach (var cell in growthOrderGUI.ApplyOrderingToItems(
-            editedMicrobeCells.AsModifiable().Select(a => a.Data!)))
+                     editedMicrobeCells.AsModifiable().Select(a => a.Data!)))
         {
             if (toAssign.Count == 0)
             {
