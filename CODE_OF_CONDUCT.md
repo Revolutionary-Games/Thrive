@@ -22,6 +22,10 @@ Examples of unacceptable behaviour include:
 * Taking constructive feedback personally
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
+* Using LLM or AI tools to reply and interact with other user's comments as this is not 
+  respectful towards others' time. You *may* use such tools to help in planning what to say, 
+  but your comment's main text needs to be your own words (for example, you may include 
+  generated text as a quote if needed to make your point).
 
 ## Enforcement
 
