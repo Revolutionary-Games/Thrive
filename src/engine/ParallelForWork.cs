@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -90,14 +90,16 @@ public sealed class ParallelForWork<TBody> : ParallelForWork
 
         body = default;
     }
+}
 
-    [StructLayout(LayoutKind.Explicit, Size = 192)]
-    private struct BatchCounters
-    {
-        [FieldOffset(64)]
-        public int NextBatch;
+[StructLayout(LayoutKind.Explicit, Size = 192)]
+#pragma warning disable SA1201
+public struct BatchCounters
+#pragma warning restore SA1201
+{
+    [FieldOffset(64)]
+    public int NextBatch;
 
-        [FieldOffset(128)]
-        public int CompletedBatches;
-    }
+    [FieldOffset(128)]
+    public int CompletedBatches;
 }
