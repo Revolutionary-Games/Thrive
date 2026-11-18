@@ -10,7 +10,7 @@ using Tutorial;
 /// </summary>
 public class TutorialState : ITutorialInput, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 4;
+    public const ushort SERIALIZATION_VERSION = 5;
 
     /// <summary>
     ///   True when the tutorial has paused the game
@@ -99,6 +99,11 @@ public class TutorialState : ITutorialInput, IArchivable
     public CellBodyPlanEditorIntroductionTutorial CellBodyPlanEditorIntroductionTutorial { get; private set; } = new();
 
     public MacroscopicRequirementsTutorial MacroscopicRequirementsTutorial { get; private set; } = new();
+
+    public MulticellularCellCavityTutorial MulticellularCellCavityTutorial { get; private set; } = new();
+
+    public MulticellularSpecializationTipsTutorial MulticellularSpecializationTipsTutorial { get; private set; } =
+        new();
 
     public MulticellularCellEditorTutorial MulticellularCellEditorTutorial { get; private set; } = new();
 
@@ -249,6 +254,12 @@ public class TutorialState : ITutorialInput, IArchivable
             reader.ReadObjectProperties(instance.MulticellularActomyosinTutorial);
         }
 
+        if (version > 4)
+        {
+            reader.ReadObjectProperties(instance.MulticellularCellCavityTutorial);
+            reader.ReadObjectProperties(instance.MulticellularSpecializationTipsTutorial);
+        }
+
         if (instance.DisableShowingAlreadySeenTutorials)
         {
             instance.OnCompleteTutorialsAlreadySeen();
@@ -318,6 +329,8 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(MulticellularCellDuplicateTutorial);
         writer.WriteObjectProperties(CellBodyPlanLayoutTutorial);
         writer.WriteObjectProperties(MulticellularActomyosinTutorial);
+        writer.WriteObjectProperties(MulticellularCellCavityTutorial);
+        writer.WriteObjectProperties(MulticellularSpecializationTipsTutorial);
     }
 
     /// <summary>
@@ -681,6 +694,8 @@ public class TutorialState : ITutorialInput, IArchivable
             MulticellularCellEditorTutorial,
             MulticellularCellDuplicateTutorial,
             CellBodyPlanLayoutTutorial,
+            MulticellularCellCavityTutorial,
+            MulticellularSpecializationTipsTutorial,
         ];
     }
 }

@@ -141,6 +141,11 @@ public enum TutorialEventType
     MulticellularMacroscopicRequirementsOpened,
 
     /// <summary>
+    ///   Triggered when a cell is made into a cavity in the multicellular editor.
+    /// </summary>
+    MulticellularCellMadeCavity,
+
+    /// <summary>
     ///   Triggered when the player starts editing a cell type, args is <see cref="StringEventArgs"/> giving the name
     ///   of the cell type.
     /// </summary>
