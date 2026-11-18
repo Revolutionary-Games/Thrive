@@ -47,7 +47,7 @@ public partial class PopupMicheViewer : Control
         michePopup.Show();
     }
 
-    private void MicheTreeNodeSelected(int micheHash)
+    private void MicheTreeNodeSelected(MicheTreeNode node)
     {
         if (patchForMiches == null)
         {
@@ -55,50 +55,18 @@ public partial class PopupMicheViewer : Control
             return;
         }
 
-        if (!miches.MicheByHash.TryGetValue(micheHash, out var micheData))
+        if (node.ShowsOccupant)
         {
-            GD.PrintErr("Invalid hash passed into MicheTreeNodeSelected");
-            return;
-        }
-
-        // NoOps are being used to hold species nodes
-        if (micheData.Pressure.GetType() == typeof(NoOpPressure))
-        {
-            if (micheData.Occupant == null)
-            {
-                // No species selected so reset the display panel to not make the GUI as confusing
-                speciesDetails.Visible = false;
-                micheDetails.Visible = false;
-                return;
-            }
-
-            speciesDetails.Visible = true;
+            speciesDetails.PreviewSpecies = node.Miche.Occupant;
+            speciesDetails.Visible = node.Miche.Occupant != null;
             micheDetails.Visible = false;
-
-            bool found = false;
-
-            foreach (var species in patchForMiches.SpeciesInPatch.Keys)
-            {
-                if (species.ID == micheData.Occupant.ID)
-                {
-                    found = true;
-                    speciesDetails.PreviewSpecies = species;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                speciesDetails.PreviewSpecies = null;
-                GD.PrintErr("Couldn't find species to display");
-            }
         }
         else
         {
             speciesDetails.Visible = false;
             micheDetails.Visible = true;
 
-            micheDetails.SetPreview(micheData, patchForMiches);
+            micheDetails.SetPreview(node.Miche, patchForMiches);
         }
     }
 }
