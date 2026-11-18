@@ -7,6 +7,38 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class MulticellularSpeciesTests
 {
+    /// <summary>
+    ///   Two placements of a two-organelle cell type contribute four organelles to the prey budget,
+    ///   including a cavity cell, whether the species has a compact or a gameplay layout.
+    /// </summary>
+    [TestCase]
+    public void PredationTargetSizeCountsEachPlacementInBothLayouts()
+    {
+        var parameters = SimulationParameters.Instance;
+        var cellType = new CellType(parameters.GetMembrane("single"));
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("nucleus"),
+            new Hex(0, 0), 0));
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("cytoplasm"),
+            new Hex(3, 0), 0));
+
+        var leader = new CellTemplate(cellType, new Hex(0, 0), 0);
+        var gameplayBody = new MulticellularSpecies(1, "Test", "gameplay");
+        gameplayBody.ModifiableCellTypes.Add(cellType);
+        gameplayBody.ModifiableGameplayCells.AddFast(leader, [], []);
+        gameplayBody.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(7, 0), 0, true), [], []);
+        AssertThat(gameplayBody.GetPredationTargetSizeFactor()).IsEqual(4.0f);
+
+        var compactBody = new MulticellularSpecies(2, "Test", "compact")
+        {
+            ModifiableEditorCells = new IndividualHexLayout<CellTemplate>(),
+        };
+        compactBody.ModifiableCellTypes.Add(cellType);
+        var cavity = new CellTemplate(cellType, new Hex(1, 0), 0, true);
+        compactBody.ModifiableEditorCells.AddFast(new HexWithData<CellTemplate>(leader, leader.Position, 0), [], []);
+        compactBody.ModifiableEditorCells.AddFast(new HexWithData<CellTemplate>(cavity, cavity.Position, 0), [], []);
+        AssertThat(compactBody.GetPredationTargetSizeFactor()).IsEqual(4.0f);
+    }
+
     [TestCase]
     public void TestCloneSharingCellTypes()
     {

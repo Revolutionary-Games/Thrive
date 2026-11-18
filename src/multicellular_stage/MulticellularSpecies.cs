@@ -795,6 +795,17 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         var totalOrganelles = 0;
 
+        // Auto-Evo candidates can carry just the compact body plan.
+        if (modifiableEditorCells != null)
+        {
+            for (int i = 0; i < modifiableEditorCells.Count; ++i)
+            {
+                totalOrganelles += modifiableEditorCells[i].Data!.ModifiableOrganelles.Count;
+            }
+
+            return totalOrganelles;
+        }
+
         int count = ModifiableGameplayCells.Count;
         for (int i = 0; i < count; ++i)
         {
