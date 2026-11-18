@@ -74,6 +74,16 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
+        return ScoreResidents(species, AutoEvoPatch.Live(patch), cache);
+    }
+
+    public override float GetEnergy(Patch patch)
+    {
+        return 0;
+    }
+
+    internal float ScoreResidents(Species species, in AutoEvoPatch patch, SimulationCache cache)
+    {
         if (species is not MicrobeSpecies and not MulticellularSpecies)
         {
             throw new ArgumentException(
@@ -82,7 +92,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         }
 
         var score = 1.0f;
-        foreach (var predator in patch.SpeciesInPatch)
+        foreach (var predator in patch.Residents)
         {
             // No Cannibalism
             // Compared by ID here to make sure temporary species variants are not allowed to predate themselves
@@ -107,10 +117,5 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         }
 
         return score;
-    }
-
-    public override float GetEnergy(Patch patch)
-    {
-        return 0;
     }
 }

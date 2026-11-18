@@ -18,7 +18,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private static int autoEvoCacheCounter;
 
-    private readonly Patch patch;
+    private readonly AutoEvoPatch patch;
     private readonly SimulationCache cache;
 
     private readonly WorldGenerationSettings worldSettings;
@@ -69,17 +69,17 @@ public class ModifyExistingSpecies : IRunStep
     public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
         long seed)
     {
-        this.patch = patch;
+        this.patch = AutoEvoPatch.Live(patch);
         this.cache = cache;
         this.worldSettings = worldSettings;
 
-        mutationSorter = new MutationSorter(patch, cache);
+        mutationSorter = new MutationSorter(this.patch, cache);
 
         random = new XoShiRo256starstar(seed);
 
         // Patch species count is used to know how many steps there are to perform
-        TotalSteps = patch.SpeciesInPatch.Count;
-        speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
+        TotalSteps = this.patch.Residents.Count;
+        speciesEnumerator = this.patch.Residents.GetEnumerator();
     }
 
     private enum Step
@@ -115,7 +115,7 @@ public class ModifyExistingSpecies : IRunStep
         // Set up miche data if missing
         if (miche == null)
         {
-            miche = results.GetModifiableMicheForPatch(patch);
+            miche = results.GetModifiableMicheForPatch(patch.Key);
 
             miche.GetOccupants(speciesWorkMemory);
 
@@ -137,7 +137,7 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (species is MicrobeSpecies or MulticellularSpecies)
                     {
-                        GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
+                        GetMutationsForSpecies(species, patch.Residents.Count);
 
                         // If the species is a MicrobeSpecies, check if it can become Multicellular,
                         // and if so, generate Multicellular mutants.
@@ -146,7 +146,7 @@ public class ModifyExistingSpecies : IRunStep
                             var multicellularBase = AttemptBecomingMulticellular(microbeSpecies);
 
                             if (multicellularBase != null)
-                                GetMutationsForSpecies(multicellularBase, patch.SpeciesInPatch.Count, species);
+                                GetMutationsForSpecies(multicellularBase, patch.Residents.Count, species);
                         }
                     }
                 }
@@ -156,13 +156,13 @@ public class ModifyExistingSpecies : IRunStep
                     step = Step.MutationFilter;
 
                     // Reset this for another enumeration later
-                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
+                    speciesEnumerator = patch.Residents.GetEnumerator();
 
                     // Just for safety, generate any mutations still missing in case the miche data and species in
                     // the patch are not in sync
                     foreach (var species in speciesWorkMemory)
                     {
-                        if (patch.SpeciesInPatch.ContainsKey(species))
+                        if (patch.Residents.ContainsKey(species))
                             continue;
 
                         // This is really only a problem as this doesn't allow the splitting into steps to work well
@@ -171,7 +171,7 @@ public class ModifyExistingSpecies : IRunStep
 
                         if (species is MicrobeSpecies or MulticellularSpecies)
                         {
-                            GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
+                            GetMutationsForSpecies(species, patch.Residents.Count);
                         }
                     }
                 }
@@ -299,7 +299,7 @@ public class ModifyExistingSpecies : IRunStep
                         }
 
                         results.AddPossibleMutation(mutation.MutatedSpecies,
-                            new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
+                            new KeyValuePair<Patch, long>(patch.Key, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
                     }
                     else
@@ -341,7 +341,7 @@ public class ModifyExistingSpecies : IRunStep
     }
 
     private static void PruneMutations(List<Mutant> addResultsTo, Species baseSpecies,
-        List<Mutant> mutated, Patch patch, SimulationCache cache,
+        List<Mutant> mutated, in AutoEvoPatch patch, SimulationCache cache,
         Stack<SelectionPressure> selectionPressures)
     {
         foreach (var potentialVariant in mutated)
@@ -350,7 +350,7 @@ public class ModifyExistingSpecies : IRunStep
             foreach (var pastPressure in selectionPressures)
             {
                 // Caching a score for a species very likely to be pruned wastes memory
-                var newScore = pastPressure.Score(potentialVariant.Species, patch, cache);
+                var newScore = patch.Score(pastPressure, potentialVariant.Species, cache);
                 var oldScore = cache.GetPressureScore(pastPressure, patch, baseSpecies);
 
                 // Break if the mutation fails a new pressure check
@@ -511,7 +511,7 @@ public class ModifyExistingSpecies : IRunStep
                     var produceMutations = true;
                     if (currentMiche.Pressure.IsThresholdPressure)
                     {
-                        var score = currentMiche.Pressure.Score(speciesTuple.Species, patch, cache);
+                        var score = patch.Score(currentMiche.Pressure, speciesTuple.Species, cache);
                         if (score >= Constants.AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE)
                             produceMutations = false;
                     }
@@ -714,7 +714,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Mutant>
+    private class MutationSorter(AutoEvoPatch patch, SimulationCache cache) : IComparer<Mutant>
     {
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen

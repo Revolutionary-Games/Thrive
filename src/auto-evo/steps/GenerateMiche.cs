@@ -5,11 +5,16 @@
 /// </summary>
 public class GenerateMiche : IRunStep
 {
-    private readonly Patch patch;
+    private readonly AutoEvoPatch patch;
     private readonly SimulationCache cache;
     private readonly AutoEvoGlobalCache globalCache;
 
     public GenerateMiche(Patch patch, SimulationCache cache, AutoEvoGlobalCache globalCache)
+        : this(AutoEvoPatch.Live(patch), cache, globalCache)
+    {
+    }
+
+    internal GenerateMiche(AutoEvoPatch patch, SimulationCache cache, AutoEvoGlobalCache globalCache)
     {
         this.patch = patch;
         this.cache = cache;
@@ -23,7 +28,7 @@ public class GenerateMiche : IRunStep
     public bool RunStep(RunResults results)
     {
         var generatedMiche = GenerateMicheTree(globalCache);
-        results.AddNewMicheForPatch(patch, PopulateMiche(generatedMiche));
+        results.AddNewMicheForPatch(patch.Key, PopulateMiche(generatedMiche));
 
         return true;
     }
@@ -63,12 +68,12 @@ public class GenerateMiche : IRunStep
     public Miche PopulateMiche(Miche miche)
     {
         // If no species, don't need to do anything
-        if (patch.SpeciesInPatch.Count < 1)
+        if (patch.Residents.Count < 1)
             return miche;
 
         var insertWorkMemory = new Miche.InsertWorkingMemory();
 
-        foreach (var species in patch.SpeciesInPatch.Keys)
+        foreach (var species in patch.Residents.Keys)
         {
             if (species is not MicrobeSpecies and not MulticellularSpecies)
                 continue;
@@ -214,7 +219,7 @@ public class GenerateMiche : IRunStep
         var supportedSpeciesCount = 0;
 
         // Per Target-Species Miches
-        foreach (var targetSpecies in patch.SpeciesInPatch)
+        foreach (var targetSpecies in patch.Residents)
         {
             if (targetSpecies.Key is not MicrobeSpecies and not MulticellularSpecies)
                 continue;

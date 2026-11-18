@@ -193,6 +193,30 @@ public class MichePopulationTests
         }
     }
 
+    /// <summary>
+    ///   Two initially present species share the only leaf's energy equally. Once the non-occupant dies out,
+    ///   the second step must give the occupant the whole leaf despite the unchanged world population.
+    /// </summary>
+    [TestCase]
+    public void SecondStepCompetesWithSurvivorsOfTheFirstStep()
+    {
+        var fixture = CreateFixture(2);
+        var occupant = fixture.Species[0];
+        var competitor = fixture.Species[1];
+        var root = new Miche(new CountingPressure(1101, _ => 1)) { Occupant = occupant };
+        var trees = new Dictionary<Patch, Miche> { { fixture.Patch, root } };
+        var patches = new HashSet<Patch> { fixture.Patch };
+
+        var first = SimulatePatches(fixture, trees, patches, true, 1);
+        AssertThat(first.GetPopulationInPatch(occupant, fixture.Patch)).IsGreater(0);
+        AssertThat(first.GetPopulationInPatch(competitor, fixture.Patch)).IsEqual(0);
+        AssertThat(first.GetPatchEnergyResults(occupant)[fixture.Patch].TotalEnergyGathered).IsEqual(15000.0f);
+        AssertThat(fixture.Patch.GetSpeciesSimulationPopulation(competitor)).IsGreater(0);
+
+        var second = SimulatePatches(fixture, trees, patches, true, 2);
+        AssertThat(second.GetPatchEnergyResults(occupant)[fixture.Patch].TotalEnergyGathered).IsEqual(30000.0f);
+    }
+
     [TestCase]
     public void FailedSimulationDoesNotAffectLaterCallsOrEarlierResults()
     {
