@@ -169,6 +169,45 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool CellCavityTutorialVisible
+    {
+        get => cellCavityTutorial.Visible;
+        set
+        {
+            if (value == cellCavityTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                cellCavityTutorial.Show();
+            }
+            else
+            {
+                cellCavityTutorial.Hide();
+            }
+        }
+    }
+
+    public bool SpecializationTipsTutorialVisible
+    {
+        get => specializationTipsTutorial.Visible;
+        set
+        {
+            if (value == specializationTipsTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                specializationTipsTutorial.Show();
+                RightPanelScrollContainer.ScrollVertical = 100;
+            }
+            else
+            {
+                specializationTipsTutorial.Hide();
+            }
+        }
+    }
+
     public bool ActomyosinTutorialVisible
     {
         get => actomyosinTutorial.Visible;

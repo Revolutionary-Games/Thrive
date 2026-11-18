@@ -37,10 +37,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -423.0
-offset_top = -321.0
-offset_right = -9.0
-offset_bottom = 38.0
+offset_left = -535.0
+offset_top = -325.0
+offset_right = -10.0
+offset_bottom = 13.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
@@ -73,17 +73,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -369.0
-offset_top = -321.0
-offset_right = -9.0
-offset_bottom = 188.0
+offset_left = -649.0
+offset_top = -322.0
+offset_right = -289.0
+offset_bottom = 187.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="CellCavityTutorial" parent="." instance=ExtResource("4_fr4jn")]
+[node name="CellCavityTutorial" parent="." unique_id=833869248 instance=ExtResource("4_fr4jn")]
 custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 6
@@ -92,38 +92,38 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -369.0
-offset_top = -250.0
+offset_top = -276.0
 offset_right = -9.0
-offset_bottom = 110.0
+offset_bottom = 146.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="SpecializationTipsTutorial" parent="." instance=ExtResource("4_fr4jn")]
-custom_minimum_size = Vector2(360, 360)
+[node name="SpecializationTipsTutorial" parent="." unique_id=202967384 instance=ExtResource("4_fr4jn")]
+custom_minimum_size = Vector2(360, 350)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -423.0
-offset_top = -250.0
-offset_right = -9.0
-offset_bottom = 110.0
+offset_left = -424.0
+offset_top = -330.0
+offset_right = -10.0
+offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="Spacer" type="Control" parent="SpecializationTipsTutorial/ScrollContainer/VBoxContainer" index="1"]
+[node name="Spacer" type="Control" parent="SpecializationTipsTutorial/ScrollContainer/VBoxContainer" parent_id_path=PackedInt32Array(202967384, 1371081850) index="1" unique_id=878022227]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="SpecializationTipsTutorial/ScrollContainer/VBoxContainer" index="2"]
+[node name="Button" type="Button" parent="SpecializationTipsTutorial/ScrollContainer/VBoxContainer" parent_id_path=PackedInt32Array(202967384, 1371081850) index="2" unique_id=1519135462]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
