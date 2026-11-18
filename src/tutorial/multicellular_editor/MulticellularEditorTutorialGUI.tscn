@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="4_fr4jn"]
 
-[node name="MulticellularEditorTutorialGUI" type="Control" unique_id=442652590 node_paths=PackedStringArray("specializationTutorial", "cellBodyPlanEditorIntroductionTutorial", "macroscopicRequirementsTutorial", "cellDuplicationTutorial", "multicellularCellEditorTutorial", "cellBodyPlanLayoutTutorial", "actomyosinTutorial")]
+[node name="MulticellularEditorTutorialGUI" type="Control" unique_id=442652590 node_paths=PackedStringArray("specializationTutorial", "cellBodyPlanEditorIntroductionTutorial", "macroscopicRequirementsTutorial", "cellCavityTutorial", "specializationTipsTutorial", "cellDuplicationTutorial", "multicellularCellEditorTutorial", "cellBodyPlanLayoutTutorial", "actomyosinTutorial")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -19,6 +19,8 @@ script = ExtResource("1")
 specializationTutorial = NodePath("SpecializationTutorial")
 cellBodyPlanEditorIntroductionTutorial = NodePath("MulticellularEditorIntroduction")
 macroscopicRequirementsTutorial = NodePath("MacroscopicRequirementsTutorial")
+cellCavityTutorial = NodePath("CellCavityTutorial")
+specializationTipsTutorial = NodePath("SpecializationTipsTutorial")
 cellDuplicationTutorial = NodePath("CellDuplicationTutorial")
 multicellularCellEditorTutorial = NodePath("MulticellularCellEditorTutorial")
 cellBodyPlanLayoutTutorial = NodePath("CellBodyPlanLayoutTutorial")
@@ -80,6 +82,53 @@ grow_vertical = 2
 Description = "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
+
+[node name="CellCavityTutorial" parent="." instance=ExtResource("4_fr4jn")]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -369.0
+offset_top = -250.0
+offset_right = -9.0
+offset_bottom = 110.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
+
+[node name="SpecializationTipsTutorial" parent="." instance=ExtResource("4_fr4jn")]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -423.0
+offset_top = -250.0
+offset_right = -9.0
+offset_bottom = 110.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
+
+[node name="Spacer" type="Control" parent="SpecializationTipsTutorial/ScrollContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="SpecializationTipsTutorial/ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "CLOSE"
 
 [node name="CellDuplicationTutorial" parent="." unique_id=451572509 instance=ExtResource("4_fr4jn")]
 custom_minimum_size = Vector2(360, 300)
@@ -167,10 +216,14 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="SpecializationTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularSpecializationTutorial"]]
 [connection signal="hidden" from="MulticellularEditorIntroduction" to="." method="OnSpecificCloseClicked" binds= ["CellBodyPlanEditorIntroductionTutorial"]]
 [connection signal="hidden" from="MacroscopicRequirementsTutorial" to="." method="OnSpecificCloseClicked" binds= ["MacroscopicRequirementsTutorial"]]
+[connection signal="hidden" from="CellCavityTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularCellCavityTutorial"]]
+[connection signal="hidden" from="SpecializationTipsTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularSpecializationTipsTutorial"]]
+[connection signal="pressed" from="SpecializationTipsTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["MulticellularSpecializationTipsTutorial"]]
 [connection signal="hidden" from="CellDuplicationTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularCellDuplicateTutorial"]]
 [connection signal="hidden" from="MulticellularCellEditorTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularCellEditorTutorial"]]
 [connection signal="hidden" from="CellBodyPlanLayoutTutorial" to="." method="OnSpecificCloseClicked" binds= ["CellBodyPlanLayoutTutorial"]]
 [connection signal="pressed" from="CellBodyPlanLayoutTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["CellBodyPlanLayoutTutorial"]]
 [connection signal="hidden" from="ActomyosinTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularActomyosinTutorial"]]
 
+[editable path="SpecializationTipsTutorial"]
 [editable path="CellBodyPlanLayoutTutorial"]

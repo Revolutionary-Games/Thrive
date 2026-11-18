@@ -16,6 +16,12 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow macroscopicRequirementsTutorial = null!;
 
     [Export]
+    private CustomWindow cellCavityTutorial = null!;
+
+    [Export]
+    private CustomWindow specializationTipsTutorial = null!;
+
+    [Export]
     private CustomWindow cellDuplicationTutorial = null!;
 
     [Export]
