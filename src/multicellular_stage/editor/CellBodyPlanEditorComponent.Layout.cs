@@ -55,11 +55,22 @@ public partial class CellBodyPlanEditorComponent
     private readonly List<(HexWithData<CellTemplate> First, HexWithData<CellTemplate> Second)>
         manualLayoutMissingAdjacencyPairs = [];
 
-    // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
-    private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
+    /// <summary>
+    ///   Different cell types can have non-overlapping footprints around the same wrapper position, so the automatic
+    ///   preview stores wrappers in a list and checks overlaps using the actual cell footprints.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can be caused, for example, when a lot of edits have been done and layout shifts are extreme. So two
+    ///     cells can have an overlap, but when applying the shift then they don't overlap any more.
+    ///     This is why we need to store this as a list as otherwise we would get an error on inserting to this data
+    ///     structure.
+    ///   </para>
+    /// </remarks>
+    private List<HexWithData<CellTemplate>> fullLayoutPreview = [];
 
     /// <summary>
-    ///   Unlike the automatic layout store, this is a list because manual editing must preserve invalid intermediate
+    ///   This is a list because manual editing must preserve invalid intermediate
     ///   states such as overlapping cells so that they can be displayed and fixed by the player.
     /// </summary>
     private List<HexWithData<CellTemplate>> manualFullLayout = [];
@@ -342,12 +353,10 @@ public partial class CellBodyPlanEditorComponent
     {
         fullLayoutPreview.Clear();
 
-        // CellLayout stores the final cell templates directly. The editor renderer uses HexWithData wrappers, so
-        // copy the created wrappers
-        foreach (var wrapped in wrappers)
-        {
-            fullLayoutPreview.AddFast(wrapped, hexTemporaryMemory, hexTemporaryMemory2);
-        }
+        // CellLayout stores the final cell templates directly. Keep the editor's wrappers without validating their
+        // positions against each other, as cells can share a wrapper position without their footprints overlapping
+        // (due to organelle shifts).
+        fullLayoutPreview.AddRange(wrappers);
     }
 
     private void UpdateFullLayoutVisuals()
