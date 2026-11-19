@@ -220,6 +220,11 @@ public class ModifyExistingSpecies : IRunStep
                     // population will be too low to pass FinalApply and call OnEdited.
                     mutation.MutatedSpecies.UpdateInitialCompounds();
 
+#if DEBUG
+                    if (mutation.MutatedSpecies.InitialCompounds.Count < 1)
+                        throw new InvalidOperationException("Mutated species must have at least one initial compound.");
+#endif
+
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.

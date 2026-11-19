@@ -265,7 +265,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
             new Dictionary<OrganelleDefinition, int>());
         if (updateInitialCompounds)
+        {
             UpdateInitialCompounds();
+
+            if (InitialCompounds.Count < 1)
+                throw new InvalidOperationException("Initial compounds initialization failed in microbe species");
+        }
+
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();

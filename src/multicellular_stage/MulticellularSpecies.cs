@@ -519,7 +519,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         if (updateInitialCompounds)
+        {
             UpdateInitialCompounds();
+
+            if (InitialCompounds.Count < 1)
+            {
+                throw new InvalidOperationException(
+                    "Initial compounds initialization failed for multicellular species");
+            }
+        }
 
         cachedFillTimes.Clear();
     }
@@ -533,6 +541,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         base.OnAttemptedInAutoEvo(false);
 
         UpdateInitialCompounds();
+
+        if (InitialCompounds.Count < 1)
+            throw new InvalidOperationException("Initial compounds initialization failed (after membrane change)");
 
         cachedFillTimes.Clear();
     }
