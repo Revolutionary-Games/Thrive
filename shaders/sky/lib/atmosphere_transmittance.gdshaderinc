@@ -23,9 +23,9 @@ vec3 AtmosphereTransmittanceLookup(sampler2D lut, float pointRadius, float cosZe
 }
 
 // True when the planet blocks the sun from a point.
-bool InPlanetShadow(float pointRadius, float cosZenith, float lutGroundRadius) {
-    return cosZenith < 0.0
-        && pointRadius * pointRadius * (1.0 - cosZenith * cosZenith) < lutGroundRadius * lutGroundRadius;
+bool InPlanetShadow(vec3 point, vec3 towardsSun, float lutGroundRadius) {
+    float alongSun = dot(point, towardsSun);
+    return alongSun < 0.0 && dot(point, point) - alongSun * alongSun < lutGroundRadius * lutGroundRadius;
 }
 
 // How much sunlight survives the trip from the top of the atmosphere down to a point, given relative to the planet
@@ -34,7 +34,7 @@ vec3 AtmosphereTransmittance(sampler2D lut, vec3 point, vec3 towardsSun, float l
     float pointRadius = length(point);
     float cosZenith = dot(point, towardsSun) / max(pointRadius, 1e-6);
 
-    if (InPlanetShadow(pointRadius, cosZenith, lutGroundRadius)) {
+    if (InPlanetShadow(point, towardsSun, lutGroundRadius)) {
         return vec3(0.0);
     }
 

@@ -18,6 +18,7 @@ struct CloudRay {
     vec3  sunEnergy;
     float sunIntensity;
     vec3  ambientEnergy;
+    bool  inShadow;
     vec3  phases;
     float ground;
     float inner;
@@ -40,6 +41,7 @@ CloudRay CreateCloudRay(vec3 ro, vec3 rd, vec3 center, float ground, float inner
     ray.sunIntensity = sunEnergy;
     ray.sunEnergy = vec3(0.0);
     ray.ambientEnergy = vec3(0.0);
+    ray.inShadow = false;
     ray.ground = ground;
     ray.inner = inner;
     ray.outer = outer;
@@ -72,14 +74,16 @@ float LightMarch(CloudRay ray, vec3 rel) {
     return opticalDepth;
 }
 
-// Light reaching a point through the atmosphere. This changes slowly, so it is reused for the whole cloud.
+// Light reaching a point through the atmosphere. This changes slowly, so it is reused for the whole cloud, except
+// when the march crosses into or out of the planet's shadow.
 void UpdateAirLight(inout CloudRay ray, vec3 rel, float h) {
     float cosSunZenith = dot(rel, ray.sunDirection) / h;
+    ray.inShadow = InPlanetShadow(rel, ray.sunDirection, CLOUD_ATMOSPHERE_GROUND_RADIUS);
+
     vec3 airTransmittance = AtmosphereTransmittanceLookup(CLOUD_TRANSMITTANCE_LUT, h, cosSunZenith,
         CLOUD_ATMOSPHERE_GROUND_RADIUS, CLOUD_ATMOSPHERE_TOP_RADIUS);
 
-    ray.sunEnergy = InPlanetShadow(h, cosSunZenith, CLOUD_ATMOSPHERE_GROUND_RADIUS) ?
-        vec3(0.0) : airTransmittance * ray.sunIntensity;
+    ray.sunEnergy = ray.inShadow ? vec3(0.0) : airTransmittance * ray.sunIntensity;
 
     float shadowEdgeRadius = cosSunZenith < 0.0 ?
         CLOUD_ATMOSPHERE_GROUND_RADIUS * inversesqrt(max(1.0 - cosSunZenith * cosSunZenith, 1e-6)) : 0.0;
@@ -154,6 +158,9 @@ void MarchSegment(inout CloudRay ray, float segStart, float segEnd, float dtBase
             continue;
         }
         emptyRun = 0;
+
+        if (InPlanetShadow(rel, ray.sunDirection, CLOUD_ATMOSPHERE_GROUND_RADIUS) != ray.inShadow)
+            UpdateAirLight(ray, rel, h);
 
         float lightOpticalDepth = LightMarch(ray, rel);
         float scatter = MultiScatter(lightOpticalDepth, ray.phases);
