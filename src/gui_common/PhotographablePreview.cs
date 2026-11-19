@@ -36,10 +36,16 @@ public partial class PhotographablePreview : Control
 #pragma warning restore CA2213
 
     private IImageTask? task;
+    private bool previewFailed;
 
     protected PhotographablePreview()
     {
     }
+
+    /// <summary>
+    ///   True when the current preview could not be generated. Reset when a new preview is requested.
+    /// </summary>
+    public bool PreviewFailed => previewFailed || task?.Failed == true;
 
     public override void _Ready()
     {
@@ -58,6 +64,7 @@ public partial class PhotographablePreview : Control
 
         if (task?.Failed == true)
         {
+            previewFailed = true;
             textureRect.Texture = null;
             finishedImage = null;
             task = null;
@@ -85,12 +92,17 @@ public partial class PhotographablePreview : Control
         // Make sure calling this before _Ready (for example when setting up before adding to the scene tree) works
         InitLoadingTexture();
 
+        finishedImage = null;
+        previewFailed = false;
         textureRect.Texture = loadingTexture;
         task = SetupImageTask();
     }
 
     protected void ResetPreview()
     {
+        task = null;
+        finishedImage = null;
+        previewFailed = false;
         textureRect.Texture = null;
     }
 

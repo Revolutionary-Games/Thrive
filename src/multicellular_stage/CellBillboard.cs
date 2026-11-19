@@ -102,6 +102,9 @@ public partial class CellBillboard : Node3D
         {
             if (imageTask.Failed)
             {
+                quad.Visible = false;
+                material.AlbedoTexture = null;
+                cellImage = null;
                 imageTask = null;
                 dirty = false;
             }

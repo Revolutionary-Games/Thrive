@@ -403,7 +403,8 @@ public partial class PhotoStudio : SubViewport
     {
         var image = diskCache != null ? diskCache.Get(hashCode) : memoryCache.Get(hashCode);
 
-        return image;
+        // Failed requests must be replaced even when their visual hash has not changed.
+        return image?.Failed == true ? null : image;
     }
 
     protected override void Dispose(bool disposing)
