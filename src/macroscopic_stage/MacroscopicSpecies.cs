@@ -156,7 +156,13 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         base.OnAttemptedInAutoEvo(refreshCache, updateInitialCompounds);
 
         if (updateInitialCompounds)
+        {
             UpdateInitialCompounds();
+
+            if (InitialCompounds.Count < 1)
+                throw new InvalidOperationException("Initial compounds initialization failed");
+        }
+
         CalculateBrainPower();
         CalculateMuscularPower();
 
