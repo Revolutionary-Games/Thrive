@@ -615,12 +615,23 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         foreach (var compoundBalance in compoundBalances)
         {
-            if (compoundBalance.Value.Balance >= 0)
+            // Skip compounds we don't want to give as initial compounds
+            var definition = simulationParameters.GetCompoundDefinition(compoundBalance.Key);
+            if (!definition.CanBeInitialCompound)
                 continue;
 
-            // Skip compounds we don't want to give as initial compounds
-            if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
+            // Do not give gas compounds as initial as they aren't stored
+            if (definition.IsGas)
                 continue;
+
+            // Only give compounds the species doesn't produce
+            if (compoundBalance.Value.Balance >= 0)
+            {
+                // But add a placeholder value so that the initial compounds isn't empty, which breaks spawning
+                // species.
+                InitialCompounds.Add(compoundBalance.Key, 0);
+                continue;
+            }
 
             // Initial compounds should suffice for a fixed amount of time.
             // Some extra is given to accommodate multicellular growth

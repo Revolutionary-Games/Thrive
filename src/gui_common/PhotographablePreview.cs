@@ -56,7 +56,13 @@ public partial class PhotographablePreview : Control
     {
         base._Process(delta);
 
-        if (task?.Finished == true)
+        if (task?.Failed == true)
+        {
+            textureRect.Texture = null;
+            finishedImage = null;
+            task = null;
+        }
+        else if (task?.Finished == true)
         {
             textureRect.Texture = task.FinalImage;
             finishedImage = task.PlainImage;

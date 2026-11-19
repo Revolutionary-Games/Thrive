@@ -100,7 +100,12 @@ public partial class CellBillboard : Node3D
 
         if (imageTask != null)
         {
-            if (imageTask.Finished)
+            if (imageTask.Failed)
+            {
+                imageTask = null;
+                dirty = false;
+            }
+            else if (imageTask.Finished)
             {
                 cellImage = imageTask.FinalImage;
                 material.AlbedoTexture = cellImage;

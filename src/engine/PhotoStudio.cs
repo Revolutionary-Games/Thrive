@@ -218,7 +218,18 @@ public partial class PhotoStudio : SubViewport
             {
                 if (TaskUsesWorldSimulation)
                 {
-                    currentTask!.SimulationPhotographable!.SetupWorldEntities(previouslyUsedWorldSimulation!);
+                    try
+                    {
+                        currentTask!.SimulationPhotographable!.SetupWorldEntities(previouslyUsedWorldSimulation!);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        GD.PrintErr("PhotoStudio failed to set up a simulation photograph: ", e);
+                        currentTask!.MarkFailed();
+                        currentTask = null;
+                        currentTaskStep = Step.Cleanup;
+                        break;
+                    }
                 }
                 else
                 {

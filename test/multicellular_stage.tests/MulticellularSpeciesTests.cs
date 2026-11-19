@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GdUnit4;
 using Godot;
+using Systems;
 using static GdUnit4.Assertions;
 
 [TestSuite]
@@ -47,6 +49,69 @@ public class MulticellularSpeciesTests
         AssertThat(clonedGameplayCellType).IsSame(clonedCellType);
         AssertThat(clonedEditorCellType).IsNotNull().IsSame(clonedCellType);
         AssertThat(cloned.ModifiableSporeCellType).IsSame(clonedCellType);
+    }
+
+    [TestCase]
+    public void TestInitialCompoundsIsNotEmptyOnPositiveBalance()
+    {
+        var species = new MulticellularSpecies(1, "Test", "Species");
+        var parameters = SimulationParameters.Instance;
+        var membraneType = parameters.GetMembrane("single");
+        var cellType = new CellType(membraneType)
+        {
+            CellTypeName = "TestType",
+        };
+
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+
+        // Generate more glucose than the cytoplasm consumes, so net balance is positive while consumption remains.
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("thermoplast"),
+            new Hex(1, 0), 0));
+
+        var glucoseBalance = new Dictionary<Compound, CompoundBalance>();
+        ProcessSystem.ComputeCompoundBalance(cellType.ModifiableOrganelles,
+            parameters.GetBiome("speciesInitialCompoundsBiome").Conditions,
+            new ResolvedMicrobeTolerances
+            {
+                HealthModifier = 1,
+                OsmoregulationModifier = 1,
+                ProcessSpeedModifier = 1,
+            }, 1, CompoundAmountType.Biome, false, glucoseBalance);
+
+        AssertThat(glucoseBalance[Compound.Glucose].Production)
+            .IsGreater(glucoseBalance[Compound.Glucose].Consumption);
+
+        species.ModifiableCellTypes.Add(cellType);
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(0, 0), 0), [], []);
+
+        species.OnEdited();
+
+        AssertThat(species.InitialCompounds.Count).IsGreater(0);
+
+        // Initial compounds is not empty but the glucose to give is not empty
+        AssertThat(species.InitialCompounds.TryGetValue(Compound.Glucose, out var initialGlucose)).IsTrue();
+        AssertThat(initialGlucose).IsEqual(0.0f);
+    }
+
+    [TestCase]
+    public void TestVisualizationRejectsSpeciesWithoutInitialCompounds()
+    {
+        var simulation = new MicrobeVisualOnlySimulation();
+        var species = new MulticellularSpecies(1, "Test", "Species");
+
+        InvalidOperationException? exception = null;
+        try
+        {
+            simulation.CreateVisualisationColony(species);
+        }
+        catch (InvalidOperationException e)
+        {
+            exception = e;
+        }
+
+        AssertThat(exception).IsNotNull();
+        AssertThat(exception!.Message).Contains("Cannot photograph");
     }
 
     [TestCase]

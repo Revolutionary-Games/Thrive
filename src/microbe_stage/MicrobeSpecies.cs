@@ -317,7 +317,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         foreach (var compoundBalance in compoundBalances)
         {
             // Skip compounds we don't want to give as initial compounds
-            if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
+            var definition = simulationParameters.GetCompoundDefinition(compoundBalance.Key);
+            if (!definition.CanBeInitialCompound)
+                continue;
+
+            // Do not give gas compounds as initial as they aren't stored
+            if (definition.IsGas)
                 continue;
 
             // Find the specific capacity, if any, and add it to the nominal
