@@ -136,8 +136,9 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // This causes an error on spawn, so catch the error early
         if (species.InitialCompounds.Count == 0)
         {
+            // Nameof species us used just to quiet a false positive warning
             throw new InvalidOperationException(
-                $"Cannot photograph species {species.FormattedName} without initial compounds");
+                $"Cannot photograph {nameof(species)} {species.FormattedName} without initial compounds");
         }
 
         var sex = GameteType.All;
