@@ -25,6 +25,11 @@ public partial class CellBodyPlanEditorComponent
         data.Cell.Data!.IsCavity = data.NewIsCavity;
         InvalidateCalculatedLayout();
         cellDataDirty = true;
+
+        if (data.NewIsCavity)
+        {
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularCellMadeCavity, EventArgs.Empty, this);
+        }
     }
 
     [ArchiveAllowedMethod]

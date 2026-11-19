@@ -88,8 +88,18 @@ public class CellCavityActionTests
     {
         var (species, cell) = CreateSpecies();
         var editor = new CellBodyPlanEditorComponent();
+        var owningEditor = new MulticellularEditor();
         try
         {
+            species.ModifiableGameplayCells.AddFast(cell.Data!, [], []);
+            owningEditor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(),
+                startingSpecies: species);
+            owningEditor.TutorialState.Enabled = true;
+            var cavityTutorial = owningEditor.TutorialState.MulticellularCellCavityTutorial;
+            cavityTutorial.Show();
+            typeof(EditorComponentBase<MulticellularEditor>).GetField("editor",
+                BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(editor, owningEditor);
+
             SetPrivateField(editor, "editedMicrobeCells", species.ModifiableEditorCells);
             var preview = GetPrivateField<IndividualHexLayout<CellTemplate>>(editor, "fullLayoutPreview");
             preview.AddFast(cell.Clone(), [], []);
@@ -110,10 +120,13 @@ public class CellCavityActionTests
             AssertThat(preview.Count).IsEqual(0);
             AssertThat(GetPrivateField<bool>(editor, "layoutCalculationRequested")).IsTrue();
             AssertThat(GetPrivateField<bool>(editor, "cellDataDirty")).IsTrue();
+            AssertThat(cavityTutorial.Complete).IsEqual(!undo);
+            AssertThat(cavityTutorial.ShownCurrently).IsEqual(undo);
         }
         finally
         {
             editor.Free();
+            owningEditor.Free();
         }
     }
 

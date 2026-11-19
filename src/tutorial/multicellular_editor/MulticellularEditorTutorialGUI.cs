@@ -16,6 +16,12 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow macroscopicRequirementsTutorial = null!;
 
     [Export]
+    private CustomWindow cellCavityTutorial = null!;
+
+    [Export]
+    private CustomWindow specializationTipsTutorial = null!;
+
+    [Export]
     private CustomWindow cellDuplicationTutorial = null!;
 
     [Export]
@@ -159,6 +165,45 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 macroscopicRequirementsTutorial.Hide();
+            }
+        }
+    }
+
+    public bool CellCavityTutorialVisible
+    {
+        get => cellCavityTutorial.Visible;
+        set
+        {
+            if (value == cellCavityTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                cellCavityTutorial.Show();
+            }
+            else
+            {
+                cellCavityTutorial.Hide();
+            }
+        }
+    }
+
+    public bool SpecializationTipsTutorialVisible
+    {
+        get => specializationTipsTutorial.Visible;
+        set
+        {
+            if (value == specializationTipsTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                specializationTipsTutorial.Show();
+                RightPanelScrollContainer.ScrollVertical = 100;
+            }
+            else
+            {
+                specializationTipsTutorial.Hide();
             }
         }
     }
