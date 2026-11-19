@@ -33,6 +33,20 @@ public class PhotoStudioTests
         AssertThat(validPhotographable.SetupCount).IsEqual(1);
         AssertThat(validTask.Finished).IsTrue();
 
+        // A corrected request with the same appearance must replace the failed cached task.
+        var correctedPhotographable = new TestSimulationPhotographable(false,
+            invalidPhotographable.GetVisualHashCode());
+        var correctedTask = photoStudio.GenerateImage(correctedPhotographable, int.MinValue, 16);
+
+        for (int i = 0; i < 32 && !correctedTask.Finished; ++i)
+        {
+            photoStudio._Process(1.0 / 60);
+        }
+
+        AssertThat(correctedTask.Failed).IsFalse();
+        AssertThat(correctedPhotographable.SetupCount).IsEqual(1);
+        AssertThat(correctedTask.Finished).IsTrue();
+
         // Complete the image task's cleanup step before leaving the singleton in use by other tests.
         photoStudio._Process(1.0 / 60);
     }
