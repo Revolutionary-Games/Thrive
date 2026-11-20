@@ -222,7 +222,7 @@ public partial class PhotoStudio : SubViewport
                     {
                         currentTask!.SimulationPhotographable!.SetupWorldEntities(previouslyUsedWorldSimulation!);
                     }
-                    catch (InvalidOperationException e)
+                    catch (Exception e)
                     {
                         GD.PrintErr("PhotoStudio failed to set up a simulation photograph: ", e);
                         currentTask!.MarkFailed();

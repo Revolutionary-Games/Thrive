@@ -16,11 +16,17 @@ public class PhotoStudioTests
         var photoStudio = PhotoStudio.Instance;
         var invalidPhotographable = new TestSimulationPhotographable(true,
             unchecked((ulong)Guid.NewGuid().GetHashCode()));
+        var plainExceptionPhotographable = new TestSimulationPhotographable(true,
+            unchecked((ulong)Guid.NewGuid().GetHashCode()))
+        {
+            ThrowPlainException = true,
+        };
         var validPhotographable = new TestSimulationPhotographable(false,
             unchecked((ulong)Guid.NewGuid().GetHashCode()));
 
         var invalidTask = photoStudio.GenerateImage(invalidPhotographable, int.MinValue, 16);
-        var validTask = photoStudio.GenerateImage(validPhotographable, int.MinValue + 1, 16);
+        var plainExceptionTask = photoStudio.GenerateImage(plainExceptionPhotographable, int.MinValue + 1, 16);
+        var validTask = photoStudio.GenerateImage(validPhotographable, int.MinValue + 2, 16);
 
         for (int i = 0; i < 32 && !validTask.Finished && !validTask.Failed; ++i)
         {
@@ -32,6 +38,9 @@ public class PhotoStudioTests
         AssertThat(invalidTask.Failed).IsTrue();
         AssertThat(invalidTask.Finished).IsFalse();
         AssertThat(invalidPhotographable.SetupCount).IsEqual(1);
+        AssertThat(plainExceptionTask.Failed).IsTrue();
+        AssertThat(plainExceptionTask.Finished).IsFalse();
+        AssertThat(plainExceptionPhotographable.SetupCount).IsEqual(1);
         AssertThat(validPhotographable.SetupCount).IsEqual(1);
 
         // Headless Godot may not provide viewport images, but the request must still reach a terminal state.
@@ -69,6 +78,8 @@ public class PhotoStudioTests
 
         public int SetupCount { get; private set; }
 
+        public bool ThrowPlainException { get; init; }
+
         public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
             ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
@@ -80,6 +91,9 @@ public class PhotoStudioTests
         public void SetupWorldEntities(IWorldSimulation worldSimulation)
         {
             ++SetupCount;
+
+            if (ThrowPlainException)
+                throw new Exception("Simulation photograph test request failed");
 
             if (throwDuringSetup)
                 throw new InvalidOperationException("Invalid simulation photograph test request");
