@@ -90,32 +90,7 @@ public class SimulationCache
 
     public float GetPressureScore(SelectionPressure pressure, Patch patch, Species species)
     {
-#if USE_HASHED_SCORE_KEYS
-
-        // TODO: even better would be if pressure scores had unique IDs and we could use the species ID +
-        // some modification marker as the hash input here
-        var key = (ulong)(uint)pressure.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
-
-        // Use a big prime to shuffle the hash to hopefully avoid collisions
-        key *= 11265003396083139817;
-
-        key += (ulong)patch.ID;
-
-        key *= 13900709095051265681;
-#else
-        var key = (GetSpeciesCacheKey(species), pressure, patch);
-#endif
-
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPressureScores, key);
-        if (!Unsafe.IsNullRef(ref score))
-        {
-            return score;
-        }
-
-        var cached = pressure.Score(species, patch, this);
-
-        cachedPressureScores.Add(key, cached);
-        return cached;
+        return GetPressureScore(pressure, AutoEvoPatch.Live(patch), species);
     }
 
     /// <summary>
@@ -845,6 +820,36 @@ public class SimulationCache
 
         cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
+    }
+
+    internal float GetPressureScore(SelectionPressure pressure, in AutoEvoPatch patch, Species species)
+    {
+#if USE_HASHED_SCORE_KEYS
+
+        // TODO: even better would be if pressure scores had unique IDs and we could use the species ID +
+        // some modification marker as the hash input here
+        var key = (ulong)(uint)pressure.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
+
+        // Use a big prime to shuffle the hash to hopefully avoid collisions
+        key *= 11265003396083139817;
+
+        key += (ulong)patch.Key.ID;
+
+        key *= 13900709095051265681;
+#else
+        var key = (GetSpeciesCacheKey(species), pressure, patch.Key);
+#endif
+
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPressureScores, key);
+        if (!Unsafe.IsNullRef(ref score))
+        {
+            return score;
+        }
+
+        var cached = patch.Score(pressure, species, this);
+
+        cachedPressureScores.Add(key, cached);
+        return cached;
     }
 
     /// <summary>

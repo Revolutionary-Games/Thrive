@@ -213,99 +213,7 @@ public class Miche : IArchivable
     public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float>? scoresSoFar,
         SimulationCache cache, bool dry, InsertWorkingMemory workingMemory, int depth = 0)
     {
-        if (Readonly && !dry)
-            throw new InvalidOperationException("This miche tree is readonly and cannot be modified");
-
-        if (depth == 0 && species is not MicrobeSpecies and not MulticellularSpecies)
-        {
-            throw new ArgumentException(
-                $"Species type {species.GetType().Name} is incompatible with cellular miche insertion",
-                nameof(species));
-        }
-
-        var myScore = Pressure.Score(species, patch, cache);
-
-        // Prune branch if species fails any pressures
-        if (myScore <= 0)
-            return false;
-
-        if (IsLeafNode() && Occupant == null)
-        {
-            if (!dry)
-                Occupant = species;
-
-            return true;
-        }
-
-        var newScores = workingMemory.GetScoresAtDepth(depth);
-
-        workingMemory.WorkingHashSet.Clear();
-        GetOccupants(workingMemory.WorkingHashSet);
-
-        // Build new scores on top of previous values
-        if (scoresSoFar == null)
-        {
-            // Initial call, not recursive
-
-            foreach (var currentSpecies in workingMemory.WorkingHashSet)
-            {
-                newScores[currentSpecies] =
-                    Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
-            }
-        }
-        else
-        {
-            foreach (var currentSpecies in workingMemory.WorkingHashSet)
-            {
-                var addedScoreAmount =
-                    Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
-
-                // If some species doesn't have a score yet, the score it starts off with is 0
-                if (scoresSoFar.TryGetValue(currentSpecies, out var score))
-                {
-                    newScores[currentSpecies] = score + addedScoreAmount;
-                }
-                else
-                {
-                    newScores[currentSpecies] = addedScoreAmount;
-                }
-            }
-        }
-
-        // We check here to see if scores more than 0, because
-        // scores are relative to the inserted species
-        if (IsLeafNode())
-        {
-            if (newScores.TryGetValue(Occupant!, out var value))
-            {
-                if (value > 0)
-                {
-                    if (!dry)
-                        Occupant = species;
-
-                    return true;
-                }
-            }
-            else
-            {
-                // TODO: a proper fix for this problem. And should this return something?
-                GD.PrintErr($"Score missing in miche for occupant: {Occupant!.FormattedIdentifier}");
-            }
-        }
-
-        var inserted = false;
-        foreach (var child in Children)
-        {
-            if (child.InsertSpecies(species, patch, newScores, cache, dry, workingMemory, depth + 1))
-            {
-                inserted = true;
-
-                if (dry)
-                    return true;
-            }
-        }
-
-        return inserted;
+        return InsertSpecies(species, AutoEvoPatch.Live(patch), scoresSoFar, cache, dry, workingMemory, depth);
     }
 
     public Miche DeepCopy()
@@ -370,6 +278,104 @@ public class Miche : IArchivable
         // TODO: as Occupant can change it should not be used as part of the hash code
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
+    }
+
+    internal bool InsertSpecies(Species species, in AutoEvoPatch patch, Dictionary<Species, float>? scoresSoFar,
+        SimulationCache cache, bool dry, InsertWorkingMemory workingMemory, int depth = 0)
+    {
+        if (Readonly && !dry)
+            throw new InvalidOperationException("This miche tree is readonly and cannot be modified");
+
+        if (depth == 0 && species is not MicrobeSpecies and not MulticellularSpecies)
+        {
+            throw new ArgumentException(
+                $"Species type {species.GetType().Name} is incompatible with cellular miche insertion",
+                nameof(species));
+        }
+
+        var myScore = patch.Score(Pressure, species, cache);
+
+        // Prune branch if species fails any pressures
+        if (myScore <= 0)
+            return false;
+
+        if (IsLeafNode() && Occupant == null)
+        {
+            if (!dry)
+                Occupant = species;
+
+            return true;
+        }
+
+        var newScores = workingMemory.GetScoresAtDepth(depth);
+
+        workingMemory.WorkingHashSet.Clear();
+        GetOccupants(workingMemory.WorkingHashSet);
+
+        // Build new scores on top of previous values
+        if (scoresSoFar == null)
+        {
+            // Initial call, not recursive
+
+            foreach (var currentSpecies in workingMemory.WorkingHashSet)
+            {
+                newScores[currentSpecies] =
+                    Pressure.WeightedComparedScores(myScore, patch.Score(Pressure, currentSpecies, cache));
+            }
+        }
+        else
+        {
+            foreach (var currentSpecies in workingMemory.WorkingHashSet)
+            {
+                var addedScoreAmount =
+                    Pressure.WeightedComparedScores(myScore, patch.Score(Pressure, currentSpecies, cache));
+
+                // If some species doesn't have a score yet, the score it starts off with is 0
+                if (scoresSoFar.TryGetValue(currentSpecies, out var score))
+                {
+                    newScores[currentSpecies] = score + addedScoreAmount;
+                }
+                else
+                {
+                    newScores[currentSpecies] = addedScoreAmount;
+                }
+            }
+        }
+
+        // We check here to see if scores more than 0, because
+        // scores are relative to the inserted species
+        if (IsLeafNode())
+        {
+            if (newScores.TryGetValue(Occupant!, out var value))
+            {
+                if (value > 0)
+                {
+                    if (!dry)
+                        Occupant = species;
+
+                    return true;
+                }
+            }
+            else
+            {
+                // TODO: a proper fix for this problem. And should this return something?
+                GD.PrintErr($"Score missing in miche for occupant: {Occupant!.FormattedIdentifier}");
+            }
+        }
+
+        var inserted = false;
+        foreach (var child in Children)
+        {
+            if (child.InsertSpecies(species, patch, newScores, cache, dry, workingMemory, depth + 1))
+            {
+                inserted = true;
+
+                if (dry)
+                    return true;
+            }
+        }
+
+        return inserted;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

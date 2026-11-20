@@ -27,21 +27,23 @@ public static class MichePopulation
 
         var random = new XoShiRo256starstar(randomSource.NextInt64());
 
-        var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
+        var patches = new List<AutoEvoPatch>(parameters.OriginalMap.Patches.Count);
+        foreach (var patch in parameters.OriginalMap.Patches.Values)
+        {
+            patches.Add(AutoEvoPatch.Live(patch));
+        }
 
-        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate = parameters.OriginalMap.Patches;
+        var speciesToSimulate = CopyInitialPopulationsToResults(parameters, patches);
 
         // Skip patches not configured to be simulated in order to run faster
         if (parameters.PatchesToRun.Count > 0)
         {
-            patchesToSimulate = patchesToSimulate.Where(p => parameters.PatchesToRun.Contains(p.Value));
+            patches.RemoveAll(p => !parameters.PatchesToRun.Contains(p.Key));
         }
-
-        var patchesList = patchesToSimulate.ToList();
 
         while (parameters.StepsLeft > 0)
         {
-            RunSimulationStep(parameters, speciesToSimulate, patchesList, insertWorkMemory, workMemory, random, cache);
+            RunSimulationStep(parameters, speciesToSimulate, patches, insertWorkMemory, workMemory, random, cache);
             --parameters.StepsLeft;
         }
     }
@@ -52,14 +54,7 @@ public static class MichePopulation
     public static int CalculatePopulationInPatch(Species species, Miche miche,
         Patch patch, SimulationCache cache)
     {
-        // This assumes that only leaf nodes have energy, but the way Selection Pressures are designed
-        // this is a reasonable assumption
-        var leafNodes = new List<Miche>();
-        miche.GetLeafNodes(leafNodes, x => x.Occupant == species);
-
-        var individualCost = CalculateIndividualCost(species, patch.Biome, cache);
-
-        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
+        return CalculatePopulationInPatch(species, miche, AutoEvoPatch.Live(patch), cache);
     }
 
     /// <summary>
@@ -81,10 +76,24 @@ public static class MichePopulation
             * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
     }
 
+    internal static int CalculatePopulationInPatch(Species species, Miche miche, AutoEvoPatch patch,
+        SimulationCache cache)
+    {
+        // This assumes that only leaf nodes have energy, but the way Selection Pressures are designed
+        // this is a reasonable assumption
+        var leafNodes = new List<Miche>();
+        miche.GetLeafNodes(leafNodes, x => x.Occupant == species);
+
+        var individualCost = CalculateIndividualCost(species, patch.Biome, cache);
+
+        return (int)(leafNodes.Sum(x => patch.GetEnergy(x.Pressure)) / individualCost);
+    }
+
     /// <summary>
     ///   Populates the initial population numbers taking config into account
     /// </summary>
-    private static List<Species> CopyInitialPopulationsToResults(SimulationConfiguration parameters)
+    private static List<Species> CopyInitialPopulationsToResults(SimulationConfiguration parameters,
+        List<AutoEvoPatch> patches)
     {
         var species = new List<Species>();
 
@@ -118,8 +127,6 @@ public static class MichePopulation
         }
 
         // Prepare population numbers for each patch for each of the included species
-        var patches = parameters.OriginalMap.Patches.Values;
-
         var results = parameters.Results;
 
         var ensuredPatches = parameters.EnsurePatchesHaveSpecies;
@@ -130,7 +137,7 @@ public static class MichePopulation
 
             foreach (var patch in patches)
             {
-                long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
+                long currentPopulation = patch.PopulationOf(currentSpecies);
 
                 // If this is a replacement species, this instead takes the original species' population
                 if (currentPopulation == 0)
@@ -148,7 +155,7 @@ public static class MichePopulation
 
                     if (isExtraFor != null)
                     {
-                        currentPopulation = patch.GetSpeciesSimulationPopulation(isExtraFor);
+                        currentPopulation = patch.PopulationOf(isExtraFor);
                     }
                 }
 
@@ -157,11 +164,11 @@ public static class MichePopulation
                 {
                     if (migration.Item1 == currentSpecies)
                     {
-                        if (migration.Item2.From == patch)
+                        if (migration.Item2.From == patch.Key)
                         {
                             currentPopulation -= migration.Item2.Population;
                         }
-                        else if (migration.Item2.To == patch)
+                        else if (migration.Item2.To == patch.Key)
                         {
                             currentPopulation += migration.Item2.Population;
                         }
@@ -171,7 +178,8 @@ public static class MichePopulation
                 // Apply ensured population amounts for the simulation to add species to patches it is not normally in
                 if (ensuredPatches != null)
                 {
-                    if (ensuredPatches.TryGetValue(patch, out var speciesToEnsure) && speciesToEnsure == currentSpecies)
+                    if (ensuredPatches.TryGetValue(patch.Key, out var speciesToEnsure) &&
+                        speciesToEnsure == currentSpecies)
                     {
                         currentPopulation = Math.Max(currentPopulation,
                             Constants.AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION);
@@ -180,7 +188,7 @@ public static class MichePopulation
 
                 // All species, even ones not in a patch, need to have their population numbers added
                 // as the simulation expects to be able to get the populations
-                currentResult.NewPopulationInPatches[patch] = currentPopulation;
+                currentResult.NewPopulationInPatches[patch.Key] = currentPopulation;
             }
         }
 
@@ -188,23 +196,20 @@ public static class MichePopulation
     }
 
     private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
-        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Miche.InsertWorkingMemory insertWorkingMemory,
+        List<AutoEvoPatch> patchesToSimulate, Miche.InsertWorkingMemory insertWorkingMemory,
         WorkingMemory workMemory, Random random, SimulationCache cache)
     {
-        foreach (var entry in patchesToSimulate)
+        foreach (var patch in patchesToSimulate)
         {
-            // Simulate the species in each patch taking into account the already computed populations
-            SimulatePatchStep(parameters, entry.Value,
-                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), insertWorkingMemory,
-                workMemory, random, cache);
+            SimulatePatchStep(parameters, patch, species, insertWorkingMemory, workMemory, random, cache);
         }
     }
 
     /// <summary>
     ///   The heart of the simulation that handles the processed parameters and calculates future populations.
     /// </summary>
-    private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, Miche.InsertWorkingMemory insertWorkingMemory, WorkingMemory workMemory,
+    private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, in AutoEvoPatch patch,
+        List<Species> speciesToSimulate, Miche.InsertWorkingMemory insertWorkingMemory, WorkingMemory workMemory,
         Random random, SimulationCache cache)
     {
         _ = random;
@@ -212,7 +217,7 @@ public static class MichePopulation
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
-        if (!TryPreparePatchStep(simulationConfiguration, patch, genericSpecies, populations, insertWorkingMemory,
+        if (!TryPreparePatchStep(simulationConfiguration, patch, speciesToSimulate, populations, insertWorkingMemory,
                 workMemory, cache))
         {
             return;
@@ -236,19 +241,22 @@ public static class MichePopulation
     ///   Prepares the patch species and rebuilds leaf and energy scratch when there are species to simulate.
     /// </summary>
     /// <returns>False only when there are no species in the patch.</returns>
-    private static bool TryPreparePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, RunResults populations, Miche.InsertWorkingMemory insertWorkingMemory,
+    private static bool TryPreparePatchStep(SimulationConfiguration simulationConfiguration, in AutoEvoPatch patch,
+        List<Species> speciesToSimulate, RunResults populations, Miche.InsertWorkingMemory insertWorkingMemory,
         WorkingMemory workMemory, SimulationCache cache)
     {
         // Note that this modifies the miche tree while simulating
-        var miche = populations.GetModifiableMicheForPatch(patch);
+        var miche = populations.GetModifiableMicheForPatch(patch.Key);
 
         var species = workMemory.Species;
         species.Clear();
 
-        // TODO: switch this to something else that doesn't require a memory allocation to iterate
-        foreach (var currentSpecies in genericSpecies)
+        // Keep the map-wide species order, using this step's population in the patch.
+        foreach (var currentSpecies in speciesToSimulate)
         {
+            if (populations.GetPopulationInPatch(currentSpecies, patch.Key) <= 0)
+                continue;
+
             if (simulationConfiguration.ReplacedSpecies.TryGetValue(currentSpecies, out var replacement))
             {
                 miche.InsertSpecies(replacement, patch, null, cache, false, insertWorkingMemory);
@@ -285,8 +293,8 @@ public static class MichePopulation
     ///   Rebuilds per-leaf scoring scratch and stores species scores in working memory.
     /// </summary>
     /// <returns>Total score across the species in this leaf.</returns>
-    private static float CalculateLeafSpeciesScores(SimulationConfiguration simulationConfiguration, Patch patch,
-        Miche node, WorkingMemory workMemory, SimulationCache cache)
+    private static float CalculateLeafSpeciesScores(SimulationConfiguration simulationConfiguration,
+        in AutoEvoPatch patch, Miche node, WorkingMemory workMemory, SimulationCache cache)
     {
         var species = workMemory.Species;
         var currentBackTraversal = workMemory.BackTraversal;
@@ -372,14 +380,14 @@ public static class MichePopulation
         return totalScore;
     }
 
-    private static void AccumulateLeafEnergy(RunResults populations, Patch patch, Miche node, bool trackEnergy,
-        WorkingMemory workMemory, float totalScore)
+    private static void AccumulateLeafEnergy(RunResults populations, in AutoEvoPatch patch, Miche node,
+        bool trackEnergy, WorkingMemory workMemory, float totalScore)
     {
         var species = workMemory.Species;
         var scoresDictionary = workMemory.Scores;
         var energyDictionary = workMemory.Energy;
 
-        var availableEnergy = node.Pressure.GetEnergy(patch);
+        var availableEnergy = patch.GetEnergy(node.Pressure);
 
         foreach (var currentSpecies in species)
         {
@@ -387,7 +395,7 @@ public static class MichePopulation
 
             if (trackEnergy && micheEnergy > 0)
             {
-                populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
+                populations.AddTrackedEnergyForSpecies(currentSpecies, patch.Key, node.Pressure,
                     scoresDictionary[currentSpecies], totalScore, micheEnergy, availableEnergy);
             }
 
@@ -395,8 +403,9 @@ public static class MichePopulation
         }
     }
 
-    private static void WritePatchPopulationResults(SimulationConfiguration simulationConfiguration, Patch patch,
-        RunResults populations, bool trackEnergy, WorkingMemory workMemory, SimulationCache cache)
+    private static void WritePatchPopulationResults(SimulationConfiguration simulationConfiguration,
+        in AutoEvoPatch patch, RunResults populations, bool trackEnergy, WorkingMemory workMemory,
+        SimulationCache cache)
     {
         var species = workMemory.Species;
         var leafNodes = workMemory.LeafNodes;
@@ -406,8 +415,8 @@ public static class MichePopulation
         {
             if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
             {
-                var population = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch);
-                populations.AddPopulationResultForSpecies(currentSpecies, patch, population);
+                var population = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch.Key);
+                populations.AddPopulationResultForSpecies(currentSpecies, patch.Key, population);
                 continue;
             }
 
@@ -437,11 +446,11 @@ public static class MichePopulation
 
             if (trackEnergy)
             {
-                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch,
+                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch.Key,
                     energyDictionary[currentSpecies], individualCost);
             }
 
-            populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
+            populations.AddPopulationResultForSpecies(currentSpecies, patch.Key, newPopulation);
         }
     }
 

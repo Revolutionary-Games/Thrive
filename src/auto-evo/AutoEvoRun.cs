@@ -459,9 +459,10 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, GlobalCache));
+            var patch = AutoEvoPatch.Live(entry.Value);
+            steps.Enqueue(new GenerateMiche(patch, generateMicheCache, GlobalCache));
 
-            foreach (var species in entry.Value.SpeciesInPatch)
+            foreach (var species in patch.Residents)
             {
                 allSpecies.Add(species.Key);
             }

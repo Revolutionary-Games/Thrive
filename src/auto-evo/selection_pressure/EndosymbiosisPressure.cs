@@ -63,7 +63,8 @@ public class EndosymbiosisPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        if (!patch.SpeciesInPatch.TryGetValue(Host, out long population) || population <= 0)
+        var population = AutoEvoPatch.Live(patch).PopulationOf(Host);
+        if (population <= 0)
             return 0;
 
         return population * Endosymbiont.GetPredationTargetSizeFactor();
