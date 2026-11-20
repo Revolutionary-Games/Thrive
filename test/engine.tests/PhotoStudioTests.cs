@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 using GdUnit4;
 using Godot;
 using static GdUnit4.Assertions;
@@ -63,6 +65,101 @@ public class PhotoStudioTests
 
         // Complete the image task's cleanup step before leaving the singleton in use by other tests.
         photoStudio._Process(1.0 / 60);
+    }
+
+    [TestCase]
+    public void SceneStageFailures_DoNotBlockFollowingRequest()
+    {
+        var photoStudio = PhotoStudio.Instance;
+        var oldBackgroundLoad = photoStudio.UseBackgroundSceneLoad;
+        var oldBackgroundInstance = photoStudio.UseBackgroundSceneInstance;
+
+        try
+        {
+            foreach (var background in new[] { false, true })
+            {
+                photoStudio.UseBackgroundSceneLoad = background;
+                photoStudio.UseBackgroundSceneInstance = background;
+
+                for (int failureStage = 0; failureStage < 3; ++failureStage)
+                {
+                    var broken = new TestScenePhotographable(failureStage);
+                    var following = new TestSimulationPhotographable(false,
+                        unchecked((ulong)Guid.NewGuid().GetHashCode()));
+                    var brokenTask = photoStudio.GenerateImage(broken, int.MinValue, 16);
+                    var followingTask = photoStudio.GenerateImage(following, int.MinValue + 1, 16);
+
+                    var timeout = Stopwatch.StartNew();
+                    while (!followingTask.Finished && !followingTask.Failed && timeout.Elapsed.TotalSeconds < 10)
+                    {
+                        RenderingServer.ForceDraw(false);
+                        photoStudio._Process(1.0 / 60);
+
+                        // Let background loading and instantiation run while manually driving the main thread.
+                        Thread.Sleep(1);
+                    }
+
+                    // Complete cleanup even when assertions below fail.
+                    photoStudio._Process(1.0 / 60);
+                    AssertThat(brokenTask.Failed).IsTrue();
+                    AssertThat(broken.FailureCount).IsEqual(1);
+                    AssertThat(following.SetupCount).IsEqual(1);
+                    AssertThat(followingTask.Finished || followingTask.Failed).IsTrue();
+                }
+            }
+        }
+        finally
+        {
+            photoStudio.UseBackgroundSceneLoad = oldBackgroundLoad;
+            photoStudio.UseBackgroundSceneInstance = oldBackgroundInstance;
+        }
+    }
+
+    private sealed class TestScenePhotographable : IScenePhotographable
+    {
+        private readonly int failureStage;
+        private readonly ulong hash = unchecked((ulong)Guid.NewGuid().GetHashCode());
+
+        public TestScenePhotographable(int failureStage)
+        {
+            this.failureStage = failureStage;
+        }
+
+        public int FailureCount { get; private set; }
+
+        public string SceneToPhotographPath
+        {
+            get
+            {
+                FailAtStage(0);
+                return "res://src/microbe_stage/CellHexesPhotoBuilder.tscn";
+            }
+        }
+
+        public void ApplySceneParameters(Node3D instancedScene)
+        {
+            FailAtStage(1);
+        }
+
+        public Vector3 CalculatePhotographDistance(Node3D photographableObjectState)
+        {
+            FailAtStage(2);
+            return new Vector3(0, 0, 10);
+        }
+
+        public ulong GetVisualHashCode()
+        {
+            return hash;
+        }
+
+        private void FailAtStage(int stage)
+        {
+            if (stage != failureStage)
+                return;
+
+            ++FailureCount;
+            throw new InvalidOperationException("Expected scene photograph failure");
+        }
     }
 
     private sealed class TestSimulationPhotographable : ISimulationPhotographable

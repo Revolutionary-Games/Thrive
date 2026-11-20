@@ -35,7 +35,7 @@ public partial class PhotoStudio : SubViewport
     /// </summary>
     private int lastTaskIndex;
 
-    private bool waitingForBackgroundOperation;
+    private Task<Exception?>? backgroundOperation;
 
 #pragma warning disable CA2213
 
@@ -158,219 +158,229 @@ public partial class PhotoStudio : SubViewport
             }
         }
 
-        switch (currentTaskStep)
+        try
         {
-            case Step.NoTask:
-                break;
-            case Step.LoadScene:
+            if (backgroundOperation != null)
             {
-                if (TaskUsesWorldSimulation)
-                {
-                    LoadCurrentTaskWorldSimulation();
-                }
-                else if (UseBackgroundSceneLoad)
-                {
-                    if (!waitingForBackgroundOperation)
-                    {
-                        waitingForBackgroundOperation = true;
-                        TaskExecutor.Instance.AddTask(new Task(LoadCurrentTaskScene));
-                    }
-                }
-                else
-                {
-                    LoadCurrentTaskScene();
-                }
+                if (!backgroundOperation.IsCompleted)
+                    return;
 
-                break;
+                var failure = backgroundOperation.Result;
+                backgroundOperation = null;
+                if (failure != null)
+                    throw new InvalidOperationException("Background photograph operation failed", failure);
             }
 
-            case Step.InstanceScene:
+            switch (currentTaskStep)
             {
-                if (TaskUsesWorldSimulation)
+                case Step.NoTask:
+                    break;
+                case Step.LoadScene:
                 {
-                    // Make sure the used simulation is visible
-                    simulationWorldRoots[previouslyUsedWorldSimulation!].Visible = true;
-
-                    // Remove the old scene if a scene type thing was last photographed
-                    loadedTaskScene = null;
-                    instancedScene?.QueueFree();
-                    instancedScene = null;
-
-                    currentTaskStep = Step.ApplySceneParameters;
-                }
-                else if (UseBackgroundSceneInstance)
-                {
-                    if (!waitingForBackgroundOperation)
+                    if (TaskUsesWorldSimulation)
                     {
-                        waitingForBackgroundOperation = true;
-                        TaskExecutor.Instance.AddTask(new Task(InstanceCurrentScene));
+                        LoadCurrentTaskWorldSimulation();
                     }
-                }
-                else
-                {
-                    InstanceCurrentScene();
+                    else if (UseBackgroundSceneLoad)
+                    {
+                        StartBackgroundOperation(LoadCurrentTaskScene);
+                    }
+                    else
+                    {
+                        LoadCurrentTaskScene();
+                    }
+
+                    break;
                 }
 
-                break;
-            }
-
-            case Step.ApplySceneParameters:
-            {
-                if (TaskUsesWorldSimulation)
+                case Step.InstanceScene:
                 {
-                    try
+                    if (TaskUsesWorldSimulation)
+                    {
+                        // Make sure the used simulation is visible
+                        simulationWorldRoots[previouslyUsedWorldSimulation!].Visible = true;
+
+                        // Remove the old scene if a scene type thing was last photographed
+                        loadedTaskScene = null;
+                        instancedScene?.QueueFree();
+                        instancedScene = null;
+
+                        currentTaskStep = Step.ApplySceneParameters;
+                    }
+                    else if (UseBackgroundSceneInstance)
+                    {
+                        StartBackgroundOperation(InstanceCurrentScene);
+                    }
+                    else
+                    {
+                        InstanceCurrentScene();
+                    }
+
+                    break;
+                }
+
+                case Step.ApplySceneParameters:
+                {
+                    if (TaskUsesWorldSimulation)
                     {
                         currentTask!.SimulationPhotographable!.SetupWorldEntities(previouslyUsedWorldSimulation!);
                     }
-                    catch (Exception e)
+                    else
                     {
-                        GD.PrintErr("PhotoStudio failed to set up a simulation photograph: ", e);
+                        // If a simulation is used, hide that
+                        if (previouslyUsedWorldSimulation != null)
+                        {
+                            simulationWorldRoots[previouslyUsedWorldSimulation].Visible = false;
+                            previouslyUsedWorldSimulation = null;
+                        }
+
+                        currentTask!.ScenePhotographable!.ApplySceneParameters(instancedScene ??
+                            throw new Exception("scene was not instanced when expected"));
+                    }
+
+                    currentTaskStep = Step.AttachScene;
+                    break;
+                }
+
+                case Step.AttachScene:
+                {
+                    if (TaskUsesWorldSimulation)
+                    {
+                        // Run a step to start things happening with the simulation
+                        previouslyUsedWorldSimulation!.ProcessLogic(SimulationWorldTimeAdvanceStep);
+                    }
+                    else
+                    {
+                        // Only need to swap scenes if the new image is of a different type of thing than what we had
+                        // previously
+                        if (!previousSceneWasCorrect)
+                        {
+                            renderedObjectHolder.FreeChildren();
+                            renderedObjectHolder.AddChild(instancedScene);
+                        }
+                    }
+
+                    Size = new Vector2I(currentTask!.DesiredResolution, currentTask.DesiredResolution);
+
+                    currentTaskStep = Step.WaitSceneStabilize;
+                    break;
+                }
+
+                case Step.WaitSceneStabilize:
+                {
+                    if (TaskUsesWorldSimulation)
+                    {
+                        // Wait until simulation no longer has any pending operations
+                        if (previouslyUsedWorldSimulation!.HasSystemsWithPendingOperations() ||
+                            !currentTask!.SimulationPhotographable!.StateHasStabilized(previouslyUsedWorldSimulation))
+                        {
+                            previouslyUsedWorldSimulation!.ProcessLogic(SimulationWorldTimeAdvanceStep);
+                        }
+                        else
+                        {
+                            // Simulation ready to proceed
+
+                            // Now run the one step with logic frame updates as well in the simulation
+                            previouslyUsedWorldSimulation.ProcessAll(SimulationWorldTimeAdvanceStep);
+
+                            currentTaskStep = Step.PositionCamera;
+                        }
+                    }
+                    else
+                    {
+                        // Need to wait one frame for the objects to initialize
+                        currentTaskStep = Step.PositionCamera;
+                    }
+
+                    break;
+                }
+
+                case Step.PositionCamera:
+                {
+                    if (TaskUsesWorldSimulation)
+                    {
+                        camera.Position =
+                            currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
+                                previouslyUsedWorldSimulation!);
+                    }
+                    else
+                    {
+                        camera.Position =
+                            currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!);
+                    }
+
+                    currentTaskStep = Step.Render;
+                    break;
+                }
+
+                case Step.Render:
+                {
+                    // Cause a render to happen on this frame from our camera
+                    RenderTargetUpdateMode = UpdateMode.Once;
+                    currentTaskStep = Step.CaptureImage;
+                    break;
+                }
+
+                case Step.CaptureImage:
+                {
+                    renderedImage = GetTexture().GetImage();
+                    if (renderedImage == null)
+                    {
+                        GD.PrintErr("PhotoStudio failed to capture a rendered image");
                         currentTask!.MarkFailed();
                         currentTask = null;
                         currentTaskStep = Step.Cleanup;
                         break;
                     }
-                }
-                else
-                {
-                    // If a simulation is used, hide that
-                    if (previouslyUsedWorldSimulation != null)
-                    {
-                        simulationWorldRoots[previouslyUsedWorldSimulation].Visible = false;
-                        previouslyUsedWorldSimulation = null;
-                    }
 
-                    currentTask!.ScenePhotographable!.ApplySceneParameters(instancedScene ??
-                        throw new Exception("scene was not instanced when expected"));
-                }
-
-                currentTaskStep = Step.AttachScene;
-                break;
-            }
-
-            case Step.AttachScene:
-            {
-                if (TaskUsesWorldSimulation)
-                {
-                    // Run a step to start things happening with the simulation
-                    previouslyUsedWorldSimulation!.ProcessLogic(SimulationWorldTimeAdvanceStep);
-                }
-                else
-                {
-                    // Only need to swap scenes if the new image is of a different type of thing than what we had
-                    // previously
-                    if (!previousSceneWasCorrect)
-                    {
-                        renderedObjectHolder.FreeChildren();
-                        renderedObjectHolder.AddChild(instancedScene);
-                    }
-                }
-
-                Size = new Vector2I(currentTask!.DesiredResolution, currentTask.DesiredResolution);
-
-                currentTaskStep = Step.WaitSceneStabilize;
-                break;
-            }
-
-            case Step.WaitSceneStabilize:
-            {
-                if (TaskUsesWorldSimulation)
-                {
-                    // Wait until simulation no longer has any pending operations
-                    if (previouslyUsedWorldSimulation!.HasSystemsWithPendingOperations() ||
-                        !currentTask!.SimulationPhotographable!.StateHasStabilized(previouslyUsedWorldSimulation))
-                    {
-                        previouslyUsedWorldSimulation!.ProcessLogic(SimulationWorldTimeAdvanceStep);
-                    }
-                    else
-                    {
-                        // Simulation ready to proceed
-
-                        // Now run the one step with logic frame updates as well in the simulation
-                        previouslyUsedWorldSimulation.ProcessAll(SimulationWorldTimeAdvanceStep);
-
-                        currentTaskStep = Step.PositionCamera;
-                    }
-                }
-                else
-                {
-                    // Need to wait one frame for the objects to initialize
-                    currentTaskStep = Step.PositionCamera;
-                }
-
-                break;
-            }
-
-            case Step.PositionCamera:
-            {
-                if (TaskUsesWorldSimulation)
-                {
-                    camera.Position =
-                        currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
-                            previouslyUsedWorldSimulation!);
-                }
-                else
-                {
-                    camera.Position = currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!);
-                }
-
-                currentTaskStep = Step.Render;
-                break;
-            }
-
-            case Step.Render:
-            {
-                // Cause a render to happen on this frame from our camera
-                RenderTargetUpdateMode = UpdateMode.Once;
-                currentTaskStep = Step.CaptureImage;
-                break;
-            }
-
-            case Step.CaptureImage:
-            {
-                renderedImage = GetTexture().GetImage();
-                if (renderedImage == null)
-                {
-                    GD.PrintErr("PhotoStudio failed to capture a rendered image");
-                    currentTask!.MarkFailed();
-                    currentTask = null;
-                    currentTaskStep = Step.Cleanup;
+                    currentTaskStep = Step.Save;
                     break;
                 }
 
-                currentTaskStep = Step.Save;
-                break;
+                case Step.Save:
+                {
+                    renderedImage!.Convert(Image.Format.Rgba8);
+
+                    // TODO: should mipmaps be optional?
+                    renderedImage.GenerateMipmaps();
+
+                    var texture = ImageTexture.CreateFromImage(renderedImage);
+
+                    currentTask!.OnFinished(texture, renderedImage);
+                    currentTask = null;
+
+                    currentTaskStep = Step.Cleanup;
+                    renderedImage = null;
+
+                    break;
+                }
+
+                case Step.Cleanup:
+                {
+                    // Cleanup used world simulation (if any)
+                    previouslyUsedWorldSimulation?.DestroyAllEntities();
+
+                    currentTaskStep = Step.NoTask;
+                    break;
+                }
+
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+        }
+        catch (Exception e) when (currentTask != null)
+        {
+            GD.PrintErr("PhotoStudio failed at step ", currentTaskStep, ": ", e);
+            currentTask.MarkFailed();
+            currentTask = null;
+            renderedImage = null;
 
-            case Step.Save:
-            {
-                renderedImage!.Convert(Image.Format.Rgba8);
-
-                // TODO: should mipmaps be optional?
-                renderedImage.GenerateMipmaps();
-
-                var texture = ImageTexture.CreateFromImage(renderedImage);
-
-                currentTask!.OnFinished(texture, renderedImage);
-                currentTask = null;
-
-                currentTaskStep = Step.Cleanup;
-                renderedImage = null;
-
-                break;
-            }
-
-            case Step.Cleanup:
-            {
-                // Cleanup used world simulation (if any)
-                previouslyUsedWorldSimulation?.DestroyAllEntities();
-
-                currentTaskStep = Step.NoTask;
-                break;
-            }
-
-            default:
-                throw new ArgumentOutOfRangeException();
+            // A partially configured scene must not be reused by the next request.
+            loadedTaskScene = null;
+            taskScene = null;
+            instancedScene?.Free();
+            instancedScene = null;
+            currentTaskStep = Step.Cleanup;
         }
 
         base._Process(delta);
@@ -470,6 +480,27 @@ public partial class PhotoStudio : SubViewport
         ++lastTaskIndex;
     }
 
+    /// <summary>
+    ///   Reports background failures on the main thread before advancing the photograph pipeline.
+    /// </summary>
+    private void StartBackgroundOperation(Action operation)
+    {
+        backgroundOperation = new Task<Exception?>(() =>
+        {
+            try
+            {
+                operation();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+        });
+
+        TaskExecutor.Instance.AddTask(backgroundOperation);
+    }
+
     private void LoadCurrentTaskScene()
     {
         var wantedScenePath = currentTask!.ScenePhotographable!.SceneToPhotographPath;
@@ -486,15 +517,12 @@ public partial class PhotoStudio : SubViewport
             previousSceneWasCorrect = false;
             currentTaskStep = Step.InstanceScene;
         }
-
-        waitingForBackgroundOperation = false;
     }
 
     private void InstanceCurrentScene()
     {
         instancedScene = taskScene!.Instantiate<Node3D>();
 
-        waitingForBackgroundOperation = false;
         currentTaskStep = Step.ApplySceneParameters;
     }
 
