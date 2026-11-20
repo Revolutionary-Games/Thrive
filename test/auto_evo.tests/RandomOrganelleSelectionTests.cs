@@ -35,9 +35,9 @@ public class RandomOrganelleSelectionTests
 
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         var parent = CreateMicrobe();
-        AssertThat(parent.Organelles.Any(o => o.Definition == nucleus)).IsFalse();
+        AssertThat(parent.Organelles.Any(o => ReferenceEquals(o.Definition, nucleus))).IsFalse();
         AssertThat(nucleus.MPCost > Constants.ORGANELLE_CHEAPEST_COST).IsTrue();
-        var mutants = new AddOrganelleAnywhere(o => o == nucleus)
+        var mutants = new AddOrganelleAnywhere(o => ReferenceEquals(o, nucleus))
             .MutationsOf(parent, Constants.ORGANELLE_CHEAPEST_COST, false, random, biome);
         AssertThat(mutants?.Count ?? 0).IsEqual(0);
     }
