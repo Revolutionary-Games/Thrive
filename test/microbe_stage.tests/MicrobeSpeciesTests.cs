@@ -66,6 +66,25 @@ public class MicrobeSpeciesTests
     }
 
     [TestCase]
+    public void OnEditedAllowsNucleusOnlySpeciesWithNoInitialCompounds()
+    {
+        var parameters = SimulationParameters.Instance;
+        var species = new MicrobeSpecies(37, "Nucleus", "only")
+        {
+            IsBacteria = false,
+            MembraneType = parameters.GetMembrane("single"),
+        };
+        species.Organelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("nucleus"), new Hex(0, 0), 0));
+        species.InitialCompounds.Add(Compound.Glucose, 100);
+
+        species.OnEdited();
+
+        AssertThat(species.InitialCompounds.Count).IsEqual(1);
+        AssertThat(species.InitialCompounds.SumValues()).IsEqual(0);
+        AssertThat(species.IsBacteria).IsFalse();
+    }
+
+    [TestCase]
     public void DeserializedHashIsConsistent()
     {
         const ulong desiredHash = 1311834546291663092;

@@ -79,7 +79,11 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     public override void _Process(double delta)
     {
-        if (texturizationTask?.Finished == true)
+        if (texturizationTask?.Failed == true)
+        {
+            texturizationTask = null;
+        }
+        else if (texturizationTask?.Finished == true)
         {
             if (material == null)
             {

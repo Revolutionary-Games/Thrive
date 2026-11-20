@@ -17,7 +17,7 @@ public partial class CellHexesPreview : PhotographablePreview
         {
             var newHash = GetVisualHash(value);
 
-            if (newHash == speciesVisualHash)
+            if (newHash == speciesVisualHash && !PreviewFailed)
                 return;
 
             previewSpecies = value;

@@ -16,7 +16,7 @@ public partial class SpeciesPreview : PhotographablePreview
         {
             var newHash = value?.GetVisualHashCode() ?? 0UL;
 
-            if (newHash == speciesVisualHash)
+            if (newHash == speciesVisualHash && !PreviewFailed)
                 return;
 
             previewSpecies = value;

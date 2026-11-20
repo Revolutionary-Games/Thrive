@@ -105,7 +105,13 @@ public partial class OrganelleInfoBox : PanelContainer
 
         if (modelImageTask != null)
         {
-            if (modelImageTask.Finished)
+            if (modelImageTask.Failed)
+            {
+                ModelTexture = null;
+                modelImageTask = null;
+                finishedLoadingModelImage = true;
+            }
+            else if (modelImageTask.Finished)
             {
                 ModelTexture = modelImageTask.FinalImage;
                 finishedLoadingModelImage = true;
@@ -186,10 +192,10 @@ public partial class OrganelleInfoBox : PanelContainer
 
     private void UpdateModelImage()
     {
-        if (model == null || modelTexture == null)
+        if (model == null)
             return;
 
-        model.Visible = true;
+        model.Visible = modelTexture != null;
         model.Texture = modelTexture;
     }
 }
