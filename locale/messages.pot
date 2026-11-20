@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-18 14:59+0200\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1059,27 +1059,27 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:543
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:552
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:546
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:555
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:535
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:544
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:545
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:554
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:542
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:551
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:544
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:553
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1020
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr ""
@@ -5906,7 +5906,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:546
+#: ../src/microbe_stage/MicrobeSpecies.cs:563
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6436,7 +6436,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1106
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1145
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6704,9 +6704,9 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.tscn:748
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:489
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:440
-#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:145
-#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:154
-#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:163
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:151
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:160
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:169
 msgid "NONE"
 msgstr ""
 
@@ -7409,7 +7409,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.cs:874
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:576
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:806
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:813
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:62
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:74
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:86
@@ -9769,8 +9769,8 @@ msgstr ""
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:551
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1109
+#: ../src/microbe_stage/MicrobeSpecies.cs:568
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1148
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -10511,7 +10511,7 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
 #: ../src/gui_common/tooltip/ToolTipManager.cs:831
 #: ../src/gui_common/tooltip/ToolTipManager.cs:846
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:803
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:810
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:102
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:110
 #: ../src/microbe_stage/editor/ToleranceWarningsPanel.cs:129
@@ -10526,11 +10526,11 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:804
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:811
 msgid "VALUE_WITH_UNIT_PLUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:805
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:812
 msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
