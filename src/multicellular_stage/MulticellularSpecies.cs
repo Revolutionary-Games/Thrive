@@ -795,10 +795,21 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         var totalOrganelles = 0;
 
-        int count = ModifiableGameplayCells.Count;
-        for (int i = 0; i < count; ++i)
+        if (modifiableEditorCells != null)
         {
-            totalOrganelles += ModifiableGameplayCells[i].Organelles.Count;
+            var count = modifiableEditorCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                totalOrganelles += modifiableEditorCells[i].Data!.ModifiableOrganelles.Count;
+            }
+        }
+        else
+        {
+            var count = ModifiableGameplayCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                totalOrganelles += ModifiableGameplayCells[i].Organelles.Count;
+            }
         }
 
         return totalOrganelles;
