@@ -156,7 +156,13 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         base.OnAttemptedInAutoEvo(refreshCache, updateInitialCompounds);
 
         if (updateInitialCompounds)
+        {
             UpdateInitialCompounds();
+
+            if (InitialCompounds.Count < 1)
+                throw new InvalidOperationException("Initial compounds initialization failed");
+        }
+
         CalculateBrainPower();
         CalculateMuscularPower();
 
@@ -192,6 +198,9 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         {
             SetInitialCompoundsForDefault();
         }
+
+        // Note if the above is changed, we might need to add the safety check against empty initial compounds
+        // (if there are no processes), like there is for earlier stage species objects.
     }
 
     public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)

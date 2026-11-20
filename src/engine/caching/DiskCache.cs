@@ -297,9 +297,10 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     GD.Print("Replacing cache item that is not in normal state, need to create a new holding object");
                     cacheItem = GetCacheItemEntryToUse(path, CacheItemType.Png);
                 }
-                else
+                else if (cacheItem.WrittenToDisk)
                 {
-                    // Need to delete the previous item
+                    // Only delete if the previous item had a file. In particular, failed image tasks never write
+                    // one, and a deferred deletion could instead remove the replacement image after it is saved.
                     QueueDeleteItemPath(cacheItem);
                 }
 
@@ -721,7 +722,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
     private void OnItemRemovedFromInfo(CacheItemInfo value)
     {
-        QueueDeleteItemPath(value);
+        if (value.WrittenToDisk)
+            QueueDeleteItemPath(value);
 
         // If the object is currently being processed, don't put it into the reuse buffer
         if (value.Status != CacheItemInfo.OperationStatus.None)
