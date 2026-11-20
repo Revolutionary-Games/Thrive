@@ -29,7 +29,13 @@ public partial class GalleryCardModel : GalleryCard
 
         if (imageTask != null)
         {
-            if (imageTask.Finished)
+            if (imageTask.Failed)
+            {
+                Thumbnail = MissingTexture;
+                imageTask = null;
+                finishedLoadingImage = true;
+            }
+            else if (imageTask.Finished)
             {
                 Thumbnail = imageTask.FinalImage;
                 finishedLoadingImage = true;
