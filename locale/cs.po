@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-11-18 14:59+0200\n"
-"PO-Revision-Date: 2026-10-23 04:23+0000\n"
-"Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
+"PO-Revision-Date: 2026-11-19 18:55+0000\n"
+"Last-Translator: ProtoDevGames <noreply+280@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -131,12 +131,11 @@ msgstr "Aerobní dýchání"
 msgid "AGENTS"
 msgstr "Činidla"
 
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Status:"
+msgstr "Činidla:"
 
 msgid "AGENT_NAME"
-msgstr "{0} Agentka"
+msgstr "{0} Činidlo"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -146,7 +145,7 @@ msgstr ""
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
 msgid "AGGRESSIVE"
-msgstr "Agresivnost"
+msgstr "Agresivita"
 
 msgid "AI_MUTATION_RATE"
 msgstr "Rychlost mutace AI"
@@ -180,9 +179,8 @@ msgstr "Alt"
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr "Současná vlákna:"
 
-#, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ". Stupnice hodnocení"
+msgstr "Alternativní časová škála"
 
 msgid "ALWAYS_RESET_ENVIRONMENT"
 msgstr "Vždy resetovat životní prostředí světa při odchodu z editoru"
@@ -319,7 +317,7 @@ msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr "Bez glukózy"
 
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "bez sirovodíku"
+msgstr "Bez sirovodíku"
 
 msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr "Bez železa"
@@ -512,9 +510,8 @@ msgstr "Batypelagiál (hloubka oceánu do 4000m)"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Stát se makroskopickým ({0}/{1})"
 
-#, fuzzy
 msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
-msgstr "Stát se makroskopickým ({0}/{1})"
+msgstr "Nelze se stát makroskopickým"
 
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stát se mnohobuněčným ({0}/{1})"
@@ -648,10 +645,10 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Vytvořeno týmem Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr "maximální čas pro uchování věcí na disku před smazáním"
+msgstr "Maximální čas pro uchování věcí na disku před smazáním"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr "Maximální počet položek uchovávaných v paměti."
+msgstr "Maximální počet položek uchovávaných v paměti"
 
 msgid "CACHE_TIME_MEMORY"
 msgstr "Jak dlouho bude uchovávána mezipaměť"
@@ -698,7 +695,7 @@ msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Nelze umístit masovou kouli do jeho stromu potomků"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr "mozková kapacita je nyní příliš nízká na to, abyste se udrželi v současné fázi. Vracení zpět ve fázích není v současné době povoleno, pro pokračování prosím zvyšte mozkovou kapacitu."
+msgstr "Mozková kapacita je nyní příliš nízká na to, abyste se udrželi v současné fázi. Vracení zpět ve fázích není v současné době povoleno, pro pokračování prosím zvyšte mozkovou kapacitu."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "Nelze snížit mozkovou kapacitu, abyste se vrátili zpět do fáze"
@@ -811,9 +808,8 @@ msgstr ""
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
 
-#, fuzzy
 msgid "CELL_SIZE"
-msgstr "Buňky"
+msgstr "Velikost buňky"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -837,9 +833,8 @@ msgstr "Hodnota použita pro generování světa, která musí být pozitivní c
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
 
-#, fuzzy
 msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
-msgstr "Soubor se jménem ({0}) již existuje. Přejete si jej nahradit?"
+msgstr "Buňka s tímto jménem již existuje"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Poznámky ke změnám jsou příliš dlouhé"
@@ -847,9 +842,8 @@ msgstr "Poznámky ke změnám jsou příliš dlouhé"
 msgid "CHANGE_GPU_IN_LAUNCHER"
 msgstr ""
 
-#, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
-msgstr "Typy membrán"
+msgstr "Změnit typ membrány"
 
 #, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
@@ -877,9 +871,8 @@ msgstr "Cheatovací klávesy povoleny"
 msgid "CHEAT_MENU"
 msgstr "Cheatovací menu"
 
-#, fuzzy
 msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
-msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Makroskopické podmínky"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
@@ -960,7 +953,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr "část mrtvé buňky"
+msgstr "Část mrtvé buňky"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
@@ -981,14 +974,13 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit staré zálohy"
 
 msgid "CLEAR_CACHE"
-msgstr "vymazat cache"
+msgstr "Vymazat cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Vybrat"
 
-#, fuzzy
 msgid "CLICK_TO_SET_CELL_TYPE"
-msgstr "Vybrat"
+msgstr "Kliknout pro vybrání typu buňky"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "Nestabilita podnebí"
@@ -1031,27 +1023,23 @@ msgid "COASTAL"
 msgstr "Pobřežní"
 
 msgid "COLLISION_SHAPE"
-msgstr "ukázat ladící tvary pro fyziku"
+msgstr "Ukázat ladící tvary pro fyziku"
 
-#, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Rotace:"
+msgstr "Základní rotace kolonie"
 
-#, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Rotace:"
+msgstr "Základní pohon kolonie"
 
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
 
-#, fuzzy
 msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Rotace:"
+msgstr "Rotace kolonie z organel"
 
-#, fuzzy
 msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Rotace:"
+msgstr "Pohon kolonie z organel"
 
 msgid "COLOUR"
 msgstr "Barva"
@@ -1166,9 +1154,8 @@ msgstr "Zobrazit / skrýt sloučeniny"
 msgid "COMPOUND_CLOUDS"
 msgstr "Mračna sloučenin"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "Hustota oblaků sloučenin"
+msgstr "Benchmark oblaků sloučenin"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Hustota oblaků sloučenin"
@@ -1271,7 +1258,7 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Umístěním továrny postoupíte do průmyslové fáze. Pokračovat do další fáze?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "postoupit do vesmírné fáze?"
+msgstr "Postoupit do vesmírné fáze?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
@@ -1478,7 +1465,7 @@ msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
-msgstr "mrtvé zóny ovladače"
+msgstr "Mrtvé zóny ovladače"
 
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
@@ -1600,34 +1587,29 @@ msgstr "Vytváření..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Vytváření objektů z uložené pozice"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_COLON"
-msgstr "Typ toxinu:"
+msgstr "Typ kůže:"
 
 msgid "CREATURE_SKIN_TYPE_FEATHERS"
-msgstr ""
+msgstr "Peří"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_FUR"
-msgstr "Vytvořit nový typ buňky"
+msgstr "Srst"
 
 msgid "CREATURE_SKIN_TYPE_PEPPER"
 msgstr ""
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Můžete vytvořit nové typy buněk duplikací existujících buněk a daním nového jména. Typy buněk mohou být upraveny pro specializaci v jiných rolích. Při upravování typu buňky budou aktualizovány všechny již umístěné buňky tohoto typu."
+msgstr "Jednotný"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_SCALES"
-msgstr "Uložit hru jako"
+msgstr "Šupiny"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_SKIN"
-msgstr "Můžete vytvořit nové typy buněk duplikací existujících buněk a daním nového jména. Typy buněk mohou být upraveny pro specializaci v jiných rolích. Při upravování typu buňky budou aktualizovány všechny již umístěné buňky tohoto typu."
+msgstr "Kůže"
 
 msgid "CREDITS"
-msgstr "Poděkování"
+msgstr "Titulky"
 
 msgid "CTRL"
 msgstr "CTRL"
@@ -2003,9 +1985,8 @@ msgstr "Zobrazení částic v pozadí"
 msgid "DISPLAY_DRIVER_DIRECT3D"
 msgstr "OpenGL"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
-msgstr "OpenGL"
+msgstr "Kov"
 
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
@@ -2631,7 +2612,7 @@ msgid "FAILED"
 msgstr "Neúspěšné"
 
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Chyba: Nepodařilo se smazat jeden nebo více úložných souborů"
+msgstr "Chyba: Nepodařilo se smazat jeden nebo více úložných souborů."
 
 msgid "FAILED_SAVE_DELETION"
 msgstr "Chyba: Smazání úložného souboru se nezdařilo"
