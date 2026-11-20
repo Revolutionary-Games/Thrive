@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -228,57 +227,49 @@ public class DualContourer
 
     private void CalculatePoints(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
     {
-        var tasks = new List<Task>();
+        // The grid end is inclusive, hence the + 1
+        var gridSize = gridTo - gridFrom + Vector3I.One;
 
-        Vector3I gridOffset = -gridFrom;
+        if (gridSize.X <= 0 || gridSize.Y <= 0 || gridSize.Z <= 0)
+            return;
 
-        int availableThreads = TaskExecutor.Instance.ParallelTasks;
-
-        int threadsPerEdge = Math.Clamp((int)MathF.Ceiling(2.0f * availableThreads / 8.0f), 2, 3);
-
-        if (availableThreads > 27)
-            threadsPerEdge = 4;
-
-        int stepX = (gridTo.X - gridFrom.X) / threadsPerEdge;
-        int stepY = (gridTo.Y - gridFrom.Y) / threadsPerEdge;
-        int stepZ = (gridTo.Z - gridFrom.Z) / threadsPerEdge;
-
-        for (int x = gridFrom.X; x <= gridTo.X; x += stepX + 1)
-        {
-            for (int y = gridFrom.Y; y <= gridTo.Y; y += stepY + 1)
-            {
-                for (int z = gridFrom.Z; z <= gridTo.Z; z += stepZ + 1)
-                {
-                    // TODO: avoid lambda captures of variables here (at least from and this is captured)
-                    // that cause memory allocations
-                    Vector3I from = new Vector3I(x, y, z);
-                    Vector3I to = from + new Vector3I(stepX, stepY, stepZ);
-                    to = to.Clamp(from, gridTo);
-                    var task = new Task(() => CalculatePointsInRange(shapePoints, from, to, gridOffset));
-                    tasks.Add(task);
-                }
-            }
-        }
-
-        TaskExecutor.Instance.RunTasks(tasks);
+        TaskExecutor.Instance.ParallelFor(0, gridSize.X * gridSize.Y * gridSize.Z,
+            new CalculatePointsBody(this, shapePoints, gridFrom, gridSize));
     }
 
-    private void CalculatePointsInRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo, Vector3I gridOffset)
+    /// <summary>
+    ///   Calculates the points of a range of the grid flattened in the same order as the shape points array
+    /// </summary>
+    private void CalculatePointsInFlatRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridSize,
+        int fromInclusive, int toExclusive)
     {
         float realFactor = 1.0f / PointsPerUnit;
 
-        for (int x = gridFrom.X; x <= gridTo.X; ++x)
-        {
-            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
-            {
-                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
-                {
-                    // var gridPos = new Vector3I(x, y, z);
-                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) * realFactor;
+        int planeSize = gridSize.Y * gridSize.Z;
+        int localX = fromInclusive / planeSize;
+        int localY = fromInclusive % planeSize / gridSize.Z;
+        int localZ = fromInclusive % gridSize.Z;
 
-                    shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
-                }
-            }
+        for (int i = fromInclusive; i < toExclusive; ++i)
+        {
+            int x = localX + gridFrom.X;
+            int y = localY + gridFrom.Y;
+            int z = localZ + gridFrom.Z;
+
+            var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) * realFactor;
+
+            shapePoints[localX, localY, localZ] = IsInShape(realPos);
+
+            if (++localZ < gridSize.Z)
+                continue;
+
+            localZ = 0;
+
+            if (++localY < gridSize.Y)
+                continue;
+
+            localY = 0;
+            ++localX;
         }
     }
 
@@ -358,28 +349,8 @@ public class DualContourer
         // 5. Make a second pass of 1-4. This algorithm is only an approximation, so sometimes one-pass approach
         // results in spiky meshes. Optionally clamp the value more than on the first pass.
 
-        var tasks = new List<Task>();
-
-        int availableThreads = TaskExecutor.Instance.ParallelTasks;
-
-        int step = points.Count / availableThreads;
-
-        if (step < 1)
-            step = 1;
-
-        int count = points.Count;
-
-        for (int i = 0; i < count; i += step + 1)
-        {
-            int from = i;
-            int to = Math.Clamp(i + step, i, count - 1);
-
-            // TODO: try to avoid lambda allocations that capture many variables
-            var task = new Task(() => AdjustVerticesInRange(from, to, points, changeClamp, meshNormals));
-            tasks.Add(task);
-        }
-
-        TaskExecutor.Instance.RunTasks(tasks);
+        TaskExecutor.Instance.ParallelFor(0, points.Count,
+            new AdjustVerticesBody(this, points, changeClamp, meshNormals));
     }
 
     private void AdjustVerticesInRange(int from, int to, List<Vector3> points, float changeClamp = 0.5f,
@@ -652,6 +623,53 @@ public class DualContourer
             newTriIndices.Add(newPointID);
             newTriIndices.Add(endID);
             newTriIndices.Add(face2ID);
+        }
+    }
+
+    /// <summary>
+    ///   Calculates which points are in the shape for a range of the flattened grid
+    /// </summary>
+    private readonly struct CalculatePointsBody : IParallelForBody
+    {
+        private readonly DualContourer contourer;
+        private readonly bool[,,] shapePoints;
+        private readonly Vector3I gridFrom;
+        private readonly Vector3I gridSize;
+
+        public CalculatePointsBody(DualContourer contourer, bool[,,] shapePoints, Vector3I gridFrom,
+            Vector3I gridSize)
+        {
+            this.contourer = contourer;
+            this.shapePoints = shapePoints;
+            this.gridFrom = gridFrom;
+            this.gridSize = gridSize;
+        }
+
+        public void Execute(int fromInclusive, int toExclusive)
+        {
+            contourer.CalculatePointsInFlatRange(shapePoints, gridFrom, gridSize, fromInclusive, toExclusive);
+        }
+    }
+
+    private readonly struct AdjustVerticesBody : IParallelForBody
+    {
+        private readonly DualContourer contourer;
+        private readonly List<Vector3> points;
+        private readonly float changeClamp;
+        private readonly Vector3[]? meshNormals;
+
+        public AdjustVerticesBody(DualContourer contourer, List<Vector3> points, float changeClamp,
+            Vector3[]? meshNormals)
+        {
+            this.contourer = contourer;
+            this.points = points;
+            this.changeClamp = changeClamp;
+            this.meshNormals = meshNormals;
+        }
+
+        public void Execute(int fromInclusive, int toExclusive)
+        {
+            contourer.AdjustVerticesInRange(fromInclusive, toExclusive - 1, points, changeClamp, meshNormals);
         }
     }
 

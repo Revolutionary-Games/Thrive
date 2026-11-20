@@ -19,6 +19,8 @@ public class TaskExecutor
 {
     private const int ThreadSleepAfterNoWorkFor = 160;
 
+    private const int ParallelForBatchesPerThread = 4;
+
     private static readonly TaskExecutor SingletonInstance = new();
 
     private readonly object threadNotifySync = new();
@@ -28,8 +30,6 @@ public class TaskExecutor
     private bool running = true;
     private int currentThreadCount;
     private int usedNativeTaskCount;
-
-    private volatile int queuedParallelRunnableCount;
 
     /// <summary>
     ///   For naming the created threads.
@@ -296,6 +296,81 @@ public class TaskExecutor
         }
     }
 
+    /// <summary>
+    ///   Runs a loop body over an index range in parallel and waits for it to complete. The calling thread processes
+    ///   batches as well, so this is safe to call from a task running on this executor.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The range is split into contiguous batches that participating threads claim one at a time until none are
+    ///     left. Unlike <see cref="RunTasks"/>, this doesn't need a task or closure per batch. Only one small object
+    ///     is allocated per call (and none when the loop runs only on the calling thread).
+    ///   </para>
+    ///   <para>
+    ///     If the body throws, batches not yet started are skipped and the first exception is thrown wrapped in an
+    ///     <see cref="AggregateException"/> after all started batches have finished. Worker threads are not affected
+    ///     by the failure.
+    ///   </para>
+    /// </remarks>
+    /// <param name="fromInclusive">First index of the loop</param>
+    /// <param name="toExclusive">One past the last index of the loop. Nothing is done if this is not larger.</param>
+    /// <param name="body">The loop body that processes the batches</param>
+    /// <param name="minBatchSize">
+    ///   Smallest number of indices processed in one batch. Increase this for cheap loop bodies to reduce the
+    ///   overhead of claiming batches.
+    /// </param>
+    /// <typeparam name="TBody">The IParallelForBody struct</typeparam>
+    public void ParallelFor<TBody>(int fromInclusive, int toExclusive, TBody body, int minBatchSize = 1)
+        where TBody : struct, IParallelForBody
+    {
+        if (minBatchSize < 1)
+            throw new ArgumentOutOfRangeException(nameof(minBatchSize), "Batch size must be at least 1");
+
+        if (toExclusive <= fromInclusive)
+            return;
+
+        long range = (long)toExclusive - fromInclusive;
+
+        int workerThreads = currentThreadCount;
+
+        long wantedBatches = (workerThreads + 1L) * ParallelForBatchesPerThread;
+        long batchSize = Math.Max(minBatchSize, (range + wantedBatches - 1) / wantedBatches);
+        long batchCount = (range + batchSize - 1) / batchSize;
+
+        // The calling thread takes part as well, so one batch less needs helpers
+        int helperCount = (int)Math.Min(workerThreads, batchCount - 1);
+
+        if (helperCount <= 0)
+        {
+            try
+            {
+                body.Execute(fromInclusive, toExclusive);
+            }
+            catch (Exception e)
+            {
+                throw new AggregateException(e);
+            }
+
+            return;
+        }
+
+        var work = new ParallelForWork<TBody>(fromInclusive, toExclusive, (int)batchSize, (int)batchCount, body);
+
+        for (int i = 0; i < helperCount; ++i)
+        {
+            queuedTasks.Enqueue(new ThreadCommand(work));
+        }
+
+        NotifyNewTasksAdded(helperCount);
+
+        work.RunBatches();
+        work.WaitForAllBatches();
+
+        var error = work.FirstError;
+        if (error != null)
+            throw new AggregateException(error);
+    }
+
     public void ReApplyThreadCount()
     {
         var settings = Settings.Instance;
@@ -515,25 +590,9 @@ public class TaskExecutor
                 GD.PrintErr("Background task caused an exception: ", command.Task.Exception);
             }
         }
-        else if (command.CommandType == ThreadCommand.Type.ParallelRunnable)
+        else if (command.CommandType == ThreadCommand.Type.ParallelForHelper)
         {
-            try
-            {
-                throw new Exception("TODO: reimplement parallel runnable");
-
-                // command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
-            }
-            catch (Exception e)
-            {
-                LogInterceptor.ForwardCaughtError(e);
-
-                GD.PrintErr("Background ParallelRunnable failed due to: ", e);
-                return true;
-            }
-            finally
-            {
-                Interlocked.Decrement(ref queuedParallelRunnableCount);
-            }
+            command.ParallelForWork!.RunBatches();
         }
         else if (command.CommandType == ThreadCommand.Type.Invalid)
         {
@@ -552,15 +611,28 @@ public class TaskExecutor
     {
         public readonly Task? Task;
 
+        public readonly ParallelForWork? ParallelForWork;
+
         public readonly Type CommandType;
 
         public ThreadCommand(Task task)
         {
             CommandType = Type.Task;
             Task = task;
+            ParallelForWork = null;
 
             if (Task == null)
                 throw new ArgumentNullException(nameof(task), "Task must be provided to this constructor");
+        }
+
+        public ThreadCommand(ParallelForWork work)
+        {
+            CommandType = Type.ParallelForHelper;
+            ParallelForWork = work;
+            Task = null;
+
+            if (ParallelForWork == null)
+                throw new ArgumentNullException(nameof(work), "Work must be provided to this constructor");
         }
 
         public ThreadCommand(Type commandType)
@@ -571,6 +643,7 @@ public class TaskExecutor
                 throw new ArgumentException("This constructor is only allowed to create quit type commands");
 
             Task = null;
+            ParallelForWork = null;
         }
 
         public enum Type
@@ -578,7 +651,7 @@ public class TaskExecutor
             // Default-initialise type to invalid to catch errors caused by default initialisation of this class
             Invalid = 0,
             Task,
-            ParallelRunnable,
+            ParallelForHelper,
             Quit,
         }
     }
