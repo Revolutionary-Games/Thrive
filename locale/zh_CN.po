@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-11-18 14:59+0200\n"
-"PO-Revision-Date: 2026-11-13 15:22+0000\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: kuku <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -795,7 +795,7 @@ msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "点击一个细胞以开始移动它。将细胞移动到你喜欢的位置。所有的细胞必须仍然保持相互连接，并且靠近它们在结构中应该在的位置。编辑细胞的细胞器可能会导致细胞间出现重叠，必须修复后才能使手动布局保持有效。退出手动布局模式将丢弃对其所做的所有更改。"
 
 msgid "CELL_IS_CAVITY"
-msgstr "是否为空腔"
+msgstr "设为空腔"
 
 msgid "CELL_IS_CAVITY_TOOLTIP"
 msgstr ""
@@ -3084,18 +3084,22 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "氢化酶"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "发酵作用通过分解 [thrive:compound type=\\\"glucose\\\"][/thrive:compound] 来获取能量，并产生氢气等副产物。在低 [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 环境下效率高于代谢体。许多厌氧环境中的生物以此作为主要能量来源。"
 
+#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\\\"glucose\\\"][/thrive:compound]转换成[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
 msgid "HYDROGENOSOME"
 msgstr "氢化酶体"
 
+#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "发酵作用通过分解 [thrive:compound type=\\\"glucose\\\"][/thrive:compound] 来获取能量，并产生氢气等副产物。氢化酶体曾经是一种原核细胞，但现在是一种已被真核细胞同化的、内含蛋白质和酶的细胞器，其效率高于氢化酶。在低 [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 环境下效率也高于线粒体。许多厌氧环境中的生物以氢化酶体作为主要能量来源。"
 
+#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "将 [thrive:compound type=\\\"glucose\\\"][/thrive:compound] 转换为[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
@@ -7095,18 +7099,8 @@ msgstr "某些细胞器能增加或减少适应性。这里显示的是由基础
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "适应力："
 
-#, fuzzy
 msgid "TOLERANCE_UPKEEP_COST"
-msgstr ""
-"[b]温度[/b]\n"
-"  理想：{0}°C\n"
-"  范围：±{1}°C\n"
-"[b]压力[/b]\n"
-"  范围：{2}-{3} Pa\n"
-"[b]抗氧化性[/b]\n"
-"  {4}%\n"
-"[b]紫外线抗性[/b]\n"
-"  {5}%"
+msgstr "花费"
 
 msgid "TOOLS"
 msgstr "工具"
@@ -7191,6 +7185,7 @@ msgstr "将 [thrive:compound type=\"atp\"][/thrive:compound] 转换为 [thrive:c
 msgid "TOXISOME"
 msgstr "毒素体"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "一种特化的代谢体，负责生产毒素 [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound] 的前体。可修改产生的毒素类型以实现其他效果，这些毒素可能需要 [thrive:compound type=\"oxygen\"][/thrive:compound]。"
 
@@ -7961,7 +7956,7 @@ msgstr "8（16）"
 
 msgid "WIKI_ACTOMYOSIN_EFFECTS"
 msgstr ""
-"每个拥有[b]肌动球蛋白[/b]的细胞都能使细胞群落的基础移动速度和基础转向速度各提升 25%。在移动时，每个肌动球蛋白都会消耗 [thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"每个拥有[b]肌动球蛋白[/b]的细胞都能使细胞群落的基础移动速度和基础转向速度各提升 18%。在移动时，每个肌动球蛋白都会消耗 [thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
 "使压力耐受性上限提高 1 kPa。"
 
@@ -7975,10 +7970,7 @@ msgid "WIKI_ACTOMYOSIN_PROCESSES"
 msgstr "无代谢过程。"
 
 msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
-msgstr ""
-"如果在游戏设置中启用了细胞器解锁，那么[i]对于玩家细胞而言[/i]，以下条件中[i]至少有一个[/i]必须满足：\n"
-"\n"
-"[ul]速度低于 [b]15[/b]。[/ul]"
+msgstr "要解锁[b]肌动球蛋白[/b]，玩家必须处于[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Multicellular_Stage]多细胞阶段[/url][/color]，速度低于16，并使用[b]普通[/b]或[b]双层[/b]细胞膜。"
 
 msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8066,29 +8058,39 @@ msgstr "敬请期待。"
 
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
-"对于包含[b]轴突[/b]的多细胞生物中的每个细胞，该生物体的脑力与该细胞的体积成比例地增加。 具有[b]轴突[/b]的细胞将被分类为具有脑组织的类型。\n"
+"使生物中所有其他细胞器对移动和旋转速度的加成提高15%。移动时，消耗[thrive:compound type=\"atp\"][/thrive:compound]。每个细胞只能放置一个轴突，且躯体设计中已有的轴突总数越多，新添加的轴突效果就越弱。\n"
 "\n"
-"当脑力达到 [b]+0.5[/b] 时，玩家进入感知阶段。 当脑力达到 [b]+5.0[/b] 时，玩家进入觉醒阶段。\n"
+"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]紫外线耐受性[/b]降低10%。\n"
 "\n"
-"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]紫外线耐受性[/b]降低10%。"
+"在[color=#3796e1][url=thriveopedia:macroscopic_stage]宏观阶段[/url][/color]中，对于包含[b]轴突[/b]的多细胞生物中的每个细胞，该生物体的脑力与该细胞的体积成比例地增加。 具有[b]轴突[/b]的细胞将被分类为具有脑组织的类型。\n"
+"\n"
+"当脑力达到 [b]+0.5[/b] 时，玩家进入感知阶段。 当脑力达到 [b]+5.0[/b] 时，玩家进入觉醒阶段。"
 
 msgid "WIKI_AXON_INTRO"
-msgstr "神经元之间的神经纤维，自[color=#3796e1][url=thriveopedia:macroscopic_stage]宏观阶段[/url][/color]起可用。这是提升生物脑力并迈向后续阶段的必要条件。"
+msgstr "从细胞体延伸出的长突起，用于在细胞间传递信号以实现协调，自[color=#3796e1][url=thriveopedia:multicellular_stage]多细胞阶段[/url][/color]起可用，作用为增强其他细胞器对运动能力的提升。在[color=#3796e1][url=thriveopedia:macroscopic_stage]宏观阶段[/url][/color]中，这是提升生物脑力并迈向后续阶段的必要条件。"
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr "无修改"
+msgstr "无修改。"
 
 msgid "WIKI_AXON_PROCESSES"
-msgstr "无代谢过程"
+msgstr "无代谢过程。"
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr "仅从[color=#3796e1][url=thriveopedia:macroscopic_stage]宏观阶段[/url][/color]开始可用"
+msgstr ""
+"仅从[color=#3796e1][url=thriveopedia:multicellular_stage]多细胞阶段[/url][/color]开始可用。\n"
+"\n"
+"如果在游戏设置中打开了细胞器解锁机制，则玩家物种必须满足如下条件：\n"
+"\n"
+"[ul]在一个世代内拥有至少五个鞭毛，纤毛或肌动球蛋白。[/ul]"
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "轴突是“神经元细胞”延伸出的细长突起，可连接至另一个细胞（例如另一个“神经元”细胞、“肌肉”细胞等众多细胞类型），允许信息以电信号的形式在两个或多个细胞之间传递。这进而使得生物体能够对外部刺激做出反应，例如温度骤升、受到抓挠，甚至是一些感觉细胞察觉到的难闻气味。"
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr "添加[b]轴突[/b]对于进入之后的阶段至关重要。 我们建议在多细胞生物的多种细胞类型中添加一个[b]轴突[/b]，但添加多个是多余的。 目前，更多的[b]轴突[/b]并不会提供额外的好处。"
+msgstr ""
+"当你已经有许多细胞装有肌动球蛋白，鞭毛和纤毛时，添加一个拥有轴突的细胞能比继续增加之前那些细胞器的数量提供更高的增益。不过添加更多轴突的收益会很快递减。\n"
+"\n"
+"添加[b]轴突[/b]对于进入[color=#3796e1][url=thriveopedia:macroscopic_stage]宏观阶段[/url][/color]之后的阶段至关重要。"
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr "无升级"
