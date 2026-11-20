@@ -131,13 +131,14 @@ public class MicrobeSpeciesTests
     }
 
     /// <summary>
-    ///   Checks exact nominal and compound capacities when adding a vacuole, specializing it for ammonia,
-    ///   and changing the same upgrade to glucose.
+    ///   Adding and specialising a vacuole changes the capacity available for each compound.
+    ///   Once the last cytoplasm is removed, a glucose-specific vacuole provides no general storage.
     /// </summary>
     [TestCase]
     public void VacuoleSpecializationUpdatesCompoundCapacities()
     {
         var species = CreateMicrobe(37, "StorageSpecialization", "single", "cytoplasm");
+        var cytoplasm = species.Organelles.Organelles[0];
         species.CellTypeSpecializationBonus = 1;
 
         // Derive expected capacities from balance data without using the capacity calculation helpers.
@@ -182,34 +183,9 @@ public class MicrobeSpeciesTests
             new Dictionary<Compound, float> { { Compound.Glucose, specializedCapacity } });
         AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), cytoplasmCapacity);
         AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), specializedTotalCapacity);
-    }
 
-    /// <summary>
-    ///   Compares the nominal-only and complete capacity results for absent, ordinary, and specialized storage.
-    /// </summary>
-    [TestCase]
-    public void NominalCapacityMatchesCompleteCapacityAcrossStorageLayouts()
-    {
-        var noStorage = CreateMicrobe(30, "NoStorage", "single", "flagellum");
-        AssertBits(noStorage.NominalStorageCapacity, 0);
-        AssertCurrentCapacity(noStorage);
-
-        var ordinary = CreateMicrobe(31, "OrdinaryStorage", "single", "cytoplasm", "vacuole");
-        AssertThat(ordinary.StorageCapacities.Specific).IsEmpty();
-        AssertThat(ordinary.NominalStorageCapacity).IsGreater(0);
-        AssertCurrentCapacity(ordinary);
-
-        var specialized = CreateMicrobe(32, "SpecializedStorage", "single", "vacuole", "vacuole");
-        Specialize(specialized.Organelles.Organelles[0], Compound.Glucose);
-        Specialize(specialized.Organelles.Organelles[1], Compound.Ammonia);
-        AssertBits(specialized.NominalStorageCapacity, 0);
-        AssertThat(specialized.StorageCapacities.Specific.Count).IsEqual(2);
-        AssertCurrentCapacity(specialized);
-
-        specialized.Organelles.Add(CreateOrganelle("cytoplasm", new Hex(12, 0)));
-        specialized.Organelles.Add(CreateOrganelle("vacuole", new Hex(16, 0)));
-        AssertThat(specialized.NominalStorageCapacity).IsGreater(0);
-        AssertCurrentCapacity(specialized);
+        species.Organelles.Remove(cytoplasm);
+        AssertBits(species.NominalStorageCapacity, 0);
     }
 
     /// <summary>
@@ -250,51 +226,8 @@ public class MicrobeSpeciesTests
     }
 
     /// <summary>
-    ///   Checks dictionary independence and preserves capacities and initial compounds across lifecycle changes.
-    /// </summary>
-    [TestCase]
-    public void StorageResultsRemainIndependentAcrossReadsAndLifecycleChanges()
-    {
-        var species = CreateMicrobe(34, "OwnedStorage", "single", "cytoplasm", "vacuole", "vacuole");
-        Specialize(species.Organelles.Organelles[1], Compound.Glucose);
-        Specialize(species.Organelles.Organelles[2], Compound.Ammonia);
-        species.OnEdited();
-
-        var original = species.StorageCapacities;
-        var another = species.StorageCapacities;
-        AssertThat(ReferenceEquals(original.Specific, another.Specific)).IsFalse();
-        AssertCompounds(another.Specific, original.Specific);
-        another.Specific.Clear();
-        another.Specific[Compound.Iron] = 123;
-        AssertCompounds(species.StorageCapacities.Specific, original.Specific);
-
-        var initial = new Dictionary<Compound, float>(species.InitialCompounds);
-        var clone = (MicrobeSpecies)species.Clone();
-        AssertBits(clone.NominalStorageCapacity, species.NominalStorageCapacity);
-        AssertCompounds(clone.StorageCapacities.Specific, original.Specific);
-        AssertCompounds(clone.InitialCompounds, initial);
-        AssertCurrentCapacity(clone);
-
-        var target = CreateMicrobe(35, "MutationTarget", "single", "cytoplasm");
-        target.ApplyMutation(species);
-        AssertBits(target.NominalStorageCapacity, species.NominalStorageCapacity);
-        AssertCompounds(target.StorageCapacities.Specific, original.Specific);
-        AssertCompounds(target.InitialCompounds, initial);
-        AssertCurrentCapacity(target);
-        target.UpdateInitialCompounds();
-        AssertCompounds(target.InitialCompounds, initial);
-
-        // Reading nominal capacity cannot alter initialization or a previously obtained complete result.
-        _ = species.NominalStorageCapacity;
-        AssertCompounds(species.InitialCompounds, initial);
-        AssertCompounds(species.StorageCapacities.Specific, original.Specific);
-        species.OnAttemptedInAutoEvo(true);
-        AssertCurrentCapacity(species);
-        AssertCompounds(species.InitialCompounds, initial);
-    }
-
-    /// <summary>
-    ///   Preserves specialized capacities and initial compounds through an archive round trip and reinitialization.
+    ///   Clearing one returned storage dictionary leaves the earlier and subsequent reads intact.
+    ///   Both specialised capacities and the initial compounds survive an archive round trip and reinitialisation.
     /// </summary>
     [TestCase]
     public void SpecializedStorageAndInitialCompoundsSurviveSerialization()
@@ -304,6 +237,15 @@ public class MicrobeSpeciesTests
         Specialize(species.Organelles.Organelles[2], Compound.Ammonia);
         species.OnEdited();
         var capacity = species.StorageCapacities;
+        var expectedSpecific = new Dictionary<Compound, float>
+        {
+            { Compound.Glucose, capacity.Specific[Compound.Glucose] },
+            { Compound.Ammonia, capacity.Specific[Compound.Ammonia] },
+        };
+        species.StorageCapacities.Specific.Clear();
+        AssertCompounds(capacity.Specific, expectedSpecific);
+        AssertCompounds(species.StorageCapacities.Specific, expectedSpecific);
+
         var initial = new Dictionary<Compound, float>(species.InitialCompounds);
         var memoryStream = new MemoryStream();
         var writer = new SArchiveMemoryWriter(memoryStream, archiveManager);

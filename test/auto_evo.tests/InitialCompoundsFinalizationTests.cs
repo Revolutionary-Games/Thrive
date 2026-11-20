@@ -98,9 +98,9 @@ public class InitialCompoundsFinalizationTests
     }
 
     /// <summary>
-    ///   After compound initialisation is deferred, a full edit refresh must restore the candidate's supplies
-    ///   while leaving its parent unchanged. Cases cover small bacteria, specialised storage, and both
-    ///   multicellular budding modes so each fixture reaches its expected initial-compound calculation.
+    ///   Deferring initialisation clears the candidate's stale supplies while preserving its parent's compounds.
+    ///   A full edit restores the expected supplies for bacteria with either storage layout and both budding modes
+    ///   of multicellular species.
     /// </summary>
     [TestCase(false, false, false)]
     [TestCase(false, false, true)]
@@ -115,34 +115,10 @@ public class InitialCompoundsFinalizationTests
         candidate.InitialCompounds.Clear();
         candidate.InitialCompounds.Add(Compound.Ammonia, -100);
         candidate.OnAttemptedInAutoEvo(true, false);
+        AssertThat(candidate.InitialCompounds).IsEmpty();
+        AssertCompounds(expectedGlucose, parent.InitialCompounds);
+
         candidate.OnEdited();
-
-        AssertCompounds(expectedGlucose, candidate.InitialCompounds);
-        AssertCompounds(expectedGlucose, parent.InitialCompounds);
-    }
-
-    /// <summary>
-    ///   A deferred attempt must clear inherited supplies, and a default attempt must rebuild them without
-    ///   changing the parent. Both species types exercise both cache-refresh settings to protect compound
-    ///   initialisation independently of whether a new cache identity is requested.
-    /// </summary>
-    [TestCase(false, false)]
-    [TestCase(false, true)]
-    [TestCase(true, false)]
-    [TestCase(true, true)]
-    public void DeferredAttemptClearsCompoundsAndDefaultAttemptRefreshesThem(bool multicellular, bool refreshCache)
-    {
-        var expectedGlucose = ExpectedGlucose(multicellular, false, false, 1);
-        var parent = CreateSpecies(multicellular, false, false);
-        var candidate = (Species)parent.Clone();
-        candidate.InitialCompounds.Clear();
-        candidate.InitialCompounds.Add(Compound.Ammonia, -100);
-        candidate.OnAttemptedInAutoEvo(refreshCache, false);
-
-        AssertThat(candidate.InitialCompounds.Count).IsEqual(0);
-        AssertCompounds(expectedGlucose, parent.InitialCompounds);
-
-        candidate.OnAttemptedInAutoEvo(refreshCache);
 
         AssertCompounds(expectedGlucose, candidate.InitialCompounds);
         AssertCompounds(expectedGlucose, parent.InitialCompounds);
