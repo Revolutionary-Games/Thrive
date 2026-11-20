@@ -329,6 +329,15 @@ public partial class PhotoStudio : SubViewport
             case Step.CaptureImage:
             {
                 renderedImage = GetTexture().GetImage();
+                if (renderedImage == null)
+                {
+                    GD.PrintErr("PhotoStudio failed to capture a rendered image");
+                    currentTask!.MarkFailed();
+                    currentTask = null;
+                    currentTaskStep = Step.Cleanup;
+                    break;
+                }
+
                 currentTaskStep = Step.Save;
                 break;
             }
