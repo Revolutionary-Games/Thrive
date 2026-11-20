@@ -860,46 +860,24 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         }
     }
 
-    private void MicheTreeNodeSelected(int micheHash)
+    private void MicheTreeNodeSelected(MicheTreeNode node)
     {
-        if (!micheTree.MicheByHash.TryGetValue(micheHash, out var micheData))
+        if (node.ShowsOccupant)
         {
-            throw new ArgumentException("Invalid hash passed into MicheTreeNodeSelected");
-        }
+            var occupant = node.Miche.Occupant;
+            if (occupant != null && generationDisplayed != world.CurrentGeneration)
+                occupant = world.SpeciesHistoryList[generationDisplayed][occupant.ID];
 
-        // NoOps are being used to hold species nodes
-        if (micheData.Pressure.GetType() == typeof(NoOpPressure))
-        {
-            if (micheData.Occupant == null)
-            {
-                // No species selected, so reset the display panel to not make the GUI as confusing
-                micheSpeciesDetailsPanel.Visible = false;
-                micheDetailsPanel.Visible = false;
-                return;
-            }
-
-            micheSpeciesDetailsPanel.Visible = true;
+            micheSpeciesDetailsPanel.PreviewSpecies = occupant;
+            micheSpeciesDetailsPanel.Visible = occupant != null;
             micheDetailsPanel.Visible = false;
-
-            Species species;
-            if (generationDisplayed == world.CurrentGeneration)
-            {
-                species = patchDisplayed.SpeciesInPatch.Keys.First(p => p.ID == micheData.Occupant.ID);
-            }
-            else
-            {
-                species = world.SpeciesHistoryList[generationDisplayed].Values
-                    .First(p => p.ID == micheData.Occupant.ID);
-            }
-
-            micheSpeciesDetailsPanel.PreviewSpecies = species;
         }
         else
         {
             micheSpeciesDetailsPanel.Visible = false;
             micheDetailsPanel.Visible = true;
 
-            micheDetailsPanel.SetPreview(micheData, patchDisplayed);
+            micheDetailsPanel.SetPreview(node.Miche, patchDisplayed);
         }
     }
 

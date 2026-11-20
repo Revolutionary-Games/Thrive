@@ -1,14 +1,11 @@
-﻿using Godot;
+﻿using AutoEvo;
+using Godot;
 
 /// <summary>
 ///   MicheTreeNode represents a selectable node for a Miche in <see cref="MicheTree"/>
 /// </summary>
 public partial class MicheTreeNode : TextureButton
 {
-    public float Width = 0;
-    public int Depth = 0;
-    public int MicheHash;
-
 #pragma warning disable CA2213
     private Texture2D unpressedNormalGreen = null!;
     private Texture2D unpressedHoveredGreen = null!;
@@ -24,21 +21,9 @@ public partial class MicheTreeNode : TextureButton
     // private Texture pressedHoveredGreen = null!;
     // private Texture pressedHoveredRed = null!;
 
-    private bool unoccupied;
+    public Miche Miche { get; set; } = null!;
 
-    public bool Unoccupied
-    {
-        get => unoccupied;
-        set
-        {
-            if (unoccupied == value)
-                return;
-
-            unoccupied = value;
-
-            UpdateTexture();
-        }
-    }
+    public bool ShowsOccupant { get; set; }
 
     public MicheTreeNode? ParentNode { get; set; }
 
@@ -65,7 +50,7 @@ public partial class MicheTreeNode : TextureButton
 
     private void UpdateTexture()
     {
-        if (Unoccupied)
+        if (ShowsOccupant && Miche.Occupant == null)
         {
             TextureNormal = unpressedNormalRed;
             TextureHover = unpressedHoveredRed;

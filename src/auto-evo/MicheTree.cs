@@ -17,13 +17,6 @@ public partial class MicheTree : Control
     // TODO: See if this class and EvolutionaryTree can be combined into a parent class
     // https://github.com/Revolutionary-Games/Thrive/issues/5373
 
-    /// <summary>
-    ///   Stores the created nodes for miches by the miche hashes
-    /// </summary>
-    public Dictionary<int, MicheTreeNode> MicheNodes = new();
-
-    public Dictionary<int, Miche> MicheByHash = new();
-
     private const float TREE_LINE_THICKNESS = 4.0f;
 
     /// <summary>
@@ -55,10 +48,7 @@ public partial class MicheTree : Control
     /// </summary>
     private static readonly Vector2 TreeNodeSize = new(30, 30);
 
-    /// <summary>
-    ///   Auxiliary vector for <see cref="DRAW_MARGIN"/>
-    /// </summary>
-    private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
+    private readonly List<MicheTreeNode> nodes = new();
 
     /// <summary>
     ///   All MicheTreeNodes are in this group so that they work as radio buttons.
@@ -67,10 +57,9 @@ public partial class MicheTree : Control
 
 #pragma warning disable CA2213
     private Miche? rootMiche;
-    private MicheTreeNode? rootMicheNode;
 
     /// <summary>
-    ///   Tree part of <see cref="EvolutionaryTree"/>. Consists of many buttons and connection lines.
+    ///   Contains the buttons and draws their connecting lines.
     /// </summary>
     [Export]
     private Control tree = null!;
@@ -79,6 +68,7 @@ public partial class MicheTree : Control
 #pragma warning restore CA2213
 
     private int treeDepth;
+    private float treeWidth;
 
     /// <summary>
     ///   Drag offset relative to tree.
@@ -104,9 +94,9 @@ public partial class MicheTree : Control
     private bool dirty;
 
     [Signal]
-    public delegate void MicheSelectedEventHandler(int micheHash);
+    public delegate void MicheSelectedEventHandler(MicheTreeNode node);
 
-    private Vector2 TreeSize => new(rootMicheNode!.Width + 200, treeDepth * DEPTH_SEPARATION + 100);
+    private Vector2 TreeSize => new(treeWidth + 200, treeDepth * DEPTH_SEPARATION + 100);
 
     public override void _Ready()
     {
@@ -138,35 +128,19 @@ public partial class MicheTree : Control
         Clear();
 
         rootMiche = miche;
-        rootMicheNode = SetupTreeNode(rootMiche, null, 0);
-
-        var micheHash = rootMiche.GetHashCode();
-
-        var totalWidth = 0.0f;
-        foreach (var child in rootMiche.Children)
-        {
-            totalWidth += GenerateMicheData(child, rootMicheNode, 1);
-        }
-
-        rootMicheNode.Width = totalWidth;
-
-        MicheByHash.Add(micheHash, rootMiche);
-
-        BuildTree(miche, rootMicheNode, 0);
-
-        dirty = true;
+        treeWidth = AddMiche(miche, null, 0, 0, false);
     }
 
     public void Clear()
     {
+        rootMiche = null;
         treeDepth = 0;
-
-        MicheNodes.Clear();
-        MicheByHash.Clear();
-
+        treeWidth = 0;
+        nodes.Clear();
         dragOffset = Vector2.Zero;
-
+        dragging = false;
         tree.QueueFreeChildren();
+        dirty = true;
     }
 
     protected override void Dispose(bool disposing)
@@ -179,68 +153,48 @@ public partial class MicheTree : Control
         base.Dispose(disposing);
     }
 
-    private float GenerateMicheData(Miche miche, MicheTreeNode parentNode, int depth)
+    private float AddMiche(Miche miche, MicheTreeNode? parent, int depth, float left, bool showsOccupant)
     {
-        var micheHash = miche.GetHashCode();
+        var node = treeNodeScene.Instantiate<MicheTreeNode>();
+        node.Miche = miche;
 
-        if (depth > treeDepth)
-            treeDepth = depth;
-
-        if (miche.Pressure.GetType() != typeof(NoOpPressure) && miche.IsLeafNode())
-        {
-            var dummyMiche = new Miche(new NoOpPressure())
-            {
-                Occupant = miche.Occupant,
-            };
-
-            miche.AddChild(dummyMiche);
-        }
-
-        var micheNode = SetupTreeNode(miche, parentNode, depth);
-
-        var totalWidth = 0.0f;
-        foreach (var child in miche.Children)
-        {
-            totalWidth += GenerateMicheData(child, micheNode, depth + 1);
-        }
-
-        if (totalWidth == 0)
-            totalWidth = LEAF_SEPARATION;
-
-        micheNode.Width = totalWidth;
-
-        MicheByHash.Add(micheHash, miche);
-
-        return totalWidth;
-    }
-
-    private MicheTreeNode SetupTreeNode(Miche miche, MicheTreeNode? parent, int depth)
-    {
-        var position = new Vector2(0, depth * DEPTH_SEPARATION);
-        var micheHash = miche.GetHashCode();
-
-        MicheTreeNode node = treeNodeScene.Instantiate<MicheTreeNode>();
-
+        // Older saves can contain an occupant row written into the miche tree by the viewer.
+        node.ShowsOccupant = showsOccupant || miche.Pressure is NoOpPressure;
         node.ParentNode = parent;
-        node.LogicalPosition = position;
-        node.Unoccupied = miche.Pressure.GetType() == typeof(NoOpPressure) && miche.Occupant == null;
-        node.Depth = depth;
-        node.MicheHash = micheHash;
-
         node.ButtonGroup = nodesGroup;
-        node.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OnTreeNodeSelected(node)));
+        node.Pressed += () => EmitSignal(SignalName.MicheSelected, node);
 
-        MicheNodes.Add(micheHash, node);
+        nodes.Add(node);
         tree.AddChild(node);
+        treeDepth = Math.Max(treeDepth, depth);
 
-        return node;
+        float width;
+        if (node.ShowsOccupant)
+        {
+            width = LEAF_SEPARATION;
+        }
+        else if (miche.IsLeafNode())
+        {
+            width = AddMiche(miche, node, depth + 1, left, true);
+        }
+        else
+        {
+            width = 0;
+            foreach (var child in miche.Children)
+            {
+                width += AddMiche(child, node, depth + 1, left + width, false);
+            }
+        }
+
+        node.LogicalPosition = new Vector2(left + width / 2, depth * DEPTH_SEPARATION);
+        return width;
     }
 
     private void UpdateTreeNodeSizeAndPosition()
     {
         var treeNodeSize = sizeFactor * TreeNodeSize;
 
-        foreach (var node in MicheNodes.Values)
+        foreach (var node in nodes)
         {
             node.CustomMinimumSize = treeNodeSize;
 
@@ -248,26 +202,6 @@ public partial class MicheTree : Control
             node.Size = treeNodeSize;
 
             node.Position = sizeFactor * (node.LogicalPosition + dragOffset);
-        }
-    }
-
-    private void BuildTree(Miche miche, MicheTreeNode micheNode, float offset)
-    {
-        var position = micheNode.LogicalPosition;
-        position.X = offset + micheNode.Width / 2;
-        micheNode.LogicalPosition = position;
-        micheNode.Position = position;
-
-        foreach (var childMiche in miche.Children)
-        {
-            if (!MicheNodes.TryGetValue(childMiche.GetHashCode(), out var childNode))
-            {
-                throw new Exception("Missing node in miche nodes");
-            }
-
-            BuildTree(childMiche, childNode, offset);
-
-            offset += childNode.Width;
         }
     }
 
@@ -351,36 +285,21 @@ public partial class MicheTree : Control
     /// </summary>
     private void TreeDraw()
     {
-        if (rootMiche == null)
-            return;
-
-        TreeDraw(rootMiche, rootMicheNode!);
-    }
-
-    private void TreeDraw(Miche miche, MicheTreeNode micheNode)
-    {
-        // TODO: isn't this slightly outside the bounds of the tree control?
-        var drawRegion = new Rect2(Position - DrawMargin, Size + DrawMargin);
-
-        // Draw new species connection lines
-        foreach (var childMiche in miche.Children)
+        var drawRegion = new Rect2(Vector2.Zero, tree.Size).Grow(DRAW_MARGIN);
+        foreach (var node in nodes)
         {
-            if (!MicheNodes.TryGetValue(miche.GetHashCode(), out var childNode))
+            if (node.ParentNode == null)
+                continue;
+
+            var from = node.ParentNode.Center;
+            var to = node.Center;
+            if (to.Y < drawRegion.Position.Y || from.Y > drawRegion.End.Y ||
+                Math.Max(from.X, to.X) < drawRegion.Position.X || Math.Min(from.X, to.X) > drawRegion.End.X)
             {
-                throw new Exception("Missing node in miche nodes");
+                continue;
             }
 
-            TreeDraw(childMiche, childNode);
-
-            // If the vertical position is outside draw region, skip.
-            if (childNode.Center.Y < drawRegion.Position.Y || micheNode.Center.Y > drawRegion.End.Y)
-                continue;
-
-            // Horizontal too.
-            if (childNode.Center.X < drawRegion.Position.X || micheNode.Center.X > drawRegion.End.X)
-                continue;
-
-            TreeDrawLine(micheNode.Center, childNode.Center);
+            TreeDrawLine(from, to);
         }
     }
 
@@ -410,10 +329,5 @@ public partial class MicheTree : Control
 
             tree.DrawLine(new Vector2(to.X, mid.Y), to, Colors.DarkCyan, lineWidth);
         }
-    }
-
-    private void OnTreeNodeSelected(MicheTreeNode node)
-    {
-        EmitSignal(SignalName.MicheSelected, node.MicheHash);
     }
 }
