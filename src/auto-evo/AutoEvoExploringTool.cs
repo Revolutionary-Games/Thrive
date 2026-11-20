@@ -617,14 +617,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         world.RunResultsList.Add(results.MakeSummary(true));
 
         // Apply the results (and pass time for world effects)
-        gameWorld.OnTimePassed(1);
-        autoEvoRun.ApplyAllResults(true);
-        ++gameWorld.PlayerSpecies.Generation;
+        autoEvoRun.ApplyGeneration(true);
         ++world.CurrentGeneration;
 
-        // Add run results, this must be called after results are applied to generate unique species ID
-        gameWorld.GenerationHistory.Add(gameWorld.PlayerSpecies.Generation - 1,
-            new GenerationRecord(gameWorld.TotalPassedTime, results.GetSpeciesRecords()));
         gameWorld.BuildEvolutionaryTree(evolutionaryTree);
         world.SpeciesHistoryList.Add(gameWorld.Species.ToDictionary(s => s.Key,
             s => (Species)s.Value.Clone()));
