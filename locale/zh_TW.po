@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-11-18 14:59+0200\n"
-"PO-Revision-Date: 2026-10-29 08:21+0000\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -3124,18 +3124,22 @@ msgstr "{0}（x{1}）"
 msgid "HYDROGENASE"
 msgstr "氫化酶"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "發酵[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 以獲取能量並產生氫等副產物。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
 
+#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
 msgid "HYDROGENOSOME"
 msgstr "氫化體"
 
+#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "發酵[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 以獲取能量並產生氫等副產物。氫化體是一種包含蛋白質與酶的有膜細胞器。它是一種已被其真核宿主同化的原核生物。比氫化酶更高效，在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比粒線體更高效。缺氧環境中的許多生物將其作為主要能量來源。"
 
+#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
@@ -7348,6 +7352,7 @@ msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:com
 msgid "TOXISOME"
 msgstr "毒素體"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "一種修改過的代謝體，負責產生原始形式的有毒物質[thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]。可以修改以切換生成的毒素類型以獲得其他效果，可能需要[thrive:compound type=\"oxygen\"][/thrive:compound] 來製造。"
 
@@ -8239,6 +8244,7 @@ msgstr ""
 "\n"
 "當腦力達到 [b]+0.5[/b] 時，玩家進入意識階段。當腦力達到 [b]+5.0[/b] 時，玩家進入覺醒階段。"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "神經元之間的神經纖維，自[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]起可用。需要增加生物的腦力以進入後續階段。"
 
@@ -8248,12 +8254,14 @@ msgstr "無修改。"
 msgid "WIKI_AXON_PROCESSES"
 msgstr "無代謝過程。"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "僅從[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]開始可用。"
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "軸突是「神經元細胞」延伸出的細長突起，可連接至另一個細胞（例如另一個「神經元」細胞、「肌肉」細胞等眾多細胞類型），允許訊息以電訊號的形式在兩個或多個細胞之間傳遞。這使得生物體能夠對外部刺激做出反應，例如溫度驟升、受到抓撓，甚至是一些感覺細胞察覺到的難聞氣味。"
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "添加[b]軸突[/b]對於進入之後的階段至關重要。我們建議在多細胞生物的多種細胞類型中添加一個[b]軸突[/b]，但添加多個是多餘的。目前，更多的[b]軸突[/b]並不會提供額外的好處。"
 
