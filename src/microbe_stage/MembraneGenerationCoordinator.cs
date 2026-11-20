@@ -1,7 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
 using Godot;
 
 /// <summary>
@@ -54,29 +53,49 @@ public static class MembraneGenerationCoordinator
         }
 
         var grownCellsData = generationParameters.GrownCellsData;
-        var cellPosition = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Position;
-        var cellOrientation = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
+        var cellData = generationParameters.CurrentCellMulticellularMembraneGenerationCellData;
 
-        var tracker = ColonyTrackers.GetOrAdd(generationParameters.LeaderCellKey,
-            _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
+        return CoordinateMulticellularGeneration(generator, singleCellMembranePointData,
+            generationParameters.LeaderCellKey, generationParameters.CellKey, cellData, grownCellsData.Length);
+    }
 
-        var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
+    /// <summary>
+    ///   Coordinates the second pass of multicellular membrane generation for a colony batch.
+    ///   If the current tracker has already started its second pass, the request is routed to a new tracker
+    ///   so late cells are never stranded or mutate an in-flight batch.
+    /// </summary>
+    public static List<long> CoordinateMulticellularGeneration(MembraneShapeGenerator generator,
+        MembranePointData singleCellMembranePointData, long leaderCellKey, long cellKey,
+        MulticellularMembraneGenerationCellData cellData, int expectedCellCount)
+    {
+        var generatedMembranes = new List<long>();
+        var generationData = new MembraneShapeStretcher.CellGenerationData(singleCellMembranePointData, cellData);
 
-        tracker.CellsData[generationParameters.CellKey] = new MembraneShapeStretcher.CellGenerationData(
-            singleCellMembranePointData, multicellularMembraneData);
+        ColonyTracker? completedTracker = null;
+
+        while (true)
+        {
+            var tracker = ColonyTrackers.GetOrAdd(leaderCellKey,
+                _ => new ColonyTracker { ExpectedCount = expectedCellCount });
+
+            if (!tracker.TryAddCell(leaderCellKey, cellKey, generationData, expectedCellCount,
+                    out var readyForSecondPass))
+            {
+                // This tracker already started its second pass; retry with a new tracker
+                continue;
+            }
+
+            if (!readyForSecondPass)
+                return generatedMembranes;
+
+            completedTracker = tracker;
+            break;
+        }
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
         // for too long to avoid potential memory leaks
 
-        // Colony not yet complete — return empty
-        if (tracker.CellsData.Count < tracker.ExpectedCount)
-            return generatedMembranes;
-
-        // Pass 2: all base membranes are ready. Use a flag to ensure exactly one thread executes the second pass.
-        if (!tracker.TryBeginSecondPass())
-            return generatedMembranes;
-
-        var stretchedMembranes = generator.GenerateMulticellularMembrane(tracker.CellsData);
+        var stretchedMembranes = generator.GenerateMulticellularMembrane(completedTracker.CellsData);
 
         foreach (var (key, membraneData) in stretchedMembranes)
         {
@@ -85,8 +104,6 @@ public static class MembraneGenerationCoordinator
         }
 
         stretchedMembranes.Clear();
-
-        ColonyTrackers.TryRemove(generationParameters.LeaderCellKey, out _);
 
         return generatedMembranes;
     }
@@ -142,15 +159,41 @@ public static class MembraneGenerationCoordinator
     {
         public int ExpectedCount;
         public ConcurrentDictionary<long, MembraneShapeStretcher.CellGenerationData> CellsData = new();
-        private int secondPassStarted;
+        private readonly object trackerLock = new();
+        private bool secondPassStarted;
 
         /// <summary>
-        ///   Returns true if the current thread should run the second pass
-        ///   and false if another thread already runs the second pass
+        ///   Adds cell data to this tracker if the second pass has not started yet. Returns false if the second
+        ///   pass has already begun so the caller can retry with a fresh tracker.
         /// </summary>
-        public bool TryBeginSecondPass()
+        public bool TryAddCell(long leaderCellKey, long cellKey,
+            MembraneShapeStretcher.CellGenerationData cellGenerationData, int expectedCount,
+            out bool readyForSecondPass)
         {
-            return Interlocked.CompareExchange(ref secondPassStarted, 1, 0) == 0;
+            lock (trackerLock)
+            {
+                if (secondPassStarted)
+                {
+                    readyForSecondPass = false;
+                    return false;
+                }
+
+                if (expectedCount > ExpectedCount)
+                    ExpectedCount = expectedCount;
+
+                CellsData[cellKey] = cellGenerationData;
+
+                if (CellsData.Count >= ExpectedCount)
+                {
+                    secondPassStarted = true;
+                    readyForSecondPass = true;
+                    ColonyTrackers.TryRemove(new KeyValuePair<long, ColonyTracker>(leaderCellKey, this));
+                    return true;
+                }
+
+                readyForSecondPass = false;
+                return true;
+            }
         }
     }
 }
