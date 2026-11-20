@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -11,68 +9,119 @@ using Godot;
 /// </summary>
 public partial class AutoEvoExplorerDefaultWorldTest : Node
 {
+    private readonly Stopwatch elapsed = new();
+    private Step step;
+    private bool? previousFeedValue;
+
+#pragma warning disable CA2213
+    private Button explorerButton = null!;
+#pragma warning restore CA2213
+
+    private enum Step
+    {
+        OpenMenu,
+        SelectExplorer,
+        CheckWorld,
+    }
+
     public override void _Ready()
     {
-        Callable.From(CheckDefaultWorld).CallDeferred();
+        elapsed.Start();
     }
 
-    private static async Task WaitFor(SceneTree tree, Func<bool> condition, string action)
+    public override void _Process(double delta)
     {
-        var elapsed = Stopwatch.StartNew();
-        while (!condition())
-        {
-            if (elapsed.Elapsed.TotalSeconds >= 10)
-                throw new TimeoutException($"Timed out {action}");
-
-            await tree.ToSignal(tree, SceneTree.SignalName.ProcessFrame);
-        }
-    }
-
-    /// <summary>
-    ///   Follows the main menu's Tools button into the explorer and requires the created world's LAWK to be enabled.
-    ///   Reading the actual game detects changes to the settings passed to the new game factory.
-    /// </summary>
-    private async void CheckDefaultWorld()
-    {
-        var tree = GetTree();
-        var feed = Settings.Instance.ThriveNewsFeedEnabled;
-        var previousFeedValue = feed.Value;
-        int exitCode = 1;
         try
         {
-            feed.Value = false;
-            await WaitFor(tree, () => tree.Root.GetChildren().Any(node => node is PostShutdownActions),
-                "initialising the scene manager");
+            var tree = GetTree();
+            if (elapsed.Elapsed.TotalSeconds >= 10)
+                throw new TimeoutException($"Timed out at explorer test step {step}");
 
-            // Keep this observer attached while the main menu and explorer replace the current scene
-            tree.CurrentScene = null;
-            SceneManager.Instance.ReturnToMenu();
-            var menus = tree.CurrentScene!.GetNode("MenuContainers/Menus/VBoxContainer");
-            menus.GetNode<Button>("MainMenu/Tools").EmitSignal(BaseButton.SignalName.Pressed);
-            var explorerButton = menus.GetNode<Button>("Tools/AutoEvoExploring");
-            await WaitFor(tree, explorerButton.IsVisibleInTree, "opening the Tools menu");
-            explorerButton.EmitSignal(BaseButton.SignalName.Pressed);
+            switch (step)
+            {
+                case Step.OpenMenu:
+                {
+                    // The scene manager attaches its shutdown node last after the autoloads are ready
+                    if (tree.Root.GetChild(-1) is not PostShutdownActions)
+                        return;
 
-            await WaitFor(tree, () => tree.CurrentScene is AutoEvoExploringTool &&
-                !TransitionManager.Instance.HasQueuedTransitions, "entering the Auto-Evo explorer");
+                    var feed = Settings.Instance.ThriveNewsFeedEnabled;
+                    previousFeedValue = feed.Value;
+                    feed.Value = false;
 
-            var world = typeof(AutoEvoExploringTool).GetField("world", BindingFlags.Instance | BindingFlags.NonPublic)!
-                .GetValue(tree.CurrentScene)!;
-            var game = (GameProperties)world.GetType().GetField(nameof(GameProperties))!.GetValue(world)!;
-            if (!game.GameWorld.WorldSettings.LAWK)
-                throw new InvalidOperationException("Expected the default explorer world's LAWK to be true, got false");
+                    // Keep this observer attached while the main menu and explorer replace the current scene
+                    tree.CurrentScene = null;
+                    SceneManager.Instance.ReturnToMenu();
+                    var menus = tree.CurrentScene!.GetNode("MenuContainers/Menus/VBoxContainer");
+                    menus.GetNode<Button>("MainMenu/Tools").EmitSignal(BaseButton.SignalName.Pressed);
+                    explorerButton = menus.GetNode<Button>("Tools/AutoEvoExploring");
+                    step = Step.SelectExplorer;
+                    break;
+                }
 
-            GD.Print("PASS: default explorer world LAWK");
-            exitCode = 0;
+                case Step.SelectExplorer:
+                {
+                    if (!explorerButton.IsVisibleInTree() || explorerButton.Disabled)
+                        return;
+
+                    explorerButton.EmitSignal(BaseButton.SignalName.Pressed);
+                    step = Step.CheckWorld;
+                    break;
+                }
+
+                case Step.CheckWorld:
+                {
+                    if (tree.CurrentScene is not AutoEvoExploringTool explorer ||
+                        TransitionManager.Instance.HasQueuedTransitions)
+                    {
+                        return;
+                    }
+
+                    CheckDefaultWorld(explorer);
+                    Finish(true);
+                    return;
+                }
+            }
+
+            elapsed.Restart();
         }
         catch (Exception e)
         {
             GD.PrintErr(e);
+            Finish(false);
         }
-        finally
+    }
+
+    /// <summary>
+    ///   Requires the world created by the explorer to have LAWK enabled, detecting an incorrect default passed
+    ///   to the new game factory even when the menu and scene transitions succeed.
+    /// </summary>
+    private static void CheckDefaultWorld(AutoEvoExploringTool explorer)
+    {
+        var world = typeof(AutoEvoExploringTool).GetField("world", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .GetValue(explorer)!;
+        var game = (GameProperties)world.GetType().GetField(nameof(GameProperties))!.GetValue(world)!;
+        if (!game.GameWorld.WorldSettings.LAWK)
+            throw new InvalidOperationException("Expected the default explorer world's LAWK to be true, got false");
+    }
+
+    private void Finish(bool passed)
+    {
+        SetProcess(false);
+        try
         {
-            feed.Value = previousFeedValue;
-            tree.Quit(exitCode);
+            if (previousFeedValue.HasValue)
+                Settings.Instance.ThriveNewsFeedEnabled.Value = previousFeedValue.Value;
         }
+        catch (Exception e)
+        {
+            GD.PrintErr(e);
+            passed = false;
+        }
+
+        if (passed)
+            GD.Print("PASS: default explorer world LAWK");
+
+        GetTree().Quit(passed ? 0 : 1);
     }
 }
