@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-11-18 14:59+0200\n"
-"PO-Revision-Date: 2026-10-29 12:02+0000\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -3093,18 +3093,22 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Гидрогеназа"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Ферментируйте [thrive:compound type=\\\"glucose\\\"][/thrive:compound] для получения энергии и производства побочных продуктов, таких как водород. Более эффективен при низком содержании [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] , в отличии от метаболосом.Большое количество организмов, живущих в гипоксических средах используют гидрогеносомы в качестве основного источника энергии."
 
+#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Преобразовывает [thrive:compound type=\\\"glucose\\\"][/thrive:compound] в [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGENOSOME"
 msgstr "Гидрогеносома"
 
+#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "Ферментируйте [thrive:compound type=\\\"glucose\\\"][/thrive:compound] для получения энергии и производства побочных продуктов, таких как водород. Гидрогеносома — Мембранная органелла, заполненная протеинами и энзимами. В своей сути является прокариотой, ассимилированной своим эукариотическим хозяином. Значительно более эффективна, чем гидрогеназа, и более эффективна при низких значениях [thrive:compound type=\\\"oxygen\\\"][/thrive:compound], чем Митохондрия. Множество организмов в анопсических средах используют гидрогеносомы в качестве Основного Источника Энергии."
 
+#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Преобразовывает [thrive:compound type=\\\"glucose\\\"][/thrive:compound] В [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
@@ -7230,6 +7234,7 @@ msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в
 msgid "TOXISOME"
 msgstr "Токсисома"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Модифицированная метаболосома, ответственная за синтез примитивной формы токсичного агента [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Может быть изменена для переключения типа синтезируемого токсина для иных эффектов, которые могут требовать производство [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -8113,6 +8118,7 @@ msgstr ""
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Будет готово в Скором Времени."
 
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "За каждую клетку в многоклеточном организме, что содержит [b]Аксон[/b], сила мозга организма повышается пропорционально объёму этой клетки. Клетки с [b]Аксонами[/b] классифицируются как мышечные клетки мозга.\n"
@@ -8121,6 +8127,7 @@ msgstr ""
 "\n"
 "Уменьшает[thrive:compound type=\"sunlight\"][/thrive:compound] [b]Сопротивление[/b] на 10%."
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "Волокна нервов между нейронами, доступные начиная с [color=#3796e1][url=thriveopedia:macroscopic_stage]Макроскопической Стадии[/url][/color]. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
 
@@ -8130,12 +8137,14 @@ msgstr "Модификации отсутствуют."
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Процессы отсутствуют."
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "Доступно лишь после [color=#3796e1][url=thriveopedia:macroscopic_stage]Макроскопической Стадии[/url][/color]."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "Аксон — это длинный тонкий отросток, соединяющий «нейронную клетку» с другой клеткой, будь то другой «нейрон» или «мышечная» клетка, а также со многими другими типами клеток. Аксон обеспечивает передачу информации в виде электрических сигналов между двумя или более клетками. Это, в свою очередь, позволяет организму реагировать на внешние раздражители, такие как резкое повышение температуры, царапина или даже запах, воздействующий на сенсорные клетки."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "Добавление [b]Аксонов[/b] необходимо для перехода на следующие стадии. Мы рекомендуем добавить один [b]Аксон[/b] различным типам клеток в вашем многоклеточным организмам, поскольку добавлять более одного аксона — бессмысленно. В данный момент, дальнейшее добавление [b]Аксонов[/b] не даёт какого-либо дополнительного преимущества."
 
