@@ -83,13 +83,54 @@ public class SimulationCache
 #endif
 #endif
 
+    private IReadOnlyDictionary<Species, Species>? speciesReplacements;
+
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
         this.worldSettings = worldSettings;
     }
 
+    /// <summary>
+    ///   Applies simulation replacements to indirect species reads as well as the species being scored.
+    ///   Changing the replacement context invalidates cached fitness values.
+    /// </summary>
+    public void SetSpeciesReplacements(IReadOnlyDictionary<Species, Species> replacements)
+    {
+        if (ReferenceEquals(speciesReplacements, replacements))
+            return;
+
+        Clear();
+        speciesReplacements = replacements;
+    }
+
+    public Species ResolveSpecies(Species species)
+    {
+        return speciesReplacements != null && speciesReplacements.TryGetValue(species, out var replacement) ?
+            replacement :
+            species;
+    }
+
+    /// <summary>
+    ///   Reads the original patch population for a replacement without modifying the patch's species collection.
+    /// </summary>
+    public long GetSpeciesPopulation(Patch patch, Species species)
+    {
+        if (speciesReplacements != null)
+        {
+            foreach (var entry in speciesReplacements)
+            {
+                if (ReferenceEquals(entry.Value, species))
+                    return patch.SpeciesInPatch.GetValueOrDefault(entry.Key);
+            }
+        }
+
+        return patch.SpeciesInPatch.GetValueOrDefault(species);
+    }
+
     public float GetPressureScore(SelectionPressure pressure, Patch patch, Species species)
     {
+        species = ResolveSpecies(species);
+
 #if USE_HASHED_SCORE_KEYS
 
         // TODO: even better would be if pressure scores had unique IDs and we could use the species ID +
@@ -452,6 +493,9 @@ public class SimulationCache
 
     public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
     {
+        predatorSpecies = ResolveSpecies(predatorSpecies);
+        preySpecies = ResolveSpecies(preySpecies);
+
         if (predatorSpecies is not MicrobeSpecies and not MulticellularSpecies ||
             preySpecies is not MicrobeSpecies and not MulticellularSpecies)
         {
