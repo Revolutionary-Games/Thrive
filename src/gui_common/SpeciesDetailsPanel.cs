@@ -52,6 +52,12 @@ public partial class SpeciesDetailsPanel : MarginContainer
                     SpeciesPreview.PreviewSpecies = value;
                 }
 
+                if (hexesPreview != null! && hexesPreview.PreviewFailed)
+                {
+                    previewSpecies = value;
+                    hexesPreview.PreviewSpecies = value;
+                }
+
                 return;
             }
 
