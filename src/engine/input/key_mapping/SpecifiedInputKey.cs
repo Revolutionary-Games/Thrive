@@ -255,9 +255,7 @@ public class SpecifiedInputKey : ICloneable
                 var (button, device) = UnpackCodeAndDevice(Code);
 
                 container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton(button)));
-
-                if (device >= 0)
-                    GD.Print("TODO: displaying device restriction");
+                AddDeviceRestriction(container, device, labelSettings);
 
                 break;
             }
@@ -280,10 +278,8 @@ public class SpecifiedInputKey : ICloneable
                     overlayPositioner.AddChild(CreateTextureRect(directionImage));
                 }
 
-                if (device >= 0)
-                    GD.Print("TODO: displaying device restriction");
-
                 container.AddChild(overlayPositioner);
+                AddDeviceRestriction(container, device, labelSettings);
                 break;
             }
 
@@ -579,6 +575,21 @@ public class SpecifiedInputKey : ICloneable
 
         result.ShiftPressed = Shift;
         return result;
+    }
+
+    private void AddDeviceRestriction(HBoxContainer container, int device, LabelSettings labelSettings)
+    {
+        if (device < 0)
+            return;
+
+        container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerDiagram()));
+        container.AddChild(new Label
+        {
+            Text = (device + 1).ToString(),
+            LabelSettings = labelSettings,
+            VerticalAlignment = VerticalAlignment.Center,
+            MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+        });
     }
 
     private TextureRect CreateTextureRect(string image, bool small = false)
