@@ -198,6 +198,9 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         {
             SetInitialCompoundsForDefault();
         }
+
+        // Note if the above is changed, we might need to add the safety check against empty initial compounds
+        // (if there are no processes), like there is for earlier stage species objects.
     }
 
     public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)

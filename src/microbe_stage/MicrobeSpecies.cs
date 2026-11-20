@@ -356,6 +356,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
+
+        if (InitialCompounds.Count < 1)
+        {
+            // If there is no compound balances, add a dummy compound so that errors don't happen
+            InitialCompounds.Add(Compound.Glucose, 0);
+        }
     }
 
     public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
