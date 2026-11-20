@@ -722,7 +722,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
     private void OnItemRemovedFromInfo(CacheItemInfo value)
     {
-        QueueDeleteItemPath(value);
+        if (value.WrittenToDisk)
+            QueueDeleteItemPath(value);
 
         // If the object is currently being processed, don't put it into the reuse buffer
         if (value.Status != CacheItemInfo.OperationStatus.None)
