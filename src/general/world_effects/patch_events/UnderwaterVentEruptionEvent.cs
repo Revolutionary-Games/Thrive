@@ -112,9 +112,12 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
         currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
 
         // Intelligently apply the changes taking total gas percentages into account
-        changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density;
-        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
-        cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
+        changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density
+            * targetWorld.GetCompoundCoefficient(Compound.Hydrogensulfide);
+        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient
+            * targetWorld.GetCompoundCoefficient(Compound.Carbondioxide);
+        cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount
+            * targetWorld.GetCompoundCoefficient(Compound.Hydrogensulfide);
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
 

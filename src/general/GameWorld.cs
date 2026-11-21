@@ -47,6 +47,8 @@ public class GameWorld : IArchivable
 
     private Dictionary<double, List<GameEventDescription>> eventsLog = new();
 
+    private Dictionary<Compound, float> compoundCoefficients = new();
+
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
@@ -104,6 +106,13 @@ public class GameWorld : IArchivable
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
         }
+
+        ApplyCompoundLevelToEvents(Compound.Hydrogensulfide, settings.HydrogenSulfideLevel);
+        ApplyCompoundLevelToEvents(Compound.Glucose, settings.GlucoseLevel);
+        ApplyCompoundLevelToEvents(Compound.Iron, settings.IronLevel);
+        ApplyCompoundLevelToEvents(Compound.Ammonia, settings.AmmoniaLevel);
+        ApplyCompoundLevelToEvents(Compound.Phosphates, settings.PhosphatesLevel);
+        ApplyCompoundLevelToEvents(Compound.Radiation, settings.RadiationLevel);
 
         LightCycle.ApplyWorldSettings(settings);
 
@@ -1094,6 +1103,14 @@ public class GameWorld : IArchivable
         }
     }
 
+    public float GetCompoundCoefficient(Compound compound)
+    {
+        if (compoundCoefficients.TryGetValue(compound, out var coefficient))
+            return coefficient;
+
+        return 1.0f;
+    }
+
     private void CreateRunIfMissing()
     {
         if (autoEvo != null)
@@ -1162,5 +1179,19 @@ public class GameWorld : IArchivable
         }
 
         list.Add(metaball);
+    }
+
+    private void ApplyCompoundLevelToEvents(Compound compound, WorldGenerationSettings.CompoundLevel level)
+    {
+        compoundCoefficients.Add(compound, level switch
+        {
+            WorldGenerationSettings.CompoundLevel.None => 0.0f,
+            WorldGenerationSettings.CompoundLevel.VeryLow => 0.25f,
+            WorldGenerationSettings.CompoundLevel.Low => 0.5f,
+            WorldGenerationSettings.CompoundLevel.Average => 1.0f,
+            WorldGenerationSettings.CompoundLevel.High => 1.5f,
+            WorldGenerationSettings.CompoundLevel.VeryHigh => 3.0f,
+            _ => throw new ArgumentOutOfRangeException($"Not expected compound: {compound}"),
+        });
     }
 }
