@@ -1086,6 +1086,10 @@ public static class PatchMapGenerator
 
         switch (compoundLevel)
         {
+            case WorldGenerationSettings.CompoundLevel.None:
+                minValue = 0.0f;
+                maxValue = 0.0f;
+                break;
             case WorldGenerationSettings.CompoundLevel.VeryLow:
                 minValue = Constants.COMPOUND_LEVEL_VERY_LOW_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_VERY_LOW_MAX;

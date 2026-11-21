@@ -165,20 +165,23 @@ public class WorldGenerationSettings : IArchivable
     /// </remarks>
     public enum CompoundLevel
     {
+        [Description("COMPOUND_LEVEL_NONE")]
+        None = 0,
+
         [Description("COMPOUND_LEVEL_VERY_LOW")]
-        VeryLow = 0,
+        VeryLow = 1,
 
         [Description("COMPOUND_LEVEL_LOW")]
-        Low = 1,
+        Low = 2,
 
         [Description("COMPOUND_LEVEL_AVERAGE")]
-        Average = 2,
+        Average = 3,
 
         [Description("COMPOUND_LEVEL_HIGH")]
-        High = 3,
+        High = 4,
 
         [Description("COMPOUND_LEVEL_VERY_HIGH")]
-        VeryHigh = 4,
+        VeryHigh = 5,
     }
 
     /// <summary>

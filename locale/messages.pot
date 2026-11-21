@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"POT-Creation-Date: 2026-11-21 23:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,7 +257,7 @@ msgstr ""
 msgid "AMMONIA_COST"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:536
+#: ../src/gui_common/menus/PlanetSettings.tscn:538
 msgid "AMMONIA_LEVELS"
 msgstr ""
 
@@ -1622,53 +1622,58 @@ msgstr ""
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:174
-#: ../src/gui_common/menus/PlanetSettings.tscn:451
-#: ../src/gui_common/menus/PlanetSettings.tscn:484
-#: ../src/gui_common/menus/PlanetSettings.tscn:517
-#: ../src/gui_common/menus/PlanetSettings.tscn:550
-#: ../src/gui_common/menus/PlanetSettings.tscn:583
-#: ../src/gui_common/menus/PlanetSettings.tscn:616
-msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr ""
-
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/menus/PlanetSettings.tscn:453
-#: ../src/gui_common/menus/PlanetSettings.tscn:486
-#: ../src/gui_common/menus/PlanetSettings.tscn:519
-#: ../src/gui_common/menus/PlanetSettings.tscn:552
-#: ../src/gui_common/menus/PlanetSettings.tscn:585
-#: ../src/gui_common/menus/PlanetSettings.tscn:618
-msgid "COMPOUND_LEVEL_HIGH"
-msgstr ""
-
-#: ../src/general/WorldGenerationSettings.cs:171
-#: ../src/gui_common/menus/PlanetSettings.tscn:449
-#: ../src/gui_common/menus/PlanetSettings.tscn:482
-#: ../src/gui_common/menus/PlanetSettings.tscn:515
-#: ../src/gui_common/menus/PlanetSettings.tscn:548
-#: ../src/gui_common/menus/PlanetSettings.tscn:581
-#: ../src/gui_common/menus/PlanetSettings.tscn:614
-msgid "COMPOUND_LEVEL_LOW"
-msgstr ""
-
-#: ../src/general/WorldGenerationSettings.cs:180
-#: ../src/gui_common/menus/PlanetSettings.tscn:455
 #: ../src/gui_common/menus/PlanetSettings.tscn:488
 #: ../src/gui_common/menus/PlanetSettings.tscn:521
 #: ../src/gui_common/menus/PlanetSettings.tscn:554
 #: ../src/gui_common/menus/PlanetSettings.tscn:587
 #: ../src/gui_common/menus/PlanetSettings.tscn:620
-msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:180
+#: ../src/gui_common/menus/PlanetSettings.tscn:455
+#: ../src/gui_common/menus/PlanetSettings.tscn:490
+#: ../src/gui_common/menus/PlanetSettings.tscn:523
+#: ../src/gui_common/menus/PlanetSettings.tscn:556
+#: ../src/gui_common/menus/PlanetSettings.tscn:589
+#: ../src/gui_common/menus/PlanetSettings.tscn:622
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:174
+#: ../src/gui_common/menus/PlanetSettings.tscn:451
+#: ../src/gui_common/menus/PlanetSettings.tscn:486
+#: ../src/gui_common/menus/PlanetSettings.tscn:519
+#: ../src/gui_common/menus/PlanetSettings.tscn:552
+#: ../src/gui_common/menus/PlanetSettings.tscn:585
+#: ../src/gui_common/menus/PlanetSettings.tscn:618
+msgid "COMPOUND_LEVEL_LOW"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:168
 #: ../src/gui_common/menus/PlanetSettings.tscn:447
-#: ../src/gui_common/menus/PlanetSettings.tscn:480
-#: ../src/gui_common/menus/PlanetSettings.tscn:513
-#: ../src/gui_common/menus/PlanetSettings.tscn:546
-#: ../src/gui_common/menus/PlanetSettings.tscn:579
-#: ../src/gui_common/menus/PlanetSettings.tscn:612
+#: ../src/gui_common/menus/PlanetSettings.tscn:482
+#: ../src/gui_common/menus/PlanetSettings.tscn:515
+#: ../src/gui_common/menus/PlanetSettings.tscn:548
+#: ../src/gui_common/menus/PlanetSettings.tscn:581
+#: ../src/gui_common/menus/PlanetSettings.tscn:614
+msgid "COMPOUND_LEVEL_NONE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:183
+#: ../src/gui_common/menus/PlanetSettings.tscn:457
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:171
+#: ../src/gui_common/menus/PlanetSettings.tscn:449
+#: ../src/gui_common/menus/PlanetSettings.tscn:484
+#: ../src/gui_common/menus/PlanetSettings.tscn:517
+#: ../src/gui_common/menus/PlanetSettings.tscn:550
+#: ../src/gui_common/menus/PlanetSettings.tscn:583
+#: ../src/gui_common/menus/PlanetSettings.tscn:616
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr ""
 
@@ -2469,7 +2474,7 @@ msgstr ""
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:394
+#: ../src/general/WorldGenerationSettings.cs:397
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:36
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -2480,7 +2485,7 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:91
-#: ../src/general/WorldGenerationSettings.cs:392
+#: ../src/general/WorldGenerationSettings.cs:395
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -3797,7 +3802,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:470
+#: ../src/gui_common/menus/PlanetSettings.tscn:472
 msgid "GLUCOSE_LEVEL"
 msgstr ""
 
@@ -4678,7 +4683,7 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:503
+#: ../src/gui_common/menus/PlanetSettings.tscn:505
 msgid "IRON_LEVELS"
 msgstr ""
 
@@ -7309,7 +7314,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:182
-#: ../src/microbe_stage/PatchMapGenerator.cs:1139
+#: ../src/microbe_stage/PatchMapGenerator.cs:1143
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -7396,7 +7401,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:828
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
-#: ../src/general/WorldGenerationSettings.cs:399
+#: ../src/general/WorldGenerationSettings.cs:402
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/gui_common/menus/OptionsMenu.cs:998
 #: ../src/gui_common/menus/OptionsMenu.cs:2176
@@ -7475,7 +7480,7 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:569
+#: ../src/gui_common/menus/PlanetSettings.tscn:571
 msgid "PHOSPHATES_LEVELS"
 msgstr ""
 
@@ -7521,7 +7526,7 @@ msgstr ""
 msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:410
+#: ../src/general/WorldGenerationSettings.cs:413
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:55
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -7812,7 +7817,7 @@ msgstr ""
 msgid "RADIATION"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:602
+#: ../src/gui_common/menus/PlanetSettings.tscn:604
 msgid "RADIATION_LEVELS"
 msgstr ""
 
@@ -12933,7 +12938,7 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:422
+#: ../src/general/WorldGenerationSettings.cs:425
 msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 
