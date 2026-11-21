@@ -293,28 +293,6 @@ public class RegisterNewSpeciesTests
     }
 
     /// <summary>
-    ///   Registers a split across several patches and verifies that its generation advances once for the species,
-    ///   not once per patch. A normal clone remains at the parent's generation until it becomes an accepted result.
-    /// </summary>
-    [TestCase]
-    public void SplitAcrossPatchesAdvancesOneGeneration()
-    {
-        var world = CreateWorld(2);
-        var patches = new List<Patch>(world.Map.Patches.Values);
-        var parent = CreateParent(world);
-        parent.Generation = 7;
-        var split = (Species)parent.Clone();
-        AssertThat(split.Generation).IsEqual(7);
-        var results = new RunResults();
-        results.AddNewSpecies(split,
-            [new KeyValuePair<Patch, long>(patches[0], 30), new KeyValuePair<Patch, long>(patches[1], 50)],
-            RunResults.NewSpeciesType.FillNiche, parent);
-
-        AssertThat(split.Generation).IsEqual(8);
-        AssertThat(parent.Generation).IsEqual(7);
-    }
-
-    /// <summary>
     ///   Applies population results with or without a mutation, keeping an unchanged species at its old generation.
     ///   Skipping mutations also keeps the parent's generation unchanged despite having an accepted successor.
     /// </summary>

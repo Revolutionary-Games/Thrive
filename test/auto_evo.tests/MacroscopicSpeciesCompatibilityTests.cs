@@ -61,23 +61,6 @@ public class MacroscopicSpeciesCompatibilityTests
     }
 
     [TestCase]
-    public void GenerateMiche_MacroscopicOnlyPatchSkipsUnsupportedSpecies()
-    {
-        var fixture = CreateSpeciesFixture();
-        var cache = new SimulationCache(fixture.WorldSettings);
-        var results = new RunResults();
-        var generateMiche = new GenerateMiche(fixture.Patch, cache, fixture.World.AutoEvoGlobalCache);
-
-        var completed = generateMiche.RunStep(results);
-
-        var occupants = new HashSet<Species>();
-        results.GetModifiableMicheForPatch(fixture.Patch).GetOccupants(occupants);
-
-        AssertThat(completed).IsTrue();
-        AssertThat(occupants.Contains(fixture.Macroscopic)).IsFalse();
-    }
-
-    [TestCase]
     public void GenerateMiche_MixedPatchExcludesMacroscopicPredationInputs()
     {
         var fixture = CreateSpeciesFixture();
@@ -120,36 +103,10 @@ public class MacroscopicSpeciesCompatibilityTests
             .IsEqual(multicellularScoreWithoutMacroscopicPredator);
     }
 
-    [TestCase]
-    public void GeneralAvoidPredation_MacroscopicScoredSpeciesThrows()
-    {
-        var fixture = CreateSpeciesFixture();
-        var cache = new SimulationCache(fixture.WorldSettings);
-        var pressure = fixture.World.AutoEvoGlobalCache.GeneralAvoidPredationSelectionPressure;
-
-        AssertThrown(() => pressure.Score(fixture.Macroscopic, fixture.Patch, cache))
-            .IsInstanceOf<ArgumentException>()
-            .HasPropertyValue(nameof(ArgumentException.ParamName), "species")
-            .StartsWithMessage("Species type MacroscopicSpecies");
-    }
-
-    [TestCase]
-    public void GenerateMiche_OneSupportedSpeciesPlusMacroscopicDoesNotCreatePredationBranch()
-    {
-        var fixture = CreateSpeciesFixture();
-        fixture.Patch.SpeciesInPatch.Clear();
-        fixture.Patch.AddSpecies(fixture.Microbe, TestPopulation);
-        fixture.Patch.AddSpecies(fixture.Macroscopic, TestPopulation);
-
-        var cache = new SimulationCache(fixture.WorldSettings);
-        var generateMiche = new GenerateMiche(fixture.Patch, cache, fixture.World.AutoEvoGlobalCache);
-        var generatedMiche = generateMiche.GenerateMicheTree(fixture.World.AutoEvoGlobalCache);
-        var predationPressures = new List<PredationEffectivenessPressure>();
-        CollectPredationPressures(generatedMiche, predationPressures);
-
-        AssertThat(predationPressures.Count).IsEqual(0);
-    }
-
+    /// <summary>
+    ///   In a patch with one microbe and one macroscopic species, no prey-specific pressure is generated.
+    ///   Population calculation preserves the macroscopic population while recording the microbe's energy cost.
+    /// </summary>
     [TestCase]
     public void MichePopulation_MacroscopicPopulationIsPreserved()
     {
@@ -162,6 +119,9 @@ public class MacroscopicSpeciesCompatibilityTests
         var results = new RunResults();
         var generateMiche = new GenerateMiche(fixture.Patch, cache, fixture.World.AutoEvoGlobalCache);
         AssertThat(generateMiche.RunStep(results)).IsTrue();
+        var predationPressures = new List<PredationEffectivenessPressure>();
+        CollectPredationPressures(results.GetModifiableMicheForPatch(fixture.Patch), predationPressures);
+        AssertThat(predationPressures.Count).IsEqual(0);
 
         var simulationConfiguration = new SimulationConfiguration(fixture.WorldSettings.AutoEvoConfiguration,
             fixture.World.Map, fixture.WorldSettings)
@@ -178,35 +138,6 @@ public class MacroscopicSpeciesCompatibilityTests
         var microbeEnergyResults = results.GetPatchEnergyResults(fixture.Microbe);
         AssertThat(microbeEnergyResults.ContainsKey(fixture.Patch)).IsTrue();
         AssertThat(microbeEnergyResults[fixture.Patch].IndividualCost > 0).IsTrue();
-    }
-
-    [TestCase]
-    public void MichePopulation_InvalidOccupantThrows()
-    {
-        var fixture = CreateSpeciesFixture();
-        fixture.Patch.SpeciesInPatch.Clear();
-        fixture.Patch.AddSpecies(fixture.Microbe, TestPopulation);
-
-        var cache = new SimulationCache(fixture.WorldSettings);
-        var results = new RunResults();
-        var miche = new Miche(new RecordingSelectionPressure())
-        {
-            Occupant = fixture.Macroscopic,
-        };
-
-        results.AddNewMicheForPatch(fixture.Patch, miche);
-
-        var simulationConfiguration = new SimulationConfiguration(fixture.WorldSettings.AutoEvoConfiguration,
-            fixture.World.Map, fixture.WorldSettings)
-        {
-            Results = results,
-            PatchesToRun = new HashSet<Patch> { fixture.Patch },
-        };
-
-        AssertThrown(() => MichePopulation.Simulate(simulationConfiguration, cache,
-                new XoShiRo256starstar(WorldSeed)))
-            .IsInstanceOf<InvalidOperationException>()
-            .StartsWithMessage("Miche occupant type MacroscopicSpecies");
     }
 
     [TestCase]

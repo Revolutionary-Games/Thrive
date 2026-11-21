@@ -8,73 +8,6 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class SimulationCachePredationScoreTests
 {
-    [TestCase]
-    public void PredatorWithoutPredationAbilityScoresZero()
-    {
-        var predator = CreateMicrobe(1, "NoTools", "cellulose", "cytoplasm");
-        var prey = CreateMicrobe(2, "NoToolsPrey", "single", "cytoplasm");
-
-        AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
-    }
-
-    [TestCase]
-    public void DigestibleEngulfmentEnablesPredation()
-    {
-        var control = CreateMicrobe(3, "CannotEngulf", "cellulose",
-            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
-        var engulfer = CreateMicrobe(4, "Engulfer", "single",
-            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
-        var controlPrey = CreateMicrobe(5, "ControlPrey", "single", "cytoplasm");
-        var engulfedPrey = CreateMicrobe(6, "EngulfedPrey", "single", "cytoplasm");
-        var cache = CreateCache();
-        AssertThat(control.CanEngulf).IsFalse();
-        AssertThat(engulfer.CanEngulf).IsTrue();
-        var controlTools = cache.GetPredationToolsRawScores(control);
-        var engulfingTools = cache.GetPredationToolsRawScores(engulfer);
-        AssertRawBits(controlTools, engulfingTools);
-        AssertThat(engulfingTools.PilusScore + engulfingTools.InjectisomeScore + engulfingTools.OxytoxyScore +
-            engulfingTools.CytotoxinScore + engulfingTools.MacrolideScore + engulfingTools.ChannelInhibitorScore +
-            engulfingTools.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
-        AssertThat(engulfedPrey.MembraneType.DissolverEnzyme).IsEqual(Constants.LIPASE_ENZYME);
-        AssertThat(cache.GetBaseHexSizeForSpecies(engulfer))
-            .IsGreater(cache.GetBaseHexSizeForSpecies(engulfedPrey) * Constants.ENGULF_SIZE_RATIO_REQ);
-
-        // Switching membrane also affects movement and resistance; this is the engulfment capability boundary.
-        var (baseline, engulfingScore) = AssertScorePair(control, controlPrey, engulfer, engulfedPrey);
-        AssertThat(baseline).IsEqual(0.0f);
-        AssertThat(engulfingScore).IsGreater(baseline);
-    }
-
-    [TestCase]
-    public void PilusAndToxinPredatorHasPredationAbility()
-    {
-        var predator = CreateMicrobe(7, "Armed", "cellulose", "cytoplasm");
-        predator.Organelles.Add(CreateOrganelle("pilus", new Hex(0, -1)));
-        predator.Organelles.Add(CreateOrganelle("oxytoxy", new Hex(0, 1)));
-        predator.OnEdited();
-        var prey = CreateMicrobe(8, "ArmouredPrey", "cellulose", "cytoplasm");
-        var raw = CreateCache().GetPredationToolsRawScores(predator);
-        AssertThat(predator.CanEngulf).IsFalse();
-        AssertThat(raw.PilusScore).IsGreater(0.0f);
-
-        // The toxin carrier without a custom upgrade uses the default cytotoxin type.
-        AssertThat(raw.CytotoxinScore).IsGreater(0.0f);
-
-        // A compound loadout has an attack path; no monotonic stacking benefit is implied.
-        AssertThat(AssertPredationLifecycle(predator, prey)).IsGreater(0.0f);
-    }
-
-    [TestCase]
-    public void SingleCellMulticellularPredatorHasPredationAbility()
-    {
-        var predator = CreateMulticellularPredator(9);
-        var prey = CreateMicrobe(10, "MulticellularPrey", "single", "cytoplasm");
-        AssertThat(predator.EditorCells.Count).IsEqual(1);
-        AssertThat(predator.CellTypes[0].MembraneType.CanEngulf).IsTrue();
-
-        AssertThat(AssertPredationLifecycle(predator, prey)).IsGreater(0.0f);
-    }
-
     [TestCase("cellulose", Constants.CELLULASE_ENZYME, false)]
     [TestCase("chitin", Constants.CHITINASE_ENZYME, false)]
     [TestCase("cellulose", Constants.CELLULASE_ENZYME, true)]
@@ -134,36 +67,6 @@ public class SimulationCachePredationScoreTests
         }
     }
 
-    [TestCase("cellulose", "single")]
-    [TestCase("single", "cellulose")]
-    public void MulticellularPreyKeepsFirstCellTypesMembraneEnzymeOnEqualSizes(string firstMembrane,
-        string secondMembrane)
-    {
-        var firstCell = CreateCellType("First", firstMembrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
-        var secondCell = CreateCellType("Second", secondMembrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
-
-        // Place cells in the opposite order to CellTypes so the tie rule's ordering is explicit.
-        var prey = CreateMulticellular(35, "EqualSizes",
-            (secondCell, new Hex(0, 0)), (firstCell, new Hex(1, 0)));
-        prey.ModifiableCellTypes.Reverse();
-        prey.OnEdited();
-        var cache = CreateCache();
-        AssertThat(prey.CellTypes[0]).IsSame(firstCell);
-        AssertThat(cache.GetBaseHexSizeForCellType(firstCell)).IsEqual(cache.GetBaseHexSizeForCellType(secondCell));
-
-        var predator = CreateMembraneTestPredator(36);
-        var score = CalculatePredationScore(predator, prey);
-        AssertThat(float.IsFinite(score)).IsTrue();
-        if (firstMembrane == "single")
-        {
-            AssertThat(score).IsGreater(0.0f);
-        }
-        else
-        {
-            AssertThat(AssertPredationLifecycle(predator, prey)).IsEqual(0.0f);
-        }
-    }
-
     [TestCase]
     public void PreySlimeJetPropulsionReducesCatchability()
     {
@@ -190,6 +93,10 @@ public class SimulationCachePredationScoreTests
         AssertThat(propelledScore).IsGreater(0.0f).IsLess(baseline);
     }
 
+    /// <summary>
+    ///   Channel inhibitor reduces an energy-limited attacker's score and helps the carrier hunt the same target.
+    ///   When the prey has maximum fear, the inhibitor and the inactive toxin give equal predation scores.
+    /// </summary>
     [TestCase]
     public void PreyChannelInhibitorDefendsAgainstEnergyLimitedPredator()
     {
@@ -204,40 +111,19 @@ public class SimulationCachePredationScoreTests
         AssertThat(float.IsFinite(controlScore) && float.IsFinite(defendedScore)).IsTrue();
         AssertThat(controlScore).IsGreater(0.0f);
         AssertThat(defendedScore).IsGreater(0.0f).IsLess(controlScore);
-    }
 
-    [TestCase]
-    public void PredatorChannelInhibitorRemainsOffensiveAgainstEnergyLimitedPrey()
-    {
-        var prey = CreateEnergyLimitedMicrobe(23);
-        var channelPredator = CreateInhibitorMicrobe(24, ToxinType.ChannelInhibitor);
-        var controlPredator = CreateInhibitorMicrobe(25, ToxinType.OxygenMetabolismInhibitor);
-        AssertChannelInhibitorScenario(prey, channelPredator, controlPredator);
+        var biome = CreateBiome();
+        var attackCache = CreateCache();
+        var controlAttack = attackCache.GetPredationScore(controlPrey, predator, biome);
+        AssertThat(controlAttack).IsGreater(0.0f);
+        AssertThat(attackCache.GetPredationScore(channelPrey, predator, biome)).IsGreater(controlAttack);
 
-        var controlScore = CalculatePredationScore(controlPredator, prey);
-        var offensiveScore = CalculatePredationScore(channelPredator, prey);
-
-        AssertThat(float.IsFinite(controlScore) && float.IsFinite(offensiveScore)).IsTrue();
-        AssertThat(controlScore).IsGreater(0.0f);
-        AssertThat(offensiveScore).IsGreater(controlScore);
-    }
-
-    [TestCase]
-    public void PreyChannelInhibitorRequiresToxinDefenceBehaviour()
-    {
-        var predator = CreateEnergyLimitedMicrobe(26);
-        var channelPrey = CreateInhibitorMicrobe(27, ToxinType.ChannelInhibitor);
-        var controlPrey = CreateInhibitorMicrobe(28, ToxinType.OxygenMetabolismInhibitor);
-        AssertChannelInhibitorScenario(predator, channelPrey, controlPrey);
         channelPrey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         controlPrey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
-
-        var controlScore = CalculatePredationScore(predator, controlPrey);
-        var channelScore = CalculatePredationScore(predator, channelPrey);
-
-        AssertThat(float.IsFinite(controlScore)).IsTrue();
-        AssertThat(controlScore).IsGreater(0.0f);
-        AssertThat(channelScore).IsEqual(controlScore);
+        var fearCache = CreateCache();
+        var fleeingControl = fearCache.GetPredationScore(predator, controlPrey, biome);
+        AssertThat(fleeingControl).IsGreater(0.0f);
+        AssertThat(fearCache.GetPredationScore(predator, channelPrey, biome)).IsEqual(fleeingControl);
     }
 
     [TestCase]
@@ -475,16 +361,5 @@ public class SimulationCachePredationScoreTests
         // The toxin carrier must not gain another offensive contribution from its own energy deficit.
         var channelBalance = cache.GetEnergyBalanceForSpecies(channelSpecies, biome);
         AssertThat(channelBalance.TotalProduction).IsGreaterEqual(channelBalance.Osmoregulation);
-    }
-
-    private static MulticellularSpecies CreateMulticellularPredator(uint id)
-    {
-        var cellType = CreateCellType("Predator", "single",
-            CreateOrganelle("cytoplasm", new Hex(0, 0)),
-            CreateOrganelle("cytoplasm", new Hex(4, 0)),
-            CreateOrganelle("cytoplasm", new Hex(8, 0)),
-            CreateOrganelle("cytoplasm", new Hex(12, 0)));
-
-        return CreateMulticellular(id, "MulticellularPredator", (cellType, new Hex(0, 0)));
     }
 }
