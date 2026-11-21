@@ -352,12 +352,12 @@ public class WorldGenerationSettings : IArchivable
         if (version < 3)
         {
             // To compensate for the new NONE option
-            instance.HydrogenSulfideLevel++;
-            instance.GlucoseLevel++;
-            instance.IronLevel++;
-            instance.AmmoniaLevel++;
-            instance.PhosphatesLevel++;
-            instance.RadiationLevel++;
+            ++instance.HydrogenSulfideLevel;
+            ++instance.GlucoseLevel;
+            ++instance.IronLevel;
+            ++instance.AmmoniaLevel;
+            ++instance.PhosphatesLevel;
+            ++instance.RadiationLevel;
         }
 
         return instance;
