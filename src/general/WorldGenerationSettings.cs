@@ -8,7 +8,7 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class WorldGenerationSettings : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     public WorldGenerationSettings()
     {
@@ -347,6 +347,17 @@ public class WorldGenerationSettings : IArchivable
         else
         {
             instance.AlwaysResetEnvironment = reader.ReadBool();
+        }
+
+        if (version < 3)
+        {
+            // To compensate for the new NONE option
+            instance.HydrogenSulfideLevel++;
+            instance.GlucoseLevel++;
+            instance.IronLevel++;
+            instance.AmmoniaLevel++;
+            instance.PhosphatesLevel++;
+            instance.RadiationLevel++;
         }
 
         return instance;
