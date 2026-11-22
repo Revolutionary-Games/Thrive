@@ -65,10 +65,10 @@ speedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Speed")
 rotationSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Rotation")
 sizeLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Size")
 digestionSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/DigestionSpeed")
-atpProductionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/ProductionContainer/ProductionBar")
-atpProductionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/ProductionContainer/ProductionLabel")
-atpConsumptionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer/ConsumptionBar")
-atpConsumptionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer/ConsumptionLabel")
+atpProductionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/TableContainer/Bars/ProductionBar")
+atpProductionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/TableContainer/Labels/ProductionLabel")
+atpConsumptionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/TableContainer/Bars/ConsumptionBar")
+atpConsumptionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/TableContainer/Labels/ConsumptionLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1513075606]
 layout_mode = 2
@@ -181,21 +181,46 @@ text = "ATP_BALANCE"
 label_settings = ExtResource("13_smds5")
 autowrap_mode = 3
 
-[node name="ProductionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=1757354567]
+[node name="TableContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=1757354567]
 layout_mode = 2
 
-[node name="ProductionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer" unique_id=1609009624]
+[node name="Bars" type="VBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance/TableContainer" unique_id=1173641267]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProductionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/TableContainer/Bars" unique_id=1609009624]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 6
 max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer" unique_id=468479511]
+[node name="ConsumptionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/TableContainer/Bars" unique_id=183286629]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_oloco")
+theme_override_styles/fill = SubResource("StyleBoxFlat_smds5")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="Labels" type="VBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance/TableContainer" unique_id=1834626338]
+layout_mode = 2
+
+[node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/TableContainer/Labels" unique_id=468479511]
 editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("14_w1mf1")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/TableContainer/Labels" unique_id=249637288]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("14_w1mf1")
@@ -204,26 +229,6 @@ vertical_alignment = 1
 
 [node name="ConsumptionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=2111217500]
 layout_mode = 2
-
-[node name="ConsumptionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer" unique_id=183286629]
-custom_minimum_size = Vector2(0, 6)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_oloco")
-theme_override_styles/fill = SubResource("StyleBoxFlat_smds5")
-max_value = 1.0
-step = 0.001
-show_percentage = false
-
-[node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer" unique_id=249637288]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(35, 0)
-layout_mode = 2
-text = "n/a"
-label_settings = ExtResource("14_w1mf1")
-horizontal_alignment = 2
-vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=617617236]
 layout_mode = 2
