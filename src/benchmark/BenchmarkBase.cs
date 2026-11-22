@@ -12,7 +12,7 @@ using Xoshiro.PRNG64;
 [GodotAbstract]
 public partial class BenchmarkBase : Node
 {
-    protected readonly List<double> fpsValues = new();
+    protected readonly List<double> FpsValues = new();
 
     protected XoShiRo256starstar random;
     protected int internalPhaseCounter;
@@ -136,7 +136,7 @@ public partial class BenchmarkBase : Node
     {
         ++internalPhaseCounter;
         timer = 0;
-        fpsValues.Clear();
+        FpsValues.Clear();
 
         UpdatePhaseLabel();
     }
@@ -156,12 +156,12 @@ public partial class BenchmarkBase : Node
 
     protected float ScoreFromMeasuredFPS()
     {
-        if (fpsValues.Count < 1)
+        if (FpsValues.Count < 1)
             throw new InvalidOperationException("No values recorded");
 
         // For now just take the average
         // TODO: would be nice to have also min and 1% lows
-        return (float)fpsValues.Average();
+        return (float)FpsValues.Average();
     }
 
     protected void WaitForStableFPS()
@@ -179,10 +179,10 @@ public partial class BenchmarkBase : Node
 
         timer = 0;
 
-        fpsValues.Add(Engine.GetFramesPerSecond());
+        FpsValues.Add(Engine.GetFramesPerSecond());
 
         // TODO: could check for standard deviation or something to determine when we have enough samples
-        if (fpsValues.Count > 50)
+        if (FpsValues.Count > 50)
             return true;
 
         return false;

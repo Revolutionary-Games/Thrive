@@ -2200,6 +2200,8 @@ public class NativeLibs
             Timeout = TimeSpan.FromMinutes(1),
         };
 
+        client.DefaultRequestHeaders.UserAgent.ParseAdd("Thrive Scripts");
+
         if (!string.IsNullOrEmpty(options.Key))
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", options.Key);

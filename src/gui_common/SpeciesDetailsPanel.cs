@@ -45,6 +45,19 @@ public partial class SpeciesDetailsPanel : MarginContainer
                     }
                 }
 
+                // A failed preview needs a new request even if the corrected species looks the same.
+                if (SpeciesPreview != null! && SpeciesPreview.PreviewFailed)
+                {
+                    previewSpecies = value;
+                    SpeciesPreview.PreviewSpecies = value;
+                }
+
+                if (hexesPreview != null! && hexesPreview.PreviewFailed)
+                {
+                    previewSpecies = value;
+                    hexesPreview.PreviewSpecies = value;
+                }
+
                 return;
             }
 

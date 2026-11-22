@@ -331,8 +331,8 @@ public static class MulticellularLayoutHelpers
             if (cell != null)
             {
                 source.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
-                        cell.Position, cell.Orientation), cell.Position, cell.Orientation), hexTemporaryMemory,
-                    hexTemporaryMemory2);
+                        cell.Position, cell.Orientation, cell.IsCavity), cell.Position, cell.Orientation),
+                    hexTemporaryMemory, hexTemporaryMemory2);
             }
             else
             {
@@ -395,6 +395,14 @@ public static class MulticellularLayoutHelpers
                 distance += 0.8f;
             }
         }
+    }
+
+    /// <summary>
+    ///   Calculates the origin shift that would happen to the cell with the given organelles upon exiting the editor.
+    /// </summary>
+    public static Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
+    {
+        return CellType.CalculateLayoutOriginShift(localOrganelles);
     }
 
     private static bool FindPositionMultiplierWithNoOverlaps(ref int positionMultiplier, bool firstRun,

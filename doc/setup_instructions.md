@@ -342,7 +342,7 @@ The debug variants are needed when running through Godot Editor for
 Thrive GDExtension to work. The above command installs both variants.
 
 You can compile these libraries locally after installing C++
-development tools: cmake, and a compiler. On Linux clang is
+development tools: CMake 3.20 or newer, and a compiler. On Linux clang is
 recommended (and used by default). Also the build is configured to use
 the gold linker which might not be installed by default so that also
 needs to be installed (package name is probably something like

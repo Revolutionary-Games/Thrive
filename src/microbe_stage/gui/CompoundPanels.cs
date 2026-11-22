@@ -118,7 +118,7 @@ public partial class CompoundPanels : BarPanelBase
 
             UpdateCompressedColumnCount();
 
-            foreach (var bar in primaryBars)
+            foreach (var bar in PrimaryBars)
             {
                 bar.Compact = true;
             }
@@ -139,7 +139,7 @@ public partial class CompoundPanels : BarPanelBase
 
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 0);
 
-            foreach (var bar in primaryBars)
+            foreach (var bar in PrimaryBars)
             {
                 bar.Compact = false;
             }
@@ -246,7 +246,7 @@ public partial class CompoundPanels : BarPanelBase
 
     private void UpdateCompressedColumnCount()
     {
-        if (primaryBars.Count < 4)
+        if (PrimaryBars.Count < 4)
         {
             primaryBarContainer.Columns = 2;
         }

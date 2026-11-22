@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
 "PO-Revision-Date: 2026-10-14 12:30+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -407,6 +407,14 @@ msgstr "(เปอร์เซ็นต์การเปลี่ยนแป�
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "บันทึกอัตโนมัติระหว่างเกม"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "ปกติ"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "AUTO_EVO"
 msgstr "Auto-Evo(วิวัฒนาการอัตโนมัติ)"
 
@@ -744,6 +752,9 @@ msgstr "น้อยมาก"
 msgid "CAUTIOUS"
 msgstr "ระมัดระวัง"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "เซลล์"
 
@@ -798,6 +809,17 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
 
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"การทำให้เซลล์ใช้ออร์แกเนลล์ประเภทน้อยลง จะเพิ่มประสิทธิภาพของออร์แกเนลล์ทั้งหมดในเซลล์นั้น\n"
+"โบนัสปัจจุบันคือ {0}% (ความแรงของโบนัสสูงสุดจะเพิ่มขึ้นตามขนาดของเซลล์จนถึง {3} ช่อง)\n"
+"โบนัสปัจจุบันได้รับเนื่องจากมี {1} {2} ช่อง\n"
+"โบนัสจะเพิ่มขึ้นเมื่อมีการวางออร์แกเนลล์ประเภทที่พบมากที่สุดมากขึ้น และนำออร์แกเนลล์ประเภทอื่นออก"
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "ในโครงสร้างหลายเซลล์นี้ แสดงค่าโบนัสความเชี่ยวชาญเฉลี่ยของเซลล์ทั้งหมด รวมถึงโบนัสจากเซลล์ที่อยู่ติดกันด้วย\n"
@@ -808,6 +830,10 @@ msgstr ""
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SIZE"
+msgstr "เซลล์"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -843,6 +869,9 @@ msgstr "ชื่อไฟล์ที่เลือก ({0}) มีอยู�
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "หมายเหตุการเปลี่ยนแปลงยาวเกินไป"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
 msgstr "เปลี่ยนชนิดของเยื่อหุ้มเซลล์"
@@ -1054,6 +1083,14 @@ msgstr "ความเร็วของอาณานิคม"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "แท็บนี้อนุญาตให้ตั้งค่าลำดับการเจริญเติบโตของเซลล์ในกลุ่ม โดยเซลล์แรกในลำดับจะเป็นเซลล์ราก (หรือเซลล์หน่อ) คุณสามารถใช้การตั้งค่านี้เพื่อจัดลำดับความสำคัญของการเจริญเติบโตของเซลล์ที่สำคัญกว่า หรือเพื่อให้แน่ใจว่าการผลิตและการบริโภคของกลุ่มมีความสมดุลอย่างเหมาะสม"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "การหมุนเวียนอาณานิคม"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "ความเร็วของอาณานิคม"
 
 msgid "COLOUR"
 msgstr "สี"
@@ -2214,6 +2251,23 @@ msgstr ""
 "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
@@ -2283,6 +2337,23 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
 "\n"
@@ -2729,6 +2800,9 @@ msgstr "ยิงสารพิษ"
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "ดำเนินการต่อ"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "แฟลเจลลัม"
@@ -5421,6 +5495,10 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
 #, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "วางออร์แกเนลล์"
 
@@ -6574,6 +6652,34 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 msgid "SFX_VOLUME"
 msgstr "ปริมาณ SFX"
 
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "การกรองแบบแอนไอโซทรอปิก:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "ดำเนินการต่อ"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "ดำเนินการต่อ"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "อัตโนมัติ ({0}x{1})"
+
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -7581,6 +7687,10 @@ msgstr "ดำเนินการต่อ"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "เมาส์ขวา"
 
 msgid "TOOLS"
 msgstr "เครื่องมือ"

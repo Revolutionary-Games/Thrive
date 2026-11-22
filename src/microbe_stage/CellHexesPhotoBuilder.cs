@@ -97,9 +97,9 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
             var organelleModel = modelScene.Instantiate<SceneDisplayer>();
             AddChild(organelleModel);
 
-            CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
+            OrganelleModelPresentation.ApplyTransform(organelleModel, organelle);
 
-            CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
+            OrganelleModelPresentation.ApplySceneAndMaterialPriority(organelleModel,
                 sceneWithModelInfo, Hex.GetRenderPriority(organelle.Position), usedMaterials);
         }
     }

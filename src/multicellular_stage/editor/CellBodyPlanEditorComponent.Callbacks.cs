@@ -2,9 +2,9 @@
 using Godot;
 using SharedBase.Archive;
 
-/// <summary>
+/// <content>
 ///   Callbacks of the cell body plan editor
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
     [ArchiveAllowedMethod]
@@ -16,6 +16,27 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
     {
+        cellDataDirty = true;
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoCellCavityAction(CellCavityActionData data)
+    {
+        data.Cell.Data!.IsCavity = data.NewIsCavity;
+        InvalidateCalculatedLayout();
+        cellDataDirty = true;
+
+        if (data.NewIsCavity)
+        {
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularCellMadeCavity, EventArgs.Empty, this);
+        }
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoCellCavityAction(CellCavityActionData data)
+    {
+        data.Cell.Data!.IsCavity = data.OldIsCavity;
+        InvalidateCalculatedLayout();
         cellDataDirty = true;
     }
 
@@ -96,8 +117,6 @@ public partial class CellBodyPlanEditorComponent
             cellDataDirty = true;
             UpdateAlreadyPlacedVisuals();
 
-            // TODO: notify auto-evo prediction once that is done
-
             UpdateSpecializationDisplay();
         }
         else
@@ -126,6 +145,7 @@ public partial class CellBodyPlanEditorComponent
     private void DoReproductionMethodChangeAction(MulticellularReproductionActionData data)
     {
         ReproductionMethod = data.NewReproductionMethod;
+        autoEvoPrediction.MarkDirty();
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
@@ -156,6 +176,7 @@ public partial class CellBodyPlanEditorComponent
     private void UndoReproductionMethodChangeAction(MulticellularReproductionActionData data)
     {
         ReproductionMethod = data.OldReproductionMethod;
+        autoEvoPrediction.MarkDirty();
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
@@ -284,6 +305,7 @@ public partial class CellBodyPlanEditorComponent
     private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
         DesiredMassBuddingCellCount = data.NewCellCount;
+        autoEvoPrediction.MarkDirty();
 
         UpdateMassBuddingCellCountSlider();
     }
@@ -292,8 +314,14 @@ public partial class CellBodyPlanEditorComponent
     private void UndoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
         DesiredMassBuddingCellCount = data.OldCellCount;
+        autoEvoPrediction.MarkDirty();
 
         UpdateMassBuddingCellCountSlider();
+    }
+
+    private void OnBehaviourChanged()
+    {
+        autoEvoPrediction.MarkDirty();
     }
 
     private void OnReproductionMethodChangedToSexual()

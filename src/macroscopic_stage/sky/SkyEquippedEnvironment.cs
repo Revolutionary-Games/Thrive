@@ -95,10 +95,11 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private readonly StringName ozoneLayerCenterParameter = new("ozoneLayerCenter");
     private readonly StringName ozoneLayerWidthParameter = new("ozoneLayerWidth");
     private readonly StringName viewRayStepsParameter = new("viewRaySteps");
-    private readonly StringName lightRayStepsParameter = new("lightRaySteps");
+    private readonly StringName transmittanceLutParameter = new("transmittanceLut");
 
     private readonly StringName cloudNoiseParameter = new("cloudNoise");
     private readonly StringName cloudPlanetCenterParameter = new("cloudPlanetCenter");
+    private readonly StringName cloudGroundRadiusParameter = new("cloudGroundRadius");
     private readonly StringName cloudInnerRadiusParameter = new("cloudInnerRadius");
     private readonly StringName cloudOuterRadiusParameter = new("cloudOuterRadius");
     private readonly StringName cloudTileSizeParameter = new("cloudTileSize");
@@ -115,8 +116,13 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
     private ShaderMaterial? cloudQuadMaterial;
 
+    private ImageTexture? transmittanceLut;
+
     private DirectionalLight3D? sunLight;
 #pragma warning restore CA2213
+
+    private (float GroundRadius, float TopRadius, float RayleighScaleHeight, Vector3 RayleighScattering,
+        Vector3 OzoneAbsorption, float OzoneLayerCenter, float OzoneLayerWidth) bakedLutInputs;
 
     public override void _Ready()
     {
@@ -198,16 +204,40 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         SkyMaterial.SetShaderParameter(sunLimbDarkeningParameter, SunConfig.SunLimbDarkening);
 
         // Scattering and absorption parameters. These are computed on the CPU as they rarely change.
-        SkyMaterial.SetShaderParameter(rayleighScatteringParameter, Composition.CalculateRayleighScattering());
+        var rayleighScattering = Composition.CalculateRayleighScattering();
+        var ozoneAbsorption = TraceGases.CalculateOzoneAbsorption(Composition.MetresPerUnit);
+
+        SkyMaterial.SetShaderParameter(rayleighScatteringParameter, rayleighScattering);
         SkyMaterial.SetShaderParameter(rayleighScaleHeightParameter, AtmosphereConfig.RayleighScaleHeight);
 
-        SkyMaterial.SetShaderParameter(ozoneAbsorptionParameter,
-            TraceGases.CalculateOzoneAbsorption(Composition.MetresPerUnit));
+        SkyMaterial.SetShaderParameter(ozoneAbsorptionParameter, ozoneAbsorption);
         SkyMaterial.SetShaderParameter(ozoneLayerCenterParameter, TraceGases.OzoneLayerCenter);
         SkyMaterial.SetShaderParameter(ozoneLayerWidthParameter, TraceGases.OzoneLayerWidth);
 
         SkyMaterial.SetShaderParameter(viewRayStepsParameter, AtmosphereConfig.ViewRaySteps);
-        SkyMaterial.SetShaderParameter(lightRayStepsParameter, AtmosphereConfig.LightRaySteps);
+
+        var lutInputs = (AtmosphereConfig.GroundRadius, AtmosphereConfig.TopRadius,
+            AtmosphereConfig.RayleighScaleHeight, rayleighScattering, ozoneAbsorption, TraceGases.OzoneLayerCenter,
+            TraceGases.OzoneLayerWidth);
+
+        if (transmittanceLut is null || lutInputs != bakedLutInputs)
+        {
+            var lutImage = AtmosphereTransmittanceLut.Bake(AtmosphereConfig, rayleighScattering, TraceGases,
+                ozoneAbsorption);
+
+            if (transmittanceLut is null)
+            {
+                transmittanceLut = ImageTexture.CreateFromImage(lutImage);
+            }
+            else
+            {
+                transmittanceLut.Update(lutImage);
+            }
+
+            bakedLutInputs = lutInputs;
+        }
+
+        SkyMaterial.SetShaderParameter(transmittanceLutParameter, transmittanceLut);
     }
 
     protected override void Dispose(bool disposing)
@@ -227,10 +257,11 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
             ozoneLayerCenterParameter.Dispose();
             ozoneLayerWidthParameter.Dispose();
             viewRayStepsParameter.Dispose();
-            lightRayStepsParameter.Dispose();
+            transmittanceLutParameter.Dispose();
 
             cloudNoiseParameter.Dispose();
             cloudPlanetCenterParameter.Dispose();
+            cloudGroundRadiusParameter.Dispose();
             cloudInnerRadiusParameter.Dispose();
             cloudOuterRadiusParameter.Dispose();
             cloudTileSizeParameter.Dispose();
@@ -349,6 +380,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         float outer = MathF.Max(CloudsConfig.CloudOuterHeight, inner + 1.0f);
 
         cloudQuadMaterial.SetShaderParameter(cloudPlanetCenterParameter, CloudsConfig.PlanetCenter);
+        cloudQuadMaterial.SetShaderParameter(cloudGroundRadiusParameter, CloudsConfig.PlanetRadius);
         cloudQuadMaterial.SetShaderParameter(cloudInnerRadiusParameter, CloudsConfig.PlanetRadius + inner);
         cloudQuadMaterial.SetShaderParameter(cloudOuterRadiusParameter, CloudsConfig.PlanetRadius + outer);
         cloudQuadMaterial.SetShaderParameter(cloudTileSizeParameter, CloudsConfig.CloudTileSize);

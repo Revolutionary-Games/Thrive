@@ -127,7 +127,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     /// </summary>
     public bool IsPreMulticellularStretch { get; }
 
-    public static Vector2 GetAverageVertex(Vector2[] vertices2D, int vertexCount)
+    public static Vector2 GetAverageVertex(IReadOnlyList<Vector2> vertices2D, int vertexCount)
     {
         if (vertexCount == 0)
             throw new InvalidOperationException("Cannot calculate average vertex with zero vertices");
@@ -203,39 +203,6 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
             finalEngulfMesh.Value.Mesh.Dispose();
 
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
-    }
-}
-
-public sealed class NeighbourData
-{
-    public long CellKey;
-    public Vector2 OriginalAverageVertex;
-    public Vector2 LocalAverageVertex;
-    public MembranePointData OriginalPointData;
-
-    public MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
-
-    /// <summary>
-    ///   Modified vertices separate from original. Used to persist changes across multiple calls to
-    ///   GenerateMulticellularMembrane.
-    /// </summary>
-    public List<Vector2>? ModifiedVertices;
-
-    /// <summary>
-    ///   Tracks which cell pairs have already been processed to avoid duplicate work when the relationship
-    ///   reverses (when the cell was a neighbor and is now the current cell).
-    /// </summary>
-    public HashSet<long> ProcessedNeighbours = new();
-
-    public NeighbourData(long cellKey,
-        MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
-        MembranePointData originalPointData)
-    {
-        CellKey = cellKey;
-        OriginalPointData = originalPointData;
-        MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
-        OriginalAverageVertex =
-            MembranePointData.GetAverageVertex(OriginalPointData.Vertices2D, OriginalPointData.VertexCount);
     }
 }
 

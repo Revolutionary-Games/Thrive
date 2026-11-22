@@ -47,6 +47,5 @@ public enum MainGameState
     /// <summary>
     ///   The cutscene where the player gets to ascension
     /// </summary>
-    [Alias("ascension")]
     AscensionCeremony,
 }

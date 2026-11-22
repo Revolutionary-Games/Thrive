@@ -31,7 +31,7 @@ public class UpgradeOrganelle : ModifyOrganelleBase
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool shouldRepeat) : base(
         criteria, shouldRepeat)
     {
-        foreach (var organelle in allOrganelles)
+        foreach (var organelle in AllOrganelles)
         {
             if (!organelle.AvailableUpgrades.ContainsKey(upgradeName))
             {

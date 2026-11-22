@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
 [ext_resource type="Script" uid="uid://dfbi66n0pfqh7" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="4_o1pli"]
+[ext_resource type="LabelSettings" uid="uid://ddl68802hf35" path="res://src/gui_common/fonts/Body-Bold-Normal-Shadow.tres" id="4_pnii6"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://dad6elomccmtr" path="res://src/microbe_stage/editor/ToleranceWarningsPanel.tscn" id="6_wbwlm"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
@@ -417,7 +418,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(470, 10)]
+"values": [Vector2(422, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_wbwlm"]
@@ -496,7 +497,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 0.517632),
 "update": 0,
-"values": [Vector2(470, -60), Vector2(470, 10)]
+"values": [Vector2(422, -60), Vector2(422, 10)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o1pli"]
@@ -513,7 +514,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(1705, 266)
 theme = ExtResource("6")
 script = ExtResource("4")
 structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
@@ -551,6 +551,7 @@ bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
 hexEffectFont = ExtResource("4_o1pli")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
+growthOrderLabelSettings = ExtResource("4_pnii6")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
 mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
@@ -569,13 +570,15 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TopPanel" type="MarginContainer" parent="." unique_id=1081683577]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -170.0
+offset_left = -218.0
 offset_top = 10.0
-offset_right = 280.0
+offset_right = 278.00012
 offset_bottom = 64.0
+grow_horizontal = 2
 
 [node name="LightConfigurationPanel" parent="TopPanel" unique_id=726771345 instance=ExtResource("3_yy73o")]
 layout_mode = 2
@@ -600,9 +603,9 @@ mouse_filter = 2
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 0
 anchor_bottom = 1.0
-offset_top = 41.0
+offset_top = 40.0
 offset_right = 350.0
-offset_bottom = -49.0
+offset_bottom = -50.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
@@ -935,6 +938,7 @@ layout_mode = 2
 [node name="GrowthOrderPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=997994053 instance=ExtResource("15_krpbw")]
 layout_mode = 2
 size_flags_vertical = 3
+ShowAutoCalculateButton = false
 
 [node name="Coordinates" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=2071788182]
 custom_minimum_size = Vector2(100, 0)

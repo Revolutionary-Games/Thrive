@@ -15,6 +15,8 @@ public static class MacroscopicEnvironmentalToleranceCalculations
             TemperatureScore = 1,
             PressureScore = 1,
             UVScore = 1,
+            OxygenResistance = speciesTolerances.OxygenResistance,
+            UVResistance = speciesTolerances.UVResistance,
         };
     }
 }

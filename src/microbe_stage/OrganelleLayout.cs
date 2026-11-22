@@ -25,9 +25,9 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     {
     }
 
-    public IReadOnlyList<T> Organelles => existingHexes;
+    public IReadOnlyList<T> Organelles => ExistingHexes;
 
-    public int HexCount => existingHexes.Sum(h => h.Definition.HexCount);
+    public int HexCount => ExistingHexes.Sum(h => h.Definition.HexCount);
 
     /// <summary>
     ///   The center of mass for the contained organelles.
@@ -61,7 +61,7 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        writer.WriteObject(ExistingHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }
@@ -242,9 +242,9 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     {
         var result = new OrganelleLayout<T>();
 
-        foreach (var existingHex in existingHexes)
+        foreach (var existingHex in ExistingHexes)
         {
-            result.existingHexes.Add((T)existingHex.Clone());
+            result.ExistingHexes.Add((T)existingHex.Clone());
         }
 
         return result;
@@ -257,7 +257,7 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     /// </summary>
     internal void AddAutoEvoAttemptOrganelle(T organelle)
     {
-        existingHexes.Add(organelle);
+        ExistingHexes.Add(organelle);
     }
 
     /// <summary>

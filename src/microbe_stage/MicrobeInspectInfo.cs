@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public partial class MicrobeInspectInfo : PlayerInspectInfo
 {
-    protected readonly Dictionary<CompoundDefinition, float> hoveredCompounds = new();
+    protected readonly Dictionary<CompoundDefinition, float> HoveredCompoundsValue = new();
 
     /// <summary>
     ///   Used to query the real hovered compound values. This is a member variable to reduce GC pressure.
@@ -26,7 +26,7 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
     /// <summary>
     ///   All compounds the user is hovering over with delay to reduce flickering.
     /// </summary>
-    public IReadOnlyDictionary<CompoundDefinition, float> HoveredCompounds => hoveredCompounds;
+    public IReadOnlyDictionary<CompoundDefinition, float> HoveredCompounds => HoveredCompoundsValue;
 
     public void Init(CompoundCloudSystem clouds, MicrobeCamera camera)
     {
@@ -45,13 +45,13 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
         if (camera.CursorVisualWorldPos != lastCursorWorldPos)
         {
-            hoveredCompounds.Clear();
+            HoveredCompoundsValue.Clear();
             lastCursorWorldPos = camera.CursorVisualWorldPos;
         }
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
-            hoveredCompounds.TryGetValue(compound, out float oldAmount);
+            HoveredCompoundsValue.TryGetValue(compound, out float oldAmount);
             currentHoveredCompounds.TryGetValue(compound.ID, out float newAmount);
 
             // Delay removing of label to reduce flickering.
@@ -62,7 +62,7 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
                 if (delayDelta > Constants.COMPOUND_HOVER_INFO_REMOVE_DELAY)
                 {
                     compoundDelayTimer.Remove(compound);
-                    hoveredCompounds[compound] = 0.0f;
+                    HoveredCompoundsValue[compound] = 0.0f;
                     continue;
                 }
 
@@ -73,7 +73,7 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
             // Ignore small changes to reduce flickering.
             if (MathF.Abs(newAmount - oldAmount) >= Constants.COMPOUND_HOVER_INFO_THRESHOLD)
             {
-                hoveredCompounds[compound] = newAmount;
+                HoveredCompoundsValue[compound] = newAmount;
             }
         }
 

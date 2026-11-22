@@ -531,23 +531,6 @@ public static class MulticellularGrowthHelpers
             targetGamete = GameteType.All;
         }
 
-        // Get the cell type used for the gamete
-        CellType? targetCellType;
-        if (targetGamete == GameteType.B)
-        {
-            targetCellType = species.ModifiableGameteTypeB;
-        }
-        else
-        {
-            targetCellType = species.ModifiableGameteTypeA;
-        }
-
-        if (targetCellType == null)
-        {
-            GD.PrintErr("Species is missing configured gamete type that should have been spawned");
-            return;
-        }
-
         ref var position = ref entity.Get<WorldPosition>();
 
         var shootDirection = position.Rotation * Vector3.Forward;
@@ -578,7 +561,7 @@ public static class MulticellularGrowthHelpers
         }
 
         SpawnHelpers.SpawnGamete(worldSimulation, spawnEnvironment, spawnerToRegisterWith, species, initialPosition,
-            initialVelocity, targetGamete, targetCellType, !isPlayer, entity);
+            initialVelocity, targetGamete, !isPlayer, entity);
 
         // Need to gather resources again.
         // Gamete consumed the resources.

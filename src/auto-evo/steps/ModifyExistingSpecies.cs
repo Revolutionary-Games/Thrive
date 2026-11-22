@@ -67,7 +67,7 @@ public class ModifyExistingSpecies : IRunStep
     private Step step;
 
     public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
-        Random randomSeed)
+        long seed)
     {
         this.patch = patch;
         this.cache = cache;
@@ -75,7 +75,7 @@ public class ModifyExistingSpecies : IRunStep
 
         mutationSorter = new MutationSorter(patch, cache);
 
-        random = new XoShiRo256starstar(randomSeed.NextInt64());
+        random = new XoShiRo256starstar(seed);
 
         // Patch species count is used to know how many steps there are to perform
         TotalSteps = patch.SpeciesInPatch.Count;
@@ -220,6 +220,11 @@ public class ModifyExistingSpecies : IRunStep
                     // population will be too low to pass FinalApply and call OnEdited.
                     mutation.MutatedSpecies.UpdateInitialCompounds();
 
+#if DEBUG
+                    if (mutation.MutatedSpecies.InitialCompounds.Count < 1)
+                        throw new InvalidOperationException("Mutated species must have at least one initial compound.");
+#endif
+
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.
@@ -282,7 +287,7 @@ public class ModifyExistingSpecies : IRunStep
                         }
 
                         // Only apply a new name and colour to results that are actually kept
-                        MutationLogicFunctions.NameNewSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        MutationLogicFunctions.NameNewSpecies(random, mutation.MutatedSpecies, mutation.ParentSpecies);
 
                         if (mutation.MutatedSpecies is MicrobeSpecies microbeSpecies &&
                             mutation.ParentSpecies is MicrobeSpecies parentMicrobeSpecies)

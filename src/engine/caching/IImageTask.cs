@@ -8,6 +8,11 @@ using Godot;
 public interface IImageTask : ISavableCacheItem
 {
     /// <summary>
+    ///   Whether this image task failed and cannot provide an image.
+    /// </summary>
+    public bool Failed { get; }
+
+    /// <summary>
     ///   Access to the final image
     /// </summary>
     /// <exception cref="InvalidOperationException">If not <see cref="ICacheItem.Finished"/> yet</exception>

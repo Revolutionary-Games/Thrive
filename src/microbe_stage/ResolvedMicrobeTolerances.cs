@@ -5,5 +5,6 @@ public struct ResolvedMicrobeTolerances
 {
     public float ProcessSpeedModifier;
     public float OsmoregulationModifier;
+    public float SliderOsmoregulationAdditionalModifier;
     public float HealthModifier;
 }

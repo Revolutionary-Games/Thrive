@@ -9,11 +9,11 @@ using Newtonsoft.Json;
 public abstract class SpaceStructureComponent
 {
     [JsonProperty]
-    protected readonly PlacedSpaceStructure owningStructure;
+    protected readonly PlacedSpaceStructure OwningStructure;
 
     protected SpaceStructureComponent(PlacedSpaceStructure owningStructure)
     {
-        this.owningStructure = owningStructure;
+        OwningStructure = owningStructure;
     }
 
     public abstract void ProcessSpace(float delta, ISocietyStructureDataAccess dataAccess);

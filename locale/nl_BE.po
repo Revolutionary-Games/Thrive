@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -408,6 +408,14 @@ msgstr "(kost van organellen, membranen en andere items in de bewerker)"
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisch opslaan tijdens het spelen"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "BEVESTIGEN"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
@@ -757,6 +765,9 @@ msgstr "heel weinig"
 msgid "CAUTIOUS"
 msgstr "Voorzichtig"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Cel"
 
@@ -812,12 +823,23 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
 
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "Pauzeer het spel"
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Pauzeer het spel"
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SIZE"
+msgstr "Cellen"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -844,6 +866,9 @@ msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Veranderingsnotities zijn te lang"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 #, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
@@ -1058,6 +1083,14 @@ msgstr "Totale populatie:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "Totale populatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -2266,6 +2299,16 @@ msgstr ""
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
@@ -2307,6 +2350,16 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
 "Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
@@ -2772,6 +2825,9 @@ msgstr "Vergif vuren"
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Zelfmoord"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "Flagellum"
@@ -5506,6 +5562,10 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Steek hiermee andere cellen."
 
 #, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "Steek hiermee andere cellen."
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Organel plaatsen"
 
@@ -6692,6 +6752,34 @@ msgstr "{0} bevolking veranderd met {1} door: {2}"
 msgid "SFX_VOLUME"
 msgstr "Volume Geluidseffecten"
 
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "Anistropische filtering:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Resolutie:"
+
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -7668,6 +7756,10 @@ msgstr "Toleranties worden door sommige organellen zowel positief als negatief b
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibiliteit:"
 
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "{0} (x{1})"
+
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
@@ -7774,6 +7866,7 @@ msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:co
 msgid "TOXISOME"
 msgstr "Oxytoxisoom"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Een aangepast metabolosoom die verantwoordelijk is voor de productie van een oervorm van de toxine [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Het kan aangepast worden om de effecten van het geproduceerde toxinetype te vervangen door andere effecten die mogelijk [thrive:compound type=\"oxygen\"][/thrive:compound] zullen nodig hebben om te produceren."
 

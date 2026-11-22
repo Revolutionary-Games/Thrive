@@ -10,6 +10,34 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class MulticellularRotationTests
 {
+    [TestCase(true)]
+    [TestCase(false)]
+    public void CavityCellsContributeTheSameMassAsOtherCells(bool useEstimate)
+    {
+        var parameters = SimulationParameters.Instance;
+        var cellType = new CellType(parameters.GetMembrane("single"))
+        {
+            CellTypeName = "TestCell",
+        };
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+
+        var leader = new CellTemplate(cellType, new Hex(0, 0), 0);
+        var member = new CellTemplate(cellType, new Hex(1, 0), 0);
+        var cells = new List<HexWithData<CellTemplate>>
+        {
+            new(leader, leader.Position, 0),
+            new(member, member.Position, 0),
+        };
+        var speedWithOrdinaryCells = CellBodyPlanInternalCalculations.CalculateSpeed(cells, useEstimate);
+
+        member.IsCavity = true;
+        var speedWithCavity = CellBodyPlanInternalCalculations.CalculateSpeed(cells, useEstimate);
+
+        AssertThat(speedWithOrdinaryCells).IsGreater(0.0f);
+        AssertThat(speedWithCavity).IsEqual(speedWithOrdinaryCells);
+    }
+
     [TestCase]
     public void AddingActomyosinToColonyCellTypeImprovesRotationSpeed()
     {

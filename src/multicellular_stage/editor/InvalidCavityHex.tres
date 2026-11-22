@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dll0emofw06p5"]
+
+[ext_resource type="Texture2D" uid="uid://b56mej3syju8q" path="res://assets/textures/single_hex.png" id="1_i3m6n"]
+
+[resource]
+render_priority = -1
+transparency = 1
+albedo_color = Color(0.85, 0.15, 0.5, 1)
+albedo_texture = ExtResource("1_i3m6n")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1

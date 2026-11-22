@@ -1,9 +1,9 @@
 ﻿using Godot;
 
-/// <summary>
+/// <content>
 ///   Inspector part of the debug overlay, displays debug coordinates, etc.
 ///   Debug equivalent of <see cref="PlayerInspectInfo"/>.
-/// </summary>
+/// </content>
 public partial class DebugOverlays
 {
     private Vector3 positionCoordinates;

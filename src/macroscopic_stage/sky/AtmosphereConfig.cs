@@ -41,19 +41,12 @@ public sealed partial class AtmosphereConfig : ValidatedConfig
     public float RayleighScaleHeight = 20.0f;
 
     /// <summary>
-    ///   How many steps the sky shader marches along the view ray. Higher is smoother but costs more, and the cost
-    ///   multiplies with <see cref="LightRaySteps"/>.
+    ///   How many steps the sky shader marches along the view ray. Higher is smoother but costs more.
     /// </summary>
     [Export(PropertyHint.Range, "4,128,1")]
     public int ViewRaySteps = 32;
 
-    /// <summary>
-    ///   How many steps the sky shader marches towards the sun from each view ray sample.
-    /// </summary>
-    [Export(PropertyHint.Range, "2,32,1")]
-    public int LightRaySteps = 8;
-
-    protected override int ValueCount => 5;
+    protected override int ValueCount => 4;
 
     protected override bool DoChecks()
     {
@@ -80,12 +73,6 @@ public sealed partial class AtmosphereConfig : ValidatedConfig
             valid = false;
         }
 
-        if (!Check(LightRaySteps is >= 2 and <= 32, $"LightRaySteps must be between 2 and 32, but is " +
-                $"{LightRaySteps}"))
-        {
-            valid = false;
-        }
-
         if (TopRadius <= GroundRadius || RayleighScaleHeight <= 0.0f)
             return valid;
 
@@ -106,6 +93,5 @@ public sealed partial class AtmosphereConfig : ValidatedConfig
         destination[1] = TopRadius;
         destination[2] = RayleighScaleHeight;
         destination[3] = ViewRaySteps;
-        destination[4] = LightRaySteps;
     }
 }

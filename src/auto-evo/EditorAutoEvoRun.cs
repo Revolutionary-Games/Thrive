@@ -31,7 +31,7 @@ public class EditorAutoEvoRun : AutoEvoRun
     /// </summary>
     public bool ApplyPlayerPopulationChangeClamp { get; set; } = true;
 
-    protected override void GatherInfo(Queue<IRunStep> steps)
+    protected override void GatherInfo(Queue<IRunStep> steps, long seed)
     {
         // Custom run setup for editor's use
         var map = Parameters.World.Map;
@@ -41,10 +41,10 @@ public class EditorAutoEvoRun : AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, GlobalCache));
         }
 
-        var populationCalculation = new CalculatePopulation(configuration, worldSettings, map,
+        var populationCalculation = new CalculatePopulation(Configuration, worldSettings, map,
             new Dictionary<Species, Species>
                 { { OriginalEditedSpecies, ModifiedProperties } }, CollectEnergyInfo);
 

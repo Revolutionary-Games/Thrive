@@ -262,18 +262,18 @@ public partial class MicrobeBenchmark : BenchmarkBase
                     SpawnAndUpdatePositionState();
                 }
 
-                fpsValues.Add(Engine.GetFramesPerSecond());
+                FpsValues.Add(Engine.GetFramesPerSecond());
 
                 float endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
                     STRESS_TEST_END_THRESHOLD - spawnCounter / STRESS_TEST_THRESHOLD_REDUCE_EVERY_N *
                     STRESS_TEST_THRESHOLD_REDUCE);
 
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) ||
-                    fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
+                if ((timeSinceSpawn > endThreshold && FpsValues.Count > 0) ||
+                    FpsValues.Count > STRESS_TEST_ABSOLUTE_END)
                 {
                     microbeStressTestResult = spawnCounter;
-                    microbeStressTestMinFPS = (float)fpsValues.Min();
+                    microbeStressTestMinFPS = (float)FpsValues.Min();
                     aliveStressTestMicrobes = spawnedMicrobes.Count;
                     microbeStressTestAverageFPS = ScoreFromMeasuredFPS();
                     IncrementPhase();
@@ -289,23 +289,23 @@ public partial class MicrobeBenchmark : BenchmarkBase
                     break;
 
                 timer = 0;
-                fpsValues.Add(Engine.GetFramesPerSecond());
+                FpsValues.Add(Engine.GetFramesPerSecond());
 
                 // End this phase when either there aren't many microbes left or a few minutes have elapsed
                 if (spawnedMicrobes.Count > REMAINING_MICROBES_THRESHOLD &&
-                    fpsValues.Count * 0.5f < MAX_WAIT_TIME_FOR_MICROBE_DEATH)
+                    FpsValues.Count * 0.5f < MAX_WAIT_TIME_FOR_MICROBE_DEATH)
                 {
                     break;
                 }
 
                 // Don't allow ending before at least some FPS samples are captured
-                if (fpsValues.Count < 50)
+                if (FpsValues.Count < 50)
                     break;
 
                 // Microbes are basically dead now
 
                 microbeDeathResult = ScoreFromMeasuredFPS();
-                microbeDeathMinFPS = (float)fpsValues.Min();
+                microbeDeathMinFPS = (float)FpsValues.Min();
                 remainingMicrobesAtEnd = spawnedMicrobes.Count;
 
                 IncrementPhase();

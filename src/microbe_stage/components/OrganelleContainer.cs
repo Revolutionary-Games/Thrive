@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public struct OrganelleContainer : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   Instances of all the organelles in this entity. This is saved but components are not saved. This means
@@ -134,6 +134,8 @@ public struct OrganelleContainer : IArchivableComponent
 
     public bool HasBindingAgent;
 
+    public bool HasAxon;
+
     /// <summary>
     ///   Set true once all organelles are divided to not continuously run code that is triggered when a cell is ready
     ///   to reproduce.
@@ -172,6 +174,8 @@ public struct OrganelleContainer : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
+        writer.Write(HasAxon);
+
         writer.WriteObjectOrNull(Organelles);
 
         if (AvailableEnzymes != null)
@@ -218,8 +222,20 @@ public static class OrganelleContainerHelpers
         if (version is > OrganelleContainer.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, OrganelleContainer.SERIALIZATION_VERSION);
 
+        // For older versions, Multicellular species should not have had the Axon at all
+        bool hasAxon;
+        if (version < 2)
+        {
+            hasAxon = false;
+        }
+        else
+        {
+            hasAxon = reader.ReadBool();
+        }
+
         return new OrganelleContainer
         {
+            HasAxon = hasAxon,
             Organelles = reader.ReadObjectOrNull<OrganelleLayout<PlacedOrganelle>>(),
             AvailableEnzymes = reader.ReadObjectOrNull<Dictionary<Enzyme, int>>(),
             AvailableToxinTypes = reader.ReadObjectOrNull<Dictionary<ToxinType, int>>(),
@@ -596,6 +612,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HasAxon = false;
         container.HydrogenSulfideProtection = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
@@ -676,6 +693,9 @@ public static class OrganelleContainerHelpers
                     container.ActomyosinComponents.Add(actomyosinComponent);
                 }
             }
+
+            if (organelleDefinition.HasAxonFeature)
+                container.HasAxon = true;
 
             if (organelleDefinition.HasSignalingFeature)
                 container.HasSignalingAgent = true;

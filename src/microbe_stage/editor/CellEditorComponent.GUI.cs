@@ -5,15 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-/// <summary>
-///   Partial class to mostly separate the GUI interacting parts from the cell editor
-/// </summary>
-/// <remarks>
-///   <para>
-///     This is done this way as multiple scripts can't be attached to the same node). And this is done in the first
-///     place because otherwise the CellEditorComponent class would be a very long file.
-///   </para>
-/// </remarks>
+/// <content>
+///   Partial class to mostly separate the GUI interacting parts from the cell editor.
+///   This is done this way as multiple scripts can't be attached to the same node.
+///   And this is done in the first place because otherwise the CellEditorComponent class would be a very long file.
+/// </content>
 public partial class CellEditorComponent
 {
     private readonly List<Label> activeToleranceWarnings = new();
@@ -101,15 +97,6 @@ public partial class CellEditorComponent
         UpdateSpecializationDisplay();
 
         refreshTolerancesWarnings = true;
-    }
-
-    private void CheckRunningAutoEvoPrediction()
-    {
-        if (waitingForPrediction?.Finished != true)
-            return;
-
-        OnAutoEvoPredictionComplete(waitingForPrediction);
-        waitingForPrediction = null;
     }
 
     private void CheckRunningSuggestion(double delta)
@@ -601,59 +588,17 @@ public partial class CellEditorComponent
             specificStorages, warningTime, fillingUpTime, compoundsThatWarnFillTime);
     }
 
-    private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
-        MicrobeSpecies playerSpeciesNew)
-    {
-        if (waitingForPrediction != null)
-        {
-            GD.PrintErr(
-                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
-        }
-
-        autoEvoPredictionPanel.ShowWaiting();
-
-        var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
-
-        if (startedRun.Finished)
-        {
-            OnAutoEvoPredictionComplete(prediction);
-            waitingForPrediction = null;
-        }
-        else
-        {
-            waitingForPrediction = prediction;
-        }
-    }
-
-    /// <summary>
-    ///   Cancels the previous auto-evo prediction run if there is one
-    /// </summary>
-    /// <returns>True, once there is no active run</returns>
-    private bool CancelPreviousAutoEvoPrediction()
-    {
-        if (waitingForPrediction == null)
-            return true;
-
-        if (!waitingForPrediction.AutoEvoRun.Aborted)
-        {
-            GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
-            waitingForPrediction.AutoEvoRun.Abort();
-        }
-
-        if (waitingForPrediction.Finished)
-        {
-            GD.Print("Previous auto-evo prediction run finished now");
-            waitingForPrediction = null;
-            return true;
-        }
-
-        return false;
-    }
-
     /// <summary>
     ///   Updates the values of all part selections from their associated part types.
     /// </summary>
     private void UpdateMicrobePartSelections()
+    {
+        UpdateOrganelleSelections();
+
+        UpdateMembraneSelections();
+    }
+
+    private void UpdateOrganelleSelections()
     {
         foreach (var entry in placeablePartSelectionElements)
         {
@@ -661,7 +606,10 @@ public partial class CellEditorComponent
             entry.Value.MPCost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
+    }
 
+    private void UpdateMembraneSelections()
+    {
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
 "PO-Revision-Date: 2026-06-11 13:41+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
@@ -402,6 +402,17 @@ msgstr "(tỉ lệ phần trăm thay đổi dân số mà tự động-evo áp d
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Tự động lưu trong trò chơi"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "(tốc độ mà loài AI đột biến)"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr ""
+"Dung lượng lưu trữ của tế bào. Lưu trữ cao cho phép chứa nhiều hợp chất hơn cùng lúc.\n"
+"Các tế bào lưu trữ cao có thể sử dụng chiến lược không di chuyển liên tục mà phải nạp lại ATP một thời gian rồi mới di chuyển.\n"
+"Lưu ý rằng lượng lưu trữ thấp có thể gây thiếu ATP ngay cả khi cân bằng ATP dương. Những vấn đề này có thể tệ hơn do độ trễ hoặc hiệu suất trò chơi kém. Thêm dung lượng lưu trữ sẽ giúp cải thiện."
+
 msgid "AUTO_EVO"
 msgstr "Tự động‑Tiến hoá"
 
@@ -740,6 +751,9 @@ msgstr "rất ít"
 msgid "CAUTIOUS"
 msgstr "Cẩn thận"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Tế bào"
 
@@ -794,6 +808,17 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
 
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"Chuyên hoá một tế bào để sử dụng ít loại bào tử hơn sẽ tăng hiệu quả của tất cả các bào tử trong tế bào đó.  \n"
+"Hiệu lực hiện tại là {0}% (cường độ tối đa tăng theo kích thước tế bào cho tới {3} ô lục giác)  \n"
+"Hiệu lực hiện tại được cấp vì có {1} ô {2}.  \n"
+"Hiệu lực tăng khi đặt nhiều bào tử của loại phổ biến nhất và loại bỏ các bào tử loại khác."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Trong đa bào, đây là mức thưởng chuyên môn trung bình của tất cả các tế bào, bao gồm cả thưởng kề cận.\n"
@@ -804,6 +829,10 @@ msgstr ""
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SIZE"
+msgstr "Tế bào"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -838,6 +867,9 @@ msgstr "Tên Loại Tế Bào"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Ghi chú thay đổi quá dài"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
 msgstr ""
@@ -1036,6 +1068,14 @@ msgstr "Sản xuất ATP"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(tốc độ mà loài AI đột biến)"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "Sản xuất ATP"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "Sản xuất ATP"
 
 msgid "COLOUR"
 msgstr ""
@@ -2097,6 +2137,17 @@ msgstr ""
 "Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
@@ -2142,6 +2193,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr ""
 "Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
 "\n"
@@ -2528,6 +2590,9 @@ msgid "FIRE_TOXIN"
 msgstr ""
 
 msgid "FIRE_TOXIN_TOOLTIP"
+msgstr ""
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
 msgstr ""
 
 msgid "FLAGELLUM"
@@ -4884,6 +4949,10 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "Bộ cảm biến hoá học cho phép phát hiện các hợp chất và tế bào cụ thể từ xa hơn. Sửa đổi sau khi đặt để chọn loại hợp chất hoặc loài và màu đường dẫn."
+
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr ""
 
@@ -5939,6 +6008,40 @@ msgstr ""
 msgid "SFX_VOLUME"
 msgstr ""
 
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "Lọc bất đẳng hướng:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr ""
+"Hiển thị hoặc tắt hoàn toàn hướng dẫn. Không khuyến nghị tắt tính năng này.\n"
+"Thay vào đó, khi bắt đầu trò chơi mới, tắt tất cả hướng dẫn sẽ chỉ hiển thị những hướng dẫn bạn chưa từng xem.\n"
+"Cách này rất được đề xuất vì các hướng dẫn mới được thêm thường xuyên, nếu không sẽ bị người chơi đã từng chơi Thrive bỏ lỡ."
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr ""
+"Hiển thị hoặc tắt hoàn toàn hướng dẫn. Không khuyến nghị tắt tính năng này.\n"
+"Thay vào đó, khi bắt đầu trò chơi mới, tắt tất cả hướng dẫn sẽ chỉ hiển thị những hướng dẫn bạn chưa từng xem.\n"
+"Cách này rất được đề xuất vì các hướng dẫn mới được thêm thường xuyên, nếu không sẽ bị người chơi đã từng chơi Thrive bỏ lỡ."
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Tự động ({0}x{1})"
+
 msgid "SHIFT"
 msgstr ""
 
@@ -6804,6 +6907,9 @@ msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
 msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
+
+msgid "TOLERANCE_UPKEEP_COST"
 msgstr ""
 
 msgid "TOOLS"

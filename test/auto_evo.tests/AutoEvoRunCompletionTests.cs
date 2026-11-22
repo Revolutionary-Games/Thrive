@@ -526,7 +526,7 @@ public class AutoEvoRunCompletionTests
             this.steps = steps;
         }
 
-        protected override void GatherInfo(Queue<IRunStep> destination)
+        protected override void GatherInfo(Queue<IRunStep> destination, long seed)
         {
             foreach (var step in steps)
                 destination.Enqueue(step);

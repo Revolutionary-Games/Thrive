@@ -1,8 +1,9 @@
 shader_type sky;
 
-// TODO: LUTs.
+// TODO: sky-view LUT.
 // uniform sampler2D skyViewLut : filter_linear, repeat_disable, hint_default_black;
-// uniform sampler2D transmittanceLut : filter_linear, repeat_disable, hint_default_white;
+
+uniform sampler2D transmittanceLut : filter_linear, repeat_disable, hint_default_white;
 
 uniform vec3 planetCenter = vec3(0.0);
 uniform vec3 sunDirection = vec3(0.4, 0.8, 0.3);
@@ -22,7 +23,6 @@ uniform float ozoneLayerCenter = 57.0;
 uniform float ozoneLayerWidth = 68.0;
 
 uniform int viewRaySteps : hint_range(4, 128) = 32;
-uniform int lightRaySteps : hint_range(2, 32) = 8;
 
 const float SKY_PI = 3.14159265358979323846;
 
@@ -61,23 +61,29 @@ vec3 atmosphereExtinction(vec2 density) {
 
 // How much sunlight survives the trip from the top of the atmosphere down to a point.
 vec3 sunTransmittance(vec3 position, vec3 directionToSun) {
-    if (hitsPlanet(raySphere(position, directionToSun, groundRadius))) {
+    float radius = length(position);
+    float cosZenith = dot(position, directionToSun) / radius;
+
+    if (cosZenith < 0.0 && radius * radius * (1.0 - cosZenith * cosZenith) < groundRadius * groundRadius) {
         return vec3(0.0);
     }
 
-    vec2 topHit = raySphere(position, directionToSun, topRadius);
-    float stepSize = max(topHit.y, 0.0) / float(lightRaySteps);
+    float topHorizonDistance = sqrt((topRadius - groundRadius) * (topRadius + groundRadius));
+    float pointHorizonDistance = sqrt(max((radius - groundRadius) * (radius + groundRadius), 0.0));
 
-    vec3 opticalDepth = vec3(0.0);
+    float discriminant = radius * radius * cosZenith * cosZenith + (topRadius - radius) * (topRadius + radius);
+    float distanceToTop = max(-radius * cosZenith + sqrt(max(discriminant, 0.0)), 0.0);
 
-    for (int i = 0; i < lightRaySteps; ++i) {
-        vec3 samplePosition = position + directionToSun * (stepSize * (float(i) + 0.5));
-        float altitude = length(samplePosition) - groundRadius;
+    float minDistance = topRadius - radius;
+    float maxDistance = pointHorizonDistance + topHorizonDistance;
 
-        opticalDepth += atmosphereExtinction(atmosphereDensity(altitude)) * stepSize;
-    }
+    vec2 uv = vec2((distanceToTop - minDistance) / max(maxDistance - minDistance, 1e-6),
+        pointHorizonDistance / topHorizonDistance);
 
-    return exp(-opticalDepth);
+    vec2 size = vec2(textureSize(transmittanceLut, 0));
+    uv = 0.5 / size + uv * (1.0 - 1.0 / size);
+
+    return texture(transmittanceLut, uv).rgb;
 }
 
 void sky() {

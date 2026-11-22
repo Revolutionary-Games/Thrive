@@ -1,6 +1,5 @@
 ﻿namespace Components;
 
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -27,7 +26,7 @@ public struct CollisionManagement : IArchivableComponent
     ///   Pointer to the field that stores the size of valid collisions inside <see cref="ActiveCollisions"/>.
     ///   Use
     /// </summary>
-    public IntPtr ActiveCollisionCountPtr;
+    public nint ActiveCollisionCountPtr;
 
     public List<Entity>? IgnoredCollisionsWith;
 

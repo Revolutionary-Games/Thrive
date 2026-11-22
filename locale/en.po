@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
-"PO-Revision-Date: 2026-10-28 16:58+0200\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-20 15:35+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -398,6 +398,12 @@ msgstr "(percentage of the population change auto-evo applies to the player spec
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Auto-calculate"
+
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "Automatically calculates a valid growth order. Note that if there are any disconnected cells, then there is no valid growth order."
+
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
@@ -731,6 +737,9 @@ msgstr "very little"
 msgid "CAUTIOUS"
 msgstr "Cautious"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr "Each cavity cell needs at least {0} neighbouring positions filled with cells in the main layout."
+
 msgid "CELL"
 msgstr "Cell"
 
@@ -785,6 +794,15 @@ msgstr "In this tab you can view the actual full layout that is used for your ce
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "Click on a cell to start moving it. Move cells to positions that you like. All cells must still stay connected and be nearby to where they are meant to be in the structure. Editing organelles may cause overlaps which must also be fixed before the manual layout is valid. Exiting the manual layout mode discards all changes made to it."
 
+msgid "CELL_IS_CAVITY"
+msgstr "Is Cavity"
+
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"When a cell is a cavity it allows other cells to pass through and provides bonuses to adjacency.\n"
+"However, a cavity cell needs enough support on most sides to be properly attached.\n"
+"The first cell also cannot be a cavity."
+
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "In multicellular this shows the average specialization bonus of all the cells, including adjacency bonuses.\n"
@@ -795,6 +813,9 @@ msgstr ""
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr "Please wait, body layout is being calculated"
+
+msgid "CELL_SIZE"
+msgstr "Cell size"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -829,6 +850,9 @@ msgstr "A cell type with this name already exists"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Change notes are too long"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr "Used GPU can be changed from the Thrive Launcher"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
 msgstr "Change Membrane Type"
@@ -1036,6 +1060,12 @@ msgstr "Base Colony Propulsion"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "This tab allows setting the order in which the colony cells grow, with the first cell in the order being the root (or bud) cell. You can use this to prioritise the growth of more crucial cells or to ensure that the colony's production and consumption are properly balanced."
+
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "Colony Rotation from Organelles"
+
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "Colony Propulsion from Organelles"
 
 msgid "COLOUR"
 msgstr "Colour"
@@ -2162,6 +2192,16 @@ msgstr ""
 "\n"
 "You can always switch back to automatic layout or reset the manual layout if you get stuck trying to fix it. Note that when using manual layout you likely need to fix the layout each time you edit a cell type or add a new cell."
 
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"You can make cells into [u]cavities[/u]. This increases adjacency bonuses for that cell and removes collision with other cells, which offers new and unique gameplay opportunities.\n"
+"\n"
+"Cavity cells must have enough support around them to be valid. The root cell also cannot be a cavity.\n"
+"\n"
+"You can make a cell into a cavity by checking the cavity checkbox in the cell popup menu ([thrive:input]e_secondary[/thrive:input]).\n"
+"\n"
+"Try that now and [b]make a cell into a cavity to continue[/b]."
+
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "To make new cell types you can place in your body plan, select an existing type in the left panel and click the duplication button.\n"
@@ -2216,6 +2256,13 @@ msgstr ""
 "You do not need to aim to advance stages right away, but seeing the requirements can help in planning your species' future edits.\n"
 "\n"
 "[u]Press the requirements button[/u] at the bottom of the right panel now to see how your species is doing."
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
+msgstr ""
+"To increase [u]specialization you can remove unnecessary organelles[/u] from your cell types. You can also group cells of the same type next to each other to increase adjacency bonuses.\n"
+"And finally you can make cells into cavities to also increase the adjacency bonuses. \n"
+"\n"
+"The specialization stat is the [u]overall specialization[/u] of all placed cells in your body plan and this is what matters for reaching macroscopic."
 
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Edit your microbe for the first time"
@@ -2620,6 +2667,9 @@ msgstr "Fire toxin"
 
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Fire toxin projectile causing damage to hit cells"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr "First cell cannot be a cavity"
 
 msgid "FLAGELLUM"
 msgstr "Flagellum"
@@ -3028,19 +3078,19 @@ msgid "HYDROGENASE"
 msgstr "Hydrogenase"
 
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Ferments [thrive:compound type=\\\"glucose\\\"][/thrive:compound] to gain energy and produces byproducts like hydrogen. More effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than metabolosomes. Many organisms in anoxic environments use this as a primary energy source."
+msgstr "Ferments [thrive:compound type=\"glucose\"][/thrive:compound] to gain energy and produces byproducts like hydrogen. More effective at low [thrive:compound type=\"oxygen\"][/thrive:compound] levels than metabolosomes. Many organisms in anoxic environments use this as a primary energy source."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
+msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGENOSOME"
 msgstr "Hydrogenosome"
 
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "Ferments [thrive:compound type=\\\"glucose\\\"][/thrive:compound] to gain energy and produces byproducts like hydrogen. The hydrogenosome is a membrane-bound organelle filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. More effective than hydrogenase, and more effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than the mitochondrion. Many organisms in anoxic environments use stacks of hydrogenosomes as a primary energy source."
+msgstr "Ferments [thrive:compound type=\"glucose\"][/thrive:compound] to gain energy and produces byproducts like hydrogen. The hydrogenosome is a membrane-bound organelle filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. More effective than hydrogenase, and more effective at low [thrive:compound type=\"oxygen\"][/thrive:compound] levels than the mitochondrion. Many organisms in anoxic environments use stacks of hydrogenosomes as a primary energy source."
 
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
+msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hydrogen Sulfide"
@@ -5062,6 +5112,9 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axons are the nerve fibers that neurons use to connect to each other and communicate. Placing this organelle turns a cell type into brain tissue."
 
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "Increases the movement speed and rotation benefits provided by other organelles. Has diminishing returns."
+
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Macroscopic"
 
@@ -6118,6 +6171,30 @@ msgstr "Upgrade to Anisogamy ({0} MP)"
 msgid "SFX_VOLUME"
 msgstr "SFX volume"
 
+msgid "SHADOW_FILTERING"
+msgstr "Soft shadow filtering"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr "None"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "High"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr "Low"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr "Medium"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Ultra"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr "Very Low"
+
+msgid "SHADOW_RESOLUTION"
+msgstr "Shadow resolution"
+
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -7011,6 +7088,9 @@ msgstr "Tolerances are affected by some organelles, both positively and negative
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibility:"
 
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "Cost"
+
 msgid "TOOLS"
 msgstr "Tools"
 
@@ -7095,7 +7175,7 @@ msgid "TOXISOME"
 msgstr "Toxisome"
 
 msgid "TOXISOME_DESCRIPTION"
-msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
+msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
 
 msgid "TRANSLATORS"
 msgstr "Translators"
@@ -7864,7 +7944,7 @@ msgstr "8 (16)"
 
 msgid "WIKI_ACTOMYOSIN_EFFECTS"
 msgstr ""
-"Each cell with [b]Actomyosin[/b] increases the base speed of the colony by 25%, as well as improving the base turning speed by 25%. While moving, each actomyosin consumes [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Each cell with [b]Actomyosin[/b] increases the base speed of the colony by 18%, as well as improving the base turning speed by 25%. While moving, each actomyosin consumes [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
 "Increases maximum Pressure Tolerance by 1 kPa."
 
@@ -7878,10 +7958,7 @@ msgid "WIKI_ACTOMYOSIN_PROCESSES"
 msgstr "No processes."
 
 msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
-msgstr ""
-"If organelle unlocks are enabled in game settings, [i]at least one[/i] of the following condition must be true [i]for the player cell[/i]:\n"
-"\n"
-"[ul]Has speed below [b]15[/b].[/ul]"
+msgstr "A player must be in the [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Multicellular_Stage]Multicellular Stage[/url][/color], have speed fall bellow 16 and have either [b]Normal[/b] or [b]Double[/b] membrane selected to unlock [b]Actomyosin[/b]."
 
 msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7969,14 +8046,16 @@ msgstr "Coming soon."
 
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
-"For each cell in a multicellular organism that contains an [b]Axon[/b], that organism's brain power increases proportionally to the volume of that cell. Cells with [b]Axons[/b] are classified as having brain tissue type.\n"
+"Improves all bonuses to movement rotation speed by all other organelles across the organism by [b]15%[/b]. While moving, it consumes [thrive:compound type=\"atp\"][/thrive:compound]. Only one axon can be placed per cells, and they become less effective for each additional axon in the body plan.\n"
 "\n"
-"When brain power exceeds [b]+0.5[/b], the player enters the Aware Stage. When brain power exceeds [b]+5.0[/b], the player enters the Awakening Stage.\n"
+"Decreases [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Resistance[/b] by [b]10%[/b].\n"
 "\n"
-"Decreases [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Resistance[/b] by 10%."
+"In the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color], for each cell in a multicellular organism that contains an [b]Axon[/b], that organism's brain power increases proportionally to the volume of that cell. Cells with [b]Axons[/b] are classified as having brain tissue type.\n"
+"\n"
+"When brain power exceeds [b]+0.5[/b], the player enters the Aware Stage. When brain power exceeds [b]+5.0[/b], the player can enter the Awakening Stage."
 
 msgid "WIKI_AXON_INTRO"
-msgstr "Nerve fibres between neurons, available from the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color]. Required to increase an organism's brain power and progress to future stages."
+msgstr "Long extensions of the cell body that carry signals between cells for coordination, available from the [color=#3796e1][url=thriveopedia:multicellular_stage]Multicellular Stage[/url][/color] to boost movement-related organelles. Required in the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color] to increase an organism's brain power and progress to future stages."
 
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr "No modifications."
@@ -7985,13 +8064,21 @@ msgid "WIKI_AXON_PROCESSES"
 msgstr "No processes."
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr "Only available from the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color] onwards."
+msgstr ""
+"Only available from the [color=#3796e1][url=thriveopedia:multicellular_stage]Multicellular Stage[/url][/color] onwards.\n"
+"\n"
+"If organelle unlocks are enabled in game settings, the following condition must be true for the player species:\n"
+"\n"
+"[ul]Contains at least 5 Flagella, Cilia or Actomyosin for 1 generation.[/ul]"
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "The Axon is a long, thin projection from a \"Neuron Cell\" to another cell, either another \"Neuron\" cell or to a \"Muscle\" cell, amongst many other cell types, and permits the passage of information in the form of electrical signals between two or more cells. This in turn allows a creature to respond to external stimuli, such as a sudden increase in temperature, or being scratched, or even a bed smell hitting some sensory cells."
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr "Adding [b]Axons[/b] is essential for reaching future stages. We recommend adding one [b]Axon[/b] to several cell types in your multicellular organism, but adding more than one is redundant. At the moment, further [b]Axons[/b] provide no extra benefit."
+msgstr ""
+"When you already have many cells with Actomyosin, flagella and/or cilia, adding a cell with an axon will produce a larger boost than adding one more of those other cell types. However, placing more axon cells will rapidly run into diminishing returns.\n"
+"\n"
+"Adding [b]Axons[/b] is essential for reaching future stages beyond the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color]."
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr "No upgrades."
@@ -8187,7 +8274,7 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Resistance[/b] by 8% and increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b]Resistance[/b] by 3.5%."
+msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Resistance[/b] by 25% and increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b]Resistance[/b] by 3.5%."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -8461,7 +8548,11 @@ msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
 msgstr "Creature Editor, Tech Editor"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "Any other organelle may replace [b]Cytoplasm[/b] at no extra mutation point cost (beyond the cost of that organelle)."
+msgstr ""
+"Increases [thrive:compound type=\"sunlight\"][/thrive:compound] by 2.5%.\n"
+"\n"
+"\n"
+"Any other organelle may replace [b]Cytoplasm[/b] at no extra mutation point cost (beyond the cost of that organelle)."
 
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr ""
@@ -9110,7 +9201,7 @@ msgstr ""
 "The below pages explain various mechanics. Feel free to browse the pages for tips and help with the game."
 
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Resistance[/b] by 2%."
+msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Resistance[/b] by 35%."
 
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]Melanosomes[/b] are [color=#3796e1][url=thriveopedia:OrganellesRoot]organelles[/url][/color] that perform [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it using melanin."
@@ -9931,7 +10022,7 @@ msgstr ""
 "\n"
 "Any cell without [b]Slime Jets[/b] which enters the resulting patch of [thrive:compound type=\"mucilage\"][/thrive:compound] will be slowed down.\n"
 "\n"
-"Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Resistance[/b] by 1%."
+"Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Resistance[/b] by 6%."
 
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
@@ -10168,7 +10259,7 @@ msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "The [b]Patch Map[/b] is a representation of your planet. It is comprised of [b]Patches[/b] and [b]Regions[/b] (explained below). Each region contains multiple connected (or adjacent) patches and is connected to other regions."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] by 3% and increases [thrive:compound type=\"oxygen\"][/thrive:compound] by 1.5%."
+msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] by 5% and increases [thrive:compound type=\"oxygen\"][/thrive:compound] by 1.5%."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""

@@ -6,11 +6,11 @@
 /// </summary>
 public abstract class StructureComponent
 {
-    protected readonly PlacedStructure owningStructure;
+    protected readonly PlacedStructure OwningStructure;
 
     public StructureComponent(PlacedStructure owningStructure)
     {
-        this.owningStructure = owningStructure;
+        OwningStructure = owningStructure;
     }
 
     public virtual void GetExtraAvailableActions(List<(InteractionType Type, string? DisabledAlternativeText)> result)

@@ -17,7 +17,6 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     // List of locales, edit this to add new ones:
     private static readonly List<string> ThriveLocales =
     [
-        "aeb",
         "ar",
         "af",
         "be",
@@ -35,7 +34,6 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "et",
         "fi",
         "fr",
-        "frm",
         "gsw",
         "he",
         "hr",
@@ -233,7 +231,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         await base.PostProcessTranslations(cancellationToken);
 
         // Remove trailing whitespace
-        if (!options.Quiet)
+        if (!Options.Quiet)
             ColourConsole.WriteInfoLine("Removing trailing whitespace and line references if existing in .po files...");
 
         foreach (var locale in Locales)

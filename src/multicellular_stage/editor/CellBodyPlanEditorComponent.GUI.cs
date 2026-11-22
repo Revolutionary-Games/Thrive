@@ -5,11 +5,21 @@ using System.Text;
 using Godot;
 using Systems;
 
-/// <summary>
+/// <content>
 ///   The partial class containing GUI updating actions
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
+    private static Hex[] autoGrowthOrderCalculationNeighborOrder =
+    [
+        new(0, -1),
+        new(-1, 0),
+        new(1, -1),
+        new(0, 1),
+        new(1, 0),
+        new(-1, 1),
+    ];
+
     private readonly List<Label> activeToleranceWarnings = new();
 
     private readonly List<(bool FulFilled, string Description)> macroscopicConditionResults = new();
@@ -94,10 +104,28 @@ public partial class CellBodyPlanEditorComponent
         base.OnTranslationsChanged();
 
         organismStatisticsPanel.OnTranslationsChanged();
+        autoEvoPredictionPanel.OnTranslationsChanged();
 
         UpdateSpecializationDisplay();
 
         UpdateAnisogamyStateAndCost();
+    }
+
+    private static Color GrowthOrderNumberColour(bool isCavity, bool invalid)
+    {
+        if (isCavity)
+        {
+            // These are same colours as configured for the hex materials (at the time of writing)
+            if (invalid)
+                return new Color(0.651f, 0.149f, 0.502f);
+
+            return new Color(0.651f, 0.302f, 0.851f);
+        }
+
+        if (invalid)
+            return Colors.Red;
+
+        return Colors.White;
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
@@ -278,6 +306,54 @@ public partial class CellBodyPlanEditorComponent
         UpdateGrowthOrderNumbers();
     }
 
+    private void OnAutoCalculateGrowthOrderPressed()
+    {
+        var toAssign = new Queue<CellTemplate>();
+        var unassigned = new Dictionary<Hex, CellTemplate>();
+
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(
+                     editedMicrobeCells.AsModifiable().Select(a => a.Data!)))
+        {
+            if (toAssign.Count == 0)
+            {
+                // This sets the root of the growth order
+                toAssign.Enqueue(cell);
+                continue;
+            }
+
+            unassigned.Add(cell.Position, cell);
+        }
+
+        var finalOrder = new List<CellTemplate>();
+
+        while (toAssign.Count > 0)
+        {
+            var current = toAssign.Dequeue();
+
+            foreach (var neighbor in autoGrowthOrderCalculationNeighborOrder)
+            {
+                if (unassigned.ContainsKey(current.Position + neighbor))
+                {
+                    toAssign.Enqueue(unassigned[current.Position + neighbor]);
+                    unassigned.Remove(current.Position + neighbor);
+                }
+            }
+
+            finalOrder.Add(current);
+        }
+
+        // Cells that remain unassigned are disconnected from the rest of the body plan. Which means that there is no
+        // valid growth order.
+        foreach (var pair in unassigned)
+        {
+            finalOrder.Add(pair.Value);
+        }
+
+        growthOrderGUI.UpdateItems(finalOrder);
+
+        UpdateGrowthOrderNumbers();
+    }
+
     private void UpdateGrowthOrderNumbers()
     {
         if (!ShowGrowthOrder)
@@ -319,8 +395,12 @@ public partial class CellBodyPlanEditorComponent
                 }
             }
 
+            var invalidCavity = cell.Data!.IsCavity && (order == 1 ||
+                !CellBodyPlanInternalCalculations.HasEnoughCavityNeighbours(cell.Position, editedMicrobeCells));
+
             yield return (Hex.AxialToCartesian(cell.Position), order.ToString(),
-                wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
+                GrowthOrderNumberColour(cell.Data!.IsCavity,
+                    wrongGrowthOrderCells.Contains(cell.Position) || invalidCavity));
         }
     }
 
@@ -582,6 +662,7 @@ public partial class CellBodyPlanEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
         SelectedGameteTypeForPlayer = GameteType.A;
+        autoEvoPrediction.MarkDirty();
     }
 
     private void OnPlayerSetGameteB(bool pressed)
@@ -594,6 +675,7 @@ public partial class CellBodyPlanEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
         SelectedGameteTypeForPlayer = GameteType.B;
+        autoEvoPrediction.MarkDirty();
     }
 
     private void UpdateMassBuddingCellCountSlider()
@@ -642,6 +724,31 @@ public partial class CellBodyPlanEditorComponent
             default:
                 throw new Exception($"Invalid reproduction mode index: {index}");
         }
+    }
+
+    private void OnCellCavityToggled(bool isCavity)
+    {
+        var targets = cellPopupMenu.SelectedCells.Select(cell =>
+        {
+            if (editedMicrobeCells.Contains(cell))
+                return cell;
+
+            if (manualLayoutSources.TryGetValue(cell, out var source))
+                return editedMicrobeCells.Contains(source) ? source : null;
+
+            if (fullLayoutGrowthOrderSources.TryGetValue(cell, out source))
+                return editedMicrobeCells.Contains(source) ? source : null;
+
+            return null;
+        }).Where(c => c != null && c.Data!.IsCavity != isCavity).Distinct().ToList();
+
+        if (targets.Count == 0)
+            return;
+
+        var actions = targets.Select(cell => (EditorAction)new SingleEditorAction<CellCavityActionData>(
+            DoCellCavityAction, UndoCellCavityAction,
+            new CellCavityActionData(cell!, cell!.Data!.IsCavity, isCavity))).ToList();
+        EnqueueAction(new CombinedEditorAction(actions));
     }
 
     // These next 4 methods related to endosymbiosis are copied from the CellEditor as there's no easy way to share
@@ -748,6 +855,8 @@ public partial class CellBodyPlanEditorComponent
             if (fullLayoutPreview.Count > 0)
             {
                 CopyLayout(fullLayoutPreview, manualFullLayout);
+                if (manualFullLayout.Count == 0)
+                    StartLayoutCalculation();
             }
             else
             {
@@ -781,8 +890,9 @@ public partial class CellBodyPlanEditorComponent
         foreach (var editedCell in editedMicrobeCells)
         {
             cellDataToUse.Add(new HexWithData<CellTemplate>(new CellTemplate(
-                GetEditedCellDataIfEdited(editedCell.Data!.ModifiableCellType),
-                editedCell.Position, editedCell.Orientation), editedCell.Position, editedCell.Orientation));
+                    GetEditedCellDataIfEdited(editedCell.Data!.ModifiableCellType),
+                    editedCell.Position, editedCell.Orientation, editedCell.Data!.IsCavity),
+                editedCell.Position, editedCell.Orientation));
         }
 
         CellBodyPlanInternalCalculations.CalculateMacroscopicConditions(cellDataToUse, ReproductionMethod,

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
-"PO-Revision-Date: 2026-04-20 23:52+0000\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-13 17:47+0000\n"
 "Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
 "Language: sk\n"
@@ -383,6 +383,14 @@ msgstr "(náklady na organely, membrány a ďalšie predmety v editore)"
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukladanie počas hry"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "Normálny"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "AUTO_EVO"
 msgstr "Automatická evolúcia"
 
@@ -749,6 +757,9 @@ msgstr "veľmi málo"
 msgid "CAUTIOUS"
 msgstr "Opatrný"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "Bunka"
 
@@ -803,12 +814,23 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
 
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SIZE"
+msgstr "Bunky"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -835,6 +857,9 @@ msgstr "Názov typu bunky"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Poznámky k zmene sú príliš dlhé"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 #, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
@@ -1041,6 +1066,14 @@ msgstr "Rotácia:"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "Rotácia:"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "Rotácia:"
 
 msgid "COLOUR"
 msgstr "Farba"
@@ -2035,6 +2068,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 
+#, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Tip: Čím viac bičíkov, tým väčšia rýchlosť, ale aj menej ATP"
 
@@ -2137,6 +2171,10 @@ msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr "Záporná bilancia ATP"
 
@@ -2154,6 +2192,10 @@ msgstr "Záporná bilancia ATP"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
@@ -2604,6 +2646,9 @@ msgstr "Ohnivý toxín"
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Niektoré možnosti môžu byť vypnuté, ak je realistický režim zapnutý"
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
+msgstr ""
 
 msgid "FLAGELLUM"
 msgstr "Bičík"
@@ -5210,6 +5255,10 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
 
 #, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr "Mnohobunkový"
 
@@ -6356,6 +6405,33 @@ msgstr "(rýchlosť, akou druhy AI mutujú)"
 msgid "SFX_VOLUME"
 msgstr "Hlasitosť SFX"
 
+msgid "SHADOW_FILTERING"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "Automatické ({0}x{1})"
+
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -7300,6 +7376,10 @@ msgstr "Zobraziť / skryť prostredie a zlúčeniny"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_UPKEEP_COST"
+msgstr "{0} (x{1})"
 
 msgid "TOOLS"
 msgstr "Nástroje"

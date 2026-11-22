@@ -25,6 +25,8 @@ public class ImageTask : IImageTask
 
     public bool Finished { get; private set; }
 
+    public bool Failed { get; private set; }
+
     public ImageTexture FinalImage
     {
         get => finalImage ?? throw new InvalidOperationException("Not finished yet");
@@ -46,8 +48,8 @@ public class ImageTask : IImageTask
 
     public void OnFinished(ImageTexture texture, Image rawImage)
     {
-        if (Finished)
-            throw new InvalidOperationException("Already finished");
+        if (Finished || Failed)
+            throw new InvalidOperationException("Already completed");
 
         FinalImage = texture;
         PlainImage = rawImage;
@@ -72,6 +74,14 @@ public class ImageTask : IImageTask
         FileHelpers.MakeSureParentDirectoryExists(path);
         PlainImage.SavePng(path);
     }
+
+    internal void MarkFailed()
+    {
+        if (Finished || Failed)
+            throw new InvalidOperationException("Already completed");
+
+        Failed = true;
+    }
 }
 
 /// <summary>
@@ -92,6 +102,10 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
     }
 
     public bool Finished { get; private set; }
+
+    // TODO: allow setting cache images to failed if load fails:
+    // https://github.com/Revolutionary-Games/Thrive/issues/7544
+    public bool Failed => false;
 
     public ImageTexture FinalImage
     {

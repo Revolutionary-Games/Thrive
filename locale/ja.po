@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-30 15:45+0200\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
 "PO-Revision-Date: 2026-09-22 15:32+0000\n"
 "Last-Translator: mousleep <willowisp0919@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -404,6 +404,18 @@ msgstr "(自動進化がプレイヤー種に適用する個体数変化の割�
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "ゲーム中の自動セーブ"
 
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER"
+msgstr "（環境中の化合物クラウドの密度）"
+
+#, fuzzy
+msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
+msgstr ""
+"細胞の貯蔵容量。容量が大きいほど、一度により多くの化合物を保持できます。\n"
+"高容量の細胞は移動し続けられず、一時的にATPを補充してから再び移動する、といった戦略を取ることもできます。\n"
+"なお、貯蔵容量が少ないと、ATPバランスが正でもATP不足になることがあります。\n"
+"この問題はラグの発生やゲーム全体の低パフォーマンスによってさらに悪化する可能性があります。貯蔵容量を増やすことでこうした問題を軽減できます。"
+
 msgid "AUTO_EVO"
 msgstr "自動進化"
 
@@ -744,6 +756,9 @@ msgstr "ほとんどない"
 msgid "CAUTIOUS"
 msgstr "慎重"
 
+msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
+msgstr ""
+
 msgid "CELL"
 msgstr "細胞"
 
@@ -798,6 +813,15 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr ""
 
+msgid "CELL_IS_CAVITY"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_IS_CAVITY_TOOLTIP"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
+
 #, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -806,6 +830,10 @@ msgstr ""
 
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SIZE"
+msgstr "細胞たち"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -840,6 +868,9 @@ msgstr "指定したファイル名（{0}）はすでに存在します。上書
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "変更内容が長すぎます"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
 msgstr "膜の種類を変更する"
@@ -1044,6 +1075,14 @@ msgstr "{0} 消費量"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "（環境中の化合物クラウドの密度）"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
+msgstr "{0} 消費量"
+
+#, fuzzy
+msgid "COLONY_ORGANELLE_SPEED_INCREASE"
+msgstr "{0} 消費量"
 
 msgid "COLOUR"
 msgstr "色"
@@ -2064,6 +2103,10 @@ msgstr "微生物エディター"
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_BODY_PLAN_LAYOUT"
 msgstr "微生物エディター"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr "微生物エディター"
+
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 
@@ -2078,6 +2121,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr "微生物エディター"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr "微生物エディター"
 
 msgid "EDIT_MICROBE_FIRST_TIME"
@@ -2455,6 +2502,9 @@ msgid "FIRE_TOXIN"
 msgstr ""
 
 msgid "FIRE_TOXIN_TOOLTIP"
+msgstr ""
+
+msgid "FIRST_CELL_CANNOT_BE_CAVITY"
 msgstr ""
 
 msgid "FLAGELLUM"
@@ -4806,6 +4856,10 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "ORGANELLE_AXON_PROCESSES_DESCRIPTION"
+msgstr "大型の細胞の旋回速度を上げます。"
+
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
 msgstr ""
 
@@ -5842,6 +5896,32 @@ msgstr ""
 msgid "SFX_VOLUME"
 msgstr ""
 
+#, fuzzy
+msgid "SHADOW_FILTERING"
+msgstr "異方性フィルタリング:"
+
+msgid "SHADOW_FILTERING_OPTION_HARD"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_HIGH"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_LOW"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_MEDIUM"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_ULTRA"
+msgstr ""
+
+msgid "SHADOW_FILTERING_OPTION_SOFT_VERY_LOW"
+msgstr ""
+
+#, fuzzy
+msgid "SHADOW_RESOLUTION"
+msgstr "自動 ({0}x{1})"
+
 msgid "SHIFT"
 msgstr ""
 
@@ -6698,6 +6778,9 @@ msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
 msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
+
+msgid "TOLERANCE_UPKEEP_COST"
 msgstr ""
 
 msgid "TOOLS"

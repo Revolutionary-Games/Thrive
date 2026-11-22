@@ -9,8 +9,8 @@ void fragment() {
     vec3 viewRd = normalize(target.xyz / target.w);
 
     CloudRay ray = CreateCloudRay(CAMERA_POSITION_WORLD, normalize((INV_VIEW_MATRIX * vec4(viewRd, 0.0)).xyz),
-        cloudPlanetCenter, cloudInnerRadius, cloudOuterRadius, normalize(cloudSunDirection), cloudSunEnergy,
-        Ign(FRAGCOORD.xy));
+        cloudPlanetCenter, cloudGroundRadius, cloudInnerRadius, cloudOuterRadius, normalize(cloudSunDirection),
+        cloudSunEnergy, Ign(FRAGCOORD.xy));
 
     // Opaque. OpenGL has no reversed Z, so nothing drawn means a depth of 1 and NDC depth goes from -1 to 1. The
     // RenderingDevice renderers use reversed Z, where nothing drawn is 0 and NDC depth is already 0 to 1.

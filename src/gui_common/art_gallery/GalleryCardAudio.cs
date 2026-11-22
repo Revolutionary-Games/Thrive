@@ -70,6 +70,14 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 
     private void OnStarted()
     {
+        // Godot can unexpectedly resume players when modals are closed or gallery categories are changed.
+        // Hidden cards must not report playback for a card outside the current category.
+        if (!IsVisibleInTree())
+        {
+            StopPlayback();
+            return;
+        }
+
         PlaybackStarted?.Invoke(this, EventArgs.Empty);
     }
 

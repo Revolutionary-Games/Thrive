@@ -29,6 +29,9 @@ else()
   target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic
     -Wno-unknown-pragmas)
 
+  # godot-cpp 4.5 declares an unused variable in GDCLASS's free_property_list_bind.
+  target_compile_options(thrive_extension PRIVATE -Wno-unused-variable)
+
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_extension PRIVATE -Werror)
   endif()
@@ -44,7 +47,7 @@ target_include_directories(thrive_extension PUBLIC ${CMAKE_CURRENT_LIST_DIR}
 
 target_precompile_headers(thrive_extension PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
   PRIVATE "../../third_party/godot-cpp/include/godot_cpp/classes/ref.hpp"
-  "${GODOT_GDEXTENSION_DIR}/gdextension_interface.h"
+  <gdextension_interface.h>
 )
 
 set_target_properties(thrive_extension PROPERTIES

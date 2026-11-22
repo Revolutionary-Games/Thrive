@@ -31,14 +31,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     public PackedScene PatchExtinctionBoxScene = null!;
 #pragma warning restore CA2213
 
-    protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
+    protected readonly Color DefaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
-    protected readonly Color ingestedMatterBarColour = new(0.88f, 0.49f, 0.49f);
+    protected readonly Color IngestedMatterBarColour = new(0.88f, 0.49f, 0.49f);
 
-    protected readonly List<Compound> allAgents = new();
+    protected readonly List<Compound> AllAgents = new();
 
 #pragma warning disable CA2213
-    protected readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
+    protected readonly List<(Compound Compound, CompoundProgressBar Bar)> CompoundBars = new();
 
     [Export]
     protected MouseHoverPanel mouseHoverPanel = null!;
@@ -327,19 +327,19 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         ironBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Iron), 0, 1);
 
         compoundsPanel.AddPrimaryBar(glucoseBar);
-        compoundBars.Add((Compound.Glucose, glucoseBar));
+        CompoundBars.Add((Compound.Glucose, glucoseBar));
 
         compoundsPanel.AddPrimaryBar(ammoniaBar);
-        compoundBars.Add((Compound.Ammonia, ammoniaBar));
+        CompoundBars.Add((Compound.Ammonia, ammoniaBar));
 
         compoundsPanel.AddPrimaryBar(phosphateBar);
-        compoundBars.Add((Compound.Phosphates, phosphateBar));
+        CompoundBars.Add((Compound.Phosphates, phosphateBar));
 
         compoundsPanel.AddPrimaryBar(hydrogenSulfideBar);
-        compoundBars.Add((Compound.Hydrogensulfide, hydrogenSulfideBar));
+        CompoundBars.Add((Compound.Hydrogensulfide, hydrogenSulfideBar));
 
         compoundsPanel.AddPrimaryBar(ironBar);
-        compoundBars.Add((Compound.Iron, ironBar));
+        CompoundBars.Add((Compound.Iron, ironBar));
 
         // Agent bars
         oxytoxyBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Oxytoxy),
@@ -348,18 +348,18 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             simulationParameters.GetCompoundDefinition(Compound.Mucilage), 0, 1);
 
         compoundsPanel.AddAgentBar(oxytoxyBar);
-        compoundBars.Add((Compound.Oxytoxy, oxytoxyBar));
+        CompoundBars.Add((Compound.Oxytoxy, oxytoxyBar));
 
         compoundsPanel.AddAgentBar(mucilageBar);
-        compoundBars.Add((Compound.Mucilage, mucilageBar));
+        CompoundBars.Add((Compound.Mucilage, mucilageBar));
 
         // Fossilization setup
         // Make sure fossilization layer update won't run if it isn't open
         fossilisationButtonLayer.Visible = false;
 
         // TODO: move these to be gotten as a method in SimulationParameters (similarly to `GetCloudCompounds()`)
-        allAgents.Add(Compound.Oxytoxy);
-        allAgents.Add(Compound.Mucilage);
+        AllAgents.Add(Compound.Oxytoxy);
+        AllAgents.Add(Compound.Mucilage);
     }
 
     public override void _EnterTree()
@@ -1018,7 +1018,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     {
         var compounds = GetPlayerStorage();
 
-        foreach (var (compound, bar) in compoundBars)
+        foreach (var (compound, bar) in CompoundBars)
         {
             // Probably can save on performance here by not updating hidden bars and hoping that when bars become
             // visible, they will be updated immediately for the player to not notice
@@ -1169,10 +1169,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     {
         compoundsPanel.ShowAgents = ShouldShowAgentsPanel();
 
-        if (compoundBars == null)
+        if (CompoundBars == null)
             throw new InvalidOperationException("This HUD is not initialized");
 
-        foreach (var (compound, bar) in compoundBars)
+        foreach (var (compound, bar) in CompoundBars)
         {
             if (IsUseful(compound))
             {
@@ -1212,7 +1212,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         else
         {
             // Restore colour
-            healthBar.TintProgress = defaultHealthBarColour;
+            healthBar.TintProgress = DefaultHealthBarColour;
         }
 
         // Loop flash

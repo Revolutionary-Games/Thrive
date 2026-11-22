@@ -720,7 +720,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Rebuild patch list
         patchListMenu.ClearAllItems();
-        foreach (var pair in world.GameProperties.GameWorld.Map.Patches.OrderBy(p => p.Value.Name.ToString()))
+        foreach (var pair in world.GameProperties.GameWorld.Map.Patches.OrderBy(p => p.Value.Name.ToString(),
+                     StringComparer.CurrentCulture))
         {
             patchListMenu.AddItem(pair.Value.Name.ToString(), false, Colors.White);
         }
@@ -770,7 +771,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     {
         speciesListMenu.ClearAllItems();
 
-        foreach (var pair in world.SpeciesHistoryList[generationDisplayed].OrderBy(p => p.Value.FormattedName))
+        foreach (var pair in world.SpeciesHistoryList[generationDisplayed].OrderBy(p => p.Value.FormattedName,
+                     StringComparer.CurrentCulture))
         {
             speciesListMenu.AddItem(pair.Value.FormattedName, false, Colors.White);
         }

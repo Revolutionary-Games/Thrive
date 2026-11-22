@@ -15,9 +15,9 @@ public partial class CellHexesPreview : PhotographablePreview
         get => previewSpecies;
         set
         {
-            var newHash = value?.GetVisualHashCode() ?? 0UL;
+            var newHash = GetVisualHash(value);
 
-            if (newHash == speciesVisualHash)
+            if (newHash == speciesVisualHash && !PreviewFailed)
                 return;
 
             previewSpecies = value;
@@ -67,5 +67,19 @@ public partial class CellHexesPreview : PhotographablePreview
         GD.PrintErr("Unknown species type to generate hexes view of: ", previewSpecies, " (",
             previewSpecies.GetType().Name, ")");
         return null;
+    }
+
+    private static ulong GetVisualHash(Species? species)
+    {
+        if (species == null)
+            return 0UL;
+
+        if (species is MicrobeSpecies microbeSpecies)
+            return CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
+
+        if (species is MulticellularSpecies multicellularSpecies)
+            return ColonyHexPhotoBuilder.GetVisualHash(multicellularSpecies);
+
+        return species.GetVisualHashCode();
     }
 }

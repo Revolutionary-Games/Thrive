@@ -6,16 +6,17 @@ using System.Linq;
 using Godot;
 using FileAccess = Godot.FileAccess;
 
-/// <summary>
+/// <content>
 ///   Partial class: Data export functionality of the auto-evo exploring tool
-/// </summary>
+/// </content>
 public partial class AutoEvoExploringTool
 {
     private void ExportWorlds()
     {
         var previousWorld = worldsList.FindIndex(w => w == world);
         worldExportButton.Disabled = true;
-        var exportPath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
+        var exportPath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER,
+            DateTime.Now.ToString("yyyyMMdd_hh_mm_ss", CultureInfo.InvariantCulture));
 
         var overallTimes = new List<(int Generation, int Species, double AccumulatedTime)>();
 
@@ -191,7 +192,7 @@ public partial class AutoEvoExploringTool
         var header = new List<string> { "Name", "Generation", "Type" };
 
         foreach (var compound in world.GameProperties.GameWorld.Map.Patches.First().Value.Biome.Compounds.Keys
-                     .Select(c => SimulationParameters.GetCompound(c).Name).OrderBy(s => s))
+                     .Select(c => SimulationParameters.GetCompound(c).Name).OrderBy(s => s, StringComparer.Ordinal))
         {
             header.AddRange([compound + " Amount", compound + " Ambient", compound + " Density"]);
         }
@@ -208,7 +209,7 @@ public partial class AutoEvoExploringTool
                 var snapshot = world.PatchHistoryList[generation][patch.ID];
 
                 foreach (var pair in snapshot.Biome.CurrentCompoundAmounts.OrderBy(p =>
-                             SimulationParameters.GetCompound(p.Key).Name))
+                             SimulationParameters.GetCompound(p.Key).Name, StringComparer.Ordinal))
                 {
                     data.AddRange([
                         pair.Value.Amount.ToString(CultureInfo.InvariantCulture),

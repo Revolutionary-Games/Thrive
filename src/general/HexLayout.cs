@@ -18,7 +18,7 @@ using JetBrains.Annotations;
 public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyHexLayout<T>, IArchiveLayoutInitializer
     where T : class, IPositionedHex
 {
-    protected readonly List<T> existingHexes = new();
+    protected readonly List<T> ExistingHexes = new();
 
     // This and the next property are protected to make JSON work
     protected Action<T>? onAdded;
@@ -40,7 +40,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// </summary>
     protected HexLayout(List<T> hexes, Action<T>? onAdded, Action<T>? onRemoved)
     {
-        existingHexes = hexes;
+        ExistingHexes = hexes;
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
     }
@@ -48,14 +48,14 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// <summary>
     ///   Number of contained hex-based elements
     /// </summary>
-    public int Count => existingHexes.Count;
+    public int Count => ExistingHexes.Count;
 
     public bool IsReadOnly => false;
 
     /// <summary>
     ///   Access stored layout elements by index
     /// </summary>
-    public T this[int index] => existingHexes[index];
+    public T this[int index] => ExistingHexes[index];
 
     /// <summary>
     ///   Adds a new hex-based element to this layout. Throws if overlaps or can't be placed. This is the preferred
@@ -69,7 +69,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
                 $"({hex} at {hex.Position})");
         }
 
-        existingHexes.Add(hex);
+        ExistingHexes.Add(hex);
         onAdded?.Invoke(hex);
     }
 
@@ -82,7 +82,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
             return false;
 
-        existingHexes.Add(hex);
+        ExistingHexes.Add(hex);
         onAdded?.Invoke(hex);
         return true;
     }
@@ -98,7 +98,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
                 $"({hex} at {hex.Position})");
         }
 
-        existingHexes.Add(hex);
+        ExistingHexes.Add(hex);
         onAdded?.Invoke(hex);
     }
 
@@ -217,13 +217,13 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// </summary>
     public T? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
-        int count = existingHexes.Count;
+        int count = ExistingHexes.Count;
 
         // This uses a manual loop as this method is called a lot, so this needs to ensure that this doesn't do any
         // unnecessary computations
         for (int i = 0; i < count; ++i)
         {
-            var existingHex = existingHexes[i];
+            var existingHex = ExistingHexes[i];
 
             temporaryHexesStorage.Clear();
             GetHexComponentPositions(existingHex, temporaryHexesStorage);
@@ -250,13 +250,13 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// <returns>Hex at exact position and not just overlapping the location</returns>
     public T? GetByExactElementRootPosition(Hex location)
     {
-        int count = existingHexes.Count;
+        int count = ExistingHexes.Count;
 
         // This uses a manual loop as this method is called a lot, so this needs to ensure that this doesn't do any
         // unnecessary computations
         for (int i = 0; i < count; ++i)
         {
-            var existingHex = existingHexes[i];
+            var existingHex = ExistingHexes[i];
 
             if (existingHex.Position == location)
                 return existingHex;
@@ -281,7 +281,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
     public void CopyTo(T[] array, int arrayIndex)
     {
-        foreach (var hex in existingHexes)
+        foreach (var hex in ExistingHexes)
         {
             array[arrayIndex++] = hex;
         }
@@ -292,10 +292,10 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// </summary>
     public bool Remove(T hex)
     {
-        if (!existingHexes.Contains(hex))
+        if (!ExistingHexes.Contains(hex))
             return false;
 
-        existingHexes.Remove(hex);
+        ExistingHexes.Remove(hex);
         onRemoved?.Invoke(hex);
         return true;
     }
@@ -305,9 +305,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// </summary>
     public void Clear()
     {
-        while (existingHexes.Count > 0)
+        while (ExistingHexes.Count > 0)
         {
-            Remove(existingHexes[existingHexes.Count - 1]);
+            Remove(ExistingHexes[ExistingHexes.Count - 1]);
         }
     }
 
@@ -320,13 +320,13 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     /// <returns>Closest position or null if there are no hexes</returns>
     public T? GetClosestElementRootPositionTo(Hex checkPosition)
     {
-        if (existingHexes.Count < 1)
+        if (ExistingHexes.Count < 1)
             return null;
 
         var smallestDistance = float.MaxValue;
         T? result = null;
 
-        foreach (var existingHex in existingHexes)
+        foreach (var existingHex in ExistingHexes)
         {
             var distance = existingHex.Position.DistanceTo(checkPosition);
 
@@ -348,12 +348,12 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     void IArchiveLayoutInitializer.InitializeFromArchive(IList data, Delegate? added, Delegate? removed)
     {
         // This should never have data, but just to be safe, clear it
-        existingHexes.Clear();
+        ExistingHexes.Clear();
 
         // This allocates an enumerator, but that should be okay on save load
         foreach (var item in data)
         {
-            existingHexes.Add((T)item!);
+            ExistingHexes.Add((T)item!);
         }
 
         onAdded = (Action<T>?)added;
@@ -362,7 +362,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
     public bool Contains(T item)
     {
-        return existingHexes.Contains(item);
+        return ExistingHexes.Contains(item);
     }
 
     // TODO: remove this bit of boxing here. https://nede.dev/blog/preventing-unnecessary-allocation-in-net-collections
@@ -371,13 +371,13 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
-        return existingHexes.GetEnumerator();
+        return ExistingHexes.GetEnumerator();
     }
 
     [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return existingHexes.GetEnumerator();
+        return ExistingHexes.GetEnumerator();
     }
 
     /// <summary>
@@ -403,7 +403,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         var shouldBeVisited = workMemory1;
 
         // The hex to start with
-        var initHex = existingHexes[0].Position;
+        var initHex = ExistingHexes[0].Position;
 
         // These are the hexes have neighbours and aren't islands
         var hexesWithNeighbours = workMemory2;
@@ -445,7 +445,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     {
         result.Clear();
 
-        foreach (var hex in existingHexes)
+        foreach (var hex in ExistingHexes)
         {
             GetHexComponentPositions(hex, workMemory);
             int count = workMemory.Count;
@@ -467,7 +467,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     {
         receiver.Clear();
 
-        foreach (var hex in existingHexes)
+        foreach (var hex in ExistingHexes)
         {
             GetHexComponentPositions(hex, temporaryStorage);
             int count = temporaryStorage.Count;

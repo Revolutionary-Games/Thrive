@@ -11,13 +11,13 @@ using System.Linq;
 /// </summary>
 public abstract class ModifyOrganelleBase : IMutationStrategy<Species>
 {
-    protected readonly FrozenSet<OrganelleDefinition> allOrganelles;
+    protected readonly FrozenSet<OrganelleDefinition> AllOrganelles;
 
     private readonly bool shouldRepeat;
 
     public ModifyOrganelleBase(Func<OrganelleDefinition, bool> criteria, bool shouldRepeat)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        AllOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         this.shouldRepeat = shouldRepeat;
     }
 
@@ -36,7 +36,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<Species>
 
         // While some upgrades are free, it still might be good to stop looking for mutations once something has
         // consumed all the remaining MP
-        if (allOrganelles.Count == 0 || (mp <= 0 && ExpectedToCostMP))
+        if (AllOrganelles.Count == 0 || (mp <= 0 && ExpectedToCostMP))
         {
             return null;
         }
@@ -50,7 +50,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<Species>
         for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelleList[i];
-            if (!allOrganelles.Contains(organelle.Definition))
+            if (!AllOrganelles.Contains(organelle.Definition))
                 continue;
 
             // Filter out upgrades early that cost too much / organelles that cannot be upgraded

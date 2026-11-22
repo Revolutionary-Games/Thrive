@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-/// <summary>
+/// <content>
 ///   Implements the manual layout editing part of the editor. This is a separate file as this is a bit of a long new
 ///   functionality, so it is cleared to have it in a separate file.
-/// </summary>
+/// </content>
 public partial class CellBodyPlanEditorComponent
 {
     /// <summary>
@@ -26,7 +26,7 @@ public partial class CellBodyPlanEditorComponent
     /// <summary>
     ///   Identity mapping for the full layout to keep it consistent
     /// </summary>
-    private readonly Dictionary<HexWithData<CellTemplate>, CellTemplate> fullLayoutGrowthOrderSources =
+    private readonly Dictionary<HexWithData<CellTemplate>, HexWithData<CellTemplate>> fullLayoutGrowthOrderSources =
         new(ReferenceEqualityComparer.Instance);
 
     private readonly Dictionary<HexWithData<CellTemplate>, int> fullLayoutGrowthOrderIndices =
@@ -55,11 +55,22 @@ public partial class CellBodyPlanEditorComponent
     private readonly List<(HexWithData<CellTemplate> First, HexWithData<CellTemplate> Second)>
         manualLayoutMissingAdjacencyPairs = [];
 
-    // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
-    private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
+    /// <summary>
+    ///   Different cell types can have non-overlapping footprints around the same wrapper position, so the automatic
+    ///   preview stores wrappers in a list and checks overlaps using the actual cell footprints.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can be caused, for example, when a lot of edits have been done and layout shifts are extreme. So two
+    ///     cells can have an overlap, but when applying the shift then they don't overlap any more.
+    ///     This is why we need to store this as a list as otherwise we would get an error on inserting to this data
+    ///     structure.
+    ///   </para>
+    /// </remarks>
+    private List<HexWithData<CellTemplate>> fullLayoutPreview = [];
 
     /// <summary>
-    ///   Unlike the automatic layout store, this is a list because manual editing must preserve invalid intermediate
+    ///   This is a list because manual editing must preserve invalid intermediate
     ///   states such as overlapping cells so that they can be displayed and fixed by the player.
     /// </summary>
     private List<HexWithData<CellTemplate>> manualFullLayout = [];
@@ -83,7 +94,8 @@ public partial class CellBodyPlanEditorComponent
     private IReadOnlyList<HexWithData<CellTemplate>> CurrentFullLayout =>
         UsesManualPlayerLayout ? manualFullLayout : fullLayoutPreview;
 
-    private static LayoutCalculationResult CalculateFullLayout(IndividualHexLayout<CellTemplate> sourceLayout)
+    private static LayoutCalculationResult CalculateFullLayout(IndividualHexLayout<CellTemplate> sourceLayout,
+        IReadOnlyList<HexWithData<CellTemplate>> compactSources)
     {
         var result = new LayoutCalculationResult();
         var work1 = new List<Hex>();
@@ -100,6 +112,7 @@ public partial class CellBodyPlanEditorComponent
         // result.Gameplay = gameplay;
 
         result.GrowthOrderSources = growthOrderSources;
+        result.CompactSources = compactSources;
 
         // Create the wrappers on the background thread
         var wrapped = result.Wrapped = new List<HexWithData<CellTemplate>>(gameplay.Count);
@@ -122,9 +135,10 @@ public partial class CellBodyPlanEditorComponent
         var sourceGrowthOrderSources = sourceCells
             .Select(cell => fullLayoutGrowthOrderSources.GetValueOrDefault(cell))
             .ToList();
-        var sourceGrowthOrderIndices = sourceCells
-            .Select(cell => fullLayoutGrowthOrderIndices.GetValueOrDefault(cell, -1))
-            .ToList();
+
+        // A preview can outlive its compact sources while a replacement calculation is pending.
+        if (sourceGrowthOrderSources.Any(cell => cell == null || !editedMicrobeCells.Contains(cell)))
+            return;
 
         target.Clear();
         manualLayoutSources.Clear();
@@ -133,10 +147,6 @@ public partial class CellBodyPlanEditorComponent
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
-        var growthOrderCells = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
-            .ToList();
-        var growthOrder = growthOrderCells.Select(i => i.Data!).ToList();
-
         for (int i = 0; i < sourceCells.Count; ++i)
         {
             var cell = sourceCells[i];
@@ -144,74 +154,56 @@ public partial class CellBodyPlanEditorComponent
             var copied = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
             target.Add(copied);
 
-            var growthOrderIndex = sourceGrowthOrderIndices[i] >= 0 ? sourceGrowthOrderIndices[i] : i;
-            if (growthOrderIndex < growthOrder.Count)
-            {
-                SetManualLayoutSource(copied, growthOrderCells[growthOrderIndex]);
-                fullLayoutGrowthOrderSources[copied] = sourceGrowthOrderSources[i] ?? growthOrder[growthOrderIndex];
-                fullLayoutGrowthOrderIndices[copied] = growthOrderIndex;
-            }
+            SetManualLayoutSource(copied, sourceGrowthOrderSources[i]!);
         }
+
+        RebuildManualLayoutGrowthOrderSources();
     }
 
     private void RebuildFullLayoutGrowthOrderSources(IReadOnlyList<HexWithData<CellTemplate>> layout,
-        IReadOnlyList<CellTemplate>? growthOrderSources = null)
+        LayoutCalculationResult calculation)
     {
         fullLayoutGrowthOrderSources.Clear();
         fullLayoutGrowthOrderIndices.Clear();
 
-        var cells = layout.ToList();
-
-        var growthOrder = growthOrderSources ?? growthOrderGUI
-            .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!).Select(i => i.Data!).ToList();
-
-        if (growthOrderSources != null)
+        var growthOrderIndices = new Dictionary<CellTemplate, int>(ReferenceEqualityComparer.Instance);
+        var growthOrderTypeIndices = new Dictionary<CellType, int>(ReferenceEqualityComparer.Instance);
+        for (int i = 0; i < calculation.GrowthOrderSources.Count; ++i)
         {
-            var growthOrderIndices = new Dictionary<CellTemplate, int>(ReferenceEqualityComparer.Instance);
-            var growthOrderTypeIndices = new Dictionary<CellType, int>(ReferenceEqualityComparer.Instance);
-            for (int i = 0; i < growthOrder.Count; ++i)
-            {
-                growthOrderIndices[growthOrder[i]] = i;
-                growthOrderTypeIndices[growthOrder[i].ModifiableCellType] = i;
-            }
+            var snapshot = calculation.GrowthOrderSources[i];
+            growthOrderIndices[snapshot] = i;
+            growthOrderTypeIndices[snapshot.ModifiableCellType] = i;
+        }
 
-            var originalGrowthOrder = growthOrderGUI
-                .ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
-                .Select(i => i.Data!).ToList();
-
-            foreach (var cell in cells)
+        foreach (var cell in layout)
+        {
+            if (cell.Data != null &&
+                (growthOrderIndices.TryGetValue(cell.Data, out var index) ||
+                    growthOrderTypeIndices.TryGetValue(cell.Data.ModifiableCellType, out index)))
             {
-                if (cell.Data != null &&
-                    (growthOrderIndices.TryGetValue(cell.Data, out var index) ||
-                        growthOrderTypeIndices.TryGetValue(cell.Data.ModifiableCellType, out index)) &&
-                    index < originalGrowthOrder.Count)
-                {
-                    // Keep the original editor data as the source. RefreshFullLayoutGrowthOrderIndices compares these
-                    // references with the growth-order picker after the preview has been recalculated.
-                    fullLayoutGrowthOrderSources[cell] = originalGrowthOrder[index];
-                    fullLayoutGrowthOrderIndices[cell] = index;
-                }
+                fullLayoutGrowthOrderSources[cell] = calculation.CompactSources[index];
             }
         }
-        else
-        {
-            for (int i = 0; i < cells.Count && i < growthOrder.Count; ++i)
-            {
-                fullLayoutGrowthOrderSources[cells[i]] = growthOrder[i];
-                fullLayoutGrowthOrderIndices[cells[i]] = i;
-            }
-        }
+
+        RefreshFullLayoutGrowthOrderIndices();
+    }
+
+    private bool LayoutCalculationSourcesAreValid(LayoutCalculationResult calculation)
+    {
+        return calculation.CompactSources.Count == editedMicrobeCells.Count &&
+            calculation.CompactSources.All(cell => editedMicrobeCells.Contains(cell));
     }
 
     private void RefreshFullLayoutGrowthOrderIndices()
     {
+        fullLayoutGrowthOrderIndices.Clear();
         var order = growthOrderGUI.GetCurrentOrder();
         foreach (var pair in fullLayoutGrowthOrderSources)
         {
             var index = -1;
             for (int i = 0; i < order.Count; ++i)
             {
-                if (ReferenceEquals(order[i], pair.Value))
+                if (ReferenceEquals(order[i], pair.Value.Data))
                 {
                     index = i;
                     break;
@@ -293,9 +285,34 @@ public partial class CellBodyPlanEditorComponent
             if (index < 0)
                 continue;
 
-            fullLayoutGrowthOrderSources[pair.Key] = pair.Value.Data!;
+            fullLayoutGrowthOrderSources[pair.Key] = pair.Value;
             fullLayoutGrowthOrderIndices[pair.Key] = index;
         }
+    }
+
+    private bool ManualLayoutHasValidFirstCell()
+    {
+        RebuildManualLayoutGrowthOrderSources();
+        if (manualFullLayout.Count != editedMicrobeCells.Count ||
+            fullLayoutGrowthOrderIndices.Count != manualFullLayout.Count ||
+            fullLayoutGrowthOrderIndices.Values.Distinct().Count() != manualFullLayout.Count)
+        {
+            return false;
+        }
+
+        var first = manualFullLayout.OrderBy(cell => fullLayoutGrowthOrderIndices[cell]).FirstOrDefault();
+        return first?.Data != null && !first.Data.IsCavity;
+    }
+
+    /// <summary>
+    ///   Rejects outdated snapshots immediately, before deferred cell updates or switching to manual layout can use
+    ///   them.
+    /// </summary>
+    private void InvalidateCalculatedLayout()
+    {
+        fullLayoutPreview.Clear();
+        if (pendingLayoutCalculation != null)
+            layoutCalculationRequested = true;
     }
 
     /// <summary>
@@ -315,18 +332,20 @@ public partial class CellBodyPlanEditorComponent
 
         // Clone the data on the main thread to prepare it for background processing
         var source = new IndividualHexLayout<CellTemplate>();
-        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!))
+        var compactSources = growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!)
+            .ToList();
+        foreach (var cell in compactSources)
         {
             var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
 
             // Unfortunately, we have to take a full clone here for safety
-            var snapshot = new CellTemplate(type.Clone(true), cell.Position, cell.Orientation);
+            var snapshot = new CellTemplate(type.Clone(true), cell.Position, cell.Orientation, cell.Data!.IsCavity);
             source.AddFast(new HexWithData<CellTemplate>(snapshot, snapshot.Position, snapshot.Orientation),
                 hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         layoutCalculationSpinner.Show();
-        pendingLayoutCalculation = new Task<LayoutCalculationResult>(() => CalculateFullLayout(source));
+        pendingLayoutCalculation = new Task<LayoutCalculationResult>(() => CalculateFullLayout(source, compactSources));
         TaskExecutor.Instance.AddTask(pendingLayoutCalculation);
     }
 
@@ -334,12 +353,10 @@ public partial class CellBodyPlanEditorComponent
     {
         fullLayoutPreview.Clear();
 
-        // CellLayout stores the final cell templates directly. The editor renderer uses HexWithData wrappers, so
-        // copy the created wrappers
-        foreach (var wrapped in wrappers)
-        {
-            fullLayoutPreview.AddFast(wrapped, hexTemporaryMemory, hexTemporaryMemory2);
-        }
+        // CellLayout stores the final cell templates directly. Keep the editor's wrappers without validating their
+        // positions against each other, as cells can share a wrapper position without their footprints overlapping
+        // (due to organelle shifts).
+        fullLayoutPreview.AddRange(wrappers);
     }
 
     private void UpdateFullLayoutVisuals()
@@ -352,6 +369,12 @@ public partial class CellBodyPlanEditorComponent
             fullLayoutHasAdjacencyDisconnects = false;
             manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
             UpdateLayoutErrorDisplay();
+
+            // When there is nothing to show (for example when the last cell was picked up to be moved), the
+            // previously displayed graphics need to be cleared as well
+            if (layoutPreviewActive)
+                ClearFullLayoutGraphics();
+
             return;
         }
 
@@ -429,37 +452,83 @@ public partial class CellBodyPlanEditorComponent
             return;
         }
 
+        RecalculateFullLayoutGrowthOrderErrors();
+
         // Update the display hexes.
         // Order doesn't really matter here, so just make it a list.
         var displayed = fullLayoutOccupied /*.OrderBy(h => h.Q).ThenBy(h => h.R) */.ToList();
 
+        var cavityPositions = new HashSet<Hex>();
+        var invalidCavityPositions = new HashSet<Hex>();
+        foreach (var pair in cellPositions)
+        {
+            if (!pair.Key.Data!.IsCavity)
+                continue;
+
+            cavityPositions.UnionWith(pair.Value);
+            if (fullLayoutGrowthOrderIndices.GetValueOrDefault(pair.Key, -1) == 0 ||
+                wrongGrowthOrderCells.Contains(pair.Key.Position) || IsUnsupportedFullLayoutCavity(pair.Key))
+            {
+                invalidCavityPositions.UnionWith(pair.Value);
+            }
+        }
+
         // We use the invalid hexes as islands to mark them as invalid
         UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
-            fullLayoutInvalid.ToList());
+            fullLayoutInvalid.ToList(), customiseMaterial: (position, material) =>
+            {
+                if (!cavityPositions.Contains(position))
+                    return material;
+
+                return material == islandMaterial || invalidCavityPositions.Contains(position) ?
+                    invalidCavityMaterial :
+                    cavityMaterial;
+            });
 
         // TODO: display all organelle models?
         int nextModel = 0;
         foreach (var cell in CurrentFullLayout)
         {
-            if (nextModel >= placedModels.Count)
-                placedModels.Add(CreatePreviewModelHolder());
+            if (nextModel >= PlacedModels.Count)
+                PlacedModels.Add(CreatePreviewModelHolder());
 
-            var model = placedModels[nextModel++];
+            var model = PlacedModels[nextModel++];
             ShowCellTypeInModelHolder(model, GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType),
                 Hex.AxialToCartesian(cell.Position) + microbeModelOffset, cell.Orientation);
             model.Visible = true;
         }
 
-        while (nextModel < placedModels.Count)
+        while (nextModel < PlacedModels.Count)
         {
-            placedModels[^1].DetachAndQueueFree();
-            placedModels.RemoveAt(placedModels.Count - 1);
+            PlacedModels[^1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
         }
 
-        RecalculateFullLayoutGrowthOrderErrors();
+        cellLayoutBorderDisplay.DisplayCellLayoutBorders(cellPositions.Keys.ToList(), UsesManualPlayerLayout,
+            GetEditedCellDataIfEdited);
+        hoveringCellBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.ClearCellTypeCache();
+
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
         UpdateArrow();
+    }
+
+    private void ClearFullLayoutGraphics()
+    {
+        fullLayoutOccupied.Clear();
+        fullLayoutInvalid.Clear();
+
+        UpdateAlreadyPlacedHexes([], []);
+
+        while (PlacedModels.Count > 0)
+        {
+            PlacedModels[^1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
+        }
+
+        cellLayoutBorderDisplay.HideBorders();
+        UpdateGrowthOrderNumbers();
     }
 
     private void UpdateLayoutErrorDisplay()
@@ -553,7 +622,9 @@ public partial class CellBodyPlanEditorComponent
         // the origin shift there would therefore validate a different layout than the one generated. Manual layouts
         // need the shift because it is applied when the species leaves the editor.
         // So we only conditionally apply the origin shift.
-        Hex originShift = performOriginShift ? CalculateExpectedLayoutShift(type.ModifiableOrganelles) : new Hex(0, 0);
+        Hex originShift = performOriginShift ?
+            MulticellularLayoutHelpers.CalculateExpectedLayoutShift(type.ModifiableOrganelles) :
+            new Hex(0, 0);
 
         positions.Clear();
 
@@ -589,7 +660,7 @@ public partial class CellBodyPlanEditorComponent
 
         // We have to run reposition to origin equivalent logic here! as otherwise the layout might not be valid
         // after applying edits
-        Hex originShift = CalculateExpectedLayoutShift(type.ModifiableOrganelles);
+        Hex originShift = MulticellularLayoutHelpers.CalculateExpectedLayoutShift(type.ModifiableOrganelles);
 
         // Then apply the origin shift
         for (int i = 0; i < positions.Count; ++i)
@@ -598,13 +669,6 @@ public partial class CellBodyPlanEditorComponent
         }
 
         return positions;
-    }
-
-    private Hex CalculateExpectedLayoutShift(IReadOnlyList<IReadOnlyOrganelleTemplate> localOrganelles)
-    {
-        // Origin shift here. This is done because only after exiting the editor are things layout shifted, which means
-        // that we need to pre-emptively apply a layout shift here so that the final results match what is shown here.
-        return CellType.CalculateLayoutOriginShift(localOrganelles);
     }
 
     /// <summary>
@@ -643,14 +707,23 @@ public partial class CellBodyPlanEditorComponent
         {
             var cell = ordered[i];
 
-            // Automatic layout still shows the growth order for reference, but its algorithmic placement order is
-            // excluded from error detection, so its numbers must always remain white.
-            var textColor = UsesManualPlayerLayout && wrongGrowthOrderCells.Contains(cell.Position) ?
-                Colors.Red :
-                Colors.White;
+            // Automatic layout's placement order is excluded from connectivity error detection.
+            var textColor = GrowthOrderNumberColour(cell.Data!.IsCavity,
+                (UsesManualPlayerLayout && wrongGrowthOrderCells.Contains(cell.Position)) ||
+                (i == 0 && cell.Data.IsCavity) || IsUnsupportedFullLayoutCavity(cell));
 
             yield return (Hex.AxialToCartesian(cell.Position), (i + 1).ToString(), textColor);
         }
+    }
+
+    /// <summary>
+    ///   Checks cavity support at the compact source position, as full layout cells have different positions and
+    ///   footprints. The source mapping covers both automatic previews and manual layouts.
+    /// </summary>
+    private bool IsUnsupportedFullLayoutCavity(HexWithData<CellTemplate> cell)
+    {
+        return cell.Data!.IsCavity && fullLayoutGrowthOrderSources.TryGetValue(cell, out var source) &&
+            !CellBodyPlanInternalCalculations.HasEnoughCavityNeighbours(source.Position, editedMicrobeCells);
     }
 
     private HexWithData<CellTemplate>? GetFullCellAt(Hex position)
@@ -841,10 +914,13 @@ public partial class CellBodyPlanEditorComponent
             .Select(position => Hex.RotateAxialNTimes(position, moving.Orientation));
         RenderHoveredHex(q, r, positionsLocal, isPlacementProbablyValid, out _);
 
-        var model = hoverModels[usedHoverModel++];
+        var model = HoverModels[usedHoverModel++];
         ShowCellTypeInModelHolder(model, type, Hex.AxialToCartesian(new Hex(q, r)) + microbeModelOffset,
             moving.Orientation);
         model.Visible = true;
+
+        hoveringCellBorderDisplay.DisplayHoveringCellBorder(MovingPlacedHex, new Hex(q, r), UsesManualPlayerLayout,
+            GetEditedCellDataIfEdited);
     }
 
     private void ApplyManualMove(Hex position)
@@ -872,12 +948,12 @@ public partial class CellBodyPlanEditorComponent
 
         // Make the normal view invisible
         MouseHoverPositions = null;
-        foreach (var hex in placedHexes)
+        foreach (var hex in PlacedHexes)
         {
             hex.Visible = false;
         }
 
-        foreach (var model in placedModels)
+        foreach (var model in PlacedModels)
         {
             model.Visible = false;
         }
@@ -901,11 +977,9 @@ public partial class CellBodyPlanEditorComponent
     {
         foreach (var cell in manualFullLayout)
         {
-            var sourceType = manualLayoutSources.TryGetValue(cell, out var source) ?
-                source.Data!.ModifiableCellType :
-                cell.Data!.ModifiableCellType;
-            var type = GetEditedCellDataIfEdited(sourceType);
-            cell.Data = new CellTemplate(type, cell.Position, cell.Orientation);
+            var sourceTemplate = manualLayoutSources.TryGetValue(cell, out var source) ? source.Data! : cell.Data!;
+            var type = GetEditedCellDataIfEdited(sourceTemplate.ModifiableCellType);
+            cell.Data = new CellTemplate(type, cell.Position, cell.Orientation, sourceTemplate.IsCavity);
         }
     }
 
@@ -918,6 +992,12 @@ public partial class CellBodyPlanEditorComponent
         RecalculateWrongGrowthOrderCells();
         UpdateGrowthOrderNumbers();
         UpdateArrow();
+
+        cellLayoutBorderDisplay.HideBorders();
+        cellLayoutBorderDisplay.ClearCellTypeCache();
+
+        hoveringCellBorderDisplay.HideBorders();
+        hoveringCellBorderDisplay.ClearCellTypeCache();
     }
 
     private void OnReapplyAutomaticLayoutPressed()
@@ -961,6 +1041,7 @@ public partial class CellBodyPlanEditorComponent
                 mappedSources.Add(source);
                 manualCell.Orientation = source.Orientation;
                 manualCell.Data!.Orientation = source.Orientation;
+                manualCell.Data.IsCavity = source.Data!.IsCavity;
                 continue;
             }
 
@@ -977,6 +1058,7 @@ public partial class CellBodyPlanEditorComponent
                 mappedSources.Add(replacement);
                 manualCell.Orientation = replacement.Orientation;
                 manualCell.Data!.Orientation = replacement.Orientation;
+                manualCell.Data.IsCavity = replacement.Data!.IsCavity;
             }
         }
 
@@ -1002,7 +1084,7 @@ public partial class CellBodyPlanEditorComponent
 
             // Adding new cells to the layout at 0, 0 so that they need to be fixed manually
             var type = GetEditedCellDataIfEdited(source.Data!.ModifiableCellType);
-            var clone = new CellTemplate(type, new Hex(0, 0), source.Orientation);
+            var clone = new CellTemplate(type, new Hex(0, 0), source.Orientation, source.Data!.IsCavity);
             var manualCell = new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation);
             manualFullLayout.Add(manualCell);
             SetManualLayoutSource(manualCell, source);
@@ -1021,6 +1103,7 @@ public partial class CellBodyPlanEditorComponent
 
         // public CellLayout<CellTemplate> Gameplay { get; set; } = null!;
 
+        public IReadOnlyList<HexWithData<CellTemplate>> CompactSources { get; set; } = null!;
         public IReadOnlyList<CellTemplate> GrowthOrderSources { get; set; } = null!;
         public List<HexWithData<CellTemplate>> Wrapped { get; set; } = null!;
     }

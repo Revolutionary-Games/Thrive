@@ -1,5 +1,6 @@
 ﻿namespace Scripts;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,7 +42,8 @@ public static class TranslationProgressTool
 
         // Sort for consistent order in file
         var objectToWrite =
-            new TranslationsInfo(progressValues.OrderBy(p => p.Key).ToDictionary(p => p.Key, p => p.Value));
+            new TranslationsInfo(progressValues.OrderBy(p => p.Key, StringComparer.Ordinal)
+                .ToDictionary(p => p.Key, p => p.Value));
 
         await JsonWriteHelper.WriteJsonWithBom(ThriveScriptConstants.TRANSLATIONS_PROGRESS_FILE, objectToWrite,
             cancellationToken);

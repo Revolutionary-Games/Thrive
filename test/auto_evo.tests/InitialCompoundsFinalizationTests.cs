@@ -49,7 +49,7 @@ public class InitialCompoundsFinalizationTests
         // not evidence of its real-world frequency.
         var miche = new Miche(pressure);
         results.AddNewMicheForPatch(patch, miche);
-        var step = new ModifyExistingSpecies(patch, cache, settings, new Random(42));
+        var step = new ModifyExistingSpecies(patch, cache, settings, 42);
 
         // Generate for the one parent, finish generation, then filter. Scoring during these phases is not insertion.
         AssertThat(step.RunStep(results)).IsFalse();

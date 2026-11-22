@@ -15,6 +15,9 @@
 ///     Please note that multicast commands cannot be overloaded over static commands to prevent conflicts.
 ///   </para>
 /// </remarks>
+/// <param name="commandName">The command name used to invoke the method in the console.</param>
+/// <param name="isCheat">Whether this command should report cheats used to the game.</param>
+/// <param name="helpText">Optional help text shown when the help command is executed in the console.</param>
 /// <param name="maxAllowedRegisteredInstances">
 ///   The maximum number of allowed registered instances for the execution of this command. It is recommended this is
 ///   kept as low as possible to prevent too many invocations.

@@ -416,6 +416,8 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
                 // Next can be spawned
                 var (recorder, weight) = spawn.SpawnNext(out var current);
 
+                spawn.RunConfigurationAfterSpawn(recorder, current, playerPosition);
+
                 AddSpawnedComponent(current, recorder, weight, spawn.RelatedSpawnType);
                 SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
@@ -609,6 +611,8 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
             }
 
             var (recorder, weight) = spawnQueue.SpawnNext(out var current);
+
+            spawnQueue.RunConfigurationAfterSpawn(recorder, current, playerPosition);
 
             AddSpawnedComponent(current, recorder, weight, spawnType);
             SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);

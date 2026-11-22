@@ -7,7 +7,11 @@ using Godot;
 
 public class MutationLogicFunctions
 {
-    public static void NameNewSpecies(Species newSpecies, Species parentSpecies)
+    /// <summary>
+    ///   Names a retained species using the owning task's random stream. This advances the stream used for
+    ///   subsequent colouring and for naming and colouring later retained species.
+    /// </summary>
+    public static void NameNewSpecies(Random random, Species newSpecies, Species parentSpecies)
     {
         // Keep the same genus name if the species are similar enough
         var keepGenus = false;
@@ -31,10 +35,10 @@ public class MutationLogicFunctions
         }
         else
         {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
+            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection(random);
         }
 
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(random, true);
     }
 
     public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,

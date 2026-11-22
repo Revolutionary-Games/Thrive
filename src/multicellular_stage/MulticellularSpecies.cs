@@ -519,7 +519,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         if (updateInitialCompounds)
+        {
             UpdateInitialCompounds();
+
+            if (InitialCompounds.Count < 1)
+            {
+                throw new InvalidOperationException(
+                    "Initial compounds initialization failed for multicellular species");
+            }
+        }
 
         cachedFillTimes.Clear();
     }
@@ -533,6 +541,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         base.OnAttemptedInAutoEvo(false);
 
         UpdateInitialCompounds();
+
+        if (InitialCompounds.Count < 1)
+            throw new InvalidOperationException("Initial compounds initialization failed (after membrane change)");
 
         cachedFillTimes.Clear();
     }
@@ -570,6 +581,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             HealthModifier = 1,
             OsmoregulationModifier = 1,
+            SliderOsmoregulationAdditionalModifier =
+                MicrobeEnvironmentalToleranceCalculations.CalculateSliderOsmoregulationModifier(
+                    Tolerances.OxygenResistance, Tolerances.UVResistance),
             ProcessSpeedModifier = 1,
         };
 
@@ -612,12 +626,23 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         foreach (var compoundBalance in compoundBalances)
         {
-            if (compoundBalance.Value.Balance >= 0)
+            // Skip compounds we don't want to give as initial compounds
+            var definition = simulationParameters.GetCompoundDefinition(compoundBalance.Key);
+            if (!definition.CanBeInitialCompound)
                 continue;
 
-            // Skip compounds we don't want to give as initial compounds
-            if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
+            // Do not give gas compounds as initial as they aren't stored
+            if (definition.IsGas)
                 continue;
+
+            // Only give compounds the species doesn't produce
+            if (compoundBalance.Value.Balance >= 0)
+            {
+                // But add a placeholder value so that the initial compounds isn't empty, which breaks spawning
+                // species.
+                InitialCompounds.Add(compoundBalance.Key, 0);
+                continue;
+            }
 
             // Initial compounds should suffice for a fixed amount of time.
             // Some extra is given to accommodate multicellular growth
@@ -628,6 +653,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 compoundInitialAmount = storageCapacity;
 
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
+        }
+
+        if (InitialCompounds.Count < 1)
+        {
+            // If there is no compound balances, add a dummy compound so that errors don't happen
+            InitialCompounds.Add(Compound.Glucose, 0);
         }
     }
 
@@ -722,7 +753,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation,
+                    oldTemplate.IsCavity);
                 modifiableEditorCells.AddFast(
                     new HexWithData<CellTemplate>(newTemplate, hexWithData.Position, hexWithData.Orientation),
                     workMemory1, workMemory2);
@@ -738,7 +770,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             if (!typeMapping.TryGetValue(oldType, out var newType))
                 throw new Exception("Cell type not found in species");
 
-            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation,
+                    cellTemplate.IsCavity),
                 workMemory1, workMemory2);
         }
 
@@ -790,10 +823,21 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         var totalOrganelles = 0;
 
-        int count = ModifiableGameplayCells.Count;
-        for (int i = 0; i < count; ++i)
+        if (modifiableEditorCells != null)
         {
-            totalOrganelles += ModifiableGameplayCells[i].Organelles.Count;
+            var count = modifiableEditorCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                totalOrganelles += modifiableEditorCells[i].Data!.ModifiableOrganelles.Count;
+            }
+        }
+        else
+        {
+            var count = ModifiableGameplayCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                totalOrganelles += ModifiableGameplayCells[i].Organelles.Count;
+            }
         }
 
         return totalOrganelles;
@@ -950,7 +994,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 throw new InvalidOperationException($"No cell type exists for: {wantedTypeName}");
 
             modifiableEditorCells.AddFast(new HexWithData<CellTemplate>(
-                new CellTemplate(cellType, cell.Position, cell.Orientation),
+                new CellTemplate(cellType, cell.Position, cell.Orientation, cell.Data!.IsCavity),
                 cell.Position, cell.Orientation), hexTemporaryMemory, hexTemporaryMemory2);
         }
     }
@@ -1011,8 +1055,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                result.ModifiableGameplayCells.AddFast(
-                    new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                result.ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position,
+                        cellTemplate.Orientation,
+                        cellTemplate.IsCavity),
                     workMemory1, workMemory2);
             }
         }
@@ -1042,7 +1087,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 if (!typeMapping.TryGetValue(oldType, out var newType))
                     throw new Exception("Cell type not found in species");
 
-                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation,
+                    oldTemplate.IsCavity);
             }
 
             result.modifiableEditorCells.AddFast(
@@ -1104,7 +1150,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 Tolerances.PressureMinimum,
                 Tolerances.PressureMinimum + Tolerances.PressureTolerance,
                 Math.Round(Tolerances.OxygenResistance * 100, 2),
-                Math.Round(Tolerances.UVResistance * 100, 2));
+                Math.Round((Tolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE) * 100, 2));
     }
 
     protected override Dictionary<Compound, float> CalculateBaseReproductionCost()

@@ -34,8 +34,8 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
     public new IReadOnlyHexWithData<TData> this[int index]
     {
-        get => existingHexes[index];
-        set => existingHexes[index] = (HexWithData<TData>)value;
+        get => ExistingHexes[index];
+        set => ExistingHexes[index] = (HexWithData<TData>)value;
     }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
@@ -48,7 +48,7 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        writer.WriteObject(ExistingHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }

@@ -134,6 +134,9 @@ public:
     virtual JobHandle CreateJob(const char* inName, JPH::ColorArg inColor, const JobFunction& inJobFunction,
         uint32_t inNumDependencies) override;
 
+    virtual void CreateJobs(const char* inName, JPH::ColorArg inColor, const JobFunction& inJobFunction,
+        JobHandle* outJobs, uint32_t inNumJobs, uint32_t inNumDependencies = 0) override;
+
     void SetThreads(int count) noexcept;
 
     [[nodiscard]] int GetThreads() const noexcept

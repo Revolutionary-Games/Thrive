@@ -1,6 +1,5 @@
 ﻿namespace Components;
 
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -34,7 +33,7 @@ public struct PhysicsSensor : IArchivableComponent
     /// <summary>
     ///   Pointer to the detected bodies count variable
     /// </summary>
-    public IntPtr ActiveCollisionCountPtr;
+    public nint ActiveCollisionCountPtr;
 
     /// <summary>
     ///   Sets the maximum number of simultaneous contacts this sensor can detect. Note changing this after the
@@ -92,7 +91,7 @@ public struct PhysicsSensor : IArchivableComponent
         DetectStaticBodies = false;
 
         ActiveCollisions = null;
-        ActiveCollisionCountPtr = IntPtr.Zero;
+        ActiveCollisionCountPtr = nint.Zero;
         ApplyNewShape = false;
         InternalDisabledState = false;
     }

@@ -467,7 +467,7 @@ public class SimulationCache
         CheckSpecies(preySpecies);
 #endif
 
-        var key = (microbeSpecies: GetSpeciesCacheKey(predatorSpecies), GetSpeciesCacheKey(preySpecies),
+        var key = (MicrobeSpecies: GetSpeciesCacheKey(predatorSpecies), GetSpeciesCacheKey(preySpecies),
             biomeConditions);
 
         ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(predationScores, key);

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
 using Xoshiro.PRNG32;
@@ -776,8 +777,22 @@ public static class SpawnHelpers
 
                 resolvedCellType = multicellularData.MulticellularCellType;
 
-                usedCellDefinition = multicellularData.MulticellularCellType;
-                var properties = new CellProperties(multicellularData.MulticellularCellType);
+                // Use the placed cell's definition so cavity colours are included. Gametes have no body plan entry.
+                // This is because by default the type is just the type of the cell, and not the body plan template,
+                // which knows about the cavity state.
+                try
+                {
+                    usedCellDefinition = isGameteSpawn ?
+                        resolvedCellType :
+                        multicellularSpecies.ModifiableGameplayCells[multicellularData.CellBodyPlanIndex];
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Could not read body plan for spawned cell, cavity status will be unknown: ", e);
+                    usedCellDefinition = resolvedCellType;
+                }
+
+                var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
@@ -1115,12 +1130,46 @@ public static class SpawnHelpers
     }
 
     public static void SpawnGamete(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        ISpawnSystem spawnerToRegisterWith, Species species, Vector3 location, Vector3 initialVelocity,
-        GameteType gamete, CellType gameteType, bool aiGamete, Entity shootingEntity)
+        ISpawnSystem spawnerToRegisterWith, MulticellularSpecies species, Vector3 location, Vector3 initialVelocity,
+        GameteType gamete, bool aiGamete, Entity shootingEntity)
     {
+        var (recorder, weight) = SpawnGameteWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            initialVelocity, gamete, aiGamete, out var entity, shootingEntity);
+
+        // Make it despawn like normal
+        spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+    }
+
+    public static (CommandBuffer Recorder, float Weight) SpawnGameteWithoutFinalizing(IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment, MulticellularSpecies species, Vector3 location,
+        Vector3 initialVelocity, GameteType gamete, bool aiGamete, out Entity entity, Entity shootingEntity)
+    {
+        CellType? gameteType;
+        int cellBodyPlanIndex = -1;
+
+        if (gamete == GameteType.B)
+        {
+            gameteType = species.ModifiableGameteTypeB;
+        }
+        else
+        {
+            gameteType = species.ModifiableGameteTypeA;
+        }
+
+        if (gameteType == null)
+        {
+            GD.PrintErr("Species is missing configured gamete type that should have been spawned."
+                + " Defaulting to spawning the first cell in the body plan");
+
+            cellBodyPlanIndex = 0;
+        }
+
         // We use the gamete type and -1 as the index to spawn this cell in a bit special state
         var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            true, (gameteType, -1), gamete, out var entity, MulticellularSpawnState.Offspring);
+            true, (gameteType, cellBodyPlanIndex), gamete, out entity, MulticellularSpawnState.Offspring);
 
         // Override some things to make the cell work like a gamete
 
@@ -1160,26 +1209,30 @@ public static class SpawnHelpers
             MovementDirection = Vector3.Forward,
         });
 
-        // And spawn with the rotation already set so the cell doesn't turn on spawning
-        recorder.Set(entity,
-            new WorldPosition(location,
-                Basis.LookingAt(initialVelocity, Vector3.Up).GetRotationQuaternion()));
+        // And spawn with the rotation already set so the cell doesn't turn on spawning.
+        Quaternion rotation = Quaternion.Identity;
+        if (initialVelocity != Vector3.Zero)
+        {
+            rotation = Basis.LookingAt(initialVelocity, Vector3.Up).GetRotationQuaternion();
+        }
+        else
+        {
+            GD.PrintErr("Initial velocity of a gamete should not be zero (as direction won't be set)");
+        }
+
+        recorder.Set(entity, new WorldPosition(location, rotation));
 
         // Disable collision with the shooting enemy
         recorder.Set(entity, new CollisionManagement
         {
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
-            IgnoredCollisionsWith = [shootingEntity],
+            IgnoredCollisionsWith = shootingEntity == Entity.Null ? null : [shootingEntity],
         });
 
         recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName,
             new LocalizedString(gamete.GetAttribute<DescriptionAttribute>().Description))));
 
-        // Make it despawn like normal
-        spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,
-            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
-
-        FinalizeEntitySpawn(recorder, worldSimulation);
+        return (recorder, weight);
     }
 
     /// <summary>
@@ -1542,7 +1595,19 @@ public static class SpawnHelpers
         Vector3 direction,
         float lifetime, Vector3 normalizedDirection, Entity emitter)
     {
-        commandBuffer.Set(entity, new WorldPosition(location + direction * 1.5f));
+        var spawnPosition = location + direction * 1.5f;
+
+        if (emitter.IsAliveAndHas<MulticellularSpeciesMember>() &&
+            emitter.Get<MulticellularSpeciesMember>().IsCavity())
+        {
+            // Cavities can fire from their centre without hitting themselves. Projectiles belong on the gameplay
+            // plane rather than at the cavity cell's visual height.
+            // This handling is here so that this accounts automatically for all projectile types.
+            spawnPosition = emitter.Get<WorldPosition>().Position;
+            spawnPosition.Y = 0;
+        }
+
+        commandBuffer.Set(entity, new WorldPosition(spawnPosition));
         commandBuffer.Set<SpatialInstance>(entity);
 
         commandBuffer.Set(entity, new TimedLife
@@ -1666,6 +1731,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             GD.PrintErr("Obsolete species microbe has spawned");
 
         var microbeSpecies = Species as MicrobeSpecies;
+        var multicellularSpecies = Species as MulticellularSpecies;
 
         bool bacteria = false;
 
@@ -1676,7 +1742,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             bacteria = microbeSpecies.IsBacteria;
             sex = GameteType.All;
         }
-        else if (Species is MulticellularSpecies multicellularSpecies)
+        else if (multicellularSpecies != null)
         {
             sex = multicellularSpecies.PickSpawnGameteType(random);
         }
@@ -1686,16 +1752,47 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
             sex = GameteType.All;
         }
 
-        var firstSpawn = new SingleItemSpawnQueue((out entity) =>
+        bool gameteSpawn = random.NextSingle() < Constants.GAMETE_SPAWN_CHANCE
+            && multicellularSpecies?.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                or MulticellularReproductionMethod.SexualIsogamy;
+
+        SingleItemSpawnQueue.Factory spawnMethod = (out entity) =>
         {
-            // The true here is that this is AI-controlled
-            var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
-                Species, location, true, (null, 0), sex, out entity, MulticellularSpawnState.ChanceForFullColony);
+            CommandBuffer recorder;
+            float weight;
+
+            if (gameteSpawn)
+            {
+                var initialVelocity = new Quaternion(Vector3.Up, random.Next(0.0f, MathF.PI * 2.0f)) * Vector3.Forward;
+
+                (recorder, weight) = SpawnHelpers.SpawnGameteWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
+                    multicellularSpecies!, location, initialVelocity, sex, true, out entity, Entity.Null);
+            }
+            else
+            {
+                // The true here is that this is AI-controlled
+                (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
+                    Species, location, true, (null, 0), sex, out entity, MulticellularSpawnState.ChanceForFullColony);
+            }
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity, recorder);
 
             return (recorder, weight);
-        }, location, SpawnQueue.IsTooCloseToPlayer, this);
+        };
+
+        SingleItemSpawnQueue.ConfigureAfterSpawn? postSpawnConfiguartion = null;
+
+        if (gameteSpawn)
+        {
+            postSpawnConfiguartion = (recorder, entity, playerPos) =>
+            {
+                recorder.Set(entity,
+                    new WorldPosition(location, Basis.LookingAt(playerPos - location).GetRotationQuaternion()));
+            };
+        }
+
+        var firstSpawn = new SingleItemSpawnQueue(spawnMethod, location, SpawnQueue.IsTooCloseToPlayer, this,
+            postSpawnConfiguartion);
 
         if (!bacteria)
         {

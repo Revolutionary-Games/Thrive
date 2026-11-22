@@ -62,6 +62,21 @@ public static class Constants
     /// </remarks>
     public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
+    /// <summary>
+    ///   Visual displacement of cavity cells below the gameplay plane.
+    /// </summary>
+    public const float CAVITY_CELL_Y_OFFSET = -5.0f;
+
+    /// <summary>
+    ///   How much cavity cell colours are darkened to make them appear in shadow.
+    /// </summary>
+    public const float CAVITY_CELL_COLOUR_DARKENING = 0.4f;
+
+    /// <summary>
+    ///   Minimum number of occupied neighbouring positions a cavity needs in the main body plan.
+    /// </summary>
+    public const int CAVITY_CELL_MINIMUM_NEIGHBOURS = 4;
+
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
@@ -208,9 +223,11 @@ public static class Constants
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
     public const float MEMBRANE_ENGULF_ANIMATION_DISTANCE = 1.25f;
 
-    public const float MEMBRANE_MIDDLE_POINT_OVERREACH = 0.5f;
-    public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS = 750.0f;
-    public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES = 150.0f;
+    public const float MEMBRANE_MAX_STRETCHED_DISTANCE_SQUARED = 50.0f * 50.0f;
+    public const float MEMBRANE_POINT_DISTANCE_TOLERANCE = 0.01f;
+
+    public const float MEMBRANE_POINT_DISTANCE_TOLERANCE_SQUARED =
+        MEMBRANE_POINT_DISTANCE_TOLERANCE * MEMBRANE_POINT_DISTANCE_TOLERANCE;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
@@ -269,6 +286,11 @@ public static class Constants
     ///   ATP cost per actomyosin organelle while a colony is moving.
     /// </summary>
     public const float ACTOMYOSIN_ENERGY_COST = 12.0f;
+
+    /// <summary>
+    ///   ATP cost per axon organelle while a colony is moving.
+    /// </summary>
+    public const float AXON_ENERGY_COST = 12.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger, they get a movement force increase to offset that
@@ -371,7 +393,15 @@ public static class Constants
     public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
     public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
     public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.25f;
-    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
+    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.18f;
+
+    public const float AXON_MOVEMENT_BUFF_PER = 0.15f;
+    public const float AXON_ROTATION_BUFF_PER = 0.15f;
+
+    /// <summary>
+    ///   Diminishing returns on having multiple axons in a colony. Higher numbers cause harsher scaling.
+    /// </summary>
+    public const float AXON_DIMINISHING_RETURNS_SCALE = 0.8f;
 
     // TODO: harsher wording in the tooltip
 
@@ -718,6 +748,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
+
+    /// <summary>
+    ///   Multiplier for the adjacency specialization bonus given by a cavity cell to its neighbours.
+    /// </summary>
+    public const float CAVITY_CELL_ADJACENCY_BONUS_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   How many existing cell-to-cell adjacencies a player may break when repositioning a cell in the manual body
@@ -1314,6 +1349,11 @@ public static class Constants
     public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
 
     public const float GAMETE_FUSION_ANIMATION_DURATION = 5.0f;
+
+    /// <summary>
+    ///   The chance that a gamete spawns instead of a colony. Only works for species with sexual reproduction
+    /// </summary>
+    public const float GAMETE_SPAWN_CHANCE = 0.2f;
 
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
@@ -2190,14 +2230,18 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
 
     // These values must be the same as in the editor
-    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.2f;
     public const float TOLERANCE_OXYGEN_STEP = 0.01f;
-    public const float TOLERANCE_UV_STEP = 0.05f;
+    public const float TOLERANCE_UV_RANGE_MAX = 0.2f;
+    public const float TOLERANCE_UV_STEP = 0.01f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
     /// </summary>
     public const float TOLERANCE_UV_APPLY_AFTER = 0.01f;
+
+    public const float TOLERANCE_UV_DEFAULT_VALUE = 1.0f;
+    public const float TOLERANCE_UV_HEX_DEBUFF = 0.02f;
 
     public const float TOLERANCE_OXYGEN_APPLY_AFTER = 0.01f;
 
@@ -2236,10 +2280,14 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
 
     public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
+    public const float TOLERANCE_OXYGEN_SPEED_MODIFIER_MAX = 0.8f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MODIFIER = 1.0f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_COST_MAX = 0.3f;
 
     public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
+    public const float TOLERANCE_UV_SPEED_MODIFIER_MAX = 0.8f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MODIFIER = 1.0f;
+    public const float TOLERANCE_UV_OSMOREGULATION_COST_MAX = 0.3f;
 
     /// <summary>
     ///   This is an additional modifier on top of the averaging effect applied to make the values less extreme.

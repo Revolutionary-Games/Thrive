@@ -7,7 +7,7 @@ layout(set = 0, binding = 1) uniform sampler2D depthSampler;   // FULL resolutio
 layout(set = 0, binding = 2) uniform sampler3D baseNoise;
 
 layout(set = 0, binding = 3, std140) uniform Params {
-    vec4 planetCenter;   // .xyz center                          .w unused
+    vec4 planetCenter;   // .xyz center                          .w ground R
     vec4 shell;          // .x inner R, .y outer R, .z tile size,.w density multiplier
     vec4 screenSize;     // .xy size,   .zw 1/size
     vec4 marchSize;      // .xy MARCH res, .zw 1/MARCH res

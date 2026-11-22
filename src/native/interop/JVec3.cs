@@ -154,9 +154,9 @@ public struct SubShapeDefinition
 
     public uint UserData;
 
-    public IntPtr ShapeNativePtr;
+    public nint ShapeNativePtr;
 
-    public SubShapeDefinition(Vector3 position, Quaternion rotation, IntPtr shapePtr, uint userData = 0)
+    public SubShapeDefinition(Vector3 position, Quaternion rotation, nint shapePtr, uint userData = 0)
     {
         Position = new JVecF3(position);
         Rotation = new JQuat(rotation);

@@ -5,23 +5,23 @@ using System.Linq;
 using Godot;
 using SharedBase.Archive;
 
-/// <summary>
+/// <content>
 ///   This partial class has all the editor action callbacks needed for the microbe editor
-/// </summary>
+/// </content>
 public partial class CellEditorComponent
 {
     [ArchiveAllowedMethod]
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
     }
 
     [ArchiveAllowedMethod]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
     }
 
     [ArchiveAllowedMethod]
@@ -40,8 +40,7 @@ public partial class CellEditorComponent
 
             if (organelleHere.Definition.InternalName != "cytoplasm")
             {
-                throw new Exception("Can't place organelle on top of something " +
-                    "else than cytoplasm");
+                throw new Exception("Can't place organelle on top of something else than cytoplasm");
             }
 
             // First we save the organelle data and then delete it
@@ -114,15 +113,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        if (IsMulticellularEditor || IsMacroscopicEditor)
-        {
-            // Try to recover if there is a new organelle instance we should act on instead
-            var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
-                o.Position == data.OldLocation && o.Orientation == data.OldRotation);
-
-            if (newlyInitializedOrganelle != null)
-                data.MovedHex = newlyInitializedOrganelle;
-        }
+        RecoverMovedOrganelle(data, data.OldLocation, data.OldRotation);
 
         data.MovedHex.Position = data.NewLocation;
         data.MovedHex.Orientation = data.NewRotation;
@@ -132,7 +123,7 @@ public partial class CellEditorComponent
             UpdateAlreadyPlacedVisuals();
 
             // Organelle placement *might* affect auto-evo in the future, so this is here for that reason
-            autoEvoPredictionDirty = true;
+            autoEvoPrediction.MarkDirty();
 
             // Suggestion is not restarted as the overall shape / movement speed is likely not significant enough to
             // invalidate the suggestion
@@ -147,24 +138,34 @@ public partial class CellEditorComponent
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
 
+        RefreshPreviewAfterOrganelleMove();
+    }
+
+    private void RecoverMovedOrganelle(OrganelleMoveActionData data, Hex expectedPosition, int expectedOrientation)
+    {
+        if (!IsMulticellularEditor && !IsMacroscopicEditor)
+            return;
+
+        // Try to recover if there is a new organelle instance we should act on instead
+        var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
+            o.Position == expectedPosition && o.Orientation == expectedOrientation);
+
+        if (newlyInitializedOrganelle != null)
+            data.MovedHex = newlyInitializedOrganelle;
+    }
+
+    private void RefreshPreviewAfterOrganelleMove()
+    {
         // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
         // just not do anything. That may have been the reason for the dynamic MP PR TODO.
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
         UpdateCellVisualization();
     }
 
     [ArchiveAllowedMethod]
     private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        if (IsMulticellularEditor || IsMacroscopicEditor)
-        {
-            // Try to recover if there is a new organelle instance we should act on instead
-            var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
-                o.Position == data.NewLocation && o.Orientation == data.NewRotation);
-
-            if (newlyInitializedOrganelle != null)
-                data.MovedHex = newlyInitializedOrganelle;
-        }
+        RecoverMovedOrganelle(data, data.NewLocation, data.NewRotation);
 
         data.MovedHex.Position = data.OldLocation;
         data.MovedHex.Orientation = data.OldRotation;
@@ -172,17 +173,14 @@ public partial class CellEditorComponent
         UpdateAlreadyPlacedVisuals();
         UpdateStats();
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
 
         // As this is a move, this kind of doesn't need to trigger suggestions again, so this apparently doesn't
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
 
-        // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
-        // just not do anything. That may have been the reason for the dynamic MP PR TODO.
-        microbeVisualizationOrganellePositionsAreDirty = true;
-        UpdateCellVisualization();
+        RefreshPreviewAfterOrganelleMove();
     }
 
     [ArchiveAllowedMethod]
@@ -259,16 +257,15 @@ public partial class CellEditorComponent
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
-        if (previewMicrobeSpecies != null)
-        {
-            previewMicrobeSpecies.MembraneType = membrane;
+        ApplyMembraneToPreview(membrane);
+    }
 
-            if (previewMicrobe.IsAliveAndNotNull())
-                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
-        }
+    private void ApplyMembraneToPreview(MembraneType membrane)
+    {
+        cellPreview.ApplyMembrane(membrane);
     }
 
     [ArchiveAllowedMethod]
@@ -283,16 +280,10 @@ public partial class CellEditorComponent
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        autoEvoPredictionDirty = true;
+        autoEvoPrediction.MarkDirty();
         suggestionDirty = true;
 
-        if (previewMicrobeSpecies != null)
-        {
-            previewMicrobeSpecies.MembraneType = Membrane;
-
-            if (previewMicrobe.IsAliveAndNotNull())
-                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
-        }
+        ApplyMembraneToPreview(Membrane);
     }
 
     [ArchiveAllowedMethod]
@@ -330,7 +321,7 @@ public partial class CellEditorComponent
 
         data.UpgradedOrganelle.ModifiableUpgrades = data.NewUpgrades;
 
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
 
         OnOrganellesChanged();
     }
@@ -342,7 +333,7 @@ public partial class CellEditorComponent
 
         data.UpgradedOrganelle.ModifiableUpgrades = data.OldUpgrades;
 
-        microbeVisualizationOrganellePositionsAreDirty = true;
+        cellPreview.MarkLayoutDirty();
 
         OnOrganellesChanged();
     }

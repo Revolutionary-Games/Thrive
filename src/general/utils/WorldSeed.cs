@@ -3,7 +3,7 @@ using System.Buffers.Binary;
 using System.IO.Hashing;
 
 /// <summary>
-///   Derives private random sources from the selected world seed, without shared state or external entropy.
+///   Derives private random sources from a root seed, without shared state or external entropy.
 /// </summary>
 public static class WorldSeed
 {
@@ -14,6 +14,8 @@ public static class WorldSeed
     {
         WorldEvents = 1,
         NitrogenControl = 2,
+        AutoEvoModifySpecies = 3,
+        AutoEvoMigrateSpecies = 4,
     }
 
     /// <summary>
@@ -33,6 +35,20 @@ public static class WorldSeed
         Span<byte> input = stackalloc byte[12];
         BinaryPrimitives.WriteInt64LittleEndian(input, worldSeed);
         BinaryPrimitives.WriteUInt32LittleEndian(input[8..], (uint)domain);
+        return unchecked((long)XxHash64.HashToUInt64(input));
+    }
+
+    /// <summary>
+    ///   Derives a task seed from exactly 20 little-endian bytes: signed 64-bit root seed, unsigned 32-bit domain,
+    ///   then signed 64-bit owner ID. Patch IDs and species IDs are widened without losing bits.
+    ///   Uses the same xxHash64 and result interpretation as the root overload.
+    /// </summary>
+    public static long Derive(long seed, Domain domain, long ownerId)
+    {
+        Span<byte> input = stackalloc byte[20];
+        BinaryPrimitives.WriteInt64LittleEndian(input, seed);
+        BinaryPrimitives.WriteUInt32LittleEndian(input[8..], (uint)domain);
+        BinaryPrimitives.WriteInt64LittleEndian(input[12..], ownerId);
         return unchecked((long)XxHash64.HashToUInt64(input));
     }
 }

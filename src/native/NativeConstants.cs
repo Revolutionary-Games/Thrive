@@ -9,9 +9,9 @@ using SharedBase.Models;
 /// </summary>
 public class NativeConstants
 {
-    public const int Version = 25;
+    public const int Version = 26;
     public const int EarlyCheck = 2;
-    public const int ExtensionVersion = 9;
+    public const int ExtensionVersion = 10;
 
     public const string LibraryFolder = "native_libs";
     public const string DistributableFolderName = "distributable";

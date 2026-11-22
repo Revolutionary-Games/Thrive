@@ -55,6 +55,10 @@ public class RandomOrganelleSelectionTests
         AssertThat(random.SideCount).IsEqual(0);
     }
 
+    /// <summary>
+    ///   A single candidate and a single existing organelle need only a side-selection draw,
+    ///   preventing unnecessary random draws for candidate selection or placement ordering.
+    /// </summary>
     [TestCase]
     public void SingleAddCandidateOnlyConsumesPlacementRandom()
     {
@@ -71,8 +75,9 @@ public class RandomOrganelleSelectionTests
         AssertThat(mutant.Organelles.Count).IsEqual(2);
         AssertThat(mutant.Organelles[1].Position).IsEqual(new Hex(0, 1));
         AssertThat(mutant.Organelles[1].Orientation).IsEqual(0);
-        AssertThat(random.KeyCount).IsEqual(1);
+        AssertThat(random.KeyCount).IsEqual(0);
         AssertThat(random.SideCount).IsEqual(1);
+        AssertThat(random.Calls.Count).IsEqual(1);
     }
 
     [TestCase]
@@ -283,6 +288,13 @@ public class RandomOrganelleSelectionTests
             int result = source.Next(maxValue);
             ++SideCount;
             Calls.Add($"Next({maxValue}):{result}");
+            return result;
+        }
+
+        public override int Next(int minValue, int maxValue)
+        {
+            int result = source.Next(minValue, maxValue);
+            Calls.Add($"Next({minValue}, {maxValue}):{result}");
             return result;
         }
     }

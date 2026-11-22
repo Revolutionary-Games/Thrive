@@ -79,7 +79,11 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     public override void _Process(double delta)
     {
-        if (texturizationTask?.Finished == true)
+        if (texturizationTask?.Failed == true)
+        {
+            texturizationTask = null;
+        }
+        else if (texturizationTask?.Finished == true)
         {
             if (material == null)
             {
@@ -194,7 +198,14 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // (so that the code can be multithreaded).
             // This means that there is no surface immediately after calling this function and texture application
             // has to be deferred too.
-            if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
+            var unwrapped = NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f);
+
+#if DEBUG
+            if (!IsInstanceValid(mesh))
+                throw new InvalidOperationException("ArrayMesh was disposed during native UV unwrapping");
+#endif
+
+            if (unwrapped)
             {
                 if (generationId != currentUvGenerationId)
                     return;

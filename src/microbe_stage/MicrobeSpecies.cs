@@ -265,7 +265,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
             new Dictionary<OrganelleDefinition, int>());
         if (updateInitialCompounds)
+        {
             UpdateInitialCompounds();
+
+            if (InitialCompounds.Count < 1)
+                throw new InvalidOperationException("Initial compounds initialization failed in microbe species");
+        }
+
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();
@@ -297,6 +303,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         {
             HealthModifier = 1,
             OsmoregulationModifier = 1,
+            SliderOsmoregulationAdditionalModifier =
+                MicrobeEnvironmentalToleranceCalculations.CalculateSliderOsmoregulationModifier(
+                    Tolerances.OxygenResistance, Tolerances.UVResistance),
             ProcessSpeedModifier = 1,
         };
 
@@ -314,7 +323,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         foreach (var compoundBalance in compoundBalances)
         {
             // Skip compounds we don't want to give as initial compounds
-            if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
+            var definition = simulationParameters.GetCompoundDefinition(compoundBalance.Key);
+            if (!definition.CanBeInitialCompound)
+                continue;
+
+            // Do not give gas compounds as initial as they aren't stored
+            if (definition.IsGas)
                 continue;
 
             // Find the specific capacity, if any, and add it to the nominal
@@ -341,6 +355,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
                 compoundInitialAmount = compoundCapacity;
 
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
+        }
+
+        if (InitialCompounds.Count < 1)
+        {
+            // If there is no compound balances, add a dummy compound so that errors don't happen
+            InitialCompounds.Add(Compound.Glucose, 0);
         }
     }
 
@@ -550,7 +570,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
                 Tolerances.PressureMinimum,
                 Tolerances.PressureMinimum + Tolerances.PressureTolerance,
                 Math.Round(Tolerances.OxygenResistance * 100, 2),
-                Math.Round(Tolerances.UVResistance * 100, 2));
+                Math.Round((Tolerances.UVResistance + Constants.TOLERANCE_UV_DEFAULT_VALUE) * 100, 2));
     }
 
     protected override Dictionary<Compound, float> CalculateTotalReproductionCost()

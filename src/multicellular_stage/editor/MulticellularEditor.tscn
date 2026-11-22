@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://03l7xhf0xnm4" path="res://src/multicellular_stage/editor/MulticellularEditor.cs" id="1_kpf0e"]
 [ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="2_aqkc2"]
+[ext_resource type="Script" uid="uid://cml86avpg3j15" path="res://src/multicellular_stage/editor/CellLayoutBorderDisplay.cs" id="3_c1px2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3_th7yq"]
 [ext_resource type="PackedScene" uid="uid://dylo35brdi0js" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn" id="4_6ypjp"]
 [ext_resource type="PackedScene" uid="uid://cwot2e52r7lx0" path="res://src/microbe_stage/editor/CellEditorComponent.tscn" id="5_qhuw3"]
@@ -11,6 +12,25 @@
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="9_v3ojp"]
 [ext_resource type="PackedScene" uid="uid://cbthqg63bqkhx" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" id="10_xy0bv"]
 [ext_resource type="PackedScene" uid="uid://b8f0k18m57aq7" path="res://src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.tscn" id="11_tutorial"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yjux"]
+shading_mode = 0
+specular_mode = 2
+albedo_texture_force_srgb = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1yjux"]
+material = SubResource("StandardMaterial3D_1yjux")
+size = Vector2(0.865, 0.2)
+
+[sub_resource type="MultiMesh" id="MultiMesh_1yjux"]
+resource_local_to_scene = true
+transform_format = 1
+mesh = SubResource("PlaneMesh_1yjux")
+
+[sub_resource type="MultiMesh" id="MultiMesh_c1px2"]
+resource_local_to_scene = true
+transform_format = 1
+mesh = SubResource("PlaneMesh_1yjux")
 
 [node name="MulticellularEditor" type="Node" unique_id=1184763186 node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("1_kpf0e")
@@ -24,6 +44,16 @@ editorGUIBaseNode = NodePath("EarlyMulticellularEditorGUI")
 
 [node name="EditorWorld" parent="." unique_id=1404595507 instance=ExtResource("2_aqkc2")]
 
+[node name="BorderMultiMesh" type="MultiMeshInstance3D" parent="EditorWorld" unique_id=337158889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+multimesh = SubResource("MultiMesh_1yjux")
+script = ExtResource("3_c1px2")
+
+[node name="HoveringCellBorders" type="MultiMeshInstance3D" parent="EditorWorld" unique_id=1905610229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+multimesh = SubResource("MultiMesh_c1px2")
+script = ExtResource("3_c1px2")
+
 [node name="EarlyMulticellularEditorGUI" type="Control" parent="." unique_id=128875781]
 layout_mode = 3
 anchors_preset = 15
@@ -33,9 +63,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_th7yq")
 
-[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" unique_id=1300078480 node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" unique_id=1300078480 node_paths=PackedStringArray("cellLayoutBorderDisplay", "hoveringCellBorderDisplay", "cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
 visible = false
 layout_mode = 1
+cellLayoutBorderDisplay = NodePath("../../EditorWorld/BorderMultiMesh")
+hoveringCellBorderDisplay = NodePath("../../EditorWorld/HoveringCellBorders")
 cameraFollow = NodePath("../../EditorWorld/CameraLookAt")
 camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")

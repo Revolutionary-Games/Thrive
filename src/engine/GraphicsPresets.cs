@@ -21,6 +21,8 @@ public static class GraphicsPresets
             AnisotropicFilterLevel = Viewport.AnisotropicFiltering.Disabled,
             RenderScale = 0.5f,
             UpscalingMethod = Settings.UpscalingMode.Bilinear,
+            ShadowResolution = 1024,
+            ShadowFilteringQuality = RenderingServer.ShadowQuality.Hard,
             ChromaticEnabled = false,
             DisplayBackgroundParticles = false,
             MicrobeDistortionStrength = 0,
@@ -43,6 +45,8 @@ public static class GraphicsPresets
             // TODO: this is a key question whether this should be fsr1 or bilinear
             // UpscalingMethod = Settings.UpscalingMode.Fsr1,
             UpscalingMethod = Settings.UpscalingMode.Bilinear,
+            ShadowResolution = 1024,
+            ShadowFilteringQuality = RenderingServer.ShadowQuality.SoftLow,
             ChromaticEnabled = false,
             DisplayBackgroundParticles = false,
             MicrobeDistortionStrength = 0,
@@ -62,6 +66,8 @@ public static class GraphicsPresets
             AnisotropicFilterLevel = Viewport.AnisotropicFiltering.Anisotropy4X,
             RenderScale = 1,
             UpscalingMethod = Settings.UpscalingMode.Fsr1,
+            ShadowResolution = 2048,
+            ShadowFilteringQuality = RenderingServer.ShadowQuality.SoftMedium,
             ChromaticEnabled = true,
             DisplayBackgroundParticles = true,
             MicrobeDistortionStrength = 0.6f,
@@ -82,6 +88,8 @@ public static class GraphicsPresets
             AnisotropicFilterLevel = Viewport.AnisotropicFiltering.Anisotropy8X,
             RenderScale = 1,
             UpscalingMethod = Settings.UpscalingMode.Fsr2,
+            ShadowResolution = 4096,
+            ShadowFilteringQuality = RenderingServer.ShadowQuality.SoftMedium,
             ChromaticEnabled = true,
             DisplayBackgroundParticles = true,
             MicrobeDistortionStrength = 0.6f,
@@ -102,6 +110,8 @@ public static class GraphicsPresets
             AnisotropicFilterLevel = Viewport.AnisotropicFiltering.Anisotropy16X,
             RenderScale = 1,
             UpscalingMethod = Settings.UpscalingMode.Fsr2,
+            ShadowResolution = 4096,
+            ShadowFilteringQuality = RenderingServer.ShadowQuality.SoftHigh,
             ChromaticEnabled = true,
             DisplayBackgroundParticles = true,
             MicrobeDistortionStrength = 0.6f,
@@ -179,6 +189,8 @@ public static class GraphicsPresets
         public Viewport.AnisotropicFiltering AnisotropicFilterLevel { get; init; }
         public float RenderScale { get; init; }
         public Settings.UpscalingMode UpscalingMethod { get; init; }
+        public int ShadowResolution { get; init; }
+        public RenderingServer.ShadowQuality ShadowFilteringQuality { get; init; }
         public bool ChromaticEnabled { get; init; }
         public bool DisplayBackgroundParticles { get; init; }
         public float MicrobeDistortionStrength { get; init; }
@@ -197,6 +209,10 @@ public static class GraphicsPresets
             if (settings.AnisotropicFilterLevel.Value != AnisotropicFilterLevel)
                 return false;
             if (settings.UpscalingMethod.Value != UpscalingMethod)
+                return false;
+            if (settings.ShadowResolution.Value != ShadowResolution)
+                return false;
+            if (settings.ShadowFilteringQuality.Value != ShadowFilteringQuality)
                 return false;
             if (settings.ChromaticEnabled.Value != ChromaticEnabled)
                 return false;
@@ -247,6 +263,8 @@ public static class GraphicsPresets
             settings.RenderScale.Value = RenderScale;
             settings.UpscalingMethod.Value = UpscalingMethod;
             settings.ChromaticEnabled.Value = ChromaticEnabled;
+            settings.ShadowResolution.Value = ShadowResolution;
+            settings.ShadowFilteringQuality.Value = ShadowFilteringQuality;
             settings.DisplayBackgroundParticles.Value = DisplayBackgroundParticles;
             settings.MicrobeDistortionStrength.Value = MicrobeDistortionStrength;
             settings.MicrobeBackgroundBlurLowQuality.Value = MicrobeBackgroundBlurLowQuality;

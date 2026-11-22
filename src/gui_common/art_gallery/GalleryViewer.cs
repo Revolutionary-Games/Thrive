@@ -67,6 +67,7 @@ public partial class GalleryViewer : CustomWindow
     private int activeAudioPlayers;
 
     private bool initialized;
+    private bool galleryNeedsReinitialization;
 
     /// <summary>
     ///   List of gallery cards based on the current gallery and asset category.
@@ -138,10 +139,12 @@ public partial class GalleryViewer : CustomWindow
         if (!readyCalled)
             return;
 
-        if (what == NotificationVisibilityChanged && Visible && !hasBecomeVisibleAtLeastOnce)
+        if (what == NotificationVisibilityChanged && Visible &&
+            (!hasBecomeVisibleAtLeastOnce || galleryNeedsReinitialization))
         {
             hasBecomeVisibleAtLeastOnce = true;
             InitializeGallery();
+            galleryNeedsReinitialization = false;
         }
     }
 
@@ -155,9 +158,23 @@ public partial class GalleryViewer : CustomWindow
     {
         GD.Print("Initializing gallery viewer");
 
+        initialized = false;
+
+        // Discard all selection state so the first tab also refreshes the slideshow after a language change.
+        HideAllCards();
+        slideScreen.Items = null;
+        slideScreen.CurrentSlideIndex = 0;
+        lastSelected = null;
+        currentGallery = null;
+        currentCategory = ALL_CATEGORY;
+        previouslySelectedAssetCategoryIndex = 0;
+        galleries.Clear();
+        categoryCards.Clear();
+
         tabButtons.ClearTabButtons();
         cardTile.QueueFreeChildren();
         UnregisterToolTips();
+        activeAudioPlayers = 0;
 
         var tabsButtonGroup = new ButtonGroup();
         var itemsButtonGroup = new ButtonGroup();
@@ -508,7 +525,7 @@ public partial class GalleryViewer : CustomWindow
 
     private void OnTranslationsChanged()
     {
-        if (hasBecomeVisibleAtLeastOnce)
-            InitializeGallery();
+        // Rebuild on the next opening, when all translated gallery data is ready to be displayed.
+        galleryNeedsReinitialization = true;
     }
 }

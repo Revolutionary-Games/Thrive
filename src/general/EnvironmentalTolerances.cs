@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// </summary>
 public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmentalTolerances
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     [Flags]
     public enum ToleranceChangedStats
@@ -87,22 +87,22 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     {
         ToleranceChangedStats changes = 0;
 
-        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.01f ||
-            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.01f)
+        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.001f ||
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.001f)
         {
             changes |= ToleranceChangedStats.Temperature;
         }
 
-        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
-            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
+        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.001f ||
+            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.001f)
         {
             changes |= ToleranceChangedStats.Pressure;
         }
 
-        if (Math.Abs(UVResistance - other.UVResistance) > 0.01f)
+        if (Math.Abs(UVResistance - other.UVResistance) > 0.001f)
             changes |= ToleranceChangedStats.UVResistance;
 
-        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.01f)
+        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.001f)
             changes |= ToleranceChangedStats.OxygenResistance;
 
         return changes;
@@ -138,6 +138,11 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
 
         UVResistance = reader.ReadFloat();
         OxygenResistance = reader.ReadFloat();
+
+        if (version <= 2)
+        {
+            UVResistance = Math.Min(UVResistance, Constants.TOLERANCE_UV_RANGE_MAX);
+        }
     }
 
     public override bool Equals(object? obj)

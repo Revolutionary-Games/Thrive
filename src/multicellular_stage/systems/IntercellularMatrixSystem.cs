@@ -113,15 +113,20 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
             return;
         }
 
-        var angle = relativePosition.AngleTo(Vector3.Forward);
+        var horizontalDirection = new Vector3(relativePosition.X, 0.0f, relativePosition.Z);
+        var angle = horizontalDirection.AngleTo(Vector3.Forward);
         if (relativePosition.X > 0.0f)
             angle *= -1.0f;
+
+        // Support for cavity cells that are off the usual gameplay plane
+        // TODO: maybe we should limit the angles a little bit as being totally vertical doesn't look the best?
+        var pitch = MathF.Atan2(relativePosition.Y, horizontalDirection.Length());
 
         var connection = ConnectionScene.Value.Instantiate<Node3D>();
         instance.AddChild(connection);
 
         connection.Scale = new Vector3(5.0f, 1.0f, relativePosLength + 3.0f);
-        connection.Quaternion = Quaternion.FromEuler(new Vector3(0.0f, angle, 0.0f));
+        connection.Quaternion = Quaternion.FromEuler(new Vector3(pitch, angle, 0.0f));
         connection.Position += (pointA + pointB) * 0.5f;
 
         intercellularMatrix.RemoveConnection();
@@ -158,7 +163,9 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         if (FindBoundaryCrossingB(segmentStart, segmentEnd, membraneB, membraneBOffset, rotationB,
                 rotationA, out var crossingB))
         {
-            pointB = new Vector3(crossingB.X, 0.0f, crossingB.Y);
+            // Keep the target cell's height so that connections slope down to cavity cells.
+            // Point A is already in its own cell's local frame, where its membrane is at Y=0.
+            pointB = new Vector3(crossingB.X, centroidB.Y, crossingB.Y);
         }
         else
         {
