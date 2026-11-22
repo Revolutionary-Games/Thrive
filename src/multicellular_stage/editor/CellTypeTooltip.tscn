@@ -195,9 +195,12 @@ show_percentage = false
 
 [node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer" unique_id=468479511]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("14_w1mf1")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="ConsumptionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=2111217500]
 layout_mode = 2
@@ -215,9 +218,12 @@ show_percentage = false
 
 [node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer" unique_id=249637288]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("14_w1mf1")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=617617236]
 layout_mode = 2
