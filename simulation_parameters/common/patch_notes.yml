@@ -1690,3 +1690,86 @@
     - Updated other dependencies including Sugiyama to 0.15.1
     - Updated translations
     - Updated translations
+
+
+1.9.0:
+  IntroductionText: |
+    This is the final release before the big 2.0 marking the completion of the multicellular stage. There are a few major additions to the multicellular stage like cavity cells and the axon being now available already in multicellular as well as once again improved membrane stretch to make cell colonies more uniform-looking. The tolerances system got a rework for the oxygen and UV tolerances, which also affects the microbe stage. This release was made with a tight schedule so that we can release these new additions before the big 2.0 update so that we have time to polish even the latest features and as such we needed to release what we had at this point in time rather than waiting to make a bigger singular release.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.9.0
+  PatchNotes:
+    - Added a cavity cells feature. Cavity cells in multicellular provide increased adjacency bonuses and don't collide with other cells offering new gameplay possibilities.
+    - Reworked how UV tolerance works. It now starts at 100% and decreases as more organelles are added.
+    - Redid the visuals for the tolerance warnings in the editor by giving them a nice custom box with icons
+    - Reworked the membrane stretch feature to leave smaller gaps between cells in colonies
+    - Added the axon organelle to multicellular. It acts as an overall buff to other parts of the cell rather than being useful on its own.
+    - Added cell borders to the manual layout view
+    - Added the auto-evo prediction panel to the multicellular editor
+    - Added randomly spawning gamete cells in the environment for species using sexual reproduction
+    - Oxygen resistance and UV sliders now increase osmoregulation cost the higher they are
+    - Added a button to automatically calculate the main multicellular growth order
+    - Auto-evo can now add more organelles to existing cell types
+    - Selecting which GPU is now possible with help from Thrive Launcher. Added a tooltip in the game saying that this is possible.
+    - Added workarounds around object lifetimes in the Godot Engine. We were able to fix a few cases which should improve long play session game stability, but we still need to wait for a full fix from the engine.
+    - Made AI species generation number increment whenever they mutate
+    - Added shadow quality and resolution settings
+    - Made the Perfectly Packed achievement much easier to get
+    - Added a tutorial about how to increase specialization in multicellular
+    - Fixed a bug with manual multicellular layouts where cell types that required multiple shifts of organelles broke exiting the editor
+    - Fixed the rigidity slider being able to cause a stack overflow when moving it at very low MP amounts and hard difficulty
+    - Fixed organelle unlock conditions for later stages being checked too early
+    - Fixed auto-evo being able to generate organelle move mutations that cause disconnected hexes
+    - Fixed the emission system being able to emit stuff after a cell is dead
+    - Fixed some cases where initial compounds were generated but the game thought they weren't
+    - Fixed macroscopic creature colour blending
+    - Fixed a material null warning when exiting the macroscopic editor
+    - Fixed moving the last cell in manual layout view leaving its graphics behind
+    - Fixed a race condition in auto-evo that sometimes lost mutation candidates that were generated
+    - Fixed some slight positioning and GUI size differences between different editors
+    - Fixed custom cursor shapes leaking always on exit (while we wait for a fixed engine version)
+    - Fixed the initial part of the credits disappearing too soon if playing in a very tall aspect ratio
+    - Improved the macroscopic editor camera rotation when going directly over the top of the edited creature
+    - Implemented error handling for image generation tasks
+    - Made all world events, including nitrogen changes, now use a random seed derived from the world seed
+    - Auto-evo task seeds are now derived from an overall seed
+    - Auto-evo species names now also use the overall run seed
+    - Fixed miche occupant identities after rejected mutations
+    - Fixed a major bug in random species generation related to remaining MP handling
+    - Added a tooltip in the options menu explaining how to switch which GPU Thrive uses (requires latest Thrive Launcher version)
+    - Refactored code for generating auto-evo attempted cell positions to avoid allocations in case of blocked positions
+    - Added a check against duplicate species IDs exiting auto-evo
+    - Reduced code duplication in auto-evo placement strategy code
+    - Refactored auto-evo result application code
+    - Refactored miche tree generation to use helper methods
+    - Refactored auto-evo island attaching to reuse one more memory buffer
+    - Reduced allocations in auto-evo mutation candidate handling
+    - Optimized random organelle placement order generation in auto-evo
+    - Made auto-evo capture the endosymbiosis target in one operation rather than a separate check and later read
+    - Made organelle removal tests populate editor layouts to quiet some warnings when running tests
+    - Refactored various parts of the auto-evo prediction panel in the editor to make the code better organized and cleaner
+    - Made the editor cancel any prediction runs on exiting and waiting for them to end before swapping game scenes
+    - Added a safety fix for cancelling a previous editor auto-evo prediction run
+    - Refactored a few other minor parts of the editor to use shared code methods and also the preview cell feature was moved to a new class
+    - Added better handling for missing or corrupt save preview images
+    - Added a check that thumbnail cards won't try to apply their result if the target is destroyed
+    - Added some safety fixes for gallery cards resuming playing while hidden and rebuilding the gallery on language change
+    - Refactored stage resource loader code into a separate class
+    - Added aliases to the load console command to be able to run any stage starter
+    - Fixed some incorrect key cases in bio_processes.json file
+    - Improved performance of the separate experimental cloud renderer
+    - Updated native code dependencies and their build options to keep them working
+    - Updated the GDExtension version we compile with from Godot 4.3 to 4.5
+    - Thrive build scripts now set a user agent when fetching precompiled libraries
+    - Updated credits generation script to use both our new translations website and old translations history
+    - Updated Jolt physics engine version
+    - Updated code analysis tools
+    - Updated code checking tools
+    - Updated our StyleCop ruleset
+    - Fixed various code style warnings from the updated checking tools
+    - Updated C# side of gdUnit4
+    - Updated System.IO.Hashing to 11.0.0
+    - Updated AngleSharp to 1.10.5
+    - Updated Sugiyama library from 0.15.2 to 0.17.0
+    - "Steam: made achievement data loading a non-fatal error"
+    - "Removed languages that were added a long time ago but never started by the community translators: aeb and frm"
+    - Fixed some text formatting in English using excess escape characters
+    - Updated translations
