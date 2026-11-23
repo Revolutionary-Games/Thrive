@@ -187,6 +187,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             GD.PrintErr("Forcing visuals as created for entity so that it won't process again: " + entity);
             organelleContainer.OrganelleVisualsCreated = true;
 
+            // NOTE: the above doesn't protect against Membrane not being ready. Hopefully that is not the error we
+            // are seeing. So for now, we will only guard the parts after membrane is ready. If membrane is not ready
+            // and is causing errors each game update, that shouldn't be catastrophic, which is good.
+
 #if DEBUG
             throw;
 #else
