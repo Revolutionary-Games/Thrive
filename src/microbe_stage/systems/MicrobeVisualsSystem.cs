@@ -128,6 +128,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
         catch (Exception e)
         {
+            tempMaterialsList.Clear();
+
             GD.PrintErr("Visuals system error at the start: ", e.StackTrace ?? e.ToString());
 
 #if DEBUG
