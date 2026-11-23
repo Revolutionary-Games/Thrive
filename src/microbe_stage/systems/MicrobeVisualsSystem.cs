@@ -109,54 +109,92 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     {
         ref var cellProperties = ref entity.Get<CellProperties>();
 
-        // A membrane can become invalid after the organelle visuals have been created, for example, when a colony
-        // changes shape. In that case the visuals need to be processed again instead of being skipped here.
-        if (organelleContainer.OrganelleVisualsCreated && cellProperties.IsMembraneReady())
-            return;
+        // Due to regularly reported errors in simulation pointing to this class, this whole thing is now slapped
+        // with exception catches to try to get more information about what is going wrong
 
-        // Skip if no organelle data
-        if (organelleContainer.Organelles == null)
+        try
         {
-            GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
-            return;
+            // A membrane can become invalid after the organelle visuals have been created, for example, when a colony
+            // changes shape. In that case the visuals need to be processed again instead of being skipped here.
+            if (organelleContainer.OrganelleVisualsCreated && cellProperties.IsMembraneReady())
+                return;
+
+            // Skip if no organelle data
+            if (organelleContainer.Organelles == null)
+            {
+                GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
+                return;
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Visuals system error at the start: ", e.StackTrace ?? e.ToString());
+
+#if DEBUG
+            throw;
+#else
+            LogInterceptor.ForwardCaughtError(e, "error from start of MicrobeVisualsSystem");
+#endif
         }
 
-        ref var spatialInstance = ref entity.Get<SpatialInstance>();
+        try
+        {
+            ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
-        // Create graphics top level node if missing for the entity
-        spatialInstance.GraphicalInstance ??= new Node3D();
+            // Create graphics top level node if missing for the entity
+            spatialInstance.GraphicalInstance ??= new Node3D();
 
 #if DEBUG
 
-        // Check scale is applied properly (but only if not attached as being attached can mean engulfment and at
-        // that time the scale can be modified)
-        if (!entity.Has<AttachedToEntity>())
-        {
-            if (cellProperties.IsBacteria)
+            // Check scale is applied properly (but only if not attached as being attached can mean engulfment and at
+            // that time the scale can be modified)
+            if (!entity.Has<AttachedToEntity>())
             {
-                if (!spatialInstance.ApplyVisualScale ||
-                    spatialInstance.VisualScale != Vector3.One * Constants.BACTERIA_CELL_SCALE)
+                if (cellProperties.IsBacteria)
                 {
-                    GD.PrintErr("Microbe spatial component doesn't have scale correctly set for bacteria");
+                    if (!spatialInstance.ApplyVisualScale ||
+                        spatialInstance.VisualScale != Vector3.One * Constants.BACTERIA_CELL_SCALE)
+                    {
+                        GD.PrintErr("Microbe spatial component doesn't have scale correctly set for bacteria");
 
-                    if (Debugger.IsAttached)
-                        Debugger.Break();
+                        if (Debugger.IsAttached)
+                            Debugger.Break();
+                    }
+                }
+                else
+                {
+                    if (spatialInstance.ApplyVisualScale &&
+                        spatialInstance.VisualScale != Vector3.One)
+                    {
+                        GD.PrintErr("Microbe spatial component doesn't have scale correctly set for eukaryote");
+
+                        if (Debugger.IsAttached)
+                            Debugger.Break();
+                    }
                 }
             }
-            else
-            {
-                if (spatialInstance.ApplyVisualScale &&
-                    spatialInstance.VisualScale != Vector3.One)
-                {
-                    GD.PrintErr("Microbe spatial component doesn't have scale correctly set for eukaryote");
-
-                    if (Debugger.IsAttached)
-                        Debugger.Break();
-                }
-            }
-        }
 #endif
 
+            ProcessVisualsUpdate(ref organelleContainer, entity, cellProperties, spatialInstance);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Visuals system error at: ", e.StackTrace ?? e.ToString());
+
+            GD.PrintErr("Forcing visuals as created for entity so that it won't process again: " + entity);
+            organelleContainer.OrganelleVisualsCreated = true;
+
+#if DEBUG
+            throw;
+#else
+            LogInterceptor.ForwardCaughtError(e, "error from MicrobeVisualsSystem");
+#endif
+        }
+    }
+
+    private void ProcessVisualsUpdate(ref OrganelleContainer organelleContainer, Entity entity,
+        CellProperties cellProperties, SpatialInstance spatialInstance)
+    {
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
         MembranePointData? data = null;
@@ -240,7 +278,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
             SetMembraneDisplayData(membrane, data, ref cellProperties);
 
-            spatialInstance.GraphicalInstance.AddChild(membrane);
+            // The calling method ensures graphical instance is not null
+            spatialInstance.GraphicalInstance!.AddChild(membrane);
             cellProperties.CreatedMembrane = membrane;
 
             membrane.FluidCurrentsSystem = fluidCurrentsSystem;
@@ -267,7 +306,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         // TODO: should this hide organelles when the microbe is dead? (hiding / deleting organelle instances is
         // also talked about in the microbe death system)
 
-        CreateOrganelleVisuals(spatialInstance.GraphicalInstance, ref organelleContainer, ref cellProperties);
+        // The calling method ensures graphical instance is not null
+        CreateOrganelleVisuals(spatialInstance.GraphicalInstance!, ref organelleContainer, ref cellProperties);
 
         materialStorage.Materials = tempMaterialsList.ToArray();
         tempMaterialsList.Clear();
