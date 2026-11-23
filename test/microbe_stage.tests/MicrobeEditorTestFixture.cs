@@ -38,8 +38,12 @@ public sealed class MicrobeEditorTestFixture : IDisposable
 
         var owner = DispatchProxy.Create<ICellEditorData, EditorData>();
 
+        // The proxy is only stored on the private, off-tree editor during construction.
+#pragma warning disable S3366 // Neither the proxy nor the fixture is published to another thread.
+
         // ReSharper disable once SuspiciousTypeConversion.Global
         ((EditorData)owner).Fixture = this;
+#pragma warning restore S3366
 
         typeof(EditorComponentBase<ICellEditorData>).GetField("editor",
             BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(editor, owner);
