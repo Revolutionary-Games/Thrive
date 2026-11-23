@@ -136,6 +136,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             throw;
 #else
             LogInterceptor.ForwardCaughtError(e, "error from start of MicrobeVisualsSystem");
+            return;
 #endif
         }
 
