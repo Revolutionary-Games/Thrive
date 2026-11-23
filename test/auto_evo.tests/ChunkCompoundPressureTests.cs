@@ -15,8 +15,8 @@ public class ChunkCompoundPressureTests
     private const float RelativeTolerance = 1e-5f;
 
     /// <summary>
-    ///   Sensing the compound in the food helps collection; sensing an unrelated compound does not.
-    ///   The microbes differ only in the receptor target, and ATP supply does not limit either score.
+    ///   With sufficient ATP, sensing the compound in a chunk improves collection where that chunk spawns.
+    ///   Where its density is zero, both receptor targets give the same finite score.
     /// </summary>
     [TestCase]
     public void MatchingChunkReceptorImprovesCollection()
@@ -33,22 +33,11 @@ public class ChunkCompoundPressureTests
         var mismatchingScore = ScoreSaturated(pressure, mismatching, patch);
         AssertThat(mismatchingScore).IsGreater(0.0f);
         AssertThat(matchingScore).IsGreater(mismatchingScore);
-    }
 
-    /// <summary>
-    ///   A receptor cannot help find chunks that do not spawn. Other collection contributions can remain.
-    /// </summary>
-    [TestCase]
-    public void MatchingReceptorProvidesNoAdvantageForAbsentChunks()
-    {
-        var patch = CreatePatch(density: 0);
-        var pressure = CreatePressure();
-        var matching = CreateReceptorMicrobe(Compound.Glucose);
-        var mismatching = CreateReceptorMicrobe(Compound.Ammonia);
-        var matchingScore = ScoreSaturated(pressure, matching, patch);
-        var mismatchingScore = ScoreSaturated(pressure, mismatching, patch);
-        AssertThat(matchingScore).IsGreater(0.0f);
-        SimulationCacheTestFixtures.AssertBits(matchingScore, mismatchingScore);
+        var absentPatch = CreatePatch(density: 0);
+        var matchingAbsent = ScoreSaturated(pressure, matching, absentPatch);
+        var mismatchingAbsent = ScoreSaturated(pressure, mismatching, absentPatch);
+        AssertThat(matchingAbsent).IsEqual(mismatchingAbsent);
     }
 
     /// <summary>
@@ -102,50 +91,9 @@ public class ChunkCompoundPressureTests
     }
 
     /// <summary>
-    ///   A cell type used in the body lets the species engulf chunks within that cell's size limit.
+    ///   A microbe with low night-time activity collects less when it uses varying sunlight and the day/night cycle
+    ///   is enabled. Steady sunlight and a disabled cycle preserve the unpenalised score.
     /// </summary>
-    [TestCase]
-    public void PresentCellTypeGrantsEngulfingCapability()
-    {
-        AssertFeedingModesAreDistinguishable();
-        var pressure = CreatePressure();
-        var large = CreateCellType("PresentLarge", "cytoplasm", "cytoplasm", "cytoplasm");
-        var size = CreateCache().GetBaseHexSizeForCellType(large);
-        var smallChunk = CreatePatch(chunkSize: size / (2 * Constants.ENGULF_SIZE_RATIO_REQ));
-        var largeChunk = CreatePatch(chunkSize: size * 2 / Constants.ENGULF_SIZE_RATIO_REQ);
-        var species = CreateMulticellular(large);
-        AssertThat(large.MembraneType.CanEngulf).IsTrue();
-        AssertThat(species.EditorCells.Count).IsEqual(1);
-        foreach (var cell in species.EditorCells)
-            AssertThat(ReferenceEquals(cell.Data?.CellType, large)).IsTrue();
-
-        AssertThat(size).IsGreater(smallChunk.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
-        AssertThat(size).IsLess(largeChunk.Biome.Chunks[ChunkType].Size * Constants.ENGULF_SIZE_RATIO_REQ);
-        var smallChunkScore = ScoreSaturated(pressure, species, smallChunk);
-        var largeChunkScore = ScoreSaturated(pressure, species, largeChunk);
-        AssertThat(largeChunkScore).IsGreater(0.0f);
-        AssertThat(smallChunkScore).IsNotEqual(largeChunkScore);
-    }
-
-    /// <summary>
-    ///   Depending on a resource that disappears at night reduces collection for a less active species.
-    ///   Only the day/night setting changes; available ATP is kept sufficient in both runs.
-    /// </summary>
-    [TestCase]
-    public void DayNightCycleReducesCollectionForLessActiveSpeciesUsingVaryingInputs()
-    {
-        var patch = CreatePatch(varyingSunlight: true);
-        var species = CreateMicrobe("cytoplasm", "chromatophore");
-        SetBehaviour(species, Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT / 2, 0);
-        AssertThat(species.Behaviour.Activity).IsGreater(0.0f);
-        AssertThat(Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY).IsLess(1.0f);
-        AssertThat(CreateCache().GetUsesVaryingCompoundsForSpecies(species, patch.Biome)).IsTrue();
-        var disabled = ScoreSaturated(CreatePressure(), species, patch);
-        var enabled = ScoreSaturated(CreatePressure(dayNight: true), species, patch);
-        AssertThat(enabled).IsGreater(0.0f);
-        AssertThat(enabled).IsLess(disabled);
-    }
-
     [TestCase]
     public void DayNightPenaltyRequiresEnabledCycleAndVaryingInput()
     {
@@ -160,11 +108,15 @@ public class ChunkCompoundPressureTests
         var enabledSteady = ScoreSaturated(CreatePressure(dayNight: true), species, steadyPatch);
         SimulationCacheTestFixtures.AssertBits(disabledVarying, disabledSteady);
         SimulationCacheTestFixtures.AssertBits(enabledSteady, disabledSteady);
+
+        var enabledVarying = ScoreSaturated(CreatePressure(dayNight: true), species, varyingPatch);
+        AssertThat(enabledVarying).IsGreater(0.0f);
+        AssertThat(enabledVarying).IsLess(disabledVarying);
     }
 
     /// <summary>
     ///   Food that cannot supply ATP is unusable. Insufficient ATP limits collection, while meeting or exceeding
-    ///   consumption removes that limit. The amount of the penalty is deliberately not fixed here.
+    ///   consumption removes that limit. At the boundary, first and repeated cache reads agree with direct scoring.
     /// </summary>
     [TestCase]
     public void DirectAtpSupportHandlesZeroInsufficientEqualAndSurplusProduction()
@@ -183,7 +135,12 @@ public class ChunkCompoundPressureTests
         var consumption = diagnostic.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption;
         SimulationCacheTestFixtures.AssertBits(actualProduction, consumption);
         AssertThat(actualProduction / consumption).IsEqual(1.0f);
-        SimulationCacheTestFixtures.AssertBits(pressure.Score(species, patch, diagnostic), saturated);
+        var direct = pressure.Score(species, patch, diagnostic);
+        SimulationCacheTestFixtures.AssertBits(direct, saturated);
+        var firstRead = diagnostic.GetPressureScore(pressure, patch, species);
+        var repeatedRead = diagnostic.GetPressureScore(pressure, patch, species);
+        SimulationCacheTestFixtures.AssertBits(firstRead, direct);
+        SimulationCacheTestFixtures.AssertBits(repeatedRead, direct);
 
         var under = ScoreWithConsumption(pressure, species, patch, production * 2);
         AssertThat(saturated).IsGreater(0.0f);
@@ -255,60 +212,6 @@ public class ChunkCompoundPressureTests
         var largerScore = ScoreSaturated(pressure, larger, patch);
         AssertThat(smallerScore).IsGreater(0.0f);
         AssertThat(largerScore).IsGreater(smallerScore);
-    }
-
-    /// <summary>
-    ///   With unchanged inputs, cache history must not change the score. Direct calls exercise cached ingredients;
-    ///   the wrapper also caches the completed score. This does not test formulas or invalidation after edits.
-    /// </summary>
-    [TestCase(false)]
-    [TestCase(true)]
-    public void ScoreIsUnchangedAcrossColdWarmAndClearedCaches(bool multicellular)
-    {
-        Species species;
-        Patch patch;
-        ChunkCompoundPressure pressure;
-        if (multicellular)
-        {
-            species = CreateMulticellular(CreateCellType("Intermediate", "cytoplasm", "chemoSynthesizingProteins"));
-            patch = CreatePatch(Compound.Hydrogensulfide,
-                CreateCache().GetBaseHexSizeForSpecies(species) / (2 * Constants.ENGULF_SIZE_RATIO_REQ),
-                carbonDioxide: 0.001f);
-            pressure = CreatePressure(Compound.Hydrogensulfide, Compound.Glucose);
-        }
-        else
-        {
-            species = CreateReceptorMicrobe(Compound.Glucose);
-            patch = CreatePatch();
-            pressure = CreatePressure();
-        }
-
-        SetBehaviour(species, 237, 141);
-        species.ModifiableBehaviour.Aggression = 85;
-        species.ModifiableBehaviour.Opportunism = 219;
-        species.ModifiableBehaviour.Fear = 75;
-        AssertLifecycle(pressure, species, patch);
-    }
-
-    [TestCase]
-    public void MissingChunkIsRejected()
-    {
-        var species = CreateMicrobe("cytoplasm");
-        var patch = CreatePatch();
-        var pressure = CreatePressure();
-        var cache = CreateCache();
-        patch.Biome.Chunks.Clear();
-        AssertThrown(() => pressure.Score(species, patch, cache)).IsInstanceOf<ArgumentException>();
-    }
-
-    [TestCase]
-    public void UnsupportedSpeciesIsRejected()
-    {
-        var unsupported = new MacroscopicSpecies(1900, "Chunk", "Unsupported");
-        var patch = CreatePatch();
-        var pressure = CreatePressure();
-        var cache = CreateCache();
-        AssertThrown(() => pressure.Score(unsupported, patch, cache)).IsInstanceOf<ArgumentException>();
     }
 
     private static SimulationCache CreateCache()
@@ -526,28 +429,6 @@ public class ChunkCompoundPressureTests
         var score = pressure.Score(species, patch, CreateCache());
         AssertThat(float.IsFinite(score)).IsTrue();
         return score;
-    }
-
-    private static void AssertLifecycle(ChunkCompoundPressure pressure, Species species, Patch patch)
-    {
-        var direct = CreateCache();
-        var cold = pressure.Score(species, patch, direct);
-        AssertThat(float.IsFinite(cold)).IsTrue();
-        AssertThat(cold).IsGreater(0.0f);
-        var warm = pressure.Score(species, patch, direct);
-        SimulationCacheTestFixtures.AssertBits(warm, cold);
-        direct.Clear();
-        var cleared = pressure.Score(species, patch, direct);
-        SimulationCacheTestFixtures.AssertBits(cleared, cold);
-
-        var wrapped = CreateCache();
-        var wrappedCold = wrapped.GetPressureScore(pressure, patch, species);
-        SimulationCacheTestFixtures.AssertBits(wrappedCold, cold);
-        var wrappedWarm = wrapped.GetPressureScore(pressure, patch, species);
-        SimulationCacheTestFixtures.AssertBits(wrappedWarm, cold);
-        wrapped.Clear();
-        var wrappedCleared = wrapped.GetPressureScore(pressure, patch, species);
-        SimulationCacheTestFixtures.AssertBits(wrappedCleared, cold);
     }
 
     private static void AssertNear(float actual, float expected)

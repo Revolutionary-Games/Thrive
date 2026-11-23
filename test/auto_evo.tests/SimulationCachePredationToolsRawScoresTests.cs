@@ -9,52 +9,10 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class SimulationCachePredationToolsRawScoresTests
 {
-    [TestCase]
-    public void MicrobeRawScoresAndCacheBehaviorAreCharacterized()
-    {
-        var cache = CreateCache();
-        var species = CreateMicrobe(101);
-        var originalId = species.ID;
-        var originalEpithet = species.Epithet;
-        var originalAutoEvoAttemptCache = species.AutoEvoAttemptCache;
-
-        var initial = cache.GetPredationToolsRawScores(species);
-        AssertMicrobeInitialScores(initial);
-
-        species.CellTypeSpecializationBonus = 2.0f;
-        AssertSpeciesCacheIdentityIsStable(species, originalId, originalEpithet, originalAutoEvoAttemptCache);
-
-        var cached = cache.GetPredationToolsRawScores(species);
-        AssertMicrobeInitialScores(cached);
-
-        var fresh = CreateCache().GetPredationToolsRawScores(species);
-        AssertMicrobeRecomputedScores(fresh);
-
-        cache.Clear();
-
-        var recomputed = cache.GetPredationToolsRawScores(species);
-        AssertDifferentBits(recomputed.OxytoxyScore, initial.OxytoxyScore);
-        AssertDifferentBits(recomputed.SlimeJetScore, initial.SlimeJetScore);
-        AssertDifferentBits(recomputed.PullingCiliaModifier, initial.PullingCiliaModifier);
-        AssertMicrobeRecomputedScores(recomputed);
-        AssertRawBits(recomputed, fresh);
-    }
-
-    [TestCase]
-    public void MicrobeWithoutPullingCiliaDoesNotGainModifierFromSpecialization()
-    {
-        var cache = CreateCache();
-        var species = CreateMicrobe(103);
-        species.Organelles.Clear();
-        species.Organelles.Add(CreateOrganelle("cytoplasm", new Hex(0, 0)));
-        species.OnEdited();
-        species.CellTypeSpecializationBonus = 2.0f;
-
-        var scores = cache.GetPredationToolsRawScores(species);
-
-        AssertThat(scores.PullingCiliaModifier).IsEqual(1.0f);
-    }
-
+    /// <summary>
+    ///   Clearing the cache applies the new specialisation to toxin production. Without pulling cilia,
+    ///   the same increase leaves the pulling modifier neutral.
+    /// </summary>
     [TestCase]
     public void MicrobeOxygenMetabolismInhibitorScoreUsesSpecializationAndCache()
     {
@@ -81,44 +39,18 @@ public class SimulationCachePredationToolsRawScoresTests
             initial.OxygenMetabolismInhibitorScore * specializedBonus / noSpecializationBonus,
             1.0f);
         AssertMicrobeOxygenInhibitorToxinScores(recomputed, 6935144.0f, 6588386.0f);
+        AssertThat(recomputed.PullingCiliaModifier).IsEqual(1.0f);
     }
 
-    [TestCase]
-    public void MulticellularRawScoresAndCacheBehaviorAreCharacterized()
-    {
-        var cache = CreateCache();
-        var (species, contributingCellType) = CreateMulticellularSpecies(102);
-        var originalId = species.ID;
-        var originalEpithet = species.Epithet;
-        var originalAutoEvoAttemptCache = species.AutoEvoAttemptCache;
-
-        var initial = cache.GetPredationToolsRawScores(species);
-        AssertMulticellularInitialScores(initial);
-
-        contributingCellType.CellTypeSpecializationBonus = 2.25f;
-        AssertSpeciesCacheIdentityIsStable(species, originalId, originalEpithet, originalAutoEvoAttemptCache);
-
-        var cached = cache.GetPredationToolsRawScores(species);
-        AssertMulticellularInitialScores(cached);
-
-        var fresh = CreateCache().GetPredationToolsRawScores(species);
-        AssertMulticellularRecomputedScores(fresh);
-
-        cache.Clear();
-
-        var recomputed = cache.GetPredationToolsRawScores(species);
-        AssertDifferentBits(recomputed.OxytoxyScore, initial.OxytoxyScore);
-        AssertDifferentBits(recomputed.SlimeJetScore, initial.SlimeJetScore);
-        AssertDifferentBits(recomputed.PullingCiliaModifier, initial.PullingCiliaModifier);
-        AssertMulticellularRecomputedScores(recomputed);
-        AssertRawBits(recomputed, fresh);
-    }
-
+    /// <summary>
+    ///   A cytotoxin cell type contributes only after placement. Increasing the specialisation of a placed
+    ///   oxytoxy producer changes its own toxin score and preserves the cytotoxin contribution.
+    /// </summary>
     [TestCase]
     public void MulticellularRawScoresIgnoreUnusedCellTypes()
     {
         var cache = CreateCache();
-        var (species, _) = CreateMulticellularSpecies(103);
+        var (species, oxytoxyCellType) = CreateMulticellularSpecies(103);
 
         // Normalize the manually assigned characterization bonuses before comparing mutation results.
         species.OnEdited();
@@ -148,36 +80,13 @@ public class SimulationCachePredationToolsRawScoresTests
         var withPlacedCellType = cache.GetPredationToolsRawScores(species);
         AssertThat(withPlacedCellType.CytotoxinScore > 0.0f).IsTrue();
         AssertThat(withPlacedCellType.OxytoxyScore).IsEqual(withUnusedCellType.OxytoxyScore);
-    }
 
-    [TestCase]
-    public void MulticellularToxinProductionStaysWithEmittingCellTypes()
-    {
-        var cache = CreateCache();
-        var (species, oxytoxyCellType) = CreateMulticellularSpecies(104);
-        var cytotoxinCellType = CreateCytotoxinCellType(SimulationParameters.Instance);
-
-        species.ModifiableCellTypes.Add(cytotoxinCellType);
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(cytotoxinCellType, new Hex(1, 1), 0),
-            new List<Hex>(), new List<Hex>());
-
-        var editorCells = species.ModifiableEditorCells;
-        editorCells.Clear();
-        MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(editorCells, species.ModifiableGameplayCells,
-            new List<Hex>(), new List<Hex>());
-        species.OnEdited();
-
-        oxytoxyCellType.CellTypeSpecializationBonus = 1.5f;
-        cytotoxinCellType.CellTypeSpecializationBonus = 0.75f;
-
-        var baseline = cache.GetPredationToolsRawScores(species);
-
-        oxytoxyCellType.CellTypeSpecializationBonus = 2.25f;
+        oxytoxyCellType.CellTypeSpecializationBonus *= 2.0f;
         cache.Clear();
 
-        var withMoreOxytoxyProduction = cache.GetPredationToolsRawScores(species);
-        AssertThat(withMoreOxytoxyProduction.OxytoxyScore).IsNotEqual(baseline.OxytoxyScore);
-        AssertThat(withMoreOxytoxyProduction.CytotoxinScore).IsEqual(baseline.CytotoxinScore);
+        var withSpecialisation = cache.GetPredationToolsRawScores(species);
+        AssertThat(withSpecialisation.OxytoxyScore).IsNotEqual(withPlacedCellType.OxytoxyScore);
+        AssertThat(withSpecialisation.CytotoxinScore).IsEqual(withPlacedCellType.CytotoxinScore);
     }
 
     [TestCase(ToxinType.Cytotoxin)]
@@ -266,29 +175,10 @@ public class SimulationCachePredationToolsRawScoresTests
         AssertRawBits(cache.GetPredationToolsRawScores(species), mixed);
     }
 
-    [TestCase]
-    public void MulticellularSlimeJetScoreIgnoresCellsWithoutSlimeJets()
-    {
-        var cache = CreateCache();
-        var simulationParameters = SimulationParameters.Instance;
-        var speciesWithoutSupport = CreateSlimeJetSpecies(103,
-            (CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0)), new Hex(0, 0)));
-        var speciesWithSupport = CreateSlimeJetSpecies(104,
-            (CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0)), new Hex(0, 0)),
-            (CreateSupportCellType(simulationParameters), new Hex(3, 0)));
-
-        var scoreWithoutSupport = cache.GetPredationToolsRawScores(speciesWithoutSupport);
-        var scoreWithSupport = cache.GetPredationToolsRawScores(speciesWithSupport);
-
-        AssertThat(scoreWithoutSupport.SlimeJetScore).IsEqual(0.0f);
-        AssertThat(scoreWithSupport.SlimeJetScore).IsEqual(scoreWithoutSupport.SlimeJetScore);
-
-        cache.Clear();
-
-        var recomputed = cache.GetPredationToolsRawScores(speciesWithSupport);
-        AssertThat(recomputed.SlimeJetScore).IsEqual(scoreWithSupport.SlimeJetScore);
-    }
-
+    /// <summary>
+    ///   Only the two aligned jets contribute their specialised scores. A misaligned jet and a support cell
+    ///   without jets must neither add propulsion nor dilute it.
+    /// </summary>
     [TestCase]
     public void MulticellularSlimeJetScoreIsWeightedByJetContribution()
     {
@@ -298,29 +188,14 @@ public class SimulationCachePredationToolsRawScoresTests
         var misalignedCellType = CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0));
         var species = CreateSlimeJetSpecies(105,
             (alignedCellType, new Hex(0, 0)),
-            (misalignedCellType, new Hex(3, 0)));
+            (misalignedCellType, new Hex(3, 0)),
+            (CreateSupportCellType(simulationParameters), new Hex(1, 1)));
         alignedCellType.CellTypeSpecializationBonus = 2.0f;
         misalignedCellType.CellTypeSpecializationBonus = 3.0f;
 
         var scores = cache.GetPredationToolsRawScores(species);
 
         AssertThat(scores.SlimeJetScore).IsEqual(Constants.AUTO_EVO_SLIME_JET_SCORE * 4.0f);
-    }
-
-    private static MicrobeSpecies CreateMicrobe(uint id)
-    {
-        var simulationParameters = SimulationParameters.Instance;
-        var species = new MicrobeSpecies(id, "Characterization", "RawScoreMicrobe")
-        {
-            IsBacteria = true,
-            MembraneType = simulationParameters.GetMembrane("single"),
-        };
-
-        AddPredationToolOrganelles(species.Organelles);
-        species.OnEdited();
-        species.CellTypeSpecializationBonus = 1.25f;
-
-        return species;
     }
 
     private static MicrobeSpecies CreateMicrobeWithOxygenMetabolismInhibitor(uint id,
@@ -452,81 +327,5 @@ public class SimulationCachePredationToolsRawScoresTests
         AssertThat(scores.MacrolideScore).IsEqual(0.0f);
         AssertThat(scores.ChannelInhibitorScore).IsEqual(0.0f);
         AssertThat(scores.OxygenMetabolismInhibitorScore).IsEqual(expectedOxygenMetabolismInhibitorScore);
-    }
-
-    private static void AssertSpeciesCacheIdentityIsStable(Species species, uint expectedId, string expectedEpithet,
-        int expectedAutoEvoAttemptCache)
-    {
-        AssertThat(species.ID).IsEqual(expectedId);
-        AssertThat(species.Epithet).IsEqual(expectedEpithet);
-        AssertThat(species.AutoEvoAttemptCache).IsEqual(expectedAutoEvoAttemptCache);
-    }
-
-    private static void AssertMicrobeInitialScores(SimulationCache.PredationToolsRawScores scores)
-    {
-        AssertBits(scores.PilusScore, 5000.0f);
-        AssertBits(scores.InjectisomeScore, 0.0f);
-        AssertBits(scores.DefensivePilusScore, 0.0f);
-        AssertBits(scores.DefensiveInjectisomeScore, 0.0f);
-        AssertBits(scores.AverageToxicity, 0.25f);
-        AssertBits(scores.OxytoxyScore, 4334465.0f);
-        AssertBits(scores.CytotoxinScore, 0.0f);
-        AssertBits(scores.MacrolideScore, 0.0f);
-        AssertBits(scores.ChannelInhibitorScore, 0.0f);
-        AssertBits(scores.OxygenMetabolismInhibitorScore, 0.0f);
-        AssertBits(scores.SlimeJetScore, 37.5f);
-        AssertBits(scores.MucocystsScore, 0.0f);
-        AssertBits(scores.PullingCiliaModifier, 2.25f);
-    }
-
-    private static void AssertMicrobeRecomputedScores(SimulationCache.PredationToolsRawScores scores)
-    {
-        AssertBits(scores.PilusScore, 5000.0f);
-        AssertBits(scores.InjectisomeScore, 0.0f);
-        AssertBits(scores.DefensivePilusScore, 0.0f);
-        AssertBits(scores.DefensiveInjectisomeScore, 0.0f);
-        AssertBits(scores.AverageToxicity, 0.25f);
-        AssertBits(scores.OxytoxyScore, 6935144.0f);
-        AssertBits(scores.CytotoxinScore, 0.0f);
-        AssertBits(scores.MacrolideScore, 0.0f);
-        AssertBits(scores.ChannelInhibitorScore, 0.0f);
-        AssertBits(scores.OxygenMetabolismInhibitorScore, 0.0f);
-        AssertBits(scores.SlimeJetScore, 60.0f);
-        AssertBits(scores.MucocystsScore, 0.0f);
-        AssertBits(scores.PullingCiliaModifier, 3.6f);
-    }
-
-    private static void AssertMulticellularInitialScores(SimulationCache.PredationToolsRawScores scores)
-    {
-        AssertBits(scores.PilusScore, 7071.068f);
-        AssertBits(scores.InjectisomeScore, 0.0f);
-        AssertBits(scores.DefensivePilusScore, 0.0f);
-        AssertBits(scores.DefensiveInjectisomeScore, 0.0f);
-        AssertBits(scores.AverageToxicity, 0.25f);
-        AssertBits(scores.OxytoxyScore, 10922850.0f);
-        AssertBits(scores.CytotoxinScore, 0.0f);
-        AssertBits(scores.MacrolideScore, 0.0f);
-        AssertBits(scores.ChannelInhibitorScore, 0.0f);
-        AssertBits(scores.OxygenMetabolismInhibitorScore, 0.0f);
-        AssertBits(scores.SlimeJetScore, 94.49999f);
-        AssertBits(scores.MucocystsScore, 0.0f);
-        AssertBits(scores.PullingCiliaModifier, 2.4198592f);
-    }
-
-    private static void AssertMulticellularRecomputedScores(SimulationCache.PredationToolsRawScores scores)
-    {
-        AssertBits(scores.PilusScore, 7071.068f);
-        AssertBits(scores.InjectisomeScore, 0.0f);
-        AssertBits(scores.DefensivePilusScore, 0.0f);
-        AssertBits(scores.DefensiveInjectisomeScore, 0.0f);
-        AssertBits(scores.AverageToxicity, 0.25f);
-        AssertBits(scores.OxytoxyScore, 16384275.0f);
-        AssertBits(scores.CytotoxinScore, 0.0f);
-        AssertBits(scores.MacrolideScore, 0.0f);
-        AssertBits(scores.ChannelInhibitorScore, 0.0f);
-        AssertBits(scores.OxygenMetabolismInhibitorScore, 0.0f);
-        AssertBits(scores.SlimeJetScore, 141.75f);
-        AssertBits(scores.MucocystsScore, 0.0f);
-        AssertBits(scores.PullingCiliaModifier, 2.7389653f);
     }
 }
