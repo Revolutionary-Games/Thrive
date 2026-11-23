@@ -11,8 +11,8 @@ public class MicrobeEditorTests
     public void PlacementRemovalAndRepeatedHistoryTraversalPreserveEveryIntermediateLayout(
         bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Perform(fixture.Placement("cytoplasm", 0));
         fixture.Perform(fixture.Movement(0, 3, 2));
         fixture.Perform(fixture.Movement(3, 6, 4));
@@ -46,8 +46,8 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void RotationWithoutTranslationCanBeUndoneAndRedone(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Seed(fixture.Template("mitochondrion", 0));
         fixture.Perform(fixture.Movement(0, 0, 2));
         fixture.Perform(fixture.Movement(0, 0, 5));
@@ -64,8 +64,8 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void MoveBackToPlacementOriginThenRemoveRestoresTheRecordedRotation(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Perform(fixture.Placement("cytoplasm", 0, rotation: 1));
         fixture.Perform(fixture.Movement(0, 3, 2));
         fixture.Perform(fixture.Movement(3, 0, 4));
@@ -82,8 +82,8 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void MovingOntoCytoplasmDoesNotMakePlacementUndoRemoveTheRestoredCytoplasm(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Seed(fixture.Template("cytoplasm", 3, rotation: 2));
         fixture.Perform(fixture.Placement("cytoplasm", 0));
         fixture.Perform(fixture.Removal(3), fixture.Movement(0, 3, 2));
@@ -100,8 +100,8 @@ public class MicrobeEditorTests
     public void RemovingThenReplacingWithDifferentDefinitionAtSameOriginRestoresTheRightOrganelle(
         bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Seed(fixture.Template("mitochondrion", 0, rotation: 2));
         fixture.Perform(fixture.Removal(0));
         fixture.Perform(fixture.Placement("cytoplasm", 0, rotation: 4));
@@ -120,8 +120,8 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void MultiHexPlacementRestoresAllReplacedCytoplasmOnUndo(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         var replacement = fixture.Template("mitochondrion", 0, rotation: 2);
         var cytoplasm = replacement.RotatedHexes.Select(hex =>
             fixture.Template("cytoplasm", hex.Q, hex.R)).ToArray();
@@ -141,12 +141,12 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void NestedCombinedPlacementsAndMovesUndoAsSingleSteps(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Perform(new CombinedEditorAction(fixture.Placement("cytoplasm", -3),
             fixture.Placement("cytoplasm", 3)), fixture.Placement("cytoplasm", 0, 3));
         fixture.Perform(fixture.Movement(-3, -6, 1), fixture.Movement(3, 6, 2),
-            fixture.Movement(0, 0, 3, fromR: 3, toR: 6));
+            fixture.Movement(0, 0, 3, 3, 6));
         fixture.Undo();
         fixture.AssertLayout(fixture.Template("cytoplasm", -3), fixture.Template("cytoplasm", 3),
             fixture.Template("cytoplasm", 0, 3));
@@ -161,8 +161,8 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void CombinedRemovalAndReplacementAtSameLocationRespectsReverseUndoOrder(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Seed(fixture.Template("mitochondrion", 0, rotation: 3));
         fixture.Perform(fixture.Removal(0), fixture.Placement("cytoplasm", 0, rotation: 2));
         fixture.AssertLayout(fixture.Template("cytoplasm", 0, rotation: 2));
@@ -176,8 +176,8 @@ public class MicrobeEditorTests
     [TestCase(true)]
     public void EditingAfterUndoDiscardsOnlyTheRedoBranch(bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Perform(fixture.Placement("cytoplasm", 0));
         fixture.Perform(fixture.Movement(0, 3, 2));
         fixture.Perform(fixture.Removal(3));
@@ -197,8 +197,8 @@ public class MicrobeEditorTests
     public void RemovingMovedPreexistingOrganelleCanBeRedoneAfterUndoingAndRedoingTheMove(
         bool cloneLayoutBetweenActions)
     {
-        using var fixture = new MicrobeEditorTestFixture(multicellular: cloneLayoutBetweenActions,
-            reopenBetweenActions: cloneLayoutBetweenActions);
+        using var fixture = new MicrobeEditorTestFixture(cloneLayoutBetweenActions,
+            cloneLayoutBetweenActions);
         fixture.Seed(fixture.Template("cytoplasm", 0));
         fixture.Perform(fixture.Movement(0, 3, 2));
         fixture.Perform(fixture.Removal(3));
