@@ -175,7 +175,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             }
 #endif
 
-            ProcessVisualsUpdate(ref organelleContainer, entity, cellProperties, spatialInstance);
+            ProcessVisualsUpdate(entity, ref organelleContainer, ref cellProperties, ref spatialInstance);
         }
         catch (Exception e)
         {
@@ -192,8 +192,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
     }
 
-    private void ProcessVisualsUpdate(ref OrganelleContainer organelleContainer, Entity entity,
-        CellProperties cellProperties, SpatialInstance spatialInstance)
+    private void ProcessVisualsUpdate(Entity entity, ref OrganelleContainer organelleContainer,
+        ref CellProperties cellProperties, ref SpatialInstance spatialInstance)
     {
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
