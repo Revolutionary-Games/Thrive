@@ -30,6 +30,11 @@ public partial class CellEditorComponent
         data.ReplacedCytoplasm = new List<OrganelleTemplate>();
         var organelle = data.PlacedHex;
 
+        // Other actions can leave this instance at a later position after the cell editor has been reinitialized.
+        // Replaying placement must use the transform recorded by this action.
+        organelle.Position = data.Location;
+        organelle.Orientation = data.Orientation;
+
         // Check if there is cytoplasm under this organelle.
         foreach (var hex in organelle.RotatedHexes)
         {
@@ -57,11 +62,15 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganellePlaceAction(OrganellePlacementActionData data)
     {
-        if (!editedMicrobeOrganelles.Remove(data.PlacedHex))
+        // Remove uses value equality, so a stale transform could even match a different organelle.
+        if (data.PlacedHex.Position != data.Location || data.PlacedHex.Orientation != data.Orientation ||
+            !editedMicrobeOrganelles.Remove(data.PlacedHex))
         {
             ThrowIfNotMulticellularOrMacroscopic();
 
-            var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.PlacedHex.Position);
+            // Undoing a move may have updated a clone without updating this action's organelle reference.
+            var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o =>
+                o.Position == data.Location && o.Orientation == data.Orientation);
             data.PlacedHex = newlyInitializedOrganelle;
 
             editedMicrobeOrganelles.Remove(newlyInitializedOrganelle);
@@ -82,13 +91,15 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        if (!editedMicrobeOrganelles.Remove(data.RemovedHex))
+        if (data.RemovedHex.Position != data.Location || data.RemovedHex.Orientation != data.Orientation ||
+            !editedMicrobeOrganelles.Remove(data.RemovedHex))
         {
             // TODO: it seems very rarely this can be hit in "normal" microbe freebuild by spamming undo and redo with
             // new cell button sprinkled in (reproduction steps for the bug are unconfirmed)
             ThrowIfNotMulticellularOrMacroscopic();
 
-            var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.RemovedHex.Position);
+            var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o =>
+                o.Position == data.Location && o.Orientation == data.Orientation);
             data.RemovedHex = newlyInitializedOrganelle;
 
             editedMicrobeOrganelles.Remove(newlyInitializedOrganelle);
@@ -107,6 +118,9 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
+        // The referenced instance may have been moved by another action before the layout was cloned.
+        data.RemovedHex.Position = data.Location;
+        data.RemovedHex.Orientation = data.Orientation;
         editedMicrobeOrganelles.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
