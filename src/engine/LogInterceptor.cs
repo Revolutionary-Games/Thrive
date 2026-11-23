@@ -193,6 +193,7 @@ public partial class LogInterceptor : Logger
                 {
                     // We can print again as this is no longer in the error callback context
                     GD.PrintErr("No unhandled error receiver");
+                    GD.PrintErr("Error that would go to waste: ", finalError);
                     return;
                 }
 
