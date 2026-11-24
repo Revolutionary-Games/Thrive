@@ -184,6 +184,18 @@ public class WorldGenerationSettings : IArchivable
         VeryHigh = 5,
     }
 
+    public enum CompoundLevelEffectOnEvents
+    {
+        [Description("COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_NONE")]
+        None = 0,
+
+        [Description("COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_MEDIUM")]
+        Medium = 1,
+
+        [Description("COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_FULL")]
+        Full = 2,
+    }
+
     /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
@@ -252,6 +264,8 @@ public class WorldGenerationSettings : IArchivable
     public CompoundLevel PhosphatesLevel { get; set; } = CompoundLevel.Average;
 
     public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevelEffectOnEvents CompoundLevelEffect { get; set; } = CompoundLevelEffectOnEvents.Medium;
 
     // The following are helper proxies to the values from the difficulty
     public float MPMultiplier => Difficulty.MPMultiplier;

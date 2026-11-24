@@ -47,7 +47,7 @@ public class GameWorld : IArchivable
 
     private Dictionary<double, List<GameEventDescription>> eventsLog = new();
 
-    private Dictionary<Compound, float> compoundCoefficients = new();
+    private Dictionary<Compound, float> eventCompoundModifiers = new();
 
     /// <summary>
     ///   This world's auto-evo run
@@ -107,12 +107,13 @@ public class GameWorld : IArchivable
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
         }
 
-        ApplyCompoundLevelToEvents(Compound.Hydrogensulfide, settings.HydrogenSulfideLevel);
-        ApplyCompoundLevelToEvents(Compound.Glucose, settings.GlucoseLevel);
-        ApplyCompoundLevelToEvents(Compound.Iron, settings.IronLevel);
-        ApplyCompoundLevelToEvents(Compound.Ammonia, settings.AmmoniaLevel);
-        ApplyCompoundLevelToEvents(Compound.Phosphates, settings.PhosphatesLevel);
-        ApplyCompoundLevelToEvents(Compound.Radiation, settings.RadiationLevel);
+        ApplyCompoundLevelToEvents(Compound.Hydrogensulfide, settings.HydrogenSulfideLevel,
+            settings.CompoundLevelEffect);
+        ApplyCompoundLevelToEvents(Compound.Glucose, settings.GlucoseLevel, settings.CompoundLevelEffect);
+        ApplyCompoundLevelToEvents(Compound.Iron, settings.IronLevel, settings.CompoundLevelEffect);
+        ApplyCompoundLevelToEvents(Compound.Ammonia, settings.AmmoniaLevel, settings.CompoundLevelEffect);
+        ApplyCompoundLevelToEvents(Compound.Phosphates, settings.PhosphatesLevel, settings.CompoundLevelEffect);
+        ApplyCompoundLevelToEvents(Compound.Radiation, settings.RadiationLevel, settings.CompoundLevelEffect);
 
         LightCycle.ApplyWorldSettings(settings);
 
@@ -1105,7 +1106,7 @@ public class GameWorld : IArchivable
 
     public float GetCompoundCoefficient(Compound compound)
     {
-        if (compoundCoefficients.TryGetValue(compound, out var coefficient))
+        if (eventCompoundModifiers.TryGetValue(compound, out var coefficient))
             return coefficient;
 
         return 1.0f;
@@ -1181,9 +1182,10 @@ public class GameWorld : IArchivable
         list.Add(metaball);
     }
 
-    private void ApplyCompoundLevelToEvents(Compound compound, WorldGenerationSettings.CompoundLevel level)
+    private void ApplyCompoundLevelToEvents(Compound compound, WorldGenerationSettings.CompoundLevel level,
+        WorldGenerationSettings.CompoundLevelEffectOnEvents effect)
     {
-        compoundCoefficients.Add(compound, level switch
+        float modifier = level switch
         {
             WorldGenerationSettings.CompoundLevel.None => 0.0f,
             WorldGenerationSettings.CompoundLevel.VeryLow => 0.25f,
@@ -1191,7 +1193,17 @@ public class GameWorld : IArchivable
             WorldGenerationSettings.CompoundLevel.Average => 1.0f,
             WorldGenerationSettings.CompoundLevel.High => 1.5f,
             WorldGenerationSettings.CompoundLevel.VeryHigh => 3.0f,
-            _ => throw new ArgumentOutOfRangeException($"Not expected compound: {compound}"),
-        });
+            _ => throw new ArgumentOutOfRangeException($"Not expected compound level: {level}"),
+        };
+
+        modifier = 1.0f + (modifier - 1.0f) * effect switch
+        {
+            WorldGenerationSettings.CompoundLevelEffectOnEvents.None => 0.0f,
+            WorldGenerationSettings.CompoundLevelEffectOnEvents.Medium => 0.5f,
+            WorldGenerationSettings.CompoundLevelEffectOnEvents.Full => 1.0f,
+            _ => throw new ArgumentOutOfRangeException($"Not expected compound level effect level: {effect}"),
+        };
+
+        eventCompoundModifiers.Add(compound, modifier);
     }
 }
