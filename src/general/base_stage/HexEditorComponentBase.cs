@@ -419,12 +419,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Updates the background shown in the editor
+    ///   Queues an update of the background shown in the editor
     /// </summary>
     public void UpdateBackgroundImage(Patch patch)
     {
-        // TODO: make this be loaded in a background thread to avoid a lag spike
-        camera!.SetBackground(SimulationParameters.Instance.GetBackground(patch.Background));
+        camera!.QueueBackground(SimulationParameters.Instance.GetBackground(patch.Background));
     }
 
     [RunOnKeyDown("e_primary")]
