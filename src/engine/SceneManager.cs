@@ -268,8 +268,6 @@ public partial class SceneManager : Node
             return false;
         }
 
-        bool overrideGameStartAgain = false;
-
         if (!ResourceLoader.Exists(scenePath))
         {
             // This is either a starter alias or the path does not exist. Let's try to match the starter aliases.
@@ -298,15 +296,12 @@ public partial class SceneManager : Node
                 GD.PrintErr("Load command: the specified starter alias or resource path does not exist.");
                 return false;
             }
-
-            overrideGameStartAgain = true;
         }
 
         CheatManager.OnCheatsDisabled();
         AchievementsManager.ReportNewGameStarted(true);
 
-        if (overrideGameStartAgain)
-            AchievementsManager.ReportGameLoadStartedWithCheats();
+        AchievementsManager.ReportGameLoadStartedWithCheats();
 
         Instance.SwitchToScene(scenePath);
 
