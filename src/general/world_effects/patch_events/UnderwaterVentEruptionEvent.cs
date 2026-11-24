@@ -98,24 +98,9 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
         var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
             out var currentCarbonDioxide);
 
-        float finalHydrogenSulfide = currentHydrogenSulfide.Density + Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
-
-        // Percentage is density times amount, so clamp to the inversed amount (times 100)
-        float maxHydrogenSulfide = 1.0f / currentHydrogenSulfide.Amount * 100.0f;
-        if (finalHydrogenSulfide > maxHydrogenSulfide)
-        {
-            finalHydrogenSulfide = maxHydrogenSulfide;
-        }
-
-        float finalCarbonDioxide = currentCarbonDioxide.Ambient + Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
-        if (finalCarbonDioxide > 1.0f)
-        {
-            finalCarbonDioxide = 1.0f;
-        }
-
         // Intelligently apply the changes taking total gas percentages into account
-        changes[Compound.Hydrogensulfide] = finalHydrogenSulfide - currentHydrogenSulfide.Density;
-        changes[Compound.Carbondioxide] = finalCarbonDioxide - currentHydrogenSulfide.Ambient;
+        changes[Compound.Hydrogensulfide] = Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
+        changes[Compound.Carbondioxide] = Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
         cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
