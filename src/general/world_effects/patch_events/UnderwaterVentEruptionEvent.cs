@@ -101,7 +101,7 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
         float finalHydrogenSulfide = currentHydrogenSulfide.Density + Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
 
         // Percentage is density times amount, so clamp to the inversed amount (times 100)
-        float maxHydrogenSulfide = 1 / currentHydrogenSulfide.Amount * 100.0f;
+        float maxHydrogenSulfide = 1.0f / currentHydrogenSulfide.Amount * 100.0f;
         if (finalHydrogenSulfide > maxHydrogenSulfide)
         {
             finalHydrogenSulfide = maxHydrogenSulfide;
