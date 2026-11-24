@@ -304,7 +304,9 @@ public partial class SceneManager : Node
 
         CheatManager.OnCheatsDisabled();
         AchievementsManager.ReportNewGameStarted(true);
-        AchievementsManager.ReportGameLoadStartedWithCheats();
+
+        if (overrideGameStartAgain)
+            AchievementsManager.ReportGameLoadStartedWithCheats();
 
         Instance.SwitchToScene(scenePath);
 
