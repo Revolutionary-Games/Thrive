@@ -95,8 +95,8 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
 
         var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
             out var currentHydrogenSulfide);
-        var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
-            out var currentCarbonDioxide);
+
+        currentHydrogenSulfide.Amount = currentHydrogenSulfide.Amount == 0 ? 250000 : currentHydrogenSulfide.Amount;
 
         // Intelligently apply the changes taking total gas percentages into account
         changes[Compound.Hydrogensulfide] = Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
