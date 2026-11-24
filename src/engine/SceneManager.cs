@@ -304,15 +304,9 @@ public partial class SceneManager : Node
 
         CheatManager.OnCheatsDisabled();
         AchievementsManager.ReportNewGameStarted(true);
+        AchievementsManager.ReportGameLoadStartedWithCheats();
 
         Instance.SwitchToScene(scenePath);
-
-        // When using a scene starter, we need to report a second new game start to get the cheated flags updated
-        if (overrideGameStartAgain)
-        {
-            // Due to the way the scene switch works, this needs a bunch of delay
-            Invoke.Instance.Delay(() => { AchievementsManager.ReportNewGameStarted(true); }, 1);
-        }
 
         return true;
     }
