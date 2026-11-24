@@ -36,7 +36,8 @@ to get your development environment set up.
 
 Read the [contribution guidelines](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md) first. If you need
 help, please ask [on our
-forums](https://community.revolutionarygamesstudio.com/c/dev-help).
+forums](https://community.revolutionarygamesstudio.com/c/dev-help). If you are using LLM or AI 
+tools read the section on them in the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 For opening bug reports, please use the bug report template when opening a new issue.
 

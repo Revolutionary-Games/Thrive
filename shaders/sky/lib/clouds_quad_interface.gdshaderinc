@@ -3,6 +3,7 @@ render_mode unshaded, blend_premul_alpha, depth_test_disabled, depth_draw_never,
 
 uniform sampler3D cloudNoise : filter_linear, repeat_enable;
 uniform sampler2D depthTexture : hint_depth_texture, filter_nearest, repeat_disable;
+uniform sampler2D cloudTransmittanceLut : filter_linear, repeat_disable, hint_default_white;
 
 // Prefixed so they can't collide with the locals of the shared modules, which read them through the macros below
 uniform vec3 cloudPlanetCenter;
@@ -15,12 +16,19 @@ uniform float cloudCoverage;
 uniform float cloudMaxDistance;
 uniform vec3 cloudSunDirection;
 uniform float cloudSunEnergy;
+uniform float cloudAtmosphereGroundRadius;
+uniform float cloudAtmosphereTopRadius;
+uniform float cloudAtmosphereScaleHeight;
 
 #define CLOUD_NOISE cloudNoise
 #define CLOUD_TILE cloudTileSize
 #define CLOUD_DENSITY_MULTIPLIER cloudDensityMultiplier
 #define CLOUD_COVERAGE cloudCoverage
 #define CLOUD_MAX_DISTANCE cloudMaxDistance
+#define CLOUD_TRANSMITTANCE_LUT cloudTransmittanceLut
+#define CLOUD_ATMOSPHERE_GROUND_RADIUS cloudAtmosphereGroundRadius
+#define CLOUD_ATMOSPHERE_TOP_RADIUS cloudAtmosphereTopRadius
+#define CLOUD_ATMOSPHERE_SCALE_HEIGHT cloudAtmosphereScaleHeight
 
 // Constant loop bounds, as GLES3 drivers handle those much better than uniform ones
 // Note: these are hardcoded to be low because OpenGL is used on low end devices, so they wouldn't allow for more

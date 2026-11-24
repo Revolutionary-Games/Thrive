@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 17:15+0200\n"
-"PO-Revision-Date: 2026-10-29 08:21+0000\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -862,6 +862,9 @@ msgstr "O nome do arquivo ({0}) já existe. Sobrescrever?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de mudança são muito longas"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 #, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
@@ -2220,6 +2223,17 @@ msgstr ""
 "Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
@@ -2265,6 +2279,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr ""
 "Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
 "\n"
@@ -3110,18 +3135,22 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Hidrogenase"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Fermenta [thrive:compound type=\\\"glucose\\\"][/thrive:compound] para ganhar energia e produz derivados como hidrogênio. Mais efetiva que metabolossomos a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam isso como fonte primária de energia."
 
+#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGENOSOME"
 msgstr "Hidrogenossomo"
 
+#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "Fermenta [thrive:compound type=\\\"glucose\\\"][/thrive:compound] para ganhar energia e produz derivados como hidrogênio. O hidrogenossomo é uma organela membranosa cheia de proteínas e enzimas. É uma procariota que foi assimilada para ser usada por seu hospedeiro eucariótico. Mais efetivo que hidrogenase, e mais efetivo que a mitocôndria a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam pilhas de hidrogenossomos como fonte primária de energia."
 
+#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\\\"glucose\\\"][/thrive:compound] em [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
@@ -7361,6 +7390,7 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:c
 msgid "TOXISOME"
 msgstr "Toxissomo"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Um metabolossomo modificado responsável pela prodição de uma forma primitiva do agente tóxico [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Pode ser modificado para trocar o tipo de toxina gerada para outros efeitos, para os quais [thrive:compound type=\"oxygen\"][/thrive:compound] pode ser necessário."
 
@@ -8258,6 +8288,7 @@ msgstr "Disponível apenas a partir do Estágio Multicelular."
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "Adicionar [b]Axônios[/b] é essencial para alcançar estágios futuros. Recomendamos adicionar um [b]Axônio[/b] a diversos tipos de células em seu organismo multicelular, mas adicionar mais de um é redundante. No momento, mais [b]Axônios[/b] não geram nenhum benefício."
 

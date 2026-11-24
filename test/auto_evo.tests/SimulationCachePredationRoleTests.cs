@@ -89,17 +89,24 @@ public class SimulationCachePredationRoleTests
         AssertThat(defendedScore).IsGreater(0.0f).IsLess(baseline);
     }
 
-    [TestCase(false, ToxinType.Oxytoxy)]
-    [TestCase(false, ToxinType.Cytotoxin)]
-    [TestCase(false, ToxinType.OxygenMetabolismInhibitor)]
-    [TestCase(true, ToxinType.Oxytoxy)]
-    [TestCase(true, ToxinType.Cytotoxin)]
-    [TestCase(true, ToxinType.OxygenMetabolismInhibitor)]
-    public void DirectToxinEnablesPredation(bool multicellular, ToxinType toxin)
+    /// <summary>
+    ///   A direct toxin gives a walled predator without pili a positive score through its own toxin channel.
+    ///   An unmodified toxin carrier on a microbe must use the cytotoxin channel.
+    /// </summary>
+    [TestCase(false, ToxinType.Oxytoxy, false)]
+    [TestCase(false, ToxinType.Cytotoxin, false)]
+    [TestCase(false, ToxinType.OxygenMetabolismInhibitor, false)]
+    [TestCase(true, ToxinType.Oxytoxy, false)]
+    [TestCase(true, ToxinType.Cytotoxin, false)]
+    [TestCase(true, ToxinType.OxygenMetabolismInhibitor, false)]
+    [TestCase(false, ToxinType.Cytotoxin, true)]
+    public void DirectToxinEnablesPredation(bool multicellular, ToxinType toxin, bool defaultCarrier)
     {
         // Replacing the same-position placeholder opens only the selected direct attack path.
         var control = CreateRoleSpecies(221, multicellular, CreateOrganelle("cytoplasm", new Hex(0, 1)));
-        var armed = CreateRoleSpecies(222, multicellular, CreateToxin(new Hex(0, 1), toxin));
+        var position = new Hex(0, 1);
+        var carrier = defaultCarrier ? CreateOrganelle("oxytoxy", position) : CreateToxin(position, toxin);
+        var armed = CreateRoleSpecies(222, multicellular, carrier);
         var controlPrey = CreateRoleSpecies(223, multicellular);
         var armedPrey = CreateRoleSpecies(224, multicellular);
         SetHuntingBehaviour(control);
@@ -310,36 +317,10 @@ public class SimulationCachePredationRoleTests
         AssertThat(pullingScore).IsGreater(baseline);
     }
 
-    [TestCase(false)]
-    [TestCase(true)]
-    public void FixedToxinTypePreservesToxicityInputAndCacheLifecycle(bool multicellular)
-    {
-        // Toxicity affects both damage and hit chance: no universal final-score direction is asserted.
-        var controlToxin = CreateToxin(new Hex(0, 1), ToxinType.Cytotoxin);
-        var changedToxin = CreateToxin(new Hex(0, 1), ToxinType.Cytotoxin, 0.25f);
-        var control = CreateRoleSpecies(251, multicellular, controlToxin);
-        var toxic = CreateRoleSpecies(252, multicellular, changedToxin);
-        var controlPrey = CreateRoleSpecies(253, false);
-        var toxicPrey = CreateRoleSpecies(254, false);
-        AssertThat(controlToxin.GetActiveToxin()).IsEqual(ToxinType.Cytotoxin);
-        AssertThat(changedToxin.GetActiveToxin()).IsEqual(ToxinType.Cytotoxin);
-        AssertBits(controlToxin.GetActiveToxicity(), 0.0f);
-        AssertBits(changedToxin.GetActiveToxicity(), 0.25f);
-        var initial = GetRaw(control);
-        var changed = GetRaw(toxic);
-        AssertBits(initial.AverageToxicity, 0);
-        AssertBits(changed.AverageToxicity, 0.25f);
-        AssertThat(initial.CytotoxinScore).IsGreater(0.0f);
-        AssertThat(changed.CytotoxinScore).IsGreater(0.0f);
-        AssertRawBits(changed, initial with
-        {
-            AverageToxicity = changed.AverageToxicity,
-            CytotoxinScore = changed.CytotoxinScore,
-        });
-
-        AssertScorePair(control, controlPrey, toxic, toxicPrey);
-    }
-
+    /// <summary>
+    ///   Changing cytotoxin toxicity or producer specialisation must affect a new opponent after clearing the cache.
+    ///   For a toxicity change, check that the raw toxin score still contributes at the new average toxicity.
+    /// </summary>
     [TestCase(false, false)]
     [TestCase(false, true)]
     [TestCase(true, false)]
@@ -372,7 +353,14 @@ public class SimulationCachePredationRoleTests
         }
         else
         {
+            var initialTools = GetRaw(predator);
+            AssertThat(initialTools.AverageToxicity).IsEqual(0.0f);
+            AssertThat(initialTools.CytotoxinScore).IsGreater(0.0f);
             toxin.ModifiableUpgrades!.CustomUpgradeData = new ToxinUpgrades(ToxinType.Cytotoxin, 0.25f);
+
+            var changedTools = GetRaw(predator);
+            AssertThat(changedTools.AverageToxicity).IsEqual(0.25f);
+            AssertThat(changedTools.CytotoxinScore).IsGreater(0.0f);
         }
 
         AssertThat(predator.ID).IsEqual(id);

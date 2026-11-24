@@ -108,6 +108,10 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private readonly StringName cloudMaxDistanceParameter = new("cloudMaxDistance");
     private readonly StringName cloudSunDirectionParameter = new("cloudSunDirection");
     private readonly StringName cloudSunEnergyParameter = new("cloudSunEnergy");
+    private readonly StringName cloudTransmittanceLutParameter = new("cloudTransmittanceLut");
+    private readonly StringName cloudAtmosphereGroundRadiusParameter = new("cloudAtmosphereGroundRadius");
+    private readonly StringName cloudAtmosphereTopRadiusParameter = new("cloudAtmosphereTopRadius");
+    private readonly StringName cloudAtmosphereScaleHeightParameter = new("cloudAtmosphereScaleHeight");
 
 #pragma warning disable CA2213
     private Sky sky = null!;
@@ -167,12 +171,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
         CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
 
-        if (CloudsEffect is not null)
-        {
-            CloudsEffect.BindCloudsConfig(CloudsConfig);
-            CloudsEffect.SunConfig = SunConfig;
-        }
-
+        BindCloudsEffect();
         ApplyCloudQuadParameters();
     }
 
@@ -270,6 +269,10 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
             cloudMaxDistanceParameter.Dispose();
             cloudSunDirectionParameter.Dispose();
             cloudSunEnergyParameter.Dispose();
+            cloudTransmittanceLutParameter.Dispose();
+            cloudAtmosphereGroundRadiusParameter.Dispose();
+            cloudAtmosphereTopRadiusParameter.Dispose();
+            cloudAtmosphereScaleHeightParameter.Dispose();
         }
 
         base.Dispose(disposing);
@@ -302,8 +305,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
         CloudsEffect ??= new VolumetricCloudsEffect();
 
-        CloudsEffect.SunConfig = SunConfig;
-        CloudsEffect.BindCloudsConfig(CloudsConfig);
+        BindCloudsEffect();
 
         var effects = new Array<CompositorEffect>([CloudsEffect]);
 
@@ -357,6 +359,21 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         ApplyCloudQuadParameters();
     }
 
+    private void BindCloudsEffect()
+    {
+        if (CloudsEffect is null)
+            return;
+
+        CloudsEffect.SunConfig = SunConfig;
+        CloudsEffect.BindCloudsConfig(CloudsConfig);
+
+        if (transmittanceLut is not null)
+        {
+            CloudsEffect.BindAtmosphere(transmittanceLut, AtmosphereConfig.GroundRadius, AtmosphereConfig.TopRadius,
+                AtmosphereConfig.RayleighScaleHeight);
+        }
+    }
+
     private void ApplySunLightParameters()
     {
         if (sunLight is null)
@@ -389,5 +406,12 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         cloudQuadMaterial.SetShaderParameter(cloudMaxDistanceParameter, CloudsConfig.MaxMarchDistance);
         cloudQuadMaterial.SetShaderParameter(cloudSunDirectionParameter, SunConfig.GetNormalizedDirection());
         cloudQuadMaterial.SetShaderParameter(cloudSunEnergyParameter, SunConfig.SunEnergy);
+        cloudQuadMaterial.SetShaderParameter(cloudAtmosphereGroundRadiusParameter, AtmosphereConfig.GroundRadius);
+        cloudQuadMaterial.SetShaderParameter(cloudAtmosphereTopRadiusParameter, AtmosphereConfig.TopRadius);
+        cloudQuadMaterial.SetShaderParameter(cloudAtmosphereScaleHeightParameter,
+            AtmosphereConfig.RayleighScaleHeight);
+
+        if (transmittanceLut is not null)
+            cloudQuadMaterial.SetShaderParameter(cloudTransmittanceLutParameter, transmittanceLut);
     }
 }

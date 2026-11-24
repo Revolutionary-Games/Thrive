@@ -1149,7 +1149,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         // Delete excess entities
         while (nextFreeHex < PlacedHexes.Count)
         {
-            PlacedHexes[PlacedHexes.Count - 1].DetachAndQueueFree();
+            var excessHex = PlacedHexes[PlacedHexes.Count - 1];
+
+            // The hex is being deleted, so its hover material doesn't need restoring any more
+            HoverOverriddenMaterials.Remove(excessHex);
+
+            excessHex.DetachAndQueueFree();
             PlacedHexes.RemoveAt(PlacedHexes.Count - 1);
         }
     }

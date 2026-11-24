@@ -3246,11 +3246,12 @@ public partial class CellEditorComponent :
             biome = selectedPatch.Biome;
             patch = selectedPatch;
 
-            if (currentRun != null)
+            var oldRun = currentRun;
+            if (oldRun != null)
             {
-                GD.PrintErr("Starting new suggestion run even though there is one in-progress");
-                currentRun.Abort();
                 currentRun = null;
+                GD.PrintErr("Starting new suggestion run even though there is one in-progress");
+                oldRun.Abort();
             }
 
             dataSetupLock.Wait();

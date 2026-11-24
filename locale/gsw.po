@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 17:15+0200\n"
-"PO-Revision-Date: 2026-10-02 07:58+0000\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -866,6 +866,9 @@ msgstr "De gwählti Dateiname ({0}) existiert breits. Söll mer überschriibe?"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Änderigsnotize sind z'lang"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
 msgstr ""
@@ -2229,6 +2232,17 @@ msgstr ""
 "Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
@@ -2274,6 +2288,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr ""
 "Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
 "\n"
@@ -3123,18 +3148,22 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Hydrogenase"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Fermentier [thrive:compound type=\\\"glucose\\\"][/thrive:compound] um Energie und Nebeprodukt wie Wasserstoff z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
 
+#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
 
 msgid "HYDROGENOSOME"
 msgstr "Hydrogenosom"
 
+#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "Fermentiert [thrive:compound type=\\\"glucose\\\"][/thrive:compound] um Energie und Nebeprodukt wie Wasserstoff z'erhalte. S'Hydrogenosom isch e Membran-bundeni Organelle g'füllt mit Proteine und Enzyme. Es isch en Prokaryot wo vo emene Eukaryotische Wirt assimiliert worde isch. Effektiver als Hydrogenase und meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als es Mitochondrium. Vieli Organisme i anoxische Bedingige nemmet Bündel a Hydrogenosome als primäri Energiequelle."
 
+#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
 

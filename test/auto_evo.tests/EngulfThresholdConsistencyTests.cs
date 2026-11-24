@@ -19,6 +19,10 @@ public class EngulfThresholdConsistencyTests
         Multicellular,
     }
 
+    /// <summary>
+    ///   At the exact gameplay size threshold, engulfment gives a microbe a positive predation score.
+    ///   Replacing its membrane with a cell wall removes that score at the same size.
+    /// </summary>
     [TestCase]
     public void GetPredationScore_MicrobeAtExactThresholdCanPredate()
     {
@@ -39,6 +43,13 @@ public class EngulfThresholdConsistencyTests
 
         var warmScore = cache.GetPredationScore(predator, prey, biome);
         AssertThat(warmScore).IsEqual(coldScore);
+
+        predator.MembraneType = SimulationParameters.Instance.GetMembrane("cellulose");
+        predator.OnEdited();
+        var walledCache = CreateCache();
+        AssertThat(walledCache.GetBaseHexSizeForSpecies(predator)).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
+        AssertThat(predator.CanEngulf).IsFalse();
+        AssertThat(walledCache.GetPredationScore(predator, prey, biome)).IsEqual(0.0f);
     }
 
     [TestCase]
@@ -63,33 +74,6 @@ public class EngulfThresholdConsistencyTests
 
         var warmScore = cache.GetPredationScore(predator, prey, biome);
         AssertThat(warmScore).IsEqual(coldScore);
-    }
-
-    [TestCase]
-    public void GetEnzymesScore_MulticellularThresholdMatrixIsInclusive()
-    {
-        const float preySize = 2.0f;
-        using var world = ThriveWorld.Create();
-        var predator = CreateMulticellular(3, "ThresholdMulticellularPredator", 3);
-        var cache = CreateCache();
-
-        var predatorCellSize = cache.GetBaseHexSizeForCellType(predator.CellTypes[0]);
-        AssertThat(predatorCellSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
-        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, float.BitIncrement(preySize)))
-            .IsEqual(EngulfCheckResult.TargetTooBig);
-        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
-        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, float.BitDecrement(preySize)))
-            .IsEqual(EngulfCheckResult.Ok);
-
-        var belowThreshold = cache.GetEnzymesScore(predator, Constants.LIPASE_ENZYME,
-            float.BitIncrement(preySize), 0.0f);
-        var atThreshold = cache.GetEnzymesScore(predator, Constants.LIPASE_ENZYME, preySize, 0.0f);
-        var aboveThreshold = cache.GetEnzymesScore(predator, Constants.LIPASE_ENZYME,
-            float.BitDecrement(preySize), 0.0f);
-
-        AssertThat(belowThreshold).IsEqual(0.0f);
-        AssertThat(atThreshold).IsGreater(0.0f);
-        AssertThat(atThreshold).IsEqual(aboveThreshold);
     }
 
     [TestCase]

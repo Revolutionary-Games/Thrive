@@ -11,6 +11,8 @@ public partial class SimpleStageStarter : Node
     [Export]
     public bool FadeFromBlack = true;
 
+    public bool IsStartedUsingCheats;
+
     private bool switchStarted;
 
     public override void _Ready()
@@ -35,7 +37,7 @@ public partial class SimpleStageStarter : Node
         // We can't switch scenes in _Ready as the game is initializing still
 
         GD.Print("Switching to scene: ", StageToSwitchTo);
-        AchievementsManager.ReportNewGameStarted(false);
+        AchievementsManager.ReportNewGameStarted(IsStartedUsingCheats);
 
         SceneManager.Instance.SwitchToScene(StageToSwitchTo);
     }

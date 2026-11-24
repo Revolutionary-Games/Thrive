@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-12 17:15+0200\n"
-"PO-Revision-Date: 2026-10-14 12:30+0000\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-20 13:38+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -863,6 +863,9 @@ msgstr "არჩეული ფაილი სახელი ({0}) უკვ
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ცვლილების შენიშვნები მეტისმეტად გრძელია"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
 msgstr "მემბრანის ტიპის შეცვლა"
@@ -2117,6 +2120,17 @@ msgstr ""
 "ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
@@ -2162,6 +2176,17 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_MACROSCOPIC_REQUIREMENTS"
+msgstr ""
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
+"\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
+"\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
 msgstr ""
 "იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
 "\n"
@@ -2972,9 +2997,11 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "ჰიდროგენაზა"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "ახდენს [thrive:compound type=\"glucose\"][/thrive:compound]-ის ფერმენტაციას ენერგიის მისაღებად და გამოყოფს თანაპროდუქტებს, მაგალითად, წყალბადს. [thrive:compound type=\"oxygen\"][/thrive:compound]-ის დაბალი დონის პირობებში უფრო ეფექტურია, ვიდრე მეტაბოლოსომები. ბევრი ორგანიზმი უჟანგბადო გარემოში ამას ენერგიის ძირითად წყაროდ იყენებს."
 
+#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "გადაჰყავს [thrive:compound type=\\\"glucose\\\"][/thrive:compound] [thrive:compound type=\\\"atp\\\"][/thrive:compound]-ში."
 
@@ -2984,6 +3011,7 @@ msgstr "ჰიდროგენოსომა"
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "გადაყლავს [thrive:compound type=\\\"glucose\\\"][/thrive:compound] [thrive:compound type=\\\"atp\\\"][/thrive:compound]-ში."
 
@@ -6991,6 +7019,7 @@ msgstr ""
 msgid "TOXISOME"
 msgstr "ტოქსისომა"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "შეცვლილი მეტაბოლოსომა პასუხისმგებელია ტოქსიკური ნივთიერება [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]-ის პრიმიტიული ფორმის წარმოებაში .შეიძლება, სხვა ეფექტების მქონე ტოქსინზე გადაირთოს, რასაც, შეიძლება [thrive:compound type=\"oxygen\"][/thrive:compound] დასჭირდეს გამოსაყოფად."
 
@@ -7678,6 +7707,7 @@ msgstr "სულ მალე."
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "ნერვული ბოჭკოები ნეირონებს შორის. ხელმისაწვდომია [color=#3796e1][url=thriveopedia:macroscopic_stage]მაკროსკოპული ფაზიდან[/url][/color]. აუცილებელია ორგანიზმის ტვინის სიმძლავრის გასაზრდელად და გასავითარებლად მომავალ ფაზებში."
 
@@ -7687,6 +7717,7 @@ msgstr "ცვლილებების გარეშე."
 msgid "WIKI_AXON_PROCESSES"
 msgstr "პროცესების გარეშე."
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "მხოლოდ, ხელმისაწვდომია [color=#3796e1][url=thriveopedia:macroscopic_stage]მაკროსკოპული ფაზის[/url][/color] შემდეგ."
 

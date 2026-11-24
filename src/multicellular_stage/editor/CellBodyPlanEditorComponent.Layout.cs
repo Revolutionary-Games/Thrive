@@ -55,11 +55,22 @@ public partial class CellBodyPlanEditorComponent
     private readonly List<(HexWithData<CellTemplate> First, HexWithData<CellTemplate> Second)>
         manualLayoutMissingAdjacencyPairs = [];
 
-    // The compact editor layout is kept intact while the Layout tab displays the actual cell footprints.
-    private IndividualHexLayout<CellTemplate> fullLayoutPreview = new();
+    /// <summary>
+    ///   Different cell types can have non-overlapping footprints around the same wrapper position, so the automatic
+    ///   preview stores wrappers in a list and checks overlaps using the actual cell footprints.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can be caused, for example, when a lot of edits have been done and layout shifts are extreme. So two
+    ///     cells can have an overlap, but when applying the shift then they don't overlap any more.
+    ///     This is why we need to store this as a list as otherwise we would get an error on inserting to this data
+    ///     structure.
+    ///   </para>
+    /// </remarks>
+    private List<HexWithData<CellTemplate>> fullLayoutPreview = [];
 
     /// <summary>
-    ///   Unlike the automatic layout store, this is a list because manual editing must preserve invalid intermediate
+    ///   This is a list because manual editing must preserve invalid intermediate
     ///   states such as overlapping cells so that they can be displayed and fixed by the player.
     /// </summary>
     private List<HexWithData<CellTemplate>> manualFullLayout = [];
@@ -342,12 +353,10 @@ public partial class CellBodyPlanEditorComponent
     {
         fullLayoutPreview.Clear();
 
-        // CellLayout stores the final cell templates directly. The editor renderer uses HexWithData wrappers, so
-        // copy the created wrappers
-        foreach (var wrapped in wrappers)
-        {
-            fullLayoutPreview.AddFast(wrapped, hexTemporaryMemory, hexTemporaryMemory2);
-        }
+        // CellLayout stores the final cell templates directly. Keep the editor's wrappers without validating their
+        // positions against each other, as cells can share a wrapper position without their footprints overlapping
+        // (due to organelle shifts).
+        fullLayoutPreview.AddRange(wrappers);
     }
 
     private void UpdateFullLayoutVisuals()
@@ -360,6 +369,12 @@ public partial class CellBodyPlanEditorComponent
             fullLayoutHasAdjacencyDisconnects = false;
             manualLayoutCellsWithBrokenExpectedAdjacencies.Clear();
             UpdateLayoutErrorDisplay();
+
+            // When there is nothing to show (for example when the last cell was picked up to be moved), the
+            // previously displayed graphics need to be cleared as well
+            if (layoutPreviewActive)
+                ClearFullLayoutGraphics();
+
             return;
         }
 
@@ -458,9 +473,12 @@ public partial class CellBodyPlanEditorComponent
             }
         }
 
+        // The layout can refresh in the cell-type editor, but the placed objects live in the shared editor world
+        bool showLayout = Visible;
+
         // We use the invalid hexes as islands to mark them as invalid
         UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
-            fullLayoutInvalid.ToList(), customiseMaterial: (position, material) =>
+            fullLayoutInvalid.ToList(), !showLayout, (position, material) =>
             {
                 if (!cavityPositions.Contains(position))
                     return material;
@@ -480,7 +498,7 @@ public partial class CellBodyPlanEditorComponent
             var model = PlacedModels[nextModel++];
             ShowCellTypeInModelHolder(model, GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType),
                 Hex.AxialToCartesian(cell.Position) + microbeModelOffset, cell.Orientation);
-            model.Visible = true;
+            model.Visible = showLayout;
         }
 
         while (nextModel < PlacedModels.Count)
@@ -496,7 +514,26 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
-        UpdateArrow();
+
+        if (showLayout)
+            UpdateArrow();
+    }
+
+    private void ClearFullLayoutGraphics()
+    {
+        fullLayoutOccupied.Clear();
+        fullLayoutInvalid.Clear();
+
+        UpdateAlreadyPlacedHexes([], []);
+
+        while (PlacedModels.Count > 0)
+        {
+            PlacedModels[^1].DetachAndQueueFree();
+            PlacedModels.RemoveAt(PlacedModels.Count - 1);
+        }
+
+        cellLayoutBorderDisplay.HideBorders();
+        UpdateGrowthOrderNumbers();
     }
 
     private void UpdateLayoutErrorDisplay()

@@ -133,6 +133,14 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <returns>The colony's root cell entity</returns>
     public Entity CreateVisualisationColony(MulticellularSpecies species)
     {
+        // This causes an error on spawn, so catch the error early
+        if (species.InitialCompounds.Count == 0)
+        {
+            // Nameof species us used just to quiet a false positive warning
+            throw new InvalidOperationException(
+                $"Cannot photograph {nameof(species)} {species.FormattedName} without initial compounds");
+        }
+
         var sex = GameteType.All;
 
         // This is needed only to quiet a warning on spawn

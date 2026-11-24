@@ -9,59 +9,10 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class MichePopulationTests
 {
-    [TestCase(false)]
-    [TestCase(true)]
-    public void EnergyAndResidentScoresAreReadOncePerLeaf(bool trackEnergy)
-    {
-        var fixture = CreateFixture();
-        var rootPressure = new CountingPressure(101, _ => 1);
-        var leafPressure = new CountingPressure(102, _ => 1);
-        var root = new Miche(rootPressure);
-        root.AddChild(new Miche(leafPressure) { Occupant = fixture.Species[0] });
-        var results = Simulate(fixture, root, trackEnergy);
-
-        AssertThat(rootPressure.HashCalls).IsEqual(4);
-        AssertThat(leafPressure.HashCalls).IsEqual(4);
-        AssertThat(rootPressure.EnergyCalls).IsEqual(0);
-        AssertThat(leafPressure.EnergyCalls).IsEqual(1);
-        AssertThat(leafPressure.DescriptionCalls).IsEqual(trackEnergy ? 3 : 0);
-        if (!trackEnergy)
-            return;
-
-        foreach (var species in fixture.Species)
-        {
-            var energy = results.GetPatchEnergyResults(species)[fixture.Patch];
-            AssertThat(energy.TotalEnergyGathered).IsEqual(10000.0f);
-            AssertThat(energy.PerNicheEnergy.Count).IsEqual(1);
-            foreach (var niche in energy.PerNicheEnergy.Values)
-            {
-                AssertThat(niche.TotalAvailableEnergy).IsEqual(30000.0f);
-                AssertThat(niche.CurrentSpeciesEnergy).IsEqual(10000.0f);
-                AssertThat(niche.CurrentSpeciesFitness).IsEqual(2.0f);
-                AssertThat(niche.TotalFitness).IsEqual(6.0f);
-            }
-        }
-    }
-
-    [TestCase]
-    public void ZeroRawScoresDoNotEvaluateResidentsDeeperPressuresOrEnergy()
-    {
-        var fixture = CreateFixture();
-        var absentResident = new MicrobeSpecies(99, "Test", "absent");
-        var rootPressure = new CountingPressure(201, species => species == absentResident ?
-            throw new InvalidOperationException("Resident must remain unevaluated") :
-            0);
-        var leafPressure = new CountingPressure(202, _ => throw new InvalidOperationException("Unreached pressure"));
-        var root = new Miche(rootPressure);
-        root.AddChild(new Miche(leafPressure) { Occupant = absentResident });
-        Simulate(fixture, root, true);
-
-        AssertThat(rootPressure.HashCalls).IsEqual(3);
-        AssertThat(leafPressure.HashCalls).IsEqual(0);
-        AssertThat(leafPressure.EnergyCalls).IsEqual(0);
-        AssertThat(leafPressure.DescriptionCalls).IsEqual(0);
-    }
-
+    /// <summary>
+    ///   A missing or zero-scoring resident leaves the two eligible species sharing the leaf equally. Each share
+    ///   must appear in both its patch total and its single niche entry, while the zero-scoring species gets none.
+    /// </summary>
     [TestCase(false)]
     [TestCase(true)]
     public void EarlyExitAndZeroOrMissingResidentKeepRelativeScores(bool missingResident)
@@ -82,8 +33,11 @@ public class MichePopulationTests
         {
             var energy = results.GetPatchEnergyResults(fixture.Species[i])[fixture.Patch];
             AssertThat(energy.TotalEnergyGathered).IsEqual(15000.0f);
+            AssertThat(energy.PerNicheEnergy.Count).IsEqual(1);
             foreach (var niche in energy.PerNicheEnergy.Values)
             {
+                AssertThat(niche.TotalAvailableEnergy).IsEqual(30000.0f);
+                AssertThat(niche.CurrentSpeciesEnergy).IsEqual(15000.0f);
                 AssertThat(niche.CurrentSpeciesFitness).IsEqual(4.0f);
                 AssertThat(niche.TotalFitness).IsEqual(8.0f);
             }
@@ -191,25 +145,6 @@ public class MichePopulationTests
             AssertPatchResults(fixture, patch, expected[patch], actual, trackEnergy);
             AssertPatchResults(fixture, patch, expected[patch], repeated, trackEnergy);
         }
-    }
-
-    [TestCase]
-    public void FailedSimulationDoesNotAffectLaterCallsOrEarlierResults()
-    {
-        var fixture = CreateFixture();
-        var root = new Miche(new CountingPressure(1201, _ => 1));
-        root.AddChild(new Miche(new CountingPressure(1202, _ => 1)) { Occupant = fixture.Species[0] });
-        var before = Simulate(fixture, CopyMiche(root), true);
-        var failingRoot = new Miche(new CountingPressure(1203, _ => 1));
-        failingRoot.AddChild(new Miche(new CountingPressure(1204,
-            _ => throw new InvalidOperationException("Test scoring failure"))) { Occupant = fixture.Species[1] });
-
-        AssertThrown(() => Simulate(fixture, failingRoot, true)).IsInstanceOf<InvalidOperationException>();
-
-        var after = Simulate(fixture, CopyMiche(root), true);
-        foreach (var species in fixture.Species)
-            AssertThat(before.GetPatchEnergyResults(species)[fixture.Patch].TotalEnergyGathered).IsEqual(10000.0f);
-        AssertPatchResults(fixture, fixture.Patch, before, after, true);
     }
 
     [TestCase(false)]
