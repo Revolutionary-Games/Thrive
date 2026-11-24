@@ -11,7 +11,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p046t"]
 
-[node name="SettingsPanel" type="VBoxContainer" unique_id=889888459 node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "sulfideLevelButton", "glucoseLevelButton", "ironLevelButton", "ammoniaLevelButton", "phosphatesLevelButton", "radiationLevelButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
+[node name="SettingsPanel" type="VBoxContainer" unique_id=889888459 node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "sulfideLevelButton", "glucoseLevelButton", "ironLevelButton", "ammoniaLevelButton", "phosphatesLevelButton", "radiationLevelButton", "compoundLevelEffectOnEventsButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 923.0
@@ -33,6 +33,7 @@ ironLevelButton = NodePath("VBoxContainer11/HBoxContainer/IronLevel")
 ammoniaLevelButton = NodePath("VBoxContainer12/HBoxContainer/AmmoniaLevel")
 phosphatesLevelButton = NodePath("VBoxContainer13/HBoxContainer/PhosphatesLevel")
 radiationLevelButton = NodePath("VBoxContainer14/HBoxContainer/RadiationLevel")
+compoundLevelEffectOnEventsButton = NodePath("CompoundLevelsEventEffect/HBoxContainer/EffectScale")
 lawkOnlyButton = NodePath("VBoxContainer/HBoxContainer/LAWKButton")
 dayNightCycleButton = NodePath("VBoxContainer2/HBoxContainer/DayNightCycleButton")
 dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
