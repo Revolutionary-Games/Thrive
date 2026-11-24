@@ -98,22 +98,24 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
         var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
             out var currentCarbonDioxide);
 
-        // TODO: shouldn't the eruption work even with the compounds not present initially?
-        // TODO: Do it like it is done in meteor event
-        if (!hasHydrogenSulfide || !hasCarbonDioxide)
-            return false;
-
-        currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
-        currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
+        float finalHydrogenSulfide = currentHydrogenSulfide.Density + Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
 
         // Percentage is density times amount, so clamp to the inversed amount (times 100)
-        currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
-            / currentHydrogenSulfide.Amount * 100);
-        currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
+        float maxHydrogenSulfide = 1 / currentHydrogenSulfide.Amount * 100.0f;
+        if (finalHydrogenSulfide > maxHydrogenSulfide)
+        {
+            finalHydrogenSulfide = maxHydrogenSulfide;
+        }
+
+        float finalCarbonDioxide = currentCarbonDioxide.Ambient + Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
+        if (finalCarbonDioxide > 1.0f)
+        {
+            finalCarbonDioxide = 1.0f;
+        }
 
         // Intelligently apply the changes taking total gas percentages into account
-        changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density;
-        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
+        changes[Compound.Hydrogensulfide] = finalHydrogenSulfide - currentHydrogenSulfide.Density;
+        changes[Compound.Carbondioxide] = finalCarbonDioxide - currentHydrogenSulfide.Ambient;
         cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);

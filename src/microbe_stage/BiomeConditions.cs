@@ -306,7 +306,12 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
                     existing.Amount = cloudSize;
                 }
 
+                GD.Print($"4. {existing.Density} + {entry.Value} (for {entry.Key})");
+
                 existing.Density += entry.Value;
+
+                GD.Print($"5. {existing.Density} (for {entry.Key})");
+
                 ModifyLongTermCondition(entry.Key, existing);
             }
             else if (!definition.IsGas)
