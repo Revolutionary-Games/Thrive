@@ -42,8 +42,6 @@ public partial class AchievementsManager : Node
 
     private static bool showCheatsUsedInfo;
 
-    private static bool loadingGameWithCheats;
-
     private readonly NodePath positionName = new("position");
 
     private readonly object achievementsDataLock = new();
@@ -117,21 +115,7 @@ public partial class AchievementsManager : Node
             playerHasCheated = false;
         }
 
-        if (loadingGameWithCheats)
-        {
-            loadingGameWithCheats = false;
-            playerHasCheated = true;
-        }
-
         UpdateAchievementsPrevention();
-    }
-
-    /// <summary>
-    ///   Marks the next game start as cheated
-    /// </summary>
-    public static void ReportGameLoadStartedWithCheats()
-    {
-        loadingGameWithCheats = true;
     }
 
     public static void ReportEnteredFreebuild()

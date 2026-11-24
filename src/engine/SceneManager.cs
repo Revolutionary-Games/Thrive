@@ -301,9 +301,10 @@ public partial class SceneManager : Node
         CheatManager.OnCheatsDisabled();
         AchievementsManager.ReportNewGameStarted(true);
 
-        AchievementsManager.ReportGameLoadStartedWithCheats();
+        var newScene = Instance.SwitchToScene(scenePath);
 
-        Instance.SwitchToScene(scenePath);
+        (newScene as SimpleStageStarter)?.IsStartedUsingCheats = true;
+        (newScene as ComplexStageStarterBase)?.IsStartedUsingCheats = true;
 
         return true;
     }
