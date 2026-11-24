@@ -119,6 +119,7 @@ public partial class AchievementsManager : Node
 
         if (loadingGameWithCheats)
         {
+            loadingGameWithCheats = false;
             playerHasCheated = true;
         }
 
