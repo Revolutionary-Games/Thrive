@@ -499,7 +499,7 @@ public static class Constants
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX = 400;
 
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
-    public const string MICROBE_TURN_SOUND = "res://assets/sounds/soundeffects/microbe-movement-2.ogg";
+    public const string MICROBE_TURN_SOUND = "res://assets/sounds/soundeffects/microbe-movement-3.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
