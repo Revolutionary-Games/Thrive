@@ -93,8 +93,7 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
         var changes = new Dictionary<Compound, float>();
         var cloudSizes = new Dictionary<Compound, float>();
 
-        var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
-            out var currentHydrogenSulfide);
+        patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide, out var currentHydrogenSulfide);
 
         currentHydrogenSulfide.Amount = currentHydrogenSulfide.Amount == 0 ? 250000 : currentHydrogenSulfide.Amount;
 
