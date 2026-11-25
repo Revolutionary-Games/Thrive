@@ -1356,7 +1356,7 @@ public static class Constants
     public const float GAMETE_SPAWN_CHANCE = 0.2f;
 
     /// <summary>
-    ///  The compound gaining threshold for if a spore can decide to germinate or not
+    /// The compound gaining threshold for if a spore can decide to germinate or not
     /// </summary>
     public const float SPORE_GERMINATION_COMPOUND_THRESHOLD = 0.6f;
 
