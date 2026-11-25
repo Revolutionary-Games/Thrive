@@ -14,6 +14,62 @@ using static GdUnit4.Assertions;
 public class MicrobeDeathSystemTests
 {
     [TestCase]
+    public void GameteAtZeroHealthDissolvesBeforeDespawning()
+    {
+        using var world = new TestWorldSimulation();
+        var spawnSystem = new DummySpawnSystem();
+        using var deathSystem = new MicrobeDeathSystem(world, spawnSystem, world.EntitySystem);
+        using var shaderSystem = new MicrobeShaderSystem(world.EntitySystem);
+        using var timedLifeSystem = new TimedLifeSystem(world, world.EntitySystem);
+        var gameWorld = new GameWorld(new WorldGenerationSettings());
+        deathSystem.SetWorld(gameWorld);
+
+        var parameters = SimulationParameters.Instance;
+        var cellType = new CellType(parameters.GetMembrane("single"));
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(parameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+        var species = new MulticellularSpecies(2, "Test", "gamete")
+        {
+            ModifiableGameteTypeA = cellType,
+            ReproductionMethod = MulticellularReproductionMethod.SexualIsogamy,
+        };
+        species.ModifiableCellTypes.Add(cellType);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(0, 0), 0), workMemory1, workMemory2);
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(1, 0), 0), workMemory1, workMemory2);
+        species.OnEdited();
+
+        const float step = 0.1f;
+        SpawnHelpers.SpawnGamete(world, new DummyMicrobeSpawnEnvironment(), spawnSystem, species, Vector3.Zero,
+            Vector3.Forward, GameteType.A, true, Entity.Null);
+        world.ProcessAll(step);
+        var gamete = new FirstEntityGrabber(new QueryDescription().WithAll<GameteCell>(), world.EntitySystem).Found;
+
+        gamete.Get<Health>().CurrentHealth = 0;
+        deathSystem.BeforeUpdate(step);
+        deathSystem.Update(step);
+        world.ProcessAll(step);
+
+        AssertThat(gamete.Get<Health>().Dead).IsTrue();
+        AssertThat(gamete.Get<Health>().DeathProcessed).IsTrue();
+        AssertThat(gamete.Get<MicrobeShaderParameters>().PlayAnimations).IsTrue();
+        AssertThat(gamete.Has<TimedLife>()).IsTrue();
+
+        var animationTime = 1.1f / Constants.MEMBRANE_DISSOLVE_SPEED;
+        shaderSystem.Update(animationTime);
+        timedLifeSystem.Update(animationTime);
+        world.ProcessAll(step);
+
+        AssertThat(gamete.IsAlive()).IsTrue();
+        AssertThat(gamete.Get<MicrobeShaderParameters>().DissolveValue).IsEqual(1.0f);
+
+        timedLifeSystem.Update(gamete.Get<TimedLife>().TimeToLiveRemaining);
+        world.ProcessAll(step);
+        AssertThat(gamete.IsAlive()).IsFalse();
+    }
+
+    [TestCase]
     public void CorpseChunkCountScalesWithCellSize()
     {
         AssertThat(MicrobeDeathSystem.CalculateCorpseChunkCount(1))
