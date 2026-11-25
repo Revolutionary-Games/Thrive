@@ -681,8 +681,18 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
             if (growth.IsASpore)
             {
-                // TODO: add a smarter condition here for when the AI decides to germinate as a spore
-                control.GerminatingSpore = true;
+                // Am I actively gaining and storing reproduction compounds?
+                var ammoniaAmount = compounds.GetCompoundAmount(Compound.Ammonia);
+                var ammoniaFraction = ammoniaAmount / compounds.GetCapacityForCompound(Compound.Ammonia);
+                var phosphatesAmount = compounds.GetCompoundAmount(Compound.Phosphates);
+                var phosphatesFraction = phosphatesAmount / compounds.GetCapacityForCompound(Compound.Phosphates);
+
+                if (ammoniaFraction > Constants.SPORE_GERMINATION_COMPOUND_THRESHOLD * 0.7f ||
+                phosphatesFraction > Constants.SPORE_GERMINATION_COMPOUND_THRESHOLD * 0.7f)
+                {
+                    control.GerminatingSpore = true;
+                    return;
+                }
             }
         }
 
