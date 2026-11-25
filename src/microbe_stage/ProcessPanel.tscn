@@ -20,7 +20,7 @@ border_color = Color(0.06666667, 1, 0.8352941, 1)
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
-[node name="ProcessPanel" unique_id=895796782 node_paths=PackedStringArray("processList", "closeButtonContainer", "helpButtonContainer", "processPanelExplanation", "multicellularExplanationLabel") instance=ExtResource("1")]
+[node name="ProcessPanel" unique_id=895796782 node_paths=PackedStringArray("processList", "closeButtonContainer", "processPanelExplanation", "multicellularExplanationLabel") instance=ExtResource("1")]
 process_priority = 5
 custom_minimum_size = Vector2(400, 300)
 offset_right = 400.0
@@ -29,7 +29,6 @@ script = ExtResource("3")
 ShowCustomCloseButton = false
 processList = NodePath("MarginContainer/VBoxContainer/MarginContainer/Panel/ScrollContainer/MarginContainer/ProcessList")
 closeButtonContainer = NodePath("MarginContainer/VBoxContainer/BottomButtonContainer")
-helpButtonContainer = NodePath("MarginContainer/VBoxContainer/HelpButtonContainer")
 processPanelExplanation = NodePath("ExplanationPanel")
 multicellularExplanationLabel = NodePath("ExplanationPanel/VBoxContainer/MulticellularExplanation")
 WindowTitle = "PROCESS_PANEL_TITLE"
