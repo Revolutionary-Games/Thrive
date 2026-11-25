@@ -41,6 +41,12 @@ public class GenerateMiche : IRunStep
         avoidPredationMiche.AddChild(energyConsumptionMiche);
         energyConsumptionMiche.AddChild(environmentalToleranceMiche);
 
+        // Structural niche: species that divide labour between specialised cell types get a niche of their own.
+        // This is a separate branch from the energy sources as multicellular division of labour is not a food
+        // source, it is a way to use the existing food sources more effectively.
+        var divisionOfLabourMiche = new Miche(globalCache.CellDivisionOfLabourPressure);
+        rootMiche.AddChild(divisionOfLabourMiche);
+
         // "Autotrophic" Miches
         var phosphateMiche = new Miche(globalCache.PhosphatePressure);
         var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
