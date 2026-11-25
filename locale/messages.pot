@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"POT-Creation-Date: 2026-11-25 14:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -765,7 +765,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5759
 #: ../simulation_parameters/microbe_stage/biomes.json:6035
 #: ../simulation_parameters/microbe_stage/biomes.json:6242
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:73
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:75
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -1059,27 +1059,27 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:552
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:557
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:555
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:560
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:544
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:549
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:554
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:559
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:551
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:556
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:553
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:558
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1020
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr ""
@@ -2033,7 +2033,7 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:580
+#: ../src/general/base_stage/CreatureStageBase.cs:573
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
 msgstr ""
 
@@ -4951,7 +4951,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4442
 #: ../simulation_parameters/microbe_stage/biomes.json:6113
 #: ../simulation_parameters/microbe_stage/biomes.json:6320
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:87
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:89
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
@@ -5579,7 +5579,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4419
 #: ../simulation_parameters/microbe_stage/biomes.json:6090
 #: ../simulation_parameters/microbe_stage/biomes.json:6297
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:84
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:86
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
@@ -5677,6 +5677,10 @@ msgstr ""
 #: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:14
 #: ../src/auto-evo/selection_pressure/GeneralAvoidPredationSelectionPressure.cs:13
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/CellDivisionOfLabourPressure.cs:62
+msgid "MICHE_CELL_DIVISION_OF_LABOUR_PRESSURE"
 msgstr ""
 
 #: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:12
@@ -7819,7 +7823,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:451
 #: ../simulation_parameters/microbe_stage/biomes.json:3292
 #: ../simulation_parameters/microbe_stage/biomes.json:6182
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:97
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:99
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -8770,7 +8774,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5723
 #: ../simulation_parameters/microbe_stage/biomes.json:5999
 #: ../simulation_parameters/microbe_stage/biomes.json:6206
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:71
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:73
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -8800,7 +8804,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4388
 #: ../simulation_parameters/microbe_stage/biomes.json:6063
 #: ../simulation_parameters/microbe_stage/biomes.json:6270
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:81
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:83
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
