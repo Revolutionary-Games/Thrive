@@ -103,11 +103,20 @@ public class SimulationCache
         speciesReplacements = replacements;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public Species ResolveSpecies(Species species)
     {
-        return speciesReplacements != null && speciesReplacements.TryGetValue(species, out var replacement) ?
-            replacement :
-            species;
+        var replacements = speciesReplacements;
+
+        if (replacements == null)
+            return species;
+
+        // TODO: test if collection marshal is faster
+        /*var value = CollectionsMarshal.GetValueRefOrNullRef<Species, Species>(replacements, species);
+        if (Unsafe.IsNullRef(ref value))
+            return species;*/
+
+        return replacements.GetValueOrDefault(species, species);
     }
 
     /// <summary>

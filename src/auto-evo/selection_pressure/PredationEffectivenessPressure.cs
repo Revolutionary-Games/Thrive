@@ -140,6 +140,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         patch.SpeciesInPatch.TryGetValue(Prey, out long population);
         if (population == 0)
         {
+            // This is needed when replacement species feature is used to resolve the population.
             foreach (var entry in patch.SpeciesInPatch)
             {
                 if (entry.Key.ID == Prey.ID)

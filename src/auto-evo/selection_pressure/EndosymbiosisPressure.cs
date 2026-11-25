@@ -76,6 +76,7 @@ public class EndosymbiosisPressure : SelectionPressure
         patch.SpeciesInPatch.TryGetValue(Host, out long population);
         if (population == 0)
         {
+            // This is needed when replacement species feature is used to resolve the population.
             foreach (var entry in patch.SpeciesInPatch)
             {
                 if (entry.Key.ID == Host.ID)
