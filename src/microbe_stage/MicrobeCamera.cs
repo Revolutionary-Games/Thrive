@@ -338,6 +338,11 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         IsLoadedFromSave = true;
     }
 
+    internal void QueueBackground(Background background)
+    {
+        backgroundPlane.QueueBackground(background);
+    }
+
     private void UpdateCursorWorldPos()
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
