@@ -103,7 +103,6 @@ public class SimulationCache
         speciesReplacements = replacements;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public Species ResolveSpecies(Species species)
     {
         var replacements = speciesReplacements;
