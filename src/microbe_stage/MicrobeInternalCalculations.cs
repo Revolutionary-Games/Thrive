@@ -300,9 +300,7 @@ public static class MicrobeInternalCalculations
     ///   but potentially also cell adjacency and axon bonuses.
     /// </param>
     /// <param name="useEstimate">
-    ///   If true, estimates mass from organelle densities and hex counts for a one-member multicellular species.
-    ///   Otherwise, uses the mass of the physical shape. Auto-Evo uses <see cref="CalculateSpeedForAutoEvo"/>
-    ///   for single-celled species to account for the layout of their organelles.
+    ///   If true, estimates mass from the organelle layout and densities. Otherwise, uses the physical shape's mass.
     /// </param>
     /// <returns>
     ///   A single speed value taking into account both thrust and drag.
@@ -311,18 +309,11 @@ public static class MicrobeInternalCalculations
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
         var force = CalculateMovementForce(organelles, membraneType, membraneRigidity, isBacteria,
-            totalSpecializationBonus, out _);
-        if (!useEstimate)
-            return force / CalculateShapeMass(organelles, membraneType, isBacteria);
-
-        float massEstimate = 0;
-        for (int i = 0; i < organelles.Count; ++i)
-        {
-            var definition = organelles[i].Definition;
-            massEstimate += definition.Density * definition.HexCount;
-        }
-
-        return force / (massEstimate * Constants.MASS_ESTIMATE_MULTIPLIER);
+            totalSpecializationBonus, out int hexCount);
+        var mass = useEstimate ?
+            EstimateShapeMass(organelles, hexCount, isBacteria) :
+            CalculateShapeMass(organelles, membraneType, isBacteria);
+        return force / mass;
     }
 
     public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
@@ -1058,6 +1049,37 @@ public static class MicrobeInternalCalculations
         return force / EstimateShapeMass(organelles, hexCount, species.IsBacteria);
     }
 
+    internal static float EstimateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount, bool isBacteria)
+    {
+        if (hexCount == 0)
+            return 0;
+
+        float area;
+        float averageDensity;
+        if (hexCount == 1)
+        {
+            var density = new CellDensityAccumulator();
+            density.Add(organelles[0].Definition);
+            averageDensity = density.AverageDensity;
+            area = MEMBRANE_MARGIN_DISC_AREA;
+        }
+        else if (hexCount <= 32)
+        {
+            // Up to 32 connected hexes fit in 63 columns centred on the first organelle, one bit per column.
+            area = CalculateMembraneAreaByColumns(organelles, hexCount, out averageDensity);
+        }
+        else
+        {
+            area = CalculateMembraneAreaBySorting(organelles, hexCount, out averageDensity);
+        }
+
+        // The collision shape has unit thickness. Only the horizontal dimensions scale for a bacterium.
+        if (isBacteria)
+            area *= Constants.BACTERIA_CELL_SCALE * Constants.BACTERIA_CELL_SCALE;
+
+        return area * averageDensity;
+    }
+
     private static float CalculateMovementForce(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, out int totalHexes)
     {
@@ -1135,37 +1157,6 @@ public static class MicrobeInternalCalculations
         organelleThrust *= totalSpecializationBonus;
 
         return baseMovementForce + organelleThrust;
-    }
-
-    private static float EstimateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount, bool isBacteria)
-    {
-        if (hexCount == 0)
-            return 0;
-
-        float area;
-        float averageDensity;
-        if (hexCount == 1)
-        {
-            var density = new CellDensityAccumulator();
-            density.Add(organelles[0].Definition);
-            averageDensity = density.AverageDensity;
-            area = MEMBRANE_MARGIN_DISC_AREA;
-        }
-        else if (hexCount <= 32)
-        {
-            // Up to 32 connected hexes fit in 63 columns centred on the first organelle, one bit per column.
-            area = CalculateMembraneAreaByColumns(organelles, hexCount, out averageDensity);
-        }
-        else
-        {
-            area = CalculateMembraneAreaBySorting(organelles, hexCount, out averageDensity);
-        }
-
-        // The collision shape has unit thickness. Only the horizontal dimensions scale for a bacterium.
-        if (isBacteria)
-            area *= Constants.BACTERIA_CELL_SCALE * Constants.BACTERIA_CELL_SCALE;
-
-        return area * averageDensity;
     }
 
     private static float CalculateMembraneAreaByColumns(IReadOnlyList<OrganelleTemplate> organelles, int hexCount,

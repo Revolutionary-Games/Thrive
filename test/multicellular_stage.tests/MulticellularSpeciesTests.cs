@@ -4,11 +4,50 @@ using GdUnit4;
 using Godot;
 using Systems;
 using static GdUnit4.Assertions;
+using static SimulationCacheTestFixtures;
 
 [TestSuite]
 [RequireGodotRuntime]
 public class MulticellularSpeciesTests
 {
+    /// <summary>
+    ///   Each placed cell contributes its own membrane mass to Auto-Evo speed, including repeated instances
+    ///   of the same cell type. The double-hex cells have capsule-shaped estimates and the single hex is a disc.
+    /// </summary>
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(3)]
+    public void AutoEvoSpeedUsesMassOfEachPlacedCell(int memberCount)
+    {
+        var pair = CreateCellType("Pair", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)),
+            CreateOrganelle("cytoplasm", new Hex(1, 0)));
+        var single = CreateCellType("Single", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)));
+        pair.IsBacteria = false;
+        single.IsBacteria = false;
+        (CellType, Hex)[] members = [(pair, new Hex(0, 0)), (pair, new Hex(0, 1)), (single, new Hex(-1, 0))];
+        var species = CreateMulticellular(1, "Membranes", members[..memberCount]);
+
+        var radius = Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
+        var discArea = MathF.PI * radius * radius;
+        var spacing = Hex.AxialToCartesian(new Hex(1, 0)).Length();
+        var pairMass = (discArea + 2 * radius * spacing) *
+            MicrobeInternalCalculations.CalculateAverageDensity(pair.ModifiableOrganelles);
+        var mass = Math.Min(2, memberCount) * pairMass;
+        if (memberCount == 3)
+            mass += discArea * MicrobeInternalCalculations.CalculateAverageDensity(single.ModifiableOrganelles);
+
+        var thrust = MicrobeInternalCalculations.CalculateBaseMovement(pair.MembraneType, pair.MembraneRigidity,
+            pair.ModifiableOrganelles.HexCount, pair.IsBacteria);
+        if (memberCount > 1)
+            CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref thrust, memberCount);
+
+        var cache = CreateCache();
+        var speed = cache.GetSpeedForSpecies(species);
+        var expected = thrust / mass;
+        AssertThat(speed).IsEqualApprox(expected, expected * 1e-6f);
+        AssertThat(cache.GetSpeedForSpecies(species)).IsEqual(speed);
+    }
+
     [TestCase]
     public void TestCloneSharingCellTypes()
     {

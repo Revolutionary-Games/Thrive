@@ -54,8 +54,7 @@ public static class CellBodyPlanInternalCalculations
 
         ModifyCellSpeedWithColony(ref speed, cells.Count);
 
-        var shapeMass = 0.0f;
-        var massEstimate = 0.0f;
+        var totalMass = 0.0f;
 
         var addedSpeed = 0.0f;
         var axonPower = 0.0f;
@@ -72,19 +71,11 @@ public static class CellBodyPlanInternalCalculations
             var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
-            // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to
-            // figure out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
-            // This is why Auto-Evo just estimates the value of the output instead
-            if (!useEstimate)
-            {
-                shapeMass += MicrobeInternalCalculations.CalculateShapeMass(cell.ModifiableOrganelles,
-                    cell.MembraneType, cell.IsBacteria);
-            }
-
+            int memberHexCount = 0;
             foreach (var organelle in cell.Organelles)
             {
-                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount *
-                    Constants.MASS_ESTIMATE_MULTIPLIER;
+                if (useEstimate)
+                    memberHexCount += organelle.Definition.HexCount;
 
                 if (organelle.Definition.HasActomyosinComponent)
                     ++cellActomyosinCount;
@@ -116,6 +107,17 @@ public static class CellBodyPlanInternalCalculations
                 addedSpeed += flagellumForce;
             }
 
+            if (useEstimate)
+            {
+                totalMass += MicrobeInternalCalculations.EstimateShapeMass(cell.ModifiableOrganelles, memberHexCount,
+                    cell.IsBacteria);
+            }
+            else
+            {
+                totalMass += MicrobeInternalCalculations.CalculateShapeMass(cell.ModifiableOrganelles,
+                    cell.MembraneType, cell.IsBacteria);
+            }
+
             if (cellActomyosinCount > 0)
             {
                 // The first actomyosin in a cell counts fully, while additional ones have diminishing returns.
@@ -132,9 +134,7 @@ public static class CellBodyPlanInternalCalculations
         // This matches the bonus applied to colony members in MicrobeMovementSystem.
         addedSpeed *= axonMovementMultiplier;
 
-        var finalMass = useEstimate ? massEstimate : shapeMass;
-
-        return (speed + addedSpeed) / finalMass;
+        return (speed + addedSpeed) / totalMass;
     }
 
     /// <summary>
