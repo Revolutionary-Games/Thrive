@@ -109,9 +109,13 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
         // Convert stats to percentages and show
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
+        // Show both the debuff and slider costs in the same display to not show only partial data here
+        var totalOsmoregulationModifier = tolerances.OsmoregulationModifier +
+            tolerances.SliderOsmoregulationAdditionalModifier;
+
         osmoregulationLabel.ModifierValue =
             percentageFormat.FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(MathF.Round(
-                (tolerances.OsmoregulationModifier - 1) * 100, 2)));
+                (totalOsmoregulationModifier - 1) * 100, 2)));
         healthLabel.ModifierValue =
             percentageFormat.FormatSafe(
                 StringUtils.FormatPositiveWithLeadingPlus(MathF.Round((tolerances.HealthModifier - 1) * 100, 1)));
@@ -123,11 +127,13 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
 
         // And apply colours to good and bad stats
         if (tolerances.OsmoregulationModifier > 1)
+            adapted = false;
+
+        if (totalOsmoregulationModifier > 1)
         {
             osmoregulationLabel.ModifierValueFont = badStatFont;
-            adapted = false;
         }
-        else if (tolerances.OsmoregulationModifier < 1)
+        else if (totalOsmoregulationModifier < 1)
         {
             osmoregulationLabel.ModifierValueFont = goodStatFont;
         }

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-14 12:04+0200\n"
-"PO-Revision-Date: 2026-11-02 09:42+0000\n"
+"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"PO-Revision-Date: 2026-11-14 10:08+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -865,6 +865,9 @@ msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Écraser le fichier 
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Les notes de changement sont trop longues"
+
+msgid "CHANGE_GPU_IN_LAUNCHER"
+msgstr ""
 
 #, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
@@ -2236,6 +2239,17 @@ msgstr ""
 "Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_CAVITY"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MULTICELLULAR_CELL_DUPLICATION"
 msgstr ""
 "Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
@@ -2288,6 +2302,17 @@ msgstr ""
 "Il n’est pas nécessaire de viser à faire avancer les étapes immédiatement, mais voir les conditions peut aider dans la planification de vos éditions futures de cellules.\n"
 "\n"
 "[u]Pressez le boutton critères[/u] en bas du panneau de droite maitenant pour voir comment se porte vos espèces."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_SPECIALIZATION_TIPS"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
 
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Modifiez votre microbe pour la première fois"
@@ -8526,6 +8551,7 @@ msgstr "Seulement disponible à partir de la phase multicellulaire."
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "L'ajout d'[b]axones[/b] est essentiel pour atteindre les étapes suivantes. Il est recommandé d'ajouter un [b]axone[/b] à plusieurs types de cellules dans votre organisme multicellulaire, mais en ajouter plus d'un est superflu. Pour le moment, les [b]axones[/b] supplémentaires n'apportent aucun avantage additionnel."
 

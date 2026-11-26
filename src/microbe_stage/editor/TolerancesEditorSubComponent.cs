@@ -405,7 +405,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             tempTolerances.CopyFrom(optimal);
             tempTolerances.OxygenResistance = CurrentTolerances.OxygenResistance;
 
-            CalculateStatsAndShow(tempTolerances, oxygenResistanceToolTip);
+            CalculateStatsAndShow(tempTolerances, oxygenResistanceToolTip, CurrentTolerances.OxygenResistance);
         }
 
         if (uvResistanceToolTip != null)
@@ -413,7 +413,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             tempTolerances.CopyFrom(optimal);
             tempTolerances.UVResistance = CurrentTolerances.UVResistance;
 
-            CalculateStatsAndShow(tempTolerances, uvResistanceToolTip);
+            CalculateStatsAndShow(tempTolerances, uvResistanceToolTip,
+                uvResistanceSliderValue: CurrentTolerances.UVResistance);
         }
 
         UpdateTotalValuesInToolTips();
@@ -512,11 +513,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     }
 
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
-        EnvironmentalToleranceToolTip toolTip)
+        EnvironmentalToleranceToolTip toolTip, float oxygenResistanceSliderValue = 0,
+        float uvResistanceSliderValue = 0)
     {
         var rawTolerances = Editor.CalculateCurrentTolerances(calculationTolerances);
 
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
+
+        // Other tolerance values may be optimal for this tooltip, so only include its own slider cost.
+        resolvedTolerances.SliderOsmoregulationAdditionalModifier =
+            MicrobeEnvironmentalToleranceCalculations.CalculateSliderOsmoregulationModifier(oxygenResistanceSliderValue,
+                uvResistanceSliderValue);
 
         toolTip.UpdateStats(resolvedTolerances);
     }

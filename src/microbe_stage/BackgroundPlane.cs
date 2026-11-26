@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -6,6 +7,8 @@ using Godot;
 /// </summary>
 public partial class BackgroundPlane : Node3D
 {
+    private const int BACKGROUND_LAYER_COUNT = 4;
+
     private readonly StringName blurAmountParameter = new("blurAmount");
     private readonly StringName textureAlbedoParameter = new("textureAlbedo");
     private readonly StringName worldPositionParameter = new("worldPos");
@@ -42,6 +45,10 @@ public partial class BackgroundPlane : Node3D
 #pragma warning restore CA2213
 
     private bool blurEnabledLastTime;
+
+    private Background? appliedBackground;
+    private Background? pendingBackground;
+    private Task<Texture2D?>[]? pendingBackgroundTextures;
 
     private double elapsed;
 
@@ -95,6 +102,9 @@ public partial class BackgroundPlane : Node3D
     {
         base._ExitTree();
 
+        pendingBackground = null;
+        pendingBackgroundTextures = null;
+
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
 
@@ -106,6 +116,7 @@ public partial class BackgroundPlane : Node3D
     {
         base._Process(delta);
 
+        ApplyLoadedBackground();
         SetWorldPosition(new Vector2(GlobalPosition.X, GlobalPosition.Z));
 
         elapsed += delta;
@@ -123,12 +134,113 @@ public partial class BackgroundPlane : Node3D
     /// </summary>
     public void SetBackground(Background background)
     {
-        // TODO: skip duplicate background changes
+        pendingBackground = null;
+        pendingBackgroundTextures = null;
 
-        for (int i = 0; i < 4; ++i)
+        var textures = new Texture2D[BACKGROUND_LAYER_COUNT];
+        for (int i = 0; i < textures.Length; ++i)
+        {
+            textures[i] = GD.Load<Texture2D>(background.Textures[i]);
+        }
+
+        ApplyBackground(background, textures);
+    }
+
+    public void SetVisibility(bool visible)
+    {
+        Visible = visible;
+
+        if (backgroundParticles != null)
+            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+    }
+
+    public void UpdateLightLevel(float lightLevel)
+    {
+        currentBackgroundMaterial.SetShaderParameter(lightLevelParameter, lightLevel);
+    }
+
+    /// <summary>
+    ///   Load the selected background's textures on worker threads and apply them together when ready.
+    /// </summary>
+    internal void QueueBackground(Background background)
+    {
+        if (currentBackgroundMaterial == null)
+            throw new SceneTreeAttachRequired();
+
+        if (pendingBackground == background)
+            return;
+
+        if (appliedBackground == background)
+        {
+            pendingBackground = null;
+            pendingBackgroundTextures = null;
+            return;
+        }
+
+        pendingBackground = background;
+        var textures = pendingBackgroundTextures ??= new Task<Texture2D?>[BACKGROUND_LAYER_COUNT];
+        for (int i = 0; i < textures.Length; ++i)
+        {
+            textures[i] = ResourceManager.Instance.LoadTextureInBackground(background.Textures[i]);
+        }
+
+        ApplyLoadedBackground();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            textureAlbedoParameter.Dispose();
+            blurAmountParameter.Dispose();
+            lightLevelParameter.Dispose();
+            distortionStrengthParameter.Dispose();
+            worldPositionParameter.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void ApplyLoadedBackground()
+    {
+        if (pendingBackground == null || pendingBackgroundTextures == null)
+            return;
+
+        foreach (var textureLoad in pendingBackgroundTextures)
+        {
+            if (!textureLoad.IsCompleted)
+                return;
+        }
+
+        var background = pendingBackground;
+        var textureLoads = pendingBackgroundTextures;
+        pendingBackground = null;
+        pendingBackgroundTextures = null;
+
+        var textures = new Texture2D[textureLoads.Length];
+        for (int i = 0; i < textureLoads.Length; ++i)
+        {
+            var texture = textureLoads[i].Result;
+            if (texture == null)
+            {
+                GD.PrintErr("Queued background texture failed to load");
+                return;
+            }
+
+            textures[i] = texture;
+        }
+
+        ApplyBackground(background, textures);
+    }
+
+    private void ApplyBackground(Background background, Texture2D[] textures)
+    {
+        appliedBackground = background;
+
+        for (int i = 0; i < textures.Length; ++i)
         {
             // TODO: switch this loop away to reuse StringName instances if this causes significant allocations
-            currentBackgroundMaterial.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));
+            currentBackgroundMaterial.SetShaderParameter($"layer{i:n0}", textures[i]);
         }
 
         // Skip the particle recreation if they are already set correctly
@@ -155,33 +267,6 @@ public partial class BackgroundPlane : Node3D
         AddChild(backgroundParticles);
 
         OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
-    }
-
-    public void SetVisibility(bool visible)
-    {
-        Visible = visible;
-
-        if (backgroundParticles != null)
-            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
-    }
-
-    public void UpdateLightLevel(float lightLevel)
-    {
-        currentBackgroundMaterial.SetShaderParameter(lightLevelParameter, lightLevel);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            textureAlbedoParameter.Dispose();
-            blurAmountParameter.Dispose();
-            lightLevelParameter.Dispose();
-            distortionStrengthParameter.Dispose();
-            worldPositionParameter.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateSubViewportResolution()

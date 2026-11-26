@@ -549,14 +549,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         if (GameWorld.Map.CurrentPatch != null)
         {
-            if (playerSpecies is MicrobeSpecies microbeSpecies)
-            {
-                AdjustTolerancesToWorkInPatch(microbeSpecies, GameWorld.Map.CurrentPatch);
-            }
-            else
-            {
-                GD.PrintErr("Unhandled species type for tolerances when player continues from patch extinction");
-            }
+            AdjustTolerancesToWorkInPatch(playerSpecies, GameWorld.Map.CurrentPatch);
         }
         else
         {
@@ -583,12 +576,34 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
     }
 
-    private void AdjustTolerancesToWorkInPatch(MicrobeSpecies species, Patch currentPatch)
+    private void AdjustTolerancesToWorkInPatch(Species species, Patch currentPatch)
     {
-        var optimal = currentPatch.GenerateTolerancesForMicrobe(species.Organelles,
-            species.CellTypeSpecializationBonus);
+        EnvironmentalTolerances optimal;
+        ToleranceResult current;
 
-        var current = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, currentPatch.Biome);
+        switch (species)
+        {
+            case MicrobeSpecies microbeSpecies:
+            {
+                optimal = currentPatch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles,
+                    microbeSpecies.CellTypeSpecializationBonus);
+                current = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies,
+                    currentPatch.Biome);
+                break;
+            }
+
+            case MulticellularSpecies multicellularSpecies:
+            {
+                optimal = currentPatch.GenerateTolerancesForMicrobe(multicellularSpecies.ModifiableEditorCells);
+                current = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpecies,
+                    currentPatch.Biome);
+                break;
+            }
+
+            default:
+                GD.PrintErr("Unhandled species type for tolerances when player continues from patch extinction");
+                return;
+        }
 
         if (current.OverallScore >= 1)
             return;

@@ -169,6 +169,13 @@ public partial class FossilisationDialog : CustomWindow
     /// </summary>
     private void FossiliseSpecies()
     {
+        if (speciesPreview.PreviewFailed)
+        {
+            saveQueued = false;
+            fossilisationFailedDialog.PopupCenteredShrink();
+            return;
+        }
+
         // We can't save before the species image is generated
         var previewImage = speciesPreview.GetFinishedImageIfReady();
 

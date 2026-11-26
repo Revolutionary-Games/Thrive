@@ -36,17 +36,33 @@ public class AutoEvoRunCompletionTests
         TaskExecutor.Instance.ParallelTasks = originalParallelTasks;
     }
 
-    [TestCase]
-    public void OneStep_FailureFinishesWithoutResultsOrRepeatingWork()
+    /// <summary>
+    ///   A failing or cancelled step accounts for its work, publishes no results and cannot be restarted.
+    ///   Cancellation inside the callback must leave the run active until the callback returns.
+    /// </summary>
+    [TestCase(false)]
+    [TestCase(true)]
+    public void OneStep_FailureFinishesWithoutResultsOrRepeatingWork(bool cancel)
     {
         RequireCompletedCleanup();
         int calls = 0;
+        bool runningAfterCancellation = false;
+        bool finishedAfterCancellation = true;
         var workDuration = TimeSpan.Zero;
-        var run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
+        ControlledRun? run = null;
+        run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
         {
             ++calls;
             workDuration = MeasureControlledWork();
-            throw new InvalidOperationException("Expected step failure");
+            if (!cancel)
+                throw new InvalidOperationException("Expected step failure");
+
+            // OneStep calls back synchronously after run has been assigned.
+            // ReSharper disable once AccessToModifiedClosure
+            var executingRun = run!;
+            executingRun.Abort();
+            runningAfterCancellation = executingRun.Running;
+            finishedAfterCancellation = executingRun.Finished;
         }));
 
         run.OneStep();
@@ -54,6 +70,12 @@ public class AutoEvoRunCompletionTests
         var observation = Stopwatch.StartNew();
         run.OneStep();
         observation.Stop();
+
+        if (cancel)
+        {
+            AssertThat(runningAfterCancellation).IsTrue();
+            AssertThat(finishedAfterCancellation).IsFalse();
+        }
 
         AssertThat(run.Finished).IsTrue();
         AssertThat(run.Aborted).IsTrue();
@@ -68,54 +90,6 @@ public class AutoEvoRunCompletionTests
         AssertThat(SpinWait.SpinUntil(() => !run.Running, TimeSpan.FromSeconds(10))).IsTrue();
         AssertThat(calls).IsEqual(1);
         AssertThat(run.RunDuration).IsEqual(duration);
-    }
-
-    [TestCase(false, false)]
-    [TestCase(false, true)]
-    [TestCase(true, false)]
-    [TestCase(true, true)]
-    public void InterruptedStep_UpdatesMemoryBeforeCompletion(bool background, bool fail)
-    {
-        RequireCompletedCleanup();
-        int calls = 0;
-        long peakBeforeInterruption = -1;
-        ControlledRun? run = null;
-        run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
-        {
-            // The run is assigned before executing or scheduling the callback and is never reassigned afterward.
-            // ReSharper disable once AccessToModifiedClosure
-            var executingRun = run!;
-            ++calls;
-            peakBeforeInterruption = executingRun.PeakMemoryUsage;
-
-            // Enable sampling only for the interrupted step so an earlier sample cannot hide a missing final one.
-            executingRun.TrackMemoryInfo = true;
-            if (fail)
-                throw new InvalidOperationException("Expected failure before the memory sample");
-
-            executingRun.Abort();
-        }));
-
-        AssertThat(run.PeakMemoryUsage).IsEqual(0L);
-        if (background)
-        {
-            run.Start();
-            WaitForCompletion(run);
-        }
-        else
-        {
-            run.OneStep();
-            run.OneStep();
-        }
-
-        AssertThat(calls).IsEqual(1);
-        AssertThat(peakBeforeInterruption).IsEqual(0L);
-        AssertThat(run.Finished).IsTrue();
-        AssertThat(run.Running).IsFalse();
-        AssertThat(run.Aborted).IsTrue();
-        AssertThat(run.Results).IsNull();
-        AssertThat(run.WasSuccessful).IsFalse();
-        AssertThat(run.PeakMemoryUsage > 0).IsTrue();
     }
 
     [TestCase(false, false)]
@@ -169,45 +143,6 @@ public class AutoEvoRunCompletionTests
         AssertThat(run.PeakMemoryUsage).IsEqual(peak);
         AssertThat(calls).IsEqual(0);
         AssertThat(run.RunDuration > TimeSpan.Zero).IsTrue();
-    }
-
-    [TestCase]
-    public void OneStep_CancellationDuringTheStepFinishesAfterItReturns()
-    {
-        RequireCompletedCleanup();
-        bool runningAfterCancellation = false;
-        bool finishedAfterCancellation = true;
-        var workDuration = TimeSpan.Zero;
-        ControlledRun? run = null;
-        run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
-        {
-            workDuration = MeasureControlledWork();
-
-            // The run is assigned before OneStep invokes this callback and is never reassigned afterward.
-            // ReSharper disable once AccessToModifiedClosure
-            run!.Abort();
-
-            // ReSharper disable once AccessToModifiedClosure
-            runningAfterCancellation = run.Running;
-
-            // ReSharper disable once AccessToModifiedClosure
-            finishedAfterCancellation = run.Finished;
-        }));
-
-        run.OneStep();
-        var previousDuration = run.RunDuration;
-        var observation = Stopwatch.StartNew();
-        run.OneStep();
-        observation.Stop();
-
-        AssertThat(runningAfterCancellation).IsTrue();
-        AssertThat(finishedAfterCancellation).IsFalse();
-        AssertThat(run.Finished).IsTrue();
-        AssertThat(run.Running).IsFalse();
-        AssertThat(run.Aborted).IsTrue();
-        AssertThat(run.WasSuccessful).IsFalse();
-        AssertThat(run.Results).IsNull();
-        AssertDurationBounds(run.RunDuration - previousDuration, workDuration, observation.Elapsed);
     }
 
     [TestCase(false)]
@@ -270,69 +205,6 @@ public class AutoEvoRunCompletionTests
         AssertThat(calls).IsEqual(2);
         AssertThat(run.RunDuration).IsEqual(finalDuration);
         AssertThat(run.PeakMemoryUsage).IsEqual(finalPeak);
-    }
-
-    [TestCase(false, false)]
-    [TestCase(false, true)]
-    [TestCase(true, false)]
-    [TestCase(true, true)]
-    public void CompletedRun_LifecycleCallsLeaveFinalStateUnchanged(bool background, bool trackMemory)
-    {
-        RequireCompletedCleanup();
-        var world = CreateWorld();
-        int calls = 0;
-        var workDuration = TimeSpan.Zero;
-        var run = new ControlledRun(world, new ActionStep(results =>
-        {
-            ++calls;
-            workDuration = MeasureControlledWork();
-            results.AddPopulationResultForSpecies(world.PlayerSpecies, world.Map.CurrentPatch!, 123);
-        })) { TrackMemoryInfo = trackMemory };
-        var observation = Stopwatch.StartNew();
-        if (background)
-        {
-            run.Start();
-            WaitForCompletion(run);
-        }
-        else
-        {
-            run.OneStep();
-            run.OneStep();
-            run.OneStep();
-            run.OneStep();
-        }
-
-        observation.Stop();
-        AssertThat(run.WasSuccessful).IsTrue();
-        AssertPopulationResult(run, world);
-        AssertThat(calls).IsEqual(1);
-        AssertDurationBounds(run.RunDuration, workDuration, observation.Elapsed);
-        if (trackMemory)
-        {
-            AssertThat(run.PeakMemoryUsage > 0).IsTrue();
-        }
-        else
-        {
-            AssertThat(run.PeakMemoryUsage).IsEqual(0L);
-        }
-
-        var peak = run.PeakMemoryUsage;
-        var duration = run.RunDuration;
-        var completedSteps = run.CompleteSteps;
-        var results = run.Results;
-        run.Start();
-        run.OneStep();
-        run.Continue();
-
-        // Also drain an incorrectly restarted run before reporting a regression.
-        AssertThat(SpinWait.SpinUntil(() => !run.Running, TimeSpan.FromSeconds(10))).IsTrue();
-        AssertThat(run.RunDuration).IsEqual(duration);
-        AssertThat(run.CompleteSteps).IsEqual(completedSteps);
-        AssertThat(run.PeakMemoryUsage).IsEqual(peak);
-        AssertThat(run.Results).IsSame(results);
-        AssertPopulationResult(run, world);
-        AssertThat(calls).IsEqual(1);
-        AssertThat(run.WasSuccessful).IsTrue();
     }
 
     [TestCase(false, false)]

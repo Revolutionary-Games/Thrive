@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
@@ -8,12 +9,6 @@ using Nito.Collections;
 /// <summary>
 ///   Manages loading of the game resources
 /// </summary>
-/// <remarks>
-///   <para>
-///     Godot 4.0 should make background loading much more usable, so this should be experimented with to add some
-///     threading.
-///   </para>
-/// </remarks>
 /// <remarks>
 ///   <para>
 ///     TODO: this should have a baseline performance detection of the current computer and adjust all load times
@@ -28,6 +23,10 @@ public partial class ResourceManager : Node
     private readonly BlockingCollection<IResource> queuedResources = new();
     private readonly Deque<IResource> processingResources = new();
     private readonly Stopwatch timeTracker = new();
+
+    private readonly List<string> doneTextures = new();
+
+    private readonly Dictionary<string, TaskCompletionSource<Texture2D?>> pendingTextureLoads = new();
 
     private readonly StageResourcePreloader stageResourcePreloader;
 
@@ -81,6 +80,7 @@ public partial class ResourceManager : Node
 
         timeTracker.Restart();
 
+        CollectThreadedTextures();
         ObserveBackgroundCompletions();
         HandleLoadQueue(originalBudget);
 
@@ -109,6 +109,30 @@ public partial class ResourceManager : Node
     public bool ProgressStageLoad()
     {
         return stageResourcePreloader.Progress();
+    }
+
+    /// <summary>
+    ///   Requests a texture from Godot's threaded loader. Call on the main thread and check the task for
+    ///   completion before accessing its result. A failed load completes with a null result.
+    /// </summary>
+    internal Task<Texture2D?> LoadTextureInBackground(string path)
+    {
+        if (pendingTextureLoads.TryGetValue(path, out var pending))
+            return pending.Task;
+
+        if (ResourceLoader.GetCachedRef(path) is Texture2D cached)
+            return Task.FromResult<Texture2D?>(cached);
+
+        var error = ResourceLoader.LoadThreadedRequest(path, nameof(Texture2D));
+        if (error != Error.Ok)
+        {
+            GD.PrintErr($"Failed to request background texture {path}: {error}");
+            return Task.FromResult<Texture2D?>(null);
+        }
+
+        var completion = new TaskCompletionSource<Texture2D?>(TaskCreationOptions.RunContinuationsAsynchronously);
+        pendingTextureLoads.Add(path, completion);
+        return completion.Task;
     }
 
     protected override void Dispose(bool disposing)
@@ -167,6 +191,39 @@ public partial class ResourceManager : Node
 
         // ReSharper enable HeuristicUnreachableCode
 #pragma warning restore CS0162
+    }
+
+    private void CollectThreadedTextures()
+    {
+        try
+        {
+            foreach (var (path, completion) in pendingTextureLoads)
+            {
+                var status = ResourceLoader.LoadThreadedGetStatus(path);
+                if (status == ResourceLoader.ThreadLoadStatus.InProgress)
+                    continue;
+
+                // Collect finished requests, including failures
+                var texture = status == ResourceLoader.ThreadLoadStatus.InvalidResource ?
+                    null :
+                    ResourceLoader.LoadThreadedGet(path) as Texture2D;
+
+                if (texture == null)
+                    GD.PrintErr($"Failed to load background texture {path}: {status}");
+
+                doneTextures.Add(path);
+                completion.SetResult(texture);
+            }
+        }
+        finally
+        {
+            foreach (var doneTexture in doneTextures)
+            {
+                pendingTextureLoads.Remove(doneTexture);
+            }
+
+            doneTextures.Clear();
+        }
     }
 
     private void ObserveBackgroundCompletions()

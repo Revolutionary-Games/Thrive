@@ -82,17 +82,73 @@ public class CellCavityActionTests
         }
     }
 
+    [TestCase]
+    public void FullLayoutPreviewAcceptsDistinctFootprintsWithSharedOriginAndClearsReplacedCells()
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
+        var membrane = simulationParameters.GetMembrane("single");
+        var firstType = new CellType(membrane) { CellTypeName = "First" };
+        firstType.ModifiableOrganelles.Add(new OrganelleTemplate(cytoplasm, new Hex(-10, 0), 0));
+        var secondType = new CellType(membrane) { CellTypeName = "Second" };
+        secondType.ModifiableOrganelles.Add(new OrganelleTemplate(cytoplasm, new Hex(10, 0), 0));
+
+        var firstFootprint = firstType.ModifiableOrganelles.SelectMany(organelle =>
+            organelle.Definition.GetRotatedHexes(organelle.Orientation)
+                .Select(hex => hex + organelle.Position)).ToHashSet();
+        var secondFootprint = secondType.ModifiableOrganelles.SelectMany(organelle =>
+            organelle.Definition.GetRotatedHexes(organelle.Orientation)
+                .Select(hex => hex + organelle.Position)).ToHashSet();
+        AssertThat(firstFootprint.Intersect(secondFootprint).Any()).IsFalse();
+
+        var origin = new Hex(0, 0);
+        var first = new HexWithData<CellTemplate>(new CellTemplate(firstType, origin, 0), origin, 0);
+        var second = new HexWithData<CellTemplate>(new CellTemplate(secondType, origin, 0), origin, 0);
+        var editor = new CellBodyPlanEditorComponent();
+        try
+        {
+            var preview = GetPrivateField<IReadOnlyList<HexWithData<CellTemplate>>>(editor, "fullLayoutPreview");
+            InvokePrivate(editor, "SetFullLayoutPreview", new List<HexWithData<CellTemplate>> { first, second });
+
+            AssertThat(first.Position).IsEqual(second.Position);
+            AssertThat(preview.Count).IsEqual(2);
+            AssertThat(ReferenceEquals(preview[0], first)).IsTrue();
+            AssertThat(ReferenceEquals(preview[1], second)).IsTrue();
+
+            InvokePrivate(editor, "SetFullLayoutPreview", new List<HexWithData<CellTemplate>> { second });
+            AssertThat(preview.Count).IsEqual(1);
+            AssertThat(ReferenceEquals(preview[0], second)).IsTrue();
+
+            InvokePrivate(editor, "SetFullLayoutPreview", new List<HexWithData<CellTemplate>>());
+            AssertThat(preview.Count).IsEqual(0);
+        }
+        finally
+        {
+            editor.Free();
+        }
+    }
+
     [TestCase(false)]
     [TestCase(true)]
     public void CavityEditsInvalidateCompletedCalculationsAndExistingPreviews(bool undo)
     {
         var (species, cell) = CreateSpecies();
         var editor = new CellBodyPlanEditorComponent();
+        var owningEditor = new MulticellularEditor();
         try
         {
+            species.ModifiableGameplayCells.AddFast(cell.Data!, [], []);
+            owningEditor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(),
+                startingSpecies: species);
+            owningEditor.TutorialState.Enabled = true;
+            var cavityTutorial = owningEditor.TutorialState.MulticellularCellCavityTutorial;
+            cavityTutorial.Show();
+            typeof(EditorComponentBase<MulticellularEditor>).GetField("editor",
+                BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(editor, owningEditor);
+
             SetPrivateField(editor, "editedMicrobeCells", species.ModifiableEditorCells);
-            var preview = GetPrivateField<IndividualHexLayout<CellTemplate>>(editor, "fullLayoutPreview");
-            preview.AddFast(cell.Clone(), [], []);
+            var preview = GetPrivateField<List<HexWithData<CellTemplate>>>(editor, "fullLayoutPreview");
+            preview.Add(cell.Clone());
             var resultType = typeof(CellBodyPlanEditorComponent).GetNestedType("LayoutCalculationResult",
                 BindingFlags.NonPublic)!;
             var result = Activator.CreateInstance(resultType, true)!;
@@ -110,10 +166,13 @@ public class CellCavityActionTests
             AssertThat(preview.Count).IsEqual(0);
             AssertThat(GetPrivateField<bool>(editor, "layoutCalculationRequested")).IsTrue();
             AssertThat(GetPrivateField<bool>(editor, "cellDataDirty")).IsTrue();
+            AssertThat(cavityTutorial.Complete).IsEqual(!undo);
+            AssertThat(cavityTutorial.ShownCurrently).IsEqual(undo);
         }
         finally
         {
             editor.Free();
+            owningEditor.Free();
         }
     }
 
