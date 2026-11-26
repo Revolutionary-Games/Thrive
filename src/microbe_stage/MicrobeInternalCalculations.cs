@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using Components;
 using Godot;
 using Systems;
+using BitOperations = System.Numerics.BitOperations;
 
 public static class MicrobeInternalCalculations
 {
+    private const float MEMBRANE_MARGIN_DISC_AREA =
+        MathF.PI * Constants.MEMBRANE_ROOM_FOR_ORGANELLES * Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
+
     public static Vector3 MaximumSpeedDirection(IReadOnlyList<OrganelleTemplate> organelles)
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
@@ -304,105 +309,19 @@ public static class MicrobeInternalCalculations
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
-        float shapeMass = 0;
-
-        // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
-        // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
-        // This is why Auto-Evo just estimates the value of the output instead
+        var force = CalculateMovementForce(organelles, membraneType, membraneRigidity, isBacteria,
+            totalSpecializationBonus, out _);
         if (!useEstimate)
-        {
-            shapeMass = CalculateShapeMass(organelles, membraneType, isBacteria);
-        }
-
-        float organelleMovementForce = 0;
-
-        // For each direction we calculate the organelles contribution to the movement force
-        float forwardsDirectionMovementForce = 0;
-        float backwardsDirectionMovementForce = 0;
-        float leftwardDirectionMovementForce = 0;
-        float rightwardDirectionMovementForce = 0;
-
-        // Force factor for each direction
-        float forwardDirectionFactor;
-        float backwardDirectionFactor;
-        float rightDirectionFactor;
-        float leftDirectionFactor;
+            return force / CalculateShapeMass(organelles, membraneType, isBacteria);
 
         float massEstimate = 0;
-
-        // TODO: balance the calculation in regards to the new flagella force and the base movement force
-
-        int totalHexes = 0;
-        int organelleCount = organelles.Count;
-
-        for (int i = 0; i < organelleCount; ++i)
+        for (int i = 0; i < organelles.Count; ++i)
         {
-            var organelle = organelles[i];
-            totalHexes += organelle.Definition.HexCount;
-
-            if (organelle.Definition.HasMovementComponent)
-            {
-                Vector3 organelleDirection = GetOrganelleDirection(organelle);
-
-                // We decompose the vector of the organelle orientation in 2 vectors, forward and right
-                // To get the backward and left is easy because they are the opposite of those former 2
-                forwardDirectionFactor = organelleDirection.Dot(Vector3.Forward);
-                backwardDirectionFactor = -forwardDirectionFactor;
-                rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
-                leftDirectionFactor = -rightDirectionFactor;
-
-                float movementConstant =
-                    Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
-
-                movementConstant += organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades configuration ?
-                    Constants.FLAGELLA_MAX_UPGRADE_FORCE
-                    * configuration.LengthFraction :
-                    0;
-
-                if (!isBacteria)
-                    movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
-
-                // We get the movement force for every direction as well
-                forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
-                backwardsDirectionMovementForce += MovementForce(movementConstant, backwardDirectionFactor);
-                rightwardDirectionMovementForce += MovementForce(movementConstant, rightDirectionFactor);
-                leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
-            }
-
-            massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
+            var definition = organelles[i].Definition;
+            massEstimate += definition.Density * definition.HexCount;
         }
 
-        // If this estimate could be made more accurate without additional computation that would be great
-        // but it is close enough for now
-        massEstimate *= Constants.MASS_ESTIMATE_MULTIPLIER;
-
-        var maximumMovementDirection = MaximumSpeedDirection(organelles);
-
-        // Maximum-force direction is not normalized so we need to normalize it here
-        maximumMovementDirection = maximumMovementDirection.Normalized();
-
-        // Calculate the maximum total force-factors in the maximum-force direction
-        forwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Forward);
-        backwardDirectionFactor = -forwardDirectionFactor;
-        rightDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
-        leftDirectionFactor = -rightDirectionFactor;
-
-        // Add each movement force to the total movement force in the maximum-force direction.
-        organelleMovementForce += MovementForce(forwardsDirectionMovementForce, forwardDirectionFactor);
-        organelleMovementForce += MovementForce(backwardsDirectionMovementForce, backwardDirectionFactor);
-        organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
-        organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
-
-        float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
-
-        var finalMass = useEstimate ? massEstimate : shapeMass;
-
-        // Apply cell specialization bonus
-        organelleMovementForce *= totalSpecializationBonus;
-
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
-
-        return finalSpeed;
+        return force / (massEstimate * Constants.MASS_ESTIMATE_MULTIPLIER);
     }
 
     public static float CalculateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
@@ -518,11 +437,7 @@ public static class MicrobeInternalCalculations
 
         foreach (var organelle in organelles)
         {
-            var definition = organelle.Definition;
-            var volume = definition.HexCount * definition.RelativeDensityVolume;
-            totalVolume += volume;
-
-            density += definition.Density * volume;
+            AddOrganelleDensity(organelle.Definition, ref totalVolume, ref density);
         }
 
         return density / totalVolume;
@@ -1132,6 +1047,291 @@ public static class MicrobeInternalCalculations
 
         // Then return the final result as the bonus being anything above 1
         return 1 + concentration * strength;
+    }
+
+    /// <summary>
+    ///   Estimates the base speed of a single-celled Auto-Evo candidate without creating its collision shape.
+    /// </summary>
+    internal static float CalculateSpeedForAutoEvo(MicrobeSpecies species)
+    {
+        var organelles = species.Organelles.Organelles;
+        var force = CalculateMovementForce(organelles, species.MembraneType, species.MembraneRigidity,
+            species.IsBacteria, species.CellTypeSpecializationBonus, out int hexCount);
+        return force / EstimateShapeMass(organelles, hexCount, species.IsBacteria);
+    }
+
+    private static float CalculateMovementForce(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
+        float membraneRigidity, bool isBacteria, float totalSpecializationBonus, out int totalHexes)
+    {
+        float organelleMovementForce = 0;
+
+        // For each direction we calculate the organelles contribution to the movement force
+        float forwardsDirectionMovementForce = 0;
+        float backwardsDirectionMovementForce = 0;
+        float leftwardDirectionMovementForce = 0;
+        float rightwardDirectionMovementForce = 0;
+
+        // Force factor for each direction
+        float forwardDirectionFactor;
+        float backwardDirectionFactor;
+        float rightDirectionFactor;
+        float leftDirectionFactor;
+
+        // TODO: balance the calculation in regards to the new flagella force and the base movement force
+
+        totalHexes = 0;
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelle = organelles[i];
+            totalHexes += organelle.Definition.HexCount;
+
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
+            Vector3 organelleDirection = GetOrganelleDirection(organelle);
+
+            // We decompose the vector of the organelle orientation in 2 vectors, forward and right
+            // To get the backward and left is easy because they are the opposite of those former 2
+            forwardDirectionFactor = organelleDirection.Dot(Vector3.Forward);
+            backwardDirectionFactor = -forwardDirectionFactor;
+            rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
+            leftDirectionFactor = -rightDirectionFactor;
+
+            float movementConstant =
+                Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
+
+            movementConstant += organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades configuration ?
+                Constants.FLAGELLA_MAX_UPGRADE_FORCE
+                * configuration.LengthFraction :
+                0;
+
+            if (!isBacteria)
+                movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+
+            // We get the movement force for every direction as well
+            forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
+            backwardsDirectionMovementForce += MovementForce(movementConstant, backwardDirectionFactor);
+            rightwardDirectionMovementForce += MovementForce(movementConstant, rightDirectionFactor);
+            leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
+        }
+
+        var maximumMovementDirection = MaximumSpeedDirection(organelles);
+
+        // Maximum-force direction is not normalized so we need to normalize it here
+        maximumMovementDirection = maximumMovementDirection.Normalized();
+
+        // Calculate the maximum total force-factors in the maximum-force direction
+        forwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Forward);
+        backwardDirectionFactor = -forwardDirectionFactor;
+        rightDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
+        leftDirectionFactor = -rightDirectionFactor;
+
+        // Add each movement force to the total movement force in the maximum-force direction.
+        organelleMovementForce += MovementForce(forwardsDirectionMovementForce, forwardDirectionFactor);
+        organelleMovementForce += MovementForce(backwardsDirectionMovementForce, backwardDirectionFactor);
+        organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
+        organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
+
+        float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
+
+        // Apply cell specialization bonus
+        organelleMovementForce *= totalSpecializationBonus;
+
+        return baseMovementForce + organelleMovementForce;
+    }
+
+    private static void AddOrganelleDensity(OrganelleDefinition definition, ref float totalVolume, ref float density)
+    {
+        var volume = definition.HexCount * definition.RelativeDensityVolume;
+        totalVolume += volume;
+        density += definition.Density * volume;
+    }
+
+    private static float EstimateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount, bool isBacteria)
+    {
+        float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
+        float density = Constants.BASE_CELL_DENSITY * totalVolume;
+        if (hexCount == 1)
+        {
+            AddOrganelleDensity(organelles[0].Definition, ref totalVolume, ref density);
+            return MassFromMembraneArea(MEMBRANE_MARGIN_DISC_AREA, isBacteria, density / totalVolume);
+        }
+
+        // Up to 32 connected hexes fit in 63 columns centred on the first organelle, one bit per column.
+        if (hexCount == 0 || hexCount > 32)
+            return EstimateFullHullMass(organelles, hexCount, isBacteria);
+
+        int columnOffset = hexCount - 1 - organelles[0].Position.Q;
+        Span<(int MinR, int MaxR)> columns = stackalloc (int, int)[2 * hexCount - 1];
+        ulong occupiedColumns = 0;
+
+        for (int i = 0; i < organelles.Count; ++i)
+        {
+            var organelle = organelles[i];
+            var definition = organelle.Definition;
+            AddOrganelleDensity(definition, ref totalVolume, ref density);
+            if (definition.HexCount == 1 && definition.Hexes[0] == default)
+            {
+                if (!IncludeInColumn(columns, ref occupiedColumns, organelle.Position, columnOffset))
+                    return EstimateFullHullMass(organelles, hexCount, isBacteria);
+
+                continue;
+            }
+
+            var offsets = definition.GetRotatedHexes(organelle.Orientation);
+            for (int j = 0; j < offsets.Count; ++j)
+            {
+                if (!IncludeInColumn(columns, ref occupiedColumns, organelle.Position + offsets[j], columnOffset))
+                    return EstimateFullHullMass(organelles, hexCount, isBacteria);
+            }
+        }
+
+        // A column's interior points lie between its endpoints and cannot extend the convex hull.
+        Span<Hex> hull = stackalloc Hex[2 * BitOperations.PopCount(occupiedColumns)];
+        int used = 0;
+        ulong remaining = occupiedColumns;
+        while (remaining != 0)
+        {
+            int column = BitOperations.TrailingZeroCount(remaining);
+            AppendHullPoint(new Hex(column, columns[column].MinR), hull, ref used, 0);
+            remaining &= remaining - 1;
+        }
+
+        int upperStart = used;
+        remaining = occupiedColumns;
+        while (remaining != 0)
+        {
+            int column = BitOperations.Log2(remaining);
+            AppendHullPoint(new Hex(column, columns[column].MaxR), hull, ref used, upperStart);
+            remaining ^= 1UL << column;
+        }
+
+        return MassFromMembraneArea(ExpandedHullArea(hull[..used]), isBacteria, density / totalVolume);
+    }
+
+    private static bool IncludeInColumn(Span<(int MinR, int MaxR)> columns, ref ulong occupiedColumns, Hex point,
+        int columnOffset)
+    {
+        int column = point.Q + columnOffset;
+        if ((uint)column >= (uint)columns.Length)
+            return false;
+
+        ulong bit = 1UL << column;
+        ref var bounds = ref columns[column];
+        if ((occupiedColumns & bit) == 0)
+        {
+            occupiedColumns |= bit;
+            bounds = (point.R, point.R);
+        }
+        else
+        {
+            bounds.MinR = Math.Min(bounds.MinR, point.R);
+            bounds.MaxR = Math.Max(bounds.MaxR, point.R);
+        }
+
+        return true;
+    }
+
+    private static float EstimateFullHullMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount,
+        bool isBacteria)
+    {
+        if (hexCount == 0)
+            return 0;
+
+        // The common small layouts fit on the stack. Both monotone chains together need at most 2 * hexCount slots.
+        Hex[]? rented = null;
+        Span<Hex> scratch = hexCount <= 64 ?
+            stackalloc Hex[3 * hexCount] :
+            (rented = ArrayPool<Hex>.Shared.Rent(3 * hexCount));
+        try
+        {
+            var points = scratch[..hexCount];
+            float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
+            float density = Constants.BASE_CELL_DENSITY * totalVolume;
+            int next = 0;
+            for (int i = 0; i < organelles.Count; ++i)
+            {
+                var organelle = organelles[i];
+                var definition = organelle.Definition;
+                AddOrganelleDensity(definition, ref totalVolume, ref density);
+                var offsets = definition.GetRotatedHexes(organelle.Orientation);
+                for (int j = 0; j < offsets.Count; ++j)
+                    points[next++] = organelle.Position + offsets[j];
+            }
+
+            float area = EstimateMembraneArea(points, scratch.Slice(hexCount, 2 * hexCount));
+            return MassFromMembraneArea(area, isBacteria, density / totalVolume);
+        }
+        finally
+        {
+            if (rented != null)
+                ArrayPool<Hex>.Shared.Return(rented);
+        }
+    }
+
+    private static float EstimateMembraneArea(Span<Hex> points, Span<Hex> hull)
+    {
+        // Build the convex hull of the occupied hex centres in axial coordinates, sorted along the grid axes.
+        points.Sort(static (a, b) => a.Q == b.Q ? a.R.CompareTo(b.R) : a.Q.CompareTo(b.Q));
+        int used = 0;
+        for (int i = 0; i < points.Length; ++i)
+            AppendHullPoint(points[i], hull, ref used, 0);
+
+        int upperStart = used - 1;
+        for (int i = points.Length - 2; i >= 0; --i)
+            AppendHullPoint(points[i], hull, ref used, upperStart);
+
+        return ExpandedHullArea(hull[..used]);
+    }
+
+    private static float ExpandedHullArea(ReadOnlySpan<Hex> hull)
+    {
+        // Close the polygon. For a straight line both directions contribute to its perimeter.
+        float perimeter = 0;
+        float twiceArea = 0;
+        var origin = hull[0];
+        var previous = hull[^1];
+        for (int i = 0; i < hull.Length; ++i)
+        {
+            var delta = hull[i] - previous;
+            float deltaQ = delta.Q;
+            float deltaR = delta.R;
+            perimeter += MathF.Sqrt(deltaQ * deltaQ + deltaQ * deltaR + deltaR * deltaR);
+            twiceArea += (previous.Q - origin.Q) * deltaR - (previous.R - origin.R) * deltaQ;
+            previous = hull[i];
+        }
+
+        // Expand the centre polygon by the membrane margin: a strip along every edge and a disc around the corners.
+        const float spacing = MathUtils.SQRT_3 * Constants.DEFAULT_HEX_SIZE;
+        float area = twiceArea * (0.25f * MathUtils.SQRT_3 * spacing * spacing);
+        return area + Constants.MEMBRANE_ROOM_FOR_ORGANELLES * spacing * perimeter + MEMBRANE_MARGIN_DISC_AREA;
+    }
+
+    private static float MassFromMembraneArea(float area, bool isBacteria, float density)
+    {
+        // The collision shape has unit thickness. Only the horizontal dimensions scale for a bacterium.
+        if (isBacteria)
+            area *= Constants.BACTERIA_CELL_SCALE * Constants.BACTERIA_CELL_SCALE;
+
+        return area * density;
+    }
+
+    private static void AppendHullPoint(Hex point, Span<Hex> hull, ref int used, int chainStart)
+    {
+        while (used - chainStart >= 2)
+        {
+            var previous = hull[used - 2];
+            var last = hull[used - 1] - previous;
+            var next = point - previous;
+            if ((long)last.Q * next.R > (long)last.R * next.Q)
+                break;
+
+            --used;
+        }
+
+        hull[used++] = point;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

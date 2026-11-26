@@ -290,13 +290,7 @@ public class SimulationCache
         float cached;
         if (species is MicrobeSpecies microbeSpecies)
         {
-            var organelles = microbeSpecies.Organelles;
-
-            // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
-            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
-
-            cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, microbeSpecies.MembraneType,
-                microbeSpecies.MembraneRigidity, microbeSpecies.IsBacteria, totalSpecializationBonus, true);
+            cached = MicrobeInternalCalculations.CalculateSpeedForAutoEvo(microbeSpecies);
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
