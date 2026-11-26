@@ -499,10 +499,10 @@ Godot usage
   `QueueFree`. You can instead call `DetachAndQueueFree`
   instead to detach them from parents automatically.
 
-- The order of Godot overridden methods in a class should be in the
-  following order: (class constructor), `_Ready`, `_EnterTree`, 
-  `_ExitTree`, `_Process`, `_Notification`, `_Input`, `_UnhandledInput`, 
-  (other callbacks)
+- Declare the class constructor before the Godot overrides. Then declare
+  `_Ready`, `_EnterTree`, `_ExitTree`, `_Process` and `_PhysicsProcess`
+  (in either order), `_Notification`, `_Draw`, `_Input`, `_UnhandledInput`,
+  then any other callbacks.
 
 - If you need to access parent objects, don't make a static public
   instance variables, instead pass callbacks etc. around to allow the

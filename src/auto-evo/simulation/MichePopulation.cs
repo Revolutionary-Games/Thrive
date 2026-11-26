@@ -21,6 +21,7 @@ public static class MichePopulation
         // This only seems to help a bit, so caching entirely in an auto-evo task by adding the cache parameter
         // to IRunStep.RunStep might not be worth the effort at all
         var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
+        cache.SetSpeciesReplacements(parameters.ReplacedSpecies);
 
         var insertWorkMemory = new Miche.InsertWorkingMemory();
         var workMemory = new WorkingMemory();
@@ -59,7 +60,7 @@ public static class MichePopulation
 
         var individualCost = CalculateIndividualCost(species, patch.Biome, cache);
 
-        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
+        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch, cache)) / individualCost);
     }
 
     /// <summary>
@@ -226,7 +227,7 @@ public static class MichePopulation
             if (totalScore <= 0)
                 continue;
 
-            AccumulateLeafEnergy(populations, patch, node, trackEnergy, workMemory, totalScore);
+            AccumulateLeafEnergy(populations, patch, node, trackEnergy, workMemory, totalScore, cache);
         }
 
         WritePatchPopulationResults(simulationConfiguration, patch, populations, trackEnergy, workMemory, cache);
@@ -373,13 +374,13 @@ public static class MichePopulation
     }
 
     private static void AccumulateLeafEnergy(RunResults populations, Patch patch, Miche node, bool trackEnergy,
-        WorkingMemory workMemory, float totalScore)
+        WorkingMemory workMemory, float totalScore, SimulationCache cache)
     {
         var species = workMemory.Species;
         var scoresDictionary = workMemory.Scores;
         var energyDictionary = workMemory.Energy;
 
-        var availableEnergy = node.Pressure.GetEnergy(patch);
+        var availableEnergy = node.Pressure.GetEnergy(patch, cache);
 
         foreach (var currentSpecies in species)
         {

@@ -20,6 +20,7 @@ using World = Arch.Core.World;
 ///   </para>
 /// </remarks>
 [ReadsComponent(typeof(CellProperties))]
+[ReadsComponent(typeof(Health))]
 [ReadsComponent(typeof(WorldPosition))]
 [WritesToComponent(typeof(PhysicsSensor))]
 [RunsOnMainThread]
@@ -80,14 +81,19 @@ public partial class GameteSystem : BaseSystem<World, float>
         gameWorld = null;
     }
 
+    private static bool CanFuse(in GameteCell gamete, in Health health)
+    {
+        return !gamete.IsUsed && !health.Dead && health.CurrentHealth > 0;
+    }
+
     [Query]
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref GameteCell gamete, ref CellProperties cellProperties,
-        ref MicrobeControl control, ref WorldPosition position, ref Physics physics,
+        ref MicrobeControl control, ref WorldPosition position, ref Physics physics, ref Health health,
         ref CollisionManagement collisionManagement, in Entity entity)
     {
-        if (gamete.IsUsed)
+        if (!CanFuse(in gamete, in health))
             return;
 
         if (gamete.IsMerging)
@@ -145,7 +151,8 @@ public partial class GameteSystem : BaseSystem<World, float>
         for (int i = 0; i < count; ++i)
         {
             var other = collisions![i].SecondEntity;
-            if (other == entity || !other.IsAliveAndHas<GameteCell>() || !other.Has<WorldPosition>())
+            if (other == entity || !other.IsAliveAndHas<GameteCell>() || !other.Has<Health>() ||
+                !other.Has<WorldPosition>())
             {
                 continue;
             }
@@ -153,7 +160,7 @@ public partial class GameteSystem : BaseSystem<World, float>
             ref var otherGamete = ref other.Get<GameteCell>();
 
             // Don't allow self-fertilization but require same species and compatible types
-            if (gamete.ForSpecies == otherGamete.ForSpecies &&
+            if (CanFuse(in otherGamete, in other.Get<Health>()) && gamete.ForSpecies == otherGamete.ForSpecies &&
                 GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
                 !IsSelfFertilization(gamete.EmittedBy, otherGamete.EmittedBy))
             {
@@ -197,7 +204,7 @@ public partial class GameteSystem : BaseSystem<World, float>
         for (int i = 0; i < count; ++i)
         {
             var other = collisions![i].SecondEntity;
-            if (other == entity || !other.IsAliveAndHas<GameteCell>())
+            if (other == entity || !other.IsAliveAndHas<GameteCell>() || !other.Has<Health>())
                 continue;
 
             if (gamete.IsMerging)
@@ -205,7 +212,7 @@ public partial class GameteSystem : BaseSystem<World, float>
 
             ref var otherGamete = ref other.Get<GameteCell>();
 
-            if (gamete.ForSpecies == otherGamete.ForSpecies &&
+            if (CanFuse(in otherGamete, in other.Get<Health>()) && gamete.ForSpecies == otherGamete.ForSpecies &&
                 GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
                 !IsSelfFertilization(gamete.EmittedBy, otherGamete.EmittedBy))
             {
@@ -243,7 +250,9 @@ public partial class GameteSystem : BaseSystem<World, float>
         ref MicrobeControl control, in Entity entity)
     {
         // TODO: maybe invalidate if distance has become too large for some reason?
-        if (!gamete.MergingWith.IsAliveAndHas<GameteCell>() || !gamete.MergingWith.Has<WorldPosition>())
+        if (!gamete.MergingWith.IsAliveAndHas<GameteCell>() || !gamete.MergingWith.Has<Health>() ||
+            !gamete.MergingWith.Has<WorldPosition>() ||
+            !CanFuse(in gamete.MergingWith.Get<GameteCell>(), in gamete.MergingWith.Get<Health>()))
         {
             // Target invalid. Go back to normal.
             gamete.IsMerging = false;
@@ -348,6 +357,10 @@ public partial class GameteSystem : BaseSystem<World, float>
     private bool SpawnOffspring(ref GameteCell gamete, in Entity entity, ref GameteCell otherGamete,
         in Entity otherEntity, Vector3 spawnPosition)
     {
+        // Gametes from older saves can still merge below the gameplay plane (but a fix ensures gametes spawned
+        // in fresh games are always at Y=0 already) so this is a safety insurance.
+        spawnPosition.Y = 0;
+
         if (gamete.IsPlayer || otherGamete.IsPlayer)
         {
             GD.Print("Player gamete has managed to merge");
