@@ -70,6 +70,7 @@ public partial class SaveList : ScrollContainer
 
     private List<string>? pendingSaveNames;
     private bool refreshedAtLeastOnce;
+    private bool restartSaveScan;
 
 #pragma warning disable CA2213 // Task is disposed after its result is consumed
     private Task<List<string>>? readSavesList;
@@ -92,6 +93,9 @@ public partial class SaveList : ScrollContainer
 
     [Signal]
     public delegate void OnSelectedChangedEventHandler();
+
+    [Signal]
+    public delegate void OnSelectedItemReadyEventHandler();
 
     [Signal]
     public delegate void OnItemsChangedEventHandler();
@@ -119,6 +123,7 @@ public partial class SaveList : ScrollContainer
             {
                 wasVisible = false;
                 CancelPreviewLoad();
+                restartSaveScan = readSavesList != null;
                 nextPreviewIndex = Math.Max(0, previousFirstVisible);
                 needsInitialVisibilityCheck = true;
             }
@@ -214,6 +219,16 @@ public partial class SaveList : ScrollContainer
         if (!readSavesList!.IsCompleted)
             return;
 
+        if (restartSaveScan)
+        {
+            // The save directory may have changed while the list was hidden
+            restartSaveScan = false;
+            readSavesList.Dispose();
+            readSavesList = null;
+            Refresh();
+            return;
+        }
+
         // TaskExecutor reports failures, so finish the refresh with an empty list if the scan failed
         if (readSavesList.IsCompletedSuccessfully && readSavesList.Result.Count > 0)
             pendingSaveNames = readSavesList.Result;
@@ -235,6 +250,11 @@ public partial class SaveList : ScrollContainer
         {
             item.Connect(SaveListItem.SignalName.OnSelectedChanged,
                 new Callable(this, nameof(OnSubItemSelectedChanged)));
+            item.Connect(SaveListItem.SignalName.OnDataReady, Callable.From(() =>
+            {
+                if (item.Selected)
+                    EmitSignal(SignalName.OnSelectedItemReady);
+            }));
         }
 
         item.Connect(SaveListItem.SignalName.OnDoubleClicked,

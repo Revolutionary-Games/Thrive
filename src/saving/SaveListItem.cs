@@ -74,6 +74,9 @@ public partial class SaveListItem : PanelContainer
     public delegate void OnSelectedChangedEventHandler();
 
     [Signal]
+    public delegate void OnDataReadyEventHandler();
+
+    [Signal]
     public delegate void OnDoubleClickedEventHandler();
 
     [Signal]
@@ -147,6 +150,7 @@ public partial class SaveListItem : PanelContainer
     }
 
     public bool IsLoadingData => loadingData;
+    public bool IsDataReady => dataLoaded;
 
     public override void _Ready()
     {
@@ -269,6 +273,7 @@ public partial class SaveListItem : PanelContainer
         loadingData = false;
         dataLoaded = true;
         loadButton.Disabled = false;
+        EmitSignal(SignalName.OnDataReady);
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -279,7 +284,9 @@ public partial class SaveListItem : PanelContainer
 
             if (mouse.DoubleClick)
             {
-                EmitSignal(SignalName.OnDoubleClicked);
+                // The save screen can choose an overwrite target using just the filename
+                if (!Loadable || dataLoaded)
+                    EmitSignal(SignalName.OnDoubleClicked);
             }
             else
             {

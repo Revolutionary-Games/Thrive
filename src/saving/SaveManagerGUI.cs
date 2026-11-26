@@ -84,6 +84,7 @@ public partial class SaveManagerGUI : Control
     public override void _Ready()
     {
         saveList.Connect(SaveList.SignalName.OnItemsChanged, new Callable(this, nameof(RefreshSaveCounts)));
+        saveList.Connect(SaveList.SignalName.OnSelectedItemReady, new Callable(this, nameof(UpdateButtonsStatus)));
     }
 
     public override void _Process(double delta)
@@ -153,10 +154,11 @@ public partial class SaveManagerGUI : Control
 
     private void RefreshSaveCounts()
     {
+        OnSelectedChanged();
+
         if (refreshing)
             return;
 
-        selectedDirty = true;
         saveCountRefreshed = true;
         refreshing = true;
 
@@ -176,7 +178,7 @@ public partial class SaveManagerGUI : Control
 
     private void UpdateButtonsStatus()
     {
-        loadButton.Disabled = Selected.Count != 1;
+        loadButton.Disabled = Selected.Count != 1 || !Selected[0].IsDataReady;
         deleteSelectedButton.Disabled = Selected.Count == 0;
         deleteOldButton.Disabled = currentAutoSaveCount < 2 &&
             currentQuickSaveCount < 2 &&
@@ -185,7 +187,7 @@ public partial class SaveManagerGUI : Control
 
     private void LoadFirstSelectedSave()
     {
-        if (Selected.Count < 1)
+        if (Selected.Count != 1 || !Selected[0].IsDataReady)
             return;
 
         Selected[0].LoadThisSave();
