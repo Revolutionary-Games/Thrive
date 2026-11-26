@@ -40,6 +40,11 @@ public partial class AchievementsView : Control
         achievementsPopup.WindowTitle = Localization.Translate("ACHIEVEMENTS_TOTAL").FormatSafe(unlocked, total);
     }
 
+    public void SetPopupOpacity(float opacity)
+    {
+        achievementsPopup.Modulate = achievementsPopup.Modulate with { A = opacity };
+    }
+
     private void PopupClosed()
     {
         EmitSignal(SignalName.OnClosed);

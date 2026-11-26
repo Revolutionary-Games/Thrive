@@ -8,6 +8,9 @@ using Godot;
 [GodotAutoload]
 public partial class PauseMenu : CanvasLayer
 {
+    private const double MENU_FADE_OUT_DURATION = 0.1;
+    private const double MENU_FADE_IN_DURATION = 0.2;
+
 #pragma warning disable CA2213
     private static PauseMenu? instance;
 
@@ -33,6 +36,7 @@ public partial class PauseMenu : CanvasLayer
     private CustomConfirmationDialog unsavedProgressWarning = null!;
 
     private AnimationPlayer animationPlayer = null!;
+    private Tween? menuTransition;
 #pragma warning restore CA2213
 
     private GameProperties? gameProperties;
@@ -195,6 +199,13 @@ public partial class PauseMenu : CanvasLayer
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
                     break;
+                case ActiveMenuType.Achievements:
+                {
+                    achievementsView.Show();
+                    achievementsView.OpenPopup();
+                    break;
+                }
+
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;
@@ -300,6 +311,7 @@ public partial class PauseMenu : CanvasLayer
 
     public void ReportStageTransition()
     {
+        StopMenuTransition();
         GameState = MainGameState.Invalid;
         ApplyGameState();
     }
@@ -318,7 +330,7 @@ public partial class PauseMenu : CanvasLayer
         if (Visible)
         {
             // TODO: should this force player back to the base of the menu?
-            ActiveMenu = ActiveMenuType.Primary;
+            ForgetCurrentlyOpenPage();
 
             Close();
             EmitSignal(SignalName.OnResumed);
@@ -348,8 +360,7 @@ public partial class PauseMenu : CanvasLayer
             return;
         }
 
-        Open();
-        OpenThriveopediaPressed();
+        GUICommon.Instance.PlayButtonPressSound();
         ThriveopediaManager.OpenPage("MechanicsRoot");
     }
 
@@ -386,9 +397,7 @@ public partial class PauseMenu : CanvasLayer
         if (GameLoading)
             return;
 
-        Open();
-        OpenThriveopediaPressed();
-
+        GUICommon.Instance.PlayButtonPressSound();
         ThriveopediaManager.OpenPage($"species:{speciesId}");
     }
 
@@ -413,6 +422,7 @@ public partial class PauseMenu : CanvasLayer
     /// </summary>
     public void ForgetCurrentlyOpenPage()
     {
+        StopMenuTransition();
         ActiveMenu = ActiveMenuType.Primary;
     }
 
@@ -431,6 +441,8 @@ public partial class PauseMenu : CanvasLayer
 
     private void OnClose(bool playAnimation)
     {
+        StopMenuTransition();
+
         if (playAnimation)
         {
             animationPlayer.Play("Close");
@@ -460,6 +472,71 @@ public partial class PauseMenu : CanvasLayer
             ActiveMenuType.None => null,
             _ => throw new NotSupportedException($"{value} is not supported"),
         };
+    }
+
+    private void TransitionToMenu(ActiveMenuType nextMenu, bool skipFadeOut = false)
+    {
+        if (!paused)
+            return;
+
+        var currentMenu = ActiveMenu;
+        if (currentMenu == nextMenu)
+        {
+            if (skipFadeOut)
+                StopMenuTransition();
+
+            return;
+        }
+
+        var currentOpacity = GetControlFromMenuEnum(currentMenu)?.Modulate.A ?? 1.0f;
+        StopMenuTransition();
+
+        var tween = CreateTween().SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+        tween.SetPauseMode(Tween.TweenPauseMode.Process);
+        menuTransition = tween;
+
+        if (skipFadeOut)
+        {
+            SwitchAtMidpoint();
+        }
+        else
+        {
+            SetMenuOpacity(currentMenu, currentOpacity);
+            tween.TweenMethod(Callable.From<float>(opacity => SetMenuOpacity(currentMenu, opacity)),
+                currentOpacity, 0.0f, MENU_FADE_OUT_DURATION);
+            tween.TweenCallback(Callable.From(SwitchAtMidpoint));
+        }
+
+        tween.TweenMethod(Callable.From<float>(opacity => SetMenuOpacity(nextMenu, opacity)),
+            0.0f, 1.0f, MENU_FADE_IN_DURATION);
+        tween.TweenCallback(Callable.From(() => menuTransition = null));
+
+        void SwitchAtMidpoint()
+        {
+            SetMenuOpacity(nextMenu, 0.0f);
+            ActiveMenu = nextMenu;
+            SetMenuOpacity(currentMenu, 1.0f);
+        }
+    }
+
+    private void StopMenuTransition()
+    {
+        if (menuTransition == null)
+            return;
+
+        menuTransition.Kill();
+        menuTransition = null;
+        SetMenuOpacity(ActiveMenu, 1.0f);
+    }
+
+    private void SetMenuOpacity(ActiveMenuType menu, float opacity)
+    {
+        var control = GetControlFromMenuEnum(menu);
+        control?.Modulate = control.Modulate with { A = opacity };
+
+        // The achievements window is a top-level control and needs its own modulation
+        if (menu == ActiveMenuType.Achievements)
+            achievementsView.SetPopupOpacity(opacity);
     }
 
     private void ClosePressed()
@@ -530,6 +607,7 @@ public partial class PauseMenu : CanvasLayer
 
     private void ReturnToMenu()
     {
+        StopMenuTransition();
         Paused = false;
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenu, false);
@@ -549,57 +627,53 @@ public partial class PauseMenu : CanvasLayer
         if (thriveopedia == null)
             throw new InvalidOperationException("Pause menu needs to be added to the scene first");
 
-        Open();
-        SwitchToThriveopedia();
+        if (!paused)
+            Open();
+
+        // The requested page needs the Thriveopedia to be open when ChangePage is called
+        TransitionToMenu(ActiveMenuType.Thriveopedia, true);
         thriveopedia.ChangePage(pageName, false);
     }
 
     private void OpenThriveopediaPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        SwitchToThriveopedia();
-    }
-
-    private void SwitchToThriveopedia()
-    {
-        // Switch without the sound
-        ActiveMenu = ActiveMenuType.Thriveopedia;
+        TransitionToMenu(ActiveMenuType.Thriveopedia);
     }
 
     private void CloseHelpPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Primary;
+        TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void OpenAchievementsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Achievements;
-        achievementsView.OpenPopup();
+        TransitionToMenu(ActiveMenuType.Achievements);
     }
 
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Load;
+        TransitionToMenu(ActiveMenuType.Load);
     }
 
     private void CloseLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Primary;
+        TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void OpenOptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Options;
+        TransitionToMenu(ActiveMenuType.Options);
     }
 
     private void OpenReportBugPressed()
@@ -609,12 +683,14 @@ public partial class PauseMenu : CanvasLayer
 
     private void OnThriveopediaClosed()
     {
-        ActiveMenu = ActiveMenuType.Primary;
+        TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void OnAchievementsClosed()
     {
-        ActiveMenu = ActiveMenuType.Primary;
+        // The popup also emits Closed when switching away hides its parent
+        if (achievementsView.Visible)
+            TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void OnSceneChangedFromThriveopedia()
@@ -628,26 +704,26 @@ public partial class PauseMenu : CanvasLayer
 
     private void OnOptionsClosed()
     {
-        ActiveMenu = ActiveMenuType.Primary;
+        TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Save;
+        TransitionToMenu(ActiveMenuType.Save);
     }
 
     private void CloseSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = ActiveMenuType.Primary;
+        TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void ForwardSaveAction(string name)
     {
-        ActiveMenu = ActiveMenuType.Primary;
+        ForgetCurrentlyOpenPage();
 
         // Close this first to get the menus out of the way to capture the save screenshot
         // This skips the animation explicitly
