@@ -300,8 +300,9 @@ public static class MicrobeInternalCalculations
     ///   but potentially also cell adjacency and axon bonuses.
     /// </param>
     /// <param name="useEstimate">
-    ///   If true, uses a mass estimate algorithm instead of generating shapeMasses. This is generally for auto-evo,
-    ///   since in that context generating a shapeMass takes too long.
+    ///   If true, estimates mass from organelle densities and hex counts for a one-member multicellular species.
+    ///   Otherwise, uses the mass of the physical shape. Auto-Evo uses <see cref="CalculateSpeedForAutoEvo"/>
+    ///   for single-celled species to account for the layout of their organelles.
     /// </param>
     /// <returns>
     ///   A single speed value taking into account both thrust and drag.
@@ -431,16 +432,13 @@ public static class MicrobeInternalCalculations
 
     public static float CalculateAverageDensity(IEnumerable<IPositionedOrganelle> organelles)
     {
-        float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
-
-        float density = Constants.BASE_CELL_DENSITY * Constants.BASE_CELL_DENSITY_VOLUME;
-
+        var density = new CellDensityAccumulator();
         foreach (var organelle in organelles)
         {
-            AddOrganelleDensity(organelle.Definition, ref totalVolume, ref density);
+            density.Add(organelle.Definition);
         }
 
-        return density / totalVolume;
+        return density.AverageDensity;
     }
 
     public static float CalculateDigestionSpeed(int enzymeCount, float totalSpecializationBonus)
@@ -1142,27 +1140,41 @@ public static class MicrobeInternalCalculations
         return baseMovementForce + organelleMovementForce;
     }
 
-    private static void AddOrganelleDensity(OrganelleDefinition definition, ref float totalVolume, ref float density)
-    {
-        var volume = definition.HexCount * definition.RelativeDensityVolume;
-        totalVolume += volume;
-        density += definition.Density * volume;
-    }
-
     private static float EstimateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount, bool isBacteria)
     {
-        float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
-        float density = Constants.BASE_CELL_DENSITY * totalVolume;
+        if (hexCount == 0)
+            return 0;
+
+        float area;
+        float averageDensity;
         if (hexCount == 1)
         {
-            AddOrganelleDensity(organelles[0].Definition, ref totalVolume, ref density);
-            return MassFromMembraneArea(MEMBRANE_MARGIN_DISC_AREA, isBacteria, density / totalVolume);
+            var density = new CellDensityAccumulator();
+            density.Add(organelles[0].Definition);
+            averageDensity = density.AverageDensity;
+            area = MEMBRANE_MARGIN_DISC_AREA;
+        }
+        else if (hexCount <= 32)
+        {
+            // Up to 32 connected hexes fit in 63 columns centred on the first organelle, one bit per column.
+            area = CalculateMembraneAreaByColumns(organelles, hexCount, out averageDensity);
+        }
+        else
+        {
+            area = CalculateMembraneAreaBySorting(organelles, hexCount, out averageDensity);
         }
 
-        // Up to 32 connected hexes fit in 63 columns centred on the first organelle, one bit per column.
-        if (hexCount == 0 || hexCount > 32)
-            return EstimateFullHullMass(organelles, hexCount, isBacteria);
+        // The collision shape has unit thickness. Only the horizontal dimensions scale for a bacterium.
+        if (isBacteria)
+            area *= Constants.BACTERIA_CELL_SCALE * Constants.BACTERIA_CELL_SCALE;
 
+        return area * averageDensity;
+    }
+
+    private static float CalculateMembraneAreaByColumns(IReadOnlyList<OrganelleTemplate> organelles, int hexCount,
+        out float averageDensity)
+    {
+        var density = new CellDensityAccumulator();
         int columnOffset = hexCount - 1 - organelles[0].Position.Q;
         Span<(int MinR, int MaxR)> columns = stackalloc (int, int)[2 * hexCount - 1];
         ulong occupiedColumns = 0;
@@ -1171,11 +1183,11 @@ public static class MicrobeInternalCalculations
         {
             var organelle = organelles[i];
             var definition = organelle.Definition;
-            AddOrganelleDensity(definition, ref totalVolume, ref density);
+            density.Add(definition);
             if (definition.HexCount == 1 && definition.Hexes[0] == default)
             {
                 if (!IncludeInColumn(columns, ref occupiedColumns, organelle.Position, columnOffset))
-                    return EstimateFullHullMass(organelles, hexCount, isBacteria);
+                    return CalculateMembraneAreaBySorting(organelles, hexCount, out averageDensity);
 
                 continue;
             }
@@ -1184,7 +1196,7 @@ public static class MicrobeInternalCalculations
             for (int j = 0; j < offsets.Count; ++j)
             {
                 if (!IncludeInColumn(columns, ref occupiedColumns, organelle.Position + offsets[j], columnOffset))
-                    return EstimateFullHullMass(organelles, hexCount, isBacteria);
+                    return CalculateMembraneAreaBySorting(organelles, hexCount, out averageDensity);
             }
         }
 
@@ -1208,7 +1220,8 @@ public static class MicrobeInternalCalculations
             remaining ^= 1UL << column;
         }
 
-        return MassFromMembraneArea(ExpandedHullArea(hull[..used]), isBacteria, density / totalVolume);
+        averageDensity = density.AverageDensity;
+        return ExpandedHullArea(hull[..used]);
     }
 
     private static bool IncludeInColumn(Span<(int MinR, int MaxR)> columns, ref ulong occupiedColumns, Hex point,
@@ -1234,12 +1247,9 @@ public static class MicrobeInternalCalculations
         return true;
     }
 
-    private static float EstimateFullHullMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount,
-        bool isBacteria)
+    private static float CalculateMembraneAreaBySorting(IReadOnlyList<OrganelleTemplate> organelles, int hexCount,
+        out float averageDensity)
     {
-        if (hexCount == 0)
-            return 0;
-
         // The common small layouts fit on the stack. Both monotone chains together need at most 2 * hexCount slots.
         Hex[]? rented = null;
         Span<Hex> scratch = hexCount <= 64 ?
@@ -1248,21 +1258,22 @@ public static class MicrobeInternalCalculations
         try
         {
             var points = scratch[..hexCount];
-            float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
-            float density = Constants.BASE_CELL_DENSITY * totalVolume;
+            var density = new CellDensityAccumulator();
             int next = 0;
             for (int i = 0; i < organelles.Count; ++i)
             {
                 var organelle = organelles[i];
                 var definition = organelle.Definition;
-                AddOrganelleDensity(definition, ref totalVolume, ref density);
+                density.Add(definition);
                 var offsets = definition.GetRotatedHexes(organelle.Orientation);
                 for (int j = 0; j < offsets.Count; ++j)
                     points[next++] = organelle.Position + offsets[j];
             }
 
-            float area = EstimateMembraneArea(points, scratch.Slice(hexCount, 2 * hexCount));
-            return MassFromMembraneArea(area, isBacteria, density / totalVolume);
+            averageDensity = density.AverageDensity;
+            var hull = scratch.Slice(hexCount, 2 * hexCount);
+            int used = BuildHullBySorting(points, hull);
+            return ExpandedHullArea(hull[..used]);
         }
         finally
         {
@@ -1271,7 +1282,7 @@ public static class MicrobeInternalCalculations
         }
     }
 
-    private static float EstimateMembraneArea(Span<Hex> points, Span<Hex> hull)
+    private static int BuildHullBySorting(Span<Hex> points, Span<Hex> hull)
     {
         // Build the convex hull of the occupied hex centres in axial coordinates, sorted along the grid axes.
         points.Sort(static (a, b) => a.Q == b.Q ? a.R.CompareTo(b.R) : a.Q.CompareTo(b.Q));
@@ -1283,7 +1294,7 @@ public static class MicrobeInternalCalculations
         for (int i = points.Length - 2; i >= 0; --i)
             AppendHullPoint(points[i], hull, ref used, upperStart);
 
-        return ExpandedHullArea(hull[..used]);
+        return used;
     }
 
     private static float ExpandedHullArea(ReadOnlySpan<Hex> hull)
@@ -1307,15 +1318,6 @@ public static class MicrobeInternalCalculations
         const float spacing = MathUtils.SQRT_3 * Constants.DEFAULT_HEX_SIZE;
         float area = twiceArea * (0.25f * MathUtils.SQRT_3 * spacing * spacing);
         return area + Constants.MEMBRANE_ROOM_FOR_ORGANELLES * spacing * perimeter + MEMBRANE_MARGIN_DISC_AREA;
-    }
-
-    private static float MassFromMembraneArea(float area, bool isBacteria, float density)
-    {
-        // The collision shape has unit thickness. Only the horizontal dimensions scale for a bacterium.
-        if (isBacteria)
-            area *= Constants.BACTERIA_CELL_SCALE * Constants.BACTERIA_CELL_SCALE;
-
-        return area * density;
     }
 
     private static void AppendHullPoint(Hex point, Span<Hex> hull, ref int used, int chainStart)
@@ -1403,5 +1405,29 @@ public static class MicrobeInternalCalculations
         }
 
         return maximumMovementDirection;
+    }
+
+    /// <summary>
+    ///   Accumulates the volume-weighted density of the base cell and its organelles.
+    /// </summary>
+    private struct CellDensityAccumulator
+    {
+        private float totalVolume;
+        private float weightedDensity;
+
+        public CellDensityAccumulator()
+        {
+            totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
+            weightedDensity = Constants.BASE_CELL_DENSITY * totalVolume;
+        }
+
+        public readonly float AverageDensity => weightedDensity / totalVolume;
+
+        public void Add(OrganelleDefinition definition)
+        {
+            var volume = definition.HexCount * definition.RelativeDensityVolume;
+            totalVolume += volume;
+            weightedDensity += definition.Density * volume;
+        }
     }
 }
