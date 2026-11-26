@@ -185,6 +185,9 @@ public partial class PauseMenu : CanvasLayer
             if (value == currentActiveMenu)
                 return;
 
+            if (currentActiveMenu == ActiveMenuType.Achievements)
+                achievementsView.ClosePopup();
+
             GetControlFromMenuEnum(currentActiveMenu)?.Hide();
 
             switch (value)
@@ -252,6 +255,9 @@ public partial class PauseMenu : CanvasLayer
         Visible = false;
 
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        // We want to animate the achievements closing so we disable the default close
+        achievementsView.DeferPopupClose = true;
 
         unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
 
@@ -688,9 +694,7 @@ public partial class PauseMenu : CanvasLayer
 
     private void OnAchievementsClosed()
     {
-        // The popup also emits Closed when switching away hides its parent
-        if (achievementsView.Visible)
-            TransitionToMenu(ActiveMenuType.Primary);
+        TransitionToMenu(ActiveMenuType.Primary);
     }
 
     private void OnSceneChangedFromThriveopedia()
