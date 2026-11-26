@@ -1358,7 +1358,7 @@ public static class Constants
     /// <summary>
     ///   The compound gaining threshold for if a spore can decide to germinate or not
     /// </summary>
-    public const float SPORE_GERMINATION_COMPOUND_THRESHOLD = 0.6f;
+    public const GERMINATION_THRESHOLD = 0.6f;
 
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
