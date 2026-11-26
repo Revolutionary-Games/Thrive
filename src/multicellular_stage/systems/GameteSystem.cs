@@ -357,6 +357,10 @@ public partial class GameteSystem : BaseSystem<World, float>
     private bool SpawnOffspring(ref GameteCell gamete, in Entity entity, ref GameteCell otherGamete,
         in Entity otherEntity, Vector3 spawnPosition)
     {
+        // Gametes from older saves can still merge below the gameplay plane (but a fix ensures gametes spawned
+        // in fresh games are always at Y=0 already) so this is a safety insurance.
+        spawnPosition.Y = 0;
+
         if (gamete.IsPlayer || otherGamete.IsPlayer)
         {
             GD.Print("Player gamete has managed to merge");

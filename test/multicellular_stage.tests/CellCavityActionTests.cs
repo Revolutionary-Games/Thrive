@@ -5,16 +5,18 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Arch.Buffer;
+using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 using GdUnit4;
 using Godot;
 using Saving.Serializers;
 using SharedBase.Archive;
+using Test.Utils;
 using static GdUnit4.Assertions;
 
 /// <summary>
-///   Checks cavity actions, cell detachment, and editor source mappings.
+///   Checks cavity actions, editor source mappings, and cavity cell behaviour in gameplay.
 /// </summary>
 [TestSuite]
 [RequireGodotRuntime]
@@ -240,6 +242,44 @@ public class CellCavityActionTests
         AssertThat(member.Get<Health>().Dead).IsEqual(isCavity);
         AssertThat(member.Has<MicrobeColonyMember>()).IsFalse();
         AssertThat(member.Has<AttachedToEntity>()).IsEqual(!removeAttachedComponent);
+    }
+
+    [TestCase]
+    public void GameteLaunchedFromCavityCellSpawnsOnGameplayPlane()
+    {
+        using var world = new TestWorldSimulation();
+        var spawnEnvironment = new DummyMicrobeSpawnEnvironment();
+        var (species, first) = CreateSpecies();
+        var simulationParameters = SimulationParameters.Instance;
+        var type = first.Data!.ModifiableCellType;
+        type.MembraneType = simulationParameters.GetMembrane("single");
+        type.ModifiableOrganelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+        var cavityHex = new Hex(1, 0);
+        var cavityTemplate = new CellTemplate(type, cavityHex, 0, true);
+        species.ModifiableEditorCells.AddFast(new HexWithData<CellTemplate>(cavityTemplate, cavityHex, 0), [], []);
+        species.ModifiableGameplayCells.AddFast(first.Data, [], []);
+        species.ModifiableGameplayCells.AddFast(cavityTemplate, [], []);
+        species.ReproductionMethod = MulticellularReproductionMethod.SexualIsogamy;
+        var gameteType = type.Clone(true);
+        gameteType.CellTypeName = "Gamete";
+        species.ModifiableCellTypes.Add(gameteType);
+        species.ModifiableGameteTypeA = gameteType;
+        species.OnEdited();
+
+        var leader = world.EntitySystem.Create(new WorldPosition(Vector3.Zero), new MicrobeSex { Sex = GameteType.A });
+
+        // Place the cavity ahead of the leader so it is picked as the launch position.
+        var cavityPosition = new Vector3(2, Constants.CAVITY_CELL_Y_OFFSET, -10);
+        var cavity = world.EntitySystem.Create(new WorldPosition(cavityPosition));
+        var colony = new MicrobeColony(leader, MicrobeState.Normal, leader, cavity);
+        var growth = new MulticellularGrowth(species);
+
+        growth.ShootGamete(ref colony, leader, species, world, spawnEnvironment, new DummySpawnSystem(), true);
+        world.ProcessAll(0.1f);
+
+        var gamete = new FirstEntityGrabber(new QueryDescription().WithAll<GameteCell>(), world.EntitySystem).Found;
+        AssertThat(gamete.Get<WorldPosition>().Position).IsEqual(new Vector3(cavityPosition.X, 0, cavityPosition.Z));
     }
 
     [TestCase]

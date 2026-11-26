@@ -1167,6 +1167,9 @@ public static class SpawnHelpers
             cellBodyPlanIndex = 0;
         }
 
+        // Project launch positions from cavity cells onto the gameplay plane for gamete movement and collisions
+        location.Y = 0;
+
         // We use the gamete type and -1 as the index to spawn this cell in a bit special state
         var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
             true, (gameteType, cellBodyPlanIndex), gamete, out entity, MulticellularSpawnState.Offspring);
