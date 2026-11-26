@@ -8,10 +8,11 @@ using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
-///   Handles playing (and stopping) of microbe movement sound
+///   Handles microbe swimming and turning sounds
 /// </summary>
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(Engulfable))]
+[ReadsComponent(typeof(Health))]
 [ReadsComponent(typeof(Physics))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
@@ -26,10 +27,11 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref MicrobeStatus status, ref MicrobeControl control,
-        ref Physics physics, ref SoundEffectPlayer soundEffectPlayer, ref Engulfable engulfable)
+        ref Physics physics, ref SoundEffectPlayer soundEffectPlayer, ref Engulfable engulfable, in Health health)
     {
-        if (control.MovementDirection != Vector3.Zero &&
-            engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+        bool isEngulfed = engulfable.PhagocytosisStep != PhagocytosisPhase.None;
+
+        if (control.MovementDirection != Vector3.Zero && !isEngulfed)
         {
             var acceleration = physics.Velocity - status.LastLinearVelocity;
             var deltaAcceleration = (acceleration - status.LastLinearAcceleration).LengthSquared();
@@ -40,9 +42,7 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
             if (status.MovementSoundCooldownTimer > 0)
                 status.MovementSoundCooldownTimer -= delta;
 
-            // The cell starts moving from a relatively idle velocity, so play the begin movement sound
-            // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
-            // calculation - Kasterisk
+            // The cell starts swimming from a relatively idle velocity, so play the begin movement sound
             if (status.MovementSoundCooldownTimer <= 0 &&
                 deltaAcceleration > status.LastLinearAcceleration.LengthSquared() &&
                 status.LastLinearVelocity.LengthSquared() <= 1)
@@ -63,6 +63,25 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
             // If not moving or this is engulfed, then start turning down the movement sound
 
             soundEffectPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_MOVEMENT_SOUND, delta);
+        }
+
+        // Play the turning sound separately
+
+        var turnRate = MathF.Abs(physics.AngularVelocity.Y);
+
+        // Ignore small steering corrections, which are particularly common for AI microbes.
+        if (turnRate > Constants.MICROBE_TURN_SOUND_MIN_RATE && !isEngulfed && !health.Dead &&
+            physics.IsBodyEffectivelyEnabled())
+        {
+            var volumeFraction = Math.Min((turnRate - Constants.MICROBE_TURN_SOUND_MIN_RATE) /
+                (Constants.MICROBE_TURN_SOUND_FULL_VOLUME_RATE - Constants.MICROBE_TURN_SOUND_MIN_RATE), 1.0f);
+
+            soundEffectPlayer.PlaySoundEffectIfNotPlayingAlready(Constants.MICROBE_TURN_SOUND,
+                Constants.MICROBE_TURN_SOUND_MAX_VOLUME * volumeFraction);
+        }
+        else
+        {
+            soundEffectPlayer.StopSound(Constants.MICROBE_TURN_SOUND);
         }
     }
 }

@@ -334,20 +334,6 @@ public partial class InputManager : Node
     }
 
     /// <summary>
-    ///   Calls the OnInput methods of the attributes where ActivationType is UnhandledInput.
-    ///   Ignores InputEventMouseMotion events.
-    ///   Sets the input as consumed, if it was consumed.
-    /// </summary>
-    /// <param name="event">The event the user fired</param>
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (PerformingRebind)
-            return;
-
-        OnInput(true, @event);
-    }
-
-    /// <summary>
     ///   Calls the OnInput methods of the attributes where ActivationType is Input.
     ///   Ignores InputEventMouseMotion events.
     ///   Sets the input as consumed, if it was consumed.
@@ -362,6 +348,20 @@ public partial class InputManager : Node
             return;
 
         OnInput(false, @event);
+    }
+
+    /// <summary>
+    ///   Calls the OnInput methods of the attributes where ActivationType is UnhandledInput.
+    ///   Ignores InputEventMouseMotion events.
+    ///   Sets the input as consumed, if it was consumed.
+    /// </summary>
+    /// <param name="event">The event the user fired</param>
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (PerformingRebind)
+            return;
+
+        OnInput(true, @event);
     }
 
     internal static bool CallMethod(InputAttribute attribute, bool warnIfTriesToConsume, object[] parameters)

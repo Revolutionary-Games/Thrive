@@ -499,6 +499,7 @@ public static class Constants
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX = 400;
 
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
+    public const string MICROBE_TURN_SOUND = "res://assets/sounds/soundeffects/microbe-movement-3.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
@@ -510,6 +511,11 @@ public static class Constants
 
     // TODO: should this volume be actually 0?
     public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 0.01f;
+
+    // Turn rates are measured in radians per second
+    public const float MICROBE_TURN_SOUND_MIN_RATE = 0.35f;
+    public const float MICROBE_TURN_SOUND_FULL_VOLUME_RATE = 9.0f;
+    public const float MICROBE_TURN_SOUND_MAX_VOLUME = 0.12f;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
@@ -1687,7 +1693,7 @@ public static class Constants
 
     // Patch event variables
     public const float VENT_ERUPTION_CHANCE = 0.15f;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.0005f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.055f;

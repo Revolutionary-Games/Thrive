@@ -30,6 +30,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
+[WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(MulticellularGrowth))]
 [WritesToComponent(typeof(Health))]
 [WritesToComponent(typeof(MicrobeColony))]
@@ -236,7 +237,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
 
     [Query]
     [All<OrganelleContainer, MicrobeShaderParameters, Physics, WorldPosition, MicrobeControl, ManualPhysicsControl,
-        SoundEffectPlayer, CompoundAbsorber, Engulfable, CompoundStorage, SpeciesMember>]
+        SoundEffectPlayer, Engulfable, CompoundStorage, SpeciesMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref Health health, ref CellProperties cellProperties, in Entity entity)
     {
@@ -353,10 +354,13 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         control.MovementDirection = new Vector3(0, 0, 0);
         organelleContainer.AllOrganellesDivided = false;
 
-        // Stop compound absorbing
-        ref var absorber = ref entity.Get<CompoundAbsorber>();
-        absorber.AbsorbSpeed = -1;
-        absorber.AbsorbRadius = -1;
+        // Gametes do not have a compound absorber
+        if (entity.Has<CompoundAbsorber>())
+        {
+            ref var absorber = ref entity.Get<CompoundAbsorber>();
+            absorber.AbsorbSpeed = -1;
+            absorber.AbsorbRadius = -1;
+        }
 
         // Disable collisions
         physics.SetCollisionDisableState(true);
@@ -374,16 +378,18 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             // Record player death in statistics
             gameWorld!.StatisticsTracker.TotalPlayerDeaths.Increment(1);
         }
-        else if (!species.PlayerSpecies)
+        else if (!entity.Has<GameteCell>())
         {
-            gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
-                Constants.CREATURE_DEATH_POPULATION_LOSS, Localization.Translate("DEATH"));
-        }
-        else
-        {
-            // Member of the player species died
-            if (difficulty is { PlayerSpeciesAIPopulationStrength: > 0 })
+            // Gametes are produced by existing individuals and do not count towards population
+
+            if (!species.PlayerSpecies)
             {
+                gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
+                    Constants.CREATURE_DEATH_POPULATION_LOSS, Localization.Translate("DEATH"));
+            }
+            else if (difficulty is { PlayerSpeciesAIPopulationStrength: > 0 })
+            {
+                // Member of the player species died
                 gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
                     (int)Math.Ceiling(Constants.CREATURE_DEATH_POPULATION_LOSS *
                         difficulty.PlayerSpeciesAIPopulationStrength), Localization.Translate("DEATH"));
