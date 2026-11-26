@@ -1693,7 +1693,7 @@ public static class Constants
 
     // Patch event variables
     public const float VENT_ERUPTION_CHANCE = 0.15f;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.0005f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.055f;
