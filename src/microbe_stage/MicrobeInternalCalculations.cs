@@ -1061,19 +1061,19 @@ public static class MicrobeInternalCalculations
     private static float CalculateMovementForce(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, float totalSpecializationBonus, out int totalHexes)
     {
-        float organelleMovementForce = 0;
+        float organelleThrust = 0;
 
-        // For each direction we calculate the organelles contribution to the movement force
-        float forwardsDirectionMovementForce = 0;
-        float backwardsDirectionMovementForce = 0;
-        float leftwardDirectionMovementForce = 0;
-        float rightwardDirectionMovementForce = 0;
+        // Accumulate the thrust available in each direction across all movement organelles.
+        float forwardThrust = 0;
+        float backwardThrust = 0;
+        float leftThrust = 0;
+        float rightThrust = 0;
 
         // Force factor for each direction
-        float forwardDirectionFactor;
-        float backwardDirectionFactor;
-        float rightDirectionFactor;
-        float leftDirectionFactor;
+        float forwardProjection;
+        float backwardProjection;
+        float rightProjection;
+        float leftProjection;
 
         // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
@@ -1090,29 +1090,27 @@ public static class MicrobeInternalCalculations
 
             Vector3 organelleDirection = GetOrganelleDirection(organelle);
 
-            // We decompose the vector of the organelle orientation in 2 vectors, forward and right
-            // To get the backward and left is easy because they are the opposite of those former 2
-            forwardDirectionFactor = organelleDirection.Dot(Vector3.Forward);
-            backwardDirectionFactor = -forwardDirectionFactor;
-            rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
-            leftDirectionFactor = -rightDirectionFactor;
+            // An organelle's position determines the direction of its thrust.
+            forwardProjection = organelleDirection.Dot(Vector3.Forward);
+            backwardProjection = -forwardProjection;
+            rightProjection = organelleDirection.Dot(Vector3.Right);
+            leftProjection = -rightProjection;
 
-            float movementConstant =
+            float thrust =
                 Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
 
-            movementConstant += organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades configuration ?
+            thrust += organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades configuration ?
                 Constants.FLAGELLA_MAX_UPGRADE_FORCE
                 * configuration.LengthFraction :
                 0;
 
             if (!isBacteria)
-                movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+                thrust *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
-            // We get the movement force for every direction as well
-            forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
-            backwardsDirectionMovementForce += MovementForce(movementConstant, backwardDirectionFactor);
-            rightwardDirectionMovementForce += MovementForce(movementConstant, rightDirectionFactor);
-            leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
+            forwardThrust += MovementForce(thrust, forwardProjection);
+            backwardThrust += MovementForce(thrust, backwardProjection);
+            rightThrust += MovementForce(thrust, rightProjection);
+            leftThrust += MovementForce(thrust, leftProjection);
         }
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
@@ -1120,24 +1118,23 @@ public static class MicrobeInternalCalculations
         // Maximum-force direction is not normalized so we need to normalize it here
         maximumMovementDirection = maximumMovementDirection.Normalized();
 
-        // Calculate the maximum total force-factors in the maximum-force direction
-        forwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Forward);
-        backwardDirectionFactor = -forwardDirectionFactor;
-        rightDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
-        leftDirectionFactor = -rightDirectionFactor;
+        forwardProjection = maximumMovementDirection.Dot(Vector3.Forward);
+        backwardProjection = -forwardProjection;
+        rightProjection = maximumMovementDirection.Dot(Vector3.Right);
+        leftProjection = -rightProjection;
 
-        // Add each movement force to the total movement force in the maximum-force direction.
-        organelleMovementForce += MovementForce(forwardsDirectionMovementForce, forwardDirectionFactor);
-        organelleMovementForce += MovementForce(backwardsDirectionMovementForce, backwardDirectionFactor);
-        organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
-        organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
+        // Project the accumulated thrust onto the cell's best movement direction.
+        organelleThrust += MovementForce(forwardThrust, forwardProjection);
+        organelleThrust += MovementForce(backwardThrust, backwardProjection);
+        organelleThrust += MovementForce(rightThrust, rightProjection);
+        organelleThrust += MovementForce(leftThrust, leftProjection);
 
         float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
 
-        // Apply cell specialization bonus
-        organelleMovementForce *= totalSpecializationBonus;
+        // Specialization affects organelle thrust only.
+        organelleThrust *= totalSpecializationBonus;
 
-        return baseMovementForce + organelleMovementForce;
+        return baseMovementForce + organelleThrust;
     }
 
     private static float EstimateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount, bool isBacteria)
