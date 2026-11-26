@@ -2293,7 +2293,7 @@ public class SimulationCache
                 var organelle = organelles[i];
                 if (organelle.Definition.HasChemoreceptorComponent &&
                     organelle.GetActiveTargetSpecies() is { } targetSpecies &&
-                    ResolveSpecies(targetSpecies) == preySpecies)
+                    ResolveSpecies(targetSpecies).ID == preySpecies.ID)
                 {
                     hasChemoreceptor = true;
                 }
@@ -2363,7 +2363,7 @@ public class SimulationCache
                 {
                     if (organelle.Definition.HasChemoreceptorComponent &&
                         organelle.GetActiveTargetSpecies() is { } targetSpecies &&
-                        ResolveSpecies(targetSpecies) == preySpecies)
+                        ResolveSpecies(targetSpecies).ID == preySpecies.ID)
                     {
                         hasChemoreceptor = true;
                     }
