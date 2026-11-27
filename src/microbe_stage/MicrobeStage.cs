@@ -7,6 +7,7 @@ using Arch.Core.Extensions;
 using Components;
 using Godot;
 using SharedBase.Archive;
+using Systems;
 
 /// <summary>
 ///   Main class for managing the microbe stage
@@ -1596,6 +1597,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
 
         ResetMulticellularAchievementLife();
+        SynchronizeMulticellularColours(WorldSimulation);
     }
 
     public override void OnSuicide()
@@ -1651,6 +1653,34 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 timed.FadeTimeRemainingSet = true;
             }
         }
+    }
+
+    /// <summary>
+    ///   Refreshes live members from their own current type at the main-thread editor and loading boundaries.
+    ///   This must run outside simulation updates and preserves each member's structure and growth state.
+    /// </summary>
+    internal static void SynchronizeMulticellularColours(IWorldSimulation worldSimulation)
+    {
+        worldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAll<MulticellularSpeciesMember, CellProperties, ColourAnimation, Health>(),
+            (Entity entity, ref MulticellularSpeciesMember member, ref CellProperties properties,
+                ref ColourAnimation animation, ref Health health) =>
+            {
+                if (health.Dead || !worldSimulation.IsEntityInWorld(entity))
+                    return;
+
+                properties.ApplyBaseColour(ref animation, member.MulticellularCellType.Colour);
+
+                // Repaint even when cached colours match: existing materials can still be out of date.
+                if (entity.Has<EntityMaterial>())
+                    MicrobeVisualsSystem.ApplyOrganelleColour(ref entity.Get<EntityMaterial>(), properties.Colour);
+
+                if (entity.Has<IntercellularMatrix>())
+                {
+                    IntercellularMatrixSystem.ApplyConnectionColour(ref entity.Get<IntercellularMatrix>(),
+                        properties.Colour);
+                }
+            });
     }
 
     protected override void SetupStage()
@@ -2241,6 +2271,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     private void OnFinishLoading()
     {
+        SynchronizeMulticellularColours(WorldSimulation);
+
         // TODO: re-read the player entity from the simulation as it is not currently saved (there should be a TODO
         // in somewhere like the entity reference converter about making this possible)
         Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
