@@ -15,6 +15,91 @@ public class GrowthCompoundsMatchCalculation
     private bool readyReported;
 
     [TestCase]
+    public void TestSporulatingColonySplitsCompoundsUsingSporeStorage()
+    {
+        using var worldSimulation = new TestWorldSimulation();
+        var spawnEnvironment = new DummyMicrobeSpawnEnvironment();
+        var spawnSystem = new DummySpawnSystem { AllowReproduction = true };
+        using var growthSystem = new MulticellularGrowthSystem(worldSimulation, spawnEnvironment, spawnSystem,
+            worldSimulation.EntitySystem);
+        growthSystem.SetWorld(new GameWorld(new WorldGenerationSettings()));
+
+        var parameters = SimulationParameters.Instance;
+        var membrane = parameters.GetMembrane("single");
+        var nucleus = parameters.GetOrganelleType("nucleus");
+        var cytoplasm = parameters.GetOrganelleType("cytoplasm");
+        var vacuole = parameters.GetOrganelleType("vacuole");
+        var glucoseStorage = new OrganelleUpgrades
+        {
+            CustomUpgradeData = new StorageComponentUpgrades(Compound.Glucose),
+        };
+
+        var rootType = new CellType(new OrganelleLayout<OrganelleTemplate>([
+            new OrganelleTemplate(nucleus, new Hex(0, 0), 0),
+            new OrganelleTemplate(cytoplasm, new Hex(5, 0), 0),
+            new OrganelleTemplate(vacuole, new Hex(6, 0), 0) { ModifiableUpgrades = glucoseStorage },
+        ], null, null), membrane);
+        var sporeType = new CellType(new OrganelleLayout<OrganelleTemplate>([
+            new OrganelleTemplate(nucleus, new Hex(0, 0), 0),
+            new OrganelleTemplate(cytoplasm, new Hex(5, 0), 0),
+            new OrganelleTemplate(cytoplasm, new Hex(6, 0), 0),
+            new OrganelleTemplate(vacuole, new Hex(7, 0), 0) { ModifiableUpgrades = glucoseStorage },
+            new OrganelleTemplate(vacuole, new Hex(9, 0), 0) { ModifiableUpgrades = glucoseStorage },
+        ], null, null), membrane);
+
+        var species = new MulticellularSpecies(1, "Test", "species")
+        {
+            ReproductionMethod = MulticellularReproductionMethod.Sporulation,
+            ModifiableSporeCellType = sporeType,
+        };
+        species.ModifiableCellTypes.Add(rootType);
+        species.ModifiableCellTypes.Add(sporeType);
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(rootType, new Hex(0, 0), 0),
+            new List<Hex>(), new List<Hex>());
+        species.OnEdited();
+
+        SpawnHelpers.SpawnMicrobe(worldSimulation, spawnEnvironment, species, Vector3.Zero, true,
+            GameteType.All, MulticellularSpawnState.FullColony);
+        worldSimulation.ProcessAll(0.1f);
+
+        var parent = new FirstEntityGrabber(new QueryDescription().WithAll<MulticellularGrowth>(),
+            worldSimulation.EntitySystem).Found;
+        var parentBag = parent.Get<CompoundStorage>().Compounds;
+        parentBag.ClearCompounds();
+        parentBag.SetUseful(Compound.Glucose);
+
+        const float glucoseToSplit = 8.0f;
+        Assertions.AssertThat(parentBag.AddCompound(Compound.Glucose, glucoseToSplit)).IsEqual(glucoseToSplit);
+        Assertions.AssertThat(glucoseToSplit / 2).IsGreater(parentBag.NominalCapacity);
+
+        parent.Get<MulticellularGrowth>().EnoughResourcesForBudding = true;
+        growthSystem.Update(0.1f);
+        worldSimulation.ProcessAll(0.1f);
+
+        var offspring = new FirstEntityGrabber(
+            new QueryDescription().WithAll<CellDivisionCollisionDisabler, MicrobeAI>(),
+            worldSimulation.EntitySystem).Found;
+        Assertions.AssertThat(offspring.IsAlive()).IsTrue();
+        Assertions.AssertThat(offspring).IsNotEqual(parent);
+        Assertions.AssertThat(offspring.Get<MulticellularGrowth>().IsASpore).IsTrue();
+
+        var sporeBag = offspring.Get<CompoundStorage>().Compounds;
+        var specialization = offspring.Get<SpecializationFactor>().TotalSpecializationBonus;
+        var nominalCapacity = (nucleus.Components.Storage!.Capacity + 2 * cytoplasm.Components.Storage!.Capacity) *
+            specialization;
+        var glucoseCapacity = nominalCapacity +
+            2 * vacuole.Components.Storage!.Capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER * specialization;
+
+        Assertions.AssertThat(sporeBag.NominalCapacity).IsEqualApprox(nominalCapacity, 0.0001f);
+        Assertions.AssertThat(sporeBag.GetCapacityForCompound(Compound.Glucose))
+            .IsEqualApprox(glucoseCapacity, 0.0001f);
+        Assertions.AssertThat(sporeBag.GetCapacityForCompound(Compound.Glucose))
+            .IsGreater(parentBag.GetCapacityForCompound(Compound.Glucose));
+        Assertions.AssertThat(sporeBag.GetCompoundAmount(Compound.Glucose)).IsEqual(glucoseToSplit / 2);
+        Assertions.AssertThat(parentBag.GetCompoundAmount(Compound.Glucose)).IsEqual(glucoseToSplit / 2);
+    }
+
+    [TestCase]
     public void TestSingleSporeCellMatchesExpected()
     {
         using var worldSimulation = new TestWorldSimulation();
