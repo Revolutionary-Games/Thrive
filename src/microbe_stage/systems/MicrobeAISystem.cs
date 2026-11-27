@@ -687,8 +687,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 var phosphatesAmount = compounds.GetCompoundAmount(Compound.Phosphates);
                 var phosphatesFraction = phosphatesAmount / compounds.GetCapacityForCompound(Compound.Phosphates);
 
-                if (ammoniaFraction > Constants.SPORE_GERMINATION_COMPOUND_THRESHOLD * 0.7f ||
-                    phosphatesFraction > Constants.SPORE_GERMINATION_COMPOUND_THRESHOLD * 0.7f)
+                if (ammoniaFraction > Constants.AI_SPORE_GERMINATION_COMPOUND_THRESHOLD ||
+                    phosphatesFraction > Constants.AI_SPORE_GERMINATION_COMPOUND_THRESHOLD)
                 {
                     control.GerminatingSpore = true;
                     return;
