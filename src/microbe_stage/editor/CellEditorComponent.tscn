@@ -22,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="22"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="28_qclxk"]
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
+[ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="30_db7x5"]
+[ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="31_jbrly"]
+[ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="32_rpk78"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
@@ -551,8 +554,8 @@ bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
 hexEffectFont = ExtResource("4_o1pli")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
-growthOrderLabelSettings = ExtResource("4_pnii6")
 islandPopup = NodePath("IslandError")
+growthOrderLabelSettings = ExtResource("4_pnii6")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
 mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
@@ -1004,7 +1007,7 @@ ShowDigestionSpeedStat = true
 ShowDigestionEfficiencyStat = true
 ShowATPBalanceBars = true
 ShowOrganellesCostStat = true
-processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
+processList = NodePath("../../../ProcessPanel/VBoxContainer/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
 
@@ -1150,17 +1153,56 @@ offset_bottom = 672.414
 WindowTitle = "PROCESS_PANEL_TITLE_MICROBE"
 Resizable = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel" unique_id=1651615088]
+[node name="VBoxContainer" type="VBoxContainer" parent="ProcessPanel" unique_id=306051312]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel/VBoxContainer" unique_id=1651615088]
+layout_mode = 2
+size_flags_vertical = 3
 follow_focus = true
 
-[node name="ProcessList" parent="ProcessPanel/ScrollContainer" unique_id=2094891942 instance=ExtResource("41_n2bpg")]
+[node name="ProcessList" parent="ProcessPanel/VBoxContainer/ScrollContainer" unique_id=2094891942 instance=ExtResource("41_n2bpg")]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 ShowSpinners = false
 ShowToggles = false
+
+[node name="HelpButtonContainer" type="HBoxContainer" parent="ProcessPanel/VBoxContainer" unique_id=142067411]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="TextureButton" type="TextureButton" parent="ProcessPanel/VBoxContainer/HelpButtonContainer" unique_id=1231553832]
+process_mode = 3
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture_normal = ExtResource("30_db7x5")
+texture_pressed = ExtResource("31_jbrly")
+texture_hover = ExtResource("32_rpk78")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ExplanationPanel" parent="ProcessPanel" unique_id=1821874255 instance=ExtResource("39")]
+custom_minimum_size = Vector2(550, 150)
+layout_mode = 0
+WindowTitle = "PROCESS_PANEL_EXPLANATION_TITLE"
+Resizable = true
+BoundToScreenArea = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProcessPanel/ExplanationPanel" unique_id=419746679]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainExplanation" type="Label" parent="ProcessPanel/ExplanationPanel/VBoxContainer" unique_id=755618647]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "PROCESS_PANEL_EXPLANATION"
+label_settings = ExtResource("28_qclxk")
+autowrap_mode = 2
 
 [node name="EntireOrganismMembraneChangeConfirmation" parent="." unique_id=1617431317 instance=ExtResource("9")]
 custom_minimum_size = Vector2(525, 300)
@@ -1212,6 +1254,7 @@ libraries/ = SubResource("AnimationLibrary_o1pli")
 [connection signal="EndosymbiosisCancelled" from="EndosymbiosisPopup" to="." method="OnAbandonEndosymbiosisOperation"]
 [connection signal="EndosymbiosisFinished" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisFinished"]
 [connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
+[connection signal="pressed" from="ProcessPanel/VBoxContainer/HelpButtonContainer/TextureButton" to="ProcessPanel/ExplanationPanel" method="PopupCenteredShrink" binds= [true]]
 [connection signal="Confirmed" from="EntireOrganismMembraneChangeConfirmation" to="." method="OnAcceptMembraneChange"]
 
 [editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
