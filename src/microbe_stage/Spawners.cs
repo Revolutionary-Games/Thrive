@@ -654,6 +654,20 @@ public static class SpawnHelpers
         CommandBuffer recorder, out Entity entity, MulticellularSpawnState multicellularSpawnState, GameteType sex,
         bool giveInitialCompounds = true, Random? random = null)
     {
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, aiControlled,
+            multicellularData, recorder, out entity, out _, multicellularSpawnState, sex, giveInitialCompounds, random);
+    }
+
+    /// <summary>
+    ///   Spawns a microbe and exposes its initialized compound bag for filling before the entity is finalized.
+    /// </summary>
+    public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment, Species species,
+        Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        CommandBuffer recorder, out Entity entity, out CompoundBag compoundBag,
+        MulticellularSpawnState multicellularSpawnState, GameteType sex,
+        bool giveInitialCompounds = true, Random? random = null)
+    {
         // If this method is modified, it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
         // MicrobeVisualOnlySimulation microbe update methods are also up to date
 
@@ -963,10 +977,11 @@ public static class SpawnHelpers
             organelleCount = container.Organelles!.Count;
 
             // Compound storage
+            // 0 is used here as this is updated before adding the component anyway
+            compoundBag = new CompoundBag(0);
             var storage = new CompoundStorage
             {
-                // 0 is used here as this is updated before adding the component anyway
-                Compounds = new CompoundBag(0),
+                Compounds = compoundBag,
             };
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)

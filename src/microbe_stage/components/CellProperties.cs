@@ -239,9 +239,11 @@ public static class CellPropertiesHelpers
 
         var spawnPosition = position.Position;
 
-        // Create one daughter cell.
-        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
-            spawnPosition, true, (null, 0), sex, out var copyEntity, multicellularSpawnState);
+        // Create one daughter cell with its own storage capacities. Its compounds come from the parent.
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
+            spawnPosition, true, (null, 0), recorder, out var copyEntity, out var copyEntityCompounds,
+            multicellularSpawnState, sex, false);
 
         recorder.Add(copyEntity, new CellDivisionCollisionDisabler
         {
@@ -259,14 +261,9 @@ public static class CellPropertiesHelpers
         spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, recorder,
             Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
-        // Remove the compounds from the created cell
         var originalCompounds = entity.Get<CompoundStorage>().Compounds;
 
-        // Copying the capacity should be fine like this as the original cell should be reset to the normal
-        // capacity already so
-        var copyEntityCompounds = new CompoundBag(originalCompounds.NominalCapacity);
-
-        // Also must copy the useful compounds, otherwise the bag will reject all of the compounds
+        // Must copy the useful compounds, otherwise the bag will reject all of the compounds
         copyEntityCompounds.CopyUsefulFrom(originalCompounds);
 
         // If the process system hasn't run yet on the original cell (for example when it was just spawned), nothing
@@ -325,11 +322,6 @@ public static class CellPropertiesHelpers
                 }
             }
         }
-
-        recorder.Set(copyEntity, new CompoundStorage
-        {
-            Compounds = copyEntityCompounds,
-        });
 
         customizeCallback?.Invoke(ref copyEntity, recorder);
 
