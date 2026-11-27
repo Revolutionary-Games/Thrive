@@ -32,12 +32,14 @@ public class GenerateMiche : IRunStep
     {
         var rootMiche = new Miche(globalCache.RootPressure);
         var metabolicStabilityMiche = new Miche(globalCache.MetabolicStabilityPressure);
+        var reproductionSuccessPressure = new Miche(globalCache.ReproductionSuccessPressure);
         var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
         var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
         var environmentalToleranceMiche = new Miche(globalCache.EnvironmentalTolerancesPressure);
 
         rootMiche.AddChild(metabolicStabilityMiche);
-        metabolicStabilityMiche.AddChild(avoidPredationMiche);
+        metabolicStabilityMiche.AddChild(reproductionSuccessPressure);
+        reproductionSuccessPressure.AddChild(avoidPredationMiche);
         avoidPredationMiche.AddChild(energyConsumptionMiche);
         energyConsumptionMiche.AddChild(environmentalToleranceMiche);
 

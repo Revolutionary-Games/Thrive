@@ -10,6 +10,7 @@ public class AutoEvoGlobalCache
     public readonly GeneralAvoidPredationSelectionPressure GeneralAvoidPredationSelectionPressure;
     public readonly EnergyConsumptionPressure EnergyConsumptionPressure;
     public readonly EnvironmentalTolerancePressure EnvironmentalTolerancesPressure;
+    public readonly ReproductionSuccessPressure ReproductionSuccessPressure;
 
     public readonly ReproductionCompoundPressure PhosphatePressure;
     public readonly ReproductionCompoundPressure AmmoniaPressure;
@@ -52,6 +53,7 @@ public class AutoEvoGlobalCache
         GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.0f);
         EnergyConsumptionPressure = new EnergyConsumptionPressure(0.4f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(3);
+        ReproductionSuccessPressure = new ReproductionSuccessPressure(1.0f);
 
         PhosphatePressure = new ReproductionCompoundPressure(
             Compound.Phosphates, worldSettings.DayNightCycleEnabled, 0.03f);
