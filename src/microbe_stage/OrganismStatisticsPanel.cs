@@ -147,10 +147,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     [ExportCategory("Other Editor Parts")]
-    private ProcessList processList = null!;
-
-    [Export]
-    private CustomWindow processListWindow = null!;
+    private ProcessPanel processPanel = null!;
 
     [Export]
     private LightConfigurationPanel lightConfigurationPanel = null!;
@@ -191,6 +188,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        processPanel.IsMicrobe = !IsMulticellularEditor;
 
         UpdateStatVisibility();
         UpdateATPBalanceText();
@@ -534,7 +533,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public void UpdateProcessList(List<ProcessSpeedInformation> processInfo)
     {
-        processList.ProcessesToShow = processInfo;
+        processPanel.ShownData = processInfo;
     }
 
     public void UpdateLightSelectionPanelVisibility(bool hasDayAndNight)
@@ -666,7 +665,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private void OnProcessListButtonClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        processListWindow.Visible = !processListWindow.Visible;
+        processPanel.Visible = !processPanel.Visible;
     }
 
     private void OnLightLevelButtonPressed(int option)

@@ -30,6 +30,13 @@ public partial class ProcessPanel : CustomWindow
 
     public IEnumerable<IProcessDisplayInfo>? ShownData { get; set; }
 
+
+    [Export]
+    public bool ShowSpinners { get; set; } = true;
+
+    [Export]
+    public bool ShowToggles { get; set; } = true;
+
     public bool IsMicrobe
     {
         get => isMicrobe;
@@ -58,6 +65,9 @@ public partial class ProcessPanel : CustomWindow
 
         // To make sure processes refresh when the game is paused
         ProcessMode = ProcessModeEnum.Always;
+
+        processList.ShowSpinners = ShowSpinners;
+        processList.ShowToggles = ShowToggles;
 
         UpdateMulticellularStatus();
     }
