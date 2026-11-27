@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-11-20 17:27+0200\n"
-"PO-Revision-Date: 2026-11-20 13:38+0000\n"
+"PO-Revision-Date: 2026-11-22 18:52+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -398,13 +398,11 @@ msgstr "(процент зміни популяції, застосовуван�
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автозбереження під час гри"
 
-#, fuzzy
 msgid "AUTO_CALCULATE_GROWTH_ORDER"
-msgstr "Порядок зростання"
+msgstr "Авто-обчислення"
 
-#, fuzzy
 msgid "AUTO_CALCULATE_GROWTH_ORDER_TOOLTIP"
-msgstr "Ця вкладка дозволяє встановити порядок, у якому зростатимуть органели. Це може бути важливим для клітин із нестабільним продукуванням АТФ під час росту. Порядок органел також значно впливає на порядок пробігу біопроцесів. Бажано редагувати це тільки після редагування структури, бо інакше зміни можуть бути скасовані."
+msgstr "Автоматично обчислює прийнятний порядок зростання. Зауважте, що при наявності будь-яких від'єднаних клітин прийнятного порядку зростання немає."
 
 msgid "AUTO_EVO"
 msgstr "Авто-ево"
@@ -526,9 +524,8 @@ msgstr "Придоння"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
-#, fuzzy
 msgid "BECOME_MACROSCOPIC_MISSING_CONDITIONS"
-msgstr "Стати макроскопічним ({0}/{1})"
+msgstr "Неможливо стати макроскопічним"
 
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітинності ({0}/{1})"
@@ -578,9 +575,8 @@ msgstr "Разом краще"
 msgid "BEYOND_THE_CELL"
 msgstr "Більше ніж клітина"
 
-#, fuzzy
 msgid "BEYOND_THE_MICROBE"
-msgstr "Більше ніж клітина"
+msgstr "Більше ніж мікроб"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Великий шматок заліза"
@@ -745,7 +741,7 @@ msgid "CAUTIOUS"
 msgstr "Обережність"
 
 msgid "CAVITY_CELLS_NEED_NEIGHBOURS"
-msgstr ""
+msgstr "Кожна порожнинна клітина потребує щонайменш {0} сусідніх позицій, заповнених клітинами в основному розташуванні."
 
 msgid "CELL"
 msgstr "Клітина"
@@ -802,15 +798,13 @@ msgid "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
 msgstr "Натисніть на клітину, щоб почати пересувати її. Обирайте позіції, які вам до вподоби. Усі клітини мають залишатися з'єднаними та бути поряд зі своїм призначеним місцем у структурі. Редагування органел може викликати перекривання, що мають бути виправлені перш ніж ваше розташування стане правильним. Вихід з ручного розташування скасує всі зроблені зміни."
 
 msgid "CELL_IS_CAVITY"
-msgstr ""
+msgstr "Порожнинна"
 
-#, fuzzy
 msgid "CELL_IS_CAVITY_TOOLTIP"
 msgstr ""
-"Спеціалізація клітини на використанні меншої кількості типів органел надає бонус до ефективності всіх органел у цій клітині.\n"
-"Поточний бонус становить {0}% (максимальна сила бонусу збільшується разом із розміром клітини до {3} шестикутників).\n"
-"Поточний бонус надається, оскільки є {1} шестикутників типу {2}.\n"
-"Бонус збільшується в міру того, як розміщується більше органел найпоширенішого типу та видаляються органели інших типів."
+"Коли клітина є порожнинною, вона дозволяє іншим клітинам проходити скрізь себе, та надає бонуси за суміжність.\n"
+"Однак, порожнинна клітина потребує достатньо підтримки з більшості суміжних сторін для надійного закріплення.\n"
+"Перша клітина не може бути порожнинною."
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -822,9 +816,8 @@ msgstr ""
 msgid "CELL_LAYOUT_IS_BEING_CALCULATED"
 msgstr "Розташування клітин обчислюється; будь ласка, зачекайте"
 
-#, fuzzy
 msgid "CELL_SIZE"
-msgstr "Клітини"
+msgstr "Розмір клітини"
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
@@ -853,18 +846,17 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
-#, fuzzy
 msgid "CELL_TYPE_NAME_ALREADY_EXISTS"
-msgstr "Обране файлове ім'я ({0}) уже існує. Переписати?"
+msgstr "Тип клітини з таким ім'ям уже існує"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Нотатки змін надто довгі"
 
 msgid "CHANGE_GPU_IN_LAUNCHER"
-msgstr ""
+msgstr "Виділені ресурси GPU можна змінити у Thrive Launcher"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
-msgstr "Змінити тип Мембрани"
+msgstr "Змінити тип мембрани"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
 msgstr ""
@@ -902,9 +894,8 @@ msgstr "Кнопки ввімкнення читів"
 msgid "CHEAT_MENU"
 msgstr "Меню читів"
 
-#, fuzzy
 msgid "CHECK_MACROSCOPIC_REQUIREMENTS"
-msgstr "Доступне лише починаючи з Багатоклітинної Стадії й далі."
+msgstr "Вимоги Стадії Макроскопічності"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
@@ -1062,24 +1053,20 @@ msgstr "Узбережжя"
 msgid "COLLISION_SHAPE"
 msgstr "Cпавнити сутності з формами зіткнення"
 
-#, fuzzy
 msgid "COLONY_BASE_ROTATION_INCREASE"
-msgstr "Обертання колонії"
+msgstr "Базове обертання колонії"
 
-#, fuzzy
 msgid "COLONY_BASE_SPEED_INCREASE"
-msgstr "Швидкість колонії"
+msgstr "Базова швидкість колонії"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Ця вкладка дозволяє налаштувати порядок, у якому ростуть клітини колонії, причому перша клітина в цьому порядку є кореневою (або бруньковою) клітиною. Ви можете використовувати це, щоб надавати пріоритет росту важливіших клітин або забезпечити належний баланс між виробництвом і споживанням колонії."
 
-#, fuzzy
 msgid "COLONY_ORGANELLE_ROTATION_INCREASE"
-msgstr "Обертання колонії"
+msgstr "Обертання колонії від органел"
 
-#, fuzzy
 msgid "COLONY_ORGANELLE_SPEED_INCREASE"
-msgstr "Швидкість колонії"
+msgstr "Швидкість колонії від органел"
 
 msgid "COLOUR"
 msgstr "Колір"
@@ -1621,11 +1608,10 @@ msgid "CREATURE_SKIN_TYPE_FUR"
 msgstr "Хутро"
 
 msgid "CREATURE_SKIN_TYPE_PEPPER"
-msgstr ""
+msgstr "Перець"
 
-#, fuzzy
 msgid "CREATURE_SKIN_TYPE_PLAIN"
-msgstr "Ви можете створювати новий тип клітини, дублюючи дані та надаючи нову назву. Типи клітин можна модифікувати для спеціалізації їх до різних ролей. Коли зміниться тип клітини, такі самі розміщені клітини теж будуть оновлені."
+msgstr "Рівномірний"
 
 msgid "CREATURE_SKIN_TYPE_SCALES"
 msgstr "Луска"
