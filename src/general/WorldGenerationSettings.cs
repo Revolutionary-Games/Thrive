@@ -300,6 +300,14 @@ public class WorldGenerationSettings : IArchivable
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.WorldGenerationSettings;
     public bool CanBeReferencedInArchive => true;
 
+    /// <summary>
+    ///   Creates default settings for an Auto-Evo exploration world using its editable configuration.
+    /// </summary>
+    public static WorldGenerationSettings CreateForAutoEvoExploration(AutoEvoConfiguration worldConfiguration)
+    {
+        return new WorldGenerationSettings { LAWK = true, AutoEvoConfiguration = worldConfiguration };
+    }
+
     public static WorldGenerationSettings ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)

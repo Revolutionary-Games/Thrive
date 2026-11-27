@@ -1203,8 +1203,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             WorldGenerationSettings? planetCustomizerWorldGenerationSettings)
         {
             AutoEvoConfiguration = configuration.Clone();
-            WorldSettings = planetCustomizerWorldGenerationSettings ?? new WorldGenerationSettings
-                { AutoEvoConfiguration = AutoEvoConfiguration };
+            WorldSettings = planetCustomizerWorldGenerationSettings ??
+                WorldGenerationSettings.CreateForAutoEvoExploration(AutoEvoConfiguration);
 
             GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
 
