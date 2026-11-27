@@ -29,7 +29,8 @@
 [ext_resource type="Script" uid="uid://d4r3ohtwfx4x" path="res://src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs" id="21_b2byg"]
 [ext_resource type="PackedScene" uid="uid://deiselg5ajg3d" path="res://src/multicellular_stage/editor/CellTypePickerPopup.tscn" id="21_hoe4k"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="23_hoe4k"]
-[ext_resource type="PackedScene" uid="uid://dgqw7nudbxobi" path="res://src/microbe_stage/ProcessPanel.tscn" id="31_5baas"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="30_4y6am"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/EditorAutoEvoPredictionPanel.tscn" id="prediction_panel"]
 [ext_resource type="Script" uid="uid://b30r8hvita2p4" path="res://src/multicellular_stage/editor/UnusedCellTypePopup.cs" id="unused_cell_type_popup"]
 
@@ -433,8 +434,8 @@ macroscopicConditionsView = NodePath("MacroscopicConditionsPopup")
 hexPositionEffectsContainer = NodePath("AdjacencyFactorsContainer")
 hexEffectFont = ExtResource("4_h03u7")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
-islandPopup = NodePath("IslandError")
 growthOrderLabelSettings = ExtResource("4_5baas")
+islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
 mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
@@ -1071,14 +1072,15 @@ layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" unique_id=1147404361 node_paths=PackedStringArray("processPanel", "lightConfigurationPanel") instance=ExtResource("10_al7uh")]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" unique_id=1147404361 node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("10_al7uh")]
 layout_mode = 2
 IsMulticellularEditor = true
 ShowStorageStat = true
 ShowSpeedStat = true
 ShowRotationSpeedStat = true
 ShowOrganellesCostStat = true
-processPanel = NodePath("../../../ProcessPanel")
+processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
+processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfiguration")
 
 [node name="MacroscopicCheck" type="Button" parent="RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1147404361, 743924629) index="23" unique_id=958512207]
@@ -1090,12 +1092,6 @@ autowrap_mode = 3
 
 [node name="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1135255199, 1190554232) index="2" unique_id=1718240059]
 visible = false
-
-[node name="PredictionExplanation" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel" index="1" unique_id=841824435]
-layout_mode = 2
-
-[node name="PopupMicheViewer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel" index="2" unique_id=657349085]
-layout_mode = 2
 
 [node name="EditorComponentBottomLeftButtons" parent="." unique_id=1138987653 instance=ExtResource("13")]
 layout_mode = 1
@@ -1281,8 +1277,21 @@ layout_mode = 0
 [node name="CellTypePickerPopup" parent="." unique_id=471568737 instance=ExtResource("21_hoe4k")]
 layout_mode = 0
 
-[node name="ProcessPanel" parent="." unique_id=895796782 instance=ExtResource("31_5baas")]
+[node name="ProcessPanel" parent="." unique_id=1448159968 instance=ExtResource("30_4y6am")]
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
+WindowTitle = "PROCESS_PANEL_TITLE"
+Resizable = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel" unique_id=719923317]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+follow_focus = true
+
+[node name="ProcessList" parent="ProcessPanel/ScrollContainer" unique_id=1988556249 instance=ExtResource("31_iccom")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 ShowSpinners = false
 ShowToggles = false
 
@@ -1338,11 +1347,11 @@ IsMulticellular = true
 [connection signal="OnClicked" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/CellTypeMakerButton" to="." method="OnSpecialCellTypeEditClicked" binds= [2]]
 [connection signal="OnResetClicked" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/CellTypeMakerButton" to="." method="OnSpecialCellTypeResetClicked" binds= [2]]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/PlayerGameteB" to="." method="OnPlayerSetGameteB"]
-[connection signal="OnBehaviourChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour" to="." method="OnBehaviourChanged"]
 [connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderAutoCalculate" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnAutoCalculateGrowthOrderPressed"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]
+[connection signal="OnBehaviourChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour" to="." method="OnBehaviourChanged"]
 [connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/AutomaticLayout" to="." method="OnAutomaticLayoutModeUpdated"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer/ReapplyAutomaticLayout" to="." method="OnReapplyAutomaticLayoutButtonPressed"]

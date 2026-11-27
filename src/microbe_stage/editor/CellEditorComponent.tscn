@@ -20,10 +20,11 @@
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="19"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="22"]
-[ext_resource type="PackedScene" uid="uid://dgqw7nudbxobi" path="res://src/microbe_stage/ProcessPanel.tscn" id="28_6ip3d"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="28_qclxk"]
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
 [ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
@@ -550,8 +551,8 @@ bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
 hexEffectFont = ExtResource("4_o1pli")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
-islandPopup = NodePath("IslandError")
 growthOrderLabelSettings = ExtResource("4_pnii6")
+islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
 mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
@@ -992,7 +993,7 @@ layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" unique_id=1684870648 node_paths=PackedStringArray("processPanel", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" unique_id=1684870648 node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
 layout_mode = 2
 ShowHealthStat = true
 ShowSizeStat = true
@@ -1003,7 +1004,8 @@ ShowDigestionSpeedStat = true
 ShowDigestionEfficiencyStat = true
 ShowATPBalanceBars = true
 ShowOrganellesCostStat = true
-processPanel = NodePath("../../../ProcessPanel")
+processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
+processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
 
 [node name="AutoEvoInfoPanel" parent="RightPanel/VBoxContainer" unique_id=1135255199 instance=ExtResource("prediction_panel")]
@@ -1138,8 +1140,25 @@ offset_bottom = 0.0
 layout_mode = 1
 IsMulticellular = false
 
-[node name="ProcessPanel" parent="." unique_id=895796782 instance=ExtResource("28_6ip3d")]
+[node name="ProcessPanel" parent="." unique_id=201602767 instance=ExtResource("39")]
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
+offset_left = 10.0
+offset_top = 72.4143
+offset_right = 410.0
+offset_bottom = 672.414
+WindowTitle = "PROCESS_PANEL_TITLE_MICROBE"
+Resizable = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel" unique_id=1651615088]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+follow_focus = true
+
+[node name="ProcessList" parent="ProcessPanel/ScrollContainer" unique_id=2094891942 instance=ExtResource("41_n2bpg")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 ShowSpinners = false
 ShowToggles = false
 
