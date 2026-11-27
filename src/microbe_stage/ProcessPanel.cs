@@ -17,10 +17,10 @@ public partial class ProcessPanel : CustomWindow
     private Container closeButtonContainer = null!;
 
     [Export]
-    private Container helpButtonContainer = null!;
+    private CustomWindow processPanelExplanation = null!;
 
     [Export]
-    private CustomWindow multicellularProcessPanelExplanation = null!;
+    private Label multicellularExplanationLabel = null!;
 #pragma warning restore CA2213
 
     private bool isMicrobe;
@@ -72,7 +72,7 @@ public partial class ProcessPanel : CustomWindow
 
     public void OnHelpButtonPressed()
     {
-        multicellularProcessPanelExplanation.PopupCenteredShrink();
+        processPanelExplanation.PopupCenteredShrink();
     }
 
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)
@@ -82,7 +82,7 @@ public partial class ProcessPanel : CustomWindow
 
     private void UpdateMulticellularStatus()
     {
-        helpButtonContainer.Visible = !isMicrobe;
+        multicellularExplanationLabel.Visible = !isMicrobe;
 
         WindowTitle = isMicrobe ?
             Localization.Translate("PROCESS_PANEL_TITLE_MICROBE") :

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"POT-Creation-Date: 2026-11-25 06:55+0300\n"
 "PO-Revision-Date: 2026-11-20 15:35+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -4694,7 +4694,7 @@ msgid "MULTICELLULAR_LOADING_TIP_7"
 msgstr "Specialized cells in multicellular are the first step towards proper organs. The initial clusters of cells of the same type will eventually turn into tissues."
 
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
-msgstr "This panel shows the combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells."
+msgstr "The processes shown are the combined (summed) processes of every cell in your colony. Note that unlike other compounds, ATP isn't shared between cells."
 
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -5570,6 +5570,9 @@ msgstr "At"
 
 msgid "PROCESS_INACTIVE"
 msgstr "INACTIVE"
+
+msgid "PROCESS_PANEL_EXPLANATION"
+msgstr "This panel displays the status of the processes that run in your organism. Productive processes scale dynamically based on consumption, which is why they might sometimes run at a fraction of their full speed. Because of this, the data shown here might be inconsistent with the editor's ATP balance bars, which assumes that processes run at maximum speed."
 
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Organism Process Panel Explanation"
