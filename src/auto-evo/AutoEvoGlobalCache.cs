@@ -45,6 +45,8 @@ public class AutoEvoGlobalCache
 
     public readonly TemperatureSessilityPressure TemperatureSessilityPressure;
 
+    public readonly CellDivisionOfLabourPressure CellDivisionOfLabourPressure;
+
     public AutoEvoGlobalCache(WorldGenerationSettings worldSettings)
     {
         RootPressure = new RootPressure();
@@ -106,5 +108,6 @@ public class AutoEvoGlobalCache
         PredatorRoot = new PredatorRoot(2.0f);
 
         TemperatureSessilityPressure = new TemperatureSessilityPressure(1.0f);
+        CellDivisionOfLabourPressure = new CellDivisionOfLabourPressure(1.0f);
     }
 }

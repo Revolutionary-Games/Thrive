@@ -336,6 +336,7 @@ public enum ThriveArchiveObjectType : uint
     CellCavityActionData = 4416,
     TutorialMulticellularCellCavity = 4417,
     TutorialMulticellularSpecializationTips = 4418,
+    CellDivisionOfLabourPressure = 4419,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
