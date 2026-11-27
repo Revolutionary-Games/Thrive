@@ -1043,10 +1043,8 @@ public static class MicrobeInternalCalculations
     /// </summary>
     internal static float CalculateSpeedForAutoEvo(MicrobeSpecies species)
     {
-        var organelles = species.Organelles.Organelles;
-        var force = CalculateMovementForce(organelles, species.MembraneType, species.MembraneRigidity,
-            species.IsBacteria, species.CellTypeSpecializationBonus, out int hexCount);
-        return force / EstimateShapeMass(organelles, hexCount, species.IsBacteria);
+        return CalculateSpeed(species.Organelles.Organelles, species.MembraneType, species.MembraneRigidity,
+            species.IsBacteria, species.CellTypeSpecializationBonus, true);
     }
 
     internal static float EstimateShapeMass(IReadOnlyList<OrganelleTemplate> organelles, int hexCount, bool isBacteria)
