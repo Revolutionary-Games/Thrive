@@ -681,6 +681,9 @@ public partial class CustomRichTextLabel : RichTextLabel
                     case EmbeddedThriveIcon.HealthIcon:
                         output = GetResizedImage("res://assets/textures/gui/bevel/HealthIcon.png", 20, 0);
                         break;
+                    case EmbeddedThriveIcon.CellSpecializationIcon:
+                        output = GetResizedImage("res://assets/textures/gui/bevel/CellSpecializationIcon.svg", 20, 0);
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(icon),
                             "Unhandled icon type for rich text label display");
