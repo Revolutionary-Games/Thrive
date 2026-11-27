@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Buffers.Binary;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -36,26 +34,50 @@ public static class AtmosphereTransmittanceLut
 
         var data = new byte[Width * Height * Channels * BytesPerChannel];
 
-        int taskCount = Math.Clamp(TaskExecutor.Instance.ParallelTasks, 1, Height);
-        var tasks = new List<Task>(taskCount);
-
-        for (int i = 0; i < taskCount; ++i)
-        {
-            int fromRow = Height * i / taskCount;
-            int toRow = Height * (i + 1) / taskCount;
-
-            tasks.Add(new Task(() =>
-            {
-                for (int y = fromRow; y < toRow; ++y)
-                    BakeRow(y);
-            }));
-        }
-
-        TaskExecutor.Instance.RunTasks(tasks);
+        TaskExecutor.Instance.ParallelFor(0, Height, new BakeRowsBody(data, rayleighScattering, ozoneAbsorption,
+            groundRadius, topRadius, scaleHeight, ozoneCenter, ozoneHalfWidth, topHorizonDistance));
 
         return Image.CreateFromData(Width, Height, false, Image.Format.Rgbh, data);
+    }
 
-        void BakeRow(int y)
+    private static void WriteChannel(byte[] data, int offset, float opticalDepth)
+    {
+        BinaryPrimitives.WriteHalfLittleEndian(data.AsSpan(offset), (Half)MathF.Exp(-opticalDepth));
+    }
+
+    private readonly struct BakeRowsBody : IParallelForBody
+    {
+        private readonly byte[] data;
+        private readonly Vector3 rayleighScattering;
+        private readonly Vector3 ozoneAbsorption;
+        private readonly float groundRadius;
+        private readonly float topRadius;
+        private readonly float scaleHeight;
+        private readonly float ozoneCenter;
+        private readonly float ozoneHalfWidth;
+        private readonly float topHorizonDistance;
+
+        public BakeRowsBody(byte[] data, Vector3 rayleighScattering, Vector3 ozoneAbsorption, float groundRadius,
+            float topRadius, float scaleHeight, float ozoneCenter, float ozoneHalfWidth, float topHorizonDistance)
+        {
+            this.data = data;
+            this.rayleighScattering = rayleighScattering;
+            this.ozoneAbsorption = ozoneAbsorption;
+            this.groundRadius = groundRadius;
+            this.topRadius = topRadius;
+            this.scaleHeight = scaleHeight;
+            this.ozoneCenter = ozoneCenter;
+            this.ozoneHalfWidth = ozoneHalfWidth;
+            this.topHorizonDistance = topHorizonDistance;
+        }
+
+        public void Execute(int fromInclusive, int toExclusive)
+        {
+            for (int y = fromInclusive; y < toExclusive; ++y)
+                BakeRow(y);
+        }
+
+        private void BakeRow(int y)
         {
             float pointHorizonDistance = topHorizonDistance * y / (Height - 1);
             float radius = MathF.Sqrt(pointHorizonDistance * pointHorizonDistance + groundRadius * groundRadius);
@@ -93,10 +115,5 @@ public static class AtmosphereTransmittanceLut
                 WriteChannel(data, offset + 2 * BytesPerChannel, opticalDepth.Z);
             }
         }
-    }
-
-    private static void WriteChannel(byte[] data, int offset, float opticalDepth)
-    {
-        BinaryPrimitives.WriteHalfLittleEndian(data.AsSpan(offset), (Half)MathF.Exp(-opticalDepth));
     }
 }
