@@ -43,7 +43,8 @@ public class TimedWorldOperations : IArchivable
     /// </remarks>
     /// <param name="timePassed">Time passed since last call</param>
     /// <param name="totalPassed">Total time passed</param>
-    public void OnTimePassed(double timePassed, double totalPassed)
+    /// <param name="throwOnError">Propagate failures even in release builds instead of continuing</param>
+    public void OnTimePassed(double timePassed, double totalPassed, bool throwOnError = false)
     {
         GD.Print("TimedWorldOperations: running effects. elapsed: ", timePassed, " total passed: ", totalPassed);
 
@@ -53,7 +54,7 @@ public class TimedWorldOperations : IArchivable
             {
                 effect.OnTimePassed(timePassed, totalPassed);
             }
-            catch (Exception e)
+            catch (Exception e) when (!throwOnError)
             {
 #if DEBUG
                 if (Debugger.IsAttached)

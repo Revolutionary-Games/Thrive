@@ -288,6 +288,24 @@ public class AutoEvoRun
         TaskExecutor.Instance.AddTask(task);
     }
 
+    /// <summary>
+    ///   Advances world time, applies results and commits exploration generation history.
+    ///   Final external effects and any pre-application summary must be prepared by the caller first.
+    ///   This changes the world in place and does not roll back on failure.
+    /// </summary>
+    public void ApplyGeneration(bool playerCantGoExtinct, bool throwOnError = false)
+    {
+        if (!Finished || Running || (throwOnError && !WasSuccessful))
+            throw new InvalidOperationException("Cannot commit an unfinished or failed generation");
+
+        var world = Parameters.World;
+        world.OnTimePassed(1, throwOnError);
+        ApplyAllResults(playerCantGoExtinct, throwOnError);
+        ++world.PlayerSpecies.Generation;
+        world.GenerationHistory.Add(world.PlayerSpecies.Generation - 1,
+            new GenerationRecord(world.TotalPassedTime, results.GetSpeciesRecords()));
+    }
+
     public void Abort()
     {
         Aborted = true;
@@ -316,14 +334,14 @@ public class AutoEvoRun
     ///     that should be called even before generating the result summaries to make sure they are accurate.
     ///   </para>
     /// </remarks>
-    public void ApplyAllResults(bool playerCantGoExtinct)
+    public void ApplyAllResults(bool playerCantGoExtinct, bool throwOnError = false)
     {
         if (!Finished || Running)
         {
             throw new InvalidOperationException("Can't apply run results before it is done");
         }
 
-        results.ApplyResults(Parameters.World, false);
+        results.ApplyResults(Parameters.World, false, throwOnError);
 
         UpdateMap(playerCantGoExtinct);
     }
@@ -333,7 +351,7 @@ public class AutoEvoRun
     ///   bugs regarding when results are applied and what base populations are used in the external effects.
     ///   Must be called before <see cref="RunResults.MakeSummary"/> is called.
     /// </summary>
-    public void CalculateAndApplyFinalExternalEffectSizes()
+    public void CalculateAndApplyFinalExternalEffectSizes(bool throwOnError = false)
     {
         if (ExternalEffects.Count < 1)
             return;
@@ -364,6 +382,9 @@ public class AutoEvoRun
             // This *probably* can't overflow, but just in case check for that case
             if (change > int.MaxValue)
             {
+                if (throwOnError)
+                    throw new OverflowException("External effect population change exceeds the supported range");
+
                 GD.PrintErr("Converting external effect caused a data overflow! We need to change " +
                     "external effects to use longs.");
                 change = int.MaxValue;
@@ -375,7 +396,7 @@ public class AutoEvoRun
             adjustedPopulations[key] = newPopulation;
         }
 
-        ApplyExternalEffects();
+        ApplyExternalEffects(throwOnError);
     }
 
     /// <summary>
@@ -767,7 +788,7 @@ public class AutoEvoRun
         }
     }
 
-    private void ApplyExternalEffects()
+    private void ApplyExternalEffects(bool throwOnError)
     {
         if (ExternalEffects.Count > 0)
         {
@@ -798,7 +819,7 @@ public class AutoEvoRun
                     results.AddPopulationResultForSpecies(entry.Species, entry.Patch,
                         currentPopulation + entry.Constant);
                 }
-                catch (Exception e)
+                catch (Exception e) when (!throwOnError)
                 {
                     GD.PrintErr("External effect can't be applied: ", e);
                 }
