@@ -52,6 +52,6 @@ size_flags_vertical = 0
 mouse_filter = 1
 text = "BACK"
 
-[connection signal="Canceled" from="AchievementsPopup" to="." method="PopupClosed"]
+[connection signal="Canceled" from="AchievementsPopup" to="." method="PopupCloseRequested"]
 [connection signal="Closed" from="AchievementsPopup" to="." method="PopupClosed"]
 [connection signal="pressed" from="Back" to="." method="BackPressed"]

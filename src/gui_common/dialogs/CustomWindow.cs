@@ -230,6 +230,11 @@ public partial class CustomWindow : TopLevelContainer
     public StyleBox PanelStyle { get; set; } = null!;
     public StyleBox TitleBarPanelStyle { get; set; } = null!;
 
+    /// <summary>
+    ///   Controls whether the title-bar close button closes the window after emitting <see cref="Canceled"/>.
+    /// </summary>
+    public bool CloseOnTitleBarButtonPress { get; set; } = true;
+
     public override void _EnterTree()
     {
         customPanel = GetThemeStylebox("custom_panel", "Window");
@@ -754,7 +759,9 @@ public partial class CustomWindow : TopLevelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.Canceled);
-        Close();
+
+        if (CloseOnTitleBarButtonPress)
+            Close();
     }
 
     private void OnTranslationsChanged()

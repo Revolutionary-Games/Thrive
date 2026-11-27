@@ -68,8 +68,9 @@ public partial class SaveList : ScrollContainer
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
 
-    private bool refreshing;
+    private List<string>? pendingSaveNames;
     private bool refreshedAtLeastOnce;
+    private bool restartSaveScan;
 
 #pragma warning disable CA2213 // Task is disposed after its result is consumed
     private Task<List<string>>? readSavesList;
@@ -84,12 +85,17 @@ public partial class SaveList : ScrollContainer
 
     private bool isLoadingSave;
 
+    private int loadingPreviewIndex = -1;
+    private int nextPreviewIndex;
     private int previousFirstVisible = -1;
     private int previousLastVisible = -1;
     private bool needsInitialVisibilityCheck;
 
     [Signal]
     public delegate void OnSelectedChangedEventHandler();
+
+    [Signal]
+    public delegate void OnSelectedItemReadyEventHandler();
 
     [Signal]
     public delegate void OnItemsChangedEventHandler();
@@ -111,92 +117,57 @@ public partial class SaveList : ScrollContainer
     public override void _Process(double delta)
     {
         bool isCurrentlyVisible = IsVisibleInTree();
-
-        if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
-                (AutoRefreshOnBecomingVisible && !wasVisible)))
+        if (!isCurrentlyVisible)
         {
-            Refresh();
-            wasVisible = true;
+            if (wasVisible)
+            {
+                wasVisible = false;
+                CancelPreviewLoad();
+                restartSaveScan = readSavesList != null;
+                nextPreviewIndex = Math.Max(0, previousFirstVisible);
+                needsInitialVisibilityCheck = true;
+            }
+
             return;
         }
 
-        if (!isCurrentlyVisible)
-            wasVisible = false;
+        if ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) || (AutoRefreshOnBecomingVisible && !wasVisible))
+        {
+            wasVisible = true;
+            Refresh();
+            return;
+        }
+
+        wasVisible = true;
+
+        if (readSavesList != null)
+        {
+            ProcessRefresh();
+            if (readSavesList != null)
+                return;
+        }
 
         if (needsInitialVisibilityCheck && saveItemChildren.Count > 0 && saveItemChildren[0].Size.Y > 0)
-        {
             UpdateVisibleRange();
-        }
 
-        if (!refreshing)
-            return;
+        ProcessPreviewLoad();
 
-        if (!readSavesList!.IsCompleted)
-            return;
-
-        try
+        if (pendingSaveNames != null)
         {
-            var saves = readSavesList.Result;
+            AddSaveItem(pendingSaveNames[saveItemChildren.Count]);
 
-            if (saves.Count > 0)
-            {
-                noSavesItem.Visible = false;
-
-                foreach (var save in saves)
-                {
-                    var item = listItemScene.Instantiate<SaveListItem>();
-                    item.Selectable = SelectableItems;
-                    item.Loadable = LoadableItems;
-
-                    if (SelectableItems)
-                    {
-                        item.Connect(SaveListItem.SignalName.OnSelectedChanged,
-                            new Callable(this, nameof(OnSubItemSelectedChanged)));
-                    }
-
-                    item.Connect(SaveListItem.SignalName.OnDoubleClicked,
-                        Callable.From(() => OnItemDoubleClicked(item)));
-
-                    item.Connect(SaveListItem.SignalName.OnDeleted, Callable.From(() => OnDeletePressed(save)));
-
-                    item.Connect(SaveListItem.SignalName.OnOldSaveLoaded, Callable.From(() => OnOldSaveLoaded(save)));
-
-                    // This can't use binds because we need an additional Dynamic parameter from the list item here
-                    item.Connect(SaveListItem.SignalName.OnUpgradeableSaveLoaded,
-                        new Callable(this, nameof(OnUpgradeableSaveLoaded)));
-                    item.Connect(SaveListItem.SignalName.OnNewSaveLoaded, Callable.From(() => OnNewSaveLoaded(save)));
-                    item.Connect(SaveListItem.SignalName.OnBrokenSaveLoaded,
-                        Callable.From(() => OnInvalidLoaded(save)));
-                    item.Connect(SaveListItem.SignalName.OnKnownIncompatibleLoaded,
-                        new Callable(this, nameof(OnKnownIncompatibleLoaded)));
-                    item.Connect(SaveListItem.SignalName.OnDifferentVersionPrototypeLoaded,
-                        new Callable(this, nameof(OnDifferentVersionPrototypeLoaded)));
-                    item.Connect(SaveListItem.SignalName.OnProblemFreeSaveLoaded,
-                        Callable.From(() => OnProblemFreeLoaded(save)));
-
-                    item.SaveName = save;
-                    savesList.AddChild(item);
-                    saveItemChildren.Add(item);
-                }
-            }
-            else
-            {
-                noSavesItem.Visible = true;
-            }
-
+            // Recheck after the container has laid out the new row
             needsInitialVisibilityCheck = true;
-        }
-        finally
-        {
-            readSavesList.Dispose();
-            readSavesList = null;
-            loadingItem.Visible = false;
-            refreshing = false;
+            if (saveItemChildren.Count == pendingSaveNames.Count)
+                pendingSaveNames = null;
         }
     }
 
     public IEnumerable<SaveListItem> GetSelectedItems()
     {
+        if (readSavesList != null)
+            yield break;
+
         foreach (var child in saveItemChildren)
         {
             if (child.Selectable && child.Selected)
@@ -206,23 +177,136 @@ public partial class SaveList : ScrollContainer
 
     public void Refresh()
     {
-        if (refreshing)
+        if (readSavesList != null)
             return;
 
-        refreshing = true;
         refreshedAtLeastOnce = true;
+        pendingSaveNames = null;
 
+        CancelPreviewLoad();
+        nextPreviewIndex = 0;
         previousFirstVisible = -1;
         previousLastVisible = -1;
         needsInitialVisibilityCheck = false;
 
-        saveItemChildren.Clear();
-        savesList.QueueFreeChildren();
+        savesList.Hide();
+        noSavesItem.Hide();
+        loadingItem.Show();
 
-        loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
         EmitSignal(SignalName.OnItemsChanged);
+    }
+
+    private void ProcessRefresh()
+    {
+        int released = 0;
+        while (saveItemChildren.Count > 0)
+        {
+            // Detaching large numbers of old rows can also stall the frame when reopening the list
+            // so do a few at a time until they are all done.
+            if (++released > 5)
+            {
+                return;
+            }
+
+            var index = saveItemChildren.Count - 1;
+            var item = saveItemChildren[index];
+            saveItemChildren.RemoveAt(index);
+            item.DetachAndQueueFree();
+        }
+
+        if (!readSavesList!.IsCompleted)
+            return;
+
+        if (restartSaveScan)
+        {
+            // The save directory may have changed while the list was hidden
+            restartSaveScan = false;
+            readSavesList.Dispose();
+            readSavesList = null;
+            Refresh();
+            return;
+        }
+
+        // TaskExecutor reports failures, so finish the refresh with an empty list if the scan failed
+        if (readSavesList.IsCompletedSuccessfully && readSavesList.Result.Count > 0)
+            pendingSaveNames = readSavesList.Result;
+
+        readSavesList.Dispose();
+        readSavesList = null;
+        loadingItem.Hide();
+        noSavesItem.Visible = pendingSaveNames == null;
+        savesList.Show();
+    }
+
+    private void AddSaveItem(string save)
+    {
+        var item = listItemScene.Instantiate<SaveListItem>();
+        item.Selectable = SelectableItems;
+        item.Loadable = LoadableItems;
+
+        if (SelectableItems)
+        {
+            item.Connect(SaveListItem.SignalName.OnSelectedChanged,
+                new Callable(this, nameof(OnSubItemSelectedChanged)));
+            item.Connect(SaveListItem.SignalName.OnDataReady, Callable.From(() =>
+            {
+                if (item.Selected)
+                    EmitSignal(SignalName.OnSelectedItemReady);
+            }));
+        }
+
+        item.Connect(SaveListItem.SignalName.OnDoubleClicked,
+            Callable.From(() => OnItemDoubleClicked(item)));
+
+        item.Connect(SaveListItem.SignalName.OnDeleted, Callable.From(() => OnDeletePressed(save)));
+
+        item.Connect(SaveListItem.SignalName.OnOldSaveLoaded, Callable.From(() => OnOldSaveLoaded(save)));
+
+        // This can't use binds because we need an additional Dynamic parameter from the list item here
+        item.Connect(SaveListItem.SignalName.OnUpgradeableSaveLoaded,
+            new Callable(this, nameof(OnUpgradeableSaveLoaded)));
+        item.Connect(SaveListItem.SignalName.OnNewSaveLoaded, Callable.From(() => OnNewSaveLoaded(save)));
+        item.Connect(SaveListItem.SignalName.OnBrokenSaveLoaded,
+            Callable.From(() => OnInvalidLoaded(save)));
+        item.Connect(SaveListItem.SignalName.OnKnownIncompatibleLoaded,
+            new Callable(this, nameof(OnKnownIncompatibleLoaded)));
+        item.Connect(SaveListItem.SignalName.OnDifferentVersionPrototypeLoaded,
+            new Callable(this, nameof(OnDifferentVersionPrototypeLoaded)));
+        item.Connect(SaveListItem.SignalName.OnProblemFreeSaveLoaded,
+            Callable.From(() => OnProblemFreeLoaded(save)));
+
+        item.SaveName = save;
+        savesList.AddChild(item);
+        saveItemChildren.Add(item);
+    }
+
+    private void ProcessPreviewLoad()
+    {
+        if (loadingPreviewIndex >= 0 && saveItemChildren[loadingPreviewIndex].IsLoadingData)
+            return;
+
+        loadingPreviewIndex = -1;
+
+        while (nextPreviewIndex <= previousLastVisible)
+        {
+            var index = nextPreviewIndex++;
+            if (saveItemChildren[index].TriggerLoad())
+            {
+                loadingPreviewIndex = index;
+                return;
+            }
+        }
+    }
+
+    private void CancelPreviewLoad()
+    {
+        if (loadingPreviewIndex < 0)
+            return;
+
+        saveItemChildren[loadingPreviewIndex].CancelLoad();
+        loadingPreviewIndex = -1;
     }
 
     private void OnSubItemSelectedChanged()
@@ -468,7 +552,7 @@ public partial class SaveList : ScrollContainer
 
     private void UpdateVisibleRange()
     {
-        if (!IsVisibleInTree())
+        if (readSavesList != null || !savesList.IsVisibleInTree())
             return;
 
         // This is reset here to ensure that if this were to somehow refresh while invisible, then the item visibility
@@ -511,28 +595,11 @@ public partial class SaveList : ScrollContainer
         if (paddedFirst == previousFirstVisible && paddedLast == previousLastVisible)
             return;
 
-        int oldFirst = previousFirstVisible;
-        int oldLast = previousLastVisible;
-
         previousFirstVisible = paddedFirst;
         previousLastVisible = paddedLast;
+        nextPreviewIndex = paddedFirst;
 
-        for (int i = paddedFirst; i <= paddedLast; ++i)
-        {
-            saveItemChildren[i].TriggerLoad();
-        }
-
-        if (oldFirst >= 0)
-        {
-            for (int i = oldFirst; i < paddedFirst; ++i)
-            {
-                saveItemChildren[i].CancelLoad();
-            }
-
-            for (int i = paddedLast + 1; i <= oldLast; ++i)
-            {
-                saveItemChildren[i].CancelLoad();
-            }
-        }
+        if (loadingPreviewIndex < paddedFirst || loadingPreviewIndex > paddedLast)
+            CancelPreviewLoad();
     }
 }
