@@ -49,6 +49,10 @@ public class SimulationCachePredationRoleTests
         AssertThat(armedScore).IsGreater(baseline);
     }
 
+    /// <summary>
+    ///   Replacing a rear-facing placeholder with a pilus or injectisome should protect fleeing prey.
+    ///   Keeping the same occupied positions isolates the defence from a change in membrane area.
+    /// </summary>
     [TestCase(false, false)]
     [TestCase(false, true)]
     [TestCase(true, false)]
@@ -57,9 +61,10 @@ public class SimulationCachePredationRoleTests
     {
         var controlPredator = CreateRoleSpecies(211, false, CreateOrganelle("pilus", new Hex(0, -4)));
         var defendedPredator = CreateRoleSpecies(214, false, CreateOrganelle("pilus", new Hex(0, -4)));
-        var control = CreateRoleSpecies(212, multicellular);
+        var rear = new Hex(0, 1);
+        var control = CreateRoleSpecies(212, multicellular, CreateOrganelle("cytoplasm", rear));
         var defended = CreateRoleSpecies(213, multicellular,
-            CreateOrganelle("pilus", new Hex(0, 4), injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
+            CreateOrganelle("pilus", rear, injectisome ? Constants.PILUS_INJECTISOME_UPGRADE_NAME : null));
         control.ModifiableBehaviour.Fear = defended.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         control.ModifiableBehaviour.Aggression = defended.ModifiableBehaviour.Aggression = 0;
         AssertCannotEngulf(controlPredator);
@@ -83,7 +88,7 @@ public class SimulationCachePredationRoleTests
         AssertThat(injectisome ? changed.DefensiveInjectisomeScore : changed.DefensivePilusScore).IsGreater(0.0f);
         AssertThat(changed.PilusScore + changed.InjectisomeScore).IsEqual(0.0f);
 
-        // Fleeing prey can present the rear tool; adding it also changes mass and metabolism.
+        // Fleeing prey can present the rear tool to the pursuing predator.
         var (baseline, defendedScore) = AssertScorePair(controlPredator, control, defendedPredator, defended);
         AssertThat(baseline).IsGreater(0.0f);
         AssertThat(defendedScore).IsGreater(0.0f).IsLess(baseline);
