@@ -265,7 +265,7 @@ public class WorldGenerationSettings : IArchivable
 
     public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
 
-    public CompoundLevelEffectOnEvents CompoundLevelEffect { get; set; } = CompoundLevelEffectOnEvents.Medium;
+    public CompoundLevelEffectOnEvents CompoundLevelEffect { get; set; } = CompoundLevelEffectOnEvents.Full;
 
     // The following are helper proxies to the values from the difficulty
     public float MPMultiplier => Difficulty.MPMultiplier;
