@@ -104,9 +104,9 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
             return false;
 
         currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE
-            * targetWorld.GetCompoundCoefficient(Compound.Hydrogensulfide);
+            * targetWorld.GetEventCompoundCoefficient(Compound.Hydrogensulfide);
         currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE
-            * targetWorld.GetCompoundCoefficient(Compound.Carbondioxide);
+            * targetWorld.GetEventCompoundCoefficient(Compound.Carbondioxide);
 
         // Percentage is density times amount, so clamp to the inversed amount (times 100)
         currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
