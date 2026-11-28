@@ -56,6 +56,14 @@ public static class CellBodyPlanInternalCalculations
 
         var totalMass = 0.0f;
 
+        // Store a representative member index so the common case can keep the mass table on the stack.
+        int capacity = useEstimate ? cells.Count : 0;
+        Span<(int Member, float Mass)> masses = capacity <= 64 ?
+            stackalloc (int, float)[capacity] :
+            new (int, float)[capacity];
+        int typeCount = 0;
+        int memberIndex = 0;
+
         var addedSpeed = 0.0f;
         var axonPower = 0.0f;
         var axonCount = 0;
@@ -71,10 +79,22 @@ public static class CellBodyPlanInternalCalculations
             var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
+            int typeIndex = 0;
+            if (useEstimate)
+            {
+                while (typeIndex < typeCount &&
+                       !ReferenceEquals(cells[masses[typeIndex].Member].Data!.ModifiableCellType,
+                           cell.ModifiableCellType))
+                {
+                    ++typeIndex;
+                }
+            }
+
+            bool needsMass = useEstimate && typeIndex == typeCount;
             int memberHexCount = 0;
             foreach (var organelle in cell.Organelles)
             {
-                if (useEstimate)
+                if (needsMass)
                     memberHexCount += organelle.Definition.HexCount;
 
                 if (organelle.Definition.HasActomyosinComponent)
@@ -109,14 +129,22 @@ public static class CellBodyPlanInternalCalculations
 
             if (useEstimate)
             {
-                totalMass += MicrobeInternalCalculations.EstimateShapeMass(cell.ModifiableOrganelles, memberHexCount,
-                    cell.IsBacteria);
+                if (needsMass)
+                {
+                    float mass = MicrobeInternalCalculations.EstimateShapeMass(cell.ModifiableOrganelles,
+                        memberHexCount, cell.IsBacteria);
+                    masses[typeCount++] = (memberIndex, mass);
+                }
+
+                totalMass += masses[typeIndex].Mass;
             }
             else
             {
                 totalMass += MicrobeInternalCalculations.CalculateShapeMass(cell.ModifiableOrganelles,
                     cell.MembraneType, cell.IsBacteria);
             }
+
+            ++memberIndex;
 
             if (cellActomyosinCount > 0)
             {
