@@ -46,6 +46,9 @@ public partial class PlanetSettings : VBoxContainer
     private OptionButton radiationLevelButton = null!;
 
     [Export]
+    private OptionButton compoundLevelEffectOnEventsButton = null!;
+
+    [Export]
     private CheckButton lawkOnlyButton = null!;
 
     [Export]
@@ -95,6 +98,8 @@ public partial class PlanetSettings : VBoxContainer
             AmmoniaLevel = (WorldGenerationSettings.CompoundLevel)ammoniaLevelButton.Selected,
             PhosphatesLevel = (WorldGenerationSettings.CompoundLevel)phosphatesLevelButton.Selected,
             RadiationLevel = (WorldGenerationSettings.CompoundLevel)radiationLevelButton.Selected,
+            CompoundLevelEffect
+                = (WorldGenerationSettings.CompoundLevelEffectOnEvents)compoundLevelEffectOnEventsButton.Selected,
             Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected,
             DayNightCycleEnabled = dayNightCycleButton.ButtonPressed,
             DayLength = (int)dayLength.Value,
@@ -161,6 +166,11 @@ public partial class PlanetSettings : VBoxContainer
     public void SetRadiationLevel(WorldGenerationSettings.CompoundLevel value)
     {
         radiationLevelButton.Selected = (int)value;
+    }
+
+    public void SetCompoundLevelEffectOnEvents(WorldGenerationSettings.CompoundLevelEffectOnEvents value)
+    {
+        compoundLevelEffectOnEventsButton.Selected = (int)value;
     }
 
     public void SetLawkOnly(bool pressed)

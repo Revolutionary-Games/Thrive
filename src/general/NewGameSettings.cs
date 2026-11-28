@@ -371,6 +371,7 @@ public partial class NewGameSettings : ControlWithInput
         planetSettings.SetAmmoniaLevel(settings.AmmoniaLevel);
         planetSettings.SetPhosphatesLevel(settings.PhosphatesLevel);
         planetSettings.SetRadiationLevel(settings.RadiationLevel);
+        planetSettings.SetCompoundLevelEffectOnEvents(settings.CompoundLevelEffect);
 
         planetSettings.SetLifeOrigin(settings.Origin);
         planetSettings.SetDayNightCycle(settings.DayNightCycleEnabled);
@@ -533,6 +534,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.AmmoniaLevel = planetGenerationSettings.AmmoniaLevel;
         settings.PhosphatesLevel = planetGenerationSettings.PhosphatesLevel;
         settings.RadiationLevel = planetGenerationSettings.RadiationLevel;
+        settings.CompoundLevelEffect = planetGenerationSettings.CompoundLevelEffect;
         settings.Origin = planetGenerationSettings.Origin;
         settings.DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled;
         settings.DayLength = planetGenerationSettings.DayLength;

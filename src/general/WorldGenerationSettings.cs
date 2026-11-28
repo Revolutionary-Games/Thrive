@@ -8,7 +8,7 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class WorldGenerationSettings : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     public WorldGenerationSettings()
     {
@@ -165,20 +165,35 @@ public class WorldGenerationSettings : IArchivable
     /// </remarks>
     public enum CompoundLevel
     {
+        [Description("COMPOUND_LEVEL_NONE")]
+        None = 0,
+
         [Description("COMPOUND_LEVEL_VERY_LOW")]
-        VeryLow = 0,
+        VeryLow = 1,
 
         [Description("COMPOUND_LEVEL_LOW")]
-        Low = 1,
+        Low = 2,
 
         [Description("COMPOUND_LEVEL_AVERAGE")]
-        Average = 2,
+        Average = 3,
 
         [Description("COMPOUND_LEVEL_HIGH")]
-        High = 3,
+        High = 4,
 
         [Description("COMPOUND_LEVEL_VERY_HIGH")]
-        VeryHigh = 4,
+        VeryHigh = 5,
+    }
+
+    public enum CompoundLevelEffectOnEvents
+    {
+        [Description("COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_NONE")]
+        None = 0,
+
+        [Description("COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_MEDIUM")]
+        Medium = 1,
+
+        [Description("COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_FULL")]
+        Full = 2,
     }
 
     /// <summary>
@@ -249,6 +264,8 @@ public class WorldGenerationSettings : IArchivable
     public CompoundLevel PhosphatesLevel { get; set; } = CompoundLevel.Average;
 
     public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevelEffectOnEvents CompoundLevelEffect { get; set; } = CompoundLevelEffectOnEvents.Full;
 
     // The following are helper proxies to the values from the difficulty
     public float MPMultiplier => Difficulty.MPMultiplier;
@@ -344,6 +361,17 @@ public class WorldGenerationSettings : IArchivable
         else
         {
             instance.AlwaysResetEnvironment = reader.ReadBool();
+        }
+
+        if (version < 3)
+        {
+            // To compensate for the new NONE option
+            ++instance.HydrogenSulfideLevel;
+            ++instance.GlucoseLevel;
+            ++instance.IronLevel;
+            ++instance.AmmoniaLevel;
+            ++instance.PhosphatesLevel;
+            ++instance.RadiationLevel;
         }
 
         return instance;

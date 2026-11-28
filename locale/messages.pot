@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"POT-Creation-Date: 2026-11-28 03:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgstr ""
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/AchievementsView.cs:40
+#: ../src/gui_common/menus/AchievementsView.cs:49
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 msgid "AMMONIA_COST"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:536
+#: ../src/gui_common/menus/PlanetSettings.tscn:539
 msgid "AMMONIA_LEVELS"
 msgstr ""
 
@@ -1059,27 +1059,27 @@ msgstr ""
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:552
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:557
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_ADJACENCY_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:555
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:560
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:544
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:549
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_GROWTH_ORDER"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:554
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:559
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:551
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:556
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_ADJACENCY_DISCONNECT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:553
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.Layout.cs:558
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1020
 msgid "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_AND_DISCONNECT"
 msgstr ""
@@ -1298,7 +1298,7 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:133
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:134
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -1342,26 +1342,26 @@ msgstr ""
 msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:274
+#: ../src/gui_common/menus/PlanetSettings.tscn:275
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:295
+#: ../src/gui_common/menus/PlanetSettings.tscn:296
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:150
-#: ../src/gui_common/menus/PlanetSettings.tscn:286
+#: ../src/gui_common/menus/PlanetSettings.tscn:287
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:147
-#: ../src/gui_common/menus/PlanetSettings.tscn:284
+#: ../src/gui_common/menus/PlanetSettings.tscn:285
 msgid "CLIMATE_STABILITY_STABLE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:153
-#: ../src/gui_common/menus/PlanetSettings.tscn:288
+#: ../src/gui_common/menus/PlanetSettings.tscn:289
 msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
@@ -1622,53 +1622,77 @@ msgstr ""
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:174
-#: ../src/gui_common/menus/PlanetSettings.tscn:451
-#: ../src/gui_common/menus/PlanetSettings.tscn:484
-#: ../src/gui_common/menus/PlanetSettings.tscn:517
-#: ../src/gui_common/menus/PlanetSettings.tscn:550
-#: ../src/gui_common/menus/PlanetSettings.tscn:583
-#: ../src/gui_common/menus/PlanetSettings.tscn:616
+#: ../src/general/WorldGenerationSettings.cs:177
+#: ../src/gui_common/menus/PlanetSettings.tscn:454
+#: ../src/gui_common/menus/PlanetSettings.tscn:489
+#: ../src/gui_common/menus/PlanetSettings.tscn:522
+#: ../src/gui_common/menus/PlanetSettings.tscn:555
+#: ../src/gui_common/menus/PlanetSettings.tscn:588
+#: ../src/gui_common/menus/PlanetSettings.tscn:621
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/menus/PlanetSettings.tscn:453
-#: ../src/gui_common/menus/PlanetSettings.tscn:486
-#: ../src/gui_common/menus/PlanetSettings.tscn:519
-#: ../src/gui_common/menus/PlanetSettings.tscn:552
-#: ../src/gui_common/menus/PlanetSettings.tscn:585
-#: ../src/gui_common/menus/PlanetSettings.tscn:618
+#: ../src/general/WorldGenerationSettings.cs:180
+#: ../src/gui_common/menus/PlanetSettings.tscn:456
+#: ../src/gui_common/menus/PlanetSettings.tscn:491
+#: ../src/gui_common/menus/PlanetSettings.tscn:524
+#: ../src/gui_common/menus/PlanetSettings.tscn:557
+#: ../src/gui_common/menus/PlanetSettings.tscn:590
+#: ../src/gui_common/menus/PlanetSettings.tscn:623
 msgid "COMPOUND_LEVEL_HIGH"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:171
-#: ../src/gui_common/menus/PlanetSettings.tscn:449
-#: ../src/gui_common/menus/PlanetSettings.tscn:482
-#: ../src/gui_common/menus/PlanetSettings.tscn:515
-#: ../src/gui_common/menus/PlanetSettings.tscn:548
-#: ../src/gui_common/menus/PlanetSettings.tscn:581
-#: ../src/gui_common/menus/PlanetSettings.tscn:614
+#: ../src/general/WorldGenerationSettings.cs:174
+#: ../src/gui_common/menus/PlanetSettings.tscn:452
+#: ../src/gui_common/menus/PlanetSettings.tscn:487
+#: ../src/gui_common/menus/PlanetSettings.tscn:520
+#: ../src/gui_common/menus/PlanetSettings.tscn:553
+#: ../src/gui_common/menus/PlanetSettings.tscn:586
+#: ../src/gui_common/menus/PlanetSettings.tscn:619
 msgid "COMPOUND_LEVEL_LOW"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:180
-#: ../src/gui_common/menus/PlanetSettings.tscn:455
-#: ../src/gui_common/menus/PlanetSettings.tscn:488
-#: ../src/gui_common/menus/PlanetSettings.tscn:521
-#: ../src/gui_common/menus/PlanetSettings.tscn:554
-#: ../src/gui_common/menus/PlanetSettings.tscn:587
-#: ../src/gui_common/menus/PlanetSettings.tscn:620
+#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/gui_common/menus/PlanetSettings.tscn:448
+#: ../src/gui_common/menus/PlanetSettings.tscn:483
+#: ../src/gui_common/menus/PlanetSettings.tscn:516
+#: ../src/gui_common/menus/PlanetSettings.tscn:549
+#: ../src/gui_common/menus/PlanetSettings.tscn:582
+#: ../src/gui_common/menus/PlanetSettings.tscn:615
+msgid "COMPOUND_LEVEL_NONE"
+msgstr ""
+
+#: ../src/gui_common/menus/PlanetSettings.tscn:638
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:195
+#: ../src/gui_common/menus/PlanetSettings.tscn:652
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_FULL"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:192
+#: ../src/gui_common/menus/PlanetSettings.tscn:650
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_MEDIUM"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:189
+#: ../src/gui_common/menus/PlanetSettings.tscn:648
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_NONE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:183
+#: ../src/gui_common/menus/PlanetSettings.tscn:458
 msgid "COMPOUND_LEVEL_VERY_HIGH"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:168
-#: ../src/gui_common/menus/PlanetSettings.tscn:447
-#: ../src/gui_common/menus/PlanetSettings.tscn:480
-#: ../src/gui_common/menus/PlanetSettings.tscn:513
-#: ../src/gui_common/menus/PlanetSettings.tscn:546
-#: ../src/gui_common/menus/PlanetSettings.tscn:579
-#: ../src/gui_common/menus/PlanetSettings.tscn:612
+#: ../src/general/WorldGenerationSettings.cs:171
+#: ../src/gui_common/menus/PlanetSettings.tscn:450
+#: ../src/gui_common/menus/PlanetSettings.tscn:485
+#: ../src/gui_common/menus/PlanetSettings.tscn:518
+#: ../src/gui_common/menus/PlanetSettings.tscn:551
+#: ../src/gui_common/menus/PlanetSettings.tscn:584
+#: ../src/gui_common/menus/PlanetSettings.tscn:617
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr ""
 
@@ -1751,12 +1775,12 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:399
+#: ../src/general/NewGameSettings.cs:400
 #: ../src/general/NewGameSettings.tscn:1183
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:405
+#: ../src/general/NewGameSettings.cs:406
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -2033,7 +2057,7 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:580
+#: ../src/general/base_stage/CreatureStageBase.cs:573
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
 msgstr ""
 
@@ -2272,19 +2296,19 @@ msgstr ""
 msgid "DAMAGE_SOURCE_RADIATION"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:340
+#: ../src/gui_common/menus/PlanetSettings.tscn:341
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:376
+#: ../src/gui_common/menus/PlanetSettings.tscn:377
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:314
+#: ../src/gui_common/menus/PlanetSettings.tscn:315
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:324
+#: ../src/gui_common/menus/PlanetSettings.tscn:325
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
@@ -2304,8 +2328,8 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:380
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:389
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:388
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:395
 msgid "DEATH"
 msgstr ""
 
@@ -2360,7 +2384,7 @@ msgstr ""
 msgid "DELETE"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:229
+#: ../src/saving/SaveManagerGUI.cs:231
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 
@@ -2388,7 +2412,7 @@ msgstr ""
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
@@ -2469,7 +2493,7 @@ msgstr ""
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:394
+#: ../src/general/WorldGenerationSettings.cs:422
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:36
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -2480,7 +2504,7 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:91
-#: ../src/general/WorldGenerationSettings.cs:392
+#: ../src/general/WorldGenerationSettings.cs:420
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -3437,7 +3461,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:853
+#: ../src/general/NewGameSettings.cs:855
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -3445,7 +3469,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:859
+#: ../src/general/NewGameSettings.cs:861
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
@@ -3457,7 +3481,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:856
+#: ../src/general/NewGameSettings.cs:858
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -3579,7 +3603,7 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/Spawners.cs:1232
+#: ../src/microbe_stage/Spawners.cs:1235
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
@@ -3712,26 +3736,26 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:237
+#: ../src/gui_common/menus/PlanetSettings.tscn:238
 msgid "GEOLOGICAL_ACTIVITY"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:132
-#: ../src/gui_common/menus/PlanetSettings.tscn:251
+#: ../src/gui_common/menus/PlanetSettings.tscn:252
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:129
-#: ../src/gui_common/menus/PlanetSettings.tscn:249
+#: ../src/gui_common/menus/PlanetSettings.tscn:250
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:126
-#: ../src/gui_common/menus/PlanetSettings.tscn:247
+#: ../src/gui_common/menus/PlanetSettings.tscn:248
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:258
+#: ../src/gui_common/menus/PlanetSettings.tscn:259
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 
@@ -3797,7 +3821,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:470
+#: ../src/gui_common/menus/PlanetSettings.tscn:473
 msgid "GLUCOSE_LEVEL"
 msgstr ""
 
@@ -4011,7 +4035,7 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:437
+#: ../src/gui_common/menus/PlanetSettings.tscn:438
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr ""
 
@@ -4678,7 +4702,7 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:503
+#: ../src/gui_common/menus/PlanetSettings.tscn:506
 msgid "IRON_LEVELS"
 msgstr ""
 
@@ -5032,12 +5056,12 @@ msgid "LAUNCHMEDIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:153
-#: ../src/gui_common/menus/PlanetSettings.tscn:60
+#: ../src/gui_common/menus/PlanetSettings.tscn:61
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:163
-#: ../src/gui_common/menus/PlanetSettings.tscn:70
+#: ../src/gui_common/menus/PlanetSettings.tscn:71
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
@@ -5122,35 +5146,35 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:179
-#: ../src/gui_common/menus/PlanetSettings.tscn:86
+#: ../src/gui_common/menus/PlanetSettings.tscn:87
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:201
-#: ../src/gui_common/menus/PlanetSettings.tscn:109
+#: ../src/gui_common/menus/PlanetSettings.tscn:110
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:194
 #: ../src/general/WorldGenerationSettings.cs:48
-#: ../src/gui_common/menus/PlanetSettings.tscn:101
+#: ../src/gui_common/menus/PlanetSettings.tscn:102
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:192
 #: ../src/general/WorldGenerationSettings.cs:45
-#: ../src/gui_common/menus/PlanetSettings.tscn:99
+#: ../src/gui_common/menus/PlanetSettings.tscn:100
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:187
-#: ../src/gui_common/menus/PlanetSettings.tscn:94
+#: ../src/gui_common/menus/PlanetSettings.tscn:95
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:190
 #: ../src/general/WorldGenerationSettings.cs:42
-#: ../src/gui_common/menus/PlanetSettings.tscn:97
+#: ../src/gui_common/menus/PlanetSettings.tscn:98
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
@@ -5661,7 +5685,7 @@ msgstr ""
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:168
 #: ../src/gui_common/menus/OptionsMenu.cs:1823
 #: ../src/gui_common/menus/OptionsMenu.cs:2810
-#: ../src/saving/SaveManagerGUI.cs:116
+#: ../src/saving/SaveManagerGUI.cs:117
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -7309,7 +7333,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:182
-#: ../src/microbe_stage/PatchMapGenerator.cs:1139
+#: ../src/microbe_stage/PatchMapGenerator.cs:1143
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -7392,11 +7416,11 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:805 ../src/general/NewGameSettings.cs:812
-#: ../src/general/NewGameSettings.cs:828
+#: ../src/general/NewGameSettings.cs:807 ../src/general/NewGameSettings.cs:814
+#: ../src/general/NewGameSettings.cs:830
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
-#: ../src/general/WorldGenerationSettings.cs:399
+#: ../src/general/WorldGenerationSettings.cs:427
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/gui_common/menus/OptionsMenu.cs:998
 #: ../src/gui_common/menus/OptionsMenu.cs:2176
@@ -7475,7 +7499,7 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:569
+#: ../src/gui_common/menus/PlanetSettings.tscn:572
 msgid "PHOSPHATES_LEVELS"
 msgstr ""
 
@@ -7521,13 +7545,13 @@ msgstr ""
 msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:410
+#: ../src/general/WorldGenerationSettings.cs:438
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:55
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:212
-#: ../src/gui_common/menus/PlanetSettings.tscn:387
+#: ../src/gui_common/menus/PlanetSettings.tscn:388
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -7658,7 +7682,7 @@ msgstr ""
 msgid "POSITION_NUMBER"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:137
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:162
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -7802,7 +7826,7 @@ msgstr ""
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:503
+#: ../src/general/PauseMenu.cs:586
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -7812,7 +7836,7 @@ msgstr ""
 msgid "RADIATION"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:602
+#: ../src/gui_common/menus/PlanetSettings.tscn:605
 msgid "RADIATION_LEVELS"
 msgstr ""
 
@@ -7837,7 +7861,7 @@ msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:225
-#: ../src/gui_common/menus/PlanetSettings.tscn:401
+#: ../src/gui_common/menus/PlanetSettings.tscn:402
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
 
@@ -7930,7 +7954,7 @@ msgstr ""
 
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:590
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:600
-#: ../src/multicellular_stage/systems/GameteSystem.cs:387
+#: ../src/multicellular_stage/systems/GameteSystem.cs:400
 #: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:402
 msgid "REPRODUCED"
 msgstr ""
@@ -8118,7 +8142,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:701 ../src/general/PauseMenu.cs:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:701 ../src/general/PauseMenu.cs:567
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -8266,11 +8290,11 @@ msgstr ""
 msgid "SAVE_AUTOSAVE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.cs:257
+#: ../src/saving/SaveListItem.cs:266
 msgid "SAVE_CHEATS_USED"
 msgstr ""
 
-#: ../src/saving/SaveList.cs:240
+#: ../src/saving/SaveList.cs:324
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
@@ -10165,11 +10189,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:128
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:115
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:134
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:121
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -12933,30 +12957,30 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:422
+#: ../src/general/WorldGenerationSettings.cs:450
 msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:200
+#: ../src/gui_common/menus/PlanetSettings.tscn:201
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:221
+#: ../src/gui_common/menus/PlanetSettings.tscn:222
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:111
-#: ../src/gui_common/menus/PlanetSettings.tscn:214
+#: ../src/gui_common/menus/PlanetSettings.tscn:215
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:108
-#: ../src/gui_common/menus/PlanetSettings.tscn:212
+#: ../src/gui_common/menus/PlanetSettings.tscn:213
 msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:105
-#: ../src/gui_common/menus/PlanetSettings.tscn:210
+#: ../src/gui_common/menus/PlanetSettings.tscn:211
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
 msgstr ""
 
@@ -12964,53 +12988,53 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:125
+#: ../src/gui_common/menus/PlanetSettings.tscn:126
 msgid "WORLD_SIZE"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:147
+#: ../src/gui_common/menus/PlanetSettings.tscn:148
 msgid "WORLD_SIZE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:69
-#: ../src/gui_common/menus/PlanetSettings.tscn:140
+#: ../src/gui_common/menus/PlanetSettings.tscn:141
 msgid "WORLD_SIZE_LARGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:66
-#: ../src/gui_common/menus/PlanetSettings.tscn:138
+#: ../src/gui_common/menus/PlanetSettings.tscn:139
 msgid "WORLD_SIZE_MEDIUM"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:63
-#: ../src/gui_common/menus/PlanetSettings.tscn:136
+#: ../src/gui_common/menus/PlanetSettings.tscn:137
 msgid "WORLD_SIZE_SMALL"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:133
+#: ../src/gui_common/menus/PlanetSettings.tscn:134
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:163
+#: ../src/gui_common/menus/PlanetSettings.tscn:164
 msgid "WORLD_TEMPERATURE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:84
-#: ../src/gui_common/menus/PlanetSettings.tscn:173
+#: ../src/gui_common/menus/PlanetSettings.tscn:174
 msgid "WORLD_TEMPERATURE_COLD"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:184
+#: ../src/gui_common/menus/PlanetSettings.tscn:185
 msgid "WORLD_TEMPERATURE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:87
-#: ../src/gui_common/menus/PlanetSettings.tscn:175
+#: ../src/gui_common/menus/PlanetSettings.tscn:176
 msgid "WORLD_TEMPERATURE_TEMPERATE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:90
-#: ../src/gui_common/menus/PlanetSettings.tscn:177
+#: ../src/gui_common/menus/PlanetSettings.tscn:178
 msgid "WORLD_TEMPERATURE_WARM"
 msgstr ""
 

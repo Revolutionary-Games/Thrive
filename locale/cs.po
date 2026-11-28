@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-20 17:27+0200\n"
+"POT-Creation-Date: 2026-11-28 03:44+0300\n"
 "PO-Revision-Date: 2026-11-22 17:17+0000\n"
 "Last-Translator: ProtoDevGames <noreply+280@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1191,6 +1191,25 @@ msgstr "Vysoká"
 
 msgid "COMPOUND_LEVEL_LOW"
 msgstr "Nízká"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_NONE"
+msgstr "Nízká"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS"
+msgstr "Nízká"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_FULL"
+msgstr "Nízká"
+
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_MEDIUM"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_OPTION_EFFECT_ON_EVENTS_NONE"
+msgstr "Velmi nízká"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
 msgstr "Velice vysoká"
@@ -2705,7 +2724,7 @@ msgid "FLAGELLUM"
 msgstr "Bičík"
 
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí [thrive:compound type=\"atp\"][/thrive:compound] vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
+msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
 
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
 msgstr "Délka bičíku. Delší bičík produkuje větší tah (rychlost), ale konzumuje více ATP."
@@ -4032,7 +4051,7 @@ msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "V editoru nijak nepozměň svého mikroba"
 
 msgid "MANUALLY_SET_TIME"
-msgstr "Ručně nastavený čas dne"
+msgstr "ručně nastavený čas dne"
 
 msgid "MAP"
 msgstr "Mapa"
@@ -4106,7 +4125,7 @@ msgid "MEDIASTOP"
 msgstr "Zastavit"
 
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "Střední kus síry"
+msgstr "střední kus síry"
 
 msgid "MEGA_YEARS"
 msgstr "Myry"
@@ -4147,7 +4166,7 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"]kyslíku[/thrive:compound]."
 
 msgid "META_THREADS_TOOLTIP"
-msgstr "Navštivte náš profil na Threads"
+msgstr "Navštivte náš profil na Threads."
 
 msgid "METEOR_IMPACT_EVENT"
 msgstr "Pád meteoru"
