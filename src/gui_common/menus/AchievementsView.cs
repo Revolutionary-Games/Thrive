@@ -17,6 +17,15 @@ public partial class AchievementsView : Control
     public delegate void OnClosedEventHandler();
 
     /// <summary>
+    ///   Lets the containing menu close the popup after animating a close request.
+    /// </summary>
+    public bool DeferPopupClose
+    {
+        get => !achievementsPopup.CloseOnTitleBarButtonPress;
+        set => achievementsPopup.CloseOnTitleBarButtonPress = !value;
+    }
+
+    /// <summary>
     ///   Opens a popup for achievements and refreshes them
     /// </summary>
     public void OpenPopup()
@@ -40,16 +49,34 @@ public partial class AchievementsView : Control
         achievementsPopup.WindowTitle = Localization.Translate("ACHIEVEMENTS_TOTAL").FormatSafe(unlocked, total);
     }
 
-    private void PopupClosed()
+    public void SetPopupOpacity(float opacity)
+    {
+        achievementsPopup.Modulate = achievementsPopup.Modulate with { A = opacity };
+    }
+
+    public void ClosePopup()
+    {
+        achievementsPopup.Close();
+    }
+
+    private void PopupCloseRequested()
     {
         EmitSignal(SignalName.OnClosed);
+    }
+
+    private void PopupClosed()
+    {
+        if (!DeferPopupClose)
+            EmitSignal(SignalName.OnClosed);
     }
 
     private void BackPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(SignalName.OnClosed);
-        achievementsPopup.Close();
+        PopupCloseRequested();
+
+        if (!DeferPopupClose)
+            ClosePopup();
     }
 }

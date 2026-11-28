@@ -24,6 +24,8 @@ uniform float ozoneLayerWidth = 68.0;
 
 uniform int viewRaySteps : hint_range(4, 128) = 32;
 
+#include "res://shaders/sky/lib/atmosphere_transmittance.gdshaderinc"
+
 const float SKY_PI = 3.14159265358979323846;
 
 vec2 raySphere(vec3 origin, vec3 direction, float radius) {
@@ -57,33 +59,6 @@ vec2 atmosphereDensity(float altitude) {
 // only absorbs.
 vec3 atmosphereExtinction(vec2 density) {
     return rayleighScattering * density.x + ozoneAbsorption * density.y;
-}
-
-// How much sunlight survives the trip from the top of the atmosphere down to a point.
-vec3 sunTransmittance(vec3 position, vec3 directionToSun) {
-    float radius = length(position);
-    float cosZenith = dot(position, directionToSun) / radius;
-
-    if (cosZenith < 0.0 && radius * radius * (1.0 - cosZenith * cosZenith) < groundRadius * groundRadius) {
-        return vec3(0.0);
-    }
-
-    float topHorizonDistance = sqrt((topRadius - groundRadius) * (topRadius + groundRadius));
-    float pointHorizonDistance = sqrt(max((radius - groundRadius) * (radius + groundRadius), 0.0));
-
-    float discriminant = radius * radius * cosZenith * cosZenith + (topRadius - radius) * (topRadius + radius);
-    float distanceToTop = max(-radius * cosZenith + sqrt(max(discriminant, 0.0)), 0.0);
-
-    float minDistance = topRadius - radius;
-    float maxDistance = pointHorizonDistance + topHorizonDistance;
-
-    vec2 uv = vec2((distanceToTop - minDistance) / max(maxDistance - minDistance, 1e-6),
-        pointHorizonDistance / topHorizonDistance);
-
-    vec2 size = vec2(textureSize(transmittanceLut, 0));
-    uv = 0.5 / size + uv * (1.0 - 1.0 / size);
-
-    return texture(transmittanceLut, uv).rgb;
 }
 
 void sky() {
@@ -122,8 +97,9 @@ void sky() {
             vec3 extinction = atmosphereExtinction(density);
             vec3 stepTransmittance = exp(-extinction * stepSize);
 
-            vec3 inScatter = rayleighScattering * density.x * rayleighPhase
-                    * sunTransmittance(samplePosition, directionToSun);
+            vec3 sunTransmittance = AtmosphereTransmittance(transmittanceLut, samplePosition, directionToSun,
+                groundRadius, topRadius);
+            vec3 inScatter = rayleighScattering * density.x * rayleighPhase * sunTransmittance;
 
             vec3 scattered = (inScatter - inScatter * stepTransmittance) / max(extinction, vec3(1e-9));
 

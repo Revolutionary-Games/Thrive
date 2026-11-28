@@ -74,6 +74,9 @@ public partial class SaveListItem : PanelContainer
     public delegate void OnSelectedChangedEventHandler();
 
     [Signal]
+    public delegate void OnDataReadyEventHandler();
+
+    [Signal]
     public delegate void OnDoubleClickedEventHandler();
 
     [Signal]
@@ -146,12 +149,18 @@ public partial class SaveListItem : PanelContainer
         }
     }
 
+    public bool IsLoadingData => loadingData;
+    public bool IsDataReady => dataLoaded;
+
     public override void _Ready()
     {
         if (string.IsNullOrEmpty(SaveName))
             throw new InvalidOperationException($"{nameof(SaveName)} is required");
 
         loadButton.Visible = Loadable;
+
+        // Disable loading until data is ready
+        loadButton.Disabled = true;
 
         UpdateName();
         UpdateHighlighting();
@@ -263,6 +272,8 @@ public partial class SaveListItem : PanelContainer
 
         loadingData = false;
         dataLoaded = true;
+        loadButton.Disabled = false;
+        EmitSignal(SignalName.OnDataReady);
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -273,7 +284,9 @@ public partial class SaveListItem : PanelContainer
 
             if (mouse.DoubleClick)
             {
-                EmitSignal(SignalName.OnDoubleClicked);
+                // The save screen can choose an overwrite target using just the filename
+                if (!Loadable || dataLoaded)
+                    EmitSignal(SignalName.OnDoubleClicked);
             }
             else
             {
@@ -282,12 +295,13 @@ public partial class SaveListItem : PanelContainer
         }
     }
 
-    public void TriggerLoad()
+    public bool TriggerLoad()
     {
         if (dataLoaded || loadingData || saveInfoLoadTask != null)
-            return;
+            return false;
 
         LoadSaveData();
+        return true;
     }
 
     public void CancelLoad()
@@ -304,6 +318,9 @@ public partial class SaveListItem : PanelContainer
 
     public void LoadThisSave()
     {
+        if (!dataLoaded)
+            return;
+
         if (isBroken)
         {
             EmitSignal(SignalName.OnBrokenSaveLoaded);
@@ -408,7 +425,6 @@ public partial class SaveListItem : PanelContainer
     private class SaveInfoAndScreenshot : IResource
     {
         private readonly string saveName;
-        private (SaveInformation Info, byte[]? ScreenshotData)? data;
 
         public SaveInfoAndScreenshot(string saveName)
         {
@@ -437,15 +453,13 @@ public partial class SaveListItem : PanelContainer
 
         public void PrepareLoading()
         {
-            data = Save.LoadInfoAndRawScreenshotFromSave(saveName);
+            var (info, screenshotData) = Save.LoadInfoAndRawScreenshotFromSave(saveName);
+            Save = Save.ConstructSaveFromInfoAndScreenshotBuffer(saveName, info, screenshotData);
         }
 
         public void Load()
         {
-            Save = Save.ConstructSaveFromInfoAndScreenshotBuffer(saveName, data!.Value.Info, data.Value.ScreenshotData);
-
-            // Let go of the data
-            data = null;
+            // File reading and PNG decoding happen during background preparation
         }
 
         public void PerformPostProcessing()

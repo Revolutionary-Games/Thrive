@@ -18,6 +18,8 @@ public partial class PhotoStudio : SubViewport
     [Export]
     public float SimulationWorldTimeAdvanceStep = 1 / 30.0f;
 
+    private const double TASK_BATCH_GAP_SECONDS = 0.1;
+
     private static PhotoStudio? instance;
 
     private readonly PhotoStudioMemoryCache memoryCache = new();
@@ -25,9 +27,13 @@ public partial class PhotoStudio : SubViewport
     private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
     private readonly Dictionary<IWorldSimulation, Node3D> simulationWorldRoots = new();
 
-    private readonly PriorityQueue<ImageTask, (int Priority, int Index)> tasks = new(new TaskComparer());
+    private readonly PriorityQueue<ImageTask, (int Priority, long Batch, int Index)> tasks =
+        new(new TaskComparer());
+
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
+    private long currentBatch;
+    private double timeSinceLastTaskSubmission;
 
     /// <summary>
     ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order.
@@ -138,6 +144,8 @@ public partial class PhotoStudio : SubViewport
 
     public override void _Process(double delta)
     {
+        timeSinceLastTaskSubmission += delta;
+
         if (currentTaskStep == Step.NoTask)
         {
             // Probably fine to do cache maintenance slower when generating images
@@ -418,6 +426,15 @@ public partial class PhotoStudio : SubViewport
         return HandleTaskSubmit(cacheKey, task);
     }
 
+    /// <summary>
+    ///   Ends the current batch so subsequent image requests enter a new batch immediately.
+    /// </summary>
+    public void FlushBatch()
+    {
+        ++currentBatch;
+        timeSinceLastTaskSubmission = 0;
+    }
+
     public IImageTask? TryGetFromCache(ulong hashCode)
     {
         var image = diskCache != null ? diskCache.Get(hashCode) : memoryCache.Get(hashCode);
@@ -470,13 +487,17 @@ public partial class PhotoStudio : SubViewport
     }
 
     /// <summary>
-    ///   Starts an image creation task. This is now protected as there is a potential to access cache before having
-    ///   to create a new task.
+    ///   Queues a new image creation task, grouping consecutive submissions into batches.
     /// </summary>
     /// <param name="task">The task to queue and run as soon as possible</param>
     private void SubmitTask(ImageTask task)
     {
-        tasks.Enqueue(task, (task.Priority, lastTaskIndex));
+        // A gap between submissions starts a new batch while keeping bursts together across frames.
+        if (timeSinceLastTaskSubmission >= TASK_BATCH_GAP_SECONDS)
+            FlushBatch();
+
+        timeSinceLastTaskSubmission = 0;
+        tasks.Enqueue(task, (task.Priority, currentBatch, lastTaskIndex));
         ++lastTaskIndex;
     }
 
@@ -587,17 +608,20 @@ public partial class PhotoStudio : SubViewport
         }
     }
 
-    private class TaskComparer : IComparer<(int, int)>
+    private class TaskComparer : IComparer<(int Priority, long Batch, int Index)>
     {
-        public int Compare((int, int) x, (int, int) y)
+        public int Compare((int Priority, long Batch, int Index) first, (int Priority, long Batch, int Index) second)
         {
-            if (x.Item1 < y.Item1)
-                return -1;
+            var priorityOrder = first.Priority.CompareTo(second.Priority);
+            if (priorityOrder != 0)
+                return priorityOrder;
 
-            if (x.Item1 > y.Item1)
-                return 1;
+            // Within the same priority, run newer batches first and preserve submission order within each batch.
+            var batchOrder = second.Batch.CompareTo(first.Batch);
+            if (batchOrder != 0)
+                return batchOrder;
 
-            return x.Item2.CompareTo(y.Item2);
+            return first.Index.CompareTo(second.Index);
         }
     }
 }

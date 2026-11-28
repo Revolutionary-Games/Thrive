@@ -473,9 +473,12 @@ public partial class CellBodyPlanEditorComponent
             }
         }
 
+        // The layout can refresh in the cell-type editor, but the placed objects live in the shared editor world
+        bool showLayout = Visible;
+
         // We use the invalid hexes as islands to mark them as invalid
         UpdateAlreadyPlacedHexes(displayed.Select(position => (position, (IReadOnlyList<Hex>)[new Hex(0, 0)], false)),
-            fullLayoutInvalid.ToList(), customiseMaterial: (position, material) =>
+            fullLayoutInvalid.ToList(), !showLayout, (position, material) =>
             {
                 if (!cavityPositions.Contains(position))
                     return material;
@@ -495,7 +498,7 @@ public partial class CellBodyPlanEditorComponent
             var model = PlacedModels[nextModel++];
             ShowCellTypeInModelHolder(model, GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType),
                 Hex.AxialToCartesian(cell.Position) + microbeModelOffset, cell.Orientation);
-            model.Visible = true;
+            model.Visible = showLayout;
         }
 
         while (nextModel < PlacedModels.Count)
@@ -511,7 +514,9 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateGrowthOrderNumbers();
         UpdateFinishButtonWarningVisibility();
-        UpdateArrow();
+
+        if (showLayout)
+            UpdateArrow();
     }
 
     private void ClearFullLayoutGraphics()

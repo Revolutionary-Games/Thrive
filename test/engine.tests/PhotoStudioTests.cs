@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using GdUnit4;
@@ -6,7 +7,7 @@ using Godot;
 using static GdUnit4.Assertions;
 
 /// <summary>
-///   Checks PhotoStudio recovery from invalid simulation image requests.
+///   Checks PhotoStudio scheduling and recovery from invalid image requests.
 /// </summary>
 [TestSuite]
 [RequireGodotRuntime]
@@ -115,6 +116,61 @@ public class PhotoStudioTests
         }
     }
 
+    [TestCase(false)]
+    [TestCase(true)]
+    public void NewerBatchRunsFirstAndPreservesOrderWithinBatches(bool flushExplicitly)
+    {
+        var photoStudio = PhotoStudio.Instance;
+        var setupOrder = new List<int>();
+
+        var active = QueueRequest(0);
+        photoStudio._Process(1.0 / 60);
+
+        QueueRequest(1);
+        var olderBatchEnd = QueueRequest(2);
+        var priorityRequest = QueueRequest(5, int.MinValue);
+
+        if (flushExplicitly)
+        {
+            photoStudio.FlushBatch();
+        }
+        else
+        {
+            photoStudio._Process(0.06);
+            photoStudio._Process(0.06);
+        }
+
+        QueueRequest(3);
+        var newerBatchEnd = QueueRequest(4);
+
+        for (int i = 0; i < 80; ++i)
+        {
+            RenderingServer.ForceDraw(false);
+            photoStudio._Process(1.0 / 60);
+
+            if ((olderBatchEnd.Finished || olderBatchEnd.Failed) && (newerBatchEnd.Finished || newerBatchEnd.Failed) &&
+                (priorityRequest.Finished || priorityRequest.Failed))
+            {
+                photoStudio._Process(1.0 / 60);
+                break;
+            }
+        }
+
+        AssertThat(active.Finished || active.Failed).IsTrue();
+        AssertThat((IEnumerable<int>)setupOrder).ContainsExactly(0, 5, 3, 4, 1, 2);
+
+        IImageTask QueueRequest(int index, int priority = int.MinValue + 1)
+        {
+            var photographable = new TestSimulationPhotographable(false,
+                unchecked((ulong)Guid.NewGuid().GetHashCode()))
+            {
+                OnSetup = () => setupOrder.Add(index),
+            };
+
+            return photoStudio.GenerateImage(photographable, priority, 16);
+        }
+    }
+
     private sealed class TestScenePhotographable : IScenePhotographable
     {
         private readonly int failureStage;
@@ -177,6 +233,8 @@ public class PhotoStudioTests
 
         public bool ThrowPlainException { get; init; }
 
+        public Action? OnSetup { get; init; }
+
         public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
             ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
@@ -188,6 +246,7 @@ public class PhotoStudioTests
         public void SetupWorldEntities(IWorldSimulation worldSimulation)
         {
             ++SetupCount;
+            OnSetup?.Invoke();
 
             if (ThrowPlainException)
                 throw new Exception("Simulation photograph test request failed");

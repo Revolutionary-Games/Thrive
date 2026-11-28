@@ -98,6 +98,23 @@ public partial class DraggableScrollContainer : ScrollContainer
             content.Scale = pairValue;
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (!Visible || centering)
+        {
+            dragging = false;
+            return;
+        }
+
+        if (@event is InputEventMouseButton
+            {
+                Pressed: false, ButtonIndex: MouseButton.Left or MouseButton.Right,
+            })
+        {
+            dragging = false;
+        }
+    }
+
     public override void _GuiInput(InputEvent @event)
     {
         if (!Visible || centering)
@@ -143,23 +160,6 @@ public partial class DraggableScrollContainer : ScrollContainer
 
             ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.X * scaleInverse) * DragSensitivity,
                 ScrollVertical - (int)(motion.Relative.Y * scaleInverse) * DragSensitivity));
-        }
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (!Visible || centering)
-        {
-            dragging = false;
-            return;
-        }
-
-        if (@event is InputEventMouseButton
-            {
-                Pressed: false, ButtonIndex: MouseButton.Left or MouseButton.Right,
-            })
-        {
-            dragging = false;
         }
     }
 

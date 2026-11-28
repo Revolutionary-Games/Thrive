@@ -268,8 +268,6 @@ public partial class SceneManager : Node
             return false;
         }
 
-        bool overrideGameStartAgain = false;
-
         if (!ResourceLoader.Exists(scenePath))
         {
             // This is either a starter alias or the path does not exist. Let's try to match the starter aliases.
@@ -298,21 +296,15 @@ public partial class SceneManager : Node
                 GD.PrintErr("Load command: the specified starter alias or resource path does not exist.");
                 return false;
             }
-
-            overrideGameStartAgain = true;
         }
 
         CheatManager.OnCheatsDisabled();
         AchievementsManager.ReportNewGameStarted(true);
 
-        Instance.SwitchToScene(scenePath);
+        var newScene = Instance.SwitchToScene(scenePath);
 
-        // When using a scene starter, we need to report a second new game start to get the cheated flags updated
-        if (overrideGameStartAgain)
-        {
-            // Due to the way the scene switch works, this needs a bunch of delay
-            Invoke.Instance.Delay(() => { AchievementsManager.ReportNewGameStarted(true); }, 1);
-        }
+        (newScene as SimpleStageStarter)?.IsStartedUsingCheats = true;
+        (newScene as ComplexStageStarterBase)?.IsStartedUsingCheats = true;
 
         return true;
     }

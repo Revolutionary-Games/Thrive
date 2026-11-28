@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
@@ -93,29 +92,15 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
         var changes = new Dictionary<Compound, float>();
         var cloudSizes = new Dictionary<Compound, float>();
 
-        var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
-            out var currentHydrogenSulfide);
-        var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
-            out var currentCarbonDioxide);
+        patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide, out var currentHydrogenSulfide);
 
-        // TODO: shouldn't the eruption work even with the compounds not present initially?
-        // TODO: Do it like it is done in meteor event
-        if (!hasHydrogenSulfide || !hasCarbonDioxide)
-            return false;
-
-        currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE
-            * targetWorld.GetEventCompoundCoefficient(Compound.Hydrogensulfide);
-        currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE
-            * targetWorld.GetEventCompoundCoefficient(Compound.Carbondioxide);
-
-        // Percentage is density times amount, so clamp to the inversed amount (times 100)
-        currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
-            / currentHydrogenSulfide.Amount * 100);
-        currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
+        currentHydrogenSulfide.Amount = currentHydrogenSulfide.Amount == 0 ? 250000 : currentHydrogenSulfide.Amount;
 
         // Intelligently apply the changes taking total gas percentages into account
-        changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density;
-        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
+        changes[Compound.Hydrogensulfide] = Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE
+            * targetWorld.GetEventCompoundCoefficient(Compound.Hydrogensulfide);
+        changes[Compound.Carbondioxide] = Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE
+            * targetWorld.GetEventCompoundCoefficient(Compound.Carbondioxide);
         cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);

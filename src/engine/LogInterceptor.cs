@@ -55,6 +55,10 @@ public partial class LogInterceptor : Logger
         if (instance == null)
         {
             GD.PrintErr("No GUI error receiver");
+            GD.PrintErr("This error wasn't sent to the GUI: ", error);
+            if (extraInfo != null)
+                GD.PrintErr(extraInfo);
+
             return;
         }
 
@@ -189,6 +193,7 @@ public partial class LogInterceptor : Logger
                 {
                     // We can print again as this is no longer in the error callback context
                     GD.PrintErr("No unhandled error receiver");
+                    GD.PrintErr("Error that would go to waste: ", finalError);
                     return;
                 }
 

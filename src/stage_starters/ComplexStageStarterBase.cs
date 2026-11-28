@@ -9,6 +9,8 @@ public partial class ComplexStageStarterBase : Node
     [Export]
     public bool FadeFromBlack = true;
 
+    public bool IsStartedUsingCheats;
+
     private bool switchStarted;
 
     protected ComplexStageStarterBase()
@@ -43,7 +45,7 @@ public partial class ComplexStageStarterBase : Node
         CustomizeLoadedScene(scene);
 
         GD.Print("Switching to target scene");
-        AchievementsManager.ReportNewGameStarted(false);
+        AchievementsManager.ReportNewGameStarted(IsStartedUsingCheats);
         SceneManager.Instance.SwitchToScene(scene);
 
         CustomizeAttachedScene(scene);
