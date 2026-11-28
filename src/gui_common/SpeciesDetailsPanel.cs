@@ -29,20 +29,12 @@ public partial class SpeciesDetailsPanel : MarginContainer
 
             if (newHash == speciesVisualHash)
             {
-                // If the generation changes, we need to still update the text data even if the visuals is the same.
-                // Because otherwise the evolutionary tree text data won't refresh if switching between visually the
-                // same species.
-                // TODO: should we rely on other stats as well as for AI species they don't necessarily increment the
-                // generation? Though it luckily seems that species basically always mutate which means that they will
-                // always have a changed visual hash.
-                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3045
-                if (value != null && value.Generation != previewSpecies?.Generation)
+                // Different species or generation snapshots can reuse the same preview image.
+                if (!ReferenceEquals(value, previewSpecies))
                 {
+                    previewSpecies = value;
                     if (speciesDetailsLabel != null)
-                    {
-                        previewSpecies = value;
                         UpdateDetailString();
-                    }
                 }
 
                 // A failed preview needs a new request even if the corrected species looks the same.
