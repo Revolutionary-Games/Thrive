@@ -162,7 +162,7 @@ public partial class MicheTree : Control
         node.ShowsOccupant = showsOccupant || miche.Pressure is NoOpPressure;
         node.ParentNode = parent;
         node.ButtonGroup = nodesGroup;
-        node.Pressed += () => EmitSignal(SignalName.MicheSelected, node);
+        node.Connect(BaseButton.SignalName.Pressed, Callable.From(() => EmitSignal(SignalName.MicheSelected, node)));
 
         nodes.Add(node);
         tree.AddChild(node);
