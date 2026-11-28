@@ -238,13 +238,23 @@ if(UNIX AND NOT APPLE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)
   set(_thrive_ext_src "$<TARGET_FILE:thrive_extension>")
   set(_thrive_ext_dst "${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveExtension/${THRIVE_EXTENSION_VERSION}/${_thrive_stage_subpath}/libthrive_extension_without_avx.arm64.so")
 
+  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(_thrive_gdext_stage_dst "${CMAKE_CURRENT_SOURCE_DIR}/lib/debug/libthrive_extension_without_avx.arm64.so")
+  else()
+    set(_thrive_gdext_stage_dst "${CMAKE_CURRENT_SOURCE_DIR}/lib/libthrive_extension_without_avx.arm64.so")
+  endif()
+
+  get_filename_component(_thrive_gdext_stage_dir "${_thrive_gdext_stage_dst}" DIRECTORY)
+
   add_custom_target(stage_linux_arm64_native_libs ALL
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveNative/${NATIVE_LIBRARY_VERSION}/${_thrive_stage_subpath}>"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<SHELL_PATH:${_thrive_native_src}>" "$<SHELL_PATH:${_thrive_native_dst}>"
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveExtension/${THRIVE_EXTENSION_VERSION}/${_thrive_stage_subpath}>"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<SHELL_PATH:${_thrive_ext_src}>" "$<SHELL_PATH:${_thrive_ext_dst}>"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${_thrive_gdext_stage_dir}>"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<SHELL_PATH:${_thrive_ext_src}>" "$<SHELL_PATH:${_thrive_gdext_stage_dst}>"
     DEPENDS thrive_native thrive_extension
-    COMMENT "Staging Linux ARM64 Thrive native libraries into native_libs/distributable"
+    COMMENT "Staging Linux ARM64 Thrive native libraries into native_libs/distributable and lib/"
     VERBATIM
   )
 endif()
