@@ -1018,7 +1018,10 @@ public class NativeLibs
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
 
-        shCommandBuilder.Append("-DTHRIVE_AVX=ON ");
+        if (RuntimeInformation.OSArchitecture != Architecture.Arm64)
+        {
+            shCommandBuilder.Append("-DTHRIVE_AVX=ON ");
+        }
 
         shCommandBuilder.Append($"-DTHRIVE_GODOT_API_FILE={APIInContainer} ");
 
@@ -1030,10 +1033,13 @@ public class NativeLibs
 
         shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
 
-        // ReSharper disable once CommentTypo
-        // Specify the CPU type to tune for and make available instructions for checking the available instructions
-        // (_xgetbv)
-        shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=sandybridge ");
+        if (RuntimeInformation.OSArchitecture != Architecture.Arm64)
+        {
+            // ReSharper disable once CommentTypo
+            // Specify the CPU type to tune for and make available instructions for checking the available instructions
+            // (_xgetbv)
+            shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=sandybridge ");
+        }
 
         switch (platform)
         {

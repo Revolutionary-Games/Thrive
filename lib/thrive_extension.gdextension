@@ -25,8 +25,9 @@ linux.debug.x86_64 = "res://lib/debug/libthrive_extension_without_avx.so"
 linux.release.x86_64 = "res://lib/libthrive_extension_without_avx.so"
 
 # TODO: other architectures and phones
-# linux.debug.arm64 = "res://lib/debug/libthrive_extension_without_avx.arm64.so"
-# linux.release.arm64 = "res://lib/libthrive_extension_without_avx.arm64.so"
+linux.debug.arm64 = "res://lib/debug/libthrive_extension_without_avx.arm64.so"
+linux.release.arm64 = "res://lib/libthrive_extension_without_avx.arm64.so"
+linux.arm64 = "res://lib/debug/libthrive_extension_without_avx.arm64.so"
 # linux.debug.rv64 = "res://lib/debug/libthrive_extension_without_avx.rv64.so"
 # linux.release.rv64 = "res://lib/libthrive_extension_without_avx.rv64.so"
 # android.debug.x86_64 = "res://lib/debug/libthrive_extension_without_avx.android.x86_64.so"

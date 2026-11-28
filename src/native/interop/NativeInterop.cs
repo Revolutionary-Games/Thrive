@@ -146,6 +146,14 @@ public static class NativeInterop
                 return true;
             }
 
+            // ARM64 Linux does not use x86 SSE/AVX extensions
+            if (RuntimeInformation.ProcessArchitecture == Architecture.Arm64)
+            {
+                GD.Print("ARM64 detected so skipping x86 CPU check and disabling AVX");
+                disableAvx = true;
+                return true;
+            }
+
             // If the CPU can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
             {

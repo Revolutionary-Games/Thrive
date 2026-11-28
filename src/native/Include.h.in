@@ -80,6 +80,8 @@
 #else
 #define HYPER_THREAD_YIELD __asm__ ( "pause;" );
 #endif // ARM
+#elif defined(__aarch64__) || defined(_M_ARM64)
+#define HYPER_THREAD_YIELD __asm__ volatile("yield")
 #else
 #define HYPER_THREAD_YIELD __builtin_ia32_pause()
 #endif // __apple_build_version__
