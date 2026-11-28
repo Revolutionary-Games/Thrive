@@ -15,7 +15,11 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Scripts/CMake")
 
 # Options
 # Building either the faster variant with AVX or without for older CPU support
-option(THRIVE_AVX "Create faster code that needs AVX2" ON)
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)$")
+  option(THRIVE_AVX "Create faster code that needs AVX2" OFF)
+else()
+  option(THRIVE_AVX "Create faster code that needs AVX2" ON)
+endif()
 
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
 
@@ -218,6 +222,32 @@ set(GODOTCPP_CUSTOM_API_FILE "${GODOT_GDEXTENSION_DIR}/extension_api.json")
 
 # GODOT_CPP_SYSTEM_HEADERS
 # GODOT_CPP_WARNING_AS_ERROR
+
+# Stage Linux ARM64 native libraries into native_libs/distributable so running
+# Godot directly on ARM64 Linux finds them automatically.
+if(UNIX AND NOT APPLE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)$")
+  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(_thrive_stage_subpath "debug/lib")
+  else()
+    set(_thrive_stage_subpath "release/lib")
+  endif()
+
+  set(_thrive_native_src "$<TARGET_FILE:thrive_native>")
+  set(_thrive_native_dst "${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveNative/${NATIVE_LIBRARY_VERSION}/${_thrive_stage_subpath}/libthrive_native_without_avx.so")
+
+  set(_thrive_ext_src "$<TARGET_FILE:thrive_extension>")
+  set(_thrive_ext_dst "${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveExtension/${THRIVE_EXTENSION_VERSION}/${_thrive_stage_subpath}/libthrive_extension_without_avx.arm64.so")
+
+  add_custom_target(stage_linux_arm64_native_libs ALL
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveNative/${NATIVE_LIBRARY_VERSION}/${_thrive_stage_subpath}>"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<SHELL_PATH:${_thrive_native_src}>" "$<SHELL_PATH:${_thrive_native_dst}>"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${CMAKE_CURRENT_SOURCE_DIR}/native_libs/distributable/linux/ThriveExtension/${THRIVE_EXTENSION_VERSION}/${_thrive_stage_subpath}>"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<SHELL_PATH:${_thrive_ext_src}>" "$<SHELL_PATH:${_thrive_ext_dst}>"
+    DEPENDS thrive_native thrive_extension
+    COMMENT "Staging Linux ARM64 Thrive native libraries into native_libs/distributable"
+    VERBATIM
+  )
+endif()
 
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
