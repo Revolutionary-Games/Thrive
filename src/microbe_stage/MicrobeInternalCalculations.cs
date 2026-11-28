@@ -1248,10 +1248,9 @@ public static class MicrobeInternalCalculations
         out float averageDensity)
     {
         // The common small layouts fit on the stack. Both monotone chains together need at most 2 * hexCount slots.
-        Hex[]? rented = null;
-        Span<Hex> scratch = hexCount <= 64 ?
-            stackalloc Hex[3 * hexCount] :
-            (rented = ArrayPool<Hex>.Shared.Rent(3 * hexCount));
+        int scratchLength = 3 * hexCount;
+        Hex[]? rented = hexCount > 64 ? ArrayPool<Hex>.Shared.Rent(scratchLength) : null;
+        Span<Hex> scratch = rented == null ? stackalloc Hex[scratchLength] : rented;
         try
         {
             var points = scratch[..hexCount];
@@ -1407,7 +1406,7 @@ public static class MicrobeInternalCalculations
     /// <summary>
     ///   Accumulates the volume-weighted density of the base cell and its organelles.
     /// </summary>
-    private struct CellDensityAccumulator
+    private record struct CellDensityAccumulator
     {
         private float totalVolume;
         private float weightedDensity;
