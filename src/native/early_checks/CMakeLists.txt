@@ -19,7 +19,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 else()
   if(APPLE)
     # Can't specify architecture explicitly on mac so that's not a concern
-  else()
+  elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|AMD64|i.86)$")
     # Sadly this needs to specify sandy bridge to get xgetbv working, but that
     # is only called if AVX support is already detected, so this should be fine
     # for older CPUs. Nehalem is the minimum Thrive can work with but when SSE

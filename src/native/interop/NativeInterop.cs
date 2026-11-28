@@ -27,7 +27,7 @@ public static class NativeInterop
 
     private static readonly Dictionary<string, string> FoundFolderLibraries = new();
 
-    private static bool disableAvx;
+    private static bool disableAvx = RuntimeInformation.ProcessArchitecture == Architecture.Arm64;
 
     private static bool loadCalled;
     private static bool nativeLoadSucceeded;
@@ -142,6 +142,14 @@ public static class NativeInterop
             if (OperatingSystem.IsMacOS())
             {
                 GD.Print("Mac detected so skipping CPU check and not trying to use AVX");
+                disableAvx = true;
+                return true;
+            }
+
+            // ARM64 Linux does not use x86 SSE/AVX extensions
+            if (RuntimeInformation.ProcessArchitecture == Architecture.Arm64)
+            {
+                GD.Print("ARM64 detected so skipping x86 CPU check and disabling AVX");
                 disableAvx = true;
                 return true;
             }
