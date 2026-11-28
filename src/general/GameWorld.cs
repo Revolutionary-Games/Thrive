@@ -1107,7 +1107,7 @@ public class GameWorld : IArchivable
     /// <summary>
     ///   Returns the modifier that should be applied to events' compound production
     /// </summary>
-    public float GetEventCompoundCoefficient(Compound compound)
+    public float GetEventCompoundProductionCoefficient(Compound compound)
     {
         if (eventCompoundModifiers.TryGetValue(compound, out var coefficient))
             return coefficient;

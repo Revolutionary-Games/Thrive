@@ -257,14 +257,16 @@ public class MeteorImpactEvent : IWorldEffect
 
                 // TODO: instead of hardcoding the fallback value, maybe this could look in the event template biome?
                 currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 125000 : currentCompoundLevel.Amount;
-                tempCompoundChanges[compoundName] = currentCompoundLevel.Density;
+                tempCompoundChanges[compoundName] = currentCompoundLevel.Density
+                    * targetWorld.GetEventCompoundProductionCoefficient(compoundName);
                 tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }
             else
             {
                 // CO2
                 currentCompoundLevel.Ambient = levelChange;
-                tempCompoundChanges[compoundName] = currentCompoundLevel.Ambient;
+                tempCompoundChanges[compoundName] = currentCompoundLevel.Ambient
+                    * targetWorld.GetEventCompoundProductionCoefficient(compoundName);
             }
         }
 

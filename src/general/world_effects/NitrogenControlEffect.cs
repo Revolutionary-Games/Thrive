@@ -98,6 +98,8 @@ public class NitrogenControlEffect : IWorldEffect
                 continue;
             }
 
+            nitrogenModification[Compound.Nitrogen] *= targetWorld.GetEventCompoundProductionCoefficient(Compound.Carbondioxide);
+
             patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, nitrogenModification, cloudSizesDummy);
         }
     }

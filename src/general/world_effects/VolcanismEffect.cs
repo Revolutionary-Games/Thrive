@@ -83,7 +83,8 @@ public class VolcanismEffect : IWorldEffect
     {
         if (!patch.Biome.TryGetCompound(Compound.Carbondioxide, CompoundAmountType.Biome, out var amount))
         {
-            addedCo2[Compound.Carbondioxide] = co2Strength;
+            addedCo2[Compound.Carbondioxide] = co2Strength
+                * targetWorld.GetEventCompoundProductionCoefficient(Compound.Carbondioxide);
 
             patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, addedCo2, cloudSizesDummy);
             return;
@@ -94,7 +95,8 @@ public class VolcanismEffect : IWorldEffect
             return;
 
         // TODO: should this clamp or not?
-        addedCo2[Compound.Carbondioxide] = Math.Clamp(co2Strength, 0, threshold);
+        addedCo2[Compound.Carbondioxide] = Math.Clamp(co2Strength, 0, threshold)
+            * targetWorld.GetEventCompoundProductionCoefficient(Compound.Carbondioxide);
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, addedCo2, cloudSizesDummy);
     }

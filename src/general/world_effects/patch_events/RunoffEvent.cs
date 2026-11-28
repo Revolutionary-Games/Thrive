@@ -149,13 +149,14 @@ public class RunoffEvent : IWorldEffect
                     {
                         // ammonia, hydrogensulfide, phosphates
                         compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
-                        compoundChanges[compound] = Constants.RUNOFF_COMPOUND_CHANGE * random.Next(0.8f, 1.2f);
+                        compoundChanges[compound] = Constants.RUNOFF_COMPOUND_CHANGE * random.Next(0.8f, 1.2f)
+                            * targetWorld.GetEventCompoundProductionCoefficient(compound);
                         cloudSizes[compound] = compoundLevel.Amount;
                     }
                     else
                     {
                         // nitrogen
-                        compoundChanges[compound] = 0.1f;
+                        compoundChanges[compound] = 0.1f * targetWorld.GetEventCompoundProductionCoefficient(compound);
                     }
                 }
 
