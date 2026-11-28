@@ -65,6 +65,57 @@ public class MicrobeSpeciesTests
         testSpecies2.OnEdited();
     }
 
+    /// <summary>
+    ///   Checks that Auto-Evo predicts the physical slowdown when a bacterium with five adjacent
+    ///   cytoplasms gains a nucleus, so the change in cell scale cannot give it an artificial speed advantage.
+    /// </summary>
+    [TestCase]
+    public void AutoEvoSpeedDecreasesWhenSmallBacteriumGainsNucleus()
+    {
+        var bacterium = CreateMicrobe(38, "BeforeNucleus", "single", "cytoplasm");
+        var eukaryote = CreateMicrobe(39, "AfterNucleus", "single", "cytoplasm");
+        for (int i = 1; i < 5; ++i)
+        {
+            bacterium.Organelles.Add(CreateOrganelle("cytoplasm", new Hex(i, 0)));
+            eukaryote.Organelles.Add(CreateOrganelle("cytoplasm", new Hex(i, 0)));
+        }
+
+        eukaryote.IsBacteria = false;
+        eukaryote.Organelles.Add(CreateOrganelle("nucleus", new Hex(-2, 0)));
+        bacterium.OnEdited();
+        eukaryote.OnEdited();
+
+        var cache = CreateCache();
+        AssertThat(eukaryote.BaseSpeed).IsLess(bacterium.BaseSpeed);
+        AssertThat(cache.GetSpeedForSpecies(eukaryote)).IsLess(cache.GetSpeedForSpecies(bacterium));
+    }
+
+    /// <summary>
+    ///   Checks that moving a cytoplasm out through a sloping membrane edge slows the cell.
+    ///   The two layouts have the same organelles and the same extents along all three hex axes.
+    /// </summary>
+    [TestCase]
+    public void AutoEvoSpeedAccountsForObliqueCellEdges()
+    {
+        var compact = CreateMicrobe(38, "Compact", "single", "cytoplasm");
+        var wider = CreateMicrobe(39, "Wider", "single", "cytoplasm");
+        Hex[] shared = [new(0, 1), new(-1, 0), new(-1, -1), new(-2, -1), new(1, 1), new(1, 2), new(1, -1)];
+        foreach (var position in shared)
+        {
+            compact.Organelles.Add(CreateOrganelle("cytoplasm", position));
+            wider.Organelles.Add(CreateOrganelle("cytoplasm", position));
+        }
+
+        compact.Organelles.Add(CreateOrganelle("cytoplasm", new Hex(0, -1)));
+        wider.Organelles.Add(CreateOrganelle("cytoplasm", new Hex(-1, 1)));
+        compact.OnEdited();
+        wider.OnEdited();
+
+        var cache = CreateCache();
+        AssertThat(wider.BaseSpeed).IsLess(compact.BaseSpeed);
+        AssertThat(cache.GetSpeedForSpecies(wider)).IsLess(cache.GetSpeedForSpecies(compact));
+    }
+
     [TestCase]
     public void OnEditedAllowsNucleusOnlySpeciesWithNoInitialCompounds()
     {

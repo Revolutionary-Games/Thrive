@@ -167,17 +167,19 @@ public class SimulationCachePredationScoreTests
             .IsEqual(productionAboveStationaryConsumption);
     }
 
+    /// <summary>
+    ///   Checks that inhibiting movement also suppresses sprint escape when a prey can only outrun its
+    ///   predator by sprinting.
+    /// </summary>
     [TestCase]
     public void ChannelInhibitorSlowsSprintEscapeSpeed()
     {
-        // Normal movement stays catchable, while sprinting lets the prey escape.
-        const float preyFear = Constants.MAX_SPECIES_FEAR * 0.25f;
-        var fullyFundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(24.0f, preyFear: preyFear);
-        var unfundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(4.0f, preyFear: preyFear);
+        var fullyFundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(24.0f, sprintEscape: true);
+        var unfundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(4.0f, sprintEscape: true);
         var fullyFundedMovementWithSprint =
-            CalculateChannelInhibitorPredationScore(24.0f, finalBalance: 1.0f, preyFear: preyFear);
+            CalculateChannelInhibitorPredationScore(24.0f, finalBalance: 1.0f, sprintEscape: true);
         var unfundedMovementWithSprint =
-            CalculateChannelInhibitorPredationScore(4.0f, finalBalance: 1.0f, preyFear: preyFear);
+            CalculateChannelInhibitorPredationScore(4.0f, finalBalance: 1.0f, sprintEscape: true);
 
         var inhibitionBenefitWithoutSprint = unfundedMovementWithoutSprint - fullyFundedMovementWithoutSprint;
         var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
@@ -214,12 +216,25 @@ public class SimulationCachePredationScoreTests
 
     private static float CalculateChannelInhibitorPredationScore(float totalProduction, float osmoregulation = 2.0f,
         float stationaryConsumption = 2.0f, float movementConsumption = 10.0f, float finalBalance = 0.0f,
-        float preyFear = Constants.MAX_SPECIES_FEAR)
+        bool sprintEscape = false)
     {
         var predator = CreateChannelInhibitorPredator(9);
         var prey = CreateMicrobe(10, "ChannelInhibitorPrey", "single", "cytoplasm");
-        prey.ModifiableBehaviour.Fear = preyFear;
+        prey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
         prey.ModifiableBehaviour.Aggression = 0;
+        if (sprintEscape)
+        {
+            var speeds = CreateCache();
+            var predatorSpeed = speeds.GetSpeedForSpecies(predator);
+            var preySpeed = speeds.GetSpeedForSpecies(prey);
+
+            // Aim halfway between the normal and sprint escape thresholds for this pair of cells.
+            var fleeingSpeed = (predatorSpeed + predatorSpeed / Constants.SPRINTING_FORCE_MULTIPLIER) / 2;
+            var fearFraction = fleeingSpeed / preySpeed;
+            AssertThat(fearFraction).IsGreater(0.0f).IsLessEqual(1.0f);
+            prey.ModifiableBehaviour.Fear *= fearFraction;
+        }
+
         var biome = CreateBiome();
         return AssertPredationLifecycle(predator, prey, biome, (cache, conditions) =>
         {
@@ -242,9 +257,10 @@ public class SimulationCachePredationScoreTests
     private static MicrobeSpecies CreateChannelInhibitorPredator(uint id)
     {
         var simulationParameters = SimulationParameters.Instance;
-        var species = CreateMicrobe(id, "ChannelInhibitorPredator", "single", "cytoplasm", "pilus");
+        var species = CreateMicrobe(id, "ChannelInhibitorPredator", "single", "cytoplasm");
+        species.Organelles.Add(CreateOrganelle("pilus", new Hex(1, 0)));
         species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("oxytoxy"),
-            new Hex(8, 0), 0)
+            new Hex(0, 1), 0)
         {
             ModifiableUpgrades = new OrganelleUpgrades
             {
