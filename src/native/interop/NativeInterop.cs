@@ -27,7 +27,7 @@ public static class NativeInterop
 
     private static readonly Dictionary<string, string> FoundFolderLibraries = new();
 
-    private static bool disableAvx;
+    private static bool disableAvx = RuntimeInformation.ProcessArchitecture == Architecture.Arm64;
 
     private static bool loadCalled;
     private static bool nativeLoadSucceeded;

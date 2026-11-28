@@ -223,7 +223,7 @@ public class NativeLibs
 
             var baseTag = GetTag(false);
 
-            foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
+            foreach (var tag in GetVariantTags(baseTag, platform))
             {
                 // Mac doesn't have an avx variant
                 if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
@@ -325,6 +325,17 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine("Editor libraries installed");
         return true;
+    }
+
+    private static IEnumerable<PrecompiledTag> GetVariantTags(PrecompiledTag baseTag, PackagePlatform platform)
+    {
+        var isArm64 = platform == PackagePlatform.Mac ||
+            (platform == PackagePlatform.Linux && RuntimeInformation.OSArchitecture == Architecture.Arm64);
+
+        if (isArm64)
+            return [baseTag | PrecompiledTag.WithoutAvx];
+
+        return [baseTag, baseTag | PrecompiledTag.WithoutAvx];
     }
 
     private PrecompiledTag GetTag(bool localBuild)
@@ -768,7 +779,7 @@ public class NativeLibs
             startInfo.ArgumentList.Add("-DGODOTCPP_TARGET=template_release");
         }
 
-        if (options.DisableLocalAvx)
+        if (options.DisableLocalAvx || RuntimeInformation.OSArchitecture == Architecture.Arm64)
         {
             startInfo.ArgumentList.Add("-DTHRIVE_AVX=OFF");
         }
@@ -1000,6 +1011,7 @@ public class NativeLibs
         // Cmake configure inside the container
         shCommandBuilder.Append($"cmake {thriveContainerFolder} ");
         shCommandBuilder.Append("-G Ninja ");
+        shCommandBuilder.Append("-DTHRIVE_STAGE_LINUX_ARM64_NATIVE_LIBS=OFF ");
 
         // ReSharper disable StringLiteralTypo
         var buildType = "Distribution";
@@ -1091,8 +1103,9 @@ public class NativeLibs
 
         // ReSharper restore StringLiteralTypo
 
-        // Cmake build inside the container, once without AVX and once with
-        for (int i = 0; i < 2; ++i)
+        // Cmake build inside the container; x86 also builds a non-AVX Nehalem compatibility pass
+        var buildCount = RuntimeInformation.OSArchitecture != Architecture.Arm64 ? 2 : 1;
+        for (int i = 0; i < buildCount; ++i)
         {
             if (i > 0)
             {
@@ -1149,7 +1162,7 @@ public class NativeLibs
 
             foreach (var library in libraries)
             {
-                foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
+                foreach (var tag in GetVariantTags(baseTag, platform))
                 {
                     var source = GetPathToDistributableTempDll(library, platform, tag);
 
@@ -1169,7 +1182,7 @@ public class NativeLibs
         {
             var version = NativeConstants.GetLibraryVersion(library);
 
-            foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
+            foreach (var tag in GetVariantTags(baseTag, platform))
             {
                 var target = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
@@ -1612,7 +1625,7 @@ public class NativeLibs
 
         bool uploaded = false;
 
-        foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
+        foreach (var tag in GetVariantTags(baseTag, platform))
         {
             if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
             {
@@ -1969,7 +1982,7 @@ public class NativeLibs
 
         var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
-        foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
+        foreach (var tag in GetVariantTags(baseTag, platform))
         {
             // Mac doesn't have AVX-using builds
             if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
